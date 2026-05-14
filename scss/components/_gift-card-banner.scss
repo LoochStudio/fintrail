@@ -1,0 +1,172 @@
+@use '../variables' as *;
+
+.gift-card-banner {
+  position: relative;
+  height: 290px;
+  margin: 0 $spacing-page;
+  background: #999;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 48px;
+
+  &__cards {
+    position: absolute;
+    top: 24px;
+    left: 71px;
+    width: 200px;
+    height: 111px;
+  }
+
+  &__card {
+    position: absolute;
+    border-radius: 11px;
+
+    &--back {
+      width: 162px;
+      height: 92px;
+      top: 13px;
+      left: 0;
+      background: #ededed;
+      transform: rotate(2deg);
+    }
+
+    &--front {
+      width: 157px;
+      height: 93px;
+      top: 0;
+      left: 37px;
+      background: #fff;
+      transform: rotate(4deg);
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    top: 57.29px;
+    left: 49.17px;
+    z-index: 2;
+    width: 134.012px;
+    height: 33.655px;
+    object-fit: contain;
+    transform: rotate(0.89deg);
+  }
+
+  &__content {
+    position: absolute;
+    top: 159px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    align-self: flex-start;
+    padding: 10px 20px 11px;
+    background: #fff;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.9);
+    white-space: nowrap;
+    text-decoration: none;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .gift-card-banner {
+    width: 100%;
+    max-width: 1200px;
+    height: 350px;
+    margin: 100px auto;
+    border-radius: 20px;
+
+    &__cards {
+      top: 76px;
+      left: 757px;
+      width: 381.223px;
+      height: 197.189px;
+    }
+
+    &__card {
+      border-radius: 20.927px;
+
+      &--back {
+        width: 308.628px;
+        height: 176.143px;
+        top: 24.63px;
+        left: 0;
+      }
+
+      &--front {
+        width: 298.669px;
+        height: 176.785px;
+        top: 0;
+        left: 70.95px;
+      }
+    }
+
+    &__logo {
+      top: 109.13px;
+      left: 88.66px;
+      width: 261.89px;
+      height: 64.964px;
+    }
+
+    &__content {
+      top: 32px;
+      left: 32px;
+      right: auto;
+      gap: 48px;
+    }
+
+    &__text {
+      gap: 8px;
+    }
+
+    &__title {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 44px;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    &__desc {
+      font-size: 18px;
+      line-height: 28px;
+      white-space: nowrap;
+    }
+  }
+}

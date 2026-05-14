@@ -1,0 +1,735 @@
+@use '../variables' as *;
+
+.hero {
+  position: relative;
+  height: calc(658px - var(--navbar-height, 112px));
+  display: flex;
+  flex-direction: column;
+  background: $color-surface;
+
+  &__track {
+    flex: 1;
+    overflow: hidden;
+    min-height: 160px;
+  }
+
+  &__slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+
+  &__slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+  }
+
+  // Обёртка вокруг контента и стрелок
+  // Мобайл: прозрачная, дети идут как обычно
+  // Десктоп: абсолютно позиционированная строка
+  &__row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content {
+    padding: 0 20px calc(var(--tabbar-height, 72px) + 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  // Все info-блоки накладываются в одну grid-ячейку — высота не прыгает при смене слайда
+  &__infos {
+    display: grid;
+    grid-template-areas: 'info';
+
+    > * { grid-area: info; }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+
+    &.is-active {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    color: $color-text-primary;
+  }
+
+  &__desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-text-secondary;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 10px 16px;
+    background: $color-white;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: $color-text-primary;
+    white-space: nowrap;
+  }
+
+  &__pagination {
+    display: flex;
+    gap: 6px;
+    height: 4px;
+    padding-left: 4px;
+  }
+
+  &__pagination-dot {
+    flex: 1;
+    min-width: 1px;
+    background: $color-secondary-gray;
+
+    &.is-active {
+      background: $color-primary-black;
+    }
+  }
+
+  // Стрелки — скрыты на мобайле
+  &__arrows {
+    display: none;
+  }
+
+  &__arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &.is-inactive {
+      opacity: 0.2;
+    }
+  }
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__topbar,
+.hero__products {
+  display: none;
+}
+
+.hero-product-card {
+  text-decoration: none;
+}
+
+// ─── New desktop hero from FINNTRAIL redesign ───────────────────────────────
+@media (min-width: $bp-lg) {
+  .navbar {
+    display: none;
+  }
+
+  .hero {
+    height: max(800px, 100svh);
+    overflow: hidden;
+    background: $color-hero-fallback;
+
+    &__track {
+      position: absolute;
+      inset: 0;
+      flex: none;
+      min-height: auto;
+      overflow: hidden;
+    }
+
+    &__slides {
+      height: 100%;
+    }
+
+    &__slide {
+      height: 100%;
+      align-items: stretch;
+      justify-content: stretch;
+      padding-top: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__topbar {
+      position: absolute;
+      top: $spacing-page-desktop;
+      left: $spacing-page-desktop;
+      right: $spacing-page-desktop;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: $color-white;
+    }
+
+    &__brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    &__menu-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: $color-white;
+      cursor: pointer;
+
+      svg {
+        display: block;
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    &__logo-link {
+      display: block;
+      width: 180px;
+      height: 32px;
+    }
+
+    &__logo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &__nav {
+      position: absolute;
+      top: 11.5px;
+      left: calc(50% - 153px);
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    &__nav-link {
+      font-family: $font-mono;
+      font-size: $text-subtitle-s2-size;
+      font-weight: $font-weight-semibold;
+      line-height: 1.1;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    &__tools {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    &__tool {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      color: $color-white;
+
+      svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__row {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+    }
+
+    &__content {
+      position: absolute;
+      top: calc(100% - 265px);
+      left: calc(50% - 10px);
+      width: 700px;
+      padding: 0;
+      color: $color-white;
+      transform: translateX(-50%);
+    }
+
+    &__info {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &__title {
+      font-family: $font-display;
+      font-size: $text-heading-h1-size;
+      font-weight: $font-weight-black;
+      line-height: $text-heading-h1-line;
+      color: $color-white;
+      text-transform: uppercase;
+      white-space: normal;
+    }
+
+    &__desc {
+      margin-top: 32px;
+      font-family: $font-mono;
+      font-size: $text-subtitle-s1-size;
+      font-weight: $font-weight-semibold;
+      line-height: $text-subtitle-s1-line;
+      color: $color-white;
+      text-transform: uppercase;
+    }
+
+    &__actions {
+      display: none;
+    }
+
+    &__pagination {
+      position: absolute;
+      bottom: 18px;
+      left: $spacing-page-desktop;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      width: auto;
+      height: 18px;
+      padding-left: 0;
+    }
+
+    &__pagination-dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      min-width: 0;
+      flex: none;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: $color-white;
+      cursor: pointer;
+
+      svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+      }
+
+      &.is-active {
+        width: 17px;
+        height: 18px;
+
+        svg {
+          width: 17px;
+          height: 18px;
+        }
+      }
+
+      &.is-loading svg {
+        animation: hero-pagination-progress 5s linear infinite;
+        transform-origin: 50% 50%;
+      }
+    }
+
+    &__arrows {
+      position: absolute;
+      top: calc(100% - 265px);
+      left: $spacing-page-desktop;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+    }
+
+    &__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      padding: 16px;
+      border: 0;
+      border-radius: $radius-xs;
+      background: $color-control-glass;
+      backdrop-filter: blur(8px);
+      color: $color-white;
+
+      svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+      }
+
+      &.is-inactive {
+        opacity: 1;
+      }
+    }
+
+    &__products {
+      position: absolute;
+      top: calc(100% - 265px);
+      right: $spacing-page-desktop;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      width: 340px;
+    }
+  }
+
+  .hero-product-card {
+    display: flex;
+    flex: 1 0 0;
+    min-width: 0;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    background: $color-white;
+    border-radius: 8px;
+    color: $color-primary-black;
+  }
+
+  .hero-product-card__pic {
+    position: relative;
+    display: block;
+    aspect-ratio: 135 / 135;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .hero-product-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .hero-product-card__name {
+    overflow: hidden;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: 1.2;
+    color: $color-primary-black;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+  }
+
+  .hero-product-card__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-product-card__price {
+    font-family: $font-display;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 1.2;
+    color: $color-primary-black;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hero-product-card__cart {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes hero-pagination-progress {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .hero {
+    height: max(800px, 100svh);
+
+    // Фото — абсолютный слой на всю hero
+    &__track {
+      position: absolute;
+      inset: 0;
+      flex: none;
+      min-height: auto;
+      overflow: hidden;
+    }
+
+    &__slides {
+      height: 100%;
+    }
+
+    &__slide {
+      height: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 158px;
+    }
+
+    // hero__row — абсолютно позиционированная строка, выровнена по 1200px контейнеру
+    // items-end + justify-between: контент слева, стрелки справа, оба прижаты к низу строки
+    &__row {
+      position: absolute;
+      top: 223px;
+      left: calc(50% - 600px);
+      right: calc(50% - 600px);
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      z-index: 1;
+    }
+
+    &__content {
+      padding: 0;
+      gap: 48px;
+      flex: none;
+      width: 716px;
+    }
+
+    &__info {
+      gap: 32px;
+    }
+
+    &__title {
+      font-size: 44px;
+      font-weight: 600;
+      line-height: 54px;
+      white-space: nowrap;
+    }
+
+    &__desc {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &__btn {
+      min-width: 140px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+
+    &__pagination {
+      width: 288px;
+    }
+
+    // Блок стрелок: белая «таблетка» с двумя иконками внутри
+    &__arrows {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: $color-white;
+      border-radius: 100px;
+      padding: 12px;
+      flex-shrink: 0;
+    }
+
+    &__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+
+      img {
+        display: block;
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+}
+
+// Final override: the new 1440 desktop hero must win over legacy desktop rules.
+@media (min-width: $bp-lg) {
+  .hero {
+    height: max(800px, 100svh);
+
+    &__row {
+      position: absolute;
+      inset: 0;
+      display: block;
+      z-index: 1;
+    }
+
+    &__slide {
+      align-items: stretch;
+      padding-top: 0;
+    }
+
+    &__content {
+      top: calc(100% - 265px);
+      left: calc(50% - 10px);
+      width: 700px;
+      transform: translateX(-50%);
+    }
+
+    &__text {
+      gap: 0;
+    }
+
+    &__title {
+      font-family: $font-display;
+      font-size: $text-heading-h1-size;
+      font-weight: $font-weight-black;
+      line-height: $text-heading-h1-line;
+      letter-spacing: 0;
+      color: $color-white;
+      text-transform: uppercase;
+      white-space: normal;
+    }
+
+    &__desc {
+      margin-top: 32px;
+      font-family: $font-mono;
+      font-size: $text-subtitle-s1-size;
+      font-weight: $font-weight-semibold;
+      line-height: $text-subtitle-s1-line;
+      letter-spacing: 0;
+      color: $color-white;
+      text-transform: uppercase;
+    }
+
+    &__pagination {
+      position: absolute;
+      right: auto;
+      bottom: 18px;
+      left: $spacing-page-desktop;
+      z-index: 2;
+      width: auto;
+      height: 18px;
+      padding: 0;
+      gap: 24px;
+      background: transparent;
+    }
+
+    &__pagination-dot {
+      width: 16px;
+      height: 16px;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: $color-white;
+      transform: none;
+
+      &.is-active {
+        width: 17px;
+        height: 18px;
+        background: transparent;
+        border: 0;
+      }
+    }
+
+    &__arrows {
+      top: calc(100% - 265px);
+      left: $spacing-page-desktop;
+      gap: 4px;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+    }
+
+    &__arrow {
+      width: 48px;
+      height: 48px;
+      padding: 16px;
+      border-radius: $radius-xs;
+      background: $color-control-glass;
+
+      svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &__products {
+      top: calc(100% - 265px);
+      right: $spacing-page-desktop;
+      left: auto;
+    }
+  }
+}

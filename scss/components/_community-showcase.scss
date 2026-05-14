@@ -1,0 +1,168 @@
+@use '../variables' as *;
+
+.community-showcase {
+  display: none;
+}
+
+@media (min-width: $bp-lg) {
+  .community-showcase {
+    display: flex;
+    height: 526px;
+    margin-top: $section-gap-xl;
+    padding: 0 $spacing-page-desktop;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: $color-surface;
+  }
+
+  .community-showcase__intro {
+    display: flex;
+    width: 304px;
+    flex-direction: column;
+    gap: 24px;
+    padding: 8px 0;
+    text-transform: uppercase;
+  }
+
+  .community-showcase__title {
+    margin: 0;
+    width: 340px;
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: 24px;
+    color: $color-primary-black;
+  }
+
+  .community-showcase__description {
+    margin: 0;
+    width: 304px;
+    color: $color-muted;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: 1.1;
+  }
+
+  .community-showcase__cards {
+    display: grid;
+    width: 1060px;
+    height: 526px;
+    grid-template-columns: repeat(3, 340px);
+    gap: 20px;
+  }
+
+  .community-showcase__card {
+    position: relative;
+    display: block;
+    height: 480px;
+    overflow: hidden;
+    background: lightgray;
+    color: $color-white;
+    text-decoration: none;
+  }
+
+  .community-showcase__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba($color-black, 0) 50%, rgba($color-black, 0.4) 100%);
+    pointer-events: none;
+  }
+
+  .community-showcase__image {
+    position: absolute;
+    display: block;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .community-showcase__image--offroad {
+    top: 0;
+    left: -7.85px;
+    width: 104.62%;
+    height: 100%;
+  }
+
+  .community-showcase__image--tourism {
+    top: -41.26px;
+    left: 0.262px;
+    width: 114.28%;
+    height: 108.58%;
+  }
+
+  .community-showcase__image--fishing {
+    top: -167.66px;
+    left: -61.13px;
+    width: 140.8%;
+    height: 139.78%;
+  }
+
+  .community-showcase__name,
+  .community-showcase__stats,
+  .community-showcase__socials {
+    position: absolute;
+    z-index: 1;
+    left: 20px;
+    text-transform: uppercase;
+  }
+
+  .community-showcase__name {
+    top: 20px;
+    margin: 0;
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: 28px;
+  }
+
+  .community-showcase__stats {
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .community-showcase__number {
+    font-family: $font-display;
+    font-size: $text-subtitle-s2-size;
+    font-weight: $font-weight-black;
+    line-height: 28px;
+    white-space: nowrap;
+  }
+
+  .community-showcase__caption {
+    margin-top: -2px;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: 12px;
+    opacity: 0.96;
+  }
+
+  .community-showcase__socials {
+    bottom: 20px;
+    display: flex;
+    gap: 4px;
+  }
+
+  .community-showcase__social {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-black;
+  }
+
+  .community-showcase__social svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .community {
+    display: none;
+  }
+}

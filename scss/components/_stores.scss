@@ -1,0 +1,157 @@
+@use '../variables' as *;
+
+.stores {
+  display: none;
+}
+
+.store-card {
+  text-decoration: none;
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .stores {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 1216px;
+    margin: 0 auto 100px;
+    overflow: hidden;
+
+    > .section-header {
+      width: 100%;
+    }
+
+    &__track {
+      display: flex;
+      gap: 22px;
+      width: 100%;
+      transition: transform 0.4s ease;
+      will-change: transform;
+    }
+  }
+
+  .store-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 589px;
+    flex-shrink: 0;
+    padding: 8px;
+    background: #f2f2f2;
+    border-radius: 20px;
+    color: #000;
+  }
+
+  .store-card__media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    width: 149px;
+    min-height: 150px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 16px;
+  }
+
+  .store-card__media-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .store-card__photo {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  .store-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 300px;
+    flex-shrink: 0;
+    padding: 8px 0;
+  }
+
+  .store-card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    width: 100%;
+  }
+
+  .store-card__heading {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .store-card__label {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .store-card__title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .store-card__details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #000;
+  }
+
+  .store-card__address,
+  .store-card__contact {
+    margin: 0;
+  }
+
+  .store-card__phone,
+  .store-card__email {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+  }
+
+  .store-card__schedule {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .store-card__route {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 44px;
+    padding: 10px 20px;
+    border: 1px solid #181818;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}

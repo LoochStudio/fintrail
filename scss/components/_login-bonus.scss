@@ -1,0 +1,196 @@
+@use '../variables' as *;
+
+.login-bonus {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 24px 16px;
+  background: $color-black;
+  color: $color-white;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: $text-heading-h3-line;
+    letter-spacing: 0;
+    color: $color-white;
+    text-transform: uppercase;
+  }
+
+  &__desc {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: $color-muted;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__actions {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__field {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: $color-control-dark;
+    border-radius: $radius-xs;
+  }
+
+  &__field-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: 1.2;
+    color: $color-white;
+    text-transform: uppercase;
+
+    &::placeholder {
+      color: $color-muted;
+      opacity: 1;
+      text-transform: uppercase;
+    }
+  }
+
+  &__submit,
+  &__provider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-black;
+    cursor: pointer;
+  }
+
+  &__submit {
+    min-width: 120px;
+    padding: 12px 32px;
+    font-family: $font-display;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  &__providers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  &__provider {
+    min-width: 52px;
+    padding: 12px 16px;
+    text-decoration: none;
+
+    svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+    }
+  }
+
+  &__provider:first-child svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__provider--yandex svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .login-bonus {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 700px);
+    align-items: center;
+    gap: 0;
+    height: 116px;
+    padding: 32px $spacing-page-desktop;
+    overflow: hidden;
+  }
+
+  .login-bonus__text {
+    width: 100%;
+    max-width: 700px;
+    gap: 15px;
+  }
+
+  .login-bonus__desc {
+    font-size: 16px;
+  }
+
+  .login-bonus__form {
+    grid-template-columns: 360px 162px;
+    width: 526px;
+  }
+
+  .login-bonus__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 700px;
+    justify-self: end;
+  }
+
+  .login-bonus__submit {
+    width: 162px;
+    min-width: 0;
+  }
+
+  .login-bonus__providers {
+    width: 166px;
+    grid-template-columns: repeat(3, 52.6667px);
+    justify-content: start;
+  }
+
+  .login-bonus__provider {
+    width: 52.6667px;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,618 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "FINNTRAIL" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "FINNTRAIL" [ref=e5]
+      - generic [ref=e6]:
+        - img [ref=e7]
+        - textbox [ref=e9]:
+          - /placeholder: Поиск по товарам и брендам
+      - button "Выбрать город" [ref=e10] [cursor=pointer]:
+        - img [ref=e11]
+      - generic [ref=e13]:
+        - link "Профиль" [ref=e14] [cursor=pointer]:
+          - /url: /personal/
+          - img [ref=e15]
+        - button "Сравнить" [ref=e17] [cursor=pointer]:
+          - img [ref=e18]
+        - link "Избранное" [ref=e20] [cursor=pointer]:
+          - /url: /wishlist/
+          - img [ref=e21]
+        - link "Корзина" [ref=e23] [cursor=pointer]:
+          - /url: /cart/
+          - img [ref=e24]
+    - navigation "Главная навигация" [ref=e26]:
+      - generic [ref=e27]:
+        - link "Мужчинам" [ref=e28] [cursor=pointer]:
+          - /url: /catalog/men/
+        - link "Женщинам" [ref=e29] [cursor=pointer]:
+          - /url: /catalog/women/
+        - link "Активности" [ref=e30] [cursor=pointer]:
+          - /url: /activities/
+        - link "Распродажа" [ref=e31] [cursor=pointer]:
+          - /url: /sale/
+        - link "Новинки" [ref=e32] [cursor=pointer]:
+          - /url: /new/
+      - generic [ref=e33]:
+        - link "Журнал" [ref=e34] [cursor=pointer]:
+          - /url: /journal/
+        - link "Премиальные туры" [ref=e35] [cursor=pointer]:
+          - /url: /tours/
+  - generic [ref=e44]:
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - heading "Комфорт в любых условиях" [level=1] [ref=e49]
+        - paragraph [ref=e50]: Более 12 лет выпускает экипировку для активного отдыха, рыбалки и бездорожья. Бренд известен в 70+ странах
+      - generic [ref=e51]:
+        - link "Мужчинам" [ref=e52] [cursor=pointer]:
+          - /url: /catalog/?gender=men
+        - link "Женщинам" [ref=e53] [cursor=pointer]:
+          - /url: /catalog/?gender=women
+    - generic [ref=e60]:
+      - button "Предыдущий слайд" [ref=e61] [cursor=pointer]:
+        - img [ref=e62]
+      - button "Следующий слайд" [ref=e64] [cursor=pointer]:
+        - img [ref=e65]
+  - main [ref=e67]:
+    - region "Категории" [ref=e68]:
+      - link "Рыбалка Рыбалка" [ref=e69] [cursor=pointer]:
+        - /url: /catalog/fishing/
+        - img "Рыбалка" [ref=e71]
+        - generic [ref=e72]: Рыбалка
+      - link "Бездорожье Бездорожье" [ref=e73] [cursor=pointer]:
+        - /url: /catalog/offroad/
+        - img "Бездорожье" [ref=e75]
+        - generic [ref=e76]: Бездорожье
+      - link "Снегоходы Снегоходы" [ref=e77] [cursor=pointer]:
+        - /url: /catalog/snowmobiles/
+        - img "Снегоходы" [ref=e79]
+        - generic [ref=e80]: Снегоходы
+      - link "Горные лыжи Горные лыжи" [ref=e81] [cursor=pointer]:
+        - /url: /catalog/skiing/
+        - img "Горные лыжи" [ref=e83]
+        - generic [ref=e84]: Горные лыжи
+      - link "Туризм Туризм" [ref=e85] [cursor=pointer]:
+        - /url: /catalog/tourism/
+        - img "Туризм" [ref=e87]
+        - generic [ref=e88]: Туризм
+      - link "Город Город" [ref=e89] [cursor=pointer]:
+        - /url: /catalog/city/
+        - img "Город" [ref=e91]
+        - generic [ref=e92]: Город
+    - region "Популярные товары" [ref=e93]:
+      - generic [ref=e94]:
+        - generic [ref=e95]:
+          - heading "Популярные товары" [level=2] [ref=e96]
+          - link "Смотреть все" [ref=e97] [cursor=pointer]:
+            - /url: /catalog/?sort=popular
+            - text: Смотреть все
+            - img [ref=e98]
+        - generic [ref=e100]:
+          - button "Назад" [ref=e101] [cursor=pointer]:
+            - img [ref=e102]
+          - button "Вперёд" [ref=e104] [cursor=pointer]:
+            - img [ref=e105]
+      - generic [ref=e108]:
+        - link "Новинка −35% В избранное В корзину New Кроссовки Impulse 5194 Graphite 2 650 ₽ 1 000 ₽ + 26 бонусов" [ref=e109] [cursor=pointer]:
+          - /url: /product/example-1/
+          - generic [ref=e110]:
+            - generic [ref=e111]: Новинка
+            - generic [ref=e119]: −35%
+            - button "В избранное" [ref=e120]:
+              - img [ref=e121]
+            - button "В корзину" [ref=e123]:
+              - img [ref=e124]
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - generic [ref=e128]: New
+              - generic [ref=e129]: Кроссовки Impulse 5194 Graphite
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - generic [ref=e132]: 2 650 ₽
+                - generic [ref=e133]: 1 000 ₽
+              - generic [ref=e134]: + 26 бонусов
+        - link "Новинка −35% В избранное В корзину Limited Edition Куртка Finntrail Polar 1391 Black 5 300 ₽ 6 500 ₽ + 26 бонусов" [ref=e135] [cursor=pointer]:
+          - /url: /product/example-2/
+          - generic [ref=e136]:
+            - generic [ref=e137]: Новинка
+            - generic [ref=e145]: −35%
+            - button "В избранное" [ref=e146]:
+              - img [ref=e147]
+            - button "В корзину" [ref=e149]:
+              - img [ref=e150]
+          - generic [ref=e152]:
+            - generic [ref=e153]:
+              - generic [ref=e154]: Limited Edition
+              - generic [ref=e155]: Куртка Finntrail Polar 1391 Black
+            - generic [ref=e156]:
+              - generic [ref=e157]:
+                - generic [ref=e158]: 5 300 ₽
+                - generic [ref=e159]: 6 500 ₽
+              - generic [ref=e160]: + 26 бонусов
+        - link "Новинка −35% В избранное В корзину Exclusive Брюки Finntrail Nitro 4603 Graphite 4 200 ₽ 4 950 ₽ + 26 бонусов" [ref=e161] [cursor=pointer]:
+          - /url: /product/example-3/
+          - generic [ref=e162]:
+            - generic [ref=e163]: Новинка
+            - generic [ref=e171]: −35%
+            - button "В избранное" [ref=e172]:
+              - img [ref=e173]
+            - button "В корзину" [ref=e175]:
+              - img [ref=e176]
+          - generic [ref=e178]:
+            - generic [ref=e179]:
+              - generic [ref=e180]: Exclusive
+              - generic [ref=e181]: Брюки Finntrail Nitro 4603 Graphite
+            - generic [ref=e182]:
+              - generic [ref=e183]:
+                - generic [ref=e184]: 4 200 ₽
+                - generic [ref=e185]: 4 950 ₽
+              - generic [ref=e186]: + 26 бонусов
+        - link "Новинка −35% В избранное В корзину Seasonal Sale Кроссовки Spirit 4080 Red 3 800 ₽ 4 200 ₽ + 26 бонусов" [ref=e187] [cursor=pointer]:
+          - /url: /product/example-4/
+          - generic [ref=e188]:
+            - generic [ref=e189]: Новинка
+            - generic [ref=e197]: −35%
+            - button "В избранное" [ref=e198]:
+              - img [ref=e199]
+            - button "В корзину" [ref=e201]:
+              - img [ref=e202]
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - generic [ref=e206]: Seasonal Sale
+              - generic [ref=e207]: Кроссовки Spirit 4080 Red
+            - generic [ref=e208]:
+              - generic [ref=e209]:
+                - generic [ref=e210]: 3 800 ₽
+                - generic [ref=e211]: 4 200 ₽
+              - generic [ref=e212]: + 26 бонусов
+        - link "Снегоходы В избранное В корзину Новинка Перчатки Enduro 6787 Black 1 200 ₽ +120 бонусов" [ref=e213] [cursor=pointer]:
+          - /url: /product/example-5/
+          - generic [ref=e214]:
+            - generic [ref=e215]: Снегоходы
+            - button "В избранное" [ref=e223]:
+              - img [ref=e224]
+            - button "В корзину" [ref=e226]:
+              - img [ref=e227]
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - generic [ref=e231]: Новинка
+              - generic [ref=e232]: Перчатки Enduro 6787 Black
+            - generic [ref=e233]:
+              - generic [ref=e235]: 1 200 ₽
+              - generic [ref=e236]: +120 бонусов
+        - link "Город −22% В избранное В корзину Новинка Носки Finntrail 8741 Arctic 350 ₽ 450 ₽ +35 бонусов" [ref=e237] [cursor=pointer]:
+          - /url: /product/example-6/
+          - generic [ref=e238]:
+            - generic [ref=e239]: Город
+            - generic [ref=e247]: −22%
+            - button "В избранное" [ref=e248]:
+              - img [ref=e249]
+            - button "В корзину" [ref=e251]:
+              - img [ref=e252]
+          - generic [ref=e254]:
+            - generic [ref=e255]:
+              - generic [ref=e256]: Новинка
+              - generic [ref=e257]: Носки Finntrail 8741 Arctic
+            - generic [ref=e258]:
+              - generic [ref=e259]:
+                - generic [ref=e260]: 350 ₽
+                - generic [ref=e261]: 450 ₽
+              - generic [ref=e262]: +35 бонусов
+    - region "Подарочные карты" [ref=e263]:
+      - generic [ref=e267]:
+        - generic [ref=e268]:
+          - heading "Подарочные карты" [level=2] [ref=e269]
+          - paragraph [ref=e270]: Лучший подарок для друзей и близких
+        - link "Подробнее" [ref=e271] [cursor=pointer]:
+          - /url: /gift-cards/
+          - text: Подробнее
+          - img [ref=e272]
+    - region "Соберите комплект" [ref=e274]:
+      - generic [ref=e275]:
+        - generic [ref=e276]:
+          - generic [ref=e277]: Хайкинг
+          - generic [ref=e278]:
+            - heading "Соберите комплект" [level=2] [ref=e279]
+            - link "Смотреть все" [ref=e280] [cursor=pointer]:
+              - /url: /catalog/kit/
+              - text: Смотреть все
+              - img [ref=e281]
+        - generic [ref=e283]:
+          - button "Назад" [ref=e284] [cursor=pointer]:
+            - img [ref=e285]
+          - button "Вперёд" [ref=e287] [cursor=pointer]:
+            - img [ref=e288]
+      - generic [ref=e290]:
+        - img "Хайкинг — комплект одежды" [ref=e292]
+        - generic [ref=e293]:
+          - link "−35% В избранное В корзину New Кроссовки Impulse 5194 Graphite 650 ₽ 1 000 ₽" [ref=e294] [cursor=pointer]:
+            - /url: /product/impulse-5194-graphite/
+            - generic [ref=e295]:
+              - generic [ref=e296]: −35%
+              - button "В избранное" [ref=e298]:
+                - img [ref=e299]
+              - button "В корзину" [ref=e301]:
+                - img [ref=e302]
+            - generic [ref=e304]:
+              - generic [ref=e305]:
+                - generic [ref=e306]: New
+                - generic [ref=e307]: Кроссовки Impulse 5194 Graphite
+              - generic [ref=e309]:
+                - generic [ref=e310]: 650 ₽
+                - generic [ref=e311]: 1 000 ₽
+          - link "−20% В избранное В корзину Sale Куртка Finntrail Polar 1391 Black 800 ₽ 1 000 ₽" [ref=e312] [cursor=pointer]:
+            - /url: /product/polar-1391-black/
+            - generic [ref=e313]:
+              - generic [ref=e314]: −20%
+              - button "В избранное" [ref=e316]:
+                - img [ref=e317]
+              - button "В корзину" [ref=e319]:
+                - img [ref=e320]
+            - generic [ref=e322]:
+              - generic [ref=e323]:
+                - generic [ref=e324]: Sale
+                - generic [ref=e325]: Куртка Finntrail Polar 1391 Black
+              - generic [ref=e327]:
+                - generic [ref=e328]: 800 ₽
+                - generic [ref=e329]: 1 000 ₽
+          - link "−20% В избранное В корзину Sale Куртка Finntrail Polar 1391 Black 800 ₽ 1 000 ₽" [ref=e330] [cursor=pointer]:
+            - /url: /product/polar-1391-black-2/
+            - generic [ref=e331]:
+              - generic [ref=e332]: −20%
+              - button "В избранное" [ref=e334]:
+                - img [ref=e335]
+              - button "В корзину" [ref=e337]:
+                - img [ref=e338]
+            - generic [ref=e340]:
+              - generic [ref=e341]:
+                - generic [ref=e342]: Sale
+                - generic [ref=e343]: Куртка Finntrail Polar 1391 Black
+              - generic [ref=e345]:
+                - generic [ref=e346]: 800 ₽
+                - generic [ref=e347]: 1 000 ₽
+    - region "Рекомендованные товары" [ref=e354]:
+      - generic [ref=e355]:
+        - generic [ref=e356]:
+          - heading "Рекомендованные" [level=2] [ref=e357]
+          - link "Смотреть все" [ref=e358] [cursor=pointer]:
+            - /url: /catalog/?sort=recommended
+            - text: Смотреть все
+            - img [ref=e359]
+        - generic [ref=e361]:
+          - button "Назад" [ref=e362] [cursor=pointer]:
+            - img [ref=e363]
+          - button "Вперёд" [ref=e365] [cursor=pointer]:
+            - img [ref=e366]
+      - generic [ref=e369]:
+        - link "Новинка −35% В избранное В корзину New Кроссовки Impulse 5194 Graphite 2 650 ₽ 1 000 ₽ + 26 бонусов" [ref=e370] [cursor=pointer]:
+          - /url: /product/example-1/
+          - generic [ref=e371]:
+            - generic [ref=e372]: Новинка
+            - generic [ref=e380]: −35%
+            - button "В избранное" [ref=e381]:
+              - img [ref=e382]
+            - button "В корзину" [ref=e384]:
+              - img [ref=e385]
+          - generic [ref=e387]:
+            - generic [ref=e388]:
+              - generic [ref=e389]: New
+              - generic [ref=e390]: Кроссовки Impulse 5194 Graphite
+            - generic [ref=e391]:
+              - generic [ref=e392]:
+                - generic [ref=e393]: 2 650 ₽
+                - generic [ref=e394]: 1 000 ₽
+              - generic [ref=e395]: + 26 бонусов
+        - link "Новинка −35% В избранное В корзину Limited Edition Куртка Finntrail Polar 1391 Black 5 300 ₽ 6 500 ₽ + 26 бонусов" [ref=e396] [cursor=pointer]:
+          - /url: /product/example-2/
+          - generic [ref=e397]:
+            - generic [ref=e398]: Новинка
+            - generic [ref=e406]: −35%
+            - button "В избранное" [ref=e407]:
+              - img [ref=e408]
+            - button "В корзину" [ref=e410]:
+              - img [ref=e411]
+          - generic [ref=e413]:
+            - generic [ref=e414]:
+              - generic [ref=e415]: Limited Edition
+              - generic [ref=e416]: Куртка Finntrail Polar 1391 Black
+            - generic [ref=e417]:
+              - generic [ref=e418]:
+                - generic [ref=e419]: 5 300 ₽
+                - generic [ref=e420]: 6 500 ₽
+              - generic [ref=e421]: + 26 бонусов
+        - link "Новинка −35% В избранное В корзину Exclusive Брюки Finntrail Nitro 4603 Graphite 4 200 ₽ 4 950 ₽ + 26 бонусов" [ref=e422] [cursor=pointer]:
+          - /url: /product/example-3/
+          - generic [ref=e423]:
+            - generic [ref=e424]: Новинка
+            - generic [ref=e432]: −35%
+            - button "В избранное" [ref=e433]:
+              - img [ref=e434]
+            - button "В корзину" [ref=e436]:
+              - img [ref=e437]
+          - generic [ref=e439]:
+            - generic [ref=e440]:
+              - generic [ref=e441]: Exclusive
+              - generic [ref=e442]: Брюки Finntrail Nitro 4603 Graphite
+            - generic [ref=e443]:
+              - generic [ref=e444]:
+                - generic [ref=e445]: 4 200 ₽
+                - generic [ref=e446]: 4 950 ₽
+              - generic [ref=e447]: + 26 бонусов
+        - link "Новинка −35% В избранное В корзину Seasonal Sale Кроссовки Spirit 4080 Red 3 800 ₽ 4 200 ₽ + 26 бонусов" [ref=e448] [cursor=pointer]:
+          - /url: /product/example-4/
+          - generic [ref=e449]:
+            - generic [ref=e450]: Новинка
+            - generic [ref=e458]: −35%
+            - button "В избранное" [ref=e459]:
+              - img [ref=e460]
+            - button "В корзину" [ref=e462]:
+              - img [ref=e463]
+          - generic [ref=e465]:
+            - generic [ref=e466]:
+              - generic [ref=e467]: Seasonal Sale
+              - generic [ref=e468]: Кроссовки Spirit 4080 Red
+            - generic [ref=e469]:
+              - generic [ref=e470]:
+                - generic [ref=e471]: 3 800 ₽
+                - generic [ref=e472]: 4 200 ₽
+              - generic [ref=e473]: + 26 бонусов
+        - link "Туризм В избранное В корзину Новинка Рюкзак Finntrail Trail 8840 Sand 1 800 ₽ +180 бонусов" [ref=e474] [cursor=pointer]:
+          - /url: /product/example-5/
+          - generic [ref=e475]:
+            - generic [ref=e476]: Туризм
+            - button "В избранное" [ref=e484]:
+              - img [ref=e485]
+            - button "В корзину" [ref=e487]:
+              - img [ref=e488]
+          - generic [ref=e490]:
+            - generic [ref=e491]:
+              - generic [ref=e492]: Новинка
+              - generic [ref=e493]: Рюкзак Finntrail Trail 8840 Sand
+            - generic [ref=e494]:
+              - generic [ref=e496]: 1 800 ₽
+              - generic [ref=e497]: +180 бонусов
+        - link "Снегоходы −30% В избранное В корзину Новинка Маска Finntrail Goggles 1200 Clear 700 ₽ 1 000 ₽ +70 бонусов" [ref=e498] [cursor=pointer]:
+          - /url: /product/example-6/
+          - generic [ref=e499]:
+            - generic [ref=e500]: Снегоходы
+            - generic [ref=e508]: −30%
+            - button "В избранное" [ref=e509]:
+              - img [ref=e510]
+            - button "В корзину" [ref=e512]:
+              - img [ref=e513]
+          - generic [ref=e515]:
+            - generic [ref=e516]:
+              - generic [ref=e517]: Новинка
+              - generic [ref=e518]: Маска Finntrail Goggles 1200 Clear
+            - generic [ref=e519]:
+              - generic [ref=e520]:
+                - generic [ref=e521]: 700 ₽
+                - generic [ref=e522]: 1 000 ₽
+              - generic [ref=e523]: +70 бонусов
+    - region "Журнал" [ref=e524]:
+      - generic [ref=e525]:
+        - generic [ref=e526]:
+          - heading "Журнал" [level=2] [ref=e527]
+          - link "Смотреть все" [ref=e528] [cursor=pointer]:
+            - /url: /articles/
+            - text: Смотреть все
+            - img [ref=e529]
+        - generic [ref=e531]:
+          - button "Назад" [ref=e532] [cursor=pointer]:
+            - img [ref=e533]
+          - button "Вперёд" [ref=e535] [cursor=pointer]:
+            - img [ref=e536]
+      - list "Фильтр по темам" [ref=e538]:
+        - button "Туризм" [ref=e539] [cursor=pointer]
+        - button "Рыбалка" [ref=e540] [cursor=pointer]
+        - button "Квадро" [ref=e541] [cursor=pointer]
+        - button "Снегоходы" [ref=e542] [cursor=pointer]
+        - button "Горные лыжи" [ref=e543] [cursor=pointer]
+      - generic [ref=e544]:
+        - link "Туризм Охотимся за северным сиянием в -50°C с комфортом 17.04 4 мин. 1.8 тыс. 1.8 тыс." [ref=e545] [cursor=pointer]:
+          - /url: /articles/northern-lights/
+          - generic [ref=e547]: Туризм
+          - generic [ref=e548]:
+            - heading "Охотимся за северным сиянием в -50°C с комфортом" [level=3] [ref=e549]
+            - generic [ref=e550]:
+              - generic [ref=e551]: "17.04"
+              - generic [ref=e552]:
+                - img [ref=e553]
+                - text: 4 мин.
+              - generic [ref=e555]:
+                - img [ref=e556]
+                - text: 1.8 тыс.
+              - generic [ref=e558]:
+                - img [ref=e559]
+                - text: 1.8 тыс.
+        - link "Снегоходы Изучаем местные традиции и гастрономию. 22.06 5 ч. 3.2 тыс. 3.2 тыс." [ref=e561] [cursor=pointer]:
+          - /url: /articles/local-traditions/
+          - generic [ref=e563]: Снегоходы
+          - generic [ref=e564]:
+            - heading "Изучаем местные традиции и гастрономию." [level=3] [ref=e565]
+            - generic [ref=e566]:
+              - generic [ref=e567]: "22.06"
+              - generic [ref=e568]:
+                - img [ref=e569]
+                - text: 5 ч.
+              - generic [ref=e571]:
+                - img [ref=e572]
+                - text: 3.2 тыс.
+              - generic [ref=e574]:
+                - img [ref=e575]
+                - text: 3.2 тыс.
+        - link "Горные лыжи Адреналиновые развлечения для любителей острых ощущений. 15.07 2 ч. 1.5 тыс. 1.5 тыс." [ref=e577] [cursor=pointer]:
+          - /url: /articles/adrenaline-ski/
+          - generic [ref=e579]: Горные лыжи
+          - generic [ref=e580]:
+            - heading "Адреналиновые развлечения для любителей острых ощущений." [level=3] [ref=e581]
+            - generic [ref=e582]:
+              - generic [ref=e583]: "15.07"
+              - generic [ref=e584]:
+                - img [ref=e585]
+                - text: 2 ч.
+              - generic [ref=e587]:
+                - img [ref=e588]
+                - text: 1.5 тыс.
+              - generic [ref=e590]:
+                - img [ref=e591]
+                - text: 1.5 тыс.
+        - link "Экстремальный спорт Адреналиновые развлечения для любителей острых ощущений. 15.07 2 ч. 1.5 тыс. 1.5 тыс." [ref=e593] [cursor=pointer]:
+          - /url: /articles/adrenaline-extreme/
+          - generic [ref=e595]: Экстремальный спорт
+          - generic [ref=e596]:
+            - heading "Адреналиновые развлечения для любителей острых ощущений." [level=3] [ref=e597]
+            - generic [ref=e598]:
+              - generic [ref=e599]: "15.07"
+              - generic [ref=e600]:
+                - img [ref=e601]
+                - text: 2 ч.
+              - generic [ref=e603]:
+                - img [ref=e604]
+                - text: 1.5 тыс.
+              - generic [ref=e606]:
+                - img [ref=e607]
+                - text: 1.5 тыс.
+    - region "Коммьюнити" [ref=e609]:
+      - generic [ref=e610]:
+        - heading "Присоединяйся к коммьюнити" [level=2] [ref=e611]
+        - paragraph [ref=e612]:
+          - text: Следи за нашими каналами
+          - text: в социальных сетях на темы,
+          - text: которые тебе близки!
+      - generic [ref=e613]:
+        - generic [ref=e614]:
+          - heading "Бездорожье" [level=3] [ref=e615]
+          - generic [ref=e616]:
+            - link "ВКонтакте" [ref=e617] [cursor=pointer]:
+              - /url: https://vk.com/finntrail
+              - img [ref=e618]
+            - link "Telegram" [ref=e620] [cursor=pointer]:
+              - /url: https://t.me/finntrail
+              - img [ref=e621]
+            - link "Дзен" [ref=e623] [cursor=pointer]:
+              - /url: https://dzen.ru/finntrail
+              - img [ref=e624]
+            - link "YouTube" [ref=e626] [cursor=pointer]:
+              - /url: https://youtube.com/@finntrail
+              - img [ref=e627]
+        - generic [ref=e629]:
+          - heading "Рыбалка" [level=3] [ref=e630]
+          - generic [ref=e631]:
+            - link "ВКонтакте" [ref=e632] [cursor=pointer]:
+              - /url: https://vk.com/finntrail_fishing
+              - img [ref=e633]
+            - link "Telegram" [ref=e635] [cursor=pointer]:
+              - /url: https://t.me/finntrail_fishing
+              - img [ref=e636]
+            - link "Дзен" [ref=e638] [cursor=pointer]:
+              - /url: https://dzen.ru/finntrail_fishing
+              - img [ref=e639]
+            - link "YouTube" [ref=e641] [cursor=pointer]:
+              - /url: https://youtube.com/@finntrail_fishing
+              - img [ref=e642]
+        - generic [ref=e644]:
+          - heading "Спорт" [level=3] [ref=e645]
+          - generic [ref=e646]:
+            - link "ВКонтакте" [ref=e647] [cursor=pointer]:
+              - /url: https://vk.com/finntrail_sport
+              - img [ref=e648]
+            - link "Telegram" [ref=e650] [cursor=pointer]:
+              - /url: https://t.me/finntrail_sport
+              - img [ref=e651]
+            - link "Дзен" [ref=e653] [cursor=pointer]:
+              - /url: https://dzen.ru/finntrail_sport
+              - img [ref=e654]
+            - link "YouTube" [ref=e656] [cursor=pointer]:
+              - /url: https://youtube.com/@finntrail_sport
+              - img [ref=e657]
+    - region "Подписка на рассылку" [ref=e659]:
+      - generic [ref=e660]:
+        - heading "Все самое интересное — первым!" [level=2] [ref=e661]
+        - paragraph [ref=e662]:
+          - text: Следи за нашими каналами
+          - text: в социальных сетях на темы,
+          - text: которые тебе близки!
+      - generic [ref=e663]:
+        - textbox "Email" [ref=e664]
+        - button "Подписаться" [ref=e665] [cursor=pointer]
+    - generic [ref=e666]:
+      - generic [ref=e667]:
+        - link "FINNTRAIL" [ref=e668] [cursor=pointer]:
+          - /url: /
+          - img "FINNTRAIL" [ref=e669]
+        - generic [ref=e670]:
+          - link "ВКонтакте" [ref=e671] [cursor=pointer]:
+            - /url: https://vk.com/finntrail
+            - img [ref=e672]
+          - link "Telegram" [ref=e674] [cursor=pointer]:
+            - /url: https://t.me/finntrail
+            - img [ref=e675]
+          - link "Дзен" [ref=e677] [cursor=pointer]:
+            - /url: https://dzen.ru/finntrail
+            - img [ref=e678]
+          - link "YouTube" [ref=e680] [cursor=pointer]:
+            - /url: https://youtube.com/@finntrail
+            - img [ref=e681]
+      - generic [ref=e683]:
+        - paragraph [ref=e684]: Покупателям
+        - list [ref=e685]:
+          - listitem [ref=e686]:
+            - link "Доставка и оплата" [ref=e687] [cursor=pointer]:
+              - /url: /delivery/
+          - listitem [ref=e688]:
+            - link "Обмен и возврат" [ref=e689] [cursor=pointer]:
+              - /url: /return/
+          - listitem [ref=e690]:
+            - link "Гарантия и сервис" [ref=e691] [cursor=pointer]:
+              - /url: /warranty/
+          - listitem [ref=e692]:
+            - link "Обратная связь" [ref=e693] [cursor=pointer]:
+              - /url: /feedback/
+      - generic [ref=e694]:
+        - paragraph [ref=e695]: Компания
+        - list [ref=e696]:
+          - listitem [ref=e697]:
+            - link "Контакты" [ref=e698] [cursor=pointer]:
+              - /url: /contacts/
+          - listitem [ref=e699]:
+            - link "Карьера" [ref=e700] [cursor=pointer]:
+              - /url: /career/
+          - listitem [ref=e701]:
+            - link "Партнерская программа" [ref=e702] [cursor=pointer]:
+              - /url: /partners/
+          - listitem [ref=e703]:
+            - link "Премиум туры" [ref=e704] [cursor=pointer]:
+              - /url: /tours/
+          - listitem [ref=e705]:
+            - link "Игра" [ref=e706] [cursor=pointer]:
+              - /url: /game/
+      - generic [ref=e707]:
+        - paragraph [ref=e708]: Об экипировке
+        - list [ref=e709]:
+          - listitem [ref=e710]:
+            - link "Таблица размеров" [ref=e711] [cursor=pointer]:
+              - /url: /size-guide/
+          - listitem [ref=e712]:
+            - link "Технологии" [ref=e713] [cursor=pointer]:
+              - /url: /technologies/
+          - listitem [ref=e714]:
+            - link "Вопросы и ответы" [ref=e715] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=e716]:
+            - link "Уход и ремонт" [ref=e717] [cursor=pointer]:
+              - /url: /care/
+          - listitem [ref=e718]:
+            - link "Блог" [ref=e719] [cursor=pointer]:
+              - /url: /articles/
+      - generic [ref=e720]:
+        - separator [ref=e721]
+        - generic [ref=e722]:
+          - link "Политика конфиденциальности" [ref=e723] [cursor=pointer]:
+            - /url: /privacy/
+          - link "Публичная оферта" [ref=e724] [cursor=pointer]:
+            - /url: /offer/
+          - link "Согласие на обработку персональных данных" [ref=e725] [cursor=pointer]:
+            - /url: /personal-data/
+          - paragraph [ref=e726]: FINNTRAIL © 2025

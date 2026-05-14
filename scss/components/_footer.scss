@@ -1,0 +1,184 @@
+@use '../variables' as *;
+
+.footer {
+  padding: 36px 16px 24px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__logo-link {
+    display: block;
+    width: 263px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    overflow: hidden;
+    mix-blend-mode: luminosity;
+    flex-shrink: 0;
+    color: rgba(0, 0, 0, 0.9);
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 192px;
+  }
+
+  &__list-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #76777a;
+
+    &--lg {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #76777a;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+  }
+
+  &__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__legal-link {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #76777a;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &--underline {
+      text-decoration: underline;
+    }
+  }
+
+  &__copy {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #76777a;
+  }
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .footer {
+    display: grid;
+    grid-template-columns: auto 192px 192px 192px;
+    align-items: start;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    padding: 36px 120px 24px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .footer__brand {
+    gap: 24px;
+  }
+
+  .footer__logo-link {
+    width: 263px;
+    height: 47px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .footer__socials {
+    gap: 8px;
+  }
+
+  .footer__social-btn {
+    width: 48px;
+    height: 36px;
+    padding: 0;
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  .footer__list {
+    width: 192px;
+  }
+
+  .footer__bottom {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .footer__legal {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+}

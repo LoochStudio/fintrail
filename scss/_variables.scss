@@ -1,0 +1,67 @@
+// Typography
+$font-main: 'Nata Sans', sans-serif;
+$font-nav:  'Nata Sans', sans-serif;
+$font-display: 'Nata Sans', sans-serif;
+$font-mono: 'Source Code Pro', monospace;
+
+// Figma colors
+$color-primary-black: #1f1f1f;
+$color-white: #fff;
+$color-black: #000;
+$color-surface: #f2f2f2;
+$color-page: #f5f5f5;
+$color-secondary-gray: #cdd2d5;
+$color-primary-gray: #a2a7aa;
+$color-secondary-accent: #e72016;
+$color-gray-700: #828282;
+$color-control-dark: rgba(68, 68, 68, 0.8);
+$color-control-glass: rgba($color-white, 0.16);
+$color-hero-fallback: #5f6f8f;
+
+// Legacy aliases
+$color-text-primary: $color-primary-black;
+$color-text-secondary: rgba($color-black, 0.5);
+$color-text-muted: rgba($color-black, 0.4);
+$color-bg-overlay: rgba($color-black, 0.05);
+$color-border: $color-secondary-gray;
+$color-muted: $color-primary-gray;
+$color-accent: $color-secondary-accent;
+
+// Spacing
+$spacing-page: 16px;
+$spacing-page-desktop: 20px;
+$section-gap-md: 40px;
+$section-gap-xl: 100px;
+
+// Figma text styles
+$text-heading-h1-size: 36px;
+$text-heading-h1-line: 40px;
+$text-heading-h2-size: 32px;
+$text-heading-h2-line: 36px;
+$text-heading-h3-size: 24px;
+$text-heading-h3-line: 30px;
+$text-subtitle-s1-size: 18px;
+$text-subtitle-s1-line: 22px;
+$text-subtitle-s2-size: 16px;
+$text-subtitle-s2-line: 20px;
+$text-body-b1-size: 14px;
+$text-body-b1-line: 18px;
+$text-body-b2-size: 12px;
+$text-body-b2-line: 16px;
+
+$font-weight-semibold: 600;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+// Border radius
+$radius-xs: 4px;
+$radius-sm: 6px;
+$radius-md: 12px;
+
+// Z-index
+$z-navbar: 100;
+$z-tabbar: 100;
+
+// Breakpoints
+$bp-md: 768px;
+$bp-lg: 1280px;

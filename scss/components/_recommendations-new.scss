@@ -1,0 +1,355 @@
+@use '../variables' as *;
+
+.recommendations-new {
+  display: flex;
+  flex-direction: column;
+  margin-top: $section-gap-md;
+  background: $color-surface;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 0 $spacing-page-desktop;
+    background: $color-surface;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: 24px;
+    letter-spacing: 0;
+    color: $color-primary-black;
+    text-transform: uppercase;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 16px;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-primary-black;
+    cursor: pointer;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+
+    &.is-inactive {
+      color: $color-muted;
+      pointer-events: none;
+    }
+  }
+
+  &__viewport {
+    margin-top: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  &__more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    gap: 8px;
+    padding: 12px 24px 12px 32px;
+    background: $color-surface;
+    border-radius: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b1-line;
+    color: $color-muted;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__more:hover {
+    background: $color-surface;
+  }
+
+  &--popular {
+    margin-top: $section-gap-xl;
+  }
+}
+
+.recommendation-card {
+  position: relative;
+  display: grid;
+  width: 360px;
+  height: 560px;
+  grid-template-rows: 440px 72px 48px;
+  border: 1px solid $color-border;
+  background: transparent;
+  color: $color-primary-black;
+  transition: background 0.18s ease;
+
+  &__media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: transparent;
+    color: $color-muted;
+    text-decoration: none;
+  }
+
+  &__image-link {
+    display: block;
+    width: 312px;
+    height: 392px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &__image {
+    display: block;
+    width: 312px;
+    height: 392px;
+    object-fit: contain;
+    background: transparent;
+
+    &--fit {
+      object-fit: contain;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 8px;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: 12px;
+    color: $color-muted;
+    text-transform: uppercase;
+  }
+
+  &:hover &__badge {
+    color: $color-accent;
+  }
+
+  &:hover {
+    background: $color-white;
+  }
+
+  &__actions {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: $color-border;
+    cursor: pointer;
+
+    svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 18px;
+    padding: 0 24px 16px;
+  }
+
+  &__colors {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__color {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+
+    &--active {
+      width: 16px;
+      height: 16px;
+      margin: -2px;
+    }
+
+    &--black {
+      background: $color-black;
+    }
+
+    &--gray {
+      background: $color-secondary-gray;
+    }
+  }
+
+  &__more {
+    margin-left: 2px;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    color: $color-gray-700;
+    text-transform: uppercase;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b1-line;
+    letter-spacing: 0;
+    text-transform: uppercase;
+
+    a {
+      color: $color-primary-black;
+      text-decoration: none;
+    }
+  }
+
+  &__cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 16px 24px;
+    border: 0;
+    background: transparent;
+    color: $color-primary-black;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+
+  &:hover &__cart {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+
+  &:hover &__old-price {
+    color: #a8a8a8;
+  }
+
+  &__prices,
+  &__cart-label {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  &__price {
+    font-family: $font-display;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+
+  &__old-price {
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: 12px;
+    color: $color-muted;
+    text-decoration: line-through;
+    text-transform: uppercase;
+  }
+
+  &__cart-label {
+    align-items: center;
+    font-family: $font-display;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .recommendations-new {
+    height: 684px;
+  }
+
+  .recommendations-new__viewport {
+    width: 100%;
+    height: 560px;
+    overflow: hidden;
+  }
+
+  .recommendations-new__track {
+    width: 100%;
+    transition: transform 0.36s ease;
+  }
+
+  .recommendation-card {
+    width: 25%;
+    min-width: 0;
+    flex: 0 0 25%;
+  }
+}
+
+@media (max-width: #{$bp-lg - 1px}) {
+  .recommendation-card[data-carousel-clone='true'] {
+    display: none;
+  }
+}

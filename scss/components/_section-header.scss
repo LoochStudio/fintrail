@@ -1,0 +1,111 @@
+@use '../variables' as *;
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    color: $color-text-primary;
+    white-space: nowrap;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: $color-text-primary;
+    white-space: nowrap;
+  }
+
+  &__link-icon {
+    width: 7px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  // Блок стрелок слайдера — скрыт на мобайле
+  &__controls {
+    display: none;
+  }
+
+  &__arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    &.is-inactive {
+      opacity: 0.2;
+    }
+  }
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .section-header {
+    &__title {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 44px;
+    }
+
+    // Кнопка "Смотреть все" становится пилюлей только внутри __left (слайдер-секции)
+    &__left {
+      flex: none;
+      justify-content: flex-start;
+      gap: 16px;
+
+      .section-header__link {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 16px;
+        line-height: 24px;
+        gap: 2px;
+      }
+
+      .section-header__link-icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    // Ссылки вне __left (напр. в секции статей) — просто чуть крупнее
+    &__link {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &__controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 11px 12px;
+    }
+  }
+}

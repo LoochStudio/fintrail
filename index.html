@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail — Главная</title>
+  <link rel="stylesheet" href="/scss/main.scss">
+  <!--
+    BITRIX: в шаблоне сайта заменить на:
+    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH ?>/css/style.css">
+    <script src="<?= SITE_TEMPLATE_PATH ?>/js/main.js" defer></script>
+  -->
+</head>
+<body>
+
+  <!--
+    BITRIX: всё до <main> — часть header.php шаблона сайта
+    (/bitrix/templates/<template_name>/header.php)
+  -->
+
+  <!-- Navbar -->
+  <!--
+    BITRIX: header.php шаблона сайта
+    (/bitrix/templates/<template_name>/header.php)
+  -->
+  <header class="navbar">
+
+    <div class="navbar__inner">
+
+      <!-- Мобайл: геолокация — текст с иконкой (на десктопе скрыто) -->
+      <div class="navbar__location">
+        <svg class="navbar__location-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-map-pin"></use></svg>
+        <!--
+          BITRIX: город из геолокации или настроек пользователя
+          <?= $USER_CITY ?>
+        -->
+        <span class="navbar__location-text">Москва</span>
+      </div>
+
+      <!-- Логотип (всегда виден) -->
+      <a href="/" class="navbar__logo">
+        <img src="/images/logo.svg" alt="FINNTRAIL">
+      </a>
+
+      <!-- Мобайл: счётчик корзины (на десктопе скрыто) -->
+      <div class="navbar__badge">
+        <!--
+          BITRIX: количество товаров в корзине
+          Компонент: bitrix:sale.basket.basket (режим: счётчик)
+        -->
+        <span class="navbar__badge-count">0</span>
+      </div>
+
+      <!-- Поиск (мобайл: вторая строка; десктоп: в ряд между логотипом и кнопками) -->
+      <label class="navbar__search">
+        <svg class="navbar__search-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+        <!--
+          BITRIX: поиск — bitrix:search.title или bitrix:search.form
+          action="/search/" method="get"
+        -->
+        <input class="navbar__search-input" type="text" placeholder="Поиск по товарам и брендам" autocomplete="off">
+      </label>
+
+      <!-- Десктоп: кнопка геолокации (на мобайле скрыто) -->
+      <button class="navbar__location-btn" type="button" aria-label="Выбрать город">
+        <svg width="20" height="20" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-location-btn"></use></svg>
+      </button>
+
+      <!-- Десктоп: кнопки действий (на мобайле скрыто) -->
+      <div class="navbar__actions">
+        <!--
+          BITRIX: ссылка профиля — /personal/ или conditional вход
+        -->
+        <a href="/personal/" class="navbar__btn-user" aria-label="Профиль">
+          <svg width="22" height="22" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-user"></use></svg>
+        </a>
+        <button class="navbar__btn-icon" type="button" aria-label="Сравнить">
+          <svg width="22" height="22" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg>
+        </button>
+        <!--
+          BITRIX: избранное — bitrix:catalog.compare или пользовательский список
+        -->
+        <a href="/wishlist/" class="navbar__btn-icon" aria-label="Избранное">
+          <svg width="22" height="22" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-nav-heart"></use></svg>
+        </a>
+        <!--
+          BITRIX: корзина — bitrix:sale.basket.basket (режим: кнопка)
+        -->
+        <a href="/cart/" class="navbar__btn-icon" aria-label="Корзина">
+          <svg width="22" height="22" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-nav-cart"></use></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Десктоп: навигационная строка (на мобайле скрыто) -->
+    <!--
+      BITRIX: bitrix:menu (тип: top) или bitrix:iblock.menu
+      5 пунктов слева + 2 справа
+    -->
+    <nav class="navbar__nav" aria-label="Главная навигация">
+      <div class="navbar__nav-left">
+        <a href="/catalog/men/"   class="navbar__nav-link">Мужчинам</a>
+        <a href="/catalog/women/" class="navbar__nav-link">Женщинам</a>
+        <a href="/activities/"    class="navbar__nav-link">Активности</a>
+        <a href="/sale/"          class="navbar__nav-link">Распродажа</a>
+        <a href="/new/"           class="navbar__nav-link">Новинки</a>
+      </div>
+      <div class="navbar__nav-right">
+        <a href="/journal/" class="navbar__nav-link">Журнал</a>
+        <a href="/tours/"   class="navbar__nav-link">Премиальные туры</a>
+      </div>
+    </nav>
+
+  </header>
+
+  <!-- Hero -->
+  <!--
+    BITRIX: слайдер — инфоблок «Баннеры главной страницы»
+    Компонент: bitrix:iblock.list, шаблон: hero
+    В цикле по элементам: каждый элемент → один .hero__slide + один .hero__info
+  -->
+  <section class="hero">
+
+    <div class="hero__track">
+      <div class="hero__slides">
+        <div class="hero__slide">
+          <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/images/content/placeholder.png">
+            <source src="/images/content/hero/hero-video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__topbar" aria-label="Навигация промо-секции">
+      <div class="hero__brand">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+        </button>
+        <a class="hero__logo-link" href="/">
+          <img class="hero__logo" src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
+        </a>
+      </div>
+
+      <nav class="hero__nav" aria-label="Главная навигация">
+        <a href="/catalog/men/" class="hero__nav-link">Мужчинам</a>
+        <a href="/catalog/women/" class="hero__nav-link">Женщинам</a>
+        <a href="/sale/" class="hero__nav-link">Распродажа</a>
+        <a href="/new/" class="hero__nav-link">Новинки</a>
+      </nav>
+
+      <div class="hero__tools">
+        <a href="/search/" class="hero__tool" aria-label="Поиск">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg>
+        </a>
+        <a href="/personal/" class="hero__tool" aria-label="Профиль">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+        </a>
+        <a href="/wishlist/" class="hero__tool" aria-label="Избранное">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg>
+        </a>
+        <a href="/cart/" class="hero__tool" aria-label="Корзина">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__row">
+      <div class="hero__content">
+        <div class="hero__infos">
+          <div class="hero__info is-active">
+            <div class="hero__text">
+              <h1 class="hero__title">Для тех, кто выбирает<br>новые маршруты</h1>
+              <p class="hero__desc">Экипировка для треккинга и путешествий,<br>которая не подводит в любых условиях</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__pagination">
+        <button class="hero__pagination-dot is-active" type="button" aria-label="Слайд 1"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-active"></use></svg></button>
+        <button class="hero__pagination-dot" type="button" aria-label="Слайд 2"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-dot"></use></svg></button>
+        <button class="hero__pagination-dot" type="button" aria-label="Слайд 3"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-dot"></use></svg></button>
+        <button class="hero__pagination-dot" type="button" aria-label="Слайд 4"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-dot"></use></svg></button>
+        <button class="hero__pagination-dot" type="button" aria-label="Слайд 5"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-dot"></use></svg></button>
+        <button class="hero__pagination-dot" type="button" aria-label="Слайд 6"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-dot"></use></svg></button>
+      </div>
+
+      <div class="hero__arrows">
+        <button class="hero__arrow is-inactive" type="button" aria-label="Предыдущий слайд">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
+        </button>
+        <button class="hero__arrow" type="button" aria-label="Следующий слайд">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+        </button>
+      </div>
+
+      <div class="hero__products" aria-label="Товары из промо">
+        <a class="hero-product-card" href="/catalog/finntrail-aspen-3462-orange/">
+          <span class="hero-product-card__pic">
+            <img src="/images/content/hero/hero-product-pants.png" srcset="/images/content/hero/hero-product-pants.png 1x" sizes="100vw" alt="FINNTRAIL Aspen 3462 Orange" loading="eager">
+          </span>
+          <span class="hero-product-card__body">
+            <span class="hero-product-card__name">FINNTRAIL Aspen 3462 Orange</span>
+            <span class="hero-product-card__bottom">
+              <span class="hero-product-card__price">37 999 ₽</span>
+              <svg class="hero-product-card__cart" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="hero-product-card" href="/catalog/finntrail-polar-1400-black/">
+          <span class="hero-product-card__pic">
+            <img src="/images/content/hero/hero-product-jacket.png" srcset="/images/content/hero/hero-product-jacket.png 1x" sizes="100vw" alt="FINNTRAIL Polar 1400 Black" loading="eager">
+          </span>
+          <span class="hero-product-card__body">
+            <span class="hero-product-card__name">FINNTRAIL Polar 1400 Black</span>
+            <span class="hero-product-card__bottom">
+              <span class="hero-product-card__price">12 999 ₽</span>
+              <svg class="hero-product-card__cart" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!--
+    BITRIX: всё внутри <main> — вызовы компонентов в шаблоне страницы
+    (/bitrix/templates/<template_name>/page_templates/index.php
+     или в контентной области через $APPLICATION->IncludeComponent())
+  -->
+  <main class="page-content">
+
+    <!-- Регистрация за бонусы -->
+    <!--
+      BITRIX: форма авторизации/регистрации + OAuth провайдеры
+      Иконки OAuth: sprite.svg#icon-login-vk / yandex / sber
+    -->
+    <section class="login-bonus" aria-labelledby="login-bonus-title">
+      <div class="login-bonus__text">
+        <h2 class="login-bonus__title" id="login-bonus-title">2 000 бонусов за регистрацию</h2>
+        <p class="login-bonus__desc">Начислим бонусы и кешбек за покупки при создании профиля</p>
+      </div>
+
+      <div class="login-bonus__actions">
+        <form class="login-bonus__form" action="/personal/" method="post">
+          <label class="login-bonus__field">
+            <span class="login-bonus__field-label">Телефон</span>
+            <input class="login-bonus__input" type="tel" name="phone" autocomplete="tel" placeholder="Ваш телефон">
+          </label>
+          <button class="login-bonus__submit" type="submit">Войти</button>
+        </form>
+
+        <div class="login-bonus__providers" aria-label="Войти через">
+          <a class="login-bonus__provider" href="/auth/vk/" aria-label="Войти через VK ID">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-login-vk"></use></svg>
+          </a>
+          <a class="login-bonus__provider login-bonus__provider--yandex" href="/auth/yandex/" aria-label="Войти через Яндекс ID">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-login-yandex"></use></svg>
+          </a>
+          <a class="login-bonus__provider" href="/auth/sber/" aria-label="Войти через Сбер ID">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-login-sber"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Рекомендованные товары: новый desktop-блок -->
+    <!--
+      BITRIX: bitrix:catalog.section
+      Карточка товара ниже соответствует одному элементу result.php.
+    -->
+    <section class="recommendations-new" aria-labelledby="recommendations-new-title">
+      <div class="recommendations-new__header">
+        <h2 class="recommendations-new__title" id="recommendations-new-title">Рекомендованные</h2>
+        <div class="recommendations-new__controls">
+          <button class="recommendations-new__arrow is-inactive" type="button" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <button class="recommendations-new__arrow" type="button" aria-label="Вперед">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="recommendations-new__viewport">
+        <div class="recommendations-new__track">
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/recommended/recommended-1.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" srcset="/images/content/recommended/recommended-2.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Топ</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/recommended/recommended-3.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Хит</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image" src="/images/content/recommended/recommended-4.png" srcset="/images/content/recommended/recommended-4.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+        </div>
+      </div>
+
+      <a class="recommendations-new__more" href="/catalog/?sort=recommended">
+        <span>Смотреть все</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </a>
+    </section>
+
+    <!-- Активности -->
+    <!--
+      BITRIX: разделы активностей — bitrix:iblock.list
+      data-preview/data-image можно заполнять из PREVIEW_PICTURE/DETAIL_PICTURE.
+    -->
+    <section class="activity-picker" aria-labelledby="activity-picker-title">
+      <h2 class="activity-picker__title" id="activity-picker-title">Выберите<br>Активность</h2>
+
+      <div class="activity-picker__preview" aria-hidden="true">
+        <img class="activity-picker__preview-img" src="/images/content/activity/ski-preview.png" srcset="/images/content/activity/ski-preview.png 1x" sizes="100vw" alt="" loading="lazy">
+      </div>
+
+      <nav class="activity-picker__list" aria-label="Активности">
+        <a class="activity-picker__link" href="/activities/tourism/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Туризм</a>
+        <a class="activity-picker__link" href="/activities/quad/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Квадро</a>
+        <a class="activity-picker__link" href="/activities/fishing/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Рыбалка</a>
+        <a class="activity-picker__link" href="/activities/travel/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Путешествия</a>
+        <a class="activity-picker__link" href="/activities/skiing/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Горные лыжи</a>
+        <a class="activity-picker__link" href="/activities/snowmobiles/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Снегоходы</a>
+      </nav>
+
+      <div class="activity-picker__image" aria-hidden="true">
+        <img class="activity-picker__image-img" src="/images/content/activity/ski-main.png" srcset="/images/content/activity/ski-main.png 1x" sizes="100vw" alt="" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Подарочные карты: desktop carousel -->
+    <!--
+      BITRIX: bitrix:news.list / инфоблок "Подарочные карты"
+      Один .gift-cards-showcase__card соответствует одному элементу.
+    -->
+    <section class="gift-cards-showcase" aria-labelledby="gift-cards-showcase-title">
+      <div class="gift-cards-showcase__header">
+        <h2 class="gift-cards-showcase__title" id="gift-cards-showcase-title">Подарочные карты</h2>
+        <div class="gift-cards-showcase__controls">
+          <button class="gift-cards-showcase__arrow" type="button" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <button class="gift-cards-showcase__arrow" type="button" aria-label="Вперед">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="gift-cards-showcase__body">
+        <div class="gift-cards-showcase__track">
+          <a class="gift-cards-showcase__card" href="/gift-cards/5000/">
+            <img class="gift-cards-showcase__card-bg" src="/images/content/gift-cards-showcase/card-side-left.png" srcset="/images/content/gift-cards-showcase/card-side-left.png 1x" sizes="100vw" alt="" loading="lazy">
+            <img class="gift-cards-showcase__logo" src="/images/content/gift-cards-showcase/logo-white.svg" alt="">
+            <span class="gift-cards-showcase__price">5 000 ₽</span>
+          </a>
+
+          <a class="gift-cards-showcase__card is-active" href="/gift-cards/15000/">
+            <img class="gift-cards-showcase__card-bg" src="/images/content/gift-cards-showcase/card-main.png" srcset="/images/content/gift-cards-showcase/card-main.png 1x" sizes="100vw" alt="" loading="lazy">
+            <img class="gift-cards-showcase__logo" src="/images/content/gift-cards-showcase/logo-white.svg" alt="">
+            <span class="gift-cards-showcase__price">15 000 ₽</span>
+          </a>
+
+          <a class="gift-cards-showcase__card" href="/gift-cards/15000/">
+            <img class="gift-cards-showcase__card-bg" src="/images/content/gift-cards-showcase/card-side-right.png" srcset="/images/content/gift-cards-showcase/card-side-right.png 1x" sizes="100vw" alt="" loading="lazy">
+            <img class="gift-cards-showcase__logo" src="/images/content/gift-cards-showcase/logo-white.svg" alt="">
+            <span class="gift-cards-showcase__price">15 000 ₽</span>
+          </a>
+        </div>
+
+        <div class="gift-cards-showcase__mountains" aria-hidden="true">
+          <img class="gift-cards-showcase__mountains-img" src="/images/content/gift-cards-showcase/mountains.png" srcset="/images/content/gift-cards-showcase/mountains.png 1x" sizes="100vw" alt="" loading="lazy">
+        </div>
+
+        <a class="gift-cards-showcase__cta" href="/gift-cards/">
+          <span>Выбрать карту</span>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Собрать комплект: desktop -->
+    <!--
+      BITRIX: товары комплекта — catalog.section + пользовательский выбор категорий.
+      Правая колонка — состояние выбранных товаров.
+    -->
+    <section class="build-kit-desktop" aria-labelledby="build-kit-desktop-title">
+      <h2 class="build-kit-desktop__title" id="build-kit-desktop-title">Собрать комплект</h2>
+
+      <div class="build-kit-desktop__gender" role="tablist" aria-label="Пол">
+        <button class="build-kit-desktop__gender-btn is-active" type="button" role="tab" aria-selected="true">Мужчинам</button>
+        <button class="build-kit-desktop__gender-btn" type="button" role="tab" aria-selected="false">Женщинам</button>
+      </div>
+
+      <div class="build-kit-desktop__filters" aria-label="Фильтры комплекта">
+        <div class="build-kit-desktop__filter-row">
+          <button class="build-kit-desktop__filter" type="button">Рыбалка</button>
+          <button class="build-kit-desktop__filter" type="button">Квадро</button>
+          <button class="build-kit-desktop__filter" type="button">Снегоходы</button>
+          <button class="build-kit-desktop__filter is-active" type="button">Хайкинг</button>
+          <button class="build-kit-desktop__filter" type="button">Лыжи</button>
+        </div>
+        <div class="build-kit-desktop__filter-row">
+          <button class="build-kit-desktop__filter" type="button">Шапка</button>
+          <button class="build-kit-desktop__filter is-active" type="button">Куртка</button>
+          <button class="build-kit-desktop__filter" type="button">Штаны</button>
+          <button class="build-kit-desktop__filter" type="button">Обувь</button>
+        </div>
+      </div>
+
+      <div class="build-kit-desktop__model" aria-hidden="true">
+        <img class="build-kit-desktop__model-img" src="/images/content/build-kit/model.png" srcset="/images/content/build-kit/model.png 1x" sizes="100vw" alt="" loading="lazy">
+      </div>
+
+      <div class="build-kit-desktop__grid">
+        <div class="build-kit-desktop__tiles">
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-2.png" srcset="/images/content/build-kit/item-2.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-4.png" srcset="/images/content/build-kit/item-4.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-5.png" srcset="/images/content/build-kit/item-5.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-5.png" srcset="/images/content/build-kit/item-5.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-8.png" srcset="/images/content/build-kit/item-8.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-9.png" srcset="/images/content/build-kit/item-9.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-2.png" srcset="/images/content/build-kit/item-2.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-4.png" srcset="/images/content/build-kit/item-4.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-5.png" srcset="/images/content/build-kit/item-5.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-5.png" srcset="/images/content/build-kit/item-5.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-8.png" srcset="/images/content/build-kit/item-8.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-9.png" srcset="/images/content/build-kit/item-9.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-2.png" srcset="/images/content/build-kit/item-2.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-4.png" srcset="/images/content/build-kit/item-4.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-5.png" srcset="/images/content/build-kit/item-5.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-5.png" srcset="/images/content/build-kit/item-5.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-8.png" srcset="/images/content/build-kit/item-8.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-9.png" srcset="/images/content/build-kit/item-9.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+        </div>
+
+        <div class="build-kit-desktop__grid-controls">
+          <button class="build-kit-desktop__arrow" type="button" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <div class="build-kit-desktop__dots" aria-hidden="true">
+            <span class="build-kit-desktop__dot is-active"></span>
+            <span class="build-kit-desktop__dot"></span>
+            <span class="build-kit-desktop__dot"></span>
+          </div>
+          <button class="build-kit-desktop__arrow" type="button" aria-label="Вперед">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <a class="build-kit-desktop__product-card" href="/catalog/finntrail-aspen-3462-orange/">
+        <span class="build-kit-desktop__product-pic">
+          <img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy">
+        </span>
+        <span class="build-kit-desktop__product-info">
+          <span class="build-kit-desktop__product-name">FINNTRAIL Aspen 3462 Orange</span>
+          <span class="build-kit-desktop__product-price">37 999 ₽</span>
+        </span>
+      </a>
+
+      <div class="build-kit-desktop__kit-meta">
+        <span>Ваш комплект</span>
+        <span class="build-kit-desktop__kit-count">Товары,3</span>
+      </div>
+
+      <div class="build-kit-desktop__kit-list">
+        <article class="build-kit-desktop__kit-item">
+          <img class="build-kit-desktop__kit-img" src="/images/content/build-kit/hat.png" srcset="/images/content/build-kit/hat.png 1x" sizes="100vw" alt="" loading="lazy">
+          <div class="build-kit-desktop__kit-content">
+            <div class="build-kit-desktop__kit-top">
+              <h3 class="build-kit-desktop__kit-name">Шапка FINNTRAIL Daily 9727 Graphitegrey</h3>
+              <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
+            </div>
+            <div class="build-kit-desktop__kit-bottom">
+              <span class="build-kit-desktop__kit-price">1 999 ₽</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="build-kit-desktop__kit-item">
+          <img class="build-kit-desktop__kit-img" src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="" loading="lazy">
+          <div class="build-kit-desktop__kit-content">
+            <div class="build-kit-desktop__kit-top">
+              <h3 class="build-kit-desktop__kit-name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</h3>
+              <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
+            </div>
+            <div class="build-kit-desktop__kit-bottom">
+              <span class="build-kit-desktop__kit-price">12 999 ₽</span>
+              <label class="build-kit-desktop__size" aria-label="Размер">
+                <select class="build-kit-desktop__size-select">
+                  <option selected>XL</option>
+                  <option>L</option>
+                  <option>M</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <article class="build-kit-desktop__kit-item">
+          <img class="build-kit-desktop__kit-img" src="/images/content/build-kit/pants.png" srcset="/images/content/build-kit/pants.png 1x" sizes="100vw" alt="" loading="lazy">
+          <div class="build-kit-desktop__kit-content">
+            <div class="build-kit-desktop__kit-top">
+              <h3 class="build-kit-desktop__kit-name">Брюки FINNTRAIL Tactic 4609 Khaki</h3>
+              <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
+            </div>
+            <div class="build-kit-desktop__kit-bottom">
+              <span class="build-kit-desktop__kit-price">9 499 ₽</span>
+              <label class="build-kit-desktop__size" aria-label="Размер">
+                <select class="build-kit-desktop__size-select">
+                  <option selected>XL</option>
+                  <option>L</option>
+                  <option>M</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <button class="build-kit-desktop__kit-item build-kit-desktop__kit-item--empty" type="button">
+          <span>Добавить обувь</span>
+        </button>
+      </div>
+
+      <div class="build-kit-desktop__summary">
+        <div class="build-kit-desktop__total">
+          <span class="build-kit-desktop__total-label">Итого</span>
+          <span class="build-kit-desktop__total-price">23 887 ₽</span>
+        </div>
+        <a class="build-kit-desktop__submit" href="/cart/">
+          <span>Добавить в корзину</span>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Популярные товары: desktop-блок -->
+    <!--
+      BITRIX: bitrix:catalog.section
+      Параметры: сортировка по популярности / продажам.
+      Карточка товара ниже соответствует одному элементу result.php.
+    -->
+    <section class="recommendations-new recommendations-new--popular" aria-labelledby="popular-products-title">
+      <div class="recommendations-new__header">
+        <h2 class="recommendations-new__title" id="popular-products-title">Популярные</h2>
+        <div class="recommendations-new__controls">
+          <button class="recommendations-new__arrow is-inactive" type="button" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <button class="recommendations-new__arrow" type="button" aria-label="Вперед">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="recommendations-new__viewport">
+        <div class="recommendations-new__track">
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/recommended/recommended-1.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" srcset="/images/content/recommended/recommended-2.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Топ</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/recommended/recommended-3.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Хит</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+              <img class="recommendation-card__image" src="/images/content/recommended/recommended-4.png" srcset="/images/content/recommended/recommended-4.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+              <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+        </div>
+      </div>
+
+      <a class="recommendations-new__more" href="/catalog/?sort=popular">
+        <span>Смотреть все</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </a>
+    </section>
+
+    <!-- Журнал -->
+    <!--
+      BITRIX: bitrix:news.list
+      Категории журнала можно заполнять разделами инфоблока, статьи — элементами news.list.
+    -->
+    <section class="journal-showcase" aria-labelledby="journal-showcase-title">
+      <div class="journal-showcase__header">
+        <h2 class="journal-showcase__title" id="journal-showcase-title">Журнал</h2>
+
+        <nav class="journal-showcase__categories" aria-label="Рубрики журнала">
+          <a class="journal-showcase__category" href="/journal/tourism/">
+            <span class="journal-showcase__category-media"><img src="/images/content/journal/cat-tourism.png" srcset="/images/content/journal/cat-tourism.png 1x" sizes="100vw" alt="" loading="lazy"></span>
+            <span>Туризм</span>
+          </a>
+          <a class="journal-showcase__category" href="/journal/fishing/">
+            <span class="journal-showcase__category-media"><img src="/images/content/journal/cat-fishing.png" srcset="/images/content/journal/cat-fishing.png 1x" sizes="100vw" alt="" loading="lazy"></span>
+            <span>Рыбалка</span>
+          </a>
+          <a class="journal-showcase__category" href="/journal/quad/">
+            <span class="journal-showcase__category-media"><img src="/images/content/journal/cat-quad.png" srcset="/images/content/journal/cat-quad.png 1x" sizes="100vw" alt="" loading="lazy"></span>
+            <span>Квадро</span>
+          </a>
+          <a class="journal-showcase__category" href="/journal/travel/">
+            <span class="journal-showcase__category-media"><img src="/images/content/journal/cat-travel.png" srcset="/images/content/journal/cat-travel.png 1x" sizes="100vw" alt="" loading="lazy"></span>
+            <span>Путешествия</span>
+          </a>
+          <a class="journal-showcase__category" href="/journal/ski/">
+            <span class="journal-showcase__category-media"><img src="/images/content/journal/cat-ski.png" srcset="/images/content/journal/cat-ski.png 1x" sizes="100vw" alt="" loading="lazy"></span>
+            <span>Горные лыжи</span>
+          </a>
+          <a class="journal-showcase__category" href="/journal/snowmobiles/">
+            <span class="journal-showcase__category-media"><img src="/images/content/journal/cat-snowmobile.png" srcset="/images/content/journal/cat-snowmobile.png 1x" sizes="100vw" alt="" loading="lazy"></span>
+            <span>Снегоходы</span>
+          </a>
+        </nav>
+
+        <a class="journal-showcase__all" href="/journal/">
+          <span>Все публикации</span>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+        </a>
+      </div>
+
+      <div class="journal-showcase__content">
+        <div class="journal-showcase__featured-row">
+          <a class="journal-showcase__hero" href="/journal/camping-vs-glamping/">
+            <img src="/images/content/journal/hero-tent.png" srcset="/images/content/journal/hero-tent.png 1x" sizes="100vw" alt="Палатка на закате" loading="lazy">
+            <span class="journal-showcase__hero-meta">
+              <span>Гайды</span>
+              <span>Туризм</span>
+            </span>
+            <h3 class="journal-showcase__hero-title">Чем отличается кемпинг от глэмпинга<br>и что выбрать для идеального отдыха<br>на природе</h3>
+          </a>
+
+          <a class="journal-showcase__card" href="/journal/trekking-shoes-guide/">
+            <span class="journal-showcase__card-image">
+              <img src="/images/content/journal/trekking.png" srcset="/images/content/journal/trekking.png 1x" sizes="100vw" alt="Туристы в горах" loading="lazy">
+            </span>
+            <span class="journal-showcase__card-body">
+              <span class="journal-showcase__meta">
+                <span>Гайды</span>
+                <span>Туризм</span>
+              </span>
+              <span class="journal-showcase__card-title">Как выбрать треккинговую обувь: материалы, подошва, советы и обзор лучших моделей FINNTRAIL</span>
+            </span>
+          </a>
+
+          <a class="journal-showcase__card" href="/journal/snowmobile-summer-storage/">
+            <span class="journal-showcase__card-image">
+              <img src="/images/content/journal/snowmobile.png" srcset="/images/content/journal/snowmobile.png 1x" sizes="100vw" alt="Снегоход на склоне" loading="lazy">
+            </span>
+            <span class="journal-showcase__card-body">
+              <span class="journal-showcase__meta">
+                <span>Гайды</span>
+                <span>Снегоходы</span>
+              </span>
+              <span class="journal-showcase__card-title">Правильная консервация снегохода на лето: что нужно знать</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="journal-showcase__divider" aria-hidden="true"></div>
+
+        <div class="journal-showcase__links">
+          <a class="journal-showcase__link" href="/journal/snowmobile-license/">
+            <span class="journal-showcase__date">30 сентября</span>
+            <span>Нужны ли водительские права<br>для управления снегоходом?</span>
+          </a>
+          <a class="journal-showcase__link" href="/journal/fishing-ban-2026/">
+            <span class="journal-showcase__date">12 октября</span>
+            <span>Весенний запрет на ловлю рыбы<br>в 2026 году: причины, сроки,<br>разрешенные локации</span>
+          </a>
+          <a class="journal-showcase__link" href="/journal/hipora-membrane/">
+            <span class="journal-showcase__date">12 октября</span>
+            <span>Южнокорейская мембрана Hipora<br>в экипировке: как это работает<br>и когда она реально нужна</span>
+          </a>
+          <a class="journal-showcase__link" href="/journal/snowmobile-license/">
+            <span class="journal-showcase__date">30 сентября</span>
+            <span>Нужны ли водительские права<br>для управления снегоходом?</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Официальный магазин -->
+    <!--
+      BITRIX: bitrix:news.detail / iblock element для основного магазина.
+      Контакты и ссылка на карту заполняются из свойств элемента.
+    -->
+    <section class="store-showcase" aria-labelledby="store-showcase-title">
+      <img class="store-showcase__image" src="/images/content/store-showcase/metropolis-store.png" srcset="/images/content/store-showcase/metropolis-store.png 1x" sizes="100vw" alt="Официальный магазин FINNTRAIL в Москве" loading="lazy">
+
+      <div class="store-showcase__panel">
+        <div class="store-showcase__text">
+          <h2 class="store-showcase__title" id="store-showcase-title">Официальный магазин FINNTRAIL в Москве</h2>
+          <p class="store-showcase__description">Самый большой ассортимент одежды и экипировки FINNTRAIL для рыбалки, бездорожья, туризма, горнолыжного спорта и путешествий</p>
+        </div>
+
+        <div class="store-showcase__details">
+          <div class="store-showcase__contacts">
+            <a class="store-showcase__row" href="https://yandex.ru/maps/?text=Москва,%20Ленинградское%20шоссе%2016А,%20ТЦ%20Метрополис,%203%20этаж" target="_blank" rel="noopener">
+              <svg class="store-showcase__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-store-location"></use></svg>
+              <span class="store-showcase__value">Москва, Ленинградское шоссе 16А, ТЦ Метрополис, 3 этаж</span>
+            </a>
+
+            <div class="store-showcase__stack">
+              <a class="store-showcase__row store-showcase__row--center" href="tel:+79112083529">
+                <svg class="store-showcase__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-store-phone"></use></svg>
+                <span class="store-showcase__value">+7 (911) 208-35-29</span>
+              </a>
+
+              <div class="store-showcase__row store-showcase__row--center">
+                <svg class="store-showcase__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-store-clock"></use></svg>
+                <span class="store-showcase__value">Пн-Пт 10:00 - 23:00</span>
+              </div>
+            </div>
+          </div>
+
+          <a class="store-showcase__map" href="https://yandex.ru/maps/?text=Москва,%20Ленинградское%20шоссе%2016А,%20ТЦ%20Метрополис,%203%20этаж" target="_blank" rel="noopener">
+            <span>Смотреть на карте</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Коммьюнити desktop -->
+    <!--
+      BITRIX: разделы инфоблока "Сообщества FINNTRAIL".
+      Карточка ниже соответствует одному направлению с набором ссылок на соцсети.
+    -->
+    <section class="community-showcase" aria-labelledby="community-showcase-title">
+      <div class="community-showcase__intro">
+        <h2 class="community-showcase__title" id="community-showcase-title">Присоединяйся<br>к коммьюнити</h2>
+        <p class="community-showcase__description">Крупнейшие тематические сообщества любителей активного отдыха</p>
+      </div>
+
+      <div class="community-showcase__cards">
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--offroad" src="/images/content/community-showcase/offroad.png" srcset="/images/content/community-showcase/offroad.png 1x" sizes="100vw" alt="Бездорожье FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Бездорожье</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 550 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="community-showcase__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="Бездорожье на YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--tourism" src="/images/content/community-showcase/tourism.png" srcset="/images/content/community-showcase/tourism.png 1x" sizes="100vw" alt="Туризм FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Туризм</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 1 340 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="community-showcase__social" href="https://youtube.com/@finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм на YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--fishing" src="/images/content/community-showcase/fishing.png" srcset="/images/content/community-showcase/fishing.png 1x" sizes="100vw" alt="Рыбалка FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Рыбалка</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 2 700 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Категории -->
+    <!--
+      BITRIX: разделы каталога — bitrix:catalog (режим: разделы)
+      или bitrix:iblock.list с инфоблоком "Категории"
+      Шаблон item.php — один элемент ниже (.category-snippet)
+    -->
+    <footer class="footer-desktop" aria-label="Футер">
+      <div class="footer-desktop__main">
+        <div class="footer-desktop__top">
+          <nav class="footer-desktop__nav" aria-label="Навигация в футере">
+            <div class="footer-desktop__column">
+              <h2 class="footer-desktop__heading">Покупателям</h2>
+              <ul class="footer-desktop__links">
+                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/delivery/">Доставка и оплата</a></li>
+                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/return/">Обмен и возврат</a></li>
+                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/warranty/">Гарантия и сервис</a></li>
+                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/feedback/">Обратная связь</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-desktop__column">
+              <h2 class="footer-desktop__heading">Компания</h2>
+              <ul class="footer-desktop__links">
+                <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
+                <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
+                <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
+                <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
+                <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-desktop__column">
+              <h2 class="footer-desktop__heading">Об экипировке</h2>
+              <ul class="footer-desktop__links">
+                <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
+                <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
+                <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
+                <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
+                <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-desktop__column footer-desktop__column--app">
+              <h2 class="footer-desktop__heading">Приложение</h2>
+              <ul class="footer-desktop__links">
+                <li>
+                  <a class="footer-desktop__app-link" href="/app/">
+                    <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+                    App Store
+                  </a>
+                </li>
+                <li>
+                  <a class="footer-desktop__app-link" href="/app/">
+                    <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+                    Google Play
+                  </a>
+                </li>
+                <li>
+                  <a class="footer-desktop__app-link" href="/app/">
+                    <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+                    AppGallery
+                  </a>
+                </li>
+                <li>
+                  <a class="footer-desktop__app-link" href="/app/">
+                    <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+                    RuStore
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="footer-desktop__side">
+            <div class="footer-desktop__socials">
+              <a class="footer-desktop__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+              <a class="footer-desktop__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+              <a class="footer-desktop__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+              <a class="footer-desktop__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+            </div>
+
+            <div class="footer-desktop__credits">
+              <p>Дизайн — студия луч</p>
+              <p>FINNTRAIL © 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-desktop__divider"></div>
+
+        <div class="footer-desktop__legal">
+          <a href="/privacy/">Политика конфиденциальности</a>
+          <a href="/offer/">Публичная оферта</a>
+          <a href="/personal-data/">Согласие на обработку персональных данных</a>
+        </div>
+      </div>
+
+      <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL">
+        <img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
+      </a>
+    </footer>
+
+    <!--
+      BITRIX: футер страницы — footer.php шаблона сайта
+      Ссылки на соцсети — из настроек шаблона или инфоблока "Настройки сайта"
+      Ссылки в навигации — статичные или из меню Bitrix (bitrix:menu)
+      Юридические ссылки — статичные в footer.php
+    -->
+    <footer class="footer">
+
+      <div class="footer__brand">
+        <a href="/" class="footer__logo-link">
+          <!-- BITRIX: логотип — статичный ассет шаблона -->
+          <img src="/images/logo.svg" alt="FINNTRAIL">
+        </a>
+        <div class="footer__socials">
+          <!-- BITRIX: ссылки на соцсети — из настроек шаблона или инфоблока -->
+          <a href="https://vk.com/finntrail" class="footer__social-btn" aria-label="ВКонтакте" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg>
+          </a>
+          <a href="https://t.me/finntrail" class="footer__social-btn" aria-label="Telegram" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg>
+          </a>
+          <a href="https://dzen.ru/finntrail" class="footer__social-btn" aria-label="Дзен" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg>
+          </a>
+          <a href="https://youtube.com/@finntrail" class="footer__social-btn" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- BITRIX: навигация — bitrix:menu, тип меню "footer" -->
+      <div class="footer__list">
+        <p class="footer__list-title footer__list-title--lg">Покупателям</p>
+        <ul class="footer__links">
+          <li><a href="/delivery/" class="footer__link">Доставка и оплата</a></li>
+          <li><a href="/return/" class="footer__link">Обмен и возврат</a></li>
+          <li><a href="/warranty/" class="footer__link">Гарантия и сервис</a></li>
+          <li><a href="/feedback/" class="footer__link">Обратная связь</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__list">
+        <p class="footer__list-title">Компания</p>
+        <ul class="footer__links">
+          <li><a href="/contacts/" class="footer__link">Контакты</a></li>
+          <li><a href="/career/" class="footer__link">Карьера</a></li>
+          <li><a href="/partners/" class="footer__link">Партнерская программа</a></li>
+          <li><a href="/tours/" class="footer__link">Премиум туры</a></li>
+          <li><a href="/game/" class="footer__link">Игра</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__list">
+        <p class="footer__list-title">Об экипировке</p>
+        <ul class="footer__links">
+          <li><a href="/size-guide/" class="footer__link">Таблица размеров</a></li>
+          <li><a href="/technologies/" class="footer__link">Технологии</a></li>
+          <li><a href="/faq/" class="footer__link">Вопросы и ответы</a></li>
+          <li><a href="/care/" class="footer__link">Уход и ремонт</a></li>
+          <li><a href="/articles/" class="footer__link">Блог</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__bottom">
+        <hr class="footer__divider">
+        <div class="footer__legal">
+          <!-- BITRIX: юридические ссылки — статичные в footer.php -->
+          <a href="/privacy/" class="footer__legal-link">Политика конфиденциальности</a>
+          <a href="/offer/" class="footer__legal-link footer__legal-link--underline">Публичная оферта</a>
+          <a href="/personal-data/" class="footer__legal-link footer__legal-link--underline">Согласие на обработку персональных данных</a>
+          <p class="footer__copy">FINNTRAIL © 2025</p>
+        </div>
+      </div>
+
+    </footer>
+
+  </main>
+
+  <!--
+    BITRIX: таббар — часть footer.php шаблона сайта
+    (/bitrix/templates/<template_name>/footer.php)
+    Активный пункт (.is-active) определяется через $APPLICATION->GetCurDir()
+    или JS по window.location.pathname (уже реализовано в main.js)
+  -->
+  <nav class="tabbar">
+    <a href="/" class="tabbar__item is-active">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg></button>
+      <span class="tabbar__label">Главная</span>
+    </a>
+    <a href="/catalog/" class="tabbar__item">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-catalog"></use></svg>
+      </span>
+      <span class="tabbar__label">Каталог</span>
+    </a>
+    <a href="/basket/" class="tabbar__item">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-cart"></use></svg>
+      </span>
+      <span class="tabbar__label">Корзина</span>
+    </a>
+    <a href="/favorites/" class="tabbar__item">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-heart"></use></svg>
+      </span>
+      <span class="tabbar__label">Избранное</span>
+    </a>
+    <a href="/personal/" class="tabbar__item">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-user"></use></svg>
+      </span>
+      <span class="tabbar__label">Профиль</span>
+    </a>
+  </nav>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

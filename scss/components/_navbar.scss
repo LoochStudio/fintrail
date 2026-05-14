@@ -1,0 +1,275 @@
+@use '../variables' as *;
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #f2f2f2; // временно; на реальной — прозрачный поверх hero
+
+  // ─── Контейнер верхней строки ─────────────────────────────────────────────
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;     // на мобайле поиск переносится на вторую строку
+    align-items: center;
+    padding: 10px $spacing-page 0;
+  }
+
+  // ─── Геолокация (мобайл: текст + иконка) ─────────────────────────────────
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 46px;
+  }
+
+  &__location-icon {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  &__location-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: $color-text-primary;
+    white-space: nowrap;
+  }
+
+  // ─── Логотип ──────────────────────────────────────────────────────────────
+  &__logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 134px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  // ─── Счётчик корзины (мобайл) ─────────────────────────────────────────────
+  &__badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px;
+    background: $color-bg-overlay;
+    border-radius: $radius-sm;
+    width: 46px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__badge-count {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 12px;
+    letter-spacing: 0.4px;
+    color: $color-text-primary;
+  }
+
+  // ─── Поиск (мобайл: вторая строка; десктоп: в ряд) ───────────────────────
+  &__search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px $spacing-page;
+    margin: 12px 0 16px;
+    background: #fff;
+    border-radius: $radius-md;
+    cursor: text;
+  }
+
+  &__search-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: $color-text-muted;
+  }
+
+  &__search-input {
+    flex: 1;
+    min-width: 0;
+    font-family: $font-main;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-text-primary;
+    background: none;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: $color-text-secondary;
+    }
+  }
+
+  // ─── Кнопка геолокации (десктоп, скрыта на мобайле) ──────────────────────
+  &__location-btn {
+    display: none;
+  }
+
+  // ─── Кнопки действий (десктоп, скрыты на мобайле) ────────────────────────
+  &__actions {
+    display: none;
+  }
+
+  // Кнопки действий: белый круг через CSS, иконка 22×22 из спрайта
+  &__btn-icon,
+  &__btn-user {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: none;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    color: $color-text-primary;
+  }
+
+  // ─── Навигационная строка (десктоп, скрыта на мобайле) ───────────────────
+  &__nav {
+    display: none;
+  }
+
+  &__nav-left,
+  &__nav-right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__nav-link {
+    font-family: $font-nav;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-text-secondary;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &.is-active {
+      font-weight: 600;
+      color: $color-text-primary;
+
+      // Кастомный подчёркиватель — как в Figma (1px div под текстом)
+      &::after {
+        content: '';
+        display: block;
+        height: 1px;
+        background: currentColor;
+      }
+    }
+  }
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .navbar {
+    padding-top: 30px;
+
+    &__inner {
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+      gap: 24px;
+      height: 46px;
+    }
+
+    // Мобайльные элементы — скрываем
+    &__location { display: none; }
+    &__badge    { display: none; }
+
+    // Логотип — левый край, фиксированная ширина
+    &__logo {
+      order: 1;
+      flex: none;
+      width: 263px;
+      justify-content: flex-start;
+
+      img { width: 100%; }
+    }
+
+    // Кнопка геолокации: backdrop-blur + белый фон + скруглённый прямоугольник (как в Figma)
+    &__location-btn {
+      order: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: none;
+      background: #fff;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      mix-blend-mode: luminosity;
+      cursor: pointer;
+      color: rgba(95, 95, 95, 0.9);
+    }
+
+    // Поиск — растягивается на всё доступное пространство
+    &__search {
+      order: 3;
+      flex: 1;
+      width: auto;
+      margin: 0;
+      padding: 11px 16px;
+    }
+
+    &__search-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    // Кнопки действий
+    &__actions {
+      order: 4;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    // Навигационная строка
+    &__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 1px auto 0;
+      width: 100%;
+      height: 60px;
+    }
+
+    &__nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 569px;
+    }
+
+    &__nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 249px;
+    }
+  }
+}

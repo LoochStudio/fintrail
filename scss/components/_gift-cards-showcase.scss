@@ -1,0 +1,222 @@
+@use '../variables' as *;
+
+.gift-cards-showcase {
+  display: none;
+}
+
+@media (min-width: $bp-lg) {
+  .gift-cards-showcase {
+    display: flex;
+    height: 787px;
+    margin-top: $section-gap-xl;
+    padding: 0 $spacing-page-desktop;
+    flex-direction: column;
+    gap: 24px;
+    background: $color-surface;
+    overflow: hidden;
+  }
+
+  .gift-cards-showcase__header {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .gift-cards-showcase__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: 24px;
+    letter-spacing: 0;
+    color: $color-primary-black;
+    text-transform: uppercase;
+  }
+
+  .gift-cards-showcase__controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .gift-cards-showcase__arrow {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-primary-black;
+    cursor: pointer;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .gift-cards-showcase__body {
+    position: relative;
+    height: 715px;
+    margin: 0 (-$spacing-page-desktop);
+    overflow: hidden;
+  }
+
+  .gift-cards-showcase__track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    will-change: transform;
+    transition: transform 0.36s ease;
+  }
+
+  .gift-cards-showcase__card {
+    position: relative;
+    width: 410px;
+    height: 260px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    color: $color-white;
+    transition: none;
+  }
+
+  .gift-cards-showcase__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba($color-black, 0.2);
+    pointer-events: none;
+  }
+
+  .gift-cards-showcase__card.is-active {
+    width: 721px;
+    height: 454.576px;
+    border-radius: 14.068px;
+  }
+
+  .gift-cards-showcase__card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gift-cards-showcase__logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    width: 370px;
+    height: auto;
+    transition: width 0.36s ease, top 0.36s ease, left 0.36s ease;
+  }
+
+  .gift-cards-showcase__card.is-active .gift-cards-showcase__logo {
+    top: 35.168px;
+    left: 35.171px;
+    width: 650.658px;
+  }
+
+  .gift-cards-showcase__price {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 2;
+    font-family: $font-display;
+    font-size: 36px;
+    font-weight: $font-weight-black;
+    line-height: 36px;
+    letter-spacing: 0;
+    color: $color-white;
+    text-transform: uppercase;
+    transition: font-size 0.36s ease, line-height 0.36s ease, left 0.36s ease, bottom 0.36s ease;
+  }
+
+  .gift-cards-showcase__card.is-active .gift-cards-showcase__price {
+    left: 35.171px;
+    bottom: 35.759px;
+    font-size: 64px;
+    line-height: 1.05;
+  }
+
+  .gift-cards-showcase__mountains {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 292px;
+    z-index: 3;
+    height: 423px;
+    overflow: hidden;
+  }
+
+  .gift-cards-showcase__mountains::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .gift-cards-showcase__mountains::after {
+    z-index: 1;
+    background: linear-gradient(180deg, rgba($color-surface, 0) 17.96%, $color-surface 100%);
+  }
+
+  .gift-cards-showcase__mountains-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gift-cards-showcase__cta {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    z-index: 5;
+    display: inline-flex;
+    width: 190px;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px 12px 32px;
+    border-radius: $radius-xs;
+    background: $color-primary-black;
+    color: $color-white;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+
+    svg {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+  }
+
+  .gift-card-banner {
+    display: none;
+  }
+}
+
+@media (max-width: #{$bp-lg - 1px}) {
+  .gift-cards-showcase__card[data-carousel-clone='true'] {
+    display: none;
+  }
+}

@@ -1,0 +1,152 @@
+@use '../variables' as *;
+
+.community {
+  position: relative;
+  height: 460px;
+  margin: 0 $spacing-page;
+  background: #999;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 48px;
+
+  &__text {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__channels {
+    position: absolute;
+    top: 129px;
+    left: 16px;
+    width: 216px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__channel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__channel-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__socials {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    overflow: hidden;
+    mix-blend-mode: luminosity;
+    flex-shrink: 0;
+    color: rgba(0, 0, 0, 0.9);
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+// ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .community {
+    width: 100%;
+    max-width: 1200px;
+    height: 272px;
+    margin: 0 auto 100px;
+    padding: 32px;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .community__text {
+    position: static;
+    width: 548px;
+    flex: 1 1 0;
+    gap: 10px;
+  }
+
+  .community__title {
+    width: 436px;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    color: #fff;
+  }
+
+  .community__desc {
+    width: 345px;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .community__channels {
+    position: static;
+    width: 548px;
+    flex: 1 1 0;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 60px;
+    row-gap: 40px;
+  }
+
+  .community__channel {
+    gap: 16px;
+  }
+
+  .community__channel-title {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .community__socials {
+    gap: 8px;
+  }
+
+  .community__social-btn {
+    width: 48px;
+    height: 40px;
+    padding: 0;
+  }
+
+  .community__social-btn svg {
+    width: 48px;
+    height: 48px;
+  }
+}
