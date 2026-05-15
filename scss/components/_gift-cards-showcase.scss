@@ -151,6 +151,15 @@
     line-height: 1.05;
   }
 
+  .gift-cards-showcase.is-resetting {
+    .gift-cards-showcase__track,
+    .gift-cards-showcase__card,
+    .gift-cards-showcase__logo,
+    .gift-cards-showcase__price {
+      transition: none;
+    }
+  }
+
   .gift-cards-showcase__mountains {
     position: absolute;
     left: 0;

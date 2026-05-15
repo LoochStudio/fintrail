@@ -43,6 +43,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.22s ease, transform 0.22s ease;
   }
 
   .activity-picker__list {
@@ -91,5 +92,23 @@
     height: 100%;
     object-fit: cover;
     object-position: center bottom;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .activity-picker__preview-img.is-changing,
+  .activity-picker__image-img.is-changing {
+    animation: activity-image-change 0.24s ease;
+  }
+}
+
+@keyframes activity-image-change {
+  0% {
+    opacity: 0.72;
+    transform: scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

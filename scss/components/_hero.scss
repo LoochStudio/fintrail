@@ -157,6 +157,14 @@
   object-fit: cover;
 }
 
+.hero.is-replaying {
+  .hero__slide,
+  .hero__info,
+  .hero__products {
+    animation: hero-self-replay 0.36s ease;
+  }
+}
+
 .hero__topbar,
 .hero__products {
   display: none;
@@ -519,6 +527,18 @@
 @keyframes hero-pagination-progress {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-self-replay {
+  0% {
+    opacity: 0.72;
+    transform: translateX(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

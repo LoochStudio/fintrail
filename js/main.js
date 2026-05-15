@@ -36,10 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const dots    = document.querySelectorAll('.hero__pagination-dot');
     const btnPrev = document.querySelector('.hero__arrow[aria-label="Предыдущий слайд"]');
     const btnNext = document.querySelector('.hero__arrow[aria-label="Следующий слайд"]');
-    const total   = Math.max(slides.length, dots.length);
+    const hero = document.querySelector('.hero');
+    const total   = Math.max(dots.length, slides.length);
     let current   = 0;
-    const activeDotIcon = '/images/icons/sprite.svg#icon-hero-pagination-active';
-    const defaultDotIcon = '/images/icons/sprite.svg#icon-hero-pagination-dot';
+    const activeDotIcon = dots[0]?.querySelector('use')?.getAttribute('href') || '';
+    const defaultDotIcon = dots[1]?.querySelector('use')?.getAttribute('href')
+      || dots[0]?.querySelector('use')?.getAttribute('href')
+      || '';
+
+    function replayCurrentSlide() {
+      if (slides.length !== 1 || !hero) return;
+
+      hero.classList.remove('is-replaying');
+      void hero.offsetWidth;
+      hero.classList.add('is-replaying');
+    }
 
     function restartProgress() {
       const activeDot = dots[current];
@@ -51,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setDotIcon(dot, icon) {
+      if (!icon) return;
       dot?.querySelector('use')?.setAttribute('href', icon);
     }
 
@@ -58,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const next = (idx + total) % total;
       if (next === current && !force) {
         restartProgress();
+        replayCurrentSlide();
         return;
       }
 
@@ -66,12 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
       infos[current % infos.length]?.classList.remove('is-active');
 
       current = next;
-      heroSlidesWrap.style.transform = `translateX(-${(current % slides.length) * 100}%)`;
+      heroSlidesWrap.style.transform = slides.length > 1
+        ? `translateX(-${(current % slides.length) * 100}%)`
+        : 'translateX(0)';
 
       setDotIcon(dots[current], activeDotIcon);
       dots[current]?.classList.add('is-active');
       infos[current % infos.length]?.classList.add('is-active');
       restartProgress();
+      replayCurrentSlide();
 
       btnPrev?.classList.toggle('is-inactive', false);
       btnNext?.classList.toggle('is-inactive', false);
@@ -87,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
     // Свайп на мобайле
-    const hero = document.querySelector('.hero');
     let touchStartX = 0;
 
     hero?.addEventListener('touchstart', e => {
@@ -196,22 +211,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!links.length) return;
 
+    const initialPreview = preview?.currentSrc || preview?.getAttribute('src') || '';
+    const initialImage = image?.currentSrc || image?.getAttribute('src') || '';
+    const resolvedAssets = new Map([
+      ['/images/content/activity/ski-preview.png', initialPreview],
+      ['images/content/activity/ski-preview.png', initialPreview],
+      ['/images/content/activity/ski-main.png', initialImage],
+      ['images/content/activity/ski-main.png', initialImage],
+    ]);
+
+    function resolveAsset(src) {
+      if (!src) return '';
+      if (resolvedAssets.has(src)) return resolvedAssets.get(src);
+      return src;
+    }
+
+    function setImage(img, src) {
+      const resolvedSrc = resolveAsset(src);
+      if (!img || !resolvedSrc) return;
+
+      img.classList.remove('is-changing');
+      void img.offsetWidth;
+      img.classList.add('is-changing');
+      img.setAttribute('src', resolvedSrc);
+      img.setAttribute('srcset', `${resolvedSrc} 1x`);
+    }
+
     function activate(link) {
-      links.forEach(item => item.classList.toggle('is-active', item === link));
+      links.forEach(item => {
+        const isActive = item === link;
+        item.classList.toggle('is-active', isActive);
+        item.toggleAttribute('aria-current', isActive);
+      });
 
-      if (preview && link.dataset.preview) {
-        preview.setAttribute('src', link.dataset.preview);
-      }
-
-      if (image && link.dataset.image) {
-        image.setAttribute('src', link.dataset.image);
-      }
+      setImage(preview, link.dataset.preview);
+      setImage(image, link.dataset.image);
     }
 
     links.forEach(link => {
       link.addEventListener('mouseenter', () => activate(link));
       link.addEventListener('focus', () => activate(link));
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        activate(link);
+      });
     });
+
+    activate(section.querySelector('[data-activity-link].is-active') || links[0]);
   });
 
   // ─── Gift cards carousel ─────────────────────────────────────────────────
@@ -295,12 +341,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (index >= total * 2) {
         index -= total;
+        section.classList.add('is-resetting');
         centerActive(index, false);
+        requestAnimationFrame(() => section.classList.remove('is-resetting'));
       }
 
       if (index < total) {
         index += total;
+        section.classList.add('is-resetting');
         centerActive(index, false);
+        requestAnimationFrame(() => section.classList.remove('is-resetting'));
       }
 
       isAnimating = false;

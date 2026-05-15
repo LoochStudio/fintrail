@@ -89,6 +89,7 @@
     color: $color-muted;
     text-decoration: none;
     text-transform: uppercase;
+    transition: background 0.18s ease, color 0.18s ease;
 
     svg {
       display: block;
@@ -97,8 +98,10 @@
     }
   }
 
-  &__more:hover {
-    background: $color-surface;
+  &__more:hover,
+  &__more:focus-visible {
+    background: $color-primary-black;
+    color: $color-white;
   }
 
   &--popular {
@@ -115,6 +118,7 @@
   border: 1px solid $color-border;
   background: transparent;
   color: $color-primary-black;
+  overflow: hidden;
   transition: background 0.18s ease;
 
   &__media {
