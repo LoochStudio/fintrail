@@ -279,14 +279,47 @@
     }
 
     &__nav-link {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      height: $text-subtitle-s2-line;
       font-family: $font-mono;
       font-size: $text-subtitle-s2-size;
       font-weight: $font-weight-semibold;
-      line-height: 1.1;
-      color: $color-white;
+      line-height: $text-subtitle-s2-line;
+      color: transparent;
       text-decoration: none;
       text-transform: uppercase;
       white-space: nowrap;
+
+      &::before,
+      &::after {
+        content: attr(data-hover-text);
+        position: absolute;
+        left: 0;
+        display: block;
+        color: $color-white;
+        transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      &::after {
+        top: 100%;
+        color: $color-primary-black;
+      }
+
+      &:hover::before,
+      &:focus-visible::before {
+        transform: translateY(-100%);
+      }
+
+      &:hover::after,
+      &:focus-visible::after {
+        transform: translateY(-100%);
+      }
     }
 
     &__tools {
@@ -302,6 +335,13 @@
       width: 24px;
       height: 24px;
       color: $color-white;
+      transition: color 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+
+      &:hover,
+      &:focus-visible {
+        color: $color-primary-black;
+        transform: translateY(-2px);
+      }
 
       svg {
         display: block;
@@ -539,6 +579,23 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__nav-link,
+  .hero__tool {
+    transition: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
+  }
+
+  .hero__nav-link::before,
+  .hero__nav-link::after {
+    transition: none;
   }
 }
 

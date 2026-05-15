@@ -85,6 +85,9 @@
     font-weight: 500;
     line-height: 1.2;
     white-space: nowrap;
+    --roll-hover-line: 16.8px;
+    --roll-hover-from: rgba(31, 31, 31, 0.7);
+    --roll-hover-to: #{$color-primary-black};
   }
 
   .footer-desktop__link--strong {
@@ -178,6 +181,9 @@
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+    --roll-hover-line: 16.8px;
+    --roll-hover-from: #{$color-primary-gray};
+    --roll-hover-to: #{$color-primary-black};
   }
 
   .footer-desktop__wordmark {

@@ -89,7 +89,7 @@
     color: $color-muted;
     text-decoration: none;
     text-transform: uppercase;
-    transition: background 0.18s ease, color 0.18s ease;
+    transition: color 0.18s ease;
 
     svg {
       display: block;
@@ -100,8 +100,19 @@
 
   &__more:hover,
   &__more:focus-visible {
-    background: $color-primary-black;
-    color: $color-white;
+    color: $color-primary-black;
+  }
+
+  &__more > span {
+    --roll-hover-line: #{$text-body-b1-line};
+    --roll-hover-from: #{$color-muted};
+    --roll-hover-to: #{$color-primary-black};
+  }
+
+  &__more:hover > span,
+  &__more:focus-visible > span {
+    --roll-hover-from: #{$color-primary-black};
+    --roll-hover-to: #{$color-primary-black};
   }
 
   &--popular {

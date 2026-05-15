@@ -153,25 +153,69 @@
   }
 
   &__nav-link {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: 20px;
     font-family: $font-nav;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-    color: $color-text-secondary;
+    color: transparent;
     text-decoration: none;
     white-space: nowrap;
 
+    &::before,
+    &::after {
+      content: attr(data-hover-text);
+      position: absolute;
+      left: 0;
+      display: block;
+      color: $color-text-secondary;
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      top: 100%;
+      color: $color-text-primary;
+    }
+
+    &:hover::before,
+    &:focus-visible::before {
+      transform: translateY(-100%);
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      transform: translateY(-100%);
+    }
+
     &.is-active {
       font-weight: 600;
-      color: $color-text-primary;
 
-      // Кастомный подчёркиватель — как в Figma (1px div под текстом)
+      &::before,
       &::after {
-        content: '';
-        display: block;
-        height: 1px;
-        background: currentColor;
+        color: $color-text-primary;
       }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__nav-link {
+    transition: none;
+
+    &::after {
+      transition: none;
+    }
+
+    &::before,
+    &::after {
+      transition: none;
     }
   }
 }

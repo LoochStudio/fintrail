@@ -130,4 +130,10 @@
     width: 14px;
     height: 14px;
   }
+
+  .store-showcase__map > span {
+    --roll-hover-line: 14px;
+    --roll-hover-from: #{$color-primary-black};
+    --roll-hover-to: #{$color-gray-700};
+  }
 }

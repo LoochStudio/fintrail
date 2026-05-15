@@ -1,0 +1,86 @@
+@use '../variables' as *;
+
+.roll-hover-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: var(--roll-hover-line, 1.2em);
+  line-height: var(--roll-hover-line, 1.2em);
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+.roll-hover-text::before,
+.roll-hover-text::after {
+  content: attr(data-hover-text);
+  position: absolute;
+  left: 0;
+  display: block;
+  height: var(--roll-hover-line, 1.2em);
+  line-height: var(--roll-hover-line, 1.2em);
+  color: var(--roll-hover-from, currentColor);
+  white-space: nowrap;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+
+.roll-hover-text::before {
+  top: 0;
+}
+
+.roll-hover-text::after {
+  top: 100%;
+  color: var(--roll-hover-to, #{$color-primary-black});
+  -webkit-text-fill-color: var(--roll-hover-to, #{$color-primary-black});
+}
+
+.roll-hover-text::before {
+  -webkit-text-fill-color: var(--roll-hover-from, currentColor);
+}
+
+.roll-hover-text:hover::before,
+.roll-hover-text:focus-visible::before,
+a:hover .roll-hover-text::before,
+a:focus-visible .roll-hover-text::before,
+button:hover .roll-hover-text::before,
+button:focus-visible .roll-hover-text::before {
+  transform: translateY(-100%);
+}
+
+.roll-hover-text:hover::after,
+.roll-hover-text:focus-visible::after,
+a:hover .roll-hover-text::after,
+a:focus-visible .roll-hover-text::after,
+button:hover .roll-hover-text::after,
+button:focus-visible .roll-hover-text::after {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roll-hover-text::before,
+  .roll-hover-text::after {
+    transition: none;
+  }
+}
+
+.text-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.text-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

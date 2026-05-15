@@ -63,19 +63,29 @@
     font-family: $font-display;
     font-size: 34px;
     font-weight: $font-weight-extrabold;
-    line-height: 22px;
+    line-height: 34px;
     letter-spacing: 0;
     color: $color-black;
     text-decoration: none;
-    opacity: 0.2;
-    transition: opacity 0.18s ease;
     white-space: nowrap;
+    --roll-hover-line: 34px;
+    --roll-hover-from: rgba(0, 0, 0, 0.2);
+    --roll-hover-to: #{$color-black};
+  }
+
+  .activity-picker__link.roll-hover-text::before,
+  .activity-picker__link.roll-hover-text::after {
+    right: 0;
+    height: 34px;
+    font-size: 34px;
+    line-height: 34px;
+    overflow: hidden;
   }
 
   .activity-picker__link:hover,
   .activity-picker__link:focus-visible,
   .activity-picker__link.is-active {
-    opacity: 1;
+    --roll-hover-from: #{$color-black};
   }
 
   .activity-picker__image {

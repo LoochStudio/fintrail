@@ -54,21 +54,18 @@
     font-size: $text-body-b1-size;
     font-weight: $font-weight-extrabold;
     line-height: 14px;
-    opacity: 0.4;
+    --roll-hover-line: 14px;
+    --roll-hover-from: rgba(31, 31, 31, 0.4);
+    --roll-hover-to: #{$color-primary-black};
   }
 
   .build-kit-desktop__gender-btn.is-active {
-    opacity: 1;
+    --roll-hover-from: #{$color-primary-black};
   }
 
-  .build-kit-desktop__gender-btn.is-active::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: -5px;
-    left: 0;
-    height: 1px;
-    background: $color-primary-black;
+  .build-kit-desktop__gender-btn:hover,
+  .build-kit-desktop__gender-btn:focus-visible {
+    --roll-hover-from: #{$color-primary-black};
   }
 
   .build-kit-desktop__filters {
@@ -91,11 +88,18 @@
     font-size: $text-body-b1-size;
     font-weight: $font-weight-semibold;
     line-height: 14px;
-    opacity: 0.4;
+    --roll-hover-line: 14px;
+    --roll-hover-from: rgba(31, 31, 31, 0.4);
+    --roll-hover-to: #{$color-primary-black};
   }
 
   .build-kit-desktop__filter.is-active {
-    opacity: 1;
+    --roll-hover-from: #{$color-primary-black};
+  }
+
+  .build-kit-desktop__filter:hover,
+  .build-kit-desktop__filter:focus-visible {
+    --roll-hover-from: #{$color-primary-black};
   }
 
   .build-kit-desktop__model {
@@ -510,6 +514,12 @@
   .build-kit-desktop__submit svg {
     width: 16px;
     height: 16px;
+  }
+
+  .build-kit-desktop__submit > span {
+    --roll-hover-line: 14px;
+    --roll-hover-from: #{$color-white};
+    --roll-hover-to: #{$color-white};
   }
 
   .kit-section {
