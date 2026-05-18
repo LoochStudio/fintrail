@@ -3,31 +3,31 @@
 .recommendations-new {
   display: flex;
   flex-direction: column;
-  margin-top: $section-gap-md;
+  margin-top: 36px;
   background: $color-surface;
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 48px;
-    padding: 0 $spacing-page-desktop;
+    min-height: 22px;
+    padding: 0 20px;
     background: $color-surface;
   }
 
   &__title {
     margin: 0;
     font-family: $font-display;
-    font-size: $text-heading-h3-size;
+    font-size: 18px;
     font-weight: $font-weight-black;
-    line-height: 24px;
+    line-height: 22px;
     letter-spacing: 0;
     color: $color-primary-black;
     text-transform: uppercase;
   }
 
   &__controls {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 4px;
   }
@@ -41,9 +41,10 @@
     padding: 16px;
     border: 0;
     border-radius: $radius-xs;
-    background: $color-white;
+    background: transparent;
     color: $color-primary-black;
     cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
 
     svg {
       display: block;
@@ -55,10 +56,18 @@
       color: $color-muted;
       pointer-events: none;
     }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover,
+      &:focus-visible {
+        background: $color-white;
+      }
+    }
   }
 
   &__viewport {
     margin-top: 24px;
+    margin-bottom: 8px;
     overflow-x: auto;
     scrollbar-width: none;
 
@@ -69,6 +78,7 @@
 
   &__track {
     display: flex;
+    gap: 1px;
     width: max-content;
     will-change: transform;
   }
@@ -77,15 +87,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
+    height: 44px;
     gap: 8px;
-    padding: 12px 24px 12px 32px;
+    padding: 14px 16px 14px 24px;
     background: $color-surface;
-    border-radius: 0;
-    font-family: $font-mono;
-    font-size: $text-body-b1-size;
-    font-weight: $font-weight-semibold;
-    line-height: $text-body-b1-line;
+    border-radius: $radius-xs;
+    font-family: $font-display;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
     color: $color-muted;
     text-decoration: none;
     text-transform: uppercase;
@@ -98,21 +108,25 @@
     }
   }
 
-  &__more:hover,
-  &__more:focus-visible {
-    color: $color-primary-black;
+  @media (hover: hover) and (pointer: fine) {
+    &__more:hover,
+    &__more:focus-visible {
+      color: $color-primary-black;
+    }
   }
 
   &__more > span {
-    --roll-hover-line: #{$text-body-b1-line};
+    --roll-hover-line: 12px;
     --roll-hover-from: #{$color-muted};
     --roll-hover-to: #{$color-primary-black};
   }
 
-  &__more:hover > span,
-  &__more:focus-visible > span {
-    --roll-hover-from: #{$color-primary-black};
-    --roll-hover-to: #{$color-primary-black};
+  @media (hover: hover) and (pointer: fine) {
+    &__more:hover > span,
+    &__more:focus-visible > span {
+      --roll-hover-from: #{$color-primary-black};
+      --roll-hover-to: #{$color-primary-black};
+    }
   }
 
   &--popular {
@@ -123,21 +137,23 @@
 .recommendation-card {
   position: relative;
   display: grid;
-  width: 360px;
-  height: 560px;
-  grid-template-rows: 440px 72px 48px;
-  border: 1px solid $color-border;
-  background: transparent;
+  width: 211px;
+  height: 360px;
+  grid-template-rows: 260px 64px 36px;
+  border: 0;
+  background: $color-white;
   color: $color-primary-black;
   overflow: hidden;
-  transition: background 0.18s ease;
+  transition: background 0.18s ease, border-color 0.18s ease;
 
   &__media {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    width: 210px;
+    height: 260px;
+    padding: 8px;
     background: transparent;
     color: $color-muted;
     text-decoration: none;
@@ -145,16 +161,16 @@
 
   &__image-link {
     display: block;
-    width: 312px;
-    height: 392px;
+    width: 100%;
+    height: 100%;
     color: inherit;
     text-decoration: none;
   }
 
   &__image {
     display: block;
-    width: 312px;
-    height: 392px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     background: transparent;
 
@@ -165,81 +181,97 @@
 
   &__badge {
     position: absolute;
-    top: 32px;
-    left: 32px;
+    top: 8px;
+    left: 8px;
     display: inline-flex;
     align-items: center;
-    min-height: 24px;
+    min-height: 12px;
     padding: 8px;
     font-family: $font-mono;
-    font-size: $text-body-b2-size;
+    font-size: 10px;
     font-weight: $font-weight-semibold;
-    line-height: 12px;
-    color: $color-muted;
-    text-transform: uppercase;
-  }
-
-  &:hover &__badge {
+    line-height: 1.2;
     color: $color-accent;
-  }
-
-  &:hover {
-    background: $color-white;
+    text-transform: uppercase;
   }
 
   &__actions {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 8px;
+    right: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
   }
 
   &__icon-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     padding: 0;
     border: 0;
     background: transparent;
-    color: $color-border;
+    color: $color-secondary-gray;
     cursor: pointer;
+    transition: color 0.18s ease;
 
     svg {
       display: block;
-      width: 24px;
-      height: 24px;
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover,
+      &:focus-visible {
+        color: $color-primary-black;
+      }
     }
   }
 
   &__info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    gap: 18px;
-    padding: 0 24px 16px;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 8px 12px;
   }
 
   &__colors {
     display: flex;
     align-items: center;
     gap: 4px;
+    height: 16px;
+    margin-bottom: 0;
+    overflow: visible;
+    opacity: 1;
+    transform: none;
+    transition:
+      height 0.18s ease,
+      margin-bottom 0.18s ease,
+      opacity 0.18s ease,
+      transform 0.18s ease;
   }
 
   &__color {
     display: block;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     flex: 0 0 auto;
+    border: 0;
 
     &--active {
-      width: 16px;
-      height: 16px;
-      margin: -2px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid $color-primary-black;
+      background: #89b9e3;
     }
 
     &--black {
@@ -264,9 +296,9 @@
   &__name {
     margin: 0;
     font-family: $font-mono;
-    font-size: $text-body-b1-size;
+    font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
-    line-height: $text-body-b1-line;
+    line-height: $text-body-b2-line;
     letter-spacing: 0;
     text-transform: uppercase;
 
@@ -281,21 +313,12 @@
     align-items: center;
     justify-content: space-between;
     min-width: 0;
-    padding: 16px 24px;
+    padding: 12px 8px;
     border: 0;
     background: transparent;
     color: $color-primary-black;
     cursor: pointer;
     transition: background 0.18s ease, color 0.18s ease;
-  }
-
-  &:hover &__cart {
-    background: $color-primary-black;
-    color: $color-white;
-  }
-
-  &:hover &__old-price {
-    color: #a8a8a8;
   }
 
   &__prices,
@@ -307,9 +330,9 @@
 
   &__price {
     font-family: $font-display;
-    font-size: $text-body-b1-size;
-    font-weight: $font-weight-extrabold;
-    line-height: 14px;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
     text-transform: uppercase;
   }
 
@@ -326,10 +349,13 @@
   &__cart-label {
     align-items: center;
     font-family: $font-display;
-    font-size: $text-body-b1-size;
+    font-size: $text-body-b2-size;
     font-weight: $font-weight-extrabold;
-    line-height: 14px;
+    line-height: 12px;
     text-transform: uppercase;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
 
     svg {
       display: block;
@@ -337,34 +363,207 @@
       height: 16px;
       flex: 0 0 auto;
     }
+
+    span {
+      display: none;
+    }
   }
+
 }
 
 @media (min-width: $bp-lg) {
   .recommendations-new {
     height: 684px;
+    margin-top: $section-gap-md;
+  }
+
+  .recommendations-new--popular {
+    margin-top: $section-gap-xl;
+  }
+
+  .recommendations-new__header {
+    min-height: 48px;
+    padding: 0 $spacing-page-desktop;
+  }
+
+  .recommendations-new__title {
+    font-size: $text-heading-h3-size;
+    line-height: 24px;
+  }
+
+  .recommendations-new__controls {
+    display: flex;
   }
 
   .recommendations-new__viewport {
     width: 100%;
     height: 560px;
+    margin-bottom: 0;
     overflow: hidden;
   }
 
   .recommendations-new__track {
     width: 100%;
+    gap: 0;
     transition: transform 0.36s ease;
   }
 
+  .recommendations-new__more {
+    height: 52px;
+    padding: 12px 24px 12px 32px;
+    border-radius: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b1-line;
+  }
+
+  .recommendations-new__more > span {
+    --roll-hover-line: #{$text-body-b1-line};
+  }
+
   .recommendation-card {
+    height: 560px;
+    grid-template-rows: 440px 72px 48px;
+    border: 1px solid $color-white;
+    background: transparent;
     width: 25%;
     min-width: 0;
     flex: 0 0 25%;
   }
-}
 
-@media (max-width: #{$bp-lg - 1px}) {
-  .recommendation-card[data-carousel-clone='true'] {
-    display: none;
+  .recommendation-card:hover {
+    background: $color-white;
+  }
+
+  .recommendation-card:focus-within {
+    background: $color-white;
+  }
+
+  .recommendation-card:hover .recommendation-card__badge {
+    color: $color-accent;
+  }
+
+  .recommendation-card__media {
+    width: auto;
+    height: auto;
+    padding: 24px;
+  }
+
+  .recommendation-card__image-link {
+    width: 312px;
+    height: 392px;
+  }
+
+  .recommendation-card__image {
+    width: 312px;
+    height: 392px;
+  }
+
+  .recommendation-card__badge {
+    top: 32px;
+    left: 32px;
+    min-height: 24px;
+    font-size: $text-body-b2-size;
+    line-height: 12px;
+    color: $color-muted;
+  }
+
+  .recommendation-card__actions {
+    top: 24px;
+    right: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+  }
+
+  .recommendation-card:hover .recommendation-card__actions,
+  .recommendation-card:focus-within .recommendation-card__actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .recommendation-card__icon-btn {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .recommendation-card__info {
+    justify-content: flex-end;
+    gap: 0;
+    padding: 0 24px 16px;
+  }
+
+  .recommendation-card__colors {
+    height: 0;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .recommendation-card:hover .recommendation-card__colors,
+  .recommendation-card:focus-within .recommendation-card__colors {
+    height: 16px;
+    margin-bottom: 18px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .recommendation-card__color {
+    width: 12px;
+    height: 12px;
+
+    &--active {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .recommendation-card__name {
+    font-size: $text-body-b1-size;
+    line-height: $text-body-b1-line;
+  }
+
+  .recommendation-card__cart {
+    padding: 16px 24px;
+  }
+
+  .recommendation-card:hover .recommendation-card__cart,
+  .recommendation-card:focus-within .recommendation-card__cart {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+
+  .recommendation-card:hover .recommendation-card__old-price,
+  .recommendation-card:focus-within .recommendation-card__old-price {
+    color: #a8a8a8;
+  }
+
+  .recommendation-card__price {
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+  }
+
+  .recommendation-card__cart-label {
+    font-size: $text-body-b1-size;
+    line-height: 14px;
+    opacity: 0;
+    transform: translateX(8px);
+
+    span {
+      display: inline;
+    }
+  }
+
+  .recommendation-card:hover .recommendation-card__cart-label,
+  .recommendation-card:focus-within .recommendation-card__cart-label {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

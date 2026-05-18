@@ -36,6 +36,14 @@
     text-transform: uppercase;
   }
 
+  &__desc-mobile {
+    display: block;
+  }
+
+  &__desc-desktop {
+    display: none;
+  }
+
   &__form {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -124,6 +132,9 @@
   &__provider {
     min-width: 52px;
     padding: 12px 16px;
+    border: 1px solid rgba($color-white, 0.16);
+    background: transparent;
+    color: $color-white;
     text-decoration: none;
 
     svg {
@@ -163,6 +174,14 @@
 
   .login-bonus__desc {
     font-size: 16px;
+  }
+
+  .login-bonus__desc-mobile {
+    display: none;
+  }
+
+  .login-bonus__desc-desktop {
+    display: block;
   }
 
   .login-bonus__form {

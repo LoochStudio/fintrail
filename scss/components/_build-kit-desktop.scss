@@ -1,7 +1,490 @@
 @use '../variables' as *;
 
 .build-kit-desktop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 64px;
+  padding: 20px;
+  background: $color-surface;
+  overflow: hidden;
+}
+
+.build-kit-desktop__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__gender {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+}
+
+.build-kit-desktop__gender-btn,
+.build-kit-desktop__filter {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary-black;
+  font: inherit;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__gender-btn {
+  position: relative;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  color: rgba($color-primary-black, 0.4);
+}
+
+.build-kit-desktop__gender-btn.is-active {
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__gender-btn.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: $color-primary-black;
+}
+
+.build-kit-desktop__filters {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: -12px;
+}
+
+.build-kit-desktop__filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.build-kit-desktop__filter {
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  color: rgba($color-primary-black, 0.4);
+  cursor: pointer;
+}
+
+.build-kit-desktop__filter.is-active {
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__example {
+  position: relative;
+  height: 350px;
+  margin-top: 0;
+}
+
+.build-kit-desktop__model {
+  position: absolute;
+  top: -2px;
+  right: -78px;
+  width: 268px;
+  height: 350px;
+}
+
+.build-kit-desktop__model-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 268px;
+  height: 100.19%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.build-kit-desktop__product-card {
+  position: absolute;
+  top: 63px;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  width: 166px;
+  height: 240px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: $color-white;
+  color: $color-primary-black;
+  text-decoration: none;
+}
+
+.build-kit-desktop__product-card::before,
+.build-kit-desktop__product-card::after {
   display: none;
+}
+
+.build-kit-desktop__product-pic {
+  width: 142px;
+  height: 142px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.build-kit-desktop__product-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.build-kit-desktop__product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.build-kit-desktop__product-name {
+  overflow: hidden;
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.build-kit-desktop__product-price {
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__product-cart {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.build-kit-desktop__grid {
+  margin-top: -24px;
+  overflow: visible;
+}
+
+.build-kit-desktop__tiles {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.build-kit-desktop__tile {
+  display: flex;
+  width: 77.75px;
+  height: 77.75px;
+  flex: 0 0 77.75px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.build-kit-desktop__tile.is-active {
+  background: $color-white;
+}
+
+.build-kit-desktop__tile img {
+  width: 53.75px;
+  height: 53.75px;
+  object-fit: contain;
+}
+
+.build-kit-desktop__grid-controls {
+  display: none;
+}
+
+.build-kit-desktop__kit-meta {
+  display: flex;
+  height: 52px;
+  align-items: center;
+  gap: 12px;
+  margin-top: -32px;
+  padding: 8px;
+  border-bottom: 1px solid $color-primary-black;
+  border-radius: 2px;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__kit-meta span:first-child {
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__kit-count {
+  color: $color-muted;
+}
+
+.build-kit-desktop__accordion-toggle {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-muted;
+}
+
+.build-kit-desktop__accordion-toggle svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.build-kit-desktop.is-kit-open .build-kit-desktop__accordion-toggle svg {
+  transform: rotate(180deg);
+}
+
+.build-kit-desktop__kit-list {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: -40px;
+}
+
+.build-kit-desktop.is-kit-open .build-kit-desktop__kit-list {
+  display: flex;
+}
+
+.build-kit-desktop__kit-item {
+  display: flex;
+  width: 100%;
+  min-height: 82px;
+  align-items: center;
+  gap: 24px;
+  padding: 12px;
+  border-radius: 8px;
+  background: $color-white;
+}
+
+.build-kit-desktop__kit-item--empty {
+  justify-content: center;
+  min-height: 82px;
+  padding: 20px 12px;
+  border: 1px dashed #ccc;
+  background: $color-surface;
+}
+
+.build-kit-desktop__kit-item--empty span {
+  width: 100%;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  color: $color-primary-black;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__kit-img {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.build-kit-desktop__kit-content {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.build-kit-desktop__kit-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.build-kit-desktop__kit-name {
+  margin: 0;
+  flex: 1 1 auto;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__remove {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.build-kit-desktop__remove::before,
+.build-kit-desktop__remove::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 3px;
+  width: 10px;
+  height: 1.5px;
+  background: $color-muted;
+}
+
+.build-kit-desktop__remove::before {
+  transform: rotate(45deg);
+}
+
+.build-kit-desktop__remove::after {
+  transform: rotate(-45deg);
+}
+
+.build-kit-desktop__kit-bottom {
+  display: flex;
+  gap: 6px;
+}
+
+.build-kit-desktop__kit-price,
+.build-kit-desktop__size {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 0;
+  height: 24px;
+  align-items: center;
+  padding: 8px;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.2;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__size {
+  position: relative;
+  padding: 0;
+  border: 1px solid $color-surface;
+}
+
+.build-kit-desktop__size::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid $color-black;
+  border-bottom: 2px solid $color-black;
+  transform: translateY(-2px) rotate(45deg);
+  pointer-events: none;
+}
+
+.build-kit-desktop__size-select {
+  width: 100%;
+  height: 22px;
+  padding: 0 24px 0 8px;
+  border: 0;
+  outline: 0;
+  appearance: none;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__size-select option {
+  background: $color-surface;
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-top: -16px;
+}
+
+.build-kit-desktop__total {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.build-kit-desktop__total-label {
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  color: rgba($color-primary-black, 0.4);
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__total-price {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.2;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__submit {
+  display: inline-flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px 12px 32px;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__submit svg {
+  width: 16px;
+  height: 16px;
 }
 
 @media (min-width: $bp-lg) {
@@ -10,6 +493,7 @@
     display: block;
     height: 650px;
     margin: $section-gap-xl $spacing-page-desktop 0;
+    padding: 0;
     background: $color-surface;
     overflow: hidden;
   }
@@ -48,24 +532,37 @@
     cursor: pointer;
   }
 
+  .build-kit-desktop__accordion-toggle {
+    display: none;
+  }
+
   .build-kit-desktop__gender-btn {
     position: relative;
     font-family: $font-display;
     font-size: $text-body-b1-size;
     font-weight: $font-weight-extrabold;
     line-height: 14px;
-    --roll-hover-line: 14px;
-    --roll-hover-from: rgba(31, 31, 31, 0.4);
-    --roll-hover-to: #{$color-primary-black};
+    color: rgba($color-primary-black, 0.4);
+    transition: color 0.18s ease;
   }
 
   .build-kit-desktop__gender-btn.is-active {
-    --roll-hover-from: #{$color-primary-black};
+    color: $color-primary-black;
   }
 
   .build-kit-desktop__gender-btn:hover,
   .build-kit-desktop__gender-btn:focus-visible {
-    --roll-hover-from: #{$color-primary-black};
+    color: $color-primary-black;
+  }
+
+  .build-kit-desktop__gender-btn.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 1px;
+    background: $color-primary-black;
   }
 
   .build-kit-desktop__filters {
@@ -102,13 +599,17 @@
     --roll-hover-from: #{$color-primary-black};
   }
 
+  .build-kit-desktop__example {
+    display: contents;
+  }
+
   .build-kit-desktop__model {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 541px;
+    right: auto;
     width: 499px;
     height: 650px;
-    transform: translateX(-50%);
   }
 
   .build-kit-desktop__model-img {
@@ -184,9 +685,15 @@
     padding: 16px;
     border: 0;
     border-radius: $radius-xs;
-    background: $color-white;
+    background: transparent;
     color: $color-primary-black;
     cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+
+  .build-kit-desktop__arrow:hover,
+  .build-kit-desktop__arrow:focus-visible {
+    background: $color-white;
   }
 
   .build-kit-desktop__arrow svg {
@@ -208,13 +715,14 @@
   }
 
   .build-kit-desktop__dot.is-active {
-    background: $color-primary-black;
+    background: #e72016;
   }
 
   .build-kit-desktop__product-card {
     position: absolute;
-    top: 164px;
-    left: calc(50% - 81px);
+    top: 107px;
+    left: 437px;
+    z-index: 3;
     display: flex;
     width: 166px;
     height: 240px;
@@ -225,6 +733,35 @@
     background: $color-white;
     color: $color-primary-black;
     text-decoration: none;
+  }
+
+  .build-kit-desktop__product-card::before {
+    content: '';
+    position: absolute;
+    top: 110px;
+    left: 140px;
+    width: 195px;
+    height: 6px;
+    background:
+      radial-gradient(circle at 2.667px 2.667px, #ff4117 0 2.667px, transparent 2.8px),
+      radial-gradient(circle at 192.167px 2.667px, $color-white 0 2.667px, transparent 2.8px),
+      linear-gradient(90deg, #ff4117 0, $color-white 100%);
+    background-repeat: no-repeat;
+    background-size: 195px 6px, 195px 6px, 189.5px 1px;
+    background-position: 0 0, 0 0, 2.667px 2.167px;
+    pointer-events: none;
+  }
+
+  .build-kit-desktop__product-card::after {
+    content: '';
+    position: absolute;
+    top: 103.667px;
+    left: 323.667px;
+    width: 17px;
+    height: 18px;
+    border: 2px solid rgba($color-white, 0.24);
+    border-radius: 50%;
+    pointer-events: none;
   }
 
   .build-kit-desktop__product-pic {
@@ -255,12 +792,25 @@
     text-transform: uppercase;
   }
 
+  .build-kit-desktop__product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .build-kit-desktop__product-price {
     font-family: $font-display;
     font-size: $text-body-b2-size;
     font-weight: $font-weight-extrabold;
     line-height: 12px;
     text-transform: uppercase;
+  }
+
+  .build-kit-desktop__product-cart {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
   }
 
   .build-kit-desktop__kit-meta {
@@ -274,8 +824,15 @@
     font-size: $text-body-b1-size;
     font-weight: $font-weight-semibold;
     line-height: 14px;
-    color: rgba($color-primary-black, 0.4);
     text-transform: uppercase;
+  }
+
+  .build-kit-desktop__kit-meta span:first-child {
+    color: rgba($color-primary-black, 0.4);
+  }
+
+  .build-kit-desktop__kit-count {
+    color: $color-primary-black;
   }
 
   .build-kit-desktop__kit-list {

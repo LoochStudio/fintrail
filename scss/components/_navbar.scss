@@ -1,7 +1,7 @@
 @use '../variables' as *;
 
 .navbar {
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100%;
   background: #f2f2f2; // временно; на реальной — прозрачный поверх hero
@@ -184,14 +184,16 @@
       color: $color-text-primary;
     }
 
-    &:hover::before,
-    &:focus-visible::before {
-      transform: translateY(-100%);
-    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover::before,
+      &:focus-visible::before {
+        transform: translateY(-100%);
+      }
 
-    &:hover::after,
-    &:focus-visible::after {
-      transform: translateY(-100%);
+      &:hover::after,
+      &:focus-visible::after {
+        transform: translateY(-100%);
+      }
     }
 
     &.is-active {

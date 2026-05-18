@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const rollHoverSelectors = [
     '.activity-picker__link',
-    '.build-kit-desktop__gender-btn',
     '.build-kit-desktop__filter',
     '.build-kit-desktop__submit > span',
     '.journal-showcase__category > span:not(.journal-showcase__category-media)',
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.recommendations-new__more > span',
     '.store-showcase__map > span',
     '.footer-desktop__link',
-    '.footer-desktop__legal a',
   ];
 
   document.querySelectorAll(rollHoverSelectors.join(',')).forEach(element => {
@@ -52,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.footer-desktop__column',
     '.footer-desktop__socials',
     '.footer-desktop__credits',
-    '.footer-desktop__legal',
   ];
 
   const revealItems = Array.from(document.querySelectorAll(revealSelectors.join(',')));
@@ -380,9 +377,27 @@ document.addEventListener('DOMContentLoaded', () => {
     originals.map(cloneCard).forEach(card => track.appendChild(card));
 
     const cards = Array.from(track.querySelectorAll('.gift-cards-showcase__card'));
+    const sideCardWidth = 410;
+    const activeCardWidth = 721;
 
     function isDesktop() {
       return window.innerWidth >= 1280;
+    }
+
+    function getTrackGap() {
+      const styles = window.getComputedStyle(track);
+      return parseFloat(styles.columnGap || styles.gap) || 32;
+    }
+
+    function getFinalCardCenter(activeIndex) {
+      const gap = getTrackGap();
+      let left = 0;
+
+      for (let i = 0; i < activeIndex; i += 1) {
+        left += sideCardWidth + gap;
+      }
+
+      return left + activeCardWidth / 2;
     }
 
     function setActive(nextIndex) {
@@ -396,7 +411,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function centerActive(nextIndex, animate = true) {
       if (!isDesktop()) {
-        track.style.transform = '';
+        const gap = getTrackGap();
+        const activeCard = cards[nextIndex];
+        const cardWidth = activeCard?.getBoundingClientRect().width || 335;
+        const bodyWidth = body.getBoundingClientRect().width;
+        const cardCenter = nextIndex * (cardWidth + gap) + cardWidth / 2;
+        const offset = bodyWidth / 2 - cardCenter;
+
+        setActive(nextIndex);
+        track.style.transition = animate ? '' : 'none';
+        track.style.transform = `translateX(${offset}px)`;
+
+        if (!animate) {
+          void track.offsetWidth;
+          track.style.transition = '';
+        }
         return;
       }
 
@@ -405,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const activeCard = cards[nextIndex];
       const bodyWidth = body.getBoundingClientRect().width;
-      const cardCenter = activeCard.offsetLeft + activeCard.offsetWidth / 2;
+      const cardCenter = activeCard ? getFinalCardCenter(nextIndex) : 0;
       const offset = bodyWidth / 2 - cardCenter;
       track.style.transform = `translateX(${offset}px)`;
 
@@ -416,10 +445,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function goTo(nextIndex) {
-      if (!isDesktop() || isAnimating) return;
+      if (isAnimating) return;
       isAnimating = true;
       index = nextIndex;
       centerActive(index);
+
+      if (!isDesktop()) {
+        window.setTimeout(() => {
+          isAnimating = false;
+        }, 760);
+      }
     }
 
     track.addEventListener('transitionend', event => {
@@ -444,6 +479,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnPrev.addEventListener('click', () => goTo(index - 1));
     btnNext.addEventListener('click', () => goTo(index + 1));
+    cards.forEach((card, cardIndex) => {
+      card.addEventListener('click', event => {
+        if (isDesktop() || card.classList.contains('is-active')) return;
+        event.preventDefault();
+        goTo(cardIndex);
+      });
+    });
+
+    let touchStartX = 0;
+    section.addEventListener('touchstart', event => {
+      touchStartX = event.touches[0].clientX;
+    }, { passive: true });
+
+    section.addEventListener('touchend', event => {
+      if (isDesktop()) return;
+      const delta = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) < 45) return;
+      goTo(index + (delta < 0 ? 1 : -1));
+    }, { passive: true });
 
     window.addEventListener('resize', () => centerActive(index, false));
     centerActive(index, false);
@@ -451,13 +505,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Build kit product carousel ──────────────────────────────────────────
   document.querySelectorAll('.build-kit-desktop').forEach(section => {
+    const accordionToggle = section.querySelector('.build-kit-desktop__accordion-toggle');
+
+    accordionToggle?.addEventListener('click', () => {
+      const isOpen = section.classList.toggle('is-kit-open');
+      accordionToggle.setAttribute('aria-expanded', String(isOpen));
+      accordionToggle.setAttribute('aria-label', isOpen ? 'Свернуть комплект' : 'Раскрыть комплект');
+    });
+
+    const genderButtons = Array.from(section.querySelectorAll('.build-kit-desktop__gender-btn'));
+    const filterButtons = Array.from(section.querySelectorAll('.build-kit-desktop__filter'));
+    const previewTiles = Array.from(section.querySelectorAll('.build-kit-desktop__tile'));
+
+    genderButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        genderButtons.forEach(item => {
+          const isActive = item === button;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+      });
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const row = button.closest('.build-kit-desktop__filter-row');
+        row?.querySelectorAll('.build-kit-desktop__filter').forEach(item => item.classList.remove('is-active'));
+        button.classList.add('is-active');
+      });
+    });
+
+    previewTiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        if (window.innerWidth >= 1280) return;
+        previewTiles.forEach(item => item.classList.remove('is-active'));
+        tile.classList.add('is-active');
+
+        const sourceImage = tile.querySelector('img');
+        const productImage = section.querySelector('.build-kit-desktop__product-pic img');
+        if (sourceImage && productImage) {
+          const src = sourceImage.getAttribute('src');
+          productImage.setAttribute('src', src);
+          productImage.setAttribute('srcset', `${src} 1x`);
+        }
+      });
+    });
+
+    if (window.innerWidth < 1280) return;
+
     const grid = section.querySelector('.build-kit-desktop__tiles');
     const tiles = Array.from(section.querySelectorAll('.build-kit-desktop__tile'));
     const dots = Array.from(section.querySelectorAll('.build-kit-desktop__dot'));
     const btnPrev = section.querySelector('.build-kit-desktop__arrow[aria-label="Назад"]');
     const btnNext = section.querySelector('.build-kit-desktop__arrow[aria-label="Вперед"]');
-    const genderButtons = Array.from(section.querySelectorAll('.build-kit-desktop__gender-btn'));
-    const filterButtons = Array.from(section.querySelectorAll('.build-kit-desktop__filter'));
     const kitList = section.querySelector('.build-kit-desktop__kit-list');
     const kitCount = section.querySelector('.build-kit-desktop__kit-count');
     const totalPrice = section.querySelector('.build-kit-desktop__total-price');
@@ -492,37 +592,62 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    tiles.forEach(tile => {
-      tile.addEventListener('click', () => {
-        tiles.forEach(item => item.classList.remove('is-active'));
-        tile.classList.add('is-active');
-      });
-    });
-
-    genderButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        genderButtons.forEach(item => {
-          const isActive = item === button;
-          item.classList.toggle('is-active', isActive);
-          item.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
-      });
-    });
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const row = button.closest('.build-kit-desktop__filter-row');
-        row?.querySelectorAll('.build-kit-desktop__filter').forEach(item => item.classList.remove('is-active'));
-        button.classList.add('is-active');
-      });
-    });
-
     function parsePrice(value) {
       return Number(String(value).replace(/[^\d]/g, '')) || 0;
     }
 
     function formatPrice(value) {
       return `${Math.max(0, value).toLocaleString('ru-RU')} ₽`;
+    }
+
+    const productByImage = {
+      'jacket.png': {
+        name: 'Куртка FINNTRAIL Sherpa 1397 Darkgrey',
+        price: '12 999 ₽',
+        size: true,
+      },
+      'item-2.png': {
+        name: 'Куртка FINNTRAIL Redline 1410 Red',
+        price: '14 999 ₽',
+        size: true,
+      },
+      'item-3.png': {
+        name: 'Куртка FINNTRAIL Aspen 3462 Orange',
+        price: '37 999 ₽',
+        size: true,
+      },
+      'item-4.png': {
+        name: 'Куртка FINNTRAIL Speedmaster 1520 Graphite',
+        price: '19 999 ₽',
+        size: true,
+      },
+      'item-5.png': {
+        name: 'Куртка FINNTRAIL Rainproof 1540 Beige',
+        price: '16 999 ₽',
+        size: true,
+      },
+      'item-8.png': {
+        name: 'Куртка FINNTRAIL Camo 1430 Khaki',
+        price: '18 999 ₽',
+        size: true,
+      },
+      'item-9.png': {
+        name: 'Куртка FINNTRAIL Storm 1510 Graphite',
+        price: '13 999 ₽',
+        size: true,
+      },
+    };
+
+    function getTileProduct(tile) {
+      const img = tile.querySelector('img');
+      const src = img?.getAttribute('src') || '';
+      const file = src.split('/').pop();
+      const product = productByImage[file] || productByImage['jacket.png'];
+
+      return {
+        ...product,
+        img: src,
+      };
     }
 
     function getKitItems() {
@@ -543,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const correctedTotal = items.length ? itemsTotal + totalCorrection : 0;
 
       if (kitCount) {
-        kitCount.textContent = `Товары,${items.length}`;
+        kitCount.textContent = `${Math.min(items.length, 4)}/4`;
       }
 
       if (totalPrice) {
@@ -558,6 +683,54 @@ document.addEventListener('DOMContentLoaded', () => {
       button.innerHTML = `<span>${label}</span>`;
       return button;
     }
+
+    function createKitItem(product) {
+      const article = document.createElement('article');
+      article.className = 'build-kit-desktop__kit-item';
+      article.innerHTML = `
+        <img class="build-kit-desktop__kit-img" src="${product.img}" srcset="${product.img} 1x" sizes="100vw" alt="" loading="lazy">
+        <div class="build-kit-desktop__kit-content">
+          <div class="build-kit-desktop__kit-top">
+            <h3 class="build-kit-desktop__kit-name">${product.name}</h3>
+            <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
+          </div>
+          <div class="build-kit-desktop__kit-bottom">
+            <span class="build-kit-desktop__kit-price">${product.price}</span>
+            ${product.size ? `
+              <label class="build-kit-desktop__size" aria-label="Размер">
+                <select class="build-kit-desktop__size-select">
+                  <option selected>XL</option>
+                  <option>L</option>
+                  <option>M</option>
+                </select>
+              </label>
+            ` : ''}
+          </div>
+        </div>
+      `;
+      return article;
+    }
+
+    function addProductToKit(product) {
+      const emptySlot = section.querySelector('.build-kit-desktop__kit-item--empty');
+      const items = getKitItems();
+
+      if (emptySlot) {
+        emptySlot.replaceWith(createKitItem(product));
+      } else if (items.length) {
+        items[items.length - 1].replaceWith(createKitItem(product));
+      }
+
+      updateKitSummary();
+    }
+
+    tiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        tiles.forEach(item => item.classList.remove('is-active'));
+        tile.classList.add('is-active');
+        addProductToKit(getTileProduct(tile));
+      });
+    });
 
     kitList?.addEventListener('click', event => {
       const removeButton = event.target.closest('.build-kit-desktop__remove');

@@ -129,6 +129,9 @@
             <source src="/images/content/hero/hero-video.mp4" type="video/mp4">
           </video>
         </div>
+        <div class="hero__slide">
+          <img class="hero__image" src="/images/content/hero/hero-slide-outdoor.png" srcset="/images/content/hero/hero-slide-outdoor.png 1x" sizes="100vw" alt="FINNTRAIL outdoor" loading="eager">
+        </div>
       </div>
     </div>
 
@@ -171,7 +174,13 @@
           <div class="hero__info is-active">
             <div class="hero__text">
               <h1 class="hero__title">Для тех, кто выбирает<br>новые маршруты</h1>
-              <p class="hero__desc">Экипировка для треккинга и путешествий,<br>которая не подводит в любых условиях</p>
+              <p class="hero__desc"><span class="hero__desc-mobile">Экипировка для треккинга <br>и путешествий, которая не <br>подводит в любых условиях</span><span class="hero__desc-desktop">Экипировка для треккинга и путешествий,<br>которая не подводит в любых условиях</span></p>
+            </div>
+          </div>
+          <div class="hero__info">
+            <div class="hero__text">
+              <h1 class="hero__title">Для тех, кто выбирает<br>новые маршруты</h1>
+              <p class="hero__desc"><span class="hero__desc-mobile">Экипировка для треккинга <br>и путешествий, которая не <br>подводит в любых условиях</span><span class="hero__desc-desktop">Экипировка для треккинга и путешествий,<br>которая не подводит в любых условиях</span></p>
             </div>
           </div>
         </div>
@@ -241,7 +250,7 @@
     <section class="login-bonus" aria-labelledby="login-bonus-title">
       <div class="login-bonus__text">
         <h2 class="login-bonus__title" id="login-bonus-title">2 000 бонусов за регистрацию</h2>
-        <p class="login-bonus__desc">Начислим бонусы и кешбек за покупки при создании профиля</p>
+        <p class="login-bonus__desc"><span class="login-bonus__desc-mobile">Начислим бонусы и кешбек<br>за покупки при создании профиля</span><span class="login-bonus__desc-desktop">Начислим бонусы и кешбек за покупки при создании профиля</span></p>
       </div>
 
       <div class="login-bonus__actions">
@@ -302,7 +311,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -334,7 +343,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -366,7 +375,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -398,7 +407,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -438,17 +447,56 @@
       </div>
 
       <nav class="activity-picker__list" aria-label="Активности">
-        <a class="activity-picker__link" href="/activities/tourism/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Туризм</a>
-        <a class="activity-picker__link" href="/activities/quad/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Квадро</a>
-        <a class="activity-picker__link" href="/activities/fishing/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Рыбалка</a>
-        <a class="activity-picker__link" href="/activities/travel/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Путешествия</a>
-        <a class="activity-picker__link is-active" href="/activities/skiing/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png" aria-current="true">Горные лыжи</a>
-        <a class="activity-picker__link" href="/activities/snowmobiles/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Снегоходы</a>
+        <span class="activity-picker__row">
+          <a class="activity-picker__link" href="/activities/tourism/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Туризм</a>
+          <a class="activity-picker__link" href="/activities/quad/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Квадро</a>
+        </span>
+        <span class="activity-picker__row">
+          <a class="activity-picker__link" href="/activities/fishing/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Рыбалка</a>
+          <a class="activity-picker__link" href="/activities/travel/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Путешествия</a>
+        </span>
+        <span class="activity-picker__row">
+          <a class="activity-picker__link is-active" href="/activities/skiing/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png" aria-current="true">Горные лыжи</a>
+          <a class="activity-picker__link" href="/activities/snowmobiles/" data-activity-link data-preview="/images/content/activity/ski-preview.png" data-image="/images/content/activity/ski-main.png">Снегоходы</a>
+        </span>
       </nav>
+
+      <div class="activity-picker__products" aria-label="Товары активности">
+        <a class="activity-product-card" href="/catalog/finntrail-aspen-3462-orange/">
+          <span class="activity-product-card__pic">
+            <img src="/images/content/hero/hero-product-jacket.png" srcset="/images/content/hero/hero-product-jacket.png 1x" sizes="166px" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy">
+          </span>
+          <span class="activity-product-card__body">
+            <span class="activity-product-card__name">FINNTRAIL Aspen 3462 Orange</span>
+            <span class="activity-product-card__bottom">
+              <span class="activity-product-card__price">37 999 ₽</span>
+              <svg class="activity-product-card__cart" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="activity-product-card" href="/catalog/finntrail-polar-1400-black/">
+          <span class="activity-product-card__pic">
+            <img src="/images/content/hero/hero-product-pants.png" srcset="/images/content/hero/hero-product-pants.png 1x" sizes="166px" alt="FINNTRAIL Polar 1400 Black" loading="lazy">
+          </span>
+          <span class="activity-product-card__body">
+            <span class="activity-product-card__name">FINNTRAIL Polar 1400 Black</span>
+            <span class="activity-product-card__bottom">
+              <span class="activity-product-card__price">12 999 ₽</span>
+              <svg class="activity-product-card__cart" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
+            </span>
+          </span>
+        </a>
+      </div>
 
       <div class="activity-picker__image" aria-hidden="true">
         <img class="activity-picker__image-img" src="/images/content/activity/ski-main.png" srcset="/images/content/activity/ski-main.png 1x" sizes="100vw" alt="" loading="lazy">
       </div>
+
+      <a class="activity-picker__cta" href="/activities/skiing/">
+        <span>В категорию</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </a>
     </section>
 
     <!-- Подарочные карты: desktop carousel -->
@@ -530,13 +578,28 @@
         </div>
       </div>
 
-      <div class="build-kit-desktop__model" aria-hidden="true">
-        <img class="build-kit-desktop__model-img" src="/images/content/build-kit/model.png" srcset="/images/content/build-kit/model.png 1x" sizes="100vw" alt="" loading="lazy">
+      <div class="build-kit-desktop__example">
+        <div class="build-kit-desktop__model" aria-hidden="true">
+          <img class="build-kit-desktop__model-img" src="/images/content/build-kit/model.png" srcset="/images/content/build-kit/model.png 1x" sizes="100vw" alt="" loading="lazy">
+        </div>
+
+        <a class="build-kit-desktop__product-card" href="/catalog/finntrail-aspen-3462-orange/">
+          <span class="build-kit-desktop__product-pic">
+            <img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy">
+          </span>
+          <span class="build-kit-desktop__product-info">
+            <span class="build-kit-desktop__product-name">FINNTRAIL Aspen 3462 Orange</span>
+            <span class="build-kit-desktop__product-bottom">
+              <span class="build-kit-desktop__product-price">37 999 ₽</span>
+              <svg class="build-kit-desktop__product-cart" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="build-kit-desktop__grid">
         <div class="build-kit-desktop__tiles">
-          <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="" loading="lazy"></button>
+          <button class="build-kit-desktop__tile is-active" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="" loading="lazy"></button>
           <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-2.png" srcset="/images/content/build-kit/item-2.png 1x" sizes="100vw" alt="" loading="lazy"></button>
           <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-3.png" srcset="/images/content/build-kit/item-3.png 1x" sizes="100vw" alt="" loading="lazy"></button>
           <button class="build-kit-desktop__tile" type="button" aria-label="Выбрать товар"><img src="/images/content/build-kit/item-4.png" srcset="/images/content/build-kit/item-4.png 1x" sizes="100vw" alt="" loading="lazy"></button>
@@ -580,19 +643,12 @@
         </div>
       </div>
 
-      <a class="build-kit-desktop__product-card" href="/catalog/finntrail-aspen-3462-orange/">
-        <span class="build-kit-desktop__product-pic">
-          <img src="/images/content/build-kit/jacket.png" srcset="/images/content/build-kit/jacket.png 1x" sizes="100vw" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy">
-        </span>
-        <span class="build-kit-desktop__product-info">
-          <span class="build-kit-desktop__product-name">FINNTRAIL Aspen 3462 Orange</span>
-          <span class="build-kit-desktop__product-price">37 999 ₽</span>
-        </span>
-      </a>
-
       <div class="build-kit-desktop__kit-meta">
-        <span>Ваш комплект</span>
-        <span class="build-kit-desktop__kit-count">Товары,3</span>
+        <span>Комплект</span>
+        <span class="build-kit-desktop__kit-count">3/4</span>
+        <button class="build-kit-desktop__accordion-toggle" type="button" aria-label="Раскрыть комплект" aria-expanded="false">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-accordion-toggle"></use></svg>
+        </button>
       </div>
 
       <div class="build-kit-desktop__kit-list">
@@ -702,7 +758,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -734,7 +790,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -766,7 +822,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -798,7 +854,7 @@
             </div>
             <div class="recommendation-card__info">
               <div class="recommendation-card__colors">
-                <svg class="recommendation-card__color recommendation-card__color--active" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-color-dot"></use></svg>
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
                 <span class="recommendation-card__color recommendation-card__color--black"></span>
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
@@ -1035,99 +1091,86 @@
       Шаблон item.php — один элемент ниже (.category-snippet)
     -->
     <footer class="footer-desktop" aria-label="Футер">
-      <div class="footer-desktop__main">
-        <div class="footer-desktop__top">
-          <nav class="footer-desktop__nav" aria-label="Навигация в футере">
-            <div class="footer-desktop__column">
-              <h2 class="footer-desktop__heading">Покупателям</h2>
-              <ul class="footer-desktop__links">
-                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/delivery/">Доставка и оплата</a></li>
-                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/return/">Обмен и возврат</a></li>
-                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/warranty/">Гарантия и сервис</a></li>
-                <li><a class="footer-desktop__link footer-desktop__link--strong" href="/feedback/">Обратная связь</a></li>
-              </ul>
-            </div>
+      <div class="footer-desktop__top">
+        <nav class="footer-desktop__nav" aria-label="Навигация в футере">
+          <div class="footer-desktop__column footer-desktop__column--buyers">
+            <h2 class="footer-desktop__heading">Покупателям</h2>
+            <ul class="footer-desktop__links">
+              <li><a class="footer-desktop__link" href="/delivery/">Доставка и оплата</a></li>
+              <li><a class="footer-desktop__link" href="/return/">Обмен и возврат</a></li>
+              <li><a class="footer-desktop__link" href="/warranty/">Гарантия и сервис</a></li>
+              <li><a class="footer-desktop__link" href="/feedback/">Обратная связь</a></li>
+            </ul>
+          </div>
 
-            <div class="footer-desktop__column">
-              <h2 class="footer-desktop__heading">Компания</h2>
-              <ul class="footer-desktop__links">
-                <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
-                <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
-                <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
-                <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
-                <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
-              </ul>
-            </div>
+          <div class="footer-desktop__column footer-desktop__column--company">
+            <h2 class="footer-desktop__heading">Компания</h2>
+            <ul class="footer-desktop__links">
+              <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
+              <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
+              <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
+              <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
+              <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
+            </ul>
+          </div>
 
-            <div class="footer-desktop__column">
-              <h2 class="footer-desktop__heading">Об экипировке</h2>
-              <ul class="footer-desktop__links">
-                <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
-                <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
-                <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
-                <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
-                <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
-              </ul>
-            </div>
+          <div class="footer-desktop__column footer-desktop__column--gear">
+            <h2 class="footer-desktop__heading">Об экипировке</h2>
+            <ul class="footer-desktop__links">
+              <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
+              <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
+              <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
+              <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
+              <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
+            </ul>
+          </div>
 
-            <div class="footer-desktop__column footer-desktop__column--app">
-              <h2 class="footer-desktop__heading">Приложение</h2>
-              <ul class="footer-desktop__links">
+          <div class="footer-desktop__column footer-desktop__column--app">
+            <h2 class="footer-desktop__heading">Приложение FINNTRAIL</h2>
+            <div class="footer-desktop__app-panel">
+              <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
+              <ul class="footer-desktop__app-links">
                 <li>
                   <a class="footer-desktop__app-link" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
-                    App Store
+                    <span>App Store</span>
                   </a>
                 </li>
                 <li>
                   <a class="footer-desktop__app-link" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
-                    Google Play
+                    <span>Google Play</span>
                   </a>
                 </li>
                 <li>
                   <a class="footer-desktop__app-link" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
-                    AppGallery
+                    <span>AppGallery</span>
                   </a>
                 </li>
                 <li>
                   <a class="footer-desktop__app-link" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
-                    RuStore
+                    <span>RuStore</span>
                   </a>
                 </li>
               </ul>
             </div>
-          </nav>
-
-          <div class="footer-desktop__side">
-            <div class="footer-desktop__socials">
-              <a class="footer-desktop__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
-              <a class="footer-desktop__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
-              <a class="footer-desktop__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
-              <a class="footer-desktop__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
-            </div>
-
-            <div class="footer-desktop__credits">
-              <p>Дизайн — студия луч</p>
-              <p>FINNTRAIL © 2025</p>
-            </div>
           </div>
-        </div>
-
-        <div class="footer-desktop__divider"></div>
-
-        <div class="footer-desktop__legal">
-          <a href="/privacy/">Политика конфиденциальности</a>
-          <a href="/offer/">Публичная оферта</a>
-          <a href="/personal-data/">Согласие на обработку персональных данных</a>
-        </div>
+        </nav>
       </div>
+
+      <div class="footer-desktop__divider"></div>
 
       <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL">
         <img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
       </a>
+
+      <div class="footer-desktop__legal">
+        <a href="/privacy/">Политика конфиденциальности</a>
+        <a href="/offer/">Публичная оферта</a>
+        <a href="/personal-data/">Согласие на обработку персональных данных</a>
+      </div>
     </footer>
 
     <!--
@@ -1214,35 +1257,31 @@
     Активный пункт (.is-active) определяется через $APPLICATION->GetCurDir()
     или JS по window.location.pathname (уже реализовано в main.js)
   -->
-  <nav class="tabbar">
-    <a href="/" class="tabbar__item is-active">
+  <nav class="tabbar" aria-label="Мобильная навигация">
+    <a href="/catalog/" class="tabbar__item" aria-label="Каталог">
       <span class="tabbar__icon">
-        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg></button>
-      <span class="tabbar__label">Главная</span>
-    </a>
-    <a href="/catalog/" class="tabbar__item">
-      <span class="tabbar__icon">
-        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-catalog"></use></svg>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg>
       </span>
-      <span class="tabbar__label">Каталог</span>
     </a>
-    <a href="/basket/" class="tabbar__item">
-      <span class="tabbar__icon">
-        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-cart"></use></svg>
-      </span>
-      <span class="tabbar__label">Корзина</span>
-    </a>
-    <a href="/favorites/" class="tabbar__item">
-      <span class="tabbar__icon">
-        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-heart"></use></svg>
-      </span>
-      <span class="tabbar__label">Избранное</span>
-    </a>
-    <a href="/personal/" class="tabbar__item">
+    <a href="/personal/" class="tabbar__item" aria-label="Профиль">
       <span class="tabbar__icon">
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-user"></use></svg>
       </span>
-      <span class="tabbar__label">Профиль</span>
+    </a>
+    <a href="/" class="tabbar__item tabbar__item--brand is-active" aria-label="Главная">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg>
+      </span>
+    </a>
+    <a href="/favorites/" class="tabbar__item" aria-label="Избранное">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-bookmark"></use></svg>
+      </span>
+    </a>
+    <a href="/basket/" class="tabbar__item" aria-label="Корзина">
+      <span class="tabbar__icon">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+      </span>
     </a>
   </nav>
 

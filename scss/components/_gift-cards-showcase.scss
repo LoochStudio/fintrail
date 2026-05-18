@@ -1,7 +1,174 @@
 @use '../variables' as *;
 
 .gift-cards-showcase {
+  position: relative;
+  display: block;
+  height: 375px;
+  margin-top: 64px;
+  background: $color-surface;
+  overflow: hidden;
+}
+
+.gift-cards-showcase__header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  height: 22px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.gift-cards-showcase__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.gift-cards-showcase__controls {
   display: none;
+}
+
+.gift-cards-showcase__body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.gift-cards-showcase__track {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  will-change: transform;
+  transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gift-cards-showcase__card {
+  position: relative;
+  width: 335px;
+  height: 211px;
+  flex: 0 0 335px;
+  overflow: hidden;
+  border-radius: $radius-md;
+  color: $color-white;
+}
+
+.gift-cards-showcase__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: rgba($color-black, 0.2);
+  pointer-events: none;
+}
+
+.gift-cards-showcase__card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.gift-cards-showcase__logo {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  left: 16px;
+  z-index: 2;
+  width: calc(100% - 32px);
+  height: 20.364px;
+  object-fit: fill;
+}
+
+.gift-cards-showcase__price {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  font-family: $font-display;
+  font-size: 28px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  letter-spacing: 0;
+  color: $color-white;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gift-cards-showcase__mountains {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+  z-index: 3;
+  height: 162px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.gift-cards-showcase__mountains::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba($color-surface, 0) 44.563%, $color-surface 100%);
+  pointer-events: none;
+}
+
+.gift-cards-showcase__mountains-img {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 783px;
+  height: 227px;
+  max-width: none;
+  object-fit: cover;
+  transform: translateX(-50%);
+}
+
+.gift-cards-showcase__cta {
+  position: absolute;
+  top: 296px;
+  left: 50%;
+  z-index: 5;
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px 14px 24px;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+  }
 }
 
 @media (min-width: $bp-lg) {
@@ -17,21 +184,19 @@
   }
 
   .gift-cards-showcase__header {
+    position: static;
     display: flex;
     min-height: 48px;
+    height: auto;
     align-items: center;
     justify-content: space-between;
+    padding: 0;
   }
 
   .gift-cards-showcase__title {
     margin: 0;
-    font-family: $font-display;
     font-size: $text-heading-h3-size;
-    font-weight: $font-weight-black;
     line-height: 24px;
-    letter-spacing: 0;
-    color: $color-primary-black;
-    text-transform: uppercase;
   }
 
   .gift-cards-showcase__controls {
@@ -49,18 +214,25 @@
     padding: 16px;
     border: 0;
     border-radius: $radius-xs;
-    background: $color-white;
+    background: transparent;
     color: $color-primary-black;
     cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
 
     svg {
       width: 16px;
       height: 16px;
     }
+
+    &:hover,
+    &:focus-visible {
+      background: $color-white;
+    }
   }
 
   .gift-cards-showcase__body {
     position: relative;
+    inset: auto;
     height: 715px;
     margin: 0 (-$spacing-page-desktop);
     overflow: hidden;
@@ -74,8 +246,7 @@
     display: flex;
     align-items: flex-start;
     gap: 32px;
-    will-change: transform;
-    transition: transform 0.36s ease;
+    transition: transform 0.92s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .gift-cards-showcase__card {
@@ -83,19 +254,16 @@
     width: 410px;
     height: 260px;
     flex: 0 0 auto;
-    overflow: hidden;
     border-radius: 8px;
-    color: $color-white;
-    transition: none;
+    will-change: width, height, border-radius;
+    transition:
+      width 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 0.92s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .gift-cards-showcase__card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
     background: rgba($color-black, 0.2);
-    pointer-events: none;
   }
 
   .gift-cards-showcase__card.is-active {
@@ -114,13 +282,17 @@
   }
 
   .gift-cards-showcase__logo {
-    position: absolute;
     top: 20px;
+    right: auto;
     left: 20px;
-    z-index: 2;
     width: 370px;
     height: auto;
-    transition: width 0.36s ease, top 0.36s ease, left 0.36s ease;
+    object-fit: contain;
+    will-change: width, top, left;
+    transition:
+      width 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      top 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      left 0.92s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .gift-cards-showcase__card.is-active .gift-cards-showcase__logo {
@@ -130,18 +302,16 @@
   }
 
   .gift-cards-showcase__price {
-    position: absolute;
     left: 20px;
     bottom: 20px;
-    z-index: 2;
-    font-family: $font-display;
     font-size: 36px;
-    font-weight: $font-weight-black;
     line-height: 36px;
-    letter-spacing: 0;
-    color: $color-white;
-    text-transform: uppercase;
-    transition: font-size 0.36s ease, line-height 0.36s ease, left 0.36s ease, bottom 0.36s ease;
+    will-change: font-size, line-height, left, bottom;
+    transition:
+      font-size 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      line-height 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      left 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      bottom 0.92s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .gift-cards-showcase__card.is-active .gift-cards-showcase__price {
@@ -163,69 +333,45 @@
   .gift-cards-showcase__mountains {
     position: absolute;
     left: 0;
-    right: 0;
+    right: auto;
     top: 292px;
+    bottom: auto;
     z-index: 3;
+    width: 100%;
+    min-width: 100vw;
     height: 423px;
-    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba($color-surface, 0) 17.96%, $color-surface 100%),
+      url('/images/content/gift-cards-showcase/mountains.png') 50% 50% / cover no-repeat;
   }
 
   .gift-cards-showcase__mountains::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .gift-cards-showcase__mountains::after {
-    z-index: 1;
-    background: linear-gradient(180deg, rgba($color-surface, 0) 17.96%, $color-surface 100%);
+    display: none;
   }
 
   .gift-cards-showcase__mountains-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    display: none;
   }
 
   .gift-cards-showcase__cta {
     position: absolute;
     left: 50%;
+    top: auto;
     bottom: 32px;
-    z-index: 5;
-    display: inline-flex;
     width: 190px;
     height: 52px;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     padding: 12px 24px 12px 32px;
-    border-radius: $radius-xs;
-    background: $color-primary-black;
-    color: $color-white;
     font-family: $font-mono;
     font-size: $text-body-b1-size;
     font-weight: $font-weight-semibold;
     line-height: 14px;
-    text-decoration: none;
-    text-transform: uppercase;
-    transform: translateX(-50%);
 
     svg {
-      width: 16px;
-      height: 16px;
       flex: 0 0 auto;
     }
   }
 
   .gift-card-banner {
-    display: none;
-  }
-}
-
-@media (max-width: #{$bp-lg - 1px}) {
-  .gift-cards-showcase__card[data-carousel-clone='true'] {
     display: none;
   }
 }
