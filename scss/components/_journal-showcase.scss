@@ -1,7 +1,427 @@
 @use '../variables' as *;
 
 .journal-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 64px;
+  padding: 0 20px;
+  background: $color-surface;
+}
+
+.journal-showcase__header {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.journal-showcase__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.journal-showcase__categories {
+  display: flex;
+  width: calc(100% + 40px);
+  margin: 0 -20px;
+  padding: 0 20px;
+  align-items: flex-start;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.journal-showcase__categories::-webkit-scrollbar {
   display: none;
+}
+
+.journal-showcase__category {
+  display: flex;
+  width: 72px;
+  flex: 0 0 72px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: $color-muted;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.journal-showcase__category-media {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  border: 1px solid $color-secondary-gray;
+  border-radius: 50%;
+}
+
+.journal-showcase__category-media::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: $color-white;
+}
+
+.journal-showcase__category-media img {
+  position: absolute;
+  z-index: 1;
+  top: 4px;
+  left: 4px;
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.journal-showcase__all {
+  display: none;
+}
+
+.journal-showcase__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.journal-showcase__featured-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.journal-showcase__hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 274px;
+  overflow: hidden;
+  color: $color-white;
+  text-decoration: none;
+}
+
+.journal-showcase__hero img,
+.journal-showcase__card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.journal-showcase__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba($color-black, 0) 50%, rgba($color-black, 0.2) 100%);
+}
+
+.journal-showcase__hero-meta,
+.journal-showcase__hero-title {
+  position: absolute;
+  z-index: 1;
+  left: 16px;
+  text-transform: uppercase;
+}
+
+.journal-showcase__hero-meta {
+  bottom: 110px;
+  display: flex;
+  gap: 20px;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+}
+
+.journal-showcase__hero-title {
+  right: 16px;
+  bottom: 94px;
+  margin: 0;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  transform: translateY(100%);
+}
+
+.journal-showcase__hero-title-desktop {
+  display: none;
+}
+
+.journal-showcase__hero-title-mobile {
+  display: block;
+}
+
+.journal-showcase__card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+  color: $color-primary-black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.journal-showcase__card[href*='snowmobile-summer-storage'] {
+  order: 2;
+}
+
+.journal-showcase__card[href*='trekking-shoes-guide'] {
+  order: 3;
+}
+
+.journal-showcase__card-image {
+  display: block;
+  height: 300px;
+  overflow: hidden;
+}
+
+.journal-showcase__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.journal-showcase__meta {
+  display: flex;
+  gap: 20px;
+  color: $color-muted;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+}
+
+.journal-showcase__card-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+}
+
+.journal-showcase__divider {
+  display: none;
+}
+
+.journal-showcase__links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.journal-showcase__link {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.journal-showcase__date {
+  color: #9b9b9b;
+  font-size: $text-body-b2-size;
+  line-height: 16px;
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .journal-showcase {
+    gap: 24px;
+    margin-top: $section-gap-xl;
+    padding: 0 $spacing-page-desktop;
+  }
+
+  .journal-showcase__header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .journal-showcase__title {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: $text-heading-h3-size;
+    line-height: 36px;
+  }
+
+  .journal-showcase__all {
+    grid-column: 2;
+    grid-row: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: end;
+    height: 16px;
+    padding: 12px 0;
+    color: $color-muted;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b1-line;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .journal-showcase__categories {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .journal-showcase__category {
+    width: 100px;
+    flex: 0 0 100px;
+    gap: 8px;
+    font-size: $text-body-b2-size;
+    line-height: 1.2;
+  }
+
+  .journal-showcase__category-media {
+    width: 100px;
+    height: 100px;
+    flex-basis: 100px;
+  }
+
+  .journal-showcase__category-media::after {
+    inset: 5.56px;
+  }
+
+  .journal-showcase__category-media img {
+    top: 5.56px;
+    left: 5.56px;
+    width: 88.889px;
+    height: 88.889px;
+  }
+
+  .journal-showcase__content {
+    gap: 32px;
+  }
+
+  .journal-showcase__featured-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .journal-showcase__hero {
+    grid-column: 1 / -1;
+    height: 597px;
+  }
+
+  .journal-showcase__hero-meta,
+  .journal-showcase__hero-title {
+    left: 24px;
+  }
+
+  .journal-showcase__hero-meta {
+    bottom: 122px;
+    gap: 20px;
+    font-size: $text-body-b1-size;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .journal-showcase__hero-title {
+    right: 24px;
+    bottom: 98px;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 1.2;
+    transform: translateY(100%);
+  }
+
+  .journal-showcase__hero-title-mobile {
+    display: none;
+  }
+
+  .journal-showcase__hero-title-desktop {
+    display: block;
+  }
+
+  .journal-showcase__card {
+    min-width: 0;
+    gap: 16px;
+  }
+
+  .journal-showcase__card[href*='snowmobile-summer-storage'] {
+    order: 2;
+  }
+
+  .journal-showcase__card[href*='trekking-shoes-guide'] {
+    order: 3;
+  }
+
+  .journal-showcase__card-image {
+    height: 300px;
+  }
+
+  .journal-showcase__meta {
+    gap: 20px;
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  .journal-showcase__card-title {
+    font-size: 18px;
+    font-weight: $font-weight-black;
+    line-height: 22px;
+  }
+
+  .journal-showcase__divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $color-secondary-gray;
+  }
+
+  .journal-showcase__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 20px;
+  }
+
+  .journal-showcase__link {
+    min-width: 0;
+    gap: 16px;
+    font-size: $text-body-b1-size;
+    line-height: $text-body-b1-line;
+  }
+
+  .journal-showcase__date {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
 }
 
 @media (min-width: $bp-lg) {
@@ -180,6 +600,14 @@
     font-size: $text-heading-h3-size;
     font-weight: $font-weight-extrabold;
     line-height: 1.2;
+  }
+
+  .journal-showcase__hero-title-mobile {
+    display: none;
+  }
+
+  .journal-showcase__hero-title-desktop {
+    display: block;
   }
 
   .journal-showcase__card {

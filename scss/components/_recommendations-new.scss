@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 36px;
+  overflow: hidden;
   background: $color-surface;
 
   &__header {
@@ -69,6 +70,7 @@
     margin-top: 24px;
     margin-bottom: 8px;
     overflow-x: auto;
+    contain: paint;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -371,6 +373,192 @@
 
 }
 
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .recommendations-new {
+    gap: 0;
+    height: auto;
+    margin-top: 60px;
+  }
+
+  .recommendations-new--popular {
+    margin-top: $section-gap-xl;
+  }
+
+  .recommendations-new__header {
+    min-height: 24px;
+    padding: 0 $spacing-page-desktop;
+  }
+
+  .recommendations-new__title {
+    font-size: $text-heading-h3-size;
+    line-height: 24px;
+  }
+
+  .recommendations-new__controls {
+    display: none;
+  }
+
+  .recommendations-new__viewport {
+    width: 100%;
+    height: 560px;
+    margin: 32px 0 0;
+    overflow: hidden;
+  }
+
+  .recommendations-new__track {
+    gap: 0;
+    transition: transform 0.36s ease;
+  }
+
+  .recommendations-new__more {
+    height: 52px;
+    padding: 12px 24px 12px 32px;
+    border-radius: $radius-xs;
+    font-family: $font-display;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+  }
+
+  .recommendations-new__more > span {
+    --roll-hover-line: 14px;
+  }
+
+  .recommendation-card {
+    width: 360px;
+    height: 560px;
+    flex: 0 0 360px;
+    grid-template-rows: 440px 72px 48px;
+    border: 1px solid $color-white;
+    background: transparent;
+  }
+
+  .recommendation-card:hover,
+  .recommendation-card:focus-within {
+    background: $color-white;
+  }
+
+  .recommendation-card__media {
+    width: 100%;
+    height: auto;
+    padding: 24px;
+  }
+
+  .recommendation-card__image-link {
+    width: 100%;
+    height: 392px;
+  }
+
+  .recommendation-card__image {
+    width: 100%;
+    height: 392px;
+  }
+
+  .recommendation-card__badge {
+    top: 24px;
+    left: 24px;
+    min-height: 24px;
+    padding: 8px;
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+    color: $color-muted;
+  }
+
+  .recommendation-card:hover .recommendation-card__badge,
+  .recommendation-card:focus-within .recommendation-card__badge {
+    color: $color-accent;
+  }
+
+  .recommendation-card__actions {
+    top: 24px;
+    right: 24px;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+  }
+
+  .recommendation-card:hover .recommendation-card__actions,
+  .recommendation-card:focus-within .recommendation-card__actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .recommendation-card__info {
+    justify-content: flex-end;
+    gap: 0;
+    padding: 0 24px 16px;
+  }
+
+  .recommendation-card__colors {
+    height: 0;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .recommendation-card:hover .recommendation-card__colors,
+  .recommendation-card:focus-within .recommendation-card__colors {
+    height: 16px;
+    margin-bottom: 18px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .recommendation-card__color {
+    width: 12px;
+    height: 12px;
+
+    &--active {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .recommendation-card__name {
+    font-size: $text-body-b1-size;
+    line-height: $text-body-b1-line;
+  }
+
+  .recommendation-card__cart {
+    padding: 16px 24px;
+  }
+
+  .recommendation-card:hover .recommendation-card__cart,
+  .recommendation-card:focus-within .recommendation-card__cart {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+
+  .recommendation-card:hover .recommendation-card__old-price,
+  .recommendation-card:focus-within .recommendation-card__old-price {
+    color: #a8a8a8;
+  }
+
+  .recommendation-card__price {
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+  }
+
+  .recommendation-card__cart-label {
+    font-size: $text-body-b1-size;
+    line-height: 14px;
+    opacity: 0;
+    transform: translateX(8px);
+
+    span {
+      display: inline;
+    }
+  }
+
+  .recommendation-card:hover .recommendation-card__cart-label,
+  .recommendation-card:focus-within .recommendation-card__cart-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (min-width: $bp-lg) {
   .recommendations-new {
     height: 684px;
@@ -445,18 +633,20 @@
   }
 
   .recommendation-card__media {
-    width: auto;
+    width: 100%;
     height: auto;
-    padding: 24px;
+    box-sizing: border-box;
+    padding: clamp(8px, 1.667vw, 24px);
   }
 
   .recommendation-card__image-link {
-    width: 312px;
+    width: min(312px, 100%);
     height: 392px;
+    margin: 0 auto;
   }
 
   .recommendation-card__image {
-    width: 312px;
+    width: 100%;
     height: 392px;
   }
 

@@ -142,7 +142,8 @@
 
 .gift-cards-showcase__cta {
   position: absolute;
-  top: 296px;
+  top: auto;
+  bottom: 30px;
   left: 50%;
   z-index: 5;
   display: inline-flex;
@@ -168,6 +169,165 @@
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+  }
+}
+
+.gift-cards-showcase.is-resetting {
+  .gift-cards-showcase__track,
+  .gift-cards-showcase__card,
+  .gift-cards-showcase__logo,
+  .gift-cards-showcase__price {
+    transition: none;
+  }
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .gift-cards-showcase {
+    display: flex;
+    height: 413px;
+    margin-top: $section-gap-xl;
+    padding: 0 $spacing-page-desktop;
+    flex-direction: column;
+    gap: 24px;
+    background: $color-surface;
+    overflow: hidden;
+  }
+
+  .gift-cards-showcase__header {
+    position: static;
+    display: flex;
+    height: 44px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .gift-cards-showcase__title {
+    font-size: $text-heading-h3-size;
+    line-height: 24px;
+  }
+
+  .gift-cards-showcase__controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .gift-cards-showcase__arrow {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-primary-black;
+    cursor: pointer;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .gift-cards-showcase__body {
+    position: relative;
+    inset: auto;
+    width: calc(100% + 40px);
+    height: 345px;
+    margin: 0 (-$spacing-page-desktop);
+    overflow: hidden;
+  }
+
+  .gift-cards-showcase__track {
+    top: 0;
+    left: 0;
+    z-index: 2;
+    gap: 32px;
+    transition: transform 0.96s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gift-cards-showcase__card {
+    width: 286px;
+    height: 180px;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    will-change: width, height;
+    transition:
+      width 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.96s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gift-cards-showcase__card.is-active {
+    width: 364px;
+    height: 229px;
+  }
+
+  .gift-cards-showcase__card-bg {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gift-cards-showcase__logo {
+    top: 17.6px;
+    right: auto;
+    left: 14px;
+    width: calc(100% - 28px);
+    height: auto;
+    object-fit: contain;
+    will-change: width;
+    transition: width 0.96s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gift-cards-showcase__price {
+    left: 17.6px;
+    bottom: 18px;
+    font-size: 31.7px;
+    line-height: 31.7px;
+    will-change: font-size, line-height;
+    transition:
+      font-size 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+      line-height 0.96s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gift-cards-showcase__card.is-active .gift-cards-showcase__price {
+    left: 18.2px;
+    bottom: 19px;
+    font-size: 32.3px;
+    line-height: 1.05;
+  }
+
+  .gift-cards-showcase__mountains {
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    top: 126px;
+    width: 768px;
+    height: 219px;
+    background:
+      linear-gradient(180deg, rgba($color-surface, 0) 44.56%, $color-surface 95.4%),
+      url('/images/content/gift-cards-showcase/mountains.png') -289.882px 0 / 161.167% 163.927% no-repeat;
+    transform: translateX(-50%);
+  }
+
+  .gift-cards-showcase__mountains::after {
+    display: none;
+  }
+
+  .gift-cards-showcase__mountains-img {
+    display: none;
+  }
+
+  .gift-cards-showcase__cta {
+    top: auto;
+    bottom: 0;
+    height: 52px;
+    padding: 18px 24px 18px 32px;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
   }
 }
 
@@ -321,15 +481,6 @@
     line-height: 1.05;
   }
 
-  .gift-cards-showcase.is-resetting {
-    .gift-cards-showcase__track,
-    .gift-cards-showcase__card,
-    .gift-cards-showcase__logo,
-    .gift-cards-showcase__price {
-      transition: none;
-    }
-  }
-
   .gift-cards-showcase__mountains {
     position: absolute;
     left: 0;
@@ -371,7 +522,4 @@
     }
   }
 
-  .gift-card-banner {
-    display: none;
-  }
 }

@@ -156,6 +156,12 @@
   }
 }
 
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .login-bonus {
+    display: none;
+  }
+}
+
 @media (min-width: $bp-lg) {
   .login-bonus {
     grid-template-columns: minmax(0, 1fr) minmax(0, 700px);

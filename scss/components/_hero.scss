@@ -112,6 +112,9 @@
     display: block;
   }
 
+  &__title-tablet,
+  &__title-desktop,
+  &__desc-tablet,
   &__desc-desktop {
     display: none;
   }
@@ -277,6 +280,223 @@
   text-decoration: none;
 }
 
+// ─── Tablet hero (768–1279px) ───────────────────────────────────────────────
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .navbar {
+    display: none;
+  }
+
+  .hero {
+    height: 1024px;
+  }
+
+  .hero__slide {
+    padding-top: 0;
+  }
+
+  .hero__video,
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__topbar {
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 20px;
+  }
+
+  .hero__brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero__menu-btn {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .hero__logo-link {
+    width: 180px;
+    height: 32px;
+  }
+
+  .hero__tools {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .hero__tool,
+    .hero__tool:not(:first-child) {
+      display: flex;
+    }
+  }
+
+  .hero__tool {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .hero__nav {
+    display: none;
+  }
+
+  .hero__content {
+    right: auto;
+    bottom: auto;
+    left: 20px;
+    top: 764px;
+    width: 364px;
+  }
+
+  .hero__text {
+    gap: 32px;
+  }
+
+  .hero__title {
+    font-size: $text-heading-h2-size;
+    font-weight: $font-weight-black;
+    line-height: 32px;
+    white-space: normal;
+  }
+
+  .hero__desc {
+    font-size: $text-subtitle-s1-size;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+  }
+
+  .hero__desc-mobile {
+    display: none;
+  }
+
+  .hero__title-mobile {
+    display: none;
+  }
+
+  .hero__title-tablet {
+    display: block;
+  }
+
+  .hero__desc-tablet {
+    display: block;
+  }
+
+  .hero__desc-desktop {
+    display: none;
+  }
+
+  .hero__pagination {
+    bottom: 20px;
+    left: 20px;
+    height: 16px;
+    gap: 24px;
+  }
+
+  .hero__pagination-dot.is-loading svg {
+    animation: hero-pagination-progress 5s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .hero__arrows {
+    display: none;
+  }
+
+  .hero__products {
+    position: absolute;
+    top: 750px;
+    right: 20px;
+    display: flex;
+    width: 182px;
+  }
+
+  .hero-product-card {
+    display: flex;
+    width: 182px;
+    flex: 0 0 182px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    background: $color-white;
+    color: $color-primary-black;
+  }
+
+  .hero-product-card:nth-child(n + 2) {
+    display: none;
+  }
+
+  .hero-product-card__pic {
+    position: relative;
+    display: block;
+    aspect-ratio: 135 / 135;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .hero-product-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .hero-product-card__name {
+    overflow: hidden;
+    width: 100%;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    color: $color-primary-black;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+  }
+
+  .hero-product-card__bottom {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-product-card__price {
+    font-family: $font-display;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    color: $color-primary-black;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hero-product-card__cart {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+  }
+}
+
 // ─── New desktop hero from FINNTRAIL redesign ───────────────────────────────
 @media (min-width: $bp-lg) {
   .navbar {
@@ -430,7 +650,8 @@
       align-items: center;
       gap: 24px;
 
-      .hero__tool {
+      .hero__tool,
+      .hero__tool:not(:first-child) {
         display: flex;
       }
     }
@@ -505,6 +726,16 @@
       display: none;
     }
 
+    &__title-mobile,
+    &__title-tablet,
+    &__desc-tablet {
+      display: none;
+    }
+
+    &__title-desktop {
+      display: block;
+    }
+
     &__desc-desktop {
       display: block;
     }
@@ -566,12 +797,14 @@
       position: absolute;
       top: calc(100% - 265px);
       left: $spacing-page-desktop;
+      z-index: 3;
       display: flex;
       align-items: center;
       gap: 4px;
       padding: 0;
       background: transparent;
       border-radius: 0;
+      pointer-events: auto;
     }
 
     &__arrow {
@@ -586,6 +819,7 @@
       background: $color-control-glass;
       backdrop-filter: blur(8px);
       color: $color-white;
+      pointer-events: auto;
 
       svg {
         display: block;

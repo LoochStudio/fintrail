@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const revealItems = Array.from(document.querySelectorAll(revealSelectors.join(',')));
+  const shouldAnimateTextReveal = window.matchMedia('(min-width: 1280px)').matches;
 
-  if ('IntersectionObserver' in window && revealItems.length) {
+  if (shouldAnimateTextReveal && 'IntersectionObserver' in window && revealItems.length) {
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -117,8 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides  = document.querySelectorAll('.hero__slide');
     const infos   = document.querySelectorAll('.hero__info');
     const dots    = document.querySelectorAll('.hero__pagination-dot');
-    const btnPrev = document.querySelector('.hero__arrow[aria-label="Предыдущий слайд"]');
-    const btnNext = document.querySelector('.hero__arrow[aria-label="Следующий слайд"]');
+    const heroArrows = Array.from(document.querySelectorAll('.hero__arrow'));
+    const btnPrev = heroArrows.find(button => /предыдущий|назад/i.test(button.getAttribute('aria-label') || '')) || heroArrows[0];
+    const btnNext = heroArrows.find(button => /следующий|вперед|вперёд/i.test(button.getAttribute('aria-label') || '')) || heroArrows[1];
     const hero = document.querySelector('.hero');
     const total   = Math.max(dots.length, slides.length);
     let current   = 0;
@@ -233,16 +235,16 @@ document.addEventListener('DOMContentLoaded', () => {
     btnPrev.classList.remove('is-inactive');
     btnNext.classList.remove('is-inactive');
 
-    function isDesktop() {
-      return window.innerWidth >= 1280;
+    function isCarouselLayout() {
+      return window.innerWidth >= 768;
     }
 
     function cardWidth() {
-      return cards[0]?.getBoundingClientRect().width || viewport.getBoundingClientRect().width / 4;
+      return cards[0]?.getBoundingClientRect().width || (isCarouselLayout() ? 360 : viewport.getBoundingClientRect().width / 4);
     }
 
     function setPosition(nextIndex, animate = true) {
-      if (!isDesktop()) {
+      if (!isCarouselLayout()) {
         track.style.transform = '';
         return;
       }
@@ -257,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function goTo(nextIndex) {
-      if (!isDesktop() || isAnimating) return;
+      if (!isCarouselLayout() || isAnimating) return;
       isAnimating = true;
       index = nextIndex;
       setPosition(index);
@@ -281,6 +283,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnPrev.addEventListener('click', () => goTo(index - 1));
     btnNext.addEventListener('click', () => goTo(index + 1));
+
+    let touchStartX = 0;
+
+    viewport.addEventListener('touchstart', event => {
+      touchStartX = event.touches[0].clientX;
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', event => {
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) < 50) return;
+      goTo(dx < 0 ? index + 1 : index - 1);
+    }, { passive: true });
 
     window.addEventListener('resize', () => setPosition(index, false));
     setPosition(index, false);
@@ -379,9 +393,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = Array.from(track.querySelectorAll('.gift-cards-showcase__card'));
     const sideCardWidth = 410;
     const activeCardWidth = 721;
+    const tabletSideCardWidth = 286;
+    const tabletActiveCardWidth = 364;
 
     function isDesktop() {
       return window.innerWidth >= 1280;
+    }
+
+    function isTablet() {
+      return window.innerWidth >= 768 && window.innerWidth < 1280;
     }
 
     function getTrackGap() {
@@ -400,6 +420,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return left + activeCardWidth / 2;
     }
 
+    function getTabletFinalCardCenter(activeIndex) {
+      const gap = getTrackGap();
+      let left = 0;
+
+      for (let i = 0; i < activeIndex; i += 1) {
+        left += tabletSideCardWidth + gap;
+      }
+
+      return left + tabletActiveCardWidth / 2;
+    }
+
     function setActive(nextIndex) {
       cards.forEach((card, i) => {
         const isActive = i === nextIndex;
@@ -411,14 +442,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function centerActive(nextIndex, animate = true) {
       if (!isDesktop()) {
-        const gap = getTrackGap();
-        const activeCard = cards[nextIndex];
-        const cardWidth = activeCard?.getBoundingClientRect().width || 335;
+        setActive(nextIndex);
+
         const bodyWidth = body.getBoundingClientRect().width;
-        const cardCenter = nextIndex * (cardWidth + gap) + cardWidth / 2;
+        const cardCenter = isTablet()
+          ? getTabletFinalCardCenter(nextIndex)
+          : (() => {
+              const activeCard = cards[nextIndex];
+              const cardWidth = activeCard?.getBoundingClientRect().width || 335;
+              return activeCard ? activeCard.offsetLeft + cardWidth / 2 : 0;
+            })();
         const offset = bodyWidth / 2 - cardCenter;
 
-        setActive(nextIndex);
         track.style.transition = animate ? '' : 'none';
         track.style.transform = `translateX(${offset}px)`;
 
@@ -464,14 +499,18 @@ document.addEventListener('DOMContentLoaded', () => {
         index -= total;
         section.classList.add('is-resetting');
         centerActive(index, false);
-        requestAnimationFrame(() => section.classList.remove('is-resetting'));
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => section.classList.remove('is-resetting'));
+        });
       }
 
       if (index < total) {
         index += total;
         section.classList.add('is-resetting');
         centerActive(index, false);
-        requestAnimationFrame(() => section.classList.remove('is-resetting'));
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => section.classList.remove('is-resetting'));
+        });
       }
 
       isAnimating = false;
@@ -499,7 +538,14 @@ document.addEventListener('DOMContentLoaded', () => {
       goTo(index + (delta < 0 ? 1 : -1));
     }, { passive: true });
 
-    window.addEventListener('resize', () => centerActive(index, false));
+    let resizeFrame = 0;
+    window.addEventListener('resize', () => {
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(() => {
+        centerActive(index, false);
+        window.requestAnimationFrame(() => centerActive(index, false));
+      });
+    });
     centerActive(index, false);
   });
 

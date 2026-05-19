@@ -182,6 +182,120 @@
   animation: activity-image-change 0.24s ease;
 }
 
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .activity-picker {
+    position: relative;
+    display: block;
+    height: 418px;
+    margin-top: $section-gap-xl;
+    background: $color-surface;
+    overflow: hidden;
+  }
+
+  .activity-picker__title {
+    display: block;
+    margin: 0;
+    padding: 0 $spacing-page-desktop;
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: 24px;
+    color: $color-primary-black;
+    text-transform: uppercase;
+
+    br {
+      display: none;
+    }
+  }
+
+  .activity-picker__preview,
+  .activity-picker__image,
+  .activity-picker__cta {
+    display: none;
+  }
+
+  .activity-picker__list {
+    position: absolute;
+    top: 72px;
+    left: 22px;
+    display: flex;
+    width: 300px;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 44px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .activity-picker__row {
+    display: contents;
+  }
+
+  .activity-picker__link {
+    display: block;
+    font-family: $font-display;
+    font-size: $text-heading-h2-size;
+    font-weight: $font-weight-black;
+    line-height: 32px;
+    color: rgba($color-black, 0.2);
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .activity-picker__link.is-active {
+    color: $color-black;
+  }
+
+  .activity-picker__products {
+    position: absolute;
+    top: 72px;
+    right: 20px;
+    display: flex;
+    width: 364px;
+    max-width: none;
+    align-items: stretch;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .activity-product-card {
+    width: 178px;
+    min-width: 0;
+    flex: 1 1 0;
+    gap: 12px;
+    padding: 12px;
+    background: $color-white;
+  }
+
+  .activity-product-card__pic {
+    width: 100%;
+    border-radius: $radius-xs;
+  }
+
+  .activity-product-card__pic img {
+    object-fit: cover;
+    border-radius: $radius-xs;
+  }
+
+  .activity-product-card__body {
+    gap: 24px;
+  }
+
+  .activity-product-card__name {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  .activity-product-card__price {
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+  }
+}
+
 @media (min-width: $bp-lg) {
   .activity-picker {
     position: relative;
