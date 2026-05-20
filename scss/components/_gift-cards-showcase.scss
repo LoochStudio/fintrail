@@ -7,6 +7,8 @@
   margin-top: 64px;
   background: $color-surface;
   overflow: hidden;
+  --gift-card-side-width: 335px;
+  --gift-card-active-width: 335px;
 }
 
 .gift-cards-showcase__header {
@@ -191,6 +193,8 @@
     gap: 24px;
     background: $color-surface;
     overflow: hidden;
+    --gift-card-side-width: 286px;
+    --gift-card-active-width: 364px;
   }
 
   .gift-cards-showcase__header {
@@ -341,6 +345,8 @@
     gap: 24px;
     background: $color-surface;
     overflow: hidden;
+    --gift-card-side-width: 410px;
+    --gift-card-active-width: 721px;
   }
 
   .gift-cards-showcase__header {

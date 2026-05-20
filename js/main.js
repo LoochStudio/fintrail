@@ -112,6 +112,60 @@ document.addEventListener('DOMContentLoaded', () => {
   updateLayoutVars();
   window.addEventListener('resize', updateLayoutVars);
 
+  const heroHeader = document.querySelector('.hero');
+  const desktopHeaderQuery = window.matchMedia('(min-width: 1280px)');
+  let headerTicking = false;
+  let isHeaderIntroCompact = false;
+  let isHeaderIntroAnimating = false;
+  let headerIntroTimer = 0;
+
+  const syncHeroHeaderState = () => {
+    headerTicking = false;
+    if (!heroHeader) return;
+
+    if (!desktopHeaderQuery.matches) {
+      isHeaderIntroCompact = false;
+      isHeaderIntroAnimating = false;
+      window.clearTimeout(headerIntroTimer);
+    } else if (window.scrollY > 2) {
+      isHeaderIntroCompact = false;
+    }
+
+    const shouldCompact = desktopHeaderQuery.matches && (isHeaderIntroCompact || window.scrollY > 2);
+    heroHeader.classList.toggle('is-header-compact', shouldCompact);
+  };
+
+  const requestHeroHeaderSync = () => {
+    if (headerTicking) return;
+    headerTicking = true;
+    window.requestAnimationFrame(syncHeroHeaderState);
+  };
+
+  syncHeroHeaderState();
+  window.addEventListener('scroll', requestHeroHeaderSync, { passive: true });
+  window.addEventListener('wheel', event => {
+    if (!heroHeader || !desktopHeaderQuery.matches) return;
+    if (window.scrollY > 2) return;
+
+    if (isHeaderIntroAnimating) {
+      event.preventDefault();
+      return;
+    }
+
+    if (event.deltaY > 0 && !isHeaderIntroCompact) {
+      event.preventDefault();
+      isHeaderIntroCompact = true;
+      isHeaderIntroAnimating = true;
+      heroHeader.classList.add('is-header-compact');
+
+      window.clearTimeout(headerIntroTimer);
+      headerIntroTimer = window.setTimeout(() => {
+        isHeaderIntroAnimating = false;
+      }, 1000);
+    }
+  }, { passive: false });
+  desktopHeaderQuery.addEventListener('change', syncHeroHeaderState);
+
   // ─── Hero slider ────────────────────────────────────────────────────────────
   const heroSlidesWrap = document.querySelector('.hero__slides');
   if (heroSlidesWrap) {
@@ -179,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     restartProgress();
-    window.setInterval(() => {
+    const autoplayTimer = window.setInterval(() => {
       goTo(current + 1, true);
     }, 5000);
 
@@ -308,30 +362,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!links.length) return;
 
-    const initialPreview = preview?.currentSrc || preview?.getAttribute('src') || '';
-    const initialImage = image?.currentSrc || image?.getAttribute('src') || '';
-    const resolvedAssets = new Map([
-      ['/images/content/activity/ski-preview.png', initialPreview],
-      ['images/content/activity/ski-preview.png', initialPreview],
-      ['/images/content/activity/ski-main.png', initialImage],
-      ['images/content/activity/ski-main.png', initialImage],
-    ]);
-
-    function resolveAsset(src) {
-      if (!src) return '';
-      if (resolvedAssets.has(src)) return resolvedAssets.get(src);
-      return src;
-    }
-
     function setImage(img, src) {
-      const resolvedSrc = resolveAsset(src);
-      if (!img || !resolvedSrc) return;
-
+      if (!img || !src) return;
       img.classList.remove('is-changing');
       void img.offsetWidth;
       img.classList.add('is-changing');
-      img.setAttribute('src', resolvedSrc);
-      img.setAttribute('srcset', `${resolvedSrc} 1x`);
+      img.src = src;
     }
 
     function activate(link) {
@@ -391,17 +427,16 @@ document.addEventListener('DOMContentLoaded', () => {
     originals.map(cloneCard).forEach(card => track.appendChild(card));
 
     const cards = Array.from(track.querySelectorAll('.gift-cards-showcase__card'));
-    const sideCardWidth = 410;
-    const activeCardWidth = 721;
-    const tabletSideCardWidth = 286;
-    const tabletActiveCardWidth = 364;
+    let lastLayoutMode = '';
 
     function isDesktop() {
       return window.innerWidth >= 1280;
     }
 
-    function isTablet() {
-      return window.innerWidth >= 768 && window.innerWidth < 1280;
+    function getLayoutMode() {
+      if (window.innerWidth >= 1280) return 'desktop';
+      if (window.innerWidth >= 768) return 'tablet';
+      return 'mobile';
     }
 
     function getTrackGap() {
@@ -409,26 +444,23 @@ document.addEventListener('DOMContentLoaded', () => {
       return parseFloat(styles.columnGap || styles.gap) || 32;
     }
 
-    function getFinalCardCenter(activeIndex) {
-      const gap = getTrackGap();
-      let left = 0;
-
-      for (let i = 0; i < activeIndex; i += 1) {
-        left += sideCardWidth + gap;
-      }
-
-      return left + activeCardWidth / 2;
+    function getCardMetric(name, fallback) {
+      const styles = window.getComputedStyle(section);
+      const value = parseFloat(styles.getPropertyValue(name));
+      return Number.isFinite(value) && value > 0 ? value : fallback;
     }
 
-    function getTabletFinalCardCenter(activeIndex) {
+    function getFinalCardCenter(activeIndex) {
       const gap = getTrackGap();
-      let left = 0;
+      const sideWidth = getCardMetric('--gift-card-side-width', cards[activeIndex]?.getBoundingClientRect().width || 0);
+      const activeWidth = getCardMetric('--gift-card-active-width', sideWidth);
 
+      let left = 0;
       for (let i = 0; i < activeIndex; i += 1) {
-        left += tabletSideCardWidth + gap;
+        left += sideWidth + gap;
       }
 
-      return left + tabletActiveCardWidth / 2;
+      return left + activeWidth / 2;
     }
 
     function setActive(nextIndex) {
@@ -441,35 +473,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function centerActive(nextIndex, animate = true) {
-      if (!isDesktop()) {
-        setActive(nextIndex);
-
-        const bodyWidth = body.getBoundingClientRect().width;
-        const cardCenter = isTablet()
-          ? getTabletFinalCardCenter(nextIndex)
-          : (() => {
-              const activeCard = cards[nextIndex];
-              const cardWidth = activeCard?.getBoundingClientRect().width || 335;
-              return activeCard ? activeCard.offsetLeft + cardWidth / 2 : 0;
-            })();
-        const offset = bodyWidth / 2 - cardCenter;
-
-        track.style.transition = animate ? '' : 'none';
-        track.style.transform = `translateX(${offset}px)`;
-
-        if (!animate) {
-          void track.offsetWidth;
-          track.style.transition = '';
-        }
-        return;
-      }
-
       setActive(nextIndex);
       track.style.transition = animate ? '' : 'none';
 
-      const activeCard = cards[nextIndex];
       const bodyWidth = body.getBoundingClientRect().width;
-      const cardCenter = activeCard ? getFinalCardCenter(nextIndex) : 0;
+      const cardCenter = getFinalCardCenter(nextIndex);
       const offset = bodyWidth / 2 - cardCenter;
       track.style.transform = `translateX(${offset}px)`;
 
@@ -539,13 +547,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     let resizeFrame = 0;
-    window.addEventListener('resize', () => {
+    function refreshPosition() {
       window.cancelAnimationFrame(resizeFrame);
       resizeFrame = window.requestAnimationFrame(() => {
+        const currentMode = getLayoutMode();
+        const didChangeMode = currentMode !== lastLayoutMode;
+        lastLayoutMode = currentMode;
+
+        if (didChangeMode) {
+          section.classList.add('is-resetting');
+        }
+
         centerActive(index, false);
-        window.requestAnimationFrame(() => centerActive(index, false));
+        window.requestAnimationFrame(() => {
+          centerActive(index, false);
+          section.classList.remove('is-resetting');
+        });
+      });
+    }
+
+    window.addEventListener('resize', refreshPosition);
+    window.addEventListener('orientationchange', refreshPosition);
+    window.addEventListener('load', refreshPosition);
+    cards.forEach(card => {
+      card.querySelectorAll('img').forEach(img => {
+        img.addEventListener('load', refreshPosition, { once: true });
       });
     });
+    lastLayoutMode = getLayoutMode();
     centerActive(index, false);
   });
 
@@ -586,56 +615,112 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth >= 1280) return;
         previewTiles.forEach(item => item.classList.remove('is-active'));
         tile.classList.add('is-active');
-
-        const sourceImage = tile.querySelector('img');
-        const productImage = section.querySelector('.build-kit-desktop__product-pic img');
-        if (sourceImage && productImage) {
-          const src = sourceImage.getAttribute('src');
-          productImage.setAttribute('src', src);
-          productImage.setAttribute('srcset', `${src} 1x`);
-        }
+        const product = getTileProduct(tile);
+        updateSelectedJacket(product);
+        syncJacketKitItem(product);
       });
     });
 
-    if (window.innerWidth < 1280) return;
-
     const grid = section.querySelector('.build-kit-desktop__tiles');
-    const tiles = Array.from(section.querySelectorAll('.build-kit-desktop__tile'));
-    const dots = Array.from(section.querySelectorAll('.build-kit-desktop__dot'));
+    const tiles = previewTiles;
+    const dotsContainer = section.querySelector('.build-kit-desktop__dots');
     const btnPrev = section.querySelector('.build-kit-desktop__arrow[aria-label="Назад"]');
     const btnNext = section.querySelector('.build-kit-desktop__arrow[aria-label="Вперед"]');
     const kitList = section.querySelector('.build-kit-desktop__kit-list');
     const kitCount = section.querySelector('.build-kit-desktop__kit-count');
     const totalPrice = section.querySelector('.build-kit-desktop__total-price');
-
-    if (!grid || !tiles.length || !btnPrev || !btnNext) return;
+    const productImage = section.querySelector('.build-kit-desktop__product-pic img');
+    const productName = section.querySelector('.build-kit-desktop__product-name');
+    const productPrice = section.querySelector('.build-kit-desktop__product-price');
 
     const perPage = 9;
-    const pages = Math.max(1, Math.ceil(tiles.length / perPage), dots.length);
     const pageWidth = 340;
+    const desktopQuery = window.matchMedia('(min-width: 1280px)');
     let page = 0;
-
-    for (let i = 0; i < pages; i += 1) {
-      const pageEl = document.createElement('div');
-      pageEl.className = 'build-kit-desktop__page';
-      tiles.slice(i * perPage, (i + 1) * perPage).forEach(tile => {
-        pageEl.appendChild(tile);
-        tile.hidden = false;
-      });
-      grid.appendChild(pageEl);
-    }
+    let pages = 1;
+    let isDesktopCarouselReady = false;
+    let dots = [];
 
     function normalize(index) {
       return (index + pages) % pages;
     }
 
+    function renderDots() {
+      if (!dotsContainer) return;
+
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < pages; i += 1) {
+        const dot = document.createElement('span');
+        dot.className = 'build-kit-desktop__dot';
+        if (i === page) dot.classList.add('is-active');
+        dot.addEventListener('click', () => updatePage(i));
+        dotsContainer.appendChild(dot);
+      }
+      dots = Array.from(dotsContainer.querySelectorAll('.build-kit-desktop__dot'));
+    }
+
+    function updateControls() {
+      const isSinglePage = pages <= 1;
+      [btnPrev, btnNext].forEach(button => {
+        if (!button) return;
+        button.classList.toggle('is-inactive', isSinglePage);
+        button.toggleAttribute('disabled', isSinglePage);
+        button.setAttribute('aria-disabled', String(isSinglePage));
+      });
+    }
+
     function updatePage(nextPage) {
+      if (!grid || !isDesktopCarouselReady) return;
+
       page = normalize(nextPage);
       grid.style.transform = `translateX(-${page * pageWidth}px)`;
 
       dots.forEach((dot, index) => {
         dot.classList.toggle('is-active', index === page);
       });
+    }
+
+    function destroyDesktopCarousel() {
+      if (!grid || !isDesktopCarouselReady) return;
+
+      grid.style.transform = '';
+      tiles.forEach(tile => {
+        tile.hidden = false;
+        grid.appendChild(tile);
+      });
+      grid.querySelectorAll('.build-kit-desktop__page').forEach(pageEl => pageEl.remove());
+      isDesktopCarouselReady = false;
+      page = 0;
+    }
+
+    function initDesktopCarousel() {
+      if (!grid || !tiles.length || isDesktopCarouselReady) return;
+
+      pages = Math.max(1, Math.ceil(tiles.length / perPage));
+      page = Math.min(page, pages - 1);
+
+      for (let i = 0; i < pages; i += 1) {
+        const pageEl = document.createElement('div');
+        pageEl.className = 'build-kit-desktop__page';
+        tiles.slice(i * perPage, (i + 1) * perPage).forEach(tile => {
+          pageEl.appendChild(tile);
+          tile.hidden = false;
+        });
+        grid.appendChild(pageEl);
+      }
+
+      isDesktopCarouselReady = true;
+      renderDots();
+      updateControls();
+      updatePage(page);
+    }
+
+    function syncDesktopCarousel() {
+      if (desktopQuery.matches) {
+        initDesktopCarousel();
+      } else {
+        destroyDesktopCarousel();
+      }
     }
 
     function parsePrice(value) {
@@ -646,54 +731,45 @@ document.addEventListener('DOMContentLoaded', () => {
       return `${Math.max(0, value).toLocaleString('ru-RU')} ₽`;
     }
 
-    const productByImage = {
-      'jacket.png': {
-        name: 'Куртка FINNTRAIL Sherpa 1397 Darkgrey',
-        price: '12 999 ₽',
-        size: true,
-      },
-      'item-2.png': {
-        name: 'Куртка FINNTRAIL Redline 1410 Red',
-        price: '14 999 ₽',
-        size: true,
-      },
-      'item-3.png': {
-        name: 'Куртка FINNTRAIL Aspen 3462 Orange',
-        price: '37 999 ₽',
-        size: true,
-      },
-      'item-4.png': {
-        name: 'Куртка FINNTRAIL Speedmaster 1520 Graphite',
-        price: '19 999 ₽',
-        size: true,
-      },
-      'item-5.png': {
-        name: 'Куртка FINNTRAIL Rainproof 1540 Beige',
-        price: '16 999 ₽',
-        size: true,
-      },
-      'item-8.png': {
-        name: 'Куртка FINNTRAIL Camo 1430 Khaki',
-        price: '18 999 ₽',
-        size: true,
-      },
-      'item-9.png': {
-        name: 'Куртка FINNTRAIL Storm 1510 Graphite',
-        price: '13 999 ₽',
-        size: true,
-      },
-    };
-
+    // Данные товара читаются из data-атрибутов тайла (подставляет Bitrix).
+    // data-name — NAME товара, data-price — CATALOG_PRICE_1, data-size — "true" если есть выбор размера.
     function getTileProduct(tile) {
       const img = tile.querySelector('img');
       const src = img?.getAttribute('src') || '';
-      const file = src.split('/').pop();
-      const product = productByImage[file] || productByImage['jacket.png'];
 
       return {
-        ...product,
-        img: src,
+        name:  tile.dataset.name  || '',
+        price: tile.dataset.price || '',
+        size:  tile.dataset.size !== 'false',
+        img:   src,
       };
+    }
+
+    let selectedJacket = {
+      name: productName?.textContent?.trim() || productByImage['jacket.png'].name,
+      price: productPrice?.textContent?.trim() || productByImage['jacket.png'].price,
+      img: productImage?.getAttribute('src') || '/images/content/build-kit/jacket.png',
+      size: true,
+    };
+
+    function updateSelectedJacket(product) {
+      selectedJacket = product;
+
+      if (productImage) {
+        productImage.setAttribute('src', product.img);
+        productImage.setAttribute('srcset', `${product.img} 1x`);
+        productImage.setAttribute('alt', product.name);
+      }
+
+      if (productName) {
+        productName.textContent = product.name;
+      }
+
+      if (productPrice) {
+        productPrice.textContent = product.price;
+      }
+
+      updateKitSummary();
     }
 
     function getKitItems() {
@@ -703,18 +779,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialItemsTotal = getKitItems().reduce((sum, item) => {
       return sum + parsePrice(item.querySelector('.build-kit-desktop__kit-price')?.textContent);
     }, 0);
+    const initialSelectedJacketTotal = parsePrice(selectedJacket.price);
     const initialDisplayedTotal = parsePrice(totalPrice?.textContent);
-    const totalCorrection = initialDisplayedTotal ? initialDisplayedTotal - initialItemsTotal : 0;
+    const totalCorrection = initialDisplayedTotal ? initialDisplayedTotal - initialItemsTotal - initialSelectedJacketTotal : 0;
 
     function updateKitSummary() {
       const items = getKitItems();
       const itemsTotal = items.reduce((sum, item) => {
         return sum + parsePrice(item.querySelector('.build-kit-desktop__kit-price')?.textContent);
       }, 0);
-      const correctedTotal = items.length ? itemsTotal + totalCorrection : 0;
+      const hasJacketInList = Boolean(section.querySelector('.build-kit-desktop__kit-item[data-kit-type="jacket"]'));
+      const selectedTotal = selectedJacket && !hasJacketInList ? parsePrice(selectedJacket.price) : 0;
+      const selectedCount = selectedJacket && !hasJacketInList ? 1 : 0;
+      const correctedTotal = items.length || selectedCount ? itemsTotal + selectedTotal + totalCorrection : 0;
 
       if (kitCount) {
-        kitCount.textContent = `${Math.min(items.length, 4)}/4`;
+        kitCount.textContent = `${Math.min(items.length + selectedCount, 4)}/4`;
       }
 
       if (totalPrice) {
@@ -730,9 +810,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return button;
     }
 
-    function createKitItem(product) {
+    function createKitItem(product, type = '') {
       const article = document.createElement('article');
       article.className = 'build-kit-desktop__kit-item';
+      if (type) {
+        article.dataset.kitType = type;
+      }
       article.innerHTML = `
         <img class="build-kit-desktop__kit-img" src="${product.img}" srcset="${product.img} 1x" sizes="100vw" alt="" loading="lazy">
         <div class="build-kit-desktop__kit-content">
@@ -757,6 +840,31 @@ document.addEventListener('DOMContentLoaded', () => {
       return article;
     }
 
+    function syncJacketKitItem(product = selectedJacket) {
+      const currentJacket = section.querySelector('.build-kit-desktop__kit-item[data-kit-type="jacket"]');
+
+      if (desktopQuery.matches) {
+        currentJacket?.remove();
+        updateKitSummary();
+        return;
+      }
+
+      const jacketItem = createKitItem(product, 'jacket');
+
+      if (currentJacket) {
+        currentJacket.replaceWith(jacketItem);
+      } else {
+        const firstItem = kitList?.querySelector('.build-kit-desktop__kit-item');
+        if (firstItem) {
+          firstItem.after(jacketItem);
+        } else {
+          kitList?.prepend(jacketItem);
+        }
+      }
+
+      updateKitSummary();
+    }
+
     function addProductToKit(product) {
       const emptySlot = section.querySelector('.build-kit-desktop__kit-item--empty');
       const items = getKitItems();
@@ -772,9 +880,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tiles.forEach(tile => {
       tile.addEventListener('click', () => {
+        if (!desktopQuery.matches) return;
         tiles.forEach(item => item.classList.remove('is-active'));
         tile.classList.add('is-active');
-        addProductToKit(getTileProduct(tile));
+        updateSelectedJacket(getTileProduct(tile));
       });
     });
 
@@ -793,11 +902,14 @@ document.addEventListener('DOMContentLoaded', () => {
       updateKitSummary();
     });
 
-    btnPrev.addEventListener('click', () => updatePage(page - 1));
-    btnNext.addEventListener('click', () => updatePage(page + 1));
-    dots.forEach((dot, index) => dot.addEventListener('click', () => updatePage(index)));
-
-    updatePage(0);
+    btnPrev?.addEventListener('click', () => updatePage(page - 1));
+    btnNext?.addEventListener('click', () => updatePage(page + 1));
+    desktopQuery.addEventListener('change', () => {
+      syncDesktopCarousel();
+      syncJacketKitItem();
+    });
+    syncDesktopCarousel();
+    syncJacketKitItem();
   });
 
 

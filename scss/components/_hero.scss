@@ -179,6 +179,11 @@
       width: 16px;
       height: 16px;
     }
+
+    &.is-loading svg {
+      animation: hero-pagination-progress 5s linear infinite;
+      transform-origin: 50% 50%;
+    }
   }
 
   // Стрелки — скрыты на мобайле
@@ -249,6 +254,10 @@
   display: block;
   width: 24px;
   height: 24px;
+}
+
+.hero__menu-btn span {
+  display: none;
 }
 
 .hero__logo-link {
@@ -1043,6 +1052,131 @@
         height: 22px;
       }
     }
+  }
+}
+
+// Desktop header transition: initial Figma state -> compact scrolled state.
+@media (min-width: $bp-lg) {
+  .hero {
+    &__topbar {
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 5;
+      height: 112px;
+      color: $color-white;
+      pointer-events: none;
+      transition: height 0.96s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &__brand {
+      display: block;
+    }
+
+    &__menu-btn,
+    &__logo-link,
+    &__nav,
+    &__tools {
+      pointer-events: auto;
+      transition:
+        top 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+        left 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+        right 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.96s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.46s ease,
+        transform 0.96s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &__menu-btn {
+      position: absolute;
+      top: 24px;
+      left: 20px;
+      width: auto;
+      height: 32px;
+      gap: 8px;
+      font-family: $font-display;
+      font-size: $text-body-b2-size;
+      font-weight: $font-weight-black;
+      line-height: 20px;
+      text-transform: uppercase;
+
+      span {
+        display: block;
+        transition: opacity 0.52s ease;
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    &__logo-link {
+      position: absolute;
+      top: 24px;
+      left: 360px;
+      width: 270px;
+      height: 48px;
+    }
+
+    &__nav {
+      top: 88px;
+      left: 360px;
+      transform: none;
+      gap: 32px;
+    }
+
+    &__tools {
+      position: absolute;
+      top: 28px;
+      right: 20px;
+      gap: 24px;
+    }
+
+    &.is-header-compact {
+      .hero__topbar {
+        height: 72px;
+      }
+
+      .hero__menu-btn {
+        top: 20px;
+        left: 20px;
+        width: auto;
+        height: 32px;
+
+        span {
+          opacity: 0;
+        }
+      }
+
+      .hero__logo-link {
+        top: 20px;
+        left: 68px;
+        width: 180px;
+        height: 32px;
+      }
+
+      .hero__nav {
+        top: 31px;
+        left: calc(50% - 153px);
+        transform: translateX(-50%);
+      }
+
+      .hero__tools {
+        top: 24px;
+      }
+    }
+  }
+}
+
+@media (min-width: $bp-lg) and (prefers-reduced-motion: reduce) {
+  .hero__topbar,
+  .hero__menu-btn,
+  .hero__logo-link,
+  .hero__nav,
+  .hero__tools {
+    transition: none;
   }
 }
 

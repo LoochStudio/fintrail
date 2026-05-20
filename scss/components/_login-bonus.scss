@@ -36,14 +36,6 @@
     text-transform: uppercase;
   }
 
-  &__desc-mobile {
-    display: block;
-  }
-
-  &__desc-desktop {
-    display: none;
-  }
-
   &__form {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -180,14 +172,6 @@
 
   .login-bonus__desc {
     font-size: 16px;
-  }
-
-  .login-bonus__desc-mobile {
-    display: none;
-  }
-
-  .login-bonus__desc-desktop {
-    display: block;
   }
 
   .login-bonus__form {

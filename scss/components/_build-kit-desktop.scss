@@ -186,7 +186,14 @@
 
 .build-kit-desktop__grid {
   margin-top: -24px;
-  overflow: visible;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.build-kit-desktop__grid::-webkit-scrollbar {
+  display: none;
 }
 
 .build-kit-desktop__tiles {
@@ -591,13 +598,15 @@
 
   .build-kit-desktop__grid {
     margin-top: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .build-kit-desktop__tiles {
     display: flex;
     width: max-content;
     gap: 8px;
+    transform: none;
   }
 
   .build-kit-desktop__tile {
