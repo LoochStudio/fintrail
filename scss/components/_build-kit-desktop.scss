@@ -583,12 +583,13 @@
     content: '';
     position: absolute;
     display: block;
-    top: 72.667px;
-    left: 223.667px;
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba($color-white, 0.24);
+    top: 81.667px;
+    left: 232.667px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba($color-white, 0.42);
     border-radius: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
   }
 
@@ -824,7 +825,7 @@
   .build-kit-desktop__model {
     position: absolute;
     top: 0;
-    left: 541px;
+    left: calc(50% - 123px);
     right: auto;
     width: 499px;
     height: 650px;
@@ -939,7 +940,7 @@
   .build-kit-desktop__product-card {
     position: absolute;
     top: 107px;
-    left: 437px;
+    left: calc(50% - 227px);
     z-index: 3;
     display: flex;
     width: 166px;
@@ -975,12 +976,13 @@
     content: '';
     position: absolute;
     display: block;
-    top: 103.667px;
-    left: 323.667px;
-    width: 17px;
-    height: 18px;
-    border: 2px solid rgba($color-white, 0.24);
+    top: 112.667px;
+    left: 332.167px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba($color-white, 0.42);
     border-radius: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
   }
 

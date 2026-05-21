@@ -180,10 +180,6 @@
       height: 16px;
     }
 
-    &.is-loading svg {
-      animation: hero-pagination-progress 5s linear infinite;
-      transform-origin: 50% 50%;
-    }
   }
 
   // Стрелки — скрыты на мобайле
@@ -415,11 +411,6 @@
     gap: 24px;
   }
 
-  .hero__pagination-dot.is-loading svg {
-    animation: hero-pagination-progress 5s linear infinite;
-    transform-origin: 50% 50%;
-  }
-
   .hero__arrows {
     display: none;
   }
@@ -614,11 +605,11 @@
       position: relative;
       display: inline-block;
       overflow: hidden;
-      height: $text-subtitle-s2-line;
-      font-family: $font-mono;
-      font-size: $text-subtitle-s2-size;
-      font-weight: $font-weight-semibold;
-      line-height: $text-subtitle-s2-line;
+      height: $text-body-b1-line;
+      font-family: $font-display;
+      font-size: $text-body-b1-size;
+      font-weight: $font-weight-extrabold;
+      line-height: $text-body-b1-line;
       color: transparent;
       text-decoration: none;
       text-transform: uppercase;
@@ -796,10 +787,6 @@
         }
       }
 
-      &.is-loading svg {
-        animation: hero-pagination-progress 5s linear infinite;
-        transform-origin: 50% 50%;
-      }
     }
 
     &__arrows {
@@ -920,9 +907,13 @@
   }
 }
 
-@keyframes hero-pagination-progress {
+@keyframes hero-pagination-fill {
+  from {
+    stroke-dashoffset: 43.9823;
+  }
+
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
   }
 }
 
@@ -1052,6 +1043,64 @@
         height: 22px;
       }
     }
+  }
+}
+
+// Hero pagination progress: fill the ring around a static marker instead of rotating an SVG icon.
+.hero__pagination-dot {
+  position: relative;
+  color: $color-white;
+
+  svg {
+    display: block !important;
+  }
+
+  &::before,
+  &::after {
+    content: none;
+  }
+
+  .hero__pagination-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    overflow: visible;
+  }
+
+  .hero__pagination-point {
+    fill: currentColor;
+    opacity: 0.6;
+  }
+
+  .hero__pagination-progress {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 43.9823;
+    stroke-dashoffset: 43.9823;
+    opacity: 0;
+    transform: rotate(-90deg);
+    transform-origin: 9px 9px;
+  }
+
+  &.is-active {
+    width: 18px;
+    height: 18px;
+
+    .hero__pagination-point {
+      opacity: 1;
+    }
+  }
+
+  &.is-loading .hero__pagination-progress {
+    opacity: 1;
+    animation: hero-pagination-fill 5s linear forwards;
+  }
+
+  &.is-loading .hero__pagination-icon {
+    animation: none !important;
+    transform: none !important;
   }
 }
 

@@ -225,6 +225,7 @@
 // ─── Desktop (≥1280px) ──────────────────────────────────────────────────────
 @media (min-width: $bp-lg) {
   .navbar {
+    display: flex;
     padding-top: 30px;
 
     &__inner {

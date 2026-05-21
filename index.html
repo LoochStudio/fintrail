@@ -172,6 +172,7 @@
     <div class="hero__row">
       <div class="hero__content">
         <div class="hero__infos">
+          <!-- BITRIX: первый элемент слайдера — h1; все последующие — p с тем же классом -->
           <div class="hero__info is-active">
             <div class="hero__text">
               <h1 class="hero__title"><span class="hero__title-mobile">Для тех, кто выбирает<br>новые маршруты</span><span class="hero__title-tablet">Для тех,<br>кто выбирает<br>новые маршруты</span><span class="hero__title-desktop">Для тех, кто выбирает<br>новые маршруты</span></h1>
@@ -180,7 +181,7 @@
           </div>
           <div class="hero__info">
             <div class="hero__text">
-              <h1 class="hero__title"><span class="hero__title-mobile">Для тех, кто выбирает<br>новые маршруты</span><span class="hero__title-tablet">Для тех,<br>кто выбирает<br>новые маршруты</span><span class="hero__title-desktop">Для тех, кто выбирает<br>новые маршруты</span></h1>
+              <p class="hero__title"><span class="hero__title-mobile">Для тех, кто выбирает<br>новые маршруты</span><span class="hero__title-tablet">Для тех,<br>кто выбирает<br>новые маршруты</span><span class="hero__title-desktop">Для тех, кто выбирает<br>новые маршруты</span></p>
               <p class="hero__desc"><span class="hero__desc-mobile">Экипировка для треккинга <br>и путешествий, которая не <br>подводит в любых условиях</span><span class="hero__desc-tablet">Экипировка для треккинга<br>и путешествий, которая не<br>подводит в любых условиях</span><span class="hero__desc-desktop">Экипировка для треккинга и путешествий,<br>которая не подводит в любых условиях</span></p>
             </div>
           </div>
@@ -188,8 +189,18 @@
       </div>
 
       <div class="hero__pagination">
-        <button class="hero__pagination-dot is-active" type="button" aria-label="Слайд 1"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-active"></use></svg></button>
-        <button class="hero__pagination-dot" type="button" aria-label="Слайд 2"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-pagination-dot"></use></svg></button>
+        <button class="hero__pagination-dot is-active" type="button" aria-label="Слайд 1">
+          <svg class="hero__pagination-icon" viewBox="0 0 18 18" aria-hidden="true">
+            <circle class="hero__pagination-point" cx="9" cy="9" r="4"></circle>
+            <circle class="hero__pagination-progress" cx="9" cy="9" r="7"></circle>
+          </svg>
+        </button>
+        <button class="hero__pagination-dot" type="button" aria-label="Слайд 2">
+          <svg class="hero__pagination-icon" viewBox="0 0 18 18" aria-hidden="true">
+            <circle class="hero__pagination-point" cx="9" cy="9" r="4"></circle>
+            <circle class="hero__pagination-progress" cx="9" cy="9" r="7"></circle>
+          </svg>
+        </button>
       </div>
 
       <div class="hero__arrows">
@@ -1230,7 +1241,7 @@
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg>
       </span>
     </a>
-    <a href="/favorites/" class="tabbar__item" aria-label="Избранное">
+    <a href="/wishlist/" class="tabbar__item" aria-label="Избранное">
       <span class="tabbar__icon">
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-bookmark"></use></svg>
       </span>

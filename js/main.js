@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.community-showcase__stats',
     '.footer-desktop__column',
     '.footer-desktop__socials',
-    '.footer-desktop__credits',
+    '.footer-desktop__legal',
   ];
 
   const revealItems = Array.from(document.querySelectorAll(revealSelectors.join(',')));
@@ -178,10 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const hero = document.querySelector('.hero');
     const total   = Math.max(dots.length, slides.length);
     let current   = 0;
-    const activeDotIcon = dots[0]?.querySelector('use')?.getAttribute('href') || '';
-    const defaultDotIcon = dots[1]?.querySelector('use')?.getAttribute('href')
-      || dots[0]?.querySelector('use')?.getAttribute('href')
-      || '';
 
     function replayCurrentSlide() {
       if (slides.length !== 1 || !hero) return;
@@ -200,11 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
       activeDot.classList.add('is-loading');
     }
 
-    function setDotIcon(dot, icon) {
-      if (!icon) return;
-      dot?.querySelector('use')?.setAttribute('href', icon);
-    }
-
     function goTo(idx, force = false) {
       const next = (idx + total) % total;
       if (next === current && !force) {
@@ -213,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      setDotIcon(dots[current], defaultDotIcon);
       dots[current]?.classList.remove('is-active', 'is-loading');
       infos[current % infos.length]?.classList.remove('is-active');
 
@@ -222,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `translateX(-${(current % slides.length) * 100}%)`
         : 'translateX(0)';
 
-      setDotIcon(dots[current], activeDotIcon);
       dots[current]?.classList.add('is-active');
       infos[current % infos.length]?.classList.add('is-active');
       restartProgress();
@@ -359,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = section.querySelectorAll('[data-activity-link]');
     const preview = section.querySelector('.activity-picker__preview-img');
     const image = section.querySelector('.activity-picker__image-img');
+    const cta = section.querySelector('.activity-picker__cta');
 
     if (!links.length) return;
 
@@ -379,6 +369,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setImage(preview, link.dataset.preview);
       setImage(image, link.dataset.image);
+
+      if (cta) cta.href = link.getAttribute('href') || cta.href;
     }
 
     links.forEach(link => {
@@ -405,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const total = originals.length;
     const initialOriginal = Math.max(0, originals.findIndex(card => card.classList.contains('is-active')));
-    let index = total + (initialOriginal === -1 ? 0 : initialOriginal);
+    let index = total + initialOriginal;
     let isAnimating = false;
 
     function cloneCard(card) {
@@ -528,9 +520,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNext.addEventListener('click', () => goTo(index + 1));
     cards.forEach((card, cardIndex) => {
       card.addEventListener('click', event => {
-        if (isDesktop() || card.classList.contains('is-active')) return;
+        if (card.classList.contains('is-active')) return;
+
         event.preventDefault();
-        goTo(cardIndex);
+
+        const direction = cardIndex < index ? -1 : 1;
+        goTo(index + direction);
       });
     });
 
@@ -745,10 +740,11 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    let selectedJacket = {
-      name: productName?.textContent?.trim() || productByImage['jacket.png'].name,
-      price: productPrice?.textContent?.trim() || productByImage['jacket.png'].price,
-      img: productImage?.getAttribute('src') || '/images/content/build-kit/jacket.png',
+    const activeTile = tiles.find(t => t.classList.contains('is-active')) || tiles[0];
+    let selectedJacket = activeTile ? getTileProduct(activeTile) : {
+      name: productName?.textContent?.trim() || '',
+      price: productPrice?.textContent?.trim() || '',
+      img: productImage?.getAttribute('src') || '',
       size: true,
     };
 
