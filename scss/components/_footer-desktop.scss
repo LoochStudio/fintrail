@@ -5,9 +5,9 @@
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  gap: 44px;
+  gap: 48px;
   margin-top: 64px;
-  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  padding: 20px 20px calc(20px + var(--tabbar-height, 72px) + env(safe-area-inset-bottom));
   background: $color-surface;
 }
 
@@ -19,7 +19,7 @@
 .footer-desktop__nav {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 48px;
 }
 
 .footer-desktop__column {
@@ -118,7 +118,7 @@
 .footer-desktop__divider {
   width: 100%;
   height: 1px;
-  background: $color-white;
+  background: $color-secondary-gray;
 }
 
 .footer-desktop__wordmark {
@@ -145,7 +145,7 @@
 
 .footer-desktop__legal a {
   font-family: $font-mono;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.2;
   color: $color-primary-gray;

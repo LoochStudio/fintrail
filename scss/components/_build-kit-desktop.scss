@@ -4,7 +4,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 0;
   margin-top: 64px;
   padding: 20px;
   background: $color-surface;
@@ -26,6 +26,7 @@
   display: flex;
   align-items: flex-start;
   gap: 17px;
+  margin-top: 32px;
 }
 
 .build-kit-desktop__gender-btn,
@@ -65,7 +66,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: -12px;
+  margin-top: 32px;
 }
 
 .build-kit-desktop__filter-row {
@@ -90,7 +91,7 @@
 .build-kit-desktop__example {
   position: relative;
   height: 350px;
-  margin-top: 0;
+  margin-top: 16px;
 }
 
 .build-kit-desktop__model {
@@ -125,11 +126,17 @@
   background: $color-white;
   color: $color-primary-black;
   text-decoration: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .build-kit-desktop__product-card::before,
 .build-kit-desktop__product-card::after {
   display: none;
+}
+
+.build-kit-desktop__product-card:active {
+  background: $color-button-disabled;
 }
 
 .build-kit-desktop__product-pic {
@@ -185,7 +192,7 @@
 }
 
 .build-kit-desktop__grid {
-  margin-top: -24px;
+  margin-top: 16px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -213,10 +220,16 @@
   border: 0;
   border-radius: 8px;
   background: transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .build-kit-desktop__tile.is-active {
   background: $color-white;
+}
+
+.build-kit-desktop__tile:active {
+  background: $color-button-disabled;
 }
 
 .build-kit-desktop__tile img {
@@ -234,7 +247,7 @@
   height: 52px;
   align-items: center;
   gap: 12px;
-  margin-top: -32px;
+  margin-top: 16px;
   padding: 8px;
   border-bottom: 1px solid $color-primary-black;
   border-radius: 2px;
@@ -280,7 +293,7 @@
   display: none;
   flex-direction: column;
   gap: 4px;
-  margin-top: -40px;
+  margin-top: 0;
 }
 
 .build-kit-desktop.is-kit-open .build-kit-desktop__kit-list {
@@ -443,7 +456,7 @@
   display: flex;
   flex-direction: column;
   gap: 26px;
-  margin-top: -16px;
+  margin-top: 32px;
 }
 
 .build-kit-desktop__total {
@@ -487,6 +500,7 @@
   line-height: 18px;
   text-decoration: none;
   text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .build-kit-desktop__submit svg {
@@ -497,7 +511,7 @@
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
   .build-kit-desktop {
     display: flex;
-    gap: 32px;
+    gap: 0;
     margin-top: $section-gap-xl;
     padding: 0 $spacing-page-desktop;
     background: $color-surface;
@@ -542,7 +556,7 @@
 
   .build-kit-desktop__model {
     top: 0;
-    right: 91px;
+    right: calc(50% - 228px);
     width: 364px;
     height: 474px;
   }
@@ -555,7 +569,7 @@
 
   .build-kit-desktop__product-card {
     top: 50%;
-    left: 182px;
+    left: calc(50% - 228px);
     width: 166px;
     height: 240px;
     transform: translateY(-50%);
@@ -566,7 +580,7 @@
     position: absolute;
     display: block;
     top: 79px;
-    left: 110px;
+    left: 120px;
     width: 126px;
     height: 6px;
     background:
@@ -584,7 +598,7 @@
     position: absolute;
     display: block;
     top: 81.667px;
-    left: 232.667px;
+    left: 242.667px;
     width: 16px;
     height: 16px;
     border: 1px solid rgba($color-white, 0.42);
@@ -631,7 +645,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4px;
-    margin-top: 0;
+    margin-top: 32px;
   }
 
   .build-kit-desktop__kit-item {
@@ -673,7 +687,7 @@
     display: flex;
     flex-direction: row;
     gap: 26px;
-    margin-top: 0;
+    margin-top: 32px;
   }
 
   .build-kit-desktop__total {
@@ -869,6 +883,7 @@
     border: 0;
     background: transparent;
     cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
   }
 
   .build-kit-desktop__tile[hidden] {
@@ -878,7 +893,17 @@
   .build-kit-desktop__tile:hover,
   .build-kit-desktop__tile:focus-visible {
     border-radius: 8px;
+    background: $color-button-secondary-hover;
+  }
+
+  .build-kit-desktop__tile.is-active,
+  .build-kit-desktop__tile.is-active:hover,
+  .build-kit-desktop__tile.is-active:focus-visible {
     background: $color-white;
+  }
+
+  .build-kit-desktop__tile:active {
+    background: $color-button-disabled;
   }
 
   .build-kit-desktop__tile img {
@@ -913,6 +938,7 @@
   .build-kit-desktop__arrow:hover,
   .build-kit-desktop__arrow:focus-visible {
     background: $color-white;
+    color: $color-primary-black;
   }
 
   .build-kit-desktop__arrow svg {
@@ -952,6 +978,25 @@
     background: $color-white;
     color: $color-primary-black;
     text-decoration: none;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .build-kit-desktop__product-card:hover,
+    .build-kit-desktop__product-card:focus-visible {
+      background: $color-button-secondary-hover;
+    }
+
+    .build-kit-desktop__product-card:active {
+      background: $color-button-disabled;
+    }
+
+    .build-kit-desktop__submit:hover,
+    .build-kit-desktop__submit:focus-visible {
+      background: $color-button-primary-hover;
+      color: $color-white;
+    }
   }
 
   .build-kit-desktop__product-card::before {
@@ -1301,12 +1346,6 @@
   .build-kit-desktop__submit svg {
     width: 16px;
     height: 16px;
-  }
-
-  .build-kit-desktop__submit > span {
-    --roll-hover-line: 14px;
-    --roll-hover-from: #{$color-white};
-    --roll-hover-to: #{$color-white};
   }
 
 }

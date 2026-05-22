@@ -56,9 +56,14 @@
     height: 52px;
     align-items: center;
     justify-content: center;
-    padding: 0 16px;
-    background: $color-control-dark;
+    padding: 8px 16px;
+    background: $color-control-glass;
     border-radius: $radius-xs;
+    transition: background 0.18s ease, border-color 0.18s ease;
+
+    &:focus-within {
+      background: $color-control-glass;
+    }
   }
 
   &__field-label {
@@ -81,7 +86,7 @@
     font-family: $font-mono;
     font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
-    line-height: 1.2;
+    line-height: $text-body-b2-line;
     color: $color-white;
     text-transform: uppercase;
 
@@ -103,6 +108,7 @@
     background: $color-white;
     color: $color-black;
     cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   }
 
   &__submit {
@@ -145,6 +151,29 @@
   &__provider--yandex svg {
     width: 20px;
     height: 20px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__field:hover {
+      background: $color-control-glass-hover;
+    }
+
+    &__field:focus-within:hover {
+      background: $color-control-glass;
+    }
+
+    &__submit:hover,
+    &__submit:focus-visible {
+      background: $color-button-secondary-hover;
+      color: $color-primary-black;
+    }
+
+    &__provider:hover,
+    &__provider:focus-visible {
+      border-color: rgba($color-white, 0.32);
+      background: $color-control-glass;
+      color: $color-white;
+    }
   }
 }
 

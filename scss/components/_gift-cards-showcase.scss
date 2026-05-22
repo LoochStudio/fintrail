@@ -148,22 +148,11 @@
   bottom: 30px;
   left: 50%;
   z-index: 5;
-  display: inline-flex;
   height: 44px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   padding: 14px 16px 14px 24px;
-  border-radius: $radius-xs;
-  background: $color-primary-black;
-  color: $color-white;
-  font-family: $font-display;
   font-size: $text-body-b2-size;
   font-weight: $font-weight-black;
   line-height: 12px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
   transform: translateX(-50%);
   white-space: nowrap;
 
@@ -229,10 +218,19 @@
     background: $color-white;
     color: $color-primary-black;
     cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
 
     svg {
       width: 16px;
       height: 16px;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .gift-cards-showcase__arrow:hover,
+    .gift-cards-showcase__arrow:focus-visible {
+      background: $color-button-secondary-hover;
+      color: $color-primary-black;
     }
   }
 
@@ -389,9 +387,11 @@
       width: 16px;
       height: 16px;
     }
+  }
 
-    &:hover,
-    &:focus-visible {
+  @media (hover: hover) and (pointer: fine) {
+    .gift-cards-showcase__arrow:hover,
+    .gift-cards-showcase__arrow:focus-visible {
       background: $color-white;
     }
   }

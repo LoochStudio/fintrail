@@ -1,0 +1,173 @@
+@use '../variables' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-weight: $font-weight-extrabold;
+  letter-spacing: 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+
+  svg {
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  &:disabled,
+  &.is-disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.button--size-l {
+  min-height: 52px;
+  padding: 18px 32px;
+  font-size: $text-body-b1-size;
+  line-height: 14px;
+}
+
+.button--size-m {
+  min-height: 44px;
+  padding: 14px 24px;
+  font-size: $text-body-b2-size;
+  line-height: 12px;
+  font-weight: $font-weight-black;
+}
+
+.button--size-s {
+  min-height: 36px;
+  padding: 11px 16px;
+  font-size: $text-body-b2-size;
+  line-height: 12px;
+  font-weight: $font-weight-black;
+}
+
+.button--size-xs {
+  min-height: 24px;
+  padding: 4px 12px;
+  font-size: $text-body-b2-size;
+  line-height: 12px;
+  font-weight: 700;
+}
+
+.button--primary {
+  background: $color-primary-black;
+  color: $color-white;
+
+  &:disabled,
+  &.is-disabled {
+    background: $color-button-disabled;
+    color: $color-primary-gray;
+  }
+}
+
+.button--on-color {
+  background: $color-white;
+  color: $color-primary-black;
+
+  &:disabled,
+  &.is-disabled {
+    background: $color-button-disabled;
+    color: $color-primary-gray;
+  }
+}
+
+.button--ghost {
+  background: $color-surface;
+  color: $color-primary-gray;
+
+  &:disabled,
+  &.is-disabled {
+    background: $color-button-disabled;
+    color: $color-primary-gray;
+  }
+}
+
+.button--on-content {
+  background: $color-control-glass;
+  color: $color-white;
+  backdrop-filter: blur(8px);
+
+  &:disabled,
+  &.is-disabled {
+    background: $color-control-glass-hover;
+    color: $color-primary-gray;
+  }
+}
+
+.button--icon {
+  width: 52px;
+  height: 52px;
+  min-height: 0;
+  padding: 14px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.button--icon.button--size-m {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+}
+
+.button--icon.button--size-s {
+  width: 36px;
+  height: 36px;
+  padding: 7px;
+}
+
+.button--icon.button--size-xs {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button--primary:hover,
+  .button--primary:focus-visible {
+    background: $color-button-primary-hover;
+    color: $color-white;
+  }
+
+  .button--on-color:hover,
+  .button--on-color:focus-visible,
+  .button--ghost:hover,
+  .button--ghost:focus-visible {
+    background: $color-button-secondary-hover;
+    color: $color-primary-black;
+  }
+
+  .button--on-content:hover,
+  .button--on-content:focus-visible {
+    background: $color-control-glass-hover;
+    color: $color-white;
+  }
+}
+
+.button--primary:active,
+.button--on-color:active,
+.button--ghost:active {
+  background: $color-button-primary-pressed;
+  color: $color-white;
+}
+
+.button--on-content:active {
+  background: $color-control-glass-disabled;
+}

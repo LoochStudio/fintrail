@@ -89,6 +89,7 @@
   background: $color-white;
   color: $color-primary-black;
   text-decoration: none;
+  transition: background 0.18s ease;
 }
 
 .activity-product-card__pic {
@@ -169,11 +170,25 @@
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease;
 
   svg {
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .activity-product-card:hover,
+  .activity-product-card:focus-visible {
+    background: $color-button-secondary-hover;
+  }
+
+  .activity-picker__cta:hover,
+  .activity-picker__cta:focus-visible {
+    background: $color-button-primary-hover;
+    color: $color-white;
   }
 }
 

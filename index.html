@@ -52,13 +52,13 @@
       </div>
 
       <!-- Поиск (мобайл: вторая строка; десктоп: в ряд между логотипом и кнопками) -->
-      <label class="navbar__search">
+      <label class="navbar__search" aria-label="Поиск">
         <svg class="navbar__search-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
         <!--
           BITRIX: поиск — bitrix:search.title или bitrix:search.form
           action="/search/" method="get"
         -->
-        <input class="navbar__search-input" type="text" placeholder="Поиск по товарам и брендам" autocomplete="off">
+        <input class="navbar__search-input" type="search" placeholder="Поиск по товарам и брендам" autocomplete="off" aria-label="Поиск по товарам и брендам">
       </label>
 
       <!-- Десктоп: кнопка геолокации (на мобайле скрыто) -->
@@ -113,6 +113,19 @@
     </nav>
 
   </header>
+
+  <!--
+    BITRIX: всё внутри <main> — вызовы компонентов в шаблоне страницы
+    (/bitrix/templates/<template_name>/page_templates/index.php
+     или в контентной области через $APPLICATION->IncludeComponent())
+  -->
+  <main class="page-content">
+
+  <!--
+    BITRIX: все контентные <img> со статическим srcset "... 1x" — точки подстановки.
+    При интеграции заменить на CMS-generated srcset с реальными ширинами
+    и WebP/AVIF, например 480w / 960w / 1440w. Не оставлять 1x как финальный вариант.
+  -->
 
   <!-- Hero -->
   <!--
@@ -243,13 +256,6 @@
 
   </section>
 
-  <!--
-    BITRIX: всё внутри <main> — вызовы компонентов в шаблоне страницы
-    (/bitrix/templates/<template_name>/page_templates/index.php
-     или в контентной области через $APPLICATION->IncludeComponent())
-  -->
-  <main class="page-content">
-
     <!-- Регистрация за бонусы -->
     <!--
       BITRIX: форма авторизации/регистрации + OAuth провайдеры
@@ -293,10 +299,10 @@
       <div class="recommendations-new__header">
         <h2 class="recommendations-new__title" id="recommendations-new-title">Рекомендованные</h2>
         <div class="recommendations-new__controls">
-          <button class="recommendations-new__arrow is-inactive" type="button" aria-label="Назад">
+          <button class="recommendations-new__arrow button button--icon button--size-m button--ghost is-inactive" type="button" aria-label="Назад">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
           </button>
-          <button class="recommendations-new__arrow" type="button" aria-label="Вперед">
+          <button class="recommendations-new__arrow button button--icon button--size-m button--ghost" type="button" aria-label="Вперед">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
           </button>
         </div>
@@ -436,7 +442,7 @@
         </div>
       </div>
 
-      <a class="recommendations-new__more" href="/catalog/?sort=recommended">
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/?sort=recommended">
         <span>Смотреть все</span>
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
       </a>
@@ -550,7 +556,7 @@
           <img class="gift-cards-showcase__mountains-img" src="/images/content/gift-cards-showcase/mountains.png" srcset="/images/content/gift-cards-showcase/mountains.png 1x" sizes="100vw" alt="" loading="lazy">
         </div>
 
-        <a class="gift-cards-showcase__cta" href="/gift-cards/">
+        <a class="gift-cards-showcase__cta button button--primary button--size-m" href="/gift-cards/">
           <span>Выбрать карту</span>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
         </a>
@@ -701,10 +707,10 @@
       <div class="recommendations-new__header">
         <h2 class="recommendations-new__title" id="popular-products-title">Популярные</h2>
         <div class="recommendations-new__controls">
-          <button class="recommendations-new__arrow is-inactive" type="button" aria-label="Назад">
+          <button class="recommendations-new__arrow button button--icon button--size-m button--ghost is-inactive" type="button" aria-label="Назад">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
           </button>
-          <button class="recommendations-new__arrow" type="button" aria-label="Вперед">
+          <button class="recommendations-new__arrow button button--icon button--size-m button--ghost" type="button" aria-label="Вперед">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
           </button>
         </div>
@@ -844,7 +850,7 @@
         </div>
       </div>
 
-      <a class="recommendations-new__more" href="/catalog/?sort=popular">
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/?sort=popular">
         <span>Смотреть все</span>
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
       </a>
@@ -1058,6 +1064,12 @@
       </div>
     </section>
 
+  </main>
+
+  <!--
+    BITRIX: футер страницы — footer.php шаблона сайта
+    (/bitrix/templates/<template_name>/footer.php)
+  -->
     <footer class="footer-desktop" aria-label="Футер">
       <div class="footer-desktop__top">
         <nav class="footer-desktop__nav" aria-label="Навигация в футере">
@@ -1130,15 +1142,15 @@
 
       <div class="footer-desktop__divider"></div>
 
-      <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL">
-        <img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
-      </a>
-
       <div class="footer-desktop__legal">
         <a href="/privacy/">Политика конфиденциальности</a>
         <a href="/offer/">Публичная оферта</a>
         <a href="/personal-data/">Согласие на обработку персональных данных</a>
       </div>
+
+      <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL">
+        <img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
+      </a>
     </footer>
 
     <!--
@@ -1216,8 +1228,6 @@
       </div>
 
     </footer>
-
-  </main>
 
   <!--
     BITRIX: таббар — часть footer.php шаблона сайта

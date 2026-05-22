@@ -3,7 +3,9 @@
 @use 'reset';
 
 // Components
+@use 'components/states';
 @use 'components/motion';
+@use 'components/buttons';
 @use 'components/navbar';
 @use 'components/hero';
 @use 'components/login-bonus';

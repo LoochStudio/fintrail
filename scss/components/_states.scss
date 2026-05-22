@@ -1,0 +1,97 @@
+@use '../variables' as *;
+
+.is-disabled,
+[disabled],
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+button.is-disabled,
+button[disabled],
+a.is-disabled,
+a[aria-disabled='true'] {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.is-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.is-loading::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: state-spin 0.7s linear infinite;
+}
+
+.is-loading > :not(.visually-hidden) {
+  opacity: 0;
+}
+
+.is-error {
+  border-color: $color-accent !important;
+}
+
+.is-success {
+  border-color: #1f8f4d !important;
+}
+
+.form-message {
+  display: block;
+  margin-top: 8px;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.form-message--error {
+  color: $color-accent;
+}
+
+.form-message--success {
+  color: #1f8f4d;
+}
+
+.form-message--info {
+  color: $color-muted;
+}
+
+.empty-state,
+.retry-state {
+  display: grid;
+  min-height: 160px;
+  place-items: center;
+  padding: 32px 20px;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  color: $color-muted;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@keyframes state-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

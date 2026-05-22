@@ -150,11 +150,20 @@
   border-radius: $radius-xs;
   background: $color-white;
   color: $color-black;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .community-showcase__social svg {
   width: 44px;
   height: 44px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .community-showcase__social:hover,
+  .community-showcase__social:focus-visible {
+    background: $color-button-secondary-hover;
+    color: $color-primary-black;
+  }
 }
 
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {

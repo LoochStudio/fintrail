@@ -62,6 +62,7 @@
       &:hover,
       &:focus-visible {
         background: $color-white;
+        color: $color-primary-black;
       }
     }
   }
@@ -92,15 +93,11 @@
     height: 44px;
     gap: 8px;
     padding: 14px 16px 14px 24px;
-    background: $color-surface;
     border-radius: $radius-xs;
     font-family: $font-display;
     font-size: $text-body-b2-size;
     font-weight: $font-weight-black;
     line-height: 12px;
-    color: $color-muted;
-    text-decoration: none;
-    text-transform: uppercase;
     transition: color 0.18s ease;
 
     svg {
@@ -321,6 +318,14 @@
     color: $color-primary-black;
     cursor: pointer;
     transition: background 0.18s ease, color 0.18s ease;
+
+    &:disabled,
+    &.is-disabled {
+      background: $color-button-disabled;
+      color: $color-primary-gray;
+      cursor: default;
+      pointer-events: none;
+    }
   }
 
   &__prices,
@@ -368,6 +373,24 @@
 
     span {
       display: none;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__cart:hover,
+    &__cart:focus-visible {
+      background: $color-button-primary-hover;
+      color: $color-white;
+    }
+
+    &__cart:active {
+      background: $color-button-primary-pressed;
+      color: $color-white;
+    }
+
+    &__cart:hover .recommendation-card__old-price,
+    &__cart:focus-visible .recommendation-card__old-price {
+      color: #a8a8a8;
     }
   }
 
@@ -526,7 +549,7 @@
 
   .recommendation-card:hover .recommendation-card__cart,
   .recommendation-card:focus-within .recommendation-card__cart {
-    background: $color-primary-black;
+    background: $color-button-primary-hover;
     color: $color-white;
   }
 
@@ -725,7 +748,7 @@
 
   .recommendation-card:hover .recommendation-card__cart,
   .recommendation-card:focus-within .recommendation-card__cart {
-    background: $color-primary-black;
+    background: $color-button-primary-hover;
     color: $color-white;
   }
 

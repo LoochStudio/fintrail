@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const rollHoverSelectors = [
     '.activity-picker__link',
     '.build-kit-desktop__filter',
-    '.build-kit-desktop__submit > span',
     '.journal-showcase__category > span:not(.journal-showcase__category-media)',
     '.journal-showcase__all > span',
     '.recommendations-new__more > span',
@@ -115,23 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroHeader = document.querySelector('.hero');
   const desktopHeaderQuery = window.matchMedia('(min-width: 1280px)');
   let headerTicking = false;
-  let isHeaderIntroCompact = false;
-  let isHeaderIntroAnimating = false;
-  let headerIntroTimer = 0;
 
   const syncHeroHeaderState = () => {
     headerTicking = false;
     if (!heroHeader) return;
 
-    if (!desktopHeaderQuery.matches) {
-      isHeaderIntroCompact = false;
-      isHeaderIntroAnimating = false;
-      window.clearTimeout(headerIntroTimer);
-    } else if (window.scrollY > 2) {
-      isHeaderIntroCompact = false;
-    }
-
-    const shouldCompact = desktopHeaderQuery.matches && (isHeaderIntroCompact || window.scrollY > 2);
+    const shouldCompact = desktopHeaderQuery.matches && window.scrollY > 2;
     heroHeader.classList.toggle('is-header-compact', shouldCompact);
   };
 
@@ -143,27 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   syncHeroHeaderState();
   window.addEventListener('scroll', requestHeroHeaderSync, { passive: true });
-  window.addEventListener('wheel', event => {
-    if (!heroHeader || !desktopHeaderQuery.matches) return;
-    if (window.scrollY > 2) return;
-
-    if (isHeaderIntroAnimating) {
-      event.preventDefault();
-      return;
-    }
-
-    if (event.deltaY > 0 && !isHeaderIntroCompact) {
-      event.preventDefault();
-      isHeaderIntroCompact = true;
-      isHeaderIntroAnimating = true;
-      heroHeader.classList.add('is-header-compact');
-
-      window.clearTimeout(headerIntroTimer);
-      headerIntroTimer = window.setTimeout(() => {
-        isHeaderIntroAnimating = false;
-      }, 1000);
-    }
-  }, { passive: false });
   desktopHeaderQuery.addEventListener('change', syncHeroHeaderState);
 
   // ─── Hero slider ────────────────────────────────────────────────────────────

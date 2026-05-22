@@ -139,6 +139,7 @@
     border-radius: 50%;
     cursor: pointer;
     color: $color-text-primary;
+    transition: background 0.18s ease, color 0.18s ease;
   }
 
   // ─── Навигационная строка (десктоп, скрыта на мобайле) ───────────────────
@@ -154,13 +155,14 @@
 
   &__nav-link {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     overflow: hidden;
-    height: 20px;
+    height: 40px;
     font-family: $font-nav;
     font-size: 16px;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 40px;
     color: transparent;
     text-decoration: none;
     white-space: nowrap;
@@ -269,6 +271,26 @@
       mix-blend-mode: luminosity;
       cursor: pointer;
       color: rgba(95, 95, 95, 0.9);
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &__location-btn:hover,
+      &__location-btn:focus-visible,
+      &__btn-icon:hover,
+      &__btn-icon:focus-visible,
+      &__btn-user:hover,
+      &__btn-user:focus-visible {
+        background: $color-button-secondary-hover;
+        color: $color-primary-black;
+      }
+    }
+
+    &__location-btn:active,
+    &__btn-icon:active,
+    &__btn-user:active {
+      background: $color-button-primary-pressed;
+      color: $color-white;
     }
 
     // Поиск — растягивается на всё доступное пространство

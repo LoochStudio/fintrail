@@ -89,6 +89,14 @@
   width: 100%;
   color: $color-primary-black;
   text-decoration: none;
+  transition: opacity 0.18s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .store-showcase__row:hover,
+  .store-showcase__row:focus-visible {
+    opacity: 0.6;
+  }
 }
 
 .store-showcase__row--center {
