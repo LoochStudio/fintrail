@@ -256,11 +256,14 @@
 
 .hero__menu-btn svg {
   border-radius: $radius-xs;
+  pointer-events: auto;
   transition: color 0.18s ease, opacity 0.18s ease;
 }
 
 .hero__menu-btn span {
   display: none;
+  pointer-events: auto;
+  transition: color 0.18s ease, opacity 0.52s ease;
 }
 
 .hero__logo-link {
@@ -311,8 +314,10 @@
     color: $color-secondary-gray;
   }
 
-  .hero__menu-btn:hover svg,
-  .hero__menu-btn:focus-visible svg {
+  .hero__menu-btn svg:hover,
+  .hero__menu-btn:focus-visible svg,
+  .hero__menu-btn span:hover,
+  .hero__menu-btn:focus-visible span {
     color: $color-secondary-gray;
   }
 }
@@ -334,8 +339,10 @@
   @media (hover: hover) and (pointer: fine) {
     .hero__tool:hover,
     .hero__tool:focus-visible,
-    .hero__menu-btn:hover svg,
-    .hero__menu-btn:focus-visible svg {
+    .hero__menu-btn svg:hover,
+    .hero__menu-btn:focus-visible svg,
+    .hero__menu-btn span:hover,
+    .hero__menu-btn:focus-visible span {
       color: $color-gray-primary;
     }
   }
@@ -1257,10 +1264,10 @@
       font-weight: $font-weight-black;
       line-height: 20px;
       text-transform: uppercase;
+      pointer-events: none;
 
       span {
         display: block;
-        transition: opacity 0.52s ease;
       }
 
       svg {
@@ -1358,8 +1365,10 @@
           color: $color-gray-primary;
         }
 
-        .hero__menu-btn:hover svg,
-        .hero__menu-btn:focus-visible svg {
+        .hero__menu-btn svg:hover,
+        .hero__menu-btn:focus-visible svg,
+        .hero__menu-btn span:hover,
+        .hero__menu-btn:focus-visible span {
           color: $color-gray-primary;
         }
       }

@@ -237,8 +237,8 @@
   &__provider {
     min-width: 52px;
     padding: 12px 16px;
-    border: 1px solid rgba($color-white, 0.16);
-    background: transparent;
+    border: 1px solid $color-white;
+    background: rgba($color-white, 0.16);
     color: $color-white;
     text-decoration: none;
 
@@ -250,7 +250,7 @@
     }
   }
 
-  &__provider:first-child svg {
+  &__provider--vk svg {
     width: 20px;
     height: 20px;
   }
@@ -281,10 +281,15 @@
 
     &__provider:hover,
     &__provider:focus-visible {
-      border-color: rgba($color-white, 0.32);
-      background: $color-control-glass;
+      border-color: $color-white;
+      background: rgba($color-white, 0.24);
       color: $color-white;
     }
+  }
+
+  &__provider:active {
+    border-color: $color-white;
+    background: rgba($color-white, 0.08);
   }
 }
 
