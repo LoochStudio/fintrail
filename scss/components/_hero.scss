@@ -499,9 +499,9 @@
     flex-direction: column;
     gap: 12px;
     padding: 12px;
-    border-radius: $radius-xs;
+    border-radius: 0;
     background: $color-white;
-    color: $color-primary-black;
+    color: $color-gray-primary;
     overflow: hidden;
   }
 
@@ -515,14 +515,13 @@
     aspect-ratio: 135 / 135;
     width: 100%;
     overflow: hidden;
-    border-radius: $radius-xs;
 
     img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -539,7 +538,7 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
     line-height: $text-body-b2-line;
-    color: $color-primary-black;
+    color: $color-gray-primary;
     text-overflow: ellipsis;
     text-transform: uppercase;
   }
@@ -556,7 +555,7 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-black;
     line-height: 12px;
-    color: $color-primary-black;
+    color: $color-gray-primary;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -933,9 +932,9 @@
     flex-direction: column;
     gap: 12px;
     padding: 12px;
-    border-radius: $radius-xs;
+    border-radius: 0;
     background: $color-white;
-    color: $color-primary-black;
+    color: $color-gray-primary;
     overflow: hidden;
   }
 
@@ -952,14 +951,13 @@
     aspect-ratio: 135 / 135;
     width: 100%;
     overflow: hidden;
-    border-radius: $radius-xs;
 
     img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -975,7 +973,7 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
     line-height: 1.2;
-    color: $color-primary-black;
+    color: $color-gray-primary;
     text-overflow: ellipsis;
     text-transform: uppercase;
   }
@@ -991,7 +989,7 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-extrabold;
     line-height: 1.2;
-    color: $color-primary-black;
+    color: $color-gray-primary;
     text-transform: uppercase;
     white-space: nowrap;
   }
