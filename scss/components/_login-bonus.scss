@@ -40,6 +40,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 4px;
+    align-items: start;
     min-width: 0;
   }
 
@@ -57,12 +58,63 @@
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
+    border: 1px solid transparent;
     background: $color-control-glass;
     border-radius: $radius-xs;
     transition: background 0.18s ease, border-color 0.18s ease;
 
     &:focus-within {
       background: $color-control-glass;
+
+      .login-bonus__input {
+        padding-right: 40px;
+      }
+
+      .login-bonus__input::placeholder {
+        color: $color-white;
+      }
+
+      .login-bonus__clear {
+        display: inline-flex;
+      }
+    }
+
+    &.has-value {
+      .login-bonus__input {
+        padding-right: 40px;
+      }
+
+      .login-bonus__clear {
+        display: inline-flex;
+      }
+    }
+
+    &.is-disabled,
+    &:has(.login-bonus__input:disabled) {
+      background: $color-control-glass-disabled;
+      border-color: transparent;
+      pointer-events: none;
+
+      .login-bonus__input {
+        color: $color-gray-primary;
+      }
+
+      .login-bonus__input::placeholder {
+        color: $color-gray-primary;
+      }
+
+      .login-bonus__clear {
+        display: none;
+      }
+    }
+
+    &.is-error {
+      border-color: $color-secondary-accent;
+      background: $color-control-glass-disabled;
+
+      .login-bonus__caption {
+        display: block;
+      }
     }
   }
 
@@ -97,6 +149,48 @@
     }
   }
 
+  &__clear {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    display: none;
+    width: 16px;
+    height: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: $color-primary-gray;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $color-white;
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    display: none;
+    width: 100%;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: $color-secondary-accent;
+  }
+
   &__submit,
   &__provider {
     display: inline-flex;
@@ -119,6 +213,19 @@
     font-weight: $font-weight-extrabold;
     line-height: 1.2;
     text-transform: uppercase;
+
+    &:active {
+      background: $color-button-primary-pressed;
+      color: $color-white;
+    }
+
+    &:disabled,
+    &.is-disabled {
+      background: $color-button-disabled;
+      color: $color-primary-gray;
+      cursor: default;
+      pointer-events: none;
+    }
   }
 
   &__providers {
@@ -162,6 +269,10 @@
       background: $color-control-glass;
     }
 
+    &__field.is-error:hover {
+      background: $color-control-glass-disabled;
+    }
+
     &__submit:hover,
     &__submit:focus-visible {
       background: $color-button-secondary-hover;
@@ -190,7 +301,13 @@
     gap: 0;
     height: 116px;
     padding: 32px $spacing-page-desktop;
-    overflow: hidden;
+    overflow: visible;
+  }
+
+  .login-bonus:has(.login-bonus__field.is-error) {
+    min-height: 148px;
+    height: auto;
+    align-items: start;
   }
 
   .login-bonus__text {

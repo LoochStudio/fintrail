@@ -111,9 +111,68 @@ document.addEventListener('DOMContentLoaded', () => {
   updateLayoutVars();
   window.addEventListener('resize', updateLayoutVars);
 
+  document.querySelectorAll('[data-input-field]').forEach(field => {
+    const input = field.querySelector('input');
+    const clear = field.querySelector('.login-bonus__clear');
+    if (!input) return;
+
+    const syncInputState = () => {
+      const hasValue = input.value.trim().length > 0;
+      const isFocused = document.activeElement === input;
+      field.classList.toggle('has-value', hasValue && !input.disabled);
+      field.classList.toggle('is-disabled', input.disabled);
+      if (clear) clear.hidden = (!hasValue && !isFocused) || input.disabled;
+    };
+
+    input.addEventListener('input', syncInputState);
+    input.addEventListener('change', syncInputState);
+    input.addEventListener('focus', syncInputState);
+    input.addEventListener('blur', () => {
+      window.setTimeout(syncInputState, 0);
+    });
+
+    clear?.addEventListener('click', () => {
+      input.value = '';
+      field.classList.remove('is-error');
+      input.focus();
+      syncInputState();
+    });
+
+    syncInputState();
+  });
+
   const heroHeader = document.querySelector('.hero');
+  const heroTopbar = document.querySelector('.hero__topbar');
   const desktopHeaderQuery = window.matchMedia('(min-width: 1280px)');
   let headerTicking = false;
+
+  const getReadableHeaderTheme = () => {
+    if (!heroTopbar) return 'light';
+
+    const sampleX = Math.round(window.innerWidth / 2);
+    const topbarRect = heroTopbar.getBoundingClientRect();
+    const sampleY = Math.round(topbarRect.top + topbarRect.height / 2);
+    const elements = document.elementsFromPoint(sampleX, sampleY);
+    const target = elements.find(element => !heroTopbar.contains(element));
+
+    let node = target;
+    while (node && node !== document.documentElement) {
+      const background = window.getComputedStyle(node).backgroundColor;
+      const match = background.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+
+      if (match && (match[4] === undefined || Number(match[4]) > 0.1)) {
+        const r = Number(match[1]) / 255;
+        const g = Number(match[2]) / 255;
+        const b = Number(match[3]) / 255;
+        const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        return luminance > 0.62 ? 'dark' : 'light';
+      }
+
+      node = node.parentElement;
+    }
+
+    return 'light';
+  };
 
   const syncHeroHeaderState = () => {
     headerTicking = false;
@@ -121,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const shouldCompact = desktopHeaderQuery.matches && window.scrollY > 2;
     heroHeader.classList.toggle('is-header-compact', shouldCompact);
+    heroHeader.classList.toggle('is-header-dark', shouldCompact || getReadableHeaderTheme() === 'dark');
   };
 
   const requestHeroHeaderSync = () => {
@@ -131,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   syncHeroHeaderState();
   window.addEventListener('scroll', requestHeroHeaderSync, { passive: true });
+  window.addEventListener('resize', requestHeroHeaderSync);
   desktopHeaderQuery.addEventListener('change', syncHeroHeaderState);
 
   // ─── Hero slider ────────────────────────────────────────────────────────────

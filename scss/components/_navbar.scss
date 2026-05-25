@@ -42,12 +42,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.18s ease;
 
     img {
       width: 134px;
       height: auto;
       object-fit: contain;
     }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__logo:hover,
+    &__logo:focus-visible {
+      opacity: 0.7;
+    }
+  }
+
+  &__logo:active {
+    opacity: 0.5;
   }
 
   // ─── Счётчик корзины (мобайл) ─────────────────────────────────────────────

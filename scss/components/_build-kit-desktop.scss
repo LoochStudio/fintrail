@@ -123,11 +123,11 @@
   flex-direction: column;
   gap: 12px;
   padding: 12px;
+  border-radius: $radius-xs;
   background: $color-white;
   color: $color-primary-black;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .build-kit-desktop__product-card::before,
@@ -135,15 +135,11 @@
   display: none;
 }
 
-.build-kit-desktop__product-card:active {
-  background: $color-button-disabled;
-}
-
 .build-kit-desktop__product-pic {
   width: 142px;
   height: 142px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: $radius-xs;
 }
 
 .build-kit-desktop__product-pic img {
@@ -189,6 +185,8 @@
   width: 16px;
   height: 16px;
   flex: 0 0 auto;
+  color: $color-primary-gray;
+  transition: color 0.18s ease;
 }
 
 .build-kit-desktop__grid {
@@ -974,22 +972,17 @@
     flex-direction: column;
     gap: 12px;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: $radius-xs;
     background: $color-white;
     color: $color-primary-black;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.18s ease, color 0.18s ease;
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .build-kit-desktop__product-card:hover,
-    .build-kit-desktop__product-card:focus-visible {
-      background: $color-button-secondary-hover;
-    }
-
-    .build-kit-desktop__product-card:active {
-      background: $color-button-disabled;
+    .build-kit-desktop__product-cart:hover,
+    .build-kit-desktop__product-cart:focus-visible {
+      color: $color-primary-black;
     }
 
     .build-kit-desktop__submit:hover,
@@ -1035,7 +1028,7 @@
     width: 142px;
     height: 142px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: $radius-xs;
   }
 
   .build-kit-desktop__product-pic img {
@@ -1078,6 +1071,8 @@
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+    color: $color-primary-gray;
+    transition: color 0.18s ease;
   }
 
   .build-kit-desktop__kit-meta {

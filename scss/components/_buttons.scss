@@ -147,11 +147,15 @@
   }
 
   .button--on-color:hover,
-  .button--on-color:focus-visible,
-  .button--ghost:hover,
-  .button--ghost:focus-visible {
+  .button--on-color:focus-visible {
     background: $color-button-secondary-hover;
     color: $color-primary-black;
+  }
+
+  .button--ghost:hover,
+  .button--ghost:focus-visible {
+    background: $color-button-ghost-hover;
+    color: $color-primary-gray;
   }
 
   .button--on-content:hover,
@@ -162,10 +166,14 @@
 }
 
 .button--primary:active,
-.button--on-color:active,
-.button--ghost:active {
+.button--on-color:active {
   background: $color-button-primary-pressed;
   color: $color-white;
+}
+
+.button--ghost:active {
+  background: $color-button-ghost-pressed;
+  color: $color-primary-gray;
 }
 
 .button--on-content:active {

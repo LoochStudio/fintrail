@@ -98,33 +98,13 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-black;
     line-height: 12px;
-    transition: color 0.18s ease;
+    color: $color-primary-gray;
 
     svg {
       display: block;
       width: 16px;
       height: 16px;
-    }
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &__more:hover,
-    &__more:focus-visible {
-      color: $color-primary-black;
-    }
-  }
-
-  &__more > span {
-    --roll-hover-line: 12px;
-    --roll-hover-from: #{$color-muted};
-    --roll-hover-to: #{$color-primary-black};
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &__more:hover > span,
-    &__more:focus-visible > span {
-      --roll-hover-from: #{$color-primary-black};
-      --roll-hover-to: #{$color-primary-black};
+      color: currentColor;
     }
   }
 
@@ -441,10 +421,12 @@
     font-size: $text-body-b1-size;
     font-weight: $font-weight-extrabold;
     line-height: 14px;
-  }
 
-  .recommendations-new__more > span {
-    --roll-hover-line: 14px;
+    > span {
+      --roll-hover-line: 14px;
+      --roll-hover-from: #{$color-primary-gray};
+      --roll-hover-to: #{$color-primary-black};
+    }
   }
 
   .recommendation-card {
@@ -627,10 +609,12 @@
     font-size: $text-body-b1-size;
     font-weight: $font-weight-semibold;
     line-height: $text-body-b1-line;
-  }
 
-  .recommendations-new__more > span {
-    --roll-hover-line: #{$text-body-b1-line};
+    > span {
+      --roll-hover-line: #{$text-body-b1-line};
+      --roll-hover-from: #{$color-primary-gray};
+      --roll-hover-to: #{$color-primary-black};
+    }
   }
 
   .recommendation-card {

@@ -269,10 +269,14 @@
 
       <div class="login-bonus__actions">
         <form class="login-bonus__form" action="/personal/" method="post">
-          <label class="login-bonus__field">
-            <span class="login-bonus__field-label">Телефон</span>
-            <input class="login-bonus__input" type="tel" name="phone" autocomplete="tel" placeholder="Ваш телефон">
-          </label>
+          <div class="login-bonus__field" data-input-field>
+            <label class="login-bonus__field-label" for="login-bonus-phone">Телефон</label>
+            <input class="login-bonus__input" id="login-bonus-phone" type="tel" name="phone" autocomplete="tel" placeholder="Ваш телефон" aria-describedby="login-bonus-phone-caption">
+            <button class="login-bonus__clear" type="button" aria-label="Очистить телефон" hidden>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg>
+            </button>
+            <span class="login-bonus__caption" id="login-bonus-phone-caption" aria-live="polite">Short caption</span>
+          </div>
           <button class="login-bonus__submit" type="submit">Войти</button>
         </form>
 
@@ -1111,25 +1115,28 @@
               <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
               <ul class="footer-desktop__app-links">
                 <li>
-                  <a class="footer-desktop__app-link" href="/app/">
+                  <a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
                     <span>App Store</span>
                   </a>
                 </li>
                 <li>
-                  <a class="footer-desktop__app-link" href="/app/">
-                    <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+                  <a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/">
+                    <span class="footer-desktop__app-icon" aria-hidden="true">
+                      <svg class="footer-desktop__app-icon-default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+                      <svg class="footer-desktop__app-icon-hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+                    </span>
                     <span>Google Play</span>
                   </a>
                 </li>
                 <li>
-                  <a class="footer-desktop__app-link" href="/app/">
+                  <a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
                     <span>AppGallery</span>
                   </a>
                 </li>
                 <li>
-                  <a class="footer-desktop__app-link" href="/app/">
+                  <a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/app/">
                     <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
                     <span>RuStore</span>
                   </a>
