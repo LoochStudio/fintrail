@@ -194,6 +194,37 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', requestHeroHeaderSync);
   desktopHeaderQuery.addEventListener('change', syncHeroHeaderState);
 
+  const catalogHeader = document.querySelector('.catalog-header');
+  let catalogHeaderTicking = false;
+  let catalogHeaderCompact = false;
+
+  const syncCatalogHeaderState = () => {
+    catalogHeaderTicking = false;
+    if (!catalogHeader) return;
+
+    if (!desktopHeaderQuery.matches) {
+      catalogHeaderCompact = false;
+    } else if (!catalogHeaderCompact && window.scrollY > 24) {
+      catalogHeaderCompact = true;
+    } else if (catalogHeaderCompact && window.scrollY <= 0) {
+      catalogHeaderCompact = false;
+    }
+
+    catalogHeader.classList.toggle('is-header-compact', catalogHeaderCompact);
+    catalogHeader.classList.toggle('is-header-dark', true);
+  };
+
+  const requestCatalogHeaderSync = () => {
+    if (catalogHeaderTicking) return;
+    catalogHeaderTicking = true;
+    window.requestAnimationFrame(syncCatalogHeaderState);
+  };
+
+  syncCatalogHeaderState();
+  window.addEventListener('scroll', requestCatalogHeaderSync, { passive: true });
+  window.addEventListener('resize', requestCatalogHeaderSync);
+  desktopHeaderQuery.addEventListener('change', syncCatalogHeaderState);
+
   // ─── Hero slider ────────────────────────────────────────────────────────────
   const heroSlidesWrap = document.querySelector('.hero__slides');
   if (heroSlidesWrap) {
