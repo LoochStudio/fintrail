@@ -179,7 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!heroHeader) return;
 
     const shouldCompact = desktopHeaderQuery.matches && window.scrollY > 2;
+    const shouldShowMobileHeaderBg = !desktopHeaderQuery.matches && window.scrollY > 2;
     heroHeader.classList.toggle('is-header-compact', shouldCompact);
+    heroHeader.classList.toggle('is-header-scrolled', shouldShowMobileHeaderBg);
     heroHeader.classList.toggle('is-header-dark', shouldCompact || getReadableHeaderTheme() === 'dark');
   };
 

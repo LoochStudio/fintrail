@@ -226,6 +226,41 @@
   align-items: center;
   justify-content: space-between;
   color: $color-white;
+  isolation: isolate;
+  transition: color 0.18s ease;
+}
+
+.hero__topbar::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  height: 64px;
+  background: $color-surface;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.hero.is-header-scrolled {
+  .hero__topbar {
+    color: $color-primary-black;
+  }
+
+  .hero__topbar::before {
+    opacity: 1;
+  }
+
+  .hero__logo {
+    filter: brightness(0) saturate(100%);
+  }
+
+  .hero__tool,
+  .hero__menu-btn {
+    color: $color-primary-black;
+  }
 }
 
 .hero__brand {
@@ -374,6 +409,10 @@
     right: 0;
     left: 0;
     padding: 20px;
+  }
+
+  .hero__topbar::before {
+    height: 72px;
   }
 
   .hero__brand {

@@ -660,6 +660,20 @@
     flex-basis: auto;
   }
 
+  .catalog-product-card:nth-child(n + 5) .recommendation-card__image-link {
+    width: min(312px, 100%);
+    height: 382px;
+    overflow: hidden;
+  }
+
+  .catalog-product-card:nth-child(n + 5) .recommendation-card__image {
+    width: 142.308%;
+    height: 116.23%;
+    max-width: none;
+    object-fit: cover;
+    transform: translate(-66px, -31px);
+  }
+
   .catalog-pagination {
     display: flex;
     width: 100%;
