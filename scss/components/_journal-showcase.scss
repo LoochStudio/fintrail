@@ -549,7 +549,7 @@
 
   .journal-showcase__featured-row {
     display: grid;
-    grid-template-columns: 695px 1fr 1fr;
+    grid-template-columns: calc(50% - 5px) 1fr 1fr;
     gap: 10px;
     width: 100%;
   }

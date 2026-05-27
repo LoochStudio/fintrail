@@ -240,6 +240,10 @@
     <path d="M7.47546 11.8047C7.31203 11.9954 7.06621 12.0524 6.85268 11.9492C6.6392 11.846 6.50001 11.603 6.5 11.3334L6.5 4.66665C6.5 4.39704 6.6392 4.15397 6.85268 4.05076C7.06621 3.94757 7.31203 4.00463 7.47546 4.19529L10.3326 7.52865C10.5558 7.789 10.5558 8.21101 10.3326 8.47136L7.47546 11.8047Z" fill="currentColor"/>
   </symbol>
 
+  <symbol id="icon-rec-button-arrow-down" viewBox="0 0 16 16" fill="none">
+    <path d="M4.19529 7.47546C4.00463 7.31203 3.94757 7.06621 4.05076 6.85268C4.15397 6.6392 4.39704 6.50001 4.66665 6.5H11.3334C11.603 6.5 11.846 6.6392 11.9492 6.85268C12.0524 7.06621 11.9954 7.31203 11.8047 7.47546L8.47136 10.3326C8.21101 10.5558 7.789 10.5558 7.52865 10.3326L4.19529 7.47546Z" fill="currentColor"/>
+  </symbol>
+
   <symbol id="icon-rec-plus" viewBox="0 0 16 16" fill="none">
     <path d="M8 3.33325V12.6666" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
     <path d="M3.33333 8H12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>

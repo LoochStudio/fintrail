@@ -636,6 +636,10 @@
   .catalog-products__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .catalog-product-card {
+    margin-bottom: -1px;
+  }
 }
 
 @media (min-width: $bp-lg) {
@@ -658,6 +662,7 @@
   .catalog-product-card.recommendation-card {
     width: auto;
     flex-basis: auto;
+    margin-bottom: -1px;
   }
 
   .catalog-product-card:nth-child(n + 5) .recommendation-card__image-link {

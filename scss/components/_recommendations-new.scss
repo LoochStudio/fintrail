@@ -436,6 +436,7 @@
     grid-template-rows: 440px 72px 48px;
     border: 1px solid $color-white;
     background: transparent;
+    margin-right: -1px;
   }
 
   .recommendation-card:hover,
@@ -625,6 +626,7 @@
     width: 25%;
     min-width: 0;
     flex: 0 0 25%;
+    margin-right: -1px;
   }
 
   .recommendation-card:hover {

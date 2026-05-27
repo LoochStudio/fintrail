@@ -400,6 +400,31 @@ document.addEventListener('DOMContentLoaded', () => {
       goTo(dx < 0 ? index + 1 : index - 1);
     }, { passive: true });
 
+    let wheelAccumulated = 0;
+    let wheelLocked = false;
+
+    viewport.addEventListener('wheel', event => {
+      if (!isCarouselLayout()) return;
+      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) return;
+
+      event.preventDefault();
+
+      if (wheelLocked) {
+        wheelAccumulated = 0;
+        return;
+      }
+
+      wheelAccumulated += event.deltaX;
+
+      if (Math.abs(wheelAccumulated) > 30) {
+        const dir = wheelAccumulated > 0 ? 1 : -1;
+        wheelAccumulated = 0;
+        wheelLocked = true;
+        goTo(index + dir);
+        setTimeout(() => { wheelLocked = false; }, 600);
+      }
+    }, { passive: false });
+
     window.addEventListener('resize', () => setPosition(index, false));
     setPosition(index, false);
   });
