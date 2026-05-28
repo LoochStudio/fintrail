@@ -73,7 +73,6 @@
 .product-detail__share,
 .product-option__size-table,
 .product-buy__installment,
-.product-kit-item__size,
 .product-kit-item__cart {
   border: 0;
   background: transparent;
@@ -230,18 +229,55 @@
 }
 
 .product-kit-item__size {
+  position: relative;
   display: inline-flex;
+  width: auto;
+  height: auto;
   align-items: center;
-  gap: 12px;
-  padding: 0;
+  flex: 0 0 auto;
+  background: transparent;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 10px;
+    height: 6px;
+    background: currentColor;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: '';
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+}
+
+.product-kit-item__size-select {
+  width: auto;
+  min-width: 38px;
+  height: auto;
+  padding: 0 18px 0 0;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+  background: transparent;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-mono;
   font-size: $text-body-b2-size;
   font-weight: $font-weight-semibold;
   line-height: $text-body-b2-line;
+  outline: none;
   text-transform: uppercase;
 
-  svg {
-    width: 16px;
-    height: 16px;
+  &:focus-visible {
+    outline: 1px solid $color-secondary-gray;
+    outline-offset: 2px;
+  }
+
+  option {
+    background: $color-surface;
+    color: $color-primary-black;
+    font-family: $font-mono;
   }
 }
 
@@ -252,6 +288,7 @@
   flex: 0 0 16px;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
   padding: 0;
 
   svg {
@@ -754,9 +791,7 @@
 
     &.is-active {
       color: $color-primary-black;
-      font-family: $font-display;
-      font-weight: $font-weight-black;
-      line-height: 12px;
+      font-weight: $font-weight-extrabold;
     }
   }
 }
