@@ -1237,7 +1237,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Switch main image
       if (mainImage) {
         const thumb = items[currentIndex].querySelector('img');
-        if (thumb) mainImage.src = thumb.src;
+        if (thumb) {
+          const nextSrc = thumb.getAttribute('src') || thumb.src;
+          const nextSrcset = thumb.getAttribute('srcset') || `${nextSrc} 1x`;
+
+          mainImage.src = nextSrc;
+          mainImage.srcset = nextSrcset;
+        }
       }
 
       // Translate inner strip so the active thumb is centered in the 504px viewport
