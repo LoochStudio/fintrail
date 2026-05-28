@@ -238,26 +238,31 @@
     min-width: 52px;
     padding: 12px 16px;
     border: 1px solid $color-white;
+    border-radius: $radius-xs;
     background: transparent;
     color: $color-white;
     text-decoration: none;
 
-    svg {
+    .login-bonus__provider-icon {
+      position: relative;
       display: block;
       width: 24px;
       height: 24px;
       flex: 0 0 auto;
     }
-  }
 
-  &__provider--vk svg {
-    width: 20px;
-    height: 20px;
-  }
+    .login-bonus__provider-svg {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 24px;
+      height: 24px;
+      transition: opacity 0.18s ease;
+    }
 
-  &__provider--yandex svg {
-    width: 20px;
-    height: 20px;
+    .login-bonus__provider-svg--hover {
+      opacity: 0;
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -282,6 +287,14 @@
     &__provider:hover,
     &__provider:focus-visible {
       border-color: $color-gray-primary;
+
+      .login-bonus__provider-svg--default {
+        opacity: 0;
+      }
+
+      .login-bonus__provider-svg--hover {
+        opacity: 1;
+      }
     }
   }
 

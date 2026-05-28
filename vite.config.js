@@ -7,7 +7,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        preview: resolve(__dirname, 'preview.html'),
         catalog: resolve(__dirname, 'catalog/index.html'),
+        product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
       },
     },
   },

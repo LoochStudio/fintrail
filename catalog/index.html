@@ -46,13 +46,24 @@
   <main class="catalog-page">
     <section class="catalog-hero" aria-labelledby="catalog-title">
       <div class="catalog-hero__bar">
-        <a class="catalog-hero__back" href="../">
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
-          <span>Назад</span>
-        </a>
-        <div class="catalog-hero__heading">
-          <h1 class="catalog-hero__title" id="catalog-title">Куртки</h1>
-          <span class="catalog-hero__count">1 460</span>
+        <div class="catalog-hero__bar-main">
+          <a class="catalog-hero__back" href="../">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
+            <span>Назад</span>
+          </a>
+          <div class="catalog-hero__heading">
+            <nav class="catalog-hero__breadcrumbs" aria-label="Хлебные крошки">
+              <a href="../">Главная</a>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
+              <a href="./">Каталог</a>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
+              <span aria-current="page">Мужчинам</span>
+            </nav>
+            <div class="catalog-hero__title-row">
+              <h1 class="catalog-hero__title" id="catalog-title">Куртки</h1>
+              <span class="catalog-hero__count">1 460</span>
+            </div>
+          </div>
         </div>
         <button class="catalog-hero__share" type="button">
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-share"></use></svg>
@@ -124,11 +135,11 @@
         </button>
 
         <div class="catalog-toolbar__chips" aria-label="Быстрые фильтры">
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="price"><span>Цена</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="gender"><span>Для кого</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="type"><span>Тип товара</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="season"><span>Сезон</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="color"><span>Цвет</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <button class="catalog-toolbar__chip" type="button" data-filter-key="price" aria-expanded="false"><span>Цена</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <button class="catalog-toolbar__chip" type="button" data-filter-key="gender" aria-expanded="false"><span>Для кого</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <button class="catalog-toolbar__chip" type="button" data-filter-key="type" aria-expanded="false"><span>Тип товара</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <button class="catalog-toolbar__chip" type="button" data-filter-key="season" aria-expanded="false"><span>Сезон</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <button class="catalog-toolbar__chip" type="button" data-filter-key="color" aria-expanded="false"><span>Цвет</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
         </div>
 
         <button class="catalog-toolbar__button catalog-toolbar__button--sort" type="button" data-sort-toggle aria-expanded="false">
@@ -356,6 +367,11 @@
         </article>
       </div>
 
+      <button class="catalog-products__more" type="button" data-load-more>
+        <span>Показать еще</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+      </button>
+
       <nav class="catalog-pagination" aria-label="Пагинация каталога">
         <button class="catalog-pagination__side catalog-pagination__side--prev is-disabled" type="button" disabled>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
@@ -376,11 +392,6 @@
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
         </button>
       </nav>
-
-      <button class="catalog-products__more" type="button" data-load-more>
-        <span>Показать еще</span>
-        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
-      </button>
     </section>
 
     <section class="community-showcase catalog-page__community" aria-labelledby="catalog-community-title">

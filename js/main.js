@@ -141,6 +141,35 @@ document.addEventListener('DOMContentLoaded', () => {
     syncInputState();
   });
 
+  const catalogDropdownButtons = Array.from(document.querySelectorAll(
+    '.catalog-toolbar__button[aria-expanded], .catalog-toolbar__chip[aria-expanded]'
+  ));
+
+  if (catalogDropdownButtons.length) {
+    const closeCatalogDropdowns = exceptButton => {
+      catalogDropdownButtons.forEach(button => {
+        if (button !== exceptButton) button.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    catalogDropdownButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
+        closeCatalogDropdowns(button);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (event.target.closest('.catalog-toolbar')) return;
+      closeCatalogDropdowns();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeCatalogDropdowns();
+    });
+  }
+
   const heroHeader = document.querySelector('.hero');
   const heroTopbar = document.querySelector('.hero__topbar');
   const desktopHeaderQuery = window.matchMedia('(min-width: 1280px)');
@@ -994,5 +1023,237 @@ document.addEventListener('DOMContentLoaded', () => {
     syncJacketKitItem();
   });
 
+  // Product page — color picker
+  document.querySelectorAll('.product-option--color-picker').forEach(option => {
+    const trigger   = option.querySelector('.product-option__color');
+    const dropdown  = option.querySelector('.product-option__color-dropdown');
+    const swatch    = option.querySelector('.product-option__color-swatch');
+    const nameEl    = option.querySelector('.product-option__color-name');
+    const section   = option.closest('.product-detail');
+
+    if (!trigger || !dropdown) return;
+
+    // Инициализируем начальное состояние из первого is-selected
+    function applyColor(item) {
+      const color   = item.dataset.color;
+      const name    = item.dataset.name;
+      const inStock = item.dataset.inStock === 'true';
+
+      // Обновляем свотч в кнопке
+      if (color === 'bw') {
+        swatch.innerHTML = `<svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-color-bw"></use></svg>`;
+        swatch.style.background = 'none';
+        swatch.style.borderRadius = '0';
+      } else {
+        swatch.innerHTML = '';
+        swatch.style.background = color;
+        swatch.style.borderRadius = '24px';
+      }
+
+      // Обновляем название
+      nameEl.textContent = name;
+      nameEl.title = name;
+      // Градиент только если текст обрезается
+      requestAnimationFrame(() => {
+        nameEl.classList.toggle('is-truncated', nameEl.scrollWidth > nameEl.clientWidth);
+      });
+
+      // Переключаем OOS-состояние
+      section.classList.toggle('product-detail--oos', !inStock);
+
+      // Отмечаем is-selected
+      dropdown.querySelectorAll('.product-option__color-item').forEach(i => {
+        i.classList.toggle('is-selected', i === item);
+        i.setAttribute('aria-selected', i === item ? 'true' : 'false');
+      });
+    }
+
+    // Применяем начальное состояние
+    const initial = dropdown.querySelector('.product-option__color-item.is-selected')
+                 || dropdown.querySelector('.product-option__color-item');
+    if (initial) applyColor(initial);
+
+    // Открыть / закрыть дропдаун
+    trigger.addEventListener('click', () => {
+      const isOpen = !dropdown.hidden;
+      dropdown.hidden = isOpen;
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Выбор цвета
+    dropdown.addEventListener('click', e => {
+      const item = e.target.closest('.product-option__color-item');
+      if (!item) return;
+      applyColor(item);
+      dropdown.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+
+    // Закрыть при клике вне
+    document.addEventListener('click', e => {
+      if (!option.contains(e.target)) {
+        dropdown.hidden = true;
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Product page — size selector
+  document.querySelectorAll('.product-option--sizes .product-option__sizes').forEach(group => {
+    group.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn || btn.disabled) return;
+      group.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+
+  // Похожие товары — бесконечная карусель
+  document.querySelectorAll('.product-similar').forEach(section => {
+    const container = section.querySelector('.product-similar__cards');
+    const prevBtn   = section.querySelector('[aria-label="Предыдущие"]');
+    const nextBtn   = section.querySelector('[aria-label="Следующие"]');
+    if (!container || !prevBtn || !nextBtn) return;
+
+    const VISIBLE = 2;
+    const GAP     = 8;
+
+    // Реальные карточки
+    const realCards = [...container.querySelectorAll('.product-similar__card')];
+    const totalPages = Math.ceil(realCards.length / VISIBLE);
+
+    // Создаём трек
+    const track = document.createElement('div');
+    track.className = 'product-similar__track';
+    container.innerHTML = '';
+    container.appendChild(track);
+
+    // Клоны последней страницы в начало (для prev с первой страницы)
+    realCards.slice(-VISIBLE).forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.setAttribute('aria-hidden', 'true');
+      track.appendChild(cl);
+    });
+    // Реальные карточки
+    realCards.forEach(c => track.appendChild(c));
+    // Клоны первой страницы в конец (для next с последней страницы)
+    realCards.slice(0, VISIBLE).forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.setAttribute('aria-hidden', 'true');
+      track.appendChild(cl);
+    });
+
+    // Начинаем с индекса 1 — первая реальная страница
+    let idx         = 1;
+    let isAnimating = false;
+
+    function measure() {
+      // Возвращает ширину контейнера — 0 если скрыт
+      return container.offsetWidth;
+    }
+
+    function layout() {
+      const W = measure();
+      if (W === 0) return; // скрыт, ResizeObserver вызовет нас позже
+      const cw = (W - GAP * (VISIBLE - 1)) / VISIBLE;
+      const pw = W + GAP; // ширина одного «слота» = контейнер + межкарточный gap
+      track.querySelectorAll('.product-similar__card').forEach(c => {
+        c.style.width      = cw + 'px';
+        c.style.flexShrink = '0';
+      });
+      // Перепозиционируем без анимации (ширина могла измениться)
+      track.style.transition = 'none';
+      track.style.transform  = `translateX(${-idx * pw}px)`;
+      // Сохраняем pw для кликов
+      track._pw = pw;
+    }
+
+    function moveTo(i, animate) {
+      track.style.transition = animate
+        ? 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        : 'none';
+      track.style.transform = `translateX(${-i * (track._pw || measure() + GAP)}px)`;
+    }
+
+    track.addEventListener('transitionend', () => {
+      if (idx === totalPages + 1) { idx = 1; moveTo(idx, false); }
+      else if (idx === 0)          { idx = totalPages; moveTo(idx, false); }
+      isAnimating = false;
+    });
+
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+
+    prevBtn.addEventListener('click', () => {
+      if (isAnimating) return;
+      isAnimating = true;
+      moveTo(--idx, true);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (isAnimating) return;
+      isAnimating = true;
+      moveTo(++idx, true);
+    });
+
+    // ResizeObserver срабатывает и при первом появлении секции (OOS), и при ресайзе окна
+    new ResizeObserver(() => layout()).observe(container);
+  });
+
+  // OOS form — кнопка «Связаться» задизейблена пока email не введён
+  document.querySelectorAll('.product-oos-form').forEach(form => {
+    const input = form.querySelector('.product-oos-form__input');
+    const btn   = form.querySelector('button');
+    if (!input || !btn) return;
+
+    btn.disabled = true;
+
+    input.addEventListener('input', () => {
+      btn.disabled = input.value.trim() === '';
+    });
+  });
+
+  // Product page — media carousel
+  document.querySelectorAll('.product-detail__media').forEach(media => {
+    const mainImage = media.querySelector('.product-detail__image');
+    const inner = media.querySelector('.product-media-carousel__inner');
+    const items = [...media.querySelectorAll('.product-media-carousel__item')];
+    const btnPrev = media.querySelector('.product-media-btn--prev');
+    const btnNext = media.querySelector('.product-media-btn--next');
+
+    if (!inner || !items.length) return;
+
+    const ITEM_W = 28;
+    const GAP = 40;
+    const VIEWPORT = 504;
+    let currentIndex = 0;
+
+    function goTo(index) {
+      const count = items.length;
+      currentIndex = (index + count) % count;
+
+      items.forEach((item, i) => item.classList.toggle('is-active', i === currentIndex));
+
+      // Switch main image
+      if (mainImage) {
+        const thumb = items[currentIndex].querySelector('img');
+        if (thumb) mainImage.src = thumb.src;
+      }
+
+      // Translate inner strip so the active thumb is centered in the 504px viewport
+      const activeCenter = currentIndex * (ITEM_W + GAP) + ITEM_W / 2;
+      const offset = Math.min(0, Math.max(
+        -(items.length * (ITEM_W + GAP) - GAP - VIEWPORT),
+        VIEWPORT / 2 - activeCenter
+      ));
+      inner.style.transform = `translateX(${offset}px)`;
+    }
+
+    items.forEach((item, i) => item.addEventListener('click', () => goTo(i)));
+    btnPrev?.addEventListener('click', () => goTo(currentIndex - 1));
+    btnNext?.addEventListener('click', () => goTo(currentIndex + 1));
+
+    goTo(0);
+  });
 
 });

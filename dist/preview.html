@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINNTRAIL preview</title>
+  <style>
+    @font-face {
+      font-family: "Nata Sans";
+      src: url("/fintrail/assets/NataSans-VariableFont_wght-CWGhEEIf.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 20px;
+      background: #f2f2f2;
+      color: #1f1f1f;
+      font-family: "Nata Sans", Arial, sans-serif;
+    }
+
+    main {
+      width: min(100%, 720px);
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 32px;
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    ul {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    a {
+      display: flex;
+      min-height: 64px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px;
+      border: 1px solid #cdd2d5;
+      border-radius: 4px;
+      background: #fff;
+      color: inherit;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+
+    a span {
+      color: #9da3a6;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      a:hover,
+      a:focus-visible {
+        border-color: #1f1f1f;
+        background: #1f1f1f;
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>FINNTRAIL pages</h1>
+    <ul>
+      <li><a href="./">Главная <span>/</span></a></li>
+      <li><a href="./catalog/">Каталог <span>/catalog/</span></a></li>
+      <li><a href="./catalog/master-hood-1510/">Детальная товара <span>/catalog/master-hood-1510/</span></a></li>
+    </ul>
+  </main>
+</body>
+</html>

@@ -190,6 +190,13 @@
   transition: color 0.18s ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__product-cart:hover,
+  .build-kit-desktop__product-cart:focus-visible {
+    color: $color-primary-black;
+  }
+}
+
 .build-kit-desktop__grid {
   margin-top: 16px;
   overflow-x: auto;
@@ -1011,11 +1018,6 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .build-kit-desktop__product-cart:hover,
-    .build-kit-desktop__product-cart:focus-visible {
-      color: $color-primary-black;
-    }
-
     .build-kit-desktop__submit:hover,
     .build-kit-desktop__submit:focus-visible {
       background: $color-button-primary-hover;
@@ -1081,7 +1083,7 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
     line-height: 16px;
-    color: $color-gray-primary;
+    color: $color-primary-black;
     text-transform: uppercase;
   }
 
@@ -1096,7 +1098,7 @@
     font-size: $text-body-b2-size;
     font-weight: $font-weight-extrabold;
     line-height: 12px;
-    color: $color-gray-primary;
+    color: $color-primary-black;
     text-transform: uppercase;
   }
 
