@@ -799,8 +799,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Меняем манекен если у кнопки есть data-model
         if (modelImg && button.dataset.model) {
-          modelImg.src = button.dataset.model;
-          modelImg.srcset = button.dataset.model + ' 1x';
+          const modelSrc = resolvePublicAsset(button.dataset.model);
+          modelImg.src = modelSrc;
+          modelImg.srcset = modelSrc + ' 1x';
         }
       });
     });
