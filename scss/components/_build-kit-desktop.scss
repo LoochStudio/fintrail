@@ -128,6 +128,7 @@
   color: $color-primary-black;
   text-decoration: none;
   cursor: pointer;
+  transition: top 0.28s ease, margin-top 0.28s ease, transform 0.28s ease;
 }
 
 .build-kit-desktop__product-card::before,
@@ -182,12 +183,27 @@
 }
 
 .build-kit-desktop__product-cart {
-  display: block;
+  display: flex;
   width: 16px;
   height: 16px;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: $color-primary-gray;
+  cursor: pointer;
   transition: color 0.18s ease;
+}
+
+.build-kit-desktop__product-cart svg {
+  width: 16px;
+  height: 16px;
+}
+
+.build-kit-desktop__product-cart.is-added {
+  color: $color-primary-black;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -575,6 +591,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.02);
+    transform-origin: center top;
   }
 
   .build-kit-desktop__product-card {
@@ -583,6 +601,26 @@
     width: 166px;
     height: 240px;
     transform: translateY(-50%);
+  }
+
+  .build-kit-desktop[data-kit-active-slot='hat'] .build-kit-desktop__product-card {
+    top: 0;
+    transform: translateY(0);
+  }
+
+  .build-kit-desktop[data-kit-active-slot='jacket'] .build-kit-desktop__product-card {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .build-kit-desktop[data-kit-active-slot='pants'] .build-kit-desktop__product-card {
+    top: 210px;
+    transform: translateY(0);
+  }
+
+  .build-kit-desktop[data-kit-active-slot='shoes'] .build-kit-desktop__product-card {
+    top: 218px;
+    transform: translateY(0);
   }
 
   .build-kit-desktop__product-card::before {
@@ -849,13 +887,17 @@
     display: grid;
     grid-column: 2;
     grid-row: 1 / -1;
+    align-self: start;
     justify-self: center;
     width: 720px;
     height: 650px;
+    margin-top: 0;
     overflow: visible;
   }
 
   .build-kit-desktop__additional {
+    position: relative;
+    z-index: 2; // выше example (position:relative, z-index:auto) который перекрывает правый блок
     display: flex;
     grid-column: 3;
     grid-row: 1 / -1;
@@ -880,6 +922,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
+    transform: scale(1.02);
+    transform-origin: center top;
   }
 
   .build-kit-desktop__grid {
@@ -902,6 +947,7 @@
     width: 340px;
     flex: 0 0 340px;
     grid-template-columns: repeat(3, 108px);
+    grid-auto-rows: 108px;
     gap: 8px;
   }
 
@@ -1015,6 +1061,42 @@
     cursor: pointer;
     margin-top: 107px;
     margin-left: 133px;
+    transition: margin-top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .build-kit-desktop[data-kit-active-slot='hat'] .build-kit-desktop__product-card {
+    margin-top: 0;
+    margin-left: 133px;
+
+    &::before {
+      top: 22.333px;
+      left: 135px;
+    }
+
+    &::after {
+      top: 25px;
+      left: 327.167px;
+    }
+  }
+
+  .build-kit-desktop[data-kit-active-slot='jacket'] .build-kit-desktop__product-card {
+    margin-top: 107px;
+  }
+
+  .build-kit-desktop[data-kit-active-slot='pants'] .build-kit-desktop__product-card {
+    margin-top: 325px;
+  }
+
+  .build-kit-desktop[data-kit-active-slot='shoes'] .build-kit-desktop__product-card {
+    margin-top: 408px;
+
+    &::before {
+      top: 178.333px;
+    }
+
+    &::after {
+      top: 181px;
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -1029,8 +1111,8 @@
     content: '';
     position: absolute;
     display: block;
-    top: 110px;
-    left: 140px;
+    top: 107.333px;
+    left: 135px;
     width: 195px;
     height: 6px;
     background:
@@ -1041,20 +1123,22 @@
     background-size: 195px 6px, 195px 6px, 189.5px 1px;
     background-position: 0 0, 0 0, 2.667px 2.167px;
     pointer-events: none;
+    transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .build-kit-desktop__product-card::after {
     content: '';
     position: absolute;
     display: block;
-    top: 112.667px;
-    left: 332.167px;
+    top: 110px;
+    left: 327.167px;
     width: 16px;
     height: 16px;
     border: 1px solid rgba($color-white, 0.42);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .build-kit-desktop__product-pic {
@@ -1103,12 +1187,27 @@
   }
 
   .build-kit-desktop__product-cart {
-    display: block;
+    display: flex;
     width: 16px;
     height: 16px;
+    align-items: center;
+    justify-content: center;
     flex: 0 0 auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
     color: $color-primary-gray;
+    cursor: pointer;
     transition: color 0.18s ease;
+  }
+
+  .build-kit-desktop__product-cart svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .build-kit-desktop__product-cart.is-added {
+    color: $color-primary-black;
   }
 
   .build-kit-desktop__kit-meta {

@@ -71,7 +71,7 @@
         </button>
       </div>
       <div class="catalog-hero__banner">
-        <img class="catalog-hero__image" src="/images/content/catalog/catalog-hero.png" alt="Коллекция для туризма и путешествий" loading="eager">
+        <img class="catalog-hero__image" src="/images/content/catalog/catalog-hero.png" srcset="/images/content/catalog/catalog-hero.png 1x" sizes="100vw" alt="Коллекция для туризма и путешествий" loading="eager">
         <div class="catalog-hero__copy">
           <p class="catalog-hero__headline">Коллекция для туризма<br>и путешествий</p>
           <p class="catalog-hero__text">Свобода движения, технологии, защита</p>
@@ -125,7 +125,7 @@
     </section>
 
     <!-- BITRIX: bitrix:catalog.smart.filter; AJAX, без перезагрузки страницы. -->
-    <section class="catalog-products" aria-labelledby="catalog-products-title">
+    <section class="catalog-products" aria-labelledby="catalog-products-title" aria-busy="false">
       <h2 class="visually-hidden" id="catalog-products-title">Товары каталога</h2>
 
       <div class="catalog-toolbar">
@@ -146,6 +146,13 @@
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-sort"></use></svg>
           <span>Популярные</span>
         </button>
+      </div>
+
+      <div class="catalog-products__loading" role="status" aria-live="polite" hidden>
+        <span class="catalog-products__loading-text">Обновляем товары</span>
+        <span class="catalog-products__loading-grid" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
       </div>
 
       <!-- BITRIX: bitrix:catalog.section; заменить статичные карточки циклом товаров. -->
@@ -225,7 +232,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-1.png" srcset="/images/content/catalog/products/catalog-product-1.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-1.png" srcset="/images/content/catalog/products/catalog-product-1.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -243,7 +250,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-2.png" srcset="/images/content/catalog/products/catalog-product-2.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-2.png" srcset="/images/content/catalog/products/catalog-product-2.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -261,7 +268,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-3.png" srcset="/images/content/catalog/products/catalog-product-3.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-3.png" srcset="/images/content/catalog/products/catalog-product-3.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -279,7 +286,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-4.png" srcset="/images/content/catalog/products/catalog-product-4.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-4.png" srcset="/images/content/catalog/products/catalog-product-4.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -297,7 +304,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-5.png" srcset="/images/content/catalog/products/catalog-product-5.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-5.png" srcset="/images/content/catalog/products/catalog-product-5.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -315,7 +322,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-6.png" srcset="/images/content/catalog/products/catalog-product-6.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-6.png" srcset="/images/content/catalog/products/catalog-product-6.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -333,7 +340,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-7.png" srcset="/images/content/catalog/products/catalog-product-7.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-7.png" srcset="/images/content/catalog/products/catalog-product-7.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
@@ -351,7 +358,7 @@
         <article class="recommendation-card catalog-product-card">
           <div class="recommendation-card__media">
             <a class="recommendation-card__image-link" href="master-hood-1510/">
-              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-8.png" srcset="/images/content/catalog/products/catalog-product-8.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite">
+              <img class="recommendation-card__image" src="/images/content/catalog/products/catalog-product-8.png" srcset="/images/content/catalog/products/catalog-product-8.png 1x" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">

@@ -77,7 +77,7 @@
 .catalog-header .hero__logo-link {
   position: absolute;
   top: 24px;
-  left: 360px;
+  left: 25%;
   display: block;
   width: 270px;
   height: 48px;
@@ -99,7 +99,7 @@
 .catalog-header .hero__nav {
   position: absolute;
   top: 88px;
-  left: 360px;
+  left: 25%;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -198,7 +198,7 @@
 
   .hero__nav {
     top: 31px;
-    left: 360px;
+    left: 25%;
     transform: none;
   }
 
@@ -432,8 +432,59 @@
 }
 
 .catalog-products {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.catalog-products__loading {
+  position: absolute;
+  z-index: 3;
+  right: 20px;
+  left: 20px;
+  top: 46px;
+  display: none;
+  padding-top: 10px;
+  background: rgba($color-surface, 0.86);
+  backdrop-filter: blur(2px);
+}
+
+.catalog-products.is-loading .catalog-products__loading {
+  display: block;
+}
+
+.catalog-products__loading-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.catalog-products__loading-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+
+  span {
+    height: 120px;
+    background:
+      linear-gradient(90deg, transparent, rgba($color-white, 0.68), transparent),
+      $color-secondary-gray;
+    background-size: 220% 100%, 100% 100%;
+    animation: catalog-skeleton 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes catalog-skeleton {
+  from {
+    background-position: 120% 0, 0 0;
+  }
+
+  to {
+    background-position: -120% 0, 0 0;
+  }
 }
 
 .catalog-toolbar {

@@ -216,6 +216,15 @@
   display: none;
 }
 
+.hero__products-set {
+  display: none;
+  width: 100%;
+}
+
+.hero__products-set.is-active {
+  display: flex;
+}
+
 .hero__topbar {
   position: fixed;
   top: 20px;
@@ -354,10 +363,8 @@
     color: $color-secondary-gray;
   }
 
-  .hero__menu-btn svg:hover,
-  .hero__menu-btn:focus-visible svg,
-  .hero__menu-btn span:hover,
-  .hero__menu-btn:focus-visible span {
+  .hero__menu-btn:hover,
+  .hero__menu-btn:focus-visible {
     color: $color-secondary-gray;
   }
 }
@@ -379,10 +386,8 @@
   @media (hover: hover) and (pointer: fine) {
     .hero__tool:hover,
     .hero__tool:focus-visible,
-    .hero__menu-btn svg:hover,
-    .hero__menu-btn:focus-visible svg,
-    .hero__menu-btn span:hover,
-    .hero__menu-btn:focus-visible span {
+    .hero__menu-btn:hover,
+    .hero__menu-btn:focus-visible {
       color: $color-gray-primary;
     }
   }
@@ -534,6 +539,10 @@
     display: flex;
     width: 182px;
     pointer-events: auto;
+  }
+
+  .hero__products-set {
+    gap: 8px;
   }
 
   .hero-product-card {
@@ -804,11 +813,11 @@
     &__content {
       position: absolute;
       top: calc(100% - 265px);
-      left: calc(50% - 10px);
-      width: 700px;
+      left: 25%;
+      width: min(700px, 50%);
       padding: 0;
       color: $color-white;
-      transform: translateX(-50%);
+      transform: none;
     }
 
     &__info {
@@ -967,6 +976,10 @@
       width: 340px;
       pointer-events: auto;
     }
+  }
+
+  .hero__products-set {
+    gap: 8px;
   }
 
   .hero-product-card {
@@ -1299,7 +1312,6 @@
       font-weight: $font-weight-black;
       line-height: 20px;
       text-transform: uppercase;
-      pointer-events: none;
 
       span {
         display: block;
@@ -1314,7 +1326,7 @@
     &__logo-link {
       position: absolute;
       top: 24px;
-      left: 360px;
+      left: 25%;
       width: 270px;
       height: 48px;
     }
@@ -1325,7 +1337,7 @@
 
     &__nav {
       top: 88px;
-      left: 360px;
+      left: 25%;
       transform: none;
       gap: 32px;
     }
@@ -1363,7 +1375,7 @@
 
       .hero__nav {
         top: 31px;
-        left: 360px;
+        left: 25%;
         transform: none;
       }
 
@@ -1400,10 +1412,8 @@
           color: $color-gray-primary;
         }
 
-        .hero__menu-btn svg:hover,
-        .hero__menu-btn:focus-visible svg,
-        .hero__menu-btn span:hover,
-        .hero__menu-btn:focus-visible span {
+        .hero__menu-btn:hover,
+        .hero__menu-btn:focus-visible {
           color: $color-gray-primary;
         }
       }
@@ -1440,9 +1450,9 @@
 
     &__content {
       top: calc(100% - 265px);
-      left: calc(50% - 10px);
-      width: 700px;
-      transform: translateX(-50%);
+      left: 25%;
+      width: min(700px, 50%);
+      transform: none;
     }
 
     &__text {

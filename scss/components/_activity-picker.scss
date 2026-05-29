@@ -64,7 +64,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: var(--activity-image-position, center bottom);
+  transform: scale(var(--activity-image-scale, 1));
   transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
@@ -117,6 +118,7 @@
 }
 
 .activity-product-card__name {
+  display: -webkit-box;
   overflow: hidden;
   font-family: $font-mono;
   font-size: $text-body-b2-size;
@@ -125,6 +127,8 @@
   color: $color-primary-black;
   text-overflow: ellipsis;
   text-transform: uppercase;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .activity-product-card__bottom {
@@ -196,7 +200,8 @@
 }
 
 .activity-picker__preview-img.is-changing,
-.activity-picker__image-img.is-changing {
+.activity-picker__image-img.is-changing,
+.activity-product-card.is-changing {
   animation: activity-image-change 0.24s ease;
 }
 
@@ -356,7 +361,7 @@
     position: absolute;
     order: initial;
     top: 0;
-    left: 360px;
+    left: 25%;
     z-index: 1;
     display: flex;
     width: 273px;
@@ -421,7 +426,7 @@
     order: initial;
     top: 0;
     right: 0;
-    width: 540px;
+    width: 37.5%;
     height: 500px;
     margin-bottom: 0;
     overflow: hidden;
@@ -431,7 +436,7 @@
     position: absolute;
     order: initial;
     top: 50%;
-    right: 374px;
+    right: calc(25% + 14px);
     z-index: 2;
     display: flex;
     width: 340px;
@@ -445,6 +450,7 @@
   .activity-product-card {
     display: flex;
     width: 166px;
+    height: 242px; // фиксированная высота как в Фигме — карточки всегда одного размера
     min-width: 0;
     flex-direction: column;
     flex: initial;
@@ -481,13 +487,15 @@
   }
 
   .activity-product-card__name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     font-family: $font-mono;
     font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
     line-height: 1.2;
     color: $color-primary-black;
-    text-overflow: ellipsis;
     text-transform: uppercase;
   }
 
@@ -520,7 +528,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center bottom;
+    object-position: var(--activity-image-position, center bottom);
+    transform: scale(var(--activity-image-scale, 1));
     transition: opacity 0.22s ease, transform 0.22s ease;
   }
 
@@ -537,11 +546,11 @@
 @keyframes activity-image-change {
   0% {
     opacity: 0.72;
-    transform: scale(1.015);
+    transform: scale(calc(var(--activity-image-scale, 1) * 1.015));
   }
 
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(var(--activity-image-scale, 1));
   }
 }

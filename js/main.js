@@ -144,6 +144,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const catalogDropdownButtons = Array.from(document.querySelectorAll(
     '.catalog-toolbar__button[aria-expanded], .catalog-toolbar__chip[aria-expanded]'
   ));
+  const catalogProducts = document.querySelector('.catalog-products');
+  const catalogLoading = catalogProducts?.querySelector('.catalog-products__loading');
+  let catalogLoadingTimer;
+
+  const showCatalogLoading = () => {
+    if (!catalogProducts || !catalogLoading) return;
+
+    window.clearTimeout(catalogLoadingTimer);
+    catalogProducts.classList.add('is-loading');
+    catalogProducts.setAttribute('aria-busy', 'true');
+    catalogLoading.hidden = false;
+
+    catalogLoadingTimer = window.setTimeout(() => {
+      catalogProducts.classList.remove('is-loading');
+      catalogProducts.setAttribute('aria-busy', 'false');
+      catalogLoading.hidden = true;
+    }, 520);
+  };
 
   if (catalogDropdownButtons.length) {
     const closeCatalogDropdowns = exceptButton => {
@@ -157,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
         closeCatalogDropdowns(button);
         button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        if (button.matches('[data-filter-key], [data-sort-toggle]')) showCatalogLoading();
       });
     });
 
@@ -169,6 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.key === 'Escape') closeCatalogDropdowns();
     });
   }
+
+  document.querySelector('[data-load-more]')?.addEventListener('click', showCatalogLoading);
 
   const heroHeader = document.querySelector('.hero');
   const heroTopbar = document.querySelector('.hero__topbar');
@@ -262,12 +283,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides  = document.querySelectorAll('.hero__slide');
     const infos   = document.querySelectorAll('.hero__info');
     const dots    = document.querySelectorAll('.hero__pagination-dot');
+    const productSets = document.querySelectorAll('[data-hero-products]');
     const heroArrows = Array.from(document.querySelectorAll('.hero__arrow'));
     const btnPrev = heroArrows.find(button => /предыдущий|назад/i.test(button.getAttribute('aria-label') || '')) || heroArrows[0];
     const btnNext = heroArrows.find(button => /следующий|вперед|вперёд/i.test(button.getAttribute('aria-label') || '')) || heroArrows[1];
     const hero = document.querySelector('.hero');
     const total   = Math.max(dots.length, slides.length);
     let current   = 0;
+    let autoplayTimer;
 
     function replayCurrentSlide() {
       if (slides.length !== 1 || !hero) return;
@@ -296,6 +319,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       dots[current]?.classList.remove('is-active', 'is-loading');
       infos[current % infos.length]?.classList.remove('is-active');
+      productSets[current % productSets.length]?.classList.remove('is-active');
+      productSets[current % productSets.length]?.setAttribute('hidden', '');
 
       current = next;
       heroSlidesWrap.style.transform = slides.length > 1
@@ -304,6 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       dots[current]?.classList.add('is-active');
       infos[current % infos.length]?.classList.add('is-active');
+      productSets[current % productSets.length]?.classList.add('is-active');
+      productSets[current % productSets.length]?.removeAttribute('hidden');
       restartProgress();
       replayCurrentSlide();
 
@@ -311,14 +338,24 @@ document.addEventListener('DOMContentLoaded', () => {
       btnNext?.classList.toggle('is-inactive', false);
     }
 
-    restartProgress();
-    const autoplayTimer = window.setInterval(() => {
-      goTo(current + 1, true);
-    }, 5000);
+    function startAutoplay() {
+      window.clearInterval(autoplayTimer);
+      autoplayTimer = window.setInterval(() => {
+        goTo(current + 1, true);
+      }, 5000);
+    }
 
-    btnPrev?.addEventListener('click', () => goTo(current - 1));
-    btnNext?.addEventListener('click', () => goTo(current + 1));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    function goToManual(idx) {
+      goTo(idx);
+      startAutoplay();
+    }
+
+    restartProgress();
+    startAutoplay();
+
+    btnPrev?.addEventListener('click', () => goToManual(current - 1));
+    btnNext?.addEventListener('click', () => goToManual(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goToManual(i)));
 
     // Свайп на мобайле
     let touchStartX = 0;
@@ -330,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hero?.addEventListener('touchend', e => {
       const dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) < 50) return;
-      goTo(dx < 0 ? current + 1 : current - 1);
+      goToManual(dx < 0 ? current + 1 : current - 1);
     }, { passive: true });
   }
 
@@ -464,6 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const preview = section.querySelector('.activity-picker__preview-img');
     const image = section.querySelector('.activity-picker__image-img');
     const cta = section.querySelector('.activity-picker__cta');
+    const productCards = Array.from(section.querySelectorAll('.activity-product-card'));
 
     if (!links.length) return;
 
@@ -473,6 +511,33 @@ document.addEventListener('DOMContentLoaded', () => {
       void img.offsetWidth;
       img.classList.add('is-changing');
       img.src = src;
+      img.srcset = src + ' 1x';
+    }
+
+    function setProduct(card, link, index) {
+      if (!card || !link) return;
+
+      // data-product-1-name → dataset["product-1Name"] (дефис перед цифрой остаётся по HTML spec)
+      const name     = link.dataset[`product-${index}Name`];
+      const price    = link.dataset[`product-${index}Price`];
+      const imageSrc = link.dataset[`product-${index}Image`];
+      const url      = link.dataset[`product-${index}Url`];
+      const img = card.querySelector('img');
+      const nameNode = card.querySelector('.activity-product-card__name');
+      const priceNode = card.querySelector('.activity-product-card__price');
+
+      card.classList.remove('is-changing');
+      void card.offsetWidth;
+      card.classList.add('is-changing');
+
+      if (url) card.href = url;
+      if (name && nameNode) nameNode.textContent = name;
+      if (price && priceNode) priceNode.textContent = price;
+      if (img && imageSrc) {
+        img.src = imageSrc;
+        img.srcset = `${imageSrc} 1x`;
+        img.alt = name || '';
+      }
     }
 
     function activate(link) {
@@ -484,6 +549,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setImage(preview, link.dataset.preview);
       setImage(image, link.dataset.image);
+      if (image) {
+        image.style.setProperty('--activity-image-position', link.dataset.imagePosition || 'center center');
+        image.style.setProperty('--activity-image-scale', link.dataset.imageScale || '1');
+      }
+      productCards.forEach((card, index) => setProduct(card, link, index + 1));
 
       if (cta) cta.href = link.getAttribute('href') || cta.href;
     }
@@ -701,6 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const genderButtons = Array.from(section.querySelectorAll('.build-kit-desktop__gender-btn'));
     const filterButtons = Array.from(section.querySelectorAll('.build-kit-desktop__filter'));
     const previewTiles = Array.from(section.querySelectorAll('.build-kit-desktop__tile'));
+    const modelImg = section.querySelector('.build-kit-desktop__model-img');
 
     genderButtons.forEach(button => {
       button.addEventListener('click', () => {
@@ -709,11 +780,49 @@ document.addEventListener('DOMContentLoaded', () => {
           item.classList.toggle('is-active', isActive);
           item.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
+
+        // Меняем манекен если у кнопки есть data-model
+        if (modelImg && button.dataset.model) {
+          modelImg.src = button.dataset.model;
+          modelImg.srcset = button.dataset.model + ' 1x';
+        }
       });
     });
 
+    function activateCategory(category) {
+      const button = filterButtons.find(item => item.dataset.kitCategory === category);
+      if (!button) return;
+
+      const row = button.closest('.build-kit-desktop__filter-row');
+      row?.querySelectorAll('.build-kit-desktop__filter').forEach(item => item.classList.remove('is-active'));
+      button.classList.add('is-active');
+      section.dataset.kitActiveSlot = category;
+
+      // Если категория сменилась — перестраиваем карусель и обновляем превью
+      if (category === currentCategory) return;
+      currentCategory = category;
+
+      activeTiles = allTiles.filter(t => t.dataset.kitCategory === category);
+      destroyDesktopCarousel();
+      page = 0;
+      syncDesktopCarousel();
+
+      // Активируем первый тайл новой категории и обновляем превью карточки
+      const firstTile = activeTiles[0];
+      if (firstTile) {
+        allTiles.forEach(t => t.classList.remove('is-active'));
+        firstTile.classList.add('is-active');
+        updateSelectedJacket(getTileProduct(firstTile));
+      }
+    }
+
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
+        if (button.dataset.kitCategory) {
+          activateCategory(button.dataset.kitCategory);
+          return;
+        }
+
         const row = button.closest('.build-kit-desktop__filter-row');
         row?.querySelectorAll('.build-kit-desktop__filter').forEach(item => item.classList.remove('is-active'));
         button.classList.add('is-active');
@@ -727,12 +836,13 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.classList.add('is-active');
         const product = getTileProduct(tile);
         updateSelectedJacket(product);
-        syncJacketKitItem(product);
       });
     });
 
     const grid = section.querySelector('.build-kit-desktop__tiles');
-    const tiles = previewTiles;
+    const allTiles = previewTiles;
+    let currentCategory = 'jacket';
+    let activeTiles = allTiles.filter(t => t.dataset.kitCategory === currentCategory);
     const dotsContainer = section.querySelector('.build-kit-desktop__dots');
     const btnPrev = section.querySelector('.build-kit-desktop__arrow[aria-label="Назад"]');
     const btnNext = section.querySelector('.build-kit-desktop__arrow[aria-label="Вперед"]');
@@ -742,6 +852,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const productImage = section.querySelector('.build-kit-desktop__product-pic img');
     const productName = section.querySelector('.build-kit-desktop__product-name');
     const productPrice = section.querySelector('.build-kit-desktop__product-price');
+    const productAddButton = section.querySelector('[data-kit-add-selected]');
+    const productAddIcon = productAddButton?.querySelector('use');
 
     const perPage = 9;
     const pageWidth = 340;
@@ -794,7 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!grid || !isDesktopCarouselReady) return;
 
       grid.style.transform = '';
-      tiles.forEach(tile => {
+      allTiles.forEach(tile => {
         tile.hidden = false;
         grid.appendChild(tile);
       });
@@ -804,15 +916,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initDesktopCarousel() {
-      if (!grid || !tiles.length || isDesktopCarouselReady) return;
+      if (!grid || !activeTiles.length || isDesktopCarouselReady) return;
 
-      pages = Math.max(1, Math.ceil(tiles.length / perPage));
+      // Скрываем тайлы других категорий — они остаются плоскими в гриде после destroyDesktopCarousel
+      allTiles.forEach(tile => {
+        if (!activeTiles.includes(tile)) tile.hidden = true;
+      });
+
+      pages = Math.max(1, Math.ceil(activeTiles.length / perPage));
       page = Math.min(page, pages - 1);
 
       for (let i = 0; i < pages; i += 1) {
         const pageEl = document.createElement('div');
         pageEl.className = 'build-kit-desktop__page';
-        tiles.slice(i * perPage, (i + 1) * perPage).forEach(tile => {
+        activeTiles.slice(i * perPage, (i + 1) * perPage).forEach(tile => {
           pageEl.appendChild(tile);
           tile.hidden = false;
         });
@@ -843,28 +960,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Данные товара читаются из data-атрибутов тайла (подставляет Bitrix).
     // data-name — NAME товара, data-price — CATALOG_PRICE_1, data-size — "true" если есть выбор размера.
+    // data-sizes — список размеров через запятую, если нужен нестандартный ряд.
     function getTileProduct(tile) {
       const img = tile.querySelector('img');
       const src = img?.getAttribute('src') || '';
+      const sizes = (tile.dataset.sizes || 'XL,L,M')
+        .split(',')
+        .map(size => size.trim())
+        .filter(Boolean);
 
       return {
+        id:    `${tile.dataset.kitSlot || tile.dataset.kitCategory || 'product'}:${tile.dataset.name || ''}:${src}`,
         name:  tile.dataset.name  || '',
         price: tile.dataset.price || '',
         size:  tile.dataset.size !== 'false',
+        sizes,
+        slot:  tile.dataset.kitSlot || tile.dataset.kitCategory || 'product',
+        category: tile.dataset.kitCategory || tile.dataset.kitSlot || 'product',
         img:   src,
       };
     }
 
-    const activeTile = tiles.find(t => t.classList.contains('is-active')) || tiles[0];
+    const activeTile = allTiles.find(t => t.classList.contains('is-active')) || allTiles.find(t => t.dataset.kitCategory === 'jacket');
     let selectedJacket = activeTile ? getTileProduct(activeTile) : {
       name: productName?.textContent?.trim() || '',
       price: productPrice?.textContent?.trim() || '',
       img: productImage?.getAttribute('src') || '',
       size: true,
+      slot: 'jacket',
+      category: 'jacket',
     };
+
+    activateCategory(selectedJacket.category);
 
     function updateSelectedJacket(product) {
       selectedJacket = product;
+      activateCategory(product.category);
 
       if (productImage) {
         productImage.setAttribute('src', product.img);
@@ -881,52 +1012,57 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       updateKitSummary();
+      syncProductAddState();
     }
 
     function getKitItems() {
       return Array.from(section.querySelectorAll('.build-kit-desktop__kit-item:not(.build-kit-desktop__kit-item--empty)'));
     }
 
-    const initialItemsTotal = getKitItems().reduce((sum, item) => {
-      return sum + parsePrice(item.querySelector('.build-kit-desktop__kit-price')?.textContent);
-    }, 0);
-    const initialSelectedJacketTotal = parsePrice(selectedJacket.price);
-    const initialDisplayedTotal = parsePrice(totalPrice?.textContent);
-    const totalCorrection = initialDisplayedTotal ? initialDisplayedTotal - initialItemsTotal - initialSelectedJacketTotal : 0;
-
     function updateKitSummary() {
       const items = getKitItems();
       const itemsTotal = items.reduce((sum, item) => {
         return sum + parsePrice(item.querySelector('.build-kit-desktop__kit-price')?.textContent);
       }, 0);
-      const hasJacketInList = Boolean(section.querySelector('.build-kit-desktop__kit-item[data-kit-type="jacket"]'));
-      const selectedTotal = selectedJacket && !hasJacketInList ? parsePrice(selectedJacket.price) : 0;
-      const selectedCount = selectedJacket && !hasJacketInList ? 1 : 0;
-      const correctedTotal = items.length || selectedCount ? itemsTotal + selectedTotal + totalCorrection : 0;
 
       if (kitCount) {
-        kitCount.textContent = `${Math.min(items.length + selectedCount, 4)}/4`;
+        kitCount.textContent = `${Math.min(items.length, 4)}/4`;
       }
 
       if (totalPrice) {
-        totalPrice.textContent = formatPrice(correctedTotal);
+        totalPrice.textContent = formatPrice(itemsTotal);
       }
     }
 
-    function createEmptyKitSlot(label = 'Добавить товар') {
+    function getSlotLabel(slot) {
+      const labels = {
+        hat: 'Добавить шапку',
+        jacket: 'Добавить куртку',
+        pants: 'Добавить штаны',
+        shoes: 'Добавить обувь',
+      };
+
+      return labels[slot] || 'Добавить товар';
+    }
+
+    function createEmptyKitSlot(label = 'Добавить товар', slot = '') {
       const button = document.createElement('button');
       button.className = 'build-kit-desktop__kit-item build-kit-desktop__kit-item--empty';
       button.type = 'button';
+      if (slot) {
+        button.dataset.kitSlot = slot;
+        button.dataset.kitEmptyLabel = label;
+      }
       button.innerHTML = `<span>${label}</span>`;
       return button;
     }
 
-    function createKitItem(product, type = '') {
+    function createKitItem(product) {
       const article = document.createElement('article');
       article.className = 'build-kit-desktop__kit-item';
-      if (type) {
-        article.dataset.kitType = type;
-      }
+      article.dataset.kitSlot = product.slot || product.category || 'product';
+      article.dataset.kitCategory = product.category || product.slot || 'product';
+      article.dataset.kitProductId = product.id || '';
       article.innerHTML = `
         <img class="build-kit-desktop__kit-img" src="${product.img}" srcset="${product.img} 1x" sizes="100vw" alt="" loading="lazy">
         <div class="build-kit-desktop__kit-content">
@@ -939,9 +1075,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ${product.size ? `
               <label class="build-kit-desktop__size" aria-label="Размер">
                 <select class="build-kit-desktop__size-select">
-                  <option selected>XL</option>
-                  <option>L</option>
-                  <option>M</option>
+                  ${(product.sizes && product.sizes.length ? product.sizes : ['XL', 'L', 'M']).map((size, index) => `<option${index === 0 ? ' selected' : ''}>${size}</option>`).join('')}
                 </select>
               </label>
             ` : ''}
@@ -951,76 +1085,82 @@ document.addEventListener('DOMContentLoaded', () => {
       return article;
     }
 
-    function syncJacketKitItem(product = selectedJacket) {
-      const currentJacket = section.querySelector('.build-kit-desktop__kit-item[data-kit-type="jacket"]');
+    function selectedProductInKit() {
+      if (!selectedJacket) return false;
+      return getKitItems().some(item => item.dataset.kitProductId === selectedJacket.id);
+    }
 
-      if (desktopQuery.matches) {
-        currentJacket?.remove();
-        updateKitSummary();
-        return;
-      }
+    function syncProductAddState() {
+      if (!productAddButton || !productAddIcon) return;
 
-      const jacketItem = createKitItem(product, 'jacket');
-
-      if (currentJacket) {
-        currentJacket.replaceWith(jacketItem);
-      } else {
-        const firstItem = kitList?.querySelector('.build-kit-desktop__kit-item');
-        if (firstItem) {
-          firstItem.after(jacketItem);
-        } else {
-          kitList?.prepend(jacketItem);
-        }
-      }
-
-      updateKitSummary();
+      const isAdded = selectedProductInKit();
+      productAddButton.classList.toggle('is-added', isAdded);
+      productAddButton.setAttribute('aria-label', isAdded ? 'Товар уже в комплекте' : 'Добавить товар в комплект');
+      productAddIcon.setAttribute('href', `/images/icons/sprite.svg#${isAdded ? 'icon-kit-check' : 'icon-rec-plus'}`);
     }
 
     function addProductToKit(product) {
-      const emptySlot = section.querySelector('.build-kit-desktop__kit-item--empty');
-      const items = getKitItems();
+      if (!product || !kitList) return;
 
-      if (emptySlot) {
-        emptySlot.replaceWith(createKitItem(product));
-      } else if (items.length) {
-        items[items.length - 1].replaceWith(createKitItem(product));
+      const slot = product.slot || product.category || 'product';
+      const kitItem = createKitItem(product);
+      const currentItem = getKitItems().find(item => item.dataset.kitSlot === slot);
+      const emptySlot = Array.from(kitList.querySelectorAll('.build-kit-desktop__kit-item--empty')).find(item => item.dataset.kitSlot === slot);
+
+      if (currentItem) {
+        currentItem.replaceWith(kitItem);
+      } else if (emptySlot) {
+        emptySlot.replaceWith(kitItem);
+      } else {
+        kitList.appendChild(kitItem);
       }
 
       updateKitSummary();
+      syncProductAddState();
     }
 
-    tiles.forEach(tile => {
+    allTiles.forEach(tile => {
       tile.addEventListener('click', () => {
         if (!desktopQuery.matches) return;
-        tiles.forEach(item => item.classList.remove('is-active'));
+        allTiles.forEach(item => item.classList.remove('is-active'));
         tile.classList.add('is-active');
         updateSelectedJacket(getTileProduct(tile));
       });
     });
 
     kitList?.addEventListener('click', event => {
+      const emptyButton = event.target.closest('.build-kit-desktop__kit-item--empty');
+      if (emptyButton) {
+        const slot = emptyButton.dataset.kitSlot;
+        if (slot) activateCategory(slot);
+        return;
+      }
+
       const removeButton = event.target.closest('.build-kit-desktop__remove');
       if (!removeButton) return;
 
       const item = removeButton.closest('.build-kit-desktop__kit-item');
-      const title = item?.querySelector('.build-kit-desktop__kit-name')?.textContent || '';
-      const fallbackLabel = title.toLowerCase().includes('брюки') ? 'Добавить штаны'
-        : title.toLowerCase().includes('куртка') ? 'Добавить куртку'
-          : title.toLowerCase().includes('шапка') ? 'Добавить шапку'
-            : 'Добавить товар';
+      const slot = item?.dataset.kitSlot || '';
+      const fallbackLabel = getSlotLabel(slot);
 
-      item?.replaceWith(createEmptyKitSlot(fallbackLabel));
+      item?.replaceWith(createEmptyKitSlot(fallbackLabel, slot));
       updateKitSummary();
+      syncProductAddState();
+    });
+
+    productAddButton?.addEventListener('click', event => {
+      event.preventDefault();
+      addProductToKit(selectedJacket);
     });
 
     btnPrev?.addEventListener('click', () => updatePage(page - 1));
     btnNext?.addEventListener('click', () => updatePage(page + 1));
     desktopQuery.addEventListener('change', () => {
       syncDesktopCarousel();
-      syncJacketKitItem();
     });
     syncDesktopCarousel();
-    syncJacketKitItem();
+    updateKitSummary();
+    syncProductAddState();
   });
 
   // Product page — color picker
@@ -1260,6 +1400,121 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNext?.addEventListener('click', () => goTo(currentIndex + 1));
 
     goTo(0);
+  });
+
+  // Journal stories modal
+  document.querySelectorAll('[data-stories-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-stories-open]');
+    const closeButtons = modal.querySelectorAll('[data-stories-close]');
+    const prevButton = modal.querySelector('[data-stories-prev]');
+    const nextButton = modal.querySelector('[data-stories-next]');
+    const muteButton = modal.querySelector('[data-stories-mute]');
+    const slides = Array.from(modal.querySelectorAll('.stories-modal__slide'));
+    const videos = Array.from(modal.querySelectorAll('video.stories-modal__slide'));
+    const progressItems = Array.from(modal.querySelectorAll('.stories-modal__progress-item'));
+    const sidePrev = modal.querySelector('[data-stories-side-prev]');
+    const sideNext = modal.querySelector('[data-stories-side-next]');
+    const sideFarPrev = modal.querySelector('[data-stories-side-far-prev]');
+    const sideFarNext = modal.querySelector('[data-stories-side-far-next]');
+    let activeIndex = 0;
+    let autoplayId = 0;
+    let isMuted = false;
+
+    if (!slides.length) return;
+
+    function stopAutoplay() {
+      window.clearTimeout(autoplayId);
+      autoplayId = 0;
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayId = window.setTimeout(() => goTo(activeIndex + 1), 5000);
+    }
+
+    function goTo(index) {
+      activeIndex = (index + slides.length) % slides.length;
+      const activeSlide = slides[activeIndex];
+
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === activeIndex;
+        slide.classList.toggle('is-active', isActive);
+
+        if (slide instanceof HTMLVideoElement) {
+          slide.muted = isMuted;
+
+          if (isActive) {
+            slide.currentTime = 0;
+            slide.play().catch(() => {});
+          } else {
+            slide.pause();
+          }
+        }
+      });
+
+      [
+        [sidePrev, activeSlide?.dataset.sidePrev],
+        [sideNext, activeSlide?.dataset.sideNext],
+        [sideFarPrev, activeSlide?.dataset.sideFarPrev],
+        [sideFarNext, activeSlide?.dataset.sideFarNext],
+      ].forEach(([preview, previewSrc]) => {
+        if (!preview || !previewSrc) return;
+        const src = previewSrc;
+        const srcset = `${src} 1x`;
+        preview.setAttribute('src', src);
+        preview.setAttribute('srcset', srcset);
+      });
+
+      progressItems.forEach((item, itemIndex) => {
+        item.classList.toggle('is-filled', itemIndex < activeIndex);
+        item.classList.toggle('is-active', itemIndex === activeIndex);
+        const bar = item.querySelector('span');
+        if (bar) {
+          bar.style.animation = 'none';
+          void bar.offsetWidth;
+          bar.style.animation = '';
+        }
+      });
+
+      startAutoplay();
+    }
+
+    function openStories(event) {
+      event.preventDefault();
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      goTo(0);
+    }
+
+    function closeStories() {
+      stopAutoplay();
+      videos.forEach(video => video.pause());
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openStories));
+    closeButtons.forEach(button => button.addEventListener('click', closeStories));
+    prevButton?.addEventListener('click', () => goTo(activeIndex - 1));
+    nextButton?.addEventListener('click', () => goTo(activeIndex + 1));
+    muteButton?.addEventListener('click', () => {
+      isMuted = !isMuted;
+      videos.forEach(video => {
+        video.muted = isMuted;
+      });
+      muteButton.classList.toggle('is-muted', isMuted);
+      muteButton.setAttribute('aria-label', isMuted ? 'Включить звук' : 'Выключить звук');
+    });
+
+    document.addEventListener('keydown', event => {
+      if (modal.hidden) return;
+
+      if (event.key === 'Escape') closeStories();
+      if (event.key === 'ArrowLeft') goTo(activeIndex - 1);
+      if (event.key === 'ArrowRight') goTo(activeIndex + 1);
+    });
   });
 
 });
