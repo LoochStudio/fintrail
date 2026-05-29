@@ -1,3 +1,17 @@
+const appBasePath = import.meta.env.BASE_URL || '/';
+
+function resolvePublicAsset(src) {
+  if (!src || /^(?:https?:|data:|blob:)/.test(src)) return src;
+  if (src.startsWith(appBasePath) || src.startsWith('./') || src.startsWith('../')) return src;
+  if (src.startsWith('/images/')) return `${appBasePath}${src.slice(1)}`;
+  if (src.startsWith('images/')) return `${appBasePath}${src}`;
+  return src;
+}
+
+function spriteHref(symbolId) {
+  return `${appBasePath}images/icons/sprite.svg#${symbolId}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const rollHoverSelectors = [
     '.activity-picker__link',
@@ -507,11 +521,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setImage(img, src) {
       if (!img || !src) return;
+      const resolvedSrc = resolvePublicAsset(src);
       img.classList.remove('is-changing');
       void img.offsetWidth;
       img.classList.add('is-changing');
-      img.src = src;
-      img.srcset = src + ' 1x';
+      img.src = resolvedSrc;
+      img.srcset = `${resolvedSrc} 1x`;
     }
 
     function setProduct(card, link, index) {
@@ -534,8 +549,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (name && nameNode) nameNode.textContent = name;
       if (price && priceNode) priceNode.textContent = price;
       if (img && imageSrc) {
-        img.src = imageSrc;
-        img.srcset = `${imageSrc} 1x`;
+        const resolvedImageSrc = resolvePublicAsset(imageSrc);
+        img.src = resolvedImageSrc;
+        img.srcset = `${resolvedImageSrc} 1x`;
         img.alt = name || '';
       }
     }
@@ -1096,7 +1112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isAdded = selectedProductInKit();
       productAddButton.classList.toggle('is-added', isAdded);
       productAddButton.setAttribute('aria-label', isAdded ? 'Товар уже в комплекте' : 'Добавить товар в комплект');
-      productAddIcon.setAttribute('href', `/images/icons/sprite.svg#${isAdded ? 'icon-kit-check' : 'icon-rec-plus'}`);
+      productAddIcon.setAttribute('href', spriteHref(isAdded ? 'icon-kit-check' : 'icon-rec-plus'));
     }
 
     function addProductToKit(product) {
@@ -1459,7 +1475,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [sideFarNext, activeSlide?.dataset.sideFarNext],
       ].forEach(([preview, previewSrc]) => {
         if (!preview || !previewSrc) return;
-        const src = previewSrc;
+        const src = resolvePublicAsset(previewSrc);
         const srcset = `${src} 1x`;
         preview.setAttribute('src', src);
         preview.setAttribute('srcset', srcset);
