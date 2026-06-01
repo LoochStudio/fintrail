@@ -240,7 +240,7 @@
 
         <article class="site-menu__promo">
           <picture>
-            <source srcset="/images/content/site-menu/hiking-promo.png 1x" media="(min-width: 1280px)">
+            <source srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
             <img
               src="/images/content/site-menu/hiking-promo.png"
               srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w"
@@ -426,9 +426,9 @@
   <main class="page-content">
 
   <!--
-    BITRIX: все контентные <img> со статическим srcset "... 1x" — точки подстановки.
-    При интеграции заменить на CMS-generated srcset с реальными ширинами
-    и WebP/AVIF, например 480w / 960w / 1440w. Не оставлять 1x как финальный вариант.
+    BITRIX: контентные <img> уже содержат srcset/sizes с ширинными дескрипторами.
+    При интеграции заменить на CMS-generated srcset с upload-путями
+    и WebP/AVIF, например 480w / 960w / 1440w.
   -->
 
   <!-- Hero -->

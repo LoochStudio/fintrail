@@ -1,0 +1,190 @@
+@use '../variables' as *;
+
+.header-mega {
+  position: fixed;
+  top: 112px;
+  right: 0;
+  left: 0;
+  z-index: 49;
+  background: $color-surface;
+  color: $color-primary-black;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.22s ease;
+}
+
+.header-mega[hidden] {
+  display: block;
+  pointer-events: none;
+}
+
+.header-mega.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.header-mega__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.header-mega__columns {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(48px, 5.55vw, 80px);
+}
+
+.header-mega__group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 0 0 auto;
+  color: $color-primary-black;
+  transition: color 0.18s ease;
+}
+
+.header-mega__title {
+  color: currentColor;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.header-mega__rule {
+  width: 100%;
+  min-width: 97px;
+  height: 1px;
+  background: $color-white;
+}
+
+.header-mega__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: block;
+    color: currentColor;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: 500;
+    line-height: $text-body-b1-line;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.18s ease;
+  }
+}
+
+.header-mega.is-group-hovered .header-mega__group {
+  color: $color-primary-gray;
+}
+
+.header-mega.is-group-hovered .header-mega__group.is-active .header-mega__title,
+.header-mega.is-group-hovered .header-mega__group.is-active .header-mega__list a.is-active {
+  color: $color-primary-black;
+}
+
+.header-mega__activities {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 60px;
+  padding-top: 40px;
+  background-image: repeating-linear-gradient(90deg, $color-primary-gray 0 8px, transparent 8px 16px);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: left top;
+}
+
+.header-mega__activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 14px 0;
+  border-radius: $radius-xs;
+  color: $color-primary-black;
+  text-decoration: none;
+  transition: color 0.18s ease, background 0.18s ease;
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    font-family: $font-display;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header-mega__activity:hover,
+  .header-mega__activity:focus-visible {
+    background: $color-white;
+    color: $color-primary-black;
+  }
+}
+
+.hero.is-mega-open {
+  .hero__topbar {
+    background: $color-surface;
+    color: $color-primary-black;
+  }
+
+  .hero__logo {
+    filter: brightness(0) saturate(100%);
+  }
+
+  .hero__tool,
+  .hero__menu-btn {
+    color: $color-primary-black;
+  }
+}
+
+.hero.is-header-compact .header-mega,
+.catalog-header.is-header-compact .header-mega {
+  top: 72px;
+}
+
+.hero__nav.is-mega-open,
+.catalog-header .hero__nav.is-mega-open {
+  .hero__nav-link::before {
+    color: $color-primary-gray;
+  }
+
+  .hero__nav-link.is-mega-active::before {
+    color: $color-primary-black;
+  }
+}
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .header-mega {
+    display: none !important;
+  }
+}

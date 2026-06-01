@@ -8,6 +8,128 @@ function resolvePublicAsset(src) {
   return src;
 }
 
+const responsiveImageWidths = {
+  "/images/content/activity/fishing-main-framed.png": 540,
+  "/images/content/activity/fishing-product-1.png": 1000,
+  "/images/content/activity/fishing-product-2.png": 1000,
+  "/images/content/activity/quad-main-framed.png": 540,
+  "/images/content/activity/quad-product-1.png": 1000,
+  "/images/content/activity/quad-product-2.png": 1000,
+  "/images/content/activity/ski-main.png": 1035,
+  "/images/content/activity/ski-product-1.png": 1000,
+  "/images/content/activity/ski-product-2.png": 1000,
+  "/images/content/activity/snowmobile-main-framed.png": 540,
+  "/images/content/activity/snowmobile-product-1.png": 1000,
+  "/images/content/activity/snowmobile-product-2.png": 1000,
+  "/images/content/activity/tourism-main-framed.png": 540,
+  "/images/content/activity/tourism-main.png": 987,
+  "/images/content/activity/tourism-product-1.png": 1000,
+  "/images/content/activity/tourism-product-2.png": 1000,
+  "/images/content/activity/travel-main-framed.png": 540,
+  "/images/content/activity/travel-product-1.png": 1000,
+  "/images/content/activity/travel-product-2.png": 1000,
+  "/images/content/build-kit/hat-1.png": 1000,
+  "/images/content/build-kit/hat-2.png": 1000,
+  "/images/content/build-kit/hat-3.png": 1000,
+  "/images/content/build-kit/hat-4.png": 1000,
+  "/images/content/build-kit/hat-6.png": 1000,
+  "/images/content/build-kit/hat-7.png": 1000,
+  "/images/content/build-kit/hat-8.png": 1000,
+  "/images/content/build-kit/hat-9.png": 1000,
+  "/images/content/build-kit/hat.png": 1000,
+  "/images/content/build-kit/item-2.png": 1000,
+  "/images/content/build-kit/item-3.png": 1000,
+  "/images/content/build-kit/item-4.png": 1000,
+  "/images/content/build-kit/item-5.png": 1000,
+  "/images/content/build-kit/item-6.png": 1000,
+  "/images/content/build-kit/item-7.png": 1000,
+  "/images/content/build-kit/item-8.png": 1000,
+  "/images/content/build-kit/item-9.png": 1000,
+  "/images/content/build-kit/jacket.png": 1000,
+  "/images/content/build-kit/model-female.png": 896,
+  "/images/content/build-kit/model.png": 1888,
+  "/images/content/build-kit/pants-1.png": 1000,
+  "/images/content/build-kit/pants-2.png": 440,
+  "/images/content/build-kit/pants-3.png": 1000,
+  "/images/content/build-kit/pants-4.png": 1000,
+  "/images/content/build-kit/pants-5.png": 1000,
+  "/images/content/build-kit/pants-6.png": 1000,
+  "/images/content/build-kit/pants-7.png": 1000,
+  "/images/content/build-kit/pants-8.png": 1000,
+  "/images/content/build-kit/pants-9.png": 1000,
+  "/images/content/build-kit/pants.png": 1000,
+  "/images/content/build-kit/shoes-1.png": 1000,
+  "/images/content/build-kit/shoes-2.png": 1000,
+  "/images/content/build-kit/shoes-3.png": 1000,
+  "/images/content/build-kit/shoes-4.png": 1000,
+  "/images/content/build-kit/shoes-5.png": 1000,
+  "/images/content/build-kit/shoes-6.png": 1000,
+  "/images/content/build-kit/shoes-7.png": 1000,
+  "/images/content/build-kit/shoes-8.png": 1000,
+  "/images/content/build-kit/shoes-9.png": 1000,
+  "/images/content/community-showcase/fishing.png": 987,
+  "/images/content/community-showcase/offroad.png": 848,
+  "/images/content/community-showcase/tourism.png": 1094,
+  "/images/content/gift-cards-showcase/card-main.png": 2880,
+  "/images/content/gift-cards-showcase/card-side-left.png": 1200,
+  "/images/content/gift-cards-showcase/card-side-right.png": 4096,
+  "/images/content/gift-cards-showcase/mountains.png": 4096,
+  "/images/content/hero/hero-product-jacket.png": 1000,
+  "/images/content/hero/hero-product-pants.png": 1000,
+  "/images/content/hero/hero-slide-outdoor.png": 2752,
+  "/images/content/journal/cat-fishing.png": 714,
+  "/images/content/journal/cat-quad.png": 546,
+  "/images/content/journal/cat-ski.png": 526,
+  "/images/content/journal/cat-snowmobile.png": 444,
+  "/images/content/journal/cat-tourism.png": 541,
+  "/images/content/journal/cat-travel.png": 567,
+  "/images/content/journal/hero-tent.png": 1024,
+  "/images/content/journal/snowmobile.png": 910,
+  "/images/content/journal/stories-frame-main.png": 405,
+  "/images/content/journal/stories-frame-side.png": 202,
+  "/images/content/journal/trekking.png": 1024,
+  "/images/content/placeholder.png": 60,
+  "/images/content/recommended/recommended-1.png": 780,
+  "/images/content/recommended/recommended-2.png": 442,
+  "/images/content/recommended/recommended-3.png": 498,
+  "/images/content/recommended/recommended-4.png": 197,
+  "/images/content/site-menu/hiking-promo.png": 900,
+  "/images/content/store-showcase/metropolis-store.png": 1400
+};
+const responsiveImageBreakpoints = [160, 320, 480, 768, 1024, 1440];
+
+function normalizePublicImagePath(src) {
+  if (!src || /^(?:https?:|data:|blob:)/.test(src)) return src;
+  let normalized = src;
+  if (normalized.startsWith(appBasePath)) {
+    normalized = '/' + normalized.slice(appBasePath.length).replace(/^\/?/, '');
+  }
+  if (normalized.startsWith('images/')) normalized = '/' + normalized;
+  return normalized;
+}
+
+function responsiveVariantPath(src, width) {
+  const normalized = normalizePublicImagePath(src);
+  const dotIndex = normalized.lastIndexOf('.');
+  const slashIndex = normalized.lastIndexOf('/');
+  const dir = normalized.slice('/images/content'.length, slashIndex);
+  const name = normalized.slice(slashIndex + 1, dotIndex);
+  const ext = normalized.slice(dotIndex);
+  return `/images/content/_responsive${dir}/${name}-${width}${ext}`;
+}
+
+function getResponsiveSrcset(src) {
+  const normalized = normalizePublicImagePath(src);
+  const originalWidth = responsiveImageWidths[normalized];
+  if (!originalWidth) return `${resolvePublicAsset(src)} 1x`;
+
+  const entries = responsiveImageBreakpoints
+    .filter(width => width < originalWidth)
+    .map(width => `${resolvePublicAsset(responsiveVariantPath(normalized, width))} ${width}w`);
+
+  entries.push(`${resolvePublicAsset(normalized)} ${originalWidth}w`);
+  return entries.join(', ');
+}
 function spriteHref(symbolId) {
   return `${appBasePath}images/icons/sprite.svg#${symbolId}`;
 }
@@ -911,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
       void img.offsetWidth;
       img.classList.add('is-changing');
       img.src = resolvedSrc;
-      img.srcset = `${resolvedSrc} 1x`;
+      img.srcset = getResponsiveSrcset(src);
     }
 
     function setProduct(card, link, index) {
@@ -936,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (img && imageSrc) {
         const resolvedImageSrc = resolvePublicAsset(imageSrc);
         img.src = resolvedImageSrc;
-        img.srcset = `${resolvedImageSrc} 1x`;
+        img.srcset = getResponsiveSrcset(imageSrc);
         img.alt = name || '';
       }
     }
@@ -1190,7 +1312,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modelImg && button.dataset.model) {
           const modelSrc = resolvePublicAsset(button.dataset.model);
           modelImg.src = modelSrc;
-          modelImg.srcset = modelSrc + ' 1x';
+          modelImg.srcset = getResponsiveSrcset(button.dataset.model);
         }
       });
     });
@@ -1405,7 +1527,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (productImage) {
         productImage.setAttribute('src', product.img);
-        productImage.setAttribute('srcset', `${product.img} 1x`);
+        productImage.setAttribute('srcset', getResponsiveSrcset(product.img));
         productImage.setAttribute('alt', product.name);
       }
 
@@ -1470,7 +1592,7 @@ document.addEventListener('DOMContentLoaded', () => {
       article.dataset.kitCategory = product.category || product.slot || 'product';
       article.dataset.kitProductId = product.id || '';
       article.innerHTML = `
-        <img class="build-kit-desktop__kit-img" src="${product.img}" srcset="${product.img} 1x" sizes="100vw" alt="" loading="lazy">
+        <img class="build-kit-desktop__kit-img" src="${product.img}" srcset="${getResponsiveSrcset(product.img)}" sizes="100vw" alt="" loading="lazy">
         <div class="build-kit-desktop__kit-content">
           <div class="build-kit-desktop__kit-top">
             <h3 class="build-kit-desktop__kit-name">${product.name}</h3>
@@ -1785,7 +1907,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const thumb = items[currentIndex].querySelector('img');
         if (thumb) {
           const nextSrc = thumb.getAttribute('src') || thumb.src;
-          const nextSrcset = thumb.getAttribute('srcset') || `${nextSrc} 1x`;
+          const nextSrcset = thumb.getAttribute('srcset') || getResponsiveSrcset(nextSrc);
 
           mainImage.src = nextSrc;
           mainImage.srcset = nextSrcset;
@@ -1866,9 +1988,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ].forEach(([preview, previewSrc]) => {
         if (!preview || !previewSrc) return;
         const src = resolvePublicAsset(previewSrc);
-        const srcset = `${src} 1x`;
         preview.setAttribute('src', src);
-        preview.setAttribute('srcset', srcset);
+        preview.setAttribute('srcset', getResponsiveSrcset(previewSrc));
       });
 
       progressItems.forEach((item, itemIndex) => {

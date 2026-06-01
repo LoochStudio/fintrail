@@ -3,3 +3,19 @@ node_modules/
 .preview-root/
 tmp/
 *.log
+
+# Local AI/Codex working context, not part of client handoff
+AGENTS.md
+docs/client-requirements.md
+.codex/
+.mcp/
+
+# Local test/debug artifacts
+playwright-report/
+test-results/
+*.tmp
+*.bak
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

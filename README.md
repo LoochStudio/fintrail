@@ -144,11 +144,13 @@ npm run preview
 
 ### Адаптивные изображения (srcset)
 
-Все `<img>` имеют атрибуты `srcset` и `sizes`. Текущее значение `srcset="... 1x"` — заглушка. При интеграции заменить на реальные размеры из CMS:
+Все растровые `<img>` главной страницы имеют атрибуты `srcset` и `sizes` с ширинными дескрипторами. Статические варианты лежат в `images/content/_responsive/`. При интеграции заменить их на реальные размеры из CMS:
 
 ```html
-<!-- Текущая заглушка: -->
-<img src="/images/photo.png" srcset="/images/photo.png 1x" sizes="...">
+<!-- Статическая верстка: -->
+<img src="/images/photo.png"
+     srcset="/images/content/_responsive/photo-320.png 320w, /images/photo.png 960w"
+     sizes="(max-width: 767px) 100vw, 360px">
 
 <!-- После интеграции (пример): -->
 <img src="/upload/photo.webp"
