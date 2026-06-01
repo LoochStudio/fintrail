@@ -100,8 +100,8 @@
     -->
     <nav class="navbar__nav" aria-label="Главная навигация">
       <div class="navbar__nav-left">
-        <a href="catalog/"   class="navbar__nav-link" data-hover-text="Мужчинам">Мужчинам</a>
-        <a href="catalog/" class="navbar__nav-link" data-hover-text="Женщинам">Женщинам</a>
+        <a href="/catalog/"   class="navbar__nav-link" data-hover-text="Мужчинам">Мужчинам</a>
+        <a href="/catalog/" class="navbar__nav-link" data-hover-text="Женщинам">Женщинам</a>
         <a href="/activities/"    class="navbar__nav-link" data-hover-text="Активности">Активности</a>
         <a href="/sale/"          class="navbar__nav-link" data-hover-text="Распродажа">Распродажа</a>
         <a href="/new/"           class="navbar__nav-link" data-hover-text="Новинки">Новинки</a>
@@ -227,33 +227,33 @@
           </nav>
 
           <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
-            <a href="catalog/">Куртки</a>
-            <a href="catalog/">Брюки и полукомбинезоны</a>
-            <a href="catalog/">Костюмы и комбинезоны</a>
-            <a href="catalog/">Термобелье</a>
-            <a href="catalog/">Футболки и лонгсливы</a>
-            <a href="catalog/">Жилеты</a>
-            <a href="catalog/">Худи и толстовки</a>
-            <a href="catalog/">Рубашки / шорты</a>
+            <a href="/catalog/">Куртки</a>
+            <a href="/catalog/">Брюки и полукомбинезоны</a>
+            <a href="/catalog/">Костюмы и комбинезоны</a>
+            <a href="/catalog/">Термобелье</a>
+            <a href="/catalog/">Футболки и лонгсливы</a>
+            <a href="/catalog/">Жилеты</a>
+            <a href="/catalog/">Худи и толстовки</a>
+            <a href="/catalog/">Рубашки / шорты</a>
           </nav>
         </div>
 
         <article class="site-menu__promo">
           <picture>
-            <source srcset="images/content/site-menu/hiking-promo.png 1x" media="(min-width: 1280px)">
+            <source srcset="/images/content/site-menu/hiking-promo.png 1x" media="(min-width: 1280px)">
             <img
-              src="images/content/site-menu/hiking-promo.png"
-              srcset="images/content/site-menu/hiking-promo.png 1x"
+              src="/images/content/site-menu/hiking-promo.png"
+              srcset="/images/content/site-menu/hiking-promo.png 1x"
               sizes="360px"
               alt="Экипировка для хайкинга"
               loading="lazy"
             >
           </picture>
           <div class="site-menu__promo-content">
-            <h2>Экипировка<br>для хайкинга</h2>
+            <h3>Экипировка<br>для хайкинга</h3>
             <p>Куртки, штаны, термобельё</p>
           </div>
-          <a class="site-menu__promo-link" href="catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+          <a class="site-menu__promo-link" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
           </a>
         </article>
@@ -393,14 +393,14 @@
         </button>
         <div class="mobile-menu__divider" aria-hidden="true"></div>
         <nav class="mobile-menu__subcategory-links" aria-label="Подкатегории">
-          <a href="catalog/">Куртки</a>
-          <a href="catalog/">Брюки и полукомбинезоны</a>
-          <a href="catalog/">Костюмы и комбинезоны</a>
-          <a href="catalog/">Термобелье</a>
-          <a href="catalog/">Футболки и лонгсливы</a>
-          <a href="catalog/">Жилеты</a>
-          <a href="catalog/">Худи и толстовки</a>
-          <a href="catalog/">Рубашки / шорты</a>
+          <a href="/catalog/">Куртки</a>
+          <a href="/catalog/">Брюки и полукомбинезоны</a>
+          <a href="/catalog/">Костюмы и комбинезоны</a>
+          <a href="/catalog/">Термобелье</a>
+          <a href="/catalog/">Футболки и лонгсливы</a>
+          <a href="/catalog/">Жилеты</a>
+          <a href="/catalog/">Худи и толстовки</a>
+          <a href="/catalog/">Рубашки / шорты</a>
         </nav>
       </div>
 
@@ -464,8 +464,8 @@
       </div>
 
       <nav class="hero__nav" aria-label="Главная навигация">
-        <a href="catalog/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
-        <a href="catalog/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/catalog/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
         <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
         <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
       </nav>
@@ -579,6 +579,13 @@
         </div>
       </div>
 
+      <!--
+        ИСКЛЮЧЕНИЕ: Inline SVG в пагинации hero.
+        Элемент содержит CSS-анимацию через stroke-dashoffset на двух <circle>.
+        Анимированные CSS-свойства не наследуются через <use href="..."> из спрайта
+        (shadowDOM-изоляция), поэтому здесь допустимо исключение из правила SVG-спрайтов.
+        Согласовано с командой.
+      -->
       <div class="hero__pagination">
         <button class="hero__pagination-dot is-active" type="button" aria-label="Слайд 1">
           <svg class="hero__pagination-icon" viewBox="0 0 18 18" aria-hidden="true">
@@ -605,7 +612,7 @@
 
       <div class="hero__products" aria-label="Товары из промо">
         <div class="hero__products-set is-active" data-hero-products>
-          <a class="hero-product-card" href="catalog/finntrail-aspen-3462-orange/">
+          <a class="hero-product-card" href="/catalog/finntrail-aspen-3462-orange/">
             <span class="hero-product-card__pic">
               <img src="/images/content/hero/hero-product-pants.png" srcset="/images/content/hero/hero-product-pants.png 1x" sizes="100vw" alt="FINNTRAIL Aspen 3462 Orange" loading="eager">
             </span>
@@ -618,7 +625,7 @@
             </span>
           </a>
 
-          <a class="hero-product-card" href="catalog/finntrail-polar-1400-black/">
+          <a class="hero-product-card" href="/catalog/finntrail-polar-1400-black/">
             <span class="hero-product-card__pic">
               <img src="/images/content/hero/hero-product-jacket.png" srcset="/images/content/hero/hero-product-jacket.png 1x" sizes="100vw" alt="FINNTRAIL Polar 1400 Black" loading="eager">
             </span>
@@ -633,7 +640,7 @@
         </div>
 
         <div class="hero__products-set" data-hero-products hidden>
-          <a class="hero-product-card" href="catalog/finntrail-polar-1400-black/">
+          <a class="hero-product-card" href="/catalog/finntrail-polar-1400-black/">
             <span class="hero-product-card__pic">
               <img src="/images/content/hero/hero-product-jacket.png" srcset="/images/content/hero/hero-product-jacket.png 1x" sizes="100vw" alt="FINNTRAIL Polar 1400 Black" loading="eager">
             </span>
@@ -646,7 +653,7 @@
             </span>
           </a>
 
-          <a class="hero-product-card" href="catalog/finntrail-aspen-3462-orange/">
+          <a class="hero-product-card" href="/catalog/finntrail-aspen-3462-orange/">
             <span class="hero-product-card__pic">
               <img src="/images/content/hero/hero-product-pants.png" srcset="/images/content/hero/hero-product-pants.png 1x" sizes="100vw" alt="FINNTRAIL Aspen 3462 Orange" loading="eager">
             </span>
@@ -733,7 +740,7 @@
         <div class="recommendations-new__track">
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/recommended/recommended-1.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Новинка</span>
               </a>
@@ -751,7 +758,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -767,7 +774,7 @@
 
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" srcset="/images/content/recommended/recommended-2.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Топ</span>
               </a>
@@ -783,7 +790,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -799,7 +806,7 @@
 
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/recommended/recommended-3.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Хит</span>
               </a>
@@ -815,7 +822,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -831,7 +838,7 @@
 
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image" src="/images/content/recommended/recommended-4.png" srcset="/images/content/recommended/recommended-4.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Новинка</span>
               </a>
@@ -847,7 +854,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -863,7 +870,7 @@
         </div>
       </div>
 
-      <a class="recommendations-new__more button button--ghost button--size-m" href="catalog/?sort=recommended">
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/?sort=recommended">
         <span>Смотреть все</span>
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
       </a>
@@ -1221,7 +1228,7 @@
         <div class="recommendations-new__track">
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/recommended/recommended-1.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Новинка</span>
               </a>
@@ -1239,7 +1246,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -1255,7 +1262,7 @@
 
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" srcset="/images/content/recommended/recommended-2.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Топ</span>
               </a>
@@ -1271,7 +1278,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -1287,7 +1294,7 @@
 
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/recommended/recommended-3.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Хит</span>
               </a>
@@ -1303,7 +1310,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -1319,7 +1326,7 @@
 
           <article class="recommendation-card">
             <div class="recommendation-card__media">
-              <a class="recommendation-card__image-link" href="catalog/finntrail-master-hood-1510-graphite/">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
               <img class="recommendation-card__image" src="/images/content/recommended/recommended-4.png" srcset="/images/content/recommended/recommended-4.png 1x" sizes="100vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
               <span class="recommendation-card__badge">Новинка</span>
               </a>
@@ -1335,7 +1342,7 @@
                 <span class="recommendation-card__color recommendation-card__color--gray"></span>
                 <span class="recommendation-card__more">+3</span>
               </div>
-              <h3 class="recommendation-card__name"><a href="catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
             </div>
             <button class="recommendation-card__cart" type="button">
               <span class="recommendation-card__prices">
@@ -1351,7 +1358,7 @@
         </div>
       </div>
 
-      <a class="recommendations-new__more button button--ghost button--size-m" href="catalog/?sort=popular">
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/?sort=popular">
         <span>Смотреть все</span>
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
       </a>
@@ -1735,7 +1742,7 @@
       Ссылки в навигации — статичные или из меню Bitrix (bitrix:menu)
       Юридические ссылки — статичные в footer.php
     -->
-    <div class="footer" role="contentinfo">
+    <div class="footer">
 
       <div class="footer__brand">
         <a href="/" class="footer__logo-link">
@@ -1812,7 +1819,7 @@
     или JS по window.location.pathname (уже реализовано в main.js)
   -->
   <nav class="tabbar" aria-label="Мобильная навигация">
-    <a href="catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open>
+    <a href="/catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open>
       <span class="tabbar__icon">
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg>
       </span>
