@@ -114,6 +114,310 @@
 
   </header>
 
+  <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+    <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+
+    <aside class="site-menu__panel">
+      <div class="site-menu__top">
+        <div class="site-menu__bar">
+          <button class="site-menu__close" type="button" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="site-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+
+        <nav class="site-menu__main" aria-label="Основные разделы">
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
+        </nav>
+
+        <div class="site-menu__divider" aria-hidden="true"></div>
+
+        <nav class="site-menu__activities" aria-label="Активности">
+          <a href="/activities/tourism/">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg>
+            <span>Туризм</span>
+          </a>
+          <a href="/activities/quad/">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg>
+            <span>Квадро</span>
+          </a>
+          <a href="/activities/fishing/">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg>
+            <span>Рыбалка</span>
+          </a>
+          <a href="/activities/travel/">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg>
+            <span>Путешествия</span>
+          </a>
+          <a href="/activities/snowmobiles/">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg>
+            <span>Снегоходы</span>
+          </a>
+          <a href="/activities/skiing/">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg>
+            <span>Горные лыжи</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="site-menu__middle">
+        <nav class="site-menu__links" aria-label="Контентные разделы">
+          <a href="/journal/">Журнал</a>
+          <a href="/tours/">Премиальные туры</a>
+        </nav>
+        <nav class="site-menu__links" aria-label="Информация">
+          <button type="button" data-site-menu-info="about">О компании</button>
+          <button type="button" data-site-menu-info="customers">Покупателям</button>
+          <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
+        </nav>
+      </div>
+
+      <div class="site-menu__bottom">
+        <div class="site-menu__contacts">
+          <div class="site-menu__phone-row">
+            <a class="site-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+            <div class="site-menu__socials" aria-label="Социальные сети">
+              <a href="https://t.me/finntrail" aria-label="Telegram" target="_blank" rel="noopener">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg>
+              </a>
+              <a href="https://wa.me/78007004273" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg>
+              </a>
+              <a href="https://dzen.ru/finntrail" aria-label="Дзен" target="_blank" rel="noopener">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg>
+              </a>
+            </div>
+          </div>
+          <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
+        </div>
+
+        <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+
+        <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a href="/app/" aria-label="Google Play">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+          </a>
+          <a href="/app/" aria-label="App Store">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+          </a>
+          <a href="/app/" aria-label="AppGallery">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+          </a>
+          <a href="/app/" aria-label="RuStore">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
+      <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
+        <div class="site-menu__submenu-top">
+          <nav class="site-menu__categories" aria-label="Категории">
+            <button type="button" data-site-menu-category>Одежда</button>
+            <button type="button" data-site-menu-category>Обувь</button>
+            <button type="button" data-site-menu-category>Аксессуары</button>
+            <button type="button" data-site-menu-category>Снаряжение</button>
+            <button type="button" data-site-menu-category>Экипировка</button>
+          </nav>
+
+          <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
+            <a href="catalog/">Куртки</a>
+            <a href="catalog/">Брюки и полукомбинезоны</a>
+            <a href="catalog/">Костюмы и комбинезоны</a>
+            <a href="catalog/">Термобелье</a>
+            <a href="catalog/">Футболки и лонгсливы</a>
+            <a href="catalog/">Жилеты</a>
+            <a href="catalog/">Худи и толстовки</a>
+            <a href="catalog/">Рубашки / шорты</a>
+          </nav>
+        </div>
+
+        <article class="site-menu__promo">
+          <picture>
+            <source srcset="images/content/site-menu/hiking-promo.png 1x" media="(min-width: 1280px)">
+            <img
+              src="images/content/site-menu/hiking-promo.png"
+              srcset="images/content/site-menu/hiking-promo.png 1x"
+              sizes="360px"
+              alt="Экипировка для хайкинга"
+              loading="lazy"
+            >
+          </picture>
+          <div class="site-menu__promo-content">
+            <h2>Экипировка<br>для хайкинга</h2>
+            <p>Куртки, штаны, термобельё</p>
+          </div>
+          <a class="site-menu__promo-link" href="catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </a>
+        </article>
+      </div>
+
+      <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/loyalty/">Программа лояльности</a>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню" data-mobile-menu>
+    <div class="mobile-menu__panel" data-mobile-menu-view="main">
+      <div class="mobile-menu__top">
+        <div class="mobile-menu__bar">
+          <button class="mobile-menu__close" type="button" data-mobile-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="mobile-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+
+        <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+          <div class="mobile-menu__group">
+            <a href="/journal/">Журнал</a>
+            <a href="/tours/">Премиальные туры</a>
+          </div>
+          <div class="mobile-menu__group">
+            <a href="/about/">О компании</a>
+            <button type="button" data-mobile-menu-customers>Покупателям</button>
+            <a href="/wholesale/">Оптовикам</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="mobile-menu__bottom">
+        <div class="mobile-menu__contacts">
+          <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+          <div class="mobile-menu__socials" aria-label="Социальные сети">
+            <a href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+            <a href="https://wa.me/78007004273" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+          </div>
+        </div>
+        <a class="button button--secondary button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a href="/app/" aria-label="Google Play"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg></a>
+          <a href="/app/" aria-label="App Store"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg></a>
+          <a href="/app/" aria-label="AppGallery"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg></a>
+          <a href="/app/" aria-label="RuStore"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/loyalty/">Программа лояльности</a>
+      </nav>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
+      <div class="mobile-menu__catalog-top">
+        <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle>
+            <span>Мужчинам</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+          </button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+
+        <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle>
+            <span>Женщинам</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+          </button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--category" hidden data-mobile-menu-view="category">
+      <div class="mobile-menu__category-top">
+        <button class="mobile-menu__category-back" type="button" data-mobile-menu-catalog-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span data-mobile-menu-category-title>Одежда</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <nav class="mobile-menu__subcategory-links" aria-label="Подкатегории">
+          <a href="catalog/">Куртки</a>
+          <a href="catalog/">Брюки и полукомбинезоны</a>
+          <a href="catalog/">Костюмы и комбинезоны</a>
+          <a href="catalog/">Термобелье</a>
+          <a href="catalog/">Футболки и лонгсливы</a>
+          <a href="catalog/">Жилеты</a>
+          <a href="catalog/">Худи и толстовки</a>
+          <a href="catalog/">Рубашки / шорты</a>
+        </nav>
+      </div>
+
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
   <!--
     BITRIX: всё внутри <main> — вызовы компонентов в шаблоне страницы
     (/bitrix/templates/<template_name>/page_templates/index.php
@@ -133,12 +437,12 @@
     Компонент: bitrix:iblock.list, шаблон: hero
     В цикле по элементам: каждый элемент → один .hero__slide + один .hero__info
   -->
-  <section class="hero">
+  <section class="hero" data-header-mega-root>
 
     <div class="hero__track">
       <div class="hero__slides">
         <div class="hero__slide">
-          <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/images/content/placeholder.png">
+          <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/images/content/placeholder.png" aria-label="Видеопрезентация FINNTRAIL">
             <source src="/images/content/hero/hero-video.mp4" type="video/mp4">
           </video>
         </div>
@@ -150,7 +454,7 @@
 
     <div class="hero__topbar" aria-label="Навигация промо-секции">
       <div class="hero__brand">
-        <button class="hero__menu-btn" type="button" aria-label="Открыть меню">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
           <span>Меню</span>
         </button>
@@ -160,8 +464,8 @@
       </div>
 
       <nav class="hero__nav" aria-label="Главная навигация">
-        <a href="catalog/" class="hero__nav-link" data-hover-text="Мужчинам">Мужчинам</a>
-        <a href="catalog/" class="hero__nav-link" data-hover-text="Женщинам">Женщинам</a>
+        <a href="catalog/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="catalog/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
         <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
         <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
       </nav>
@@ -179,6 +483,80 @@
         <a href="/cart/" class="hero__tool" aria-label="Корзина">
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
         </a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+              <li><a href="/catalog/aksessuary-dlya-obuvi/">Аксессуары для обуви</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ochki/">Очки и маски</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+              <li><a href="/catalog/remni/">Ремни и подтяжки</a></li>
+              <li><a href="/catalog/zashchita/">Защита тела и рук</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/palatki/">Палатки</a></li>
+              <li><a href="/catalog/spalnye-meshki/">Спальные мешки и коврики</a></li>
+              <li><a href="/catalog/stoly/">Столы и стулья</a></li>
+              <li><a href="/catalog/germochehly/">Гермочехлы</a></li>
+              <li><a href="/catalog/termosy/">Термосы</a></li>
+              <li><a href="/catalog/sidushki/">Подкладки / сидушки</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/special/">Специальная экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/veydersy/">Вейдерсы</a></li>
+              <li><a href="/catalog/suhie-kostyumy/">Сухие костюмы</a></li>
+              <li><a href="/catalog/zabrodnaya-ekipirovka/">Забродная экипировка</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-mega__activities" aria-label="Активности">
+          <a class="header-mega__activity" href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a class="header-mega__activity" href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a class="header-mega__activity" href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a class="header-mega__activity" href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a class="header-mega__activity" href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a class="header-mega__activity" href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </div>
       </div>
     </div>
 
@@ -1099,11 +1477,11 @@
 
         <article class="stories-modal__story stories-modal__story--main">
           <div class="stories-modal__media" data-stories-media>
-            <img class="stories-modal__slide is-active" src="/images/content/journal/stories-frame-main.png" srcset="/images/content/journal/stories-frame-main.png 1x" sizes="405px" alt="Клуб FINNTRAIL" data-story-type="image"
+            <img class="stories-modal__slide is-active" src="/images/content/journal/stories-frame-main.png" srcset="/images/content/journal/stories-frame-main.png 1x" sizes="405px" alt="Клуб FINNTRAIL" loading="lazy" data-story-type="image"
               data-side-prev="/images/content/journal/stories-frame-side.png" data-side-next="/images/content/journal/stories-frame-main.png" data-side-far-prev="/images/content/journal/stories-frame-side.png" data-side-far-next="/images/content/journal/stories-frame-main.png">
-            <img class="stories-modal__slide" src="/images/content/journal/stories-frame-main.png" srcset="/images/content/journal/stories-frame-main.png 1x" sizes="405px" alt="Бонусы клуба FINNTRAIL" data-story-type="image"
+            <img class="stories-modal__slide" src="/images/content/journal/stories-frame-main.png" srcset="/images/content/journal/stories-frame-main.png 1x" sizes="405px" alt="Бонусы клуба FINNTRAIL" loading="lazy" data-story-type="image"
               data-side-prev="/images/content/journal/stories-frame-side.png" data-side-next="/images/content/journal/stories-frame-main.png" data-side-far-prev="/images/content/journal/stories-frame-side.png" data-side-far-next="/images/content/journal/stories-frame-main.png">
-            <img class="stories-modal__slide" src="/images/content/journal/stories-frame-main.png" srcset="/images/content/journal/stories-frame-main.png 1x" sizes="405px" alt="Сервис экипировки FINNTRAIL" data-story-type="image"
+            <img class="stories-modal__slide" src="/images/content/journal/stories-frame-main.png" srcset="/images/content/journal/stories-frame-main.png 1x" sizes="405px" alt="Сервис экипировки FINNTRAIL" loading="lazy" data-story-type="image"
               data-side-prev="/images/content/journal/stories-frame-side.png" data-side-next="/images/content/journal/stories-frame-main.png" data-side-far-prev="/images/content/journal/stories-frame-side.png" data-side-far-next="/images/content/journal/stories-frame-main.png">
           </div>
 
@@ -1116,7 +1494,7 @@
 
             <div class="stories-modal__brand">
               <span class="stories-modal__brand-icon">
-                <img src="/images/content/journal/cat-tourism.png" srcset="/images/content/journal/cat-tourism.png 1x" sizes="32px" alt="">
+                <img src="/images/content/journal/cat-tourism.png" srcset="/images/content/journal/cat-tourism.png 1x" sizes="32px" alt="" loading="lazy">
               </span>
               <span>Клуб FINNTRAIL</span>
             </div>
@@ -1269,7 +1647,7 @@
       <div class="footer-desktop__top">
         <nav class="footer-desktop__nav" aria-label="Навигация в футере">
           <div class="footer-desktop__column footer-desktop__column--buyers">
-            <h2 class="footer-desktop__heading">Покупателям</h2>
+            <h3 class="footer-desktop__heading">Покупателям</h3>
             <ul class="footer-desktop__links">
               <li><a class="footer-desktop__link" href="/delivery/">Доставка и оплата</a></li>
               <li><a class="footer-desktop__link" href="/return/">Обмен и возврат</a></li>
@@ -1279,7 +1657,7 @@
           </div>
 
           <div class="footer-desktop__column footer-desktop__column--company">
-            <h2 class="footer-desktop__heading">Компания</h2>
+            <h3 class="footer-desktop__heading">Компания</h3>
             <ul class="footer-desktop__links">
               <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
               <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
@@ -1290,7 +1668,7 @@
           </div>
 
           <div class="footer-desktop__column footer-desktop__column--gear">
-            <h2 class="footer-desktop__heading">Об экипировке</h2>
+            <h3 class="footer-desktop__heading">Об экипировке</h3>
             <ul class="footer-desktop__links">
               <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
               <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
@@ -1301,7 +1679,7 @@
           </div>
 
           <div class="footer-desktop__column footer-desktop__column--app">
-            <h2 class="footer-desktop__heading">Приложение FINNTRAIL</h2>
+            <h3 class="footer-desktop__heading">Приложение FINNTRAIL</h3>
             <div class="footer-desktop__app-panel">
               <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
               <ul class="footer-desktop__app-links">
@@ -1357,7 +1735,7 @@
       Ссылки в навигации — статичные или из меню Bitrix (bitrix:menu)
       Юридические ссылки — статичные в footer.php
     -->
-    <footer class="footer">
+    <div class="footer" role="contentinfo">
 
       <div class="footer__brand">
         <a href="/" class="footer__logo-link">
@@ -1421,11 +1799,11 @@
           <a href="/privacy/" class="footer__legal-link">Политика конфиденциальности</a>
           <a href="/offer/" class="footer__legal-link footer__legal-link--underline">Публичная оферта</a>
           <a href="/personal-data/" class="footer__legal-link footer__legal-link--underline">Согласие на обработку персональных данных</a>
-          <p class="footer__copy">FINNTRAIL © 2025</p>
+          <p class="footer__copy">FINNTRAIL © 2026</p>
         </div>
       </div>
 
-    </footer>
+    </div>
 
   <!--
     BITRIX: таббар — часть footer.php шаблона сайта
@@ -1434,7 +1812,7 @@
     или JS по window.location.pathname (уже реализовано в main.js)
   -->
   <nav class="tabbar" aria-label="Мобильная навигация">
-    <a href="catalog/" class="tabbar__item" aria-label="Каталог">
+    <a href="catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open>
       <span class="tabbar__icon">
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg>
       </span>
