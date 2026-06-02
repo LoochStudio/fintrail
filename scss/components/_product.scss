@@ -1,7 +1,7 @@
 @use '../variables' as *;
 
 .product-page {
-  padding: 112px 20px 0;
+  padding: 72px 20px 0;
   background: $color-surface;
 }
 
@@ -11,11 +11,16 @@
 
 .product-detail {
   display: grid;
-  grid-template-columns: 1fr 694px 1fr;
+  grid-template-columns: minmax(0, 343px) 694px minmax(0, 343px);
+  justify-content: space-between;
   gap: 10px;
   width: 100%;
   min-height: 728px;
   color: $color-primary-black;
+}
+
+.product-header .hero__nav {
+  left: calc(50% - 347px);
 }
 
 .product-detail__side {
@@ -179,6 +184,7 @@
   gap: 16px;
   padding: 12px;
   border-radius: $radius-xs;
+  background: $color-white;
 }
 
 .product-kit-item__image {
@@ -317,11 +323,11 @@
   border: 0;
   border-radius: $radius-xs;
   background: transparent;
-  color: $color-primary-black;
+  color: $color-primary-gray;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.18s ease, background 0.18s ease;
+  transition: opacity 0.18s ease, background 0.18s ease, color 0.18s ease;
   z-index: 2;
 
   svg {
@@ -418,6 +424,7 @@
   .product-media-btn:hover,
   .product-media-btn:focus-visible {
     background: $color-white;
+    color: $color-primary-black;
   }
 }
 

@@ -19,7 +19,7 @@
 .catalog-header .hero__topbar {
   position: relative;
   inset: auto;
-  z-index: 1;
+  z-index: 60;
   display: block;
   width: 100%;
   height: 112px;
@@ -55,6 +55,7 @@
   font-weight: $font-weight-black;
   line-height: 20px;
   text-transform: uppercase;
+  pointer-events: auto;
   cursor: pointer;
   transition:
     top 0.96s cubic-bezier(0.22, 1, 0.36, 1),
@@ -123,6 +124,9 @@
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+  --roll-hover-line: #{$text-body-b1-line};
+  --roll-hover-from: #{$color-primary-black};
+  --roll-hover-to: #{$color-primary-gray};
 
   &::before,
   &::after {
@@ -739,6 +743,22 @@
 }
 
 @media (min-width: $bp-lg) {
+  // Заголовок страницы выравнивается с навигационными ссылками хедера (left: 25%)
+  .catalog-hero__bar {
+    position: relative;
+    padding: 0 20px 0 25%; // left: 25% совпадает с .catalog-header .hero__nav
+  }
+
+  .catalog-hero__back {
+    position: absolute;
+    left: 20px;
+    bottom: 0; // выравниваем по нижней границе бара
+  }
+
+  .catalog-hero__bar-main {
+    gap: 0; // gap больше не нужен — back button вышел из потока
+  }
+
   .catalog-toolbar {
     padding: 0 20px;
   }

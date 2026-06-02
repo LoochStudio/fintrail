@@ -107,7 +107,7 @@
     padding: 0;
     border: 0;
     background: transparent;
-    color: $color-primary-black;
+    color: $color-primary-gray;
     font-family: $font-display;
     font-size: 18px;
     font-weight: $font-weight-black;
@@ -157,7 +157,7 @@
     min-height: 28px;
     padding: 4px 0;
     border-radius: $radius-xs;
-    color: $color-primary-black;
+    color: $color-primary-gray;
     font-family: $font-display;
     font-size: 12px;
     font-weight: $font-weight-black;
@@ -189,7 +189,7 @@
 
   a {
     width: max-content;
-    color: $color-primary-black;
+    color: $color-primary-gray;
     font-family: $font-mono;
     font-size: 14px;
     font-weight: 500;
@@ -203,7 +203,7 @@
     padding: 0;
     border: 0;
     background: transparent;
-    color: $color-primary-black;
+    color: $color-primary-gray;
     font-family: $font-mono;
     font-size: 14px;
     font-weight: 500;
@@ -285,6 +285,7 @@
     justify-content: center;
     min-height: 40px;
     padding: 12px 24px;
+    border-radius: $radius-xs;
     color: $color-primary-black;
     transition: color 0.18s ease, background 0.18s ease;
   }
@@ -497,14 +498,6 @@
   .site-menu__close:focus-visible,
   .site-menu__city:hover,
   .site-menu__city:focus-visible,
-  .site-menu__main a:hover,
-  .site-menu__main a:focus-visible,
-  .site-menu__main button:hover,
-  .site-menu__main button:focus-visible,
-  .site-menu__links a:hover,
-  .site-menu__links a:focus-visible,
-  .site-menu__links button:hover,
-  .site-menu__links button:focus-visible,
   .site-menu__phone:hover,
   .site-menu__phone:focus-visible,
   .site-menu__socials a:hover,
@@ -512,8 +505,25 @@
     color: $color-gray-primary;
   }
 
+  .site-menu__main a:hover,
+  .site-menu__main a:focus-visible,
+  .site-menu__main button:hover,
+  .site-menu__main button:focus-visible {
+    color: $color-primary-black;
+  }
+
+  .site-menu__links a:hover,
+  .site-menu__links a:focus-visible,
+  .site-menu__links button:hover,
+  .site-menu__links button:focus-visible {
+    color: $color-primary-black;
+  }
+
   .site-menu__activities a:hover,
-  .site-menu__activities a:focus-visible,
+  .site-menu__activities a:focus-visible {
+    color: $color-primary-black;
+  }
+
   .site-menu__apps a:hover,
   .site-menu__apps a:focus-visible {
     background: $color-white;

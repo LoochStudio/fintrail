@@ -136,6 +136,7 @@ function spriteHref(symbolId) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const rollHoverSelectors = [
+    '.catalog-header .hero__nav-link',
     '.activity-picker__link',
     '.build-kit-desktop__filter',
     '.journal-showcase__category > span:not(.journal-showcase__category-media)',
@@ -282,6 +283,12 @@ document.addEventListener('DOMContentLoaded', () => {
   ));
   const catalogProducts = document.querySelector('.catalog-products');
   const catalogLoading = catalogProducts?.querySelector('.catalog-products__loading');
+  const catalogFilterModal = document.querySelector('[data-catalog-filter-modal]');
+  const catalogFilterOpenButton = document.querySelector('[data-filter-toggle]');
+  const catalogFilterForm = catalogFilterModal?.querySelector('[data-catalog-filter-form]');
+  const catalogFilterCloseButtons = catalogFilterModal
+    ? Array.from(catalogFilterModal.querySelectorAll('[data-catalog-filter-close]'))
+    : [];
   let catalogLoadingTimer;
 
   const showCatalogLoading = () => {
@@ -299,6 +306,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 520);
   };
 
+  const closeCatalogFilterModal = () => {
+    if (!catalogFilterModal || catalogFilterModal.hidden) return;
+
+    catalogFilterModal.hidden = true;
+    catalogFilterModal.setAttribute('aria-hidden', 'true');
+    catalogFilterOpenButton?.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('is-modal-open');
+  };
+
+  const openCatalogFilterModal = () => {
+    if (!catalogFilterModal) return;
+
+    catalogFilterModal.hidden = false;
+    catalogFilterModal.setAttribute('aria-hidden', 'false');
+    catalogFilterOpenButton?.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('is-modal-open');
+    catalogFilterModal.querySelector('[data-catalog-filter-close]')?.focus();
+  };
+
   if (catalogDropdownButtons.length) {
     const closeCatalogDropdowns = exceptButton => {
       catalogDropdownButtons.forEach(button => {
@@ -308,6 +334,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     catalogDropdownButtons.forEach(button => {
       button.addEventListener('click', () => {
+        if (button.matches('[data-filter-toggle]')) {
+          if (catalogFilterModal?.hidden === false) {
+            closeCatalogFilterModal();
+          } else {
+            closeCatalogDropdowns(button);
+            openCatalogFilterModal();
+          }
+          return;
+        }
+
         const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
         closeCatalogDropdowns(button);
         button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
@@ -317,13 +353,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', event => {
       if (event.target.closest('.catalog-toolbar')) return;
+      if (event.target.closest('[data-catalog-filter-modal]')) return;
       closeCatalogDropdowns();
     });
 
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') closeCatalogDropdowns();
+      if (event.key === 'Escape') {
+        closeCatalogDropdowns();
+        closeCatalogFilterModal();
+      }
     });
   }
+
+  catalogFilterCloseButtons.forEach(button => {
+    button.addEventListener('click', closeCatalogFilterModal);
+  });
+
+  catalogFilterForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    closeCatalogFilterModal();
+    showCatalogLoading();
+  });
 
   document.querySelector('[data-load-more]')?.addEventListener('click', showCatalogLoading);
 
@@ -385,7 +435,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const catalogHeader = document.querySelector('.catalog-header');
   let catalogHeaderTicking = false;
-  let catalogHeaderCompact = false;
+  // Если хедер уже compact в HTML — страница стартует compact и не разворачивается при скролле наверх
+  const catalogHeaderInitiallyCompact = catalogHeader?.classList.contains('is-header-compact') ?? false;
+  let catalogHeaderCompact = catalogHeaderInitiallyCompact;
 
   const syncCatalogHeaderState = () => {
     catalogHeaderTicking = false;
@@ -395,7 +447,8 @@ document.addEventListener('DOMContentLoaded', () => {
       catalogHeaderCompact = false;
     } else if (!catalogHeaderCompact && window.scrollY > 24) {
       catalogHeaderCompact = true;
-    } else if (catalogHeaderCompact && window.scrollY <= 0) {
+    } else if (catalogHeaderCompact && window.scrollY <= 0 && !catalogHeaderInitiallyCompact) {
+      // Разворачиваем только если страница изначально не была compact
       catalogHeaderCompact = false;
     }
 
@@ -421,7 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const topbar = headerRoot.querySelector('.hero__topbar');
     const triggers = headerRoot.querySelectorAll('[data-header-mega-trigger]');
     const groups = headerRoot.querySelectorAll('[data-header-mega-group]');
-    let closeMegaTimer;
+    const staticNavLinks = nav?.querySelectorAll('.hero__nav-link:not([data-header-mega-trigger])') || [];
+    const megaCloseDuration = 320;
+    let closeMegaDelayTimer;
+    let closeMegaResetTimer;
 
     if (!mega || !nav || !triggers.length) return;
 
@@ -446,7 +502,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const openMega = activeTrigger => {
       if (!desktopHeaderQuery.matches) return;
 
-      window.clearTimeout(closeMegaTimer);
+      window.clearTimeout(closeMegaDelayTimer);
+      window.clearTimeout(closeMegaResetTimer);
       mega.hidden = false;
       headerRoot.classList.add('is-mega-open');
       nav.classList.add('is-mega-open');
@@ -458,19 +515,24 @@ document.addEventListener('DOMContentLoaded', () => {
       window.requestAnimationFrame(() => mega.classList.add('is-open'));
     };
 
-    const closeMega = () => {
-      window.clearTimeout(closeMegaTimer);
-      mega.classList.remove('is-open');
-      headerRoot.classList.remove('is-mega-open');
-      nav.classList.remove('is-mega-open');
+    const resetMegaState = () => {
+      mega.hidden = true;
       clearActiveGroups();
       triggers.forEach(trigger => {
         trigger.classList.remove('is-mega-active');
         trigger.setAttribute('aria-expanded', 'false');
       });
-      closeMegaTimer = window.setTimeout(() => {
-        mega.hidden = true;
-      }, 240);
+    };
+
+    const closeMega = () => {
+      window.clearTimeout(closeMegaDelayTimer);
+      window.clearTimeout(closeMegaResetTimer);
+      if (mega.hidden) return;
+
+      mega.classList.remove('is-open');
+      headerRoot.classList.remove('is-mega-open');
+      nav.classList.remove('is-mega-open');
+      closeMegaResetTimer = window.setTimeout(resetMegaState, megaCloseDuration);
     };
 
     triggers.forEach(trigger => {
@@ -478,6 +540,11 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger.setAttribute('aria-expanded', 'false');
       trigger.addEventListener('mouseenter', () => openMega(trigger));
       trigger.addEventListener('focus', () => openMega(trigger));
+    });
+
+    staticNavLinks.forEach(link => {
+      link.addEventListener('mouseenter', closeMega);
+      link.addEventListener('focus', closeMega);
     });
 
     groups.forEach(group => {
@@ -490,9 +557,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     topbar?.addEventListener('mouseleave', () => {
-      closeMegaTimer = window.setTimeout(closeMega, 120);
+      window.clearTimeout(closeMegaDelayTimer);
+      closeMegaDelayTimer = window.setTimeout(closeMega, 120);
     });
-    mega.addEventListener('mouseenter', () => window.clearTimeout(closeMegaTimer));
+    mega.addEventListener('mouseenter', () => window.clearTimeout(closeMegaDelayTimer));
     mega.addEventListener('mouseleave', closeMega);
     headerRoot.addEventListener('mouseleave', closeMega);
     headerRoot.addEventListener('focusout', event => {
