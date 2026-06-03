@@ -300,6 +300,20 @@
     <path d="M4.19529 7.47546C4.00463 7.31203 3.94757 7.06621 4.05076 6.85268C4.15397 6.6392 4.39704 6.50001 4.66665 6.5H11.3334C11.603 6.5 11.846 6.6392 11.9492 6.85268C12.0524 7.06621 11.9954 7.31203 11.8047 7.47546L8.47136 10.3326C8.21101 10.5558 7.789 10.5558 7.52865 10.3326L4.19529 7.47546Z" fill="currentColor"/>
   </symbol>
 
+  <symbol id="icon-product-conditions-arrow-right" viewBox="0 0 24 24" fill="none">
+    <path d="M6 12H18M13.3333 16.6667L18 12L13.3333 7.33334" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-product-conditions-arrow-left" viewBox="0 0 24 24" fill="none">
+    <path d="M18 12H6M10.6667 16.6667L6 12L10.6667 7.33334" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-upload-image" viewBox="0 0 16 16" fill="none">
+    <rect x="3" y="3" width="10" height="10" rx="1" stroke="currentColor" stroke-width="2"/>
+    <path d="M3 12L6.68421 9.22222L8.78947 10.4444L13 7" stroke="currentColor" stroke-width="2"/>
+    <circle cx="6" cy="6" r="1" fill="currentColor"/>
+  </symbol>
+
   <symbol id="icon-rec-plus" viewBox="0 0 16 16" fill="none">
     <path d="M8 3.33325V12.6666" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
     <path d="M3.33333 8H12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>

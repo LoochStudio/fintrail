@@ -375,6 +375,25 @@
   line-height: 18px;
 }
 
+.catalog-hero--sale {
+  .catalog-hero__copy {
+    top: auto;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .catalog-hero__headline {
+    margin: 0;
+  }
+
+  .catalog-hero__text {
+    width: 267px;
+    text-transform: uppercase;
+  }
+}
+
 .catalog-tags {
   display: flex;
   align-items: center;

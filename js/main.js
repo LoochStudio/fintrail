@@ -1107,7 +1107,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: false });
 
-    window.addEventListener('resize', () => setPosition(index, false));
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        // Сбрасываем флаг анимации — transitionend мог не сработать при ресайзе
+        isAnimating = false;
+
+        if (!isCarouselLayout()) {
+          track.style.transition = 'none';
+          track.style.transform = '';
+          return;
+        }
+
+        // Сбрасываем на первую реальную карточку если index невалидный
+        if (index < total || index >= total * 2) {
+          index = total;
+        }
+
+        // Двойной rAF: первый — фиксирует изменения стилей,
+        // второй — гарантирует что getBoundingClientRect() вернёт новые значения
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setPosition(index, false);
+          });
+        });
+      }, 100); // debounce 100ms — не пересчитываем на каждый пиксель ресайза
+    });
     setPosition(index, false);
   });
 
@@ -1843,6 +1869,40 @@ document.addEventListener('DOMContentLoaded', () => {
     syncProductAddState();
   });
 
+  // Product page — description modal
+  document.querySelectorAll('[data-product-description-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-product-description-open]');
+    const closeButtons = modal.querySelectorAll('[data-product-description-close]');
+    const closeButton = modal.querySelector('.product-description-modal__close');
+    let closeTimer = 0;
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      modal.hidden = false;
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus();
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+      }, 200);
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', closeModal));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  });
+
   // Product page — color picker
   document.querySelectorAll('.product-option--color-picker').forEach(option => {
     const trigger   = option.querySelector('.product-option__color');
@@ -2018,6 +2078,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ResizeObserver срабатывает и при первом появлении секции (OOS), и при ресайзе окна
     new ResizeObserver(() => layout()).observe(container);
+  });
+
+  // Product page — "В реальных условиях" slider
+  document.querySelectorAll('[data-product-conditions]').forEach(section => {
+    const viewport = section.querySelector('.product-conditions__viewport');
+    const track = section.querySelector('.product-conditions__track');
+    const prevButton = section.querySelector('[data-product-conditions-prev]');
+    const nextButton = section.querySelector('[data-product-conditions-next]');
+    const slides = Array.from(section.querySelectorAll('.product-conditions__upload-card, .product-conditions__slide'));
+
+    if (!viewport || !track || !prevButton || !nextButton || slides.length < 2) return;
+
+    let index = 0;
+    let maxIndex = 0;
+    let step = 0;
+
+    function readGap() {
+      const styles = window.getComputedStyle(track);
+      return parseFloat(styles.columnGap || styles.gap) || 0;
+    }
+
+    function measure() {
+      const firstSlide = slides[0];
+      const slideWidth = firstSlide.getBoundingClientRect().width;
+      step = slideWidth + readGap();
+      const overflow = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      maxIndex = step > 0 ? Math.ceil(overflow / step) : 0;
+      index = Math.min(index, maxIndex);
+      update(false);
+    }
+
+    function update(animate = true) {
+      const overflow = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      const offset = Math.min(index * step, overflow);
+      track.style.transition = animate ? 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+      track.style.transform = `translateX(${-offset}px)`;
+      prevButton.disabled = index <= 0;
+      nextButton.disabled = index >= maxIndex;
+    }
+
+    prevButton.addEventListener('click', () => {
+      index = Math.max(0, index - 1);
+      update();
+    });
+
+    nextButton.addEventListener('click', () => {
+      index = Math.min(maxIndex, index + 1);
+      update();
+    });
+
+    new ResizeObserver(measure).observe(viewport);
+    window.addEventListener('load', measure);
+    measure();
   });
 
   // OOS form — кнопка «Связаться» задизейблена пока email не введён

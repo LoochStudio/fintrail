@@ -513,6 +513,20 @@
     <path d="M17 18L20 21" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
   </symbol>
 
+  <symbol id="icon-product-conditions-arrow-right" viewBox="0 0 24 24" fill="none">
+    <path d="M6 12H18M13.3333 16.6667L18 12L13.3333 7.33334" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-product-conditions-arrow-left" viewBox="0 0 24 24" fill="none">
+    <path d="M18 12H6M10.6667 16.6667L6 12L10.6667 7.33334" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-upload-image" viewBox="0 0 16 16" fill="none">
+    <rect x="3" y="3" width="10" height="10" rx="1" stroke="currentColor" stroke-width="2"/>
+    <path d="M3 12L6.68421 9.22222L8.78947 10.4444L13 7" stroke="currentColor" stroke-width="2"/>
+    <circle cx="6" cy="6" r="1" fill="currentColor"/>
+  </symbol>
+
   <symbol id="icon-stock-sep" viewBox="0 0 1 12" fill="none">
     <path d="M0.5 0V12" stroke="currentColor"/>
   </symbol>
