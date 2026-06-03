@@ -159,6 +159,26 @@
   object-fit: fill;
 }
 
+// 320-360px: уменьшаем QR и шрифт ссылок чтобы всё влезло в строку
+@media (max-width: 360px) {
+  .footer-desktop__qr {
+    width: 120px;
+    height: 120px;
+    padding: 12px;
+  }
+
+  .footer-desktop__app-links {
+    padding: 12px 12px;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .footer-desktop__app-link {
+    font-size: 11px;
+    gap: 6px;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .footer-desktop__wordmark:hover,
   .footer-desktop__wordmark:focus-visible {

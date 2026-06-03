@@ -225,6 +225,18 @@
   animation: activity-image-change 0.24s ease;
 }
 
+// Очень маленькие экраны (320-360px): уменьшаем текст активностей чтобы не уходили за край
+@media (max-width: 360px) {
+  .activity-picker__row {
+    gap: 12px;
+  }
+
+  .activity-picker__link {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
   .activity-picker {
     position: relative;

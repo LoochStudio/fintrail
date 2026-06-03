@@ -72,6 +72,7 @@
 .build-kit-desktop__filter-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; // на 320px кнопки фильтров переносятся на следующую строку
   gap: 12px;
 }
 
