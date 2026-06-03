@@ -95,7 +95,7 @@
     line-height: 24px;
     text-transform: uppercase;
     color: $color-white;
-    white-space: nowrap;
+    white-space: normal; // было nowrap — на 320px заголовок уходил за экран
   }
 
   &__desc {

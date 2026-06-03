@@ -206,7 +206,7 @@
   color: $color-primary-gray;
   text-decoration: none;
   text-transform: uppercase;
-  white-space: nowrap;
+  max-width: 100%; // без этого ссылка расширяется до max-content и текст не переносится
 }
 
 .footer-desktop__legal a:nth-child(1) {

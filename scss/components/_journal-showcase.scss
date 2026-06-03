@@ -701,3 +701,15 @@
     color: #010101;
   }
 }
+
+
+// 320-360px: заголовок hero-статьи уменьшаем чтобы не выходил за 274px контейнер.
+// Математика: top фиксирован на 180px (bottom:94 + translateY(100%)).
+// При 18px/22px текст ~5 строк = 110px → 180+110=290 > 274 → overflow.
+// При 15px/19px ~5 строк = 95px → 180+95=275 ≈ 274 ✅
+@media (max-width: 360px) {
+  .journal-showcase__hero-title-mobile {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
