@@ -170,6 +170,37 @@ npm run preview
 
 В `main.js` реализована функция `resolvePublicAsset(src)`, которая автоматически адаптирует пути изображений под `BASE_URL` из `vite.config.js`. При интеграции в Bitrix без Vite — убрать эту функцию и использовать пути относительно `SITE_TEMPLATE_PATH`.
 
+### ⚠️ Важно при интеграции: `type="module"` и `import.meta.env`
+
+Скрипт подключён с атрибутом `type="module"`:
+
+```html
+<!-- Текущее подключение (работает только с Vite): -->
+<script type="module" src="/js/main.js"></script>
+```
+
+`type="module"` требуется потому что в начале `main.js` используется `import.meta.env.BASE_URL` — переменная, которую Vite подставляет во время сборки.
+
+**При интеграции в Bitrix возможны два пути:**
+
+**Вариант A (рекомендуется) — использовать Vite-сборку:**
+```html
+<!-- Bitrix подключает скомпилированный файл из dist/: -->
+<script src="<?= SITE_TEMPLATE_PATH ?>/js/main.js" defer></script>
+```
+В собранном файле `dist/assets/main-*.js` значение `import.meta.env.BASE_URL` уже заменено на строку (`/fintrail/`). `type="module"` не нужен.
+
+**Вариант B — без Vite-сборки (если Bitrix использует файл напрямую):**
+1. Убрать `type="module"` из тега `<script>`
+2. В начале `main.js` заменить строку:
+   ```js
+   // Было:
+   const appBasePath = import.meta.env.BASE_URL || '/';
+   // Стало (вручную укажите путь к шаблону):
+   const appBasePath = '/';
+   ```
+3. Убрать функцию `resolvePublicAsset` и заменить все её вызовы на прямые пути через `SITE_TEMPLATE_PATH`.
+
 ---
 
 ## Сторонние библиотеки и лицензии

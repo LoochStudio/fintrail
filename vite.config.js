@@ -10,6 +10,7 @@ export default defineConfig({
         preview: resolve(__dirname, 'preview.html'),
         catalog: resolve(__dirname, 'catalog/index.html'),
         catalogCategory: resolve(__dirname, 'catalog/kurtki/index.html'),
+        sale: resolve(__dirname, 'sale/index.html'),
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
       },
     },

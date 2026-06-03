@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const setActiveGroup = (activeGroup, activeLink = null) => {
       mega.classList.add('is-group-hovered');
       groups.forEach(group => {
-        group.classList.toggle('is-active', group === activeGroup);
+        group.classList.toggle('is-active', group === activeGroup && Boolean(activeLink));
         group.querySelectorAll('a').forEach(link => {
           link.classList.toggle('is-active', link === activeLink);
         });
@@ -548,10 +548,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     groups.forEach(group => {
+      const title = group.querySelector('.header-mega__title');
+
       group.addEventListener('mouseenter', () => setActiveGroup(group));
       group.addEventListener('focusin', () => setActiveGroup(group));
+      title?.addEventListener('mouseenter', () => setActiveGroup(group, title));
+      title?.addEventListener('mouseleave', () => {
+        title.classList.remove('is-active');
+        group.classList.remove('is-active');
+      });
+      title?.addEventListener('focus', () => setActiveGroup(group, title));
       group.querySelectorAll('.header-mega__list a').forEach(link => {
         link.addEventListener('mouseenter', () => setActiveGroup(group, link));
+        link.addEventListener('mouseleave', () => {
+          link.classList.remove('is-active');
+          group.classList.remove('is-active');
+        });
         link.addEventListener('focus', () => setActiveGroup(group, link));
       });
     });
@@ -745,11 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const openSubmenu = activeButton => {
       if (!submenu) return;
 
-      if (activeButton.classList.contains('is-active') && siteMenu.classList.contains('is-submenu-open')) {
-        closeSubmenu();
-        return;
-      }
-
       submenu.hidden = false;
       submenu.setAttribute('aria-hidden', 'false');
       siteMenu.classList.add('is-submenu-open');
@@ -768,11 +775,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openInfoSubmenu = activeButton => {
       if (!submenu) return;
-
-      if (activeButton.classList.contains('is-active') && siteMenu.classList.contains('is-info-submenu-open')) {
-        closeSubmenu();
-        return;
-      }
 
       submenu.hidden = false;
       submenu.setAttribute('aria-hidden', 'false');
@@ -830,27 +832,52 @@ document.addEventListener('DOMContentLoaded', () => {
       button.addEventListener('click', () => setMenuOpen(false));
     });
 
+    // Открытие доп-панели по hover, а не по клику
+    let submenuHoverTimer = null;
+    const submenuCloseDelay = 900;
+
+    const cancelSubmenuClose = () => {
+      clearTimeout(submenuHoverTimer);
+      submenuHoverTimer = null;
+    };
+
+    const scheduleSubmenuClose = () => {
+      cancelSubmenuClose();
+      submenuHoverTimer = setTimeout(closeSubmenu, submenuCloseDelay);
+    };
+
     sectionButtons.forEach(button => {
-      button.addEventListener('click', () => openSubmenu(button));
+      button.addEventListener('mouseenter', () => {
+        cancelSubmenuClose();
+        openSubmenu(button);
+      });
+      button.addEventListener('mouseleave', scheduleSubmenuClose);
     });
 
+    submenu?.addEventListener('mouseenter', cancelSubmenuClose);
+    submenu?.addEventListener('mouseleave', scheduleSubmenuClose);
+
     infoButtons.forEach(button => {
-      button.addEventListener('click', () => openInfoSubmenu(button));
+      const openCurrentInfoSubmenu = () => {
+        cancelSubmenuClose();
+        openInfoSubmenu(button);
+      };
+
+      button.addEventListener('mouseenter', openCurrentInfoSubmenu);
+      button.addEventListener('focus', openCurrentInfoSubmenu);
+      button.addEventListener('mouseleave', scheduleSubmenuClose);
     });
 
     categoryButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (button.classList.contains('is-active')) {
-          button.classList.remove('is-active');
-          if (subcategories) subcategories.hidden = true;
-          return;
-        }
-
+      const openCurrentCategory = () => {
         categoryButtons.forEach(categoryButton => {
           categoryButton.classList.toggle('is-active', categoryButton === button);
         });
         if (subcategories) subcategories.hidden = false;
-      });
+      };
+
+      button.addEventListener('mouseenter', openCurrentCategory);
+      button.addEventListener('focus', openCurrentCategory);
     });
 
     document.addEventListener('keydown', event => {
@@ -1110,11 +1137,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // data-product-1-name → dataset["product-1Name"] (дефис перед цифрой остаётся по HTML spec)
       const name     = link.dataset[`product-${index}Name`];
       const price    = link.dataset[`product-${index}Price`];
+      const discount = link.dataset[`product-${index}Discount`];
       const imageSrc = link.dataset[`product-${index}Image`];
       const url      = link.dataset[`product-${index}Url`];
       const img = card.querySelector('img');
       const nameNode = card.querySelector('.activity-product-card__name');
       const priceNode = card.querySelector('.activity-product-card__price');
+      let discountNode = card.querySelector('.activity-product-card__discount');
 
       card.classList.remove('is-changing');
       void card.offsetWidth;
@@ -1123,6 +1152,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (url) card.href = url;
       if (name && nameNode) nameNode.textContent = name;
       if (price && priceNode) priceNode.textContent = price;
+      if (discount) {
+        if (!discountNode) {
+          discountNode = document.createElement('span');
+          discountNode.className = 'activity-product-card__discount';
+          card.insertBefore(discountNode, card.firstChild);
+        }
+        discountNode.textContent = discount;
+        discountNode.hidden = false;
+      } else if (discountNode) {
+        discountNode.hidden = true;
+      }
       if (img && imageSrc) {
         const resolvedImageSrc = resolvePublicAsset(imageSrc);
         img.src = resolvedImageSrc;
@@ -1659,25 +1699,69 @@ document.addEventListener('DOMContentLoaded', () => {
       article.dataset.kitSlot = product.slot || product.category || 'product';
       article.dataset.kitCategory = product.category || product.slot || 'product';
       article.dataset.kitProductId = product.id || '';
-      article.innerHTML = `
-        <img class="build-kit-desktop__kit-img" src="${product.img}" srcset="${getResponsiveSrcset(product.img)}" sizes="100vw" alt="" loading="lazy">
-        <div class="build-kit-desktop__kit-content">
-          <div class="build-kit-desktop__kit-top">
-            <h3 class="build-kit-desktop__kit-name">${product.name}</h3>
-            <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
-          </div>
-          <div class="build-kit-desktop__kit-bottom">
-            <span class="build-kit-desktop__kit-price">${product.price}</span>
-            ${product.size ? `
-              <label class="build-kit-desktop__size" aria-label="Размер">
-                <select class="build-kit-desktop__size-select">
-                  ${(product.sizes && product.sizes.length ? product.sizes : ['XL', 'L', 'M']).map((size, index) => `<option${index === 0 ? ' selected' : ''}>${size}</option>`).join('')}
-                </select>
-              </label>
-            ` : ''}
-          </div>
-        </div>
-      `;
+
+      // Используем DOM-методы вместо innerHTML, чтобы избежать XSS.
+      // textContent автоматически экранирует любые HTML-символы в данных из CMS.
+      const img = document.createElement('img');
+      img.className = 'build-kit-desktop__kit-img';
+      img.src = resolvePublicAsset(product.img || '');
+      img.srcset = getResponsiveSrcset(product.img);
+      img.sizes = '80px';
+      img.alt = '';
+      img.loading = 'lazy';
+
+      const content = document.createElement('div');
+      content.className = 'build-kit-desktop__kit-content';
+
+      const top = document.createElement('div');
+      top.className = 'build-kit-desktop__kit-top';
+
+      const nameEl = document.createElement('h3');
+      nameEl.className = 'build-kit-desktop__kit-name';
+      nameEl.textContent = product.name || ''; // textContent — безопасно
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'build-kit-desktop__remove';
+      removeBtn.type = 'button';
+      removeBtn.setAttribute('aria-label', 'Удалить');
+
+      top.appendChild(nameEl);
+      top.appendChild(removeBtn);
+
+      const bottom = document.createElement('div');
+      bottom.className = 'build-kit-desktop__kit-bottom';
+
+      const priceEl = document.createElement('span');
+      priceEl.className = 'build-kit-desktop__kit-price';
+      priceEl.textContent = product.price || ''; // textContent — безопасно
+
+      bottom.appendChild(priceEl);
+
+      if (product.size) {
+        const label = document.createElement('label');
+        label.className = 'build-kit-desktop__size';
+        label.setAttribute('aria-label', 'Размер');
+
+        const select = document.createElement('select');
+        select.className = 'build-kit-desktop__size-select';
+
+        const sizes = (product.sizes && product.sizes.length) ? product.sizes : ['XL', 'L', 'M'];
+        sizes.forEach((size, index) => {
+          const option = document.createElement('option');
+          option.textContent = String(size); // textContent — безопасно
+          if (index === 0) option.selected = true;
+          select.appendChild(option);
+        });
+
+        label.appendChild(select);
+        bottom.appendChild(label);
+      }
+
+      content.appendChild(top);
+      content.appendChild(bottom);
+      article.appendChild(img);
+      article.appendChild(content);
+
       return article;
     }
 

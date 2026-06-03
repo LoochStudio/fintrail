@@ -131,6 +131,25 @@
   transition: top 0.28s ease, margin-top 0.28s ease, transform 0.28s ease;
 }
 
+.build-kit-desktop__product-discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  color: $color-secondary-accent;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-style: normal;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .build-kit-desktop__product-card::before,
 .build-kit-desktop__product-card::after {
   display: none;

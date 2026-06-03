@@ -348,8 +348,28 @@
 }
 
 .hero-product-card {
+  position: relative;
   text-decoration: none;
   cursor: pointer;
+}
+
+.hero-product-card__discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  color: $color-secondary-accent;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-style: normal;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 @media (hover: hover) and (pointer: fine) {

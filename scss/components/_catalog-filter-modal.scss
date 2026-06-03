@@ -26,11 +26,10 @@
 
 .catalog-filter-modal__panel {
   position: absolute;
-  top: 50%;
+  top: 20px;
+  bottom: 20px;
   left: 20px;
   width: min(520px, calc(100vw - 40px));
-  height: min(780px, calc(100dvh - 40px));
-  transform: translateY(-50%);
   overflow: hidden;
   background: $color-surface;
 }
@@ -44,7 +43,10 @@
 }
 
 .catalog-filter-modal__body {
+  display: flex;
   min-height: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
 }
 
 .catalog-filter-modal__header {
@@ -88,7 +90,8 @@
 
 .catalog-filter-modal__content {
   display: flex;
-  max-height: calc(100dvh - 226px);
+  min-height: 0;
+  flex: 1 1 auto;
   flex-direction: column;
   gap: 0;
   margin-top: 32px;
@@ -312,7 +315,7 @@
     align-items: center;
     border-radius: $radius-xs;
     background: $color-white;
-    color: $color-gray-primary;
+    color: $color-primary-black;
     font-family: $font-mono;
     font-size: 12px;
     font-weight: 500;
@@ -395,14 +398,12 @@
     background: #cf1d14;
   }
 
-  .catalog-filter-tag:hover span,
-  .catalog-filter-tag:focus-within span {
+  .catalog-filter-tag:hover span {
     background: $color-gray-hover;
     color: $color-primary-black;
   }
 
-  .catalog-filter-tag:hover input:checked + span,
-  .catalog-filter-tag:focus-within input:checked + span {
+  .catalog-filter-tag:hover input:checked + span {
     background: $color-button-primary-hover;
     color: $color-white;
   }

@@ -3,7 +3,7 @@
 .catalog-landing {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 10px;
   padding-top: 152px;
   background: $color-surface;
 }
@@ -13,6 +13,7 @@
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 30px;
   padding: 0 20px 0 25%; // выравнивание с .catalog-header .hero__nav (left: 25%)
 }
 
@@ -85,12 +86,12 @@
 
 .catalog-landing__activity {
   display: flex;
-  min-height: 56px;
+  padding: 28px 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  border-radius: $radius-xs;
+  gap: 16px;
+  border-radius: 8px;
   background: $color-white;
   color: $color-primary-black;
   font-family: $font-display;
@@ -160,7 +161,7 @@
   margin: 16px 0 0;
   padding: 0;
   list-style: none;
-  color: $color-primary-black;
+  color: $color-primary-gray;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: 500;
@@ -170,6 +171,11 @@
     color: inherit;
     text-decoration: none;
     transition: color 0.18s ease;
+
+    &.is-active,
+    &[aria-current='page'] {
+      color: $color-primary-black;
+    }
   }
 }
 
@@ -247,6 +253,11 @@
   padding: 0 20px;
 }
 
+.catalog-landing > .community-showcase.catalog-page__community {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
 .catalog-category-card {
   min-height: 268px;
   padding: 20px;
@@ -266,7 +277,7 @@
   .catalog-landing-promo__links a:focus-visible,
   .catalog-category-card__links a:hover,
   .catalog-category-card__links a:focus-visible {
-    color: $color-primary-gray;
+    color: $color-primary-black;
   }
 
   .catalog-landing__activity:hover,

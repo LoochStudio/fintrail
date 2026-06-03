@@ -81,6 +81,7 @@
 }
 
 .activity-product-card {
+  position: relative;
   display: flex;
   min-width: 0;
   flex: 1 1 0;
@@ -92,6 +93,25 @@
   color: $color-primary-black;
   overflow: hidden;
   text-decoration: none;
+}
+
+.activity-product-card__discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  color: $color-secondary-accent;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-style: normal;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .activity-product-card__pic {
