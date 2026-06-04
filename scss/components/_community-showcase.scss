@@ -11,7 +11,7 @@
 
 .community-showcase__intro {
   display: flex;
-  width: 304px;
+  width: 100%; // было 304px — на 320px не влезало (280px доступно)
   flex-direction: column;
   gap: 24px;
   padding: 8px 0;
@@ -20,7 +20,7 @@
 
 .community-showcase__title {
   margin: 0;
-  width: 340px;
+  width: 100%; // было 340px — тоже шире 280px на 320px
   font-family: $font-display;
   font-size: 24px;
   font-weight: $font-weight-black;
@@ -30,7 +30,7 @@
 
 .community-showcase__description {
   margin: 0;
-  width: 304px;
+  width: 100%; // было 304px — на 320px не влезало
   color: $color-muted;
   font-family: $font-mono;
   font-size: $text-body-b1-size;

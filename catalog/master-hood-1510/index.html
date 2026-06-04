@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/scss/main.scss">
 </head>
 <body>
-  <header class="catalog-header product-header is-header-dark is-header-compact">
+  <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
     <div class="hero__topbar" aria-label="Навигация страницы товара">
       <div class="hero__brand">
         <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
@@ -20,8 +20,8 @@
       </div>
 
       <nav class="hero__nav" aria-label="Главная навигация">
-        <a href="/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам">Мужчинам</a>
-        <a href="/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам">Женщинам</a>
+        <a href="/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
         <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
         <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
       </nav>
@@ -39,6 +39,80 @@
         <a href="/cart/" class="hero__tool" aria-label="Корзина">
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
         </a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+              <li><a href="/catalog/aksessuary-dlya-obuvi/">Аксессуары для обуви</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ochki/">Очки и маски</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+              <li><a href="/catalog/remni/">Ремни и подтяжки</a></li>
+              <li><a href="/catalog/zashchita/">Защита тела и рук</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/palatki/">Палатки</a></li>
+              <li><a href="/catalog/spalnye-meshki/">Спальные мешки и коврики</a></li>
+              <li><a href="/catalog/stoly/">Столы и стулья</a></li>
+              <li><a href="/catalog/germochehly/">Гермочехлы</a></li>
+              <li><a href="/catalog/termosy/">Термосы</a></li>
+              <li><a href="/catalog/sidushki/">Подкладки / сидушки</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/special/">Специальная экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/veydersy/">Вейдерсы</a></li>
+              <li><a href="/catalog/suhie-kostyumy/">Сухие костюмы</a></li>
+              <li><a href="/catalog/zabrodnaya-ekipirovka/">Забродная экипировка</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-mega__activities" aria-label="Активности">
+          <a class="header-mega__activity" href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a class="header-mega__activity" href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a class="header-mega__activity" href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a class="header-mega__activity" href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a class="header-mega__activity" href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a class="header-mega__activity" href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </div>
       </div>
     </div>
   </header>
@@ -749,6 +823,19 @@
           alt=""
           loading="lazy"
           aria-hidden="true">
+        <article class="product-conditions__empty-card">
+          <div class="product-conditions__empty-text">
+            <p>Поделись фото или&nbsp;видео и получи</p>
+            <span>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-bonus"></use></svg>
+              1 000 баллов
+            </span>
+          </div>
+          <button class="product-conditions__upload-button" type="button" data-product-conditions-upload-open>
+            <span>Загрузить</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-upload-image"></use></svg>
+          </button>
+        </article>
         <div class="product-conditions__viewport">
           <div class="product-conditions__track">
             <article class="product-conditions__upload-card">
@@ -759,10 +846,10 @@
                   1 000 баллов
                 </span>
               </div>
-              <a class="product-conditions__upload-button" href="/personal/reviews/">
+              <button class="product-conditions__upload-button" type="button" data-product-conditions-upload-open>
                 <span>Загрузить</span>
                 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-upload-image"></use></svg>
-              </a>
+              </button>
             </article>
 
             <article class="product-conditions__slide product-conditions__slide--video">
@@ -818,6 +905,1094 @@
       </div>
     </section>
 
+    <section class="product-info-section" aria-labelledby="product-info-title">
+      <div class="product-info-section__panel product-info-section__panel--about">
+        <div class="product-info-section__about">
+          <div class="product-info-section__content">
+            <div class="product-info-section__kit">
+              <p class="product-info-section__eyebrow">Комплект</p>
+              <div class="product-info-section__kit-list" aria-label="Элементы комплекта">
+                <button class="product-info-section__kit-item is-active" type="button" aria-label="Куртка FINNTRAIL Snowranger">
+                  <img
+                    src="/images/content/product/snowranger/snowranger-main.png"
+                    srcset="/images/content/product/snowranger/snowranger-main.png 1x"
+                    sizes="48px"
+                    alt=""
+                    loading="lazy">
+                </button>
+                <button class="product-info-section__kit-item" type="button" aria-label="Полукомбинезон FINNTRAIL">
+                  <img
+                    src="/images/content/product/snowranger/snowranger-info-pants.png"
+                    srcset="/images/content/product/snowranger/snowranger-info-pants.png 1x"
+                    sizes="48px"
+                    alt=""
+                    loading="lazy">
+                </button>
+                <button class="product-info-section__kit-item" type="button" aria-label="Шапка FINNTRAIL">
+                  <img
+                    src="/images/content/product/snowranger/snowranger-info-hat.png"
+                    srcset="/images/content/product/snowranger/snowranger-info-hat.png 1x"
+                    sizes="48px"
+                    alt=""
+                    loading="lazy">
+                </button>
+              </div>
+            </div>
+
+            <div class="product-info-section__text">
+              <div class="product-info-section__heading">
+                <h2 id="product-info-title">FINNTRAIL SNOWRANGER</h2>
+                <p>Артикул 1306</p>
+              </div>
+              <div class="product-info-section__copy">
+                <p>Профессиональная утеплённая куртка, созданная для<br>катания на снегоходах и рыбалки в суровых зимних<br>условиях. Высокотехнологичные материалы<br>и продуманный дизайн обеспечивают превосходную<br>защиту от холода и влаги при температуре до −30°С.</p>
+                <div class="product-info-section__separator" aria-hidden="true"></div>
+                <p>Эргономичная конструкция гарантирует полную<br>свободу движений. Откройте для себя новый уровень<br>комфорта во время зимних приключений, соберите<br>полный комплект с полукомбинезоном SNOWRANGER!</p>
+                <button class="product-info-section__description-button" type="button" data-product-description-open>Полное описание</button>
+              </div>
+            </div>
+          </div>
+
+          <svg class="product-info-section__mark" aria-hidden="true">
+            <use href="/images/icons/sprite.svg#icon-product-info-mark"></use>
+          </svg>
+        </div>
+      </div>
+
+      <div class="product-info-section__media">
+        <video
+          src="/images/content/product/snowranger/snowranger-video.mp4"
+          poster="/images/content/product/snowranger/snowranger-info-model.png"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Комплект FINNTRAIL Snowranger"></video>
+      </div>
+
+      <aside class="product-info-section__panel product-info-section__panel--support" aria-label="Сервис и помощь">
+        <div class="product-info-section__features">
+          <div class="product-info-section__feature">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-exchange"></use></svg>
+            <div>
+              <strong>Оплата после примерки</strong>
+              <span>Любой платёжной системой</span>
+            </div>
+          </div>
+          <div class="product-info-section__feature">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-warranty"></use></svg>
+            <div>
+              <strong>Гарантия и бесплатный сервис</strong>
+              <span>В течение 1 года</span>
+            </div>
+          </div>
+          <div class="product-info-section__feature">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-payment"></use></svg>
+            <div>
+              <strong>Бесплатный обмен и возврат</strong>
+              <span>В течение 21 дня</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="product-info-section__form" action="#" method="post">
+          <div class="product-info-section__form-text">
+            <h3>Нужна помощь с подбором?</h3>
+            <p>Оставьте свои контактные данные и наш специалист свяжется с вами в ближайшее время</p>
+          </div>
+          <label class="product-info-section__field">
+            <span class="visually-hidden">Имя</span>
+            <input type="text" name="name" placeholder="Имя" autocomplete="name">
+          </label>
+          <div class="product-info-section__phone">
+            <button class="product-info-section__country" type="button" aria-label="Выбрать страну">
+              <svg class="product-info-section__country-flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+              <svg class="product-info-section__country-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-chevron"></use></svg>
+            </button>
+            <label class="product-info-section__field product-info-section__field--phone">
+              <span class="visually-hidden">Телефон</span>
+              <input type="tel" name="phone" placeholder="+7" autocomplete="tel">
+            </label>
+          </div>
+          <button class="product-info-section__submit" type="submit">Отправить</button>
+        </form>
+      </aside>
+    </section>
+
+    <!-- BITRIX: блок ключевых технологий — данные из свойств товара инфоблока -->
+    <section class="product-features" aria-label="Ключевые технологии">
+      <div class="product-features__grid">
+
+        <div class="product-features__item">
+          <img class="product-features__icon"
+            src="/images/content/product/feature-toray.svg"
+            alt=""
+            loading="lazy">
+          <div class="product-features__text">
+            <h3 class="product-features__title">Японская мембрана TORAY DERMIZAX</h3>
+            <p class="product-features__desc">Обеспечивает 100% защиту от мокрого снега и ветра</p>
+          </div>
+        </div>
+
+        <div class="product-features__item">
+          <img class="product-features__icon"
+            src="/images/content/product/feature-sorona.svg"
+            alt=""
+            loading="lazy">
+          <div class="product-features__text">
+            <h3 class="product-features__title">Технологичный утеплитель DuPont Sorona</h3>
+            <p class="product-features__desc">Сохраняет комфорт при температуре до −15 °С</p>
+          </div>
+        </div>
+
+        <div class="product-features__item">
+          <img class="product-features__icon"
+            src="/images/content/product/feature-ventilation.svg"
+            alt=""
+            loading="lazy">
+          <div class="product-features__text">
+            <h3 class="product-features__title">Вентиляция в боковых вставках</h3>
+            <p class="product-features__desc">Позволяет регулировать теплообмен при высоких нагрузках</p>
+          </div>
+        </div>
+
+        <div class="product-features__item">
+          <img class="product-features__icon"
+            src="/images/content/product/feature-recco.svg"
+            alt=""
+            loading="lazy">
+          <div class="product-features__text">
+            <h3 class="product-features__title">Встроенный рефлектор Recco</h3>
+            <p class="product-features__desc">Позволяет спасательным службам быстро обнаружить человека в экстренных ситуациях</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BITRIX: блок характеристик — данные из описания и свойств товара инфоблока -->
+    <section class="product-props" aria-labelledby="product-props-title">
+      <div class="product-props__header">
+        <h2 class="product-props__title" id="product-props-title">Основные характеристики и преимущества</h2>
+        <div class="product-props__controls">
+          <button class="product-props__btn" type="button" aria-label="Назад" disabled>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <button class="product-props__btn" type="button" aria-label="Вперёд">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-props__viewport">
+        <div class="product-props__track">
+
+          <div class="product-props__item">
+            <h3 class="product-props__item-title">TORAY DERMIZAX</h3>
+            <p class="product-props__item-desc">Прочный двухслойный материал с технологичной японской беспоровой мембраной TORAY DERMIZAX обеспечивает 100% защиту от дождя, мокрого снега и штормового ветра.</p>
+          </div>
+
+          <div class="product-props__item">
+            <h3 class="product-props__item-title">Покрытие DWR</h3>
+            <p class="product-props__item-desc">Покрытие DWR отталкивает капли дождя и мокрый снег, не позволяя воде впитываться в ткань.</p>
+          </div>
+
+          <div class="product-props__item">
+            <h3 class="product-props__item-title">Утеплитель DuPont Sorona</h3>
+            <p class="product-props__item-desc">Современный технологичный утеплитель DuPont Sorona (основа — 200 г/м², рукава и капюшон — 150 г/м²) сохраняет комфорт при температуре до −30 °С.</p>
+          </div>
+
+          <div class="product-props__item">
+            <h3 class="product-props__item-title">Эргономика</h3>
+            <p class="product-props__item-desc">Эргономичная конструкция рукавов без плечевых швов обеспечивает свободу движений.</p>
+          </div>
+
+          <div class="product-props__item">
+            <h3 class="product-props__item-title">Капюшон</h3>
+            <p class="product-props__item-desc">Капюшон, регулируемый в двух плоскостях, с ламинированным козырьком защищает от ветра и осадков.</p>
+          </div>
+
+          <div class="product-props__item">
+            <h3 class="product-props__item-title">Воротник</h3>
+            <p class="product-props__item-desc">Высокий воротник с подкладкой из гигроскопичного микрофлиса для удобства катания в защитном шлеме.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Вентиляционные отверстия в области подмышек поддерживают комфортный микроклимат внутри куртки и снабжены влагозащитными молниями и сеткой от снега.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Центральная двухзамковая тракторная молния YKK AquaGuard с ветрозащитными планками на магнитах защищает от проникновения влаги внутрь.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Фирменная быстросохнущая подкладка со вставками из микрофлиса отводит влагу и сохраняет тепло.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Удлинённая спинка с регулировкой по низу и снегозащитная юбка для дополнительной защиты от ветра и снега.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Регулируемые внешние и внутренние манжеты из эластичной лайкры с отверстием для большого пальца создают дополнительное утепление и защищают от холодного воздуха.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Пять внешних карманов: два тёплых для рук с подкладкой из микрофлиса, один на груди со специальной салфеткой для протирания маски, один на рукаве для ски-пасса и дополнительный карман под планкой.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Два внутренних кармана: один на молнии с отверстием для наушников и один из сетки для головного убора и перчаток.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Страховочное D-образное кольцо для чеки снегохода.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Световозвращающие элементы для повышенной безопасности в условиях плохой видимости.</p>
+          </div>
+
+          <div class="product-props__item">
+            <p class="product-props__item-desc">Полностью проклеенные швы и молнии обеспечивают 100% влагонепроницаемость куртки.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BITRIX: промо-блок технологии — контент из расширенного описания товара -->
+    <section class="product-highlight" aria-label="Мембрана TORAY DERMIZAX">
+      <div class="product-highlight__content">
+        <img class="product-highlight__deco"
+          src="/images/content/product/feature-deco.svg"
+          alt=""
+          aria-hidden="true">
+
+        <div class="product-highlight__text">
+          <h2 class="product-highlight__title">Мембрана TORAY DERMIZAX</h2>
+          <p class="product-highlight__desc">Прочный двухслойный материал с технологичной японской беспоровой мембраной TORAY DERMIZAX обеспечивает 100% защиту от дождя, мокрого снега и штормового ветра</p>
+        </div>
+
+        <img class="product-highlight__deco"
+          src="/images/content/product/feature-deco.svg"
+          alt=""
+          aria-hidden="true">
+      </div>
+
+      <div class="product-highlight__image">
+        <img
+          src="/images/content/product/snowranger/feature-membrane.png"
+          srcset="/images/content/product/snowranger/feature-membrane.png 1x"
+          sizes="50vw"
+          alt="Деталь куртки FINNTRAIL Snowranger — мембрана TORAY DERMIZAX"
+          loading="lazy">
+      </div>
+    </section>
+
+    <!-- BITRIX: промо-блок технологии 2 — фото слева, текст справа -->
+    <section class="product-highlight" aria-label="Утеплитель DuPont Sorona" style="padding-bottom: 79px">
+      <div class="product-highlight__image">
+        <img
+          src="/images/content/product/snowranger/feature-sorona.png"
+          srcset="/images/content/product/snowranger/feature-sorona.png 1x"
+          sizes="50vw"
+          alt="Деталь куртки FINNTRAIL Snowranger — утеплитель DuPont Sorona"
+          loading="lazy">
+      </div>
+
+      <div class="product-highlight__content">
+        <img class="product-highlight__deco"
+          src="/images/content/product/feature-deco-2.svg"
+          alt=""
+          aria-hidden="true">
+
+        <div class="product-highlight__text">
+          <h2 class="product-highlight__title">Утеплитель DuPont Sorona</h2>
+          <p class="product-highlight__desc">Современный технологичный утеплитель DuPont Sorona (основа — 200 г/м², рукава и капюшон — 150 г/м²) сохраняет комфорт при температуре до −30 °С</p>
+        </div>
+
+        <img class="product-highlight__deco"
+          src="/images/content/product/feature-deco-2.svg"
+          alt=""
+          aria-hidden="true">
+      </div>
+    </section>
+
+    <!-- BITRIX: блок характеристик, технологий и ухода -->
+    <section class="product-specs" aria-label="Характеристики и технологии">
+
+      <!-- Левая колонка: таблица характеристик -->
+      <div class="product-specs__main">
+        <h2 class="product-specs__heading">Характеристики</h2>
+
+        <!-- Предупреждение о коллекции -->
+        <div class="product-specs__notice">
+          <div class="product-specs__notice-badge">
+            <span class="product-specs__notice-line" aria-hidden="true"></span>
+            <span class="product-specs__notice-excl">!</span>
+            <span class="product-specs__notice-line" aria-hidden="true"></span>
+          </div>
+          <p class="product-specs__notice-text">Обратите внимание: в связи с обновлением коллекций внешний вид изделия (оттенок цвета, фурнитура, материал подкладки, декоративные элементы) может отличаться от изображения на сайте. Это не влияет на качество и функциональность товара.</p>
+        </div>
+
+        <!-- Таблица характеристик -->
+        <div class="product-specs__table" data-product-specs-table>
+
+          <hr class="product-specs__divider" aria-hidden="true">
+          <div class="product-specs__row">
+            <span class="product-specs__label">Тип товара</span>
+            <span class="product-specs__value">Мембранная куртка, Утепленная куртка</span>
+          </div>
+
+          <hr class="product-specs__divider" aria-hidden="true">
+          <div class="product-specs__row">
+            <span class="product-specs__label">Материал</span>
+            <span class="product-specs__value">Мембранные</span>
+          </div>
+
+          <hr class="product-specs__divider" aria-hidden="true">
+          <div class="product-specs__row">
+            <span class="product-specs__label">Водонепроницаемость, мм</span>
+            <span class="product-specs__value">20000</span>
+          </div>
+
+          <hr class="product-specs__divider" aria-hidden="true">
+          <div class="product-specs__row">
+            <span class="product-specs__label">Дышащая способность</span>
+            <span class="product-specs__value">15000 г/м²/24ч</span>
+          </div>
+
+          <hr class="product-specs__divider" aria-hidden="true">
+          <div class="product-specs__row">
+            <span class="product-specs__label">Утеплитель</span>
+            <span class="product-specs__value">Есть</span>
+          </div>
+
+          <hr class="product-specs__divider" aria-hidden="true">
+          <div class="product-specs__row">
+            <span class="product-specs__label">Возраст</span>
+            <span class="product-specs__value">Взрослые</span>
+          </div>
+
+          <!-- Скрытые строки (раскрываются кнопкой) -->
+          <div class="product-specs__extra" data-product-specs-extra>
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Дышащие</span>
+              <span class="product-specs__value">Да</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Молния</span>
+              <span class="product-specs__value">Есть</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Усиление</span>
+              <span class="product-specs__value">Есть</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Слойность мембранного материала</span>
+              <span class="product-specs__value">2</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Температурный режим</span>
+              <span class="product-specs__value">от −5 °С до −30 °С</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Водоотталкивающие</span>
+              <span class="product-specs__value">Да</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Капюшон</span>
+              <span class="product-specs__value">Есть</span>
+            </div>
+
+            <hr class="product-specs__divider" aria-hidden="true">
+            <div class="product-specs__row">
+              <span class="product-specs__label">Уровень защиты</span>
+              <span class="product-specs__value">Экстремальный</span>
+            </div>
+          </div>
+          <!-- /скрытые строки -->
+
+          <!-- Кнопка «Развернуть» -->
+          <button
+            class="product-specs__expand"
+            type="button"
+            aria-expanded="false"
+            data-product-specs-expand>
+            <span class="product-specs__expand-label">Развернуть все характеристики</span>
+            <span class="product-specs__expand-arrow" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Правая часть: технологии + уход -->
+      <div class="product-specs__aside">
+
+        <!-- Технологии -->
+        <div class="product-specs__tech">
+          <h2 class="product-specs__heading">Технологии</h2>
+
+          <ul class="product-specs__tech-list">
+            <li class="product-specs__tech-item">
+              <img
+                class="product-specs__tech-icon"
+                src="/images/content/product/tech-toray.png"
+                alt="Покрытие DWR"
+                width="40"
+                height="40"
+                loading="lazy">
+              <div class="product-specs__tech-text">
+                <h3 class="product-specs__tech-title">Покрытие ДАБЛ-Ю-АР (DWR)</h3>
+                <p class="product-specs__tech-desc">Дополнительно защищает от грязи и влаги</p>
+              </div>
+            </li>
+
+            <li class="product-specs__tech-item">
+              <img
+                class="product-specs__tech-icon"
+                src="/images/content/product/tech-sorona.png"
+                alt="DuPont Sorona"
+                width="40"
+                height="40"
+                loading="lazy">
+              <div class="product-specs__tech-text">
+                <h3 class="product-specs__tech-title">DuPont Sorona</h3>
+                <p class="product-specs__tech-desc">Особо мягкий и лёгкий синтетический утеплитель от DuPont с высокой термоизоляцией</p>
+              </div>
+            </li>
+
+            <li class="product-specs__tech-item">
+              <img
+                class="product-specs__tech-icon"
+                src="/images/content/product/feature-dwr.png"
+                alt="Мембранный материал TORAY DERMIZAX"
+                width="40"
+                height="40"
+                loading="lazy">
+              <div class="product-specs__tech-text">
+                <h3 class="product-specs__tech-title">Мембранный материал DERMIZAX ТОРАЙ (TORAY)</h3>
+                <p class="product-specs__tech-desc">Обладает высокой паропроницаемостью и водостойкостью. Достаточно прочный и устойчивый к интенсивному использованию</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Уход -->
+        <div class="product-specs__care">
+          <h2 class="product-specs__heading">Уход</h2>
+
+          <div class="product-specs__care-list">
+            <div class="product-specs__care-item">
+              <span class="product-specs__care-label">Стирка</span>
+              <p class="product-specs__care-text">Стирка при 30° в деликатном режиме жидкими гелями</p>
+            </div>
+
+            <div class="product-specs__care-item">
+              <span class="product-specs__care-label">Сушка</span>
+              <p class="product-specs__care-text">Сушить в горизонтальном положении вдали от нагревательных приборов и солнечных лучей</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BITRIX: блок «в журнале» + «статьи по теме» -->
+    <section class="product-article" aria-label="О товаре в журнале">
+
+      <!-- Левая часть: две карточки статей -->
+      <div class="product-article__left">
+        <h2 class="product-article__heading">О FINNTRAIL SNOWRANGER в журнале</h2>
+
+        <div class="product-article__cards">
+          <a class="product-article__card" href="/journal/ski-gear-guide/">
+            <div class="product-article__card-image">
+              <img
+                src="/images/content/product/article-ski.png"
+                alt="Выбор снаряжения для горнолыжки"
+                width="343"
+                height="300"
+                loading="lazy">
+            </div>
+            <div class="product-article__card-body">
+              <div class="product-article__card-tags">
+                <span>Гайды</span>
+                <span>горные лыжи</span>
+              </div>
+              <h3 class="product-article__card-title">выбор снаряжения для горнолыжки: обзор лучших моделей FINNTRAIL</h3>
+            </div>
+          </a>
+
+          <a class="product-article__card" href="/journal/hiking-gear-guide/">
+            <div class="product-article__card-image">
+              <img
+                src="/images/content/product/article-hiking.png"
+                alt="Выбор одежды для походов"
+                width="343"
+                height="300"
+                loading="lazy">
+            </div>
+            <div class="product-article__card-body">
+              <div class="product-article__card-tags">
+                <span>Гайды</span>
+                <span>туризм</span>
+              </div>
+              <h3 class="product-article__card-title">выбор одежды и снаряжения для походов и в горы</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Правая часть: список статей по теме -->
+      <div class="product-article__right">
+        <h2 class="product-article__heading">статьи по теме</h2>
+
+        <div class="product-article__posts">
+          <a class="product-article__post" href="/journal/snowmobile-license/">
+            <span class="product-article__post-date">30 сентября</span>
+            <p class="product-article__post-title">Нужны ли водительские права для управления снегоходом?</p>
+          </a>
+
+          <a class="product-article__post" href="/journal/fishing-ban-2026/">
+            <span class="product-article__post-date">12 октября</span>
+            <p class="product-article__post-title">Весенний запрет на ловлю рыбы в 2026 году: причины, сроки, разрешённые локации</p>
+          </a>
+
+          <a class="product-article__post" href="/journal/snowmobile-license-2/">
+            <span class="product-article__post-date">30 сентября</span>
+            <p class="product-article__post-title">Нужны ли водительские права для управления снегоходом?</p>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BITRIX: отзывы -->
+    <section class="product-reviews" aria-label="Отзывы о товаре">
+
+      <!-- ─── Левая колонка: список отзывов ─── -->
+      <div class="product-reviews__left">
+
+        <!-- Шапка -->
+        <div class="product-reviews__header">
+          <div class="product-reviews__title-group">
+            <h2 class="product-reviews__title">Отзывы</h2>
+            <span class="product-reviews__count">4</span>
+          </div>
+          <div class="product-reviews__header-meta">
+            <div class="product-reviews__average">
+              <div class="product-reviews__stars product-reviews__stars--4-8">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <span class="product-reviews__average-num">4.8</span>
+            </div>
+            <!-- Сортировка -->
+            <div class="product-reviews__sort" data-reviews-sort>
+              <button class="product-reviews__sort-btn" type="button" aria-expanded="false" aria-haspopup="listbox" data-reviews-sort-btn>
+                <span class="product-reviews__sort-label">Сначала новые</span>
+                <img src="/images/icons/icon-sort-arrow.svg" alt="" aria-hidden="true" width="16" height="16">
+              </button>
+              <ul class="product-reviews__sort-dropdown" role="listbox" hidden>
+                <li><button type="button" role="option" aria-selected="true" data-sort="new">Сначала новые</button></li>
+                <li><button type="button" role="option" data-sort="old">Сначала старые</button></li>
+                <li><button type="button" role="option" data-sort="high">Высокая оценка</button></li>
+                <li><button type="button" role="option" data-sort="low">Низкая оценка</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отзывы -->
+        <div class="product-reviews__list" data-reviews-list>
+
+          <!-- ── Отзыв 1 ── -->
+          <hr class="product-reviews__divider" aria-hidden="true">
+          <div class="product-reviews__row">
+            <div class="product-reviews__reviewer">
+              <img class="product-reviews__avatar" src="/images/content/product/review-avatar-1.png" alt="Александр" width="64" height="64" loading="lazy">
+              <div class="product-reviews__reviewer-meta">
+                <div class="product-reviews__reviewer-top">
+                  <div class="product-reviews__stars-group">
+                    <div class="product-reviews__stars product-reviews__stars--5">
+                      <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <span class="product-reviews__reviewer-rating">5</span>
+                  </div>
+                  <span class="product-reviews__reviewer-name">Александр</span>
+                </div>
+                <div class="product-reviews__reviewer-date">
+                  <span>22 марта</span>
+                  <span>2026</span>
+                </div>
+              </div>
+            </div>
+            <div class="product-reviews__content">
+              <div class="product-reviews__tags">
+                <span class="product-reviews__tag">Большемерит</span>
+                <span class="product-reviews__tag">Качество</span>
+                <span class="product-reviews__tag">Быстрая доставка</span>
+              </div>
+              <div class="product-reviews__sections">
+                <div class="product-reviews__section">
+                  <div class="product-reviews__section-head">
+                    <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <h3 class="product-reviews__section-title">Достоинства</h3>
+                  </div>
+                  <p class="product-reviews__section-text">Куртка понравилась многим, поэтому пришлось покупать и друзьям</p>
+                </div>
+                <div class="product-reviews__section">
+                  <div class="product-reviews__section-head">
+                    <img src="/images/icons/icon-review-minus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <h3 class="product-reviews__section-title">Недостатки</h3>
+                  </div>
+                  <p class="product-reviews__section-text">Не выявлены</p>
+                </div>
+                <div class="product-reviews__section">
+                  <div class="product-reviews__section-head">
+                    <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <h3 class="product-reviews__section-title">Комментарий</h3>
+                  </div>
+                  <p class="product-reviews__section-text">В этой куртке комфортно, тепло и сухо. Дизайн настолько удачный, что многие из друзей решили приобрести такую же. Покупкой доволен.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Отзыв 2 (с фото) ── -->
+          <hr class="product-reviews__divider" aria-hidden="true">
+          <div class="product-reviews__row">
+            <div class="product-reviews__reviewer">
+              <img class="product-reviews__avatar" src="/images/content/product/review-photo-1.png" alt="Сергей" width="64" height="64" loading="lazy">
+              <div class="product-reviews__reviewer-meta">
+                <div class="product-reviews__reviewer-top">
+                  <div class="product-reviews__stars-group">
+                    <div class="product-reviews__stars product-reviews__stars--4">
+                      <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <span class="product-reviews__reviewer-rating">4</span>
+                  </div>
+                  <span class="product-reviews__reviewer-name">Сергей</span>
+                </div>
+                <div class="product-reviews__reviewer-date">
+                  <span>11 апреля</span>
+                  <span>2026</span>
+                </div>
+              </div>
+            </div>
+            <div class="product-reviews__content">
+              <div class="product-reviews__tags">
+                <span class="product-reviews__tag">Качество замков</span>
+                <span class="product-reviews__tag">Соответствует</span>
+              </div>
+              <div class="product-reviews__sections">
+                <div class="product-reviews__photos">
+                  <img src="/images/content/product/review-avatar-2.png" alt="Фото отзыва" width="42" height="64" loading="lazy">
+                  <img src="/images/content/product/review-photo-2.png" alt="Фото отзыва" width="42" height="64" loading="lazy">
+                  <img src="/images/content/product/review-photo-3.png" alt="Фото отзыва" width="42" height="64" loading="lazy">
+                </div>
+                <div class="product-reviews__section">
+                  <div class="product-reviews__section-head">
+                    <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <h3 class="product-reviews__section-title">Достоинства</h3>
+                  </div>
+                  <p class="product-reviews__section-text">Куртка понравилась многим, поэтому пришлось покупать и друзьям</p>
+                </div>
+                <div class="product-reviews__section">
+                  <div class="product-reviews__section-head">
+                    <img src="/images/icons/icon-review-minus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <h3 class="product-reviews__section-title">Недостатки</h3>
+                  </div>
+                  <p class="product-reviews__section-text">Не выявлены</p>
+                </div>
+                <div class="product-reviews__section">
+                  <div class="product-reviews__section-head">
+                    <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <h3 class="product-reviews__section-title">Комментарий</h3>
+                  </div>
+                  <p class="product-reviews__section-text">В этой куртке комфортно, тепло и сухо. Дизайн настолько удачный, что многие из друзей решили приобрести такую же. Покупкой доволен.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Отзывы 3–4 (скрытые) ── -->
+          <div class="product-reviews__extra" hidden data-reviews-extra>
+
+            <hr class="product-reviews__divider" aria-hidden="true">
+            <div class="product-reviews__row">
+              <div class="product-reviews__reviewer">
+                <img class="product-reviews__avatar" src="/images/content/product/review-avatar-1.png" alt="Максим" width="64" height="64" loading="lazy">
+                <div class="product-reviews__reviewer-meta">
+                  <div class="product-reviews__reviewer-top">
+                    <div class="product-reviews__stars-group">
+                      <div class="product-reviews__stars product-reviews__stars--5">
+                        <span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                      <span class="product-reviews__reviewer-rating">5</span>
+                    </div>
+                    <span class="product-reviews__reviewer-name">Максим</span>
+                  </div>
+                  <div class="product-reviews__reviewer-date">
+                    <span>5 мая</span>
+                    <span>2026</span>
+                  </div>
+                </div>
+              </div>
+              <div class="product-reviews__content">
+                <div class="product-reviews__tags">
+                  <span class="product-reviews__tag">Качество</span>
+                </div>
+                <div class="product-reviews__sections">
+                  <div class="product-reviews__section">
+                    <div class="product-reviews__section-head">
+                      <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <h3 class="product-reviews__section-title">Достоинства</h3>
+                    </div>
+                    <p class="product-reviews__section-text">Отличное качество материала, тепло даже в сильный мороз</p>
+                  </div>
+                  <div class="product-reviews__section">
+                    <div class="product-reviews__section-head">
+                      <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <h3 class="product-reviews__section-title">Комментарий</h3>
+                    </div>
+                    <p class="product-reviews__section-text">Рекомендую всем, кто занимается зимними видами спорта.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="product-reviews__divider" aria-hidden="true">
+            <div class="product-reviews__row">
+              <div class="product-reviews__reviewer">
+                <img class="product-reviews__avatar" src="/images/content/product/review-avatar-2.png" alt="Иван" width="64" height="64" loading="lazy">
+                <div class="product-reviews__reviewer-meta">
+                  <div class="product-reviews__reviewer-top">
+                    <div class="product-reviews__stars-group">
+                      <div class="product-reviews__stars product-reviews__stars--5">
+                        <span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                      <span class="product-reviews__reviewer-rating">5</span>
+                    </div>
+                    <span class="product-reviews__reviewer-name">Иван</span>
+                  </div>
+                  <div class="product-reviews__reviewer-date">
+                    <span>18 мая</span>
+                    <span>2026</span>
+                  </div>
+                </div>
+              </div>
+              <div class="product-reviews__content">
+                <div class="product-reviews__tags">
+                  <span class="product-reviews__tag">Соответствует</span>
+                  <span class="product-reviews__tag">Качество</span>
+                </div>
+                <div class="product-reviews__sections">
+                  <div class="product-reviews__section">
+                    <div class="product-reviews__section-head">
+                      <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <h3 class="product-reviews__section-title">Достоинства</h3>
+                    </div>
+                    <p class="product-reviews__section-text">Мембрана реально работает, проверял в дождь и снег</p>
+                  </div>
+                  <div class="product-reviews__section">
+                    <div class="product-reviews__section-head">
+                      <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <h3 class="product-reviews__section-title">Комментарий</h3>
+                    </div>
+                    <p class="product-reviews__section-text">Хорошая куртка за свои деньги, брал на рыбалку.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /скрытые отзывы -->
+
+          <!-- Показать ещё (divider + кнопка без gap между ними) -->
+          <div class="product-reviews__footer">
+            <hr class="product-reviews__divider" aria-hidden="true">
+            <button class="product-reviews__load-more" type="button" data-reviews-load-more>
+              <span class="product-reviews__load-more-text">Показать ещё <sup>2</sup></span>
+              <img src="/images/icons/icon-load-more.svg" alt="" aria-hidden="true" width="16" height="16">
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ─── Правая колонка: форма оценки ─── -->
+      <div class="product-reviews__right">
+        <form class="product-reviews__form" novalidate data-reviews-form>
+
+          <p class="product-reviews__form-label">Оцените товар</p>
+
+          <!-- Звёзды + число -->
+          <div class="product-reviews__form-rating">
+            <div class="product-reviews__form-stars" data-reviews-form-stars>
+              <button type="button" class="product-reviews__form-star is-active" data-value="1" aria-label="1 звезда"></button>
+              <button type="button" class="product-reviews__form-star is-active" data-value="2" aria-label="2 звезды"></button>
+              <button type="button" class="product-reviews__form-star is-active" data-value="3" aria-label="3 звезды"></button>
+              <button type="button" class="product-reviews__form-star is-active" data-value="4" aria-label="4 звезды"></button>
+              <button type="button" class="product-reviews__form-star" data-value="5" aria-label="5 звёзд"></button>
+            </div>
+            <span class="product-reviews__form-rating-num" data-reviews-rating-num>4</span>
+          </div>
+
+          <!-- Поля -->
+          <div class="product-reviews__fields">
+            <input class="product-reviews__field" type="text" placeholder="Имя" autocomplete="off">
+            <input class="product-reviews__field" type="text" placeholder="Достоинства" autocomplete="off">
+            <input class="product-reviews__field" type="text" placeholder="Недостатки" autocomplete="off">
+            <textarea class="product-reviews__field product-reviews__field--textarea" placeholder="Комментарий"></textarea>
+          </div>
+
+          <!-- Соответствие размеру -->
+          <div class="product-reviews__fit">
+            <p class="product-reviews__fit-label">Соответствие размеру</p>
+            <div class="product-reviews__fit-options" data-reviews-fit>
+              <button type="button" class="product-reviews__fit-btn product-reviews__fit-btn--active" data-fit="match">
+                <img src="/images/icons/icon-check-sm.svg" alt="" aria-hidden="true" width="16" height="16">
+                Соответствует
+              </button>
+              <button type="button" class="product-reviews__fit-btn" data-fit="big">Большемерит</button>
+              <button type="button" class="product-reviews__fit-btn" data-fit="small">Маломерит</button>
+            </div>
+          </div>
+
+          <!-- Загрузить файлы -->
+          <label class="product-reviews__upload">
+            <span class="product-reviews__upload-icon" aria-hidden="true">
+              <img src="/images/icons/icon-upload-arrow.svg" alt="" width="16" height="16">
+            </span>
+            <span class="product-reviews__upload-text">
+              <span class="product-reviews__upload-title">Загрузить фотографии или видео</span>
+              <span class="product-reviews__upload-hint">Не более 8 файлов, до 2 Мб</span>
+            </span>
+            <input type="file" accept="image/*,video/*" multiple hidden>
+          </label>
+
+          <!-- Отправить -->
+          <button class="product-reviews__submit" type="submit">Отправить отзыв</button>
+
+        </form>
+      </div>
+
+    </section>
+
+    <!-- BITRIX: похожие товары — переиспользуем recommendations-new с главной -->
+    <section class="recommendations-new" aria-label="Похожие товары">
+      <div class="recommendations-new__header">
+        <h2 class="recommendations-new__title">Похожие товары</h2>
+        <div class="recommendations-new__controls">
+          <button class="recommendations-new__arrow button button--icon button--size-m button--ghost is-inactive" type="button" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <button class="recommendations-new__arrow button button--icon button--size-m button--ghost" type="button" aria-label="Вперед">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="recommendations-new__viewport">
+        <div class="recommendations-new__track">
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+                <span class="recommendation-card__more">+3</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" alt="Куртка FINNTRAIL Wademan" loading="lazy">
+                <span class="recommendation-card__badge">Топ</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__more">+2</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Wademan 3710</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">11 999 ₽</span>
+                <span class="recommendation-card__old-price">14 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" alt="Куртка FINNTRAIL Coaster" loading="lazy">
+                <span class="recommendation-card__badge">Хит</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
+                <span class="recommendation-card__color recommendation-card__color--gray"></span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Coaster 3321</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">9 999 ₽</span>
+                <span class="recommendation-card__old-price">12 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
+                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-4.png" alt="Куртка FINNTRAIL Snowranger" loading="lazy">
+                <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors">
+                <span class="recommendation-card__color recommendation-card__color--active"></span>
+                <span class="recommendation-card__color recommendation-card__color--black"></span>
+                <span class="recommendation-card__more">+1</span>
+              </div>
+              <h3 class="recommendation-card__name"><a href="/catalog/finntrail-master-hood-1510-graphite/">Куртка FINNTRAIL Snowranger 3758</a></h3>
+            </div>
+            <button class="recommendation-card__cart" type="button">
+              <span class="recommendation-card__prices">
+                <span class="recommendation-card__price">13 999 ₽</span>
+                <span class="recommendation-card__old-price">16 999 ₽</span>
+              </span>
+              <span class="recommendation-card__cart-label">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <span>В корзину</span>
+              </span>
+            </button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Присоединяйся к комьюнити — переиспользуем с главной -->
+    <section class="community-showcase" aria-labelledby="community-showcase-product-title">
+      <div class="community-showcase__intro">
+        <h2 class="community-showcase__title" id="community-showcase-product-title">Присоединяйся<br>к коммьюнити</h2>
+        <p class="community-showcase__description">Крупнейшие тематические сообщества любителей активного отдыха</p>
+      </div>
+
+      <div class="community-showcase__cards">
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--offroad" src="/images/content/community-showcase/offroad.png" srcset="/images/content/_responsive/community-showcase/offroad-160.png 160w, /images/content/_responsive/community-showcase/offroad-320.png 320w, /images/content/_responsive/community-showcase/offroad-480.png 480w, /images/content/_responsive/community-showcase/offroad-768.png 768w, /images/content/community-showcase/offroad.png 848w" sizes="100vw" alt="Бездорожье FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Бездорожье</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 550 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="community-showcase__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="Бездорожье на YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--tourism" src="/images/content/community-showcase/tourism.png" srcset="/images/content/_responsive/community-showcase/tourism-160.png 160w, /images/content/_responsive/community-showcase/tourism-320.png 320w, /images/content/_responsive/community-showcase/tourism-480.png 480w, /images/content/_responsive/community-showcase/tourism-768.png 768w, /images/content/_responsive/community-showcase/tourism-1024.png 1024w, /images/content/community-showcase/tourism.png 1094w" sizes="100vw" alt="Туризм FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Туризм</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 1 340 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="community-showcase__social" href="https://youtube.com/@finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм на YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--fishing" src="/images/content/community-showcase/fishing.png" srcset="/images/content/_responsive/community-showcase/fishing-160.png 160w, /images/content/_responsive/community-showcase/fishing-320.png 320w, /images/content/_responsive/community-showcase/fishing-480.png 480w, /images/content/_responsive/community-showcase/fishing-768.png 768w, /images/content/community-showcase/fishing.png 987w" sizes="100vw" alt="Рыбалка FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Рыбалка</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 2 700 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <div class="product-description-modal" id="product-description" hidden data-product-description-modal>
       <div class="product-description-modal__backdrop" data-product-description-close></div>
       <aside class="product-description-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-description-title">
@@ -841,6 +2016,49 @@
             <p>Эргономичная конструкция рукавов без плечевых швов обеспечивает свободу движений. Капюшон, регулируемый в двух плоскостях, с ламинированным козырьком защищает от ветра и осадков.</p>
             <p>Высокий воротник с подкладкой из гигроскопичного микрофлиса для удобства катания в защитном шлеме.</p>
           </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="product-upload-modal" id="product-upload" hidden data-product-upload-modal>
+      <div class="product-upload-modal__backdrop" data-product-upload-close></div>
+      <aside class="product-upload-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-upload-title">
+        <div class="product-upload-modal__top">
+          <header class="product-upload-modal__header">
+            <h2 class="product-upload-modal__title" id="product-upload-title">Загрузить изображения или видео</h2>
+            <button class="product-upload-modal__close" type="button" aria-label="Закрыть загрузку" data-product-upload-close>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            </button>
+          </header>
+          <p class="product-upload-modal__lead">Делитесь своими впечатлениями с другими участниками FINNTRAIL и зарабатывайте бонусные баллы</p>
+        </div>
+
+        <div class="product-upload-modal__dropzone" data-product-upload-dropzone>
+          <div class="product-upload-modal__bonus" data-product-upload-empty>
+            <p>Поделись фото или видео и получи</p>
+            <span>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-bonus"></use></svg>
+              1 000 баллов
+            </span>
+          </div>
+          <div class="product-upload-modal__preview-list" data-product-upload-filled aria-label="Загруженные файлы">
+            <img src="/images/content/product/upload-preview/upload-preview-1.png" srcset="/images/content/product/upload-preview/upload-preview-1.png 1x" sizes="60px" alt="Загруженное изображение 1" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-2.png" srcset="/images/content/product/upload-preview/upload-preview-2.png 1x" sizes="60px" alt="Загруженное изображение 2" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-3.png" srcset="/images/content/product/upload-preview/upload-preview-3.png 1x" sizes="60px" alt="Загруженное изображение 3" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-4.png" srcset="/images/content/product/upload-preview/upload-preview-4.png 1x" sizes="60px" alt="Загруженное изображение 4" loading="lazy">
+          </div>
+          <button class="product-upload-modal__file-button" type="button" data-product-upload-file-button>
+            <span>Загрузить файлы</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-upload-image"></use></svg>
+          </button>
+        </div>
+
+        <div class="product-upload-modal__bottom">
+          <button class="product-upload-modal__submit" type="button" data-product-upload-submit>Отправить</button>
+          <p class="product-upload-modal__note">
+            После одобрения модератором, вам будут начислены бонусные баллы. Их появление можно отслеживать в <a href="/personal/">личном кабинете</a>.<br><br>
+            Также, вам придёт уведомление на почту.
+          </p>
         </div>
       </aside>
     </div>

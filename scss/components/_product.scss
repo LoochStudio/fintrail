@@ -15,7 +15,8 @@
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  min-height: 728px;
+  min-height: calc(100vh - 72px); // 72px = navbar, заполняем до линии сгиба
+  padding-bottom: 20px;            // 20px до fold — последний элемент не упирается в край
   color: $color-primary-black;
 }
 
@@ -26,7 +27,7 @@
 .product-detail__side {
   display: flex;
   min-width: 0;
-  min-height: 728px;
+  min-height: 0;  // убираем жёсткое значение — колонка тянется от grid (align-items: stretch)
   flex-direction: column;
   justify-content: space-between;
 }
@@ -311,6 +312,279 @@
   }
 }
 
+.product-upload-modal {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  pointer-events: none;
+}
+
+.product-upload-modal[hidden] {
+  display: none;
+}
+
+.product-upload-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-primary-black, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.product-upload-modal__panel {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+  display: flex;
+  width: min(520px, calc(100vw - 40px));
+  flex-direction: column;
+  gap: 60px;
+  padding: 40px;
+  overflow: hidden auto;
+  background: $color-surface;
+  color: $color-primary-black;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translateX(16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.product-upload-modal.is-open {
+  pointer-events: auto;
+
+  .product-upload-modal__backdrop,
+  .product-upload-modal__panel {
+    opacity: 1;
+  }
+
+  .product-upload-modal__panel {
+    transform: translateX(0);
+  }
+}
+
+.product-upload-modal__top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.product-upload-modal__header {
+  display: flex;
+  min-height: 38px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.product-upload-modal__title {
+  max-width: 343px;
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.product-upload-modal__close {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-upload-modal__lead {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.product-upload-modal.is-success {
+  .product-upload-modal__top {
+    gap: 40px;
+  }
+
+  .product-upload-modal__lead {
+    white-space: pre-line;
+  }
+
+  .product-upload-modal__dropzone,
+  .product-upload-modal__bottom {
+    display: none;
+  }
+}
+
+.product-upload-modal__dropzone {
+  display: flex;
+  min-height: 246px;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  border: 1px dashed $color-secondary-gray;
+  border-radius: 8px;
+  background: $color-surface;
+}
+
+.product-upload-modal__dropzone.is-filled {
+  padding: 40px 20px;
+}
+
+.product-upload-modal__bonus {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+
+  p {
+    min-width: 0;
+    margin: 0;
+    color: $color-primary-black;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: $color-secondary-accent;
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-upload-modal__preview-list {
+  display: none;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    flex: 0 0 60px;
+    border-radius: 2px;
+    object-fit: cover;
+  }
+}
+
+.product-upload-modal__dropzone.is-filled {
+  .product-upload-modal__bonus {
+    display: none;
+  }
+
+  .product-upload-modal__preview-list {
+    display: flex;
+  }
+}
+
+.product-upload-modal__file-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 8px 11px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  span {
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-upload-modal__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.product-upload-modal__submit {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.product-upload-modal__note {
+  margin: 0;
+  color: $color-primary-gray;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+
+  a {
+    color: $color-primary-black;
+    text-decoration: none;
+  }
+}
+
 .product-detail__kit {
   display: flex;
   width: 100%;
@@ -457,7 +731,7 @@
 .product-detail__media {
   position: relative;
   width: 100%;
-  min-height: 728px;
+  min-height: 0;  // тянется от grid
   overflow: hidden;
 }
 
@@ -470,7 +744,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  padding: 10px;
+  padding: 14px; // 44 - 16*2 / 2 = 14px — иконка 16px по центру
   border: 0;
   border-radius: $radius-xs;
   background: transparent;
@@ -482,8 +756,10 @@
   z-index: 2;
 
   svg {
-    width: 24px;
-    height: 24px;
+    display: block;
+    width: 16px;  // нативный размер viewBox="0 0 16 16"
+    height: 16px;
+    flex-shrink: 0;
   }
 }
 
@@ -502,6 +778,12 @@
 .product-media-btn--zoom {
   top: 20px;
   right: 20px;
+  padding: 10px; // зум 24px → (44 - 24) / 2 = 10px
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 // Карусель внизу
@@ -591,7 +873,7 @@
 .product-detail__image {
   display: block;
   width: 100%;
-  height: 728px;
+  height: 100%; // тянется до высоты grid-строки (= 100vh - 72px - 20px padding)
   object-fit: cover;
   object-position: center top;
 }
@@ -1185,9 +1467,18 @@
   }
 
   .product-description-modal__close:hover,
-  .product-description-modal__close:focus-visible {
+  .product-description-modal__close:focus-visible,
+  .product-upload-modal__close:hover,
+  .product-upload-modal__close:focus-visible,
+  .product-upload-modal__file-button:hover,
+  .product-upload-modal__file-button:focus-visible {
     background: $color-button-secondary-hover;
     color: $color-primary-black;
+  }
+
+  .product-upload-modal__submit:hover,
+  .product-upload-modal__submit:focus-visible {
+    background: $color-button-primary-hover;
   }
 }
 
@@ -1584,12 +1875,7 @@
 }
 
 .product-conditions__stage::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba($color-primary-black, 0) 84.46%, $color-primary-black 100%);
-  pointer-events: none;
+  content: none;
 }
 
 .product-conditions__viewport {
@@ -1598,6 +1884,76 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+.product-conditions__empty-card {
+  position: absolute;
+  bottom: 60px;
+  left: calc(50% - 347px);
+  z-index: 2;
+  display: none;
+  width: 694px;
+  min-height: 160px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 60px 40px;
+  border: 1px dashed $color-secondary-gray;
+  border-radius: 8px;
+  background: $color-surface;
+}
+
+.product-conditions__empty-text {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+
+  p {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    color: $color-secondary-accent;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-conditions--empty {
+  margin-top: 60px;
+  gap: 0;
+
+  .product-conditions__header,
+  .product-conditions__viewport {
+    display: none;
+  }
+
+  .product-conditions__stage {
+    height: 280px;
+  }
+
+  .product-conditions__empty-card {
+    display: flex;
+  }
 }
 
 .product-conditions__track {
@@ -1669,9 +2025,11 @@
   justify-content: center;
   gap: 8px;
   padding: 11px 8px 11px 16px;
+  border: 0;
   border-radius: $radius-xs;
   background: $color-white;
   color: $color-primary-black;
+  cursor: pointer;
   text-decoration: none;
   transition: background 0.18s ease, color 0.18s ease;
 
@@ -1719,6 +2077,14 @@
     margin-top: 64px;
   }
 
+  .product-conditions--empty {
+    margin-top: 60px;
+
+    .product-conditions__stage {
+      height: 280px;
+    }
+  }
+
   .product-conditions__stage {
     height: 420px;
   }
@@ -1731,12 +2097,27 @@
   .product-conditions__upload-card {
     height: 360px;
   }
+
+  .product-conditions__empty-card {
+    bottom: 60px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
 }
 
 @media (max-width: 767px) {
   .product-conditions {
     gap: 24px;
     margin-top: 64px;
+  }
+
+  .product-conditions--empty {
+    margin-top: 60px;
+
+    .product-conditions__stage {
+      height: 300px;
+    }
   }
 
   .product-conditions__header {
@@ -1769,6 +2150,1802 @@
 
   .product-conditions__slide {
     height: 320px;
+  }
+
+  .product-conditions__empty-card {
+    bottom: 60px;
+    min-height: 180px;
+    flex-direction: column;
+    gap: 32px;
+    padding: 40px 28px;
+  }
+}
+
+// ── Промо-блок технологии (фото + текст) ──────────────────────────────────
+.product-highlight {
+  display: flex;
+  align-items: stretch;
+  margin: 0 -20px; // выходим за padding product-page — полное кровотечение
+}
+
+.product-highlight__content {
+  display: flex;
+  flex: 0 0 50%; // строго половина — flex:1 делил пространство по контенту
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  padding: 0 120px;
+  background: $color-white;
+  text-align: center;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-highlight__deco {
+  display: block;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.product-highlight__text {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+
+.product-highlight__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+}
+
+.product-highlight__desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;   // 14px
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+}
+
+.product-highlight__image {
+  position: relative;
+  flex: 0 0 50%; // строго половина
+  height: 600px;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ── Похожие товары — переиспользуем recommendations-new с главной ─────────
+.product-page .recommendations-new {
+  margin-top: 0;         // top: product-reviews даёт 80px снизу
+  margin-right: -20px;   // выходим за padding product-page справа
+  margin-bottom: 0;      // отступ снизу не нужен — даём его через community-showcase
+  margin-left: -20px;    // выходим за padding product-page слева
+}
+
+// ── Комьюнити — переиспользуем community-showcase с главной ───────────────
+.product-page .community-showcase {
+  margin-top: 80px;      // явные 80px между слайдером и комьюнити
+  margin-right: -20px;   // компенсируем padding product-page справа
+  margin-bottom: 0;
+  margin-left: -20px;    // компенсируем padding product-page слева
+}
+
+// ── Отзывы ───────────────────────────────────────────────────────────────────
+.product-reviews {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 0 80px; // top — от product-article (padding-bottom: 80px)
+  color: $color-primary-black;
+}
+
+// ─── Левая колонка (695px) ────────────────────────────────────────────────
+.product-reviews__left {
+  flex: 0 0 695px;
+  max-width: 695px; // блок не растёт на >1440px — gap берёт на себя пространство
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Шапка
+.product-reviews__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-reviews__title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.product-reviews__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+.product-reviews__count {
+  font-family: $font-display;
+  font-size: $text-body-b1-size; // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.product-reviews__header-meta {
+  display: flex;
+  align-items: center;
+  gap: 86px;
+}
+
+// Средняя оценка: точки + число
+.product-reviews__average {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-reviews__average-num {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+// Строка: точки + цифра рейтинга (gap 8px между ними)
+.product-reviews__stars-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-reviews__reviewer-rating {
+  font-family: $font-display;
+  font-size: $text-body-b1-size; // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+// Точечные звёзды (6×6px)
+.product-reviews__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: $color-primary-black;
+  }
+
+  // 4 звезды → 5-й кружок пустой
+  &--4 span:nth-child(5) {
+    background: $color-secondary-gray;
+  }
+
+  // 4.8 → 5-й кружок 80% закрашен
+  &--4-8 span:nth-child(5) {
+    background: linear-gradient(
+      to right,
+      $color-primary-black 80%,
+      $color-secondary-gray 80%
+    );
+  }
+}
+
+// Дропдаун сортировки
+.product-reviews__sort {
+  position: relative;
+}
+
+.product-reviews__sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-surface;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  transition: background 0.18s ease;
+
+  img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  &[aria-expanded="true"] img {
+    transform: rotate(180deg);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { background: $color-white; }
+  }
+}
+
+.product-reviews__sort-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 20;
+  min-width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  background: $color-white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  white-space: nowrap;
+
+  &[hidden] { display: none; }
+
+  li { list-style: none; }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: $color-primary-gray;
+    cursor: pointer;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-align: left;
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &[aria-selected="true"] { color: $color-primary-black; }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: $color-surface;
+        color: $color-primary-black;
+      }
+    }
+  }
+}
+
+// Разделитель
+.product-reviews__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: $color-white;
+  flex-shrink: 0;
+}
+
+// Список отзывов
+.product-reviews__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Скрытые отзывы — display:contents делает контейнер «прозрачным»:
+// дочерние элементы встают прямо в flex-поток списка и получают gap:20px
+.product-reviews__extra {
+  display: contents;
+}
+.product-reviews__extra[hidden] {
+  display: none !important; // перекрываем display:contents
+}
+
+// Строка отзыва — grid с фиксированными колонками:
+// reviewer всегда 174px, content всегда 342px, пространство между = 179px.
+// Без этого flex-блок с именем «Александр» шире «Сергей» → content уплывает вправо.
+.product-reviews__row {
+  display: grid;
+  grid-template-columns: 174px 342px; // 64 avatar + 16 gap + 94 meta = 174
+  column-gap: 179px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+// Блок автора (64px аватар + мета)
+.product-reviews__reviewer {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.product-reviews__avatar {
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.product-reviews__reviewer-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 64px; // выравниваем по высоте аватара
+}
+
+.product-reviews__reviewer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-reviews__reviewer-name {
+  font-family: $font-display;
+  font-size: $text-body-b1-size;  // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.product-reviews__reviewer-date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;  // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-muted;
+}
+
+// Контент отзыва
+.product-reviews__content {
+  flex: 0 0 342px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Теги
+.product-reviews__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.product-reviews__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 20px;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  white-space: nowrap;
+}
+
+// Фото отзыва
+.product-reviews__photos {
+  display: flex;
+  gap: 4px;
+
+  img {
+    display: block;
+    width: 42px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+}
+
+// Секции (достоинства / недостатки / комментарий)
+.product-reviews__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-reviews__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-reviews__section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+.product-reviews__section-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.product-reviews__section-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;  // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+}
+
+// Обёртка последнего разделителя + кнопки — flex-col без gap,
+// чтобы hr и кнопка стояли вплотную (gap:20px списка не попадает внутрь)
+.product-reviews__footer {
+  display: flex;
+  flex-direction: column;
+}
+
+// Кнопка «Показать ещё»
+.product-reviews__load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 52px;
+  padding: 18px 24px 18px 32px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-surface;
+  color: $color-muted;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;  // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  sup {
+    font-size: 9px;
+    line-height: 14px;
+    vertical-align: super;
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &[hidden] { display: none; }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $color-white;
+      color: $color-primary-black;
+    }
+  }
+}
+
+// ─── Правая колонка: форма оценки (343px) ────────────────────────────────
+.product-reviews__right {
+  flex: 0 0 343px;
+  max-width: 343px; // не растёт на >1440px
+}
+
+.product-reviews__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-reviews__form-label {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+// Строка: кружки-оценки + цифра
+.product-reviews__form-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-reviews__form-stars {
+  display: flex;
+  gap: 16px;
+}
+
+.product-reviews__form-star {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: $color-secondary-gray;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, transform 0.12s ease;
+
+  &.is-active {
+    background: $color-primary-black;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: scale(1.15); }
+  }
+}
+
+.product-reviews__form-rating-num {
+  font-family: $font-display;
+  font-size: 36px;
+  font-weight: $font-weight-black;
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
+// Поля формы
+.product-reviews__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-reviews__field {
+  display: block;
+  width: 100%;
+  padding: 14px 12px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    color: $color-muted;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px $color-secondary-gray;
+  }
+
+  &--textarea {
+    height: 80px;
+    align-items: flex-start;
+  }
+}
+
+// Соответствие размеру
+.product-reviews__fit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-reviews__fit-label {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+}
+
+.product-reviews__fit-options {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.product-reviews__fit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1 1 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  img {
+    display: none; // иконка чекмарка — видна только у активной кнопки
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  // Активная кнопка: чёрный фон, белый текст, чекмарк
+  &--active {
+    padding: 8px 12px 8px 8px;
+    background: $color-primary-black;
+    color: $color-white;
+
+    img { display: block; }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(.product-reviews__fit-btn--active):hover {
+      background: $color-surface;
+    }
+  }
+}
+
+// Загрузить файлы
+.product-reviews__upload {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px;
+  border: 1px dashed $color-secondary-gray;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-reviews__upload-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 11px;
+  border-radius: 4px;
+  background: $color-white;
+  flex-shrink: 0;
+
+  img {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-reviews__upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-reviews__upload-title {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-reviews__upload-hint {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-gray;
+}
+
+// Кнопка отправки
+.product-reviews__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  padding: 22px 32px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-primary-black;
+  color: $color-white;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  transition: background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    // тот же паттерн что .button--primary: #1f1f1f → #000 на hover
+    &:hover,
+    &:focus-visible { background: $color-button-primary-hover; }
+  }
+
+  &:active { background: $color-button-primary-pressed; }
+}
+
+// ── Характеристики, технологии, уход ────────────────────────────────────────
+.product-specs {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  padding: 0 0 80px; // top — от Sorona section (padding-bottom: 79px)
+  color: $color-primary-black;
+}
+
+// Заголовок колонки — Nata Sans ExtraBold 14px uppercase
+.product-specs__heading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;   // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+// ─── Левая колонка: характеристики ───────────────────────────────────────
+.product-specs__main {
+  display: flex;
+  flex: 0 0 calc(50% - 30px); // половина минус половина gap (60px / 2)
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+// Блок с предупреждением
+.product-specs__notice {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-specs__notice-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+// Вертикальная черта по краям "!" — красная, как и сам знак
+.product-specs__notice-line {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: $color-secondary-accent;
+  flex-shrink: 0;
+}
+
+// "!" красным
+.product-specs__notice-excl {
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: $color-secondary-accent;
+}
+
+.product-specs__notice-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line; // 16px
+  color: $color-primary-gray;
+  opacity: 0.5;
+}
+
+// Таблица характеристик
+.product-specs__table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// Белые разделители между строками
+.product-specs__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: $color-white;
+  flex-shrink: 0;
+}
+
+// Строка ключ / значение
+.product-specs__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line; // 16px
+  white-space: nowrap;
+}
+
+.product-specs__label {
+  color: $color-primary-gray;
+}
+
+.product-specs__value {
+  color: $color-primary-black;
+}
+
+// Скрытые строки — пока дизайн expand не нарисован, показываем всё как в макете.
+// Логика JS сохранена: когда дизайн будет готов, достаточно раскомментировать
+// display: none ниже.
+.product-specs__extra {
+  display: contents; // прозрачный контейнер — дети встают в поток таблицы
+
+  // .product-specs__divider,
+  // .product-specs__row { display: none; }
+}
+
+// Раскрытое состояние (зарезервировано для будущего дизайна)
+.product-specs__table.is-expanded {
+  .product-specs__expand-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+// Кнопка «Развернуть»
+.product-specs__expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-surface;
+  color: $color-primary-gray;
+  cursor: pointer;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      background: $color-white;
+      color: $color-primary-black;
+    }
+  }
+}
+
+// CSS-треугольник вниз (border-trick)
+.product-specs__expand-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;       // верх — видимая сторона, бока — полуширина
+  border-color: currentColor transparent transparent transparent;
+  transition: transform 0.2s ease;
+}
+
+// ─── Правая часть: технологии + уход ─────────────────────────────────────
+.product-specs__aside {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.product-specs__tech {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 300px; // не даём расти до заполнения — space-between получает свободное пространство
+  min-width: 0;
+}
+
+.product-specs__tech-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-specs__tech-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.product-specs__tech-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.product-specs__tech-text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.product-specs__tech-title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line; // 16px
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-specs__tech-desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line; // 16px
+  color: $color-primary-gray;
+}
+
+// Уход
+.product-specs__care {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 300px; // аналогично технологиям
+  min-width: 0;
+}
+
+.product-specs__care-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-specs__care-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-specs__care-label {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-gray;
+}
+
+.product-specs__care-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+}
+
+// ── В журнале + статьи по теме ────────────────────────────────────────────
+.product-article {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 0 80px; // top — от product-specs (padding-bottom: 80px)
+  color: $color-primary-black;
+}
+
+.product-article__heading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+// ─── Левая часть ─────────────────────────────────────────────────────────
+.product-article__left {
+  display: flex;
+  flex: 0 0 calc(50% - 5px); // ~50% минус половина gap; max-width ограничивает рост >1440px
+  max-width: 695px;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.product-article__cards {
+  display: flex;
+  gap: 10px;
+}
+
+.product-article__card {
+  display: flex;
+  flex: 1 1 0; // оба слота равны
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  color: $color-primary-black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.product-article__card-image {
+  display: block;
+  height: 300px;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.product-article__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-article__card-tags {
+  display: flex;
+  gap: 20px;
+  color: $color-muted;           // #a2a7aa
+  font-family: $font-mono;
+  font-size: $text-body-b2-size; // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  white-space: nowrap;
+}
+
+.product-article__card-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  color: $color-primary-black;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-article__card:hover .product-article__card-image img,
+  .product-article__card:focus-visible .product-article__card-image img {
+    transform: scale(1.08);
+  }
+
+  .product-article__card:hover .product-article__card-title,
+  .product-article__card:focus-visible .product-article__card-title {
+    color: #010101; // чуть темнее black — паттерн из journal-showcase
+  }
+}
+
+// ─── Правая часть ─────────────────────────────────────────────────────────
+.product-article__right {
+  display: flex;
+  flex: 0 0 341px; // фиксированная колонка; space-between поглощает лишнее пространство >1440px
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.product-article__posts {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-article__post {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: $color-primary-black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.product-article__post-date {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size; // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  color: #9b9b9b;                // Figma: NEW/Gray 3
+}
+
+.product-article__post-title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size; // 14px
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  color: $color-primary-black;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-article__post:hover .product-article__post-title,
+  .product-article__post:focus-visible .product-article__post-title {
+    color: #010101;
+  }
+}
+
+// ── Характеристики и преимущества (горизонтальный слайдер) ────────────────
+.product-props {
+  padding-bottom: 38px;
+}
+
+.product-props__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-props__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.product-props__controls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.product-props__btn {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:disabled {
+    color: $color-primary-gray;
+    pointer-events: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-props__btn:not(:disabled):hover,
+  .product-props__btn:not(:disabled):focus-visible {
+    background: $color-button-secondary-hover;
+  }
+}
+
+.product-props__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.product-props__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.product-props__item {
+  display: flex;
+  flex: 0 0 250px;
+  flex-direction: column;
+  gap: 20px;
+  height: 224px;
+  padding: 20px 40px 20px 0; // right 40px — визуальный отступ между слайдами
+  background: $color-surface;
+}
+
+.product-props__item-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;   // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.product-props__item-desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;  // 16px
+  color: $color-primary-black;
+}
+
+// ── Ключевые технологии / свойства товара ─────────────────────────────────
+.product-features {
+  padding: 20px 0 32px;
+}
+
+.product-features__grid {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.product-features__item {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.product-features__icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.product-features__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-features__title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;  // 16px
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.product-features__desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;  // 16px
+  color: $color-muted;
+}
+
+// ── Информационный блок товара ────────────────────────────────────────────
+.product-info-section {
+  display: grid;
+  grid-template-columns: minmax(520px, 715px) minmax(0, 1fr) 362px;
+  width: calc(100% + 40px);
+  height: 600px;
+  min-height: 600px;
+  margin-top: 0;
+  margin-left: -20px;
+  color: $color-white;
+  background: $color-surface;
+}
+
+.product-info-section__panel {
+  height: 600px;
+  min-height: 600px;
+  padding: 20px;
+  background: linear-gradient(180deg, $color-primary-black 0%, #314a64 100%);
+}
+
+.product-info-section__panel--about {
+  display: flex;
+  align-items: stretch;
+}
+
+.product-info-section__about {
+  display: flex;
+  flex: 1 0 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.product-info-section__content {
+  display: flex;
+  width: 421px;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+.product-info-section__kit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-info-section__eyebrow,
+.product-info-section__heading p,
+.product-info-section__copy,
+.product-info-section__description-button,
+.product-info-section__feature,
+.product-info-section__form-text p,
+.product-info-section__field input {
+  font-family: $font-mono;
+}
+
+.product-info-section__eyebrow {
+  margin: 0;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 8px;
+  text-transform: uppercase;
+}
+
+.product-info-section__kit-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+}
+
+.product-info-section__kit-item {
+  position: relative;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background 0.18s ease;
+  }
+
+  &.is-active::after {
+    background: $color-secondary-accent;
+  }
+
+  img {
+    display: block;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      background: $color-white;
+    }
+  }
+}
+
+.product-info-section__text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-info-section__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    font-family: $font-display;
+    font-size: $text-heading-h3-size;
+    font-weight: $font-weight-black;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $color-primary-gray;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: 8px;
+  }
+}
+
+.product-info-section__copy {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+
+  p {
+    margin: 0;
+  }
+}
+
+.product-info-section__separator {
+  align-self: stretch;
+  height: 0;
+  border-top: 1px dashed $color-primary-gray;
+}
+
+.product-info-section__description-button {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0 0 2px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: $color-white;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 9px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      color: $color-secondary-gray;
+    }
+  }
+}
+
+.product-info-section__mark {
+  width: 64px;
+  height: 64px;
+  color: $color-white;
+}
+
+.product-info-section__media {
+  display: flex;
+  min-width: 0;
+  min-height: 600px;
+  align-items: stretch;
+  justify-content: center;
+  background: $color-surface;
+  overflow: hidden;
+
+  video {
+    display: block;
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+.product-info-section__panel--support {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.product-info-section__features {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.product-info-section__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: $color-white;
+
+  > svg {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    color: $color-white;
+  }
+
+  div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  strong,
+  span {
+    font-size: $text-body-b2-size;
+    line-height: 8px;
+  }
+
+  strong {
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+  }
+
+  span {
+    color: $color-secondary-gray;
+    font-weight: 500;
+  }
+}
+
+.product-info-section__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-info-section__form-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: 8px;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $color-secondary-gray;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: 12px;
+  }
+}
+
+.product-info-section__field {
+  display: block;
+
+  input {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-radius: $radius-xs;
+    outline: 0;
+    background: rgba($color-white, 0.16);
+    color: $color-white;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    transition: border-color 0.18s ease, background 0.18s ease;
+
+    &::placeholder {
+      color: $color-primary-gray;
+      opacity: 1;
+    }
+
+    &:focus {
+      border-color: rgba($color-white, 0.48);
+      background: rgba($color-white, 0.22);
+    }
+  }
+}
+
+.product-info-section__phone {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.product-info-section__country {
+  display: flex;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: $radius-xs;
+  background: rgba($color-white, 0.16);
+  color: $color-white;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      border-color: rgba($color-white, 0.48);
+      background: rgba($color-white, 0.22);
+    }
+  }
+}
+
+.product-info-section__country-flag {
+  width: 24px;
+  height: 24px;
+}
+
+.product-info-section__country-arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.product-info-section__submit {
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: $text-body-b1-line;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      background: $color-gray-hover;
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .product-info-section {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin-top: 64px;
+    margin-left: 0;
+  }
+
+  .product-info-section__panel,
+  .product-info-section__media {
+    height: auto;
+    min-height: 0;
+  }
+
+  .product-info-section__content {
+    width: 100%;
+    max-width: 620px;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .product-info-section__about,
+  .product-info-section__panel--support {
+    gap: 60px;
+  }
+
+  .product-info-section__media {
+    min-height: 520px;
+
+    video {
+      height: 520px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .product-info-section {
+    margin-top: 64px;
+  }
+
+  .product-info-section__panel {
+    padding: 20px;
+  }
+
+  .product-info-section__text,
+  .product-info-section__content {
+    gap: 32px;
+  }
+
+  .product-info-section__copy {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  .product-info-section__media {
+    min-height: 440px;
+
+    video {
+      height: 440px;
+    }
+  }
+
+  .product-info-section__phone {
+    grid-template-columns: 68px minmax(0, 1fr);
   }
 }
 

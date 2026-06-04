@@ -182,6 +182,7 @@
     gap: 24px;
     background: $color-surface;
     overflow: hidden;
+    clip-path: inset(0); // надёжно обрезает abs-потомков flex-элементов (overflow:hidden иногда не справляется)
     --gift-card-side-width: 286px;
     --gift-card-active-width: 364px;
   }
@@ -302,16 +303,20 @@
   }
 
   .gift-cards-showcase__mountains {
-    right: auto;
+    position: absolute;
+    right: 0;
     bottom: auto;
-    left: 50%;
+    left: 0;
     top: 126px;
-    width: 768px;
+    width: 100%; // адаптивно — растягивается на всю ширину body
     height: 219px;
+    overflow: hidden;
     background:
       linear-gradient(180deg, rgba($color-surface, 0) 44.56%, $color-surface 95.4%),
-      url('/images/content/gift-cards-showcase/mountains.png') -289.882px 0 / 161.167% 163.927% no-repeat;
-    transform: translateX(-50%);
+      url('/images/content/gift-cards-showcase/mountains.png') center 0 / auto 163.927% no-repeat;
+    // center 0 — горы всегда отцентрированы по горизонтали
+    // auto 163.927% — ширина пропорциональна высоте, не растягивается
+    transform: none;
   }
 
   .gift-cards-showcase__mountains::after {

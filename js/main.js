@@ -1903,6 +1903,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Product page — upload review modal
+  document.querySelectorAll('[data-product-upload-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-product-conditions-upload-open]');
+    const closeButtons = modal.querySelectorAll('[data-product-upload-close]');
+    const closeButton = modal.querySelector('.product-upload-modal__close');
+    const title = modal.querySelector('.product-upload-modal__title');
+    const lead = modal.querySelector('.product-upload-modal__lead');
+    const dropzone = modal.querySelector('[data-product-upload-dropzone]');
+    const fileButton = modal.querySelector('[data-product-upload-file-button]');
+    const fileButtonText = fileButton?.querySelector('span');
+    const submitButton = modal.querySelector('[data-product-upload-submit]');
+    const defaultTitle = title?.textContent || '';
+    const defaultLead = lead?.textContent || '';
+    let closeTimer = 0;
+
+    function resetModalState() {
+      modal.classList.remove('is-success');
+      dropzone?.classList.remove('is-filled');
+      if (title) title.textContent = defaultTitle;
+      if (lead) lead.textContent = defaultLead;
+      if (fileButtonText) fileButtonText.textContent = 'Загрузить файлы';
+    }
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      resetModalState();
+      modal.hidden = false;
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus({ preventScroll: true });
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+      }, 200);
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', closeModal));
+    fileButton?.addEventListener('click', () => {
+      dropzone?.classList.add('is-filled');
+      if (fileButtonText) fileButtonText.textContent = 'Загрузить ещё';
+    });
+    submitButton?.addEventListener('click', () => {
+      modal.classList.add('is-success');
+      if (title) title.textContent = 'Изображения отправлены';
+      if (lead) lead.textContent = 'Спасибо!\nВ ближайшее время мы сообщим о публикации';
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  });
+
   // Product page — color picker
   document.querySelectorAll('.product-option--color-picker').forEach(option => {
     const trigger   = option.querySelector('.product-option__color');
@@ -2143,6 +2203,135 @@ document.addEventListener('DOMContentLoaded', () => {
 
     input.addEventListener('input', () => {
       btn.disabled = input.value.trim() === '';
+    });
+  });
+
+  // Product page — характеристики и преимущества (горизонтальный слайдер)
+  document.querySelectorAll('.product-props').forEach(section => {
+    const track = section.querySelector('.product-props__track');
+    const btnPrev = section.querySelector('.product-props__btn[aria-label="Назад"]');
+    const btnNext = section.querySelector('.product-props__btn[aria-label="Вперёд"]');
+
+    if (!track || !btnPrev || !btnNext) return;
+
+    const ITEM_W = 250; // ширина одного слайда
+    const SCROLL_STEP = ITEM_W * 3; // скроллим по 3 слайда за клик
+
+    const updateButtons = () => {
+      btnPrev.disabled = track.scrollLeft <= 0;
+      btnNext.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+    };
+
+    btnPrev.addEventListener('click', () => {
+      track.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+    });
+
+    btnNext.addEventListener('click', () => {
+      track.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', updateButtons, { passive: true });
+    updateButtons();
+  });
+
+  // ── Product page — отзывы ─────────────────────────────────────────────────
+
+  // Сортировка: toggle дропдауна
+  document.querySelectorAll('[data-reviews-sort]').forEach(wrap => {
+    const btn  = wrap.querySelector('[data-reviews-sort-btn]');
+    const menu = wrap.querySelector('.product-reviews__sort-dropdown');
+    if (!btn || !menu) return;
+
+    const close = () => {
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    };
+
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = menu.hidden;
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+
+    menu.querySelectorAll('button').forEach(opt => {
+      opt.addEventListener('click', () => {
+        menu.querySelectorAll('button').forEach(o => o.removeAttribute('aria-selected'));
+        opt.setAttribute('aria-selected', 'true');
+        wrap.querySelector('.product-reviews__sort-label').textContent = opt.textContent.trim();
+        close();
+      });
+    });
+
+    document.addEventListener('click', close);
+  });
+
+  // Форма: кликабельные звёзды-эллипсы
+  document.querySelectorAll('[data-reviews-form-stars]').forEach(starsEl => {
+    const stars  = [...starsEl.querySelectorAll('.product-reviews__form-star')];
+    const numEl  = starsEl.closest('[data-reviews-form]')
+                          ?.querySelector('[data-reviews-rating-num]');
+
+    const setRating = value => {
+      stars.forEach(s => {
+        s.classList.toggle('is-active', Number(s.dataset.value) <= value);
+      });
+      if (numEl) numEl.textContent = value;
+    };
+
+    // Инициализируем из начального состояния (4 активных)
+    const initialActive = stars.filter(s => s.classList.contains('is-active'));
+    if (initialActive.length && numEl) numEl.textContent = initialActive.length;
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => setRating(Number(star.dataset.value)));
+
+      // Hover preview
+      star.addEventListener('mouseenter', () => {
+        stars.forEach(s => {
+          s.style.background = Number(s.dataset.value) <= Number(star.dataset.value)
+            ? '' // вернёт к is-active или дефолту через CSS
+            : '';
+        });
+      });
+    });
+  });
+
+  // Показать ещё отзывы
+  document.querySelectorAll('[data-reviews-load-more]').forEach(btn => {
+    const extra = btn.closest('[data-reviews-list]')
+                    ?.querySelector('[data-reviews-extra]');
+    if (!extra) return;
+
+    btn.addEventListener('click', () => {
+      extra.hidden = false;
+      btn.hidden = true;
+      // скрываем и финальный разделитель перед кнопкой, если нужно
+    });
+  });
+
+  // Соответствие размеру
+  document.querySelectorAll('[data-reviews-fit]').forEach(group => {
+    const btns = [...group.querySelectorAll('.product-reviews__fit-btn')];
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('product-reviews__fit-btn--active'));
+        btn.classList.add('product-reviews__fit-btn--active');
+      });
+    });
+  });
+
+  // ── Product page — раскрытие характеристик
+  document.querySelectorAll('[data-product-specs-expand]').forEach(btn => {
+    const table = btn.closest('[data-product-specs-table]');
+    if (!table) return;
+
+    btn.addEventListener('click', () => {
+      const expanded = table.classList.toggle('is-expanded');
+      btn.setAttribute('aria-expanded', String(expanded));
+      btn.querySelector('.product-specs__expand-label').textContent = expanded
+        ? 'Свернуть характеристики'
+        : 'Развернуть все характеристики';
     });
   });
 

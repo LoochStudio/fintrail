@@ -31,12 +31,9 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  max-width: 375px;
-  margin: 0 auto;
   overflow: hidden;
   padding: 20px;
   background: $color-surface;
-  border-right: 1px solid $color-white;
 }
 
 .mobile-menu__panel[hidden] {
