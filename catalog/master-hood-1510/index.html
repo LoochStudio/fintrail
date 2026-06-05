@@ -352,14 +352,13 @@
               <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
               <span>Назад</span>
             </a>
-            <nav class="product-detail__crumbs" aria-label="Хлебные крошки">
-              <a href="/">Главная</a>
-              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
-              <a href="/catalog/">Каталог</a>
-              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
-              <a href="/catalog/men/">Мужчинам</a>
-              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
-              <a href="/catalog/">Куртки</a>
+            <nav aria-label="Хлебные крошки">
+              <ol class="product-detail__crumbs">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/catalog/">Каталог</a></li>
+                <li><a href="/catalog/men/">Мужчинам</a></li>
+                <li><a href="/catalog/" aria-current="page">Куртки</a></li>
+              </ol>
             </nav>
           </div>
 
@@ -390,7 +389,7 @@
               <a class="product-similar__image-link" href="#">
                 <img class="product-similar__image"
                 src="/images/content/product/similar-wademan.png"
-                srcset="/images/content/product/similar-wademan.png 1x"
+                srcset="/images/content/_responsive/product/similar-wademan-160.png 160w, /images/content/_responsive/product/similar-wademan-320.png 320w, /images/content/_responsive/product/similar-wademan-480.png 480w, /images/content/_responsive/product/similar-wademan-768.png 768w, /images/content/product/similar-wademan.png 1000w"
                 sizes="(max-width: 1280px) 50vw, 25vw"
                 alt="FINNTRAIL WADEMAN 1327 DARKGREY"
                 loading="lazy">
@@ -409,7 +408,7 @@
               <a class="product-similar__image-link" href="#">
                 <img class="product-similar__image"
                 src="/images/content/product/similar-coaster.png"
-                srcset="/images/content/product/similar-coaster.png 1x"
+                srcset="/images/content/_responsive/product/similar-coaster-160.png 160w, /images/content/_responsive/product/similar-coaster-320.png 320w, /images/content/_responsive/product/similar-coaster-480.png 480w, /images/content/_responsive/product/similar-coaster-768.png 768w, /images/content/product/similar-coaster.png 1000w"
                 sizes="(max-width: 1280px) 50vw, 25vw"
                 alt="FINNTRAIL COASTER 4023 GREY"
                 loading="lazy">
@@ -432,7 +431,7 @@
           <article class="product-kit-item">
             <img class="product-kit-item__image"
               src="/images/content/product/snowranger/snowranger-pants.png"
-              srcset="/images/content/product/snowranger/snowranger-pants.png 1x"
+              srcset="/images/content/_responsive/product/snowranger/snowranger-pants-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-pants-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-pants-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-pants-768.png 768w, /images/content/product/snowranger/snowranger-pants.png 1000w"
               sizes="80px"
               alt="Горнолыжные брюки FINNTRAIL Aspen 4622 Graphite"
               loading="lazy">
@@ -457,7 +456,7 @@
           <article class="product-kit-item">
             <img class="product-kit-item__image"
               src="/images/content/product/snowranger/snowranger-hat.png"
-              srcset="/images/content/product/snowranger/snowranger-hat.png 1x"
+              srcset="/images/content/_responsive/product/snowranger/snowranger-hat-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-hat-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-hat-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-hat-768.png 768w, /images/content/product/snowranger/snowranger-hat.png 1000w"
               sizes="80px"
               alt="Шапка FINNTRAIL Sport Hat 9730 Graphiteyellow"
               loading="lazy">
@@ -484,9 +483,19 @@
       <div class="product-detail__media">
         <img class="product-detail__image"
           src="/images/content/product/snowranger/sr-01.png"
-          srcset="/images/content/product/snowranger/sr-01.png 1x"
+          srcset="/images/content/_responsive/product/snowranger/sr-01-160.png 160w, /images/content/_responsive/product/snowranger/sr-01-320.png 320w, /images/content/_responsive/product/snowranger/sr-01-480.png 480w, /images/content/_responsive/product/snowranger/sr-01-768.png 768w, /images/content/product/snowranger/sr-01.png 1000w"
           sizes="(max-width: 1280px) 100vw, 50vw"
-          alt="Куртка FINNTRAIL Snowranger 3758 Lightgrey">
+          alt="Куртка FINNTRAIL Snowranger 3758 Lightgrey"
+          fetchpriority="high">
+
+        <div class="product-detail__mobile-media-actions" aria-label="Действия с товаром">
+          <a class="product-detail__mobile-media-button" href="/catalog/" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
+          </a>
+          <button class="product-detail__mobile-media-button" type="button" aria-label="Поделиться">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-share"></use></svg>
+          </button>
+        </div>
 
         <button class="product-media-btn product-media-btn--prev" type="button" aria-label="Предыдущее фото">
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
@@ -502,14 +511,14 @@
           <div class="product-media-carousel__inner">
             <button class="product-media-carousel__item is-active" type="button" aria-label="Фото 1">
               <img src="/images/content/product/snowranger/sr-01.png"
-                srcset="/images/content/product/snowranger/sr-01.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-01-160.png 160w, /images/content/_responsive/product/snowranger/sr-01-320.png 320w, /images/content/_responsive/product/snowranger/sr-01-480.png 480w, /images/content/_responsive/product/snowranger/sr-01-768.png 768w, /images/content/product/snowranger/sr-01.png 1000w"
                 sizes="28px"
                 alt="">
               <span class="product-media-carousel__bar"></span>
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 2">
               <img src="/images/content/product/snowranger/sr-02.png"
-                srcset="/images/content/product/snowranger/sr-02.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-02-160.png 160w, /images/content/_responsive/product/snowranger/sr-02-320.png 320w, /images/content/_responsive/product/snowranger/sr-02-480.png 480w, /images/content/_responsive/product/snowranger/sr-02-768.png 768w, /images/content/product/snowranger/sr-02.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -517,7 +526,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 3">
               <img src="/images/content/product/snowranger/snowranger-main.png"
-                srcset="/images/content/product/snowranger/snowranger-main.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/snowranger-main-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-main-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-main-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-main-768.png 768w, /images/content/product/snowranger/snowranger-main.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -525,7 +534,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 4">
               <img src="/images/content/product/snowranger/sr-04.png"
-                srcset="/images/content/product/snowranger/sr-04.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-04-160.png 160w, /images/content/_responsive/product/snowranger/sr-04-320.png 320w, /images/content/_responsive/product/snowranger/sr-04-480.png 480w, /images/content/_responsive/product/snowranger/sr-04-768.png 768w, /images/content/product/snowranger/sr-04.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -533,7 +542,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 5">
               <img src="/images/content/product/snowranger/sr-05.png"
-                srcset="/images/content/product/snowranger/sr-05.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-05-160.png 160w, /images/content/_responsive/product/snowranger/sr-05-320.png 320w, /images/content/_responsive/product/snowranger/sr-05-480.png 480w, /images/content/_responsive/product/snowranger/sr-05-768.png 768w, /images/content/product/snowranger/sr-05.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -541,7 +550,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 6">
               <img src="/images/content/product/snowranger/sr-06.png"
-                srcset="/images/content/product/snowranger/sr-06.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-06-160.png 160w, /images/content/_responsive/product/snowranger/sr-06-320.png 320w, /images/content/_responsive/product/snowranger/sr-06-480.png 480w, /images/content/_responsive/product/snowranger/sr-06-768.png 768w, /images/content/product/snowranger/sr-06.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -549,7 +558,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 7">
               <img src="/images/content/product/snowranger/sr-07.png"
-                srcset="/images/content/product/snowranger/sr-07.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-07-160.png 160w, /images/content/_responsive/product/snowranger/sr-07-320.png 320w, /images/content/_responsive/product/snowranger/sr-07-480.png 480w, /images/content/_responsive/product/snowranger/sr-07-768.png 768w, /images/content/product/snowranger/sr-07.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -557,7 +566,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 8">
               <img src="/images/content/product/snowranger/sr-08.png"
-                srcset="/images/content/product/snowranger/sr-08.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-08-160.png 160w, /images/content/_responsive/product/snowranger/sr-08-320.png 320w, /images/content/_responsive/product/snowranger/sr-08-480.png 480w, /images/content/_responsive/product/snowranger/sr-08-768.png 768w, /images/content/product/snowranger/sr-08.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -565,7 +574,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 9">
               <img src="/images/content/product/snowranger/sr-09.png"
-                srcset="/images/content/product/snowranger/sr-09.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-09-160.png 160w, /images/content/_responsive/product/snowranger/sr-09-320.png 320w, /images/content/_responsive/product/snowranger/sr-09-480.png 480w, /images/content/_responsive/product/snowranger/sr-09-768.png 768w, /images/content/product/snowranger/sr-09.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -573,7 +582,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 10">
               <img src="/images/content/product/snowranger/sr-10.png"
-                srcset="/images/content/product/snowranger/sr-10.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-10-160.png 160w, /images/content/_responsive/product/snowranger/sr-10-320.png 320w, /images/content/_responsive/product/snowranger/sr-10-480.png 480w, /images/content/_responsive/product/snowranger/sr-10-768.png 768w, /images/content/product/snowranger/sr-10.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -581,7 +590,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 11">
               <img src="/images/content/product/snowranger/sr-11.png"
-                srcset="/images/content/product/snowranger/sr-11.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-11-160.png 160w, /images/content/_responsive/product/snowranger/sr-11-320.png 320w, /images/content/_responsive/product/snowranger/sr-11-480.png 480w, /images/content/_responsive/product/snowranger/sr-11-768.png 768w, /images/content/product/snowranger/sr-11.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -589,7 +598,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 12">
               <img src="/images/content/product/snowranger/sr-12.png"
-                srcset="/images/content/product/snowranger/sr-12.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-12-160.png 160w, /images/content/_responsive/product/snowranger/sr-12-320.png 320w, /images/content/_responsive/product/snowranger/sr-12-480.png 480w, /images/content/_responsive/product/snowranger/sr-12-768.png 768w, /images/content/product/snowranger/sr-12.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -597,7 +606,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 13">
               <img src="/images/content/product/snowranger/sr-13.png"
-                srcset="/images/content/product/snowranger/sr-13.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-13-160.png 160w, /images/content/_responsive/product/snowranger/sr-13-320.png 320w, /images/content/_responsive/product/snowranger/sr-13-480.png 480w, /images/content/_responsive/product/snowranger/sr-13-768.png 768w, /images/content/product/snowranger/sr-13.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -605,7 +614,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 14">
               <img src="/images/content/product/snowranger/sr-14.png"
-                srcset="/images/content/product/snowranger/sr-14.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-14-160.png 160w, /images/content/_responsive/product/snowranger/sr-14-320.png 320w, /images/content/_responsive/product/snowranger/sr-14-480.png 480w, /images/content/_responsive/product/snowranger/sr-14-768.png 768w, /images/content/product/snowranger/sr-14.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -613,7 +622,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 15">
               <img src="/images/content/product/snowranger/sr-15.png"
-                srcset="/images/content/product/snowranger/sr-15.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-15-160.png 160w, /images/content/_responsive/product/snowranger/sr-15-320.png 320w, /images/content/_responsive/product/snowranger/sr-15-480.png 480w, /images/content/_responsive/product/snowranger/sr-15-768.png 768w, /images/content/product/snowranger/sr-15.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -621,7 +630,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 16">
               <img src="/images/content/product/snowranger/sr-16.png"
-                srcset="/images/content/product/snowranger/sr-16.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-16-160.png 160w, /images/content/_responsive/product/snowranger/sr-16-320.png 320w, /images/content/_responsive/product/snowranger/sr-16-480.png 480w, /images/content/_responsive/product/snowranger/sr-16-768.png 768w, /images/content/product/snowranger/sr-16.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -629,7 +638,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 17">
               <img src="/images/content/product/snowranger/sr-17.png"
-                srcset="/images/content/product/snowranger/sr-17.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-17-160.png 160w, /images/content/_responsive/product/snowranger/sr-17-320.png 320w, /images/content/_responsive/product/snowranger/sr-17-480.png 480w, /images/content/_responsive/product/snowranger/sr-17-768.png 768w, /images/content/product/snowranger/sr-17.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -637,7 +646,7 @@
             </button>
             <button class="product-media-carousel__item" type="button" aria-label="Фото 18">
               <img src="/images/content/product/snowranger/sr-18.png"
-                srcset="/images/content/product/snowranger/sr-18.png 1x"
+                srcset="/images/content/_responsive/product/snowranger/sr-18-160.png 160w, /images/content/_responsive/product/snowranger/sr-18-320.png 320w, /images/content/_responsive/product/snowranger/sr-18-480.png 480w, /images/content/_responsive/product/snowranger/sr-18-768.png 768w, /images/content/product/snowranger/sr-18.png 1000w"
                 sizes="28px"
                 alt=""
                 loading="lazy">
@@ -665,6 +674,8 @@
             </button>
           </div>
 
+          <!-- BITRIX: product-detail__summary — данные из CIBlockElement: NAME, PREVIEW_TEXT, PROPERTY_BADGE -->
+          <!-- BITRIX: рейтинг — bitrix:main.rating или кастомный компонент отзывов -->
           <div class="product-detail__summary">
             <p class="product-detail__badge">Новинка</p>
             <h1 class="product-detail__title" id="product-title">Куртка FINNTRAIL Snowranger 3758 Lightgrey</h1>
@@ -686,6 +697,8 @@
         </div>
 
         <div class="product-detail__purchase">
+          <!-- BITRIX: product-option — CATALOG_SKU, цвет из PROPERTY_COLOR, размер из PROPERTY_SIZE -->
+          <!-- BITRIX: офферы/SKU подгружаются через bitrix:catalog.element (режим детального просмотра) -->
           <div class="product-option product-option--color-picker">
             <p class="product-option__label">Цвет</p>
             <div class="product-option__color-wrapper">
@@ -766,12 +779,14 @@
             </div>
           </div>
 
-          <div class="product-oos-form">
+          <!-- BITRIX: product-oos-form — уведомление о поступлении, AJAX-обработчик на стороне Bitrix -->
+          <form class="product-oos-form" novalidate>
             <p class="product-oos-form__label">Узнать о поступлении</p>
-            <input class="product-oos-form__input" type="email" placeholder="Электронная почта" autocomplete="email">
-            <button class="product-buy__button product-buy__button--secondary" type="button">Связаться</button>
-          </div>
+            <input class="product-oos-form__input" type="email" placeholder="Электронная почта" autocomplete="email" required>
+            <button class="product-oos-form__button" type="submit">Связаться</button>
+          </form>
 
+          <!-- BITRIX: product-buy — кнопка «Добавить в корзину» → bitrix:sale.basket.basket, цена из CATALOG_PRICE_1 -->
           <div class="product-buy">
             <div class="product-buy__price-row">
               <div class="product-buy__price">
@@ -783,8 +798,14 @@
                 <strong><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-bonus"></use></svg>+3 800</strong>
               </div>
             </div>
-            <button class="product-buy__button product-buy__button--primary" type="button">Добавить в корзину</button>
-            <button class="product-buy__button product-buy__button--secondary" type="button">Купить в один клик</button>
+            <div class="product-buy__actions">
+              <button class="product-buy__button product-buy__button--primary" type="button">
+                <span class="product-buy__button-label product-buy__button-label--desktop">Добавить в корзину</span>
+                <span class="product-buy__button-label product-buy__button-label--mobile">30 799 ₽</span>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+              <button class="product-buy__button product-buy__button--secondary" type="button">Купить в один клик</button>
+            </div>
             <button class="product-buy__installment" type="button">
               <span class="product-buy__pay-icons">
                 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-dolyami"></use></svg>
@@ -799,6 +820,151 @@
             </button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <div class="product-mobile-buy" aria-label="Быстрая покупка" aria-hidden="true">
+      <div class="product-mobile-buy__main-wrap">
+        <div class="product-mobile-buy__bonus" aria-label="Бонусов за покупку">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-bonus"></use></svg>
+          <span>+3 800</span>
+        </div>
+        <button class="product-mobile-buy__main" type="button">
+          <span>30 799 ₽</span>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+        </button>
+      </div>
+      <button class="product-mobile-buy__icon" type="button" aria-label="В избранное">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+      </button>
+      <button class="product-mobile-buy__icon" type="button" aria-label="К сравнению">
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg>
+      </button>
+    </div>
+
+    <section class="product-mobile-kit" aria-labelledby="product-mobile-kit-title">
+      <a class="product-mobile-kit__title" id="product-mobile-kit-title" href="/catalog/kurtki/kurtki-fishing/">Дополните комплект</a>
+      <div class="product-mobile-kit__scroller" aria-label="Карусель товаров для комплекта">
+        <article class="product-mobile-kit__card">
+          <a class="product-mobile-kit__image-link" href="/catalog/shapki/daily-9727/">
+            <img class="product-mobile-kit__image"
+              src="/images/content/build-kit/hat-1.png"
+              srcset="/images/content/_responsive/build-kit/hat-1-160.png 160w, /images/content/_responsive/build-kit/hat-1-320.png 320w"
+              sizes="135px"
+              alt="Шапка FINNTRAIL Daily 9727 Graphitegrey"
+              loading="lazy">
+          </a>
+          <div class="product-mobile-kit__body">
+            <h3 class="product-mobile-kit__name">Шапка FINNTRAIL Daily 9727 Graphitegrey</h3>
+            <div class="product-mobile-kit__footer">
+              <strong class="product-mobile-kit__price">1 999 ₽</strong>
+              <button class="product-mobile-kit__cart" type="button" aria-label="Добавить шапку в корзину">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        <article class="product-mobile-kit__card">
+          <a class="product-mobile-kit__image-link" href="/catalog/kurtki/sherpa-1397/">
+            <img class="product-mobile-kit__image"
+              src="/images/content/build-kit/jacket.png"
+              srcset="/images/content/_responsive/build-kit/jacket-160.png 160w, /images/content/_responsive/build-kit/jacket-320.png 320w"
+              sizes="135px"
+              alt="Куртка FINNTRAIL Sherpa 1397 Darkgrey"
+              loading="lazy">
+          </a>
+          <div class="product-mobile-kit__body">
+            <h3 class="product-mobile-kit__name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</h3>
+            <div class="product-mobile-kit__footer">
+              <strong class="product-mobile-kit__price">12 999 ₽</strong>
+              <button class="product-mobile-kit__cart" type="button" aria-label="Добавить куртку в корзину">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        <article class="product-mobile-kit__card">
+          <a class="product-mobile-kit__image-link" href="/catalog/bryuki/tactic-4609/">
+            <img class="product-mobile-kit__image"
+              src="/images/content/build-kit/pants.png"
+              srcset="/images/content/_responsive/build-kit/pants-160.png 160w, /images/content/_responsive/build-kit/pants-320.png 320w"
+              sizes="135px"
+              alt="Брюки FINNTRAIL Tactic 4609 Khaki"
+              loading="lazy">
+          </a>
+          <div class="product-mobile-kit__body">
+            <h3 class="product-mobile-kit__name">Брюки FINNTRAIL Tactic 4609 Khaki</h3>
+            <div class="product-mobile-kit__footer">
+              <strong class="product-mobile-kit__price">9 499 ₽</strong>
+              <button class="product-mobile-kit__cart" type="button" aria-label="Добавить брюки в корзину">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-mobile-kit product-mobile-kit--similar" aria-labelledby="product-mobile-similar-title">
+      <a class="product-mobile-kit__title" id="product-mobile-similar-title" href="/catalog/kurtki/">Похожие товары</a>
+      <div class="product-mobile-kit__scroller" aria-label="Карусель похожих товаров">
+        <article class="product-mobile-kit__card">
+          <a class="product-mobile-kit__image-link" href="#">
+            <img class="product-mobile-kit__image"
+              src="/images/content/product/similar-wademan.png"
+              srcset="/images/content/_responsive/product/similar-wademan-160.png 160w, /images/content/_responsive/product/similar-wademan-320.png 320w, /images/content/_responsive/product/similar-wademan-480.png 480w, /images/content/_responsive/product/similar-wademan-768.png 768w, /images/content/product/similar-wademan.png 1000w"
+              sizes="135px"
+              alt="FINNTRAIL WADEMAN 1327 DARKGREY"
+              loading="lazy">
+          </a>
+          <div class="product-mobile-kit__body">
+            <h3 class="product-mobile-kit__name">FINNTRAIL WADEMAN 1327 DARKGREY</h3>
+            <div class="product-mobile-kit__footer">
+              <strong class="product-mobile-kit__price">15 999 ₽</strong>
+              <button class="product-mobile-kit__cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        <article class="product-mobile-kit__card">
+          <a class="product-mobile-kit__image-link" href="#">
+            <img class="product-mobile-kit__image"
+              src="/images/content/product/similar-coaster.png"
+              srcset="/images/content/_responsive/product/similar-coaster-160.png 160w, /images/content/_responsive/product/similar-coaster-320.png 320w, /images/content/_responsive/product/similar-coaster-480.png 480w, /images/content/_responsive/product/similar-coaster-768.png 768w, /images/content/product/similar-coaster.png 1000w"
+              sizes="135px"
+              alt="FINNTRAIL COASTER 4023 GREY"
+              loading="lazy">
+          </a>
+          <div class="product-mobile-kit__body">
+            <h3 class="product-mobile-kit__name">FINNTRAIL COASTER 4023 GREY</h3>
+            <div class="product-mobile-kit__footer">
+              <strong class="product-mobile-kit__price">21 999 ₽</strong>
+              <button class="product-mobile-kit__cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        <article class="product-mobile-kit__card">
+          <a class="product-mobile-kit__image-link" href="/catalog/shapki/daily-9727/">
+            <img class="product-mobile-kit__image"
+              src="/images/content/build-kit/hat-1.png"
+              srcset="/images/content/_responsive/build-kit/hat-1-160.png 160w, /images/content/_responsive/build-kit/hat-1-320.png 320w"
+              sizes="135px"
+              alt="Шапка FINNTRAIL Daily 9727 Graphitegrey"
+              loading="lazy">
+          </a>
+          <div class="product-mobile-kit__body">
+            <h3 class="product-mobile-kit__name">Шапка FINNTRAIL Daily 9727 Graphitegrey</h3>
+            <div class="product-mobile-kit__footer">
+              <strong class="product-mobile-kit__price">1 999 ₽</strong>
+              <button class="product-mobile-kit__cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -818,7 +984,7 @@
       <div class="product-conditions__stage">
         <img class="product-conditions__bg"
           src="/images/content/product/real-conditions/conditions-bg.png"
-          srcset="/images/content/product/real-conditions/conditions-bg.png 1x"
+          srcset="/images/content/_responsive/product/real-conditions/conditions-bg-160.png 160w, /images/content/_responsive/product/real-conditions/conditions-bg-320.png 320w, /images/content/_responsive/product/real-conditions/conditions-bg-480.png 480w, /images/content/_responsive/product/real-conditions/conditions-bg-768.png 768w, /images/content/_responsive/product/real-conditions/conditions-bg-1024.png 1024w, /images/content/product/real-conditions/conditions-bg.png 1440w"
           sizes="100vw"
           alt=""
           loading="lazy"
@@ -859,7 +1025,7 @@
             <article class="product-conditions__slide">
               <img class="product-conditions__media"
                 src="/images/content/product/real-conditions/conditions-01.png"
-                srcset="/images/content/product/real-conditions/conditions-01.png 1x"
+                srcset="/images/content/_responsive/product/real-conditions/conditions-01-160.png 160w, /images/content/product/real-conditions/conditions-01.png 220w"
                 sizes="220px"
                 alt="FINNTRAIL в реальных условиях"
                 loading="lazy">
@@ -868,7 +1034,7 @@
             <article class="product-conditions__slide">
               <img class="product-conditions__media"
                 src="/images/content/product/real-conditions/conditions-02.png"
-                srcset="/images/content/product/real-conditions/conditions-02.png 1x"
+                srcset="/images/content/_responsive/product/real-conditions/conditions-02-160.png 160w, /images/content/product/real-conditions/conditions-02.png 220w"
                 sizes="220px"
                 alt="FINNTRAIL в реальных условиях"
                 loading="lazy">
@@ -877,7 +1043,7 @@
             <article class="product-conditions__slide">
               <img class="product-conditions__media"
                 src="/images/content/product/real-conditions/conditions-03.png"
-                srcset="/images/content/product/real-conditions/conditions-03.png 1x"
+                srcset="/images/content/_responsive/product/real-conditions/conditions-03-160.png 160w, /images/content/product/real-conditions/conditions-03.png 220w"
                 sizes="220px"
                 alt="FINNTRAIL в реальных условиях"
                 loading="lazy">
@@ -886,7 +1052,7 @@
             <article class="product-conditions__slide">
               <img class="product-conditions__media"
                 src="/images/content/product/real-conditions/conditions-04.png"
-                srcset="/images/content/product/real-conditions/conditions-04.png 1x"
+                srcset="/images/content/_responsive/product/real-conditions/conditions-04-160.png 160w, /images/content/product/real-conditions/conditions-04.png 220w"
                 sizes="220px"
                 alt="FINNTRAIL в реальных условиях"
                 loading="lazy">
@@ -895,7 +1061,7 @@
             <article class="product-conditions__slide">
               <img class="product-conditions__media"
                 src="/images/content/product/real-conditions/conditions-06.png"
-                srcset="/images/content/product/real-conditions/conditions-06.png 1x"
+                srcset="/images/content/_responsive/product/real-conditions/conditions-06-160.png 160w, /images/content/_responsive/product/real-conditions/conditions-06-320.png 320w, /images/content/_responsive/product/real-conditions/conditions-06-480.png 480w, /images/content/_responsive/product/real-conditions/conditions-06-768.png 768w, /images/content/_responsive/product/real-conditions/conditions-06-1024.png 1024w, /images/content/product/real-conditions/conditions-06.png 1031w"
                 sizes="220px"
                 alt="FINNTRAIL в реальных условиях"
                 loading="lazy">
@@ -905,33 +1071,158 @@
       </div>
     </section>
 
+    <!-- BITRIX: мобильная секция — инфо о товаре + форма помощи (только mobile) -->
+    <section class="product-store-info" aria-label="О товаре и сервис">
+
+      <!-- Комплект + описание + преимущества -->
+      <div class="product-store-info__main">
+
+        <!-- Комплект: 3 миниатюры товаров -->
+        <div class="product-store-info__kit" data-kit-switch data-kit-section="store">
+          <p class="product-store-info__kit-label">Комплект</p>
+          <div class="product-store-info__kit-images">
+            <button class="product-store-info__kit-item is-active" type="button"
+              aria-label="Куртка FINNTRAIL Snowranger"
+              data-kit-item
+              data-title="FINNTRAIL SNOWRANGER"
+              data-article="Артикул 1306"
+              data-desc="Профессиональная утеплённая куртка, созданная для катания на снегоходах и рыбалки в суровых зимних условиях. Высокотехнологичные материалы и продуманный дизайн обеспечивают превосходную защиту от холода и влаги при температуре до −30°С.">
+              <div class="product-store-info__kit-thumb">
+                <img src="/images/content/product/snowranger/snowranger-main.png"
+                srcset="/images/content/_responsive/product/snowranger/snowranger-main-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-main-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-main-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-main-768.png 768w, /images/content/product/snowranger/snowranger-main.png 1000w"
+                sizes="(max-width: 767px) 64px, 90px" alt="" width="90" height="90" loading="lazy">
+              </div>
+            </button>
+            <button class="product-store-info__kit-item" type="button"
+              aria-label="Полукомбинезон FINNTRAIL Snowranger"
+              data-kit-item
+              data-title="FINNTRAIL SNOWRANGER PANTS"
+              data-article="Артикул 4758"
+              data-desc="Профессиональный утеплённый полукомбинезон из той же коллекции. Идеально дополняет куртку, обеспечивая полную защиту от холода и влаги.">
+              <div class="product-store-info__kit-thumb">
+                <img src="/images/content/product/snowranger/snowranger-pants.png"
+                srcset="/images/content/_responsive/product/snowranger/snowranger-pants-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-pants-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-pants-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-pants-768.png 768w, /images/content/product/snowranger/snowranger-pants.png 1000w"
+                sizes="(max-width: 767px) 64px, 90px" alt="" width="90" height="90" loading="lazy">
+              </div>
+            </button>
+            <button class="product-store-info__kit-item" type="button"
+              aria-label="Шапка FINNTRAIL Sport Hat"
+              data-kit-item
+              data-title="FINNTRAIL SPORT HAT"
+              data-article="Артикул 9730"
+              data-desc="Тёплая шапка из флиса с защитой ушей — идеальное дополнение к зимнему комплекту.">
+              <div class="product-store-info__kit-thumb">
+                <img src="/images/content/product/snowranger/snowranger-hat.png"
+                srcset="/images/content/_responsive/product/snowranger/snowranger-hat-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-hat-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-hat-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-hat-768.png 768w, /images/content/product/snowranger/snowranger-hat.png 1000w"
+                sizes="(max-width: 767px) 64px, 90px" alt="" width="90" height="90" loading="lazy">
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Название, артикул, описание -->
+        <div class="product-store-info__text" data-kit-section="store">
+          <div class="product-store-info__heading">
+            <h2 class="product-store-info__title" data-kit-title>FINNTRAIL SNOWRANGER</h2>
+            <p class="product-store-info__article" data-kit-article>Артикул 1306</p>
+          </div>
+          <div class="product-store-info__body">
+            <p class="product-store-info__desc" data-kit-desc>Профессиональная утеплённая куртка, созданная для катания на снегоходах и рыбалки в суровых зимних условиях. Высокотехнологичные материалы и продуманный дизайн обеспечивают превосходную защиту от холода и влаги при температуре до −30°С.</p>
+            <button class="product-store-info__full-link" type="button" data-product-description-open>Полное описание</button>
+          </div>
+        </div>
+
+        <!-- Преимущества -->
+        <ul class="product-store-info__benefits">
+          <li class="product-store-info__benefit">
+            <svg class="product-store-info__benefit-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-product-info-payment"></use></svg>
+            <div class="product-store-info__benefit-text">
+              <span class="product-store-info__benefit-title">Оплата после примерки</span>
+              <span class="product-store-info__benefit-sub">Любой платёжной системой</span>
+            </div>
+          </li>
+          <li class="product-store-info__benefit">
+            <svg class="product-store-info__benefit-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-product-info-warranty"></use></svg>
+            <div class="product-store-info__benefit-text">
+              <span class="product-store-info__benefit-title">Гарантия и бесплатный сервис</span>
+              <span class="product-store-info__benefit-sub">В течение 1 года</span>
+            </div>
+          </li>
+          <li class="product-store-info__benefit">
+            <svg class="product-store-info__benefit-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-product-info-exchange"></use></svg>
+            <div class="product-store-info__benefit-text">
+              <span class="product-store-info__benefit-title">Бесплатный обмен и возврат</span>
+              <span class="product-store-info__benefit-sub">В течение 21 дня</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Форма помощи с подбором -->
+      <div class="product-store-info__support">
+        <div class="product-store-info__support-text">
+          <p class="product-store-info__support-title">Нужна помощь с подбором?</p>
+          <p class="product-store-info__support-sub">Оставьте свои контактные данные и наш специалист свяжется с вами в ближайшее время</p>
+        </div>
+        <form class="product-store-info__form" novalidate>
+          <div class="product-store-info__fields">
+            <input class="product-store-info__input" type="text" placeholder="Имя" autocomplete="given-name">
+            <div class="product-store-info__phone-row">
+              <button class="product-store-info__phone-flag" type="button" aria-label="Выбрать страну">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-product-info-chevron"></use></svg>
+              </button>
+              <input class="product-store-info__input product-store-info__input--phone" type="tel" placeholder="+7" autocomplete="tel">
+            </div>
+          </div>
+          <button class="product-store-info__submit" type="submit">Отправить</button>
+        </form>
+      </div>
+
+    </section>
+
     <section class="product-info-section" aria-labelledby="product-info-title">
       <div class="product-info-section__panel product-info-section__panel--about">
         <div class="product-info-section__about">
           <div class="product-info-section__content">
             <div class="product-info-section__kit">
               <p class="product-info-section__eyebrow">Комплект</p>
-              <div class="product-info-section__kit-list" aria-label="Элементы комплекта">
-                <button class="product-info-section__kit-item is-active" type="button" aria-label="Куртка FINNTRAIL Snowranger">
+              <div class="product-info-section__kit-list" aria-label="Элементы комплекта" data-kit-switch data-kit-section="info">
+                <button class="product-info-section__kit-item is-active" type="button"
+                  aria-label="Куртка FINNTRAIL Snowranger"
+                  data-kit-item
+                  data-title="FINNTRAIL SNOWRANGER"
+                  data-article="Артикул 1306"
+                  data-desc="Профессиональная утеплённая куртка, созданная для катания на снегоходах и рыбалки в суровых зимних условиях. Высокотехнологичные материалы и продуманный дизайн обеспечивают превосходную защиту от холода и влаги при температуре до −30°С.">
                   <img
                     src="/images/content/product/snowranger/snowranger-main.png"
-                    srcset="/images/content/product/snowranger/snowranger-main.png 1x"
+                    srcset="/images/content/_responsive/product/snowranger/snowranger-main-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-main-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-main-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-main-768.png 768w, /images/content/product/snowranger/snowranger-main.png 1000w"
                     sizes="48px"
                     alt=""
                     loading="lazy">
                 </button>
-                <button class="product-info-section__kit-item" type="button" aria-label="Полукомбинезон FINNTRAIL">
+                <button class="product-info-section__kit-item" type="button"
+                  aria-label="Полукомбинезон FINNTRAIL Snowranger"
+                  data-kit-item
+                  data-title="FINNTRAIL SNOWRANGER PANTS"
+                  data-article="Артикул 4758"
+                  data-desc="Профессиональный утеплённый полукомбинезон из той же коллекции. Идеально дополняет куртку, обеспечивая полную защиту от холода и влаги при температуре до −30°С.">
                   <img
                     src="/images/content/product/snowranger/snowranger-info-pants.png"
-                    srcset="/images/content/product/snowranger/snowranger-info-pants.png 1x"
+                    srcset="/images/content/_responsive/product/snowranger/snowranger-info-pants-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-info-pants-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-info-pants-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-info-pants-768.png 768w, /images/content/product/snowranger/snowranger-info-pants.png 1000w"
                     sizes="48px"
                     alt=""
                     loading="lazy">
                 </button>
-                <button class="product-info-section__kit-item" type="button" aria-label="Шапка FINNTRAIL">
+                <button class="product-info-section__kit-item" type="button"
+                  aria-label="Шапка FINNTRAIL Sport Hat"
+                  data-kit-item
+                  data-title="FINNTRAIL SPORT HAT"
+                  data-article="Артикул 9730"
+                  data-desc="Тёплая шапка из высококачественного флиса с защитой ушей. Отличное дополнение к комплекту для зимних активностей.">
                   <img
                     src="/images/content/product/snowranger/snowranger-info-hat.png"
-                    srcset="/images/content/product/snowranger/snowranger-info-hat.png 1x"
+                    srcset="/images/content/_responsive/product/snowranger/snowranger-info-hat-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-info-hat-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-info-hat-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-info-hat-768.png 768w, /images/content/product/snowranger/snowranger-info-hat.png 1000w"
                     sizes="48px"
                     alt=""
                     loading="lazy">
@@ -939,13 +1230,13 @@
               </div>
             </div>
 
-            <div class="product-info-section__text">
+            <div class="product-info-section__text" data-kit-section="info">
               <div class="product-info-section__heading">
-                <h2 id="product-info-title">FINNTRAIL SNOWRANGER</h2>
-                <p>Артикул 1306</p>
+                <h2 id="product-info-title" data-kit-title>FINNTRAIL SNOWRANGER</h2>
+                <p data-kit-article>Артикул 1306</p>
               </div>
               <div class="product-info-section__copy">
-                <p>Профессиональная утеплённая куртка, созданная для<br>катания на снегоходах и рыбалки в суровых зимних<br>условиях. Высокотехнологичные материалы<br>и продуманный дизайн обеспечивают превосходную<br>защиту от холода и влаги при температуре до −30°С.</p>
+                <p data-kit-desc>Профессиональная утеплённая куртка, созданная для катания на снегоходах и рыбалки в суровых зимних условиях. Высокотехнологичные материалы и продуманный дизайн обеспечивают превосходную защиту от холода и влаги при температуре до −30°С.</p>
                 <div class="product-info-section__separator" aria-hidden="true"></div>
                 <p>Эргономичная конструкция гарантирует полную<br>свободу движений. Откройте для себя новый уровень<br>комфорта во время зимних приключений, соберите<br>полный комплект с полукомбинезоном SNOWRANGER!</p>
                 <button class="product-info-section__description-button" type="button" data-product-description-open>Полное описание</button>
@@ -1163,69 +1454,83 @@
     </section>
 
     <!-- BITRIX: промо-блок технологии — контент из расширенного описания товара -->
-    <section class="product-highlight" aria-label="Мембрана TORAY DERMIZAX">
-      <div class="product-highlight__content">
-        <img class="product-highlight__deco"
-          src="/images/content/product/feature-deco.svg"
-          alt=""
-          aria-hidden="true">
+    <!-- BITRIX: product-highlight-row — на десктопе прозрачный (display:contents),
+         на мобиле горизонтальный скролл с двумя карточками 300px -->
+    <div class="product-highlight-row">
 
-        <div class="product-highlight__text">
-          <h2 class="product-highlight__title">Мембрана TORAY DERMIZAX</h2>
-          <p class="product-highlight__desc">Прочный двухслойный материал с технологичной японской беспоровой мембраной TORAY DERMIZAX обеспечивает 100% защиту от дождя, мокрого снега и штормового ветра</p>
+      <section class="product-highlight" aria-label="Мембрана TORAY DERMIZAX">
+        <div class="product-highlight__content">
+          <img class="product-highlight__deco"
+            src="/images/content/product/feature-deco.svg"
+            alt=""
+            aria-hidden="true">
+
+          <div class="product-highlight__text">
+            <h2 class="product-highlight__title">Мембрана TORAY DERMIZAX</h2>
+            <p class="product-highlight__desc">Прочный двухслойный материал с технологичной японской беспоровой мембраной TORAY DERMIZAX обеспечивает 100% защиту от дождя, мокрого снега и штормового ветра</p>
+          </div>
+
+          <img class="product-highlight__deco"
+            src="/images/content/product/feature-deco.svg"
+            alt=""
+            aria-hidden="true">
         </div>
 
-        <img class="product-highlight__deco"
-          src="/images/content/product/feature-deco.svg"
-          alt=""
-          aria-hidden="true">
-      </div>
+        <div class="product-highlight__image">
+          <img
+            src="/images/content/product/snowranger/feature-membrane.png"
+            srcset="/images/content/_responsive/product/snowranger/feature-membrane-160.png 160w, /images/content/_responsive/product/snowranger/feature-membrane-320.png 320w, /images/content/_responsive/product/snowranger/feature-membrane-480.png 480w, /images/content/_responsive/product/snowranger/feature-membrane-768.png 768w, /images/content/product/snowranger/feature-membrane.png 1000w"
+            sizes="50vw"
+            alt="Деталь куртки FINNTRAIL Snowranger — мембрана TORAY DERMIZAX"
+            loading="lazy">
+        </div>
+      </section>
 
-      <div class="product-highlight__image">
-        <img
-          src="/images/content/product/snowranger/feature-membrane.png"
-          srcset="/images/content/product/snowranger/feature-membrane.png 1x"
-          sizes="50vw"
-          alt="Деталь куртки FINNTRAIL Snowranger — мембрана TORAY DERMIZAX"
-          loading="lazy">
-      </div>
-    </section>
-
-    <!-- BITRIX: промо-блок технологии 2 — фото слева, текст справа -->
-    <section class="product-highlight" aria-label="Утеплитель DuPont Sorona" style="padding-bottom: 79px">
-      <div class="product-highlight__image">
-        <img
-          src="/images/content/product/snowranger/feature-sorona.png"
-          srcset="/images/content/product/snowranger/feature-sorona.png 1x"
-          sizes="50vw"
-          alt="Деталь куртки FINNTRAIL Snowranger — утеплитель DuPont Sorona"
-          loading="lazy">
-      </div>
-
-      <div class="product-highlight__content">
-        <img class="product-highlight__deco"
-          src="/images/content/product/feature-deco-2.svg"
-          alt=""
-          aria-hidden="true">
-
-        <div class="product-highlight__text">
-          <h2 class="product-highlight__title">Утеплитель DuPont Sorona</h2>
-          <p class="product-highlight__desc">Современный технологичный утеплитель DuPont Sorona (основа — 200 г/м², рукава и капюшон — 150 г/м²) сохраняет комфорт при температуре до −30 °С</p>
+      <!-- BITRIX: промо-блок технологии 2 — фото слева, текст справа -->
+      <!-- padding-bottom: 79px перенесено из inline в класс product-highlight--spaced -->
+      <section class="product-highlight product-highlight--spaced" aria-label="Утеплитель DuPont Sorona">
+        <div class="product-highlight__image">
+          <img
+            src="/images/content/product/snowranger/feature-sorona.png"
+            srcset="/images/content/_responsive/product/snowranger/feature-sorona-160.png 160w, /images/content/_responsive/product/snowranger/feature-sorona-320.png 320w, /images/content/_responsive/product/snowranger/feature-sorona-480.png 480w, /images/content/_responsive/product/snowranger/feature-sorona-768.png 768w, /images/content/product/snowranger/feature-sorona.png 1000w"
+            sizes="50vw"
+            alt="Деталь куртки FINNTRAIL Snowranger — утеплитель DuPont Sorona"
+            loading="lazy">
         </div>
 
-        <img class="product-highlight__deco"
-          src="/images/content/product/feature-deco-2.svg"
-          alt=""
-          aria-hidden="true">
-      </div>
-    </section>
+        <div class="product-highlight__content">
+          <img class="product-highlight__deco"
+            src="/images/content/product/feature-deco-2.svg"
+            alt=""
+            aria-hidden="true">
+
+          <div class="product-highlight__text">
+            <h2 class="product-highlight__title">Утеплитель DuPont Sorona</h2>
+            <p class="product-highlight__desc">Современный технологичный утеплитель DuPont Sorona (основа — 200 г/м², рукава и капюшон — 150 г/м²) сохраняет комфорт при температуре до −30 °С</p>
+          </div>
+
+          <img class="product-highlight__deco"
+            src="/images/content/product/feature-deco-2.svg"
+            alt=""
+            aria-hidden="true">
+        </div>
+      </section>
+
+    </div>
 
     <!-- BITRIX: блок характеристик, технологий и ухода -->
     <section class="product-specs" aria-label="Характеристики и технологии">
 
       <!-- Левая колонка: таблица характеристик -->
       <div class="product-specs__main">
-        <h2 class="product-specs__heading">Характеристики</h2>
+        <button class="product-specs__heading product-specs__accordion-btn" type="button" aria-expanded="false" data-specs-accordion-btn>
+          <span>Характеристики</span>
+          <svg class="product-specs__accordion-arrow" aria-hidden="true" width="16" height="16">
+            <use href="/images/icons/sprite.svg#icon-product-info-chevron"></use>
+          </svg>
+        </button>
+
+        <div class="product-specs__accordion-panel" data-specs-accordion-panel>
 
         <!-- Предупреждение о коллекции -->
         <div class="product-specs__notice">
@@ -1338,6 +1643,8 @@
             <span class="product-specs__expand-arrow" aria-hidden="true"></span>
           </button>
         </div>
+
+        </div><!-- /product-specs__accordion-panel (характеристики) -->
       </div>
 
       <!-- Правая часть: технологии + уход -->
@@ -1345,13 +1652,21 @@
 
         <!-- Технологии -->
         <div class="product-specs__tech">
-          <h2 class="product-specs__heading">Технологии</h2>
+          <button class="product-specs__heading product-specs__accordion-btn" type="button" aria-expanded="false" data-specs-accordion-btn>
+            <span>Технологии</span>
+            <svg class="product-specs__accordion-arrow" aria-hidden="true" width="16" height="16">
+              <use href="/images/icons/sprite.svg#icon-product-info-chevron"></use>
+            </svg>
+          </button>
 
+          <div class="product-specs__accordion-panel" data-specs-accordion-panel>
           <ul class="product-specs__tech-list">
             <li class="product-specs__tech-item">
               <img
                 class="product-specs__tech-icon"
                 src="/images/content/product/tech-toray.png"
+                srcset="/images/content/_responsive/product/tech-toray-80.png 80w, /images/content/product/tech-toray.png 120w"
+                sizes="64px"
                 alt="Покрытие DWR"
                 width="40"
                 height="40"
@@ -1366,6 +1681,8 @@
               <img
                 class="product-specs__tech-icon"
                 src="/images/content/product/tech-sorona.png"
+                srcset="/images/content/_responsive/product/tech-sorona-80.png 80w, /images/content/product/tech-sorona.png 120w"
+                sizes="64px"
                 alt="DuPont Sorona"
                 width="40"
                 height="40"
@@ -1380,6 +1697,8 @@
               <img
                 class="product-specs__tech-icon"
                 src="/images/content/product/feature-dwr.png"
+                srcset="/images/content/product/feature-dwr.png 60w"
+                sizes="64px"
                 alt="Мембранный материал TORAY DERMIZAX"
                 width="40"
                 height="40"
@@ -1390,12 +1709,19 @@
               </div>
             </li>
           </ul>
+          </div><!-- /product-specs__accordion-panel (технологии) -->
         </div>
 
         <!-- Уход -->
         <div class="product-specs__care">
-          <h2 class="product-specs__heading">Уход</h2>
+          <button class="product-specs__heading product-specs__accordion-btn" type="button" aria-expanded="false" data-specs-accordion-btn>
+            <span>Уход</span>
+            <svg class="product-specs__accordion-arrow" aria-hidden="true" width="16" height="16">
+              <use href="/images/icons/sprite.svg#icon-product-info-chevron"></use>
+            </svg>
+          </button>
 
+          <div class="product-specs__accordion-panel" data-specs-accordion-panel>
           <div class="product-specs__care-list">
             <div class="product-specs__care-item">
               <span class="product-specs__care-label">Стирка</span>
@@ -1407,6 +1733,7 @@
               <p class="product-specs__care-text">Сушить в горизонтальном положении вдали от нагревательных приборов и солнечных лучей</p>
             </div>
           </div>
+          </div><!-- /product-specs__accordion-panel (уход) -->
         </div>
 
       </div>
@@ -1424,6 +1751,8 @@
             <div class="product-article__card-image">
               <img
                 src="/images/content/product/article-ski.png"
+                srcset="/images/content/_responsive/product/article-ski-320.png 320w, /images/content/_responsive/product/article-ski-480.png 480w, /images/content/product/article-ski.png 688w"
+                sizes="(max-width: 767px) calc(100vw - 40px), 421px"
                 alt="Выбор снаряжения для горнолыжки"
                 width="343"
                 height="300"
@@ -1442,6 +1771,8 @@
             <div class="product-article__card-image">
               <img
                 src="/images/content/product/article-hiking.png"
+                srcset="/images/content/_responsive/product/article-hiking-320.png 320w, /images/content/_responsive/product/article-hiking-480.png 480w, /images/content/_responsive/product/article-hiking-768.png 768w, /images/content/product/article-hiking.png 900w"
+                sizes="(max-width: 767px) calc(100vw - 40px), 421px"
                 alt="Выбор одежды для походов"
                 width="343"
                 height="300"
@@ -1505,7 +1836,7 @@
             <div class="product-reviews__sort" data-reviews-sort>
               <button class="product-reviews__sort-btn" type="button" aria-expanded="false" aria-haspopup="listbox" data-reviews-sort-btn>
                 <span class="product-reviews__sort-label">Сначала новые</span>
-                <img src="/images/icons/icon-sort-arrow.svg" alt="" aria-hidden="true" width="16" height="16">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
               </button>
               <ul class="product-reviews__sort-dropdown" role="listbox" hidden>
                 <li><button type="button" role="option" aria-selected="true" data-sort="new">Сначала новые</button></li>
@@ -1517,6 +1848,27 @@
           </div>
         </div>
 
+        <!-- Mobile: управление — сортировка + открыть форму отзыва (только mobile) -->
+        <div class="product-reviews__mobile-controls">
+          <!-- Сортировка (дубль для мобилки) -->
+          <div class="product-reviews__sort product-reviews__sort--mobile" data-reviews-sort>
+            <button class="product-reviews__sort-btn" type="button" aria-expanded="false" aria-haspopup="listbox" data-reviews-sort-btn>
+              <span class="product-reviews__sort-label">Сначала новые</span>
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+            </button>
+            <ul class="product-reviews__sort-dropdown" role="listbox" hidden>
+              <li><button type="button" role="option" aria-selected="true" data-sort="new">Сначала новые</button></li>
+              <li><button type="button" role="option" data-sort="old">Сначала старые</button></li>
+              <li><button type="button" role="option" data-sort="high">Высокая оценка</button></li>
+              <li><button type="button" role="option" data-sort="low">Низкая оценка</button></li>
+            </ul>
+          </div>
+          <!-- Кнопка «Отправить отзыв» открывает форму как bottom sheet -->
+          <button class="product-reviews__mobile-form-btn" type="button" data-reviews-form-open>
+            Отправить отзыв
+          </button>
+        </div>
+
         <!-- Отзывы -->
         <div class="product-reviews__list" data-reviews-list>
 
@@ -1524,7 +1876,9 @@
           <hr class="product-reviews__divider" aria-hidden="true">
           <div class="product-reviews__row">
             <div class="product-reviews__reviewer">
-              <img class="product-reviews__avatar" src="/images/content/product/review-avatar-1.png" alt="Александр" width="64" height="64" loading="lazy">
+              <img class="product-reviews__avatar" src="/images/content/product/review-avatar-1.png"
+                srcset="/images/content/_responsive/product/review-avatar-1-80.png 80w, /images/content/_responsive/product/review-avatar-1-160.png 160w, /images/content/product/review-avatar-1.png 278w"
+                sizes="64px" alt="Александр" width="64" height="64" loading="lazy">
               <div class="product-reviews__reviewer-meta">
                 <div class="product-reviews__reviewer-top">
                   <div class="product-reviews__stars-group">
@@ -1550,21 +1904,21 @@
               <div class="product-reviews__sections">
                 <div class="product-reviews__section">
                   <div class="product-reviews__section-head">
-                    <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-plus"></use></svg>
                     <h3 class="product-reviews__section-title">Достоинства</h3>
                   </div>
                   <p class="product-reviews__section-text">Куртка понравилась многим, поэтому пришлось покупать и друзьям</p>
                 </div>
                 <div class="product-reviews__section">
                   <div class="product-reviews__section-head">
-                    <img src="/images/icons/icon-review-minus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-minus"></use></svg>
                     <h3 class="product-reviews__section-title">Недостатки</h3>
                   </div>
                   <p class="product-reviews__section-text">Не выявлены</p>
                 </div>
                 <div class="product-reviews__section">
                   <div class="product-reviews__section-head">
-                    <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-comment"></use></svg>
                     <h3 class="product-reviews__section-title">Комментарий</h3>
                   </div>
                   <p class="product-reviews__section-text">В этой куртке комфортно, тепло и сухо. Дизайн настолько удачный, что многие из друзей решили приобрести такую же. Покупкой доволен.</p>
@@ -1577,7 +1931,9 @@
           <hr class="product-reviews__divider" aria-hidden="true">
           <div class="product-reviews__row">
             <div class="product-reviews__reviewer">
-              <img class="product-reviews__avatar" src="/images/content/product/review-photo-1.png" alt="Сергей" width="64" height="64" loading="lazy">
+              <img class="product-reviews__avatar" src="/images/content/product/review-photo-1.png"
+                srcset="/images/content/_responsive/product/review-photo-1-80.png 80w, /images/content/_responsive/product/review-photo-1-160.png 160w, /images/content/_responsive/product/review-photo-1-320.png 320w, /images/content/product/review-photo-1.png 544w"
+                sizes="64px" alt="Сергей" width="64" height="64" loading="lazy">
               <div class="product-reviews__reviewer-meta">
                 <div class="product-reviews__reviewer-top">
                   <div class="product-reviews__stars-group">
@@ -1601,27 +1957,33 @@
               </div>
               <div class="product-reviews__sections">
                 <div class="product-reviews__photos">
-                  <img src="/images/content/product/review-avatar-2.png" alt="Фото отзыва" width="42" height="64" loading="lazy">
-                  <img src="/images/content/product/review-photo-2.png" alt="Фото отзыва" width="42" height="64" loading="lazy">
-                  <img src="/images/content/product/review-photo-3.png" alt="Фото отзыва" width="42" height="64" loading="lazy">
+                  <img src="/images/content/product/review-avatar-2.png"
+                srcset="/images/content/_responsive/product/review-avatar-2-80.png 80w, /images/content/_responsive/product/review-avatar-2-160.png 160w, /images/content/_responsive/product/review-avatar-2-320.png 320w, /images/content/product/review-avatar-2.png 1027w"
+                sizes="64px" alt="Фото отзыва" width="42" height="64" loading="lazy">
+                  <img src="/images/content/product/review-photo-2.png"
+                srcset="/images/content/_responsive/product/review-photo-2-80.png 80w, /images/content/_responsive/product/review-photo-2-160.png 160w, /images/content/_responsive/product/review-photo-2-320.png 320w, /images/content/product/review-photo-2.png 720w"
+                sizes="64px" alt="Фото отзыва" width="42" height="64" loading="lazy">
+                  <img src="/images/content/product/review-photo-3.png"
+                srcset="/images/content/_responsive/product/review-photo-3-80.png 80w, /images/content/_responsive/product/review-photo-3-160.png 160w, /images/content/_responsive/product/review-photo-3-320.png 320w, /images/content/product/review-photo-3.png 1029w"
+                sizes="64px" alt="Фото отзыва" width="42" height="64" loading="lazy">
                 </div>
                 <div class="product-reviews__section">
                   <div class="product-reviews__section-head">
-                    <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-plus"></use></svg>
                     <h3 class="product-reviews__section-title">Достоинства</h3>
                   </div>
                   <p class="product-reviews__section-text">Куртка понравилась многим, поэтому пришлось покупать и друзьям</p>
                 </div>
                 <div class="product-reviews__section">
                   <div class="product-reviews__section-head">
-                    <img src="/images/icons/icon-review-minus.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-minus"></use></svg>
                     <h3 class="product-reviews__section-title">Недостатки</h3>
                   </div>
                   <p class="product-reviews__section-text">Не выявлены</p>
                 </div>
                 <div class="product-reviews__section">
                   <div class="product-reviews__section-head">
-                    <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                    <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-comment"></use></svg>
                     <h3 class="product-reviews__section-title">Комментарий</h3>
                   </div>
                   <p class="product-reviews__section-text">В этой куртке комфортно, тепло и сухо. Дизайн настолько удачный, что многие из друзей решили приобрести такую же. Покупкой доволен.</p>
@@ -1636,7 +1998,9 @@
             <hr class="product-reviews__divider" aria-hidden="true">
             <div class="product-reviews__row">
               <div class="product-reviews__reviewer">
-                <img class="product-reviews__avatar" src="/images/content/product/review-avatar-1.png" alt="Максим" width="64" height="64" loading="lazy">
+                <img class="product-reviews__avatar" src="/images/content/product/review-avatar-1.png"
+                srcset="/images/content/_responsive/product/review-avatar-1-80.png 80w, /images/content/_responsive/product/review-avatar-1-160.png 160w, /images/content/product/review-avatar-1.png 278w"
+                sizes="64px" alt="Максим" width="64" height="64" loading="lazy">
                 <div class="product-reviews__reviewer-meta">
                   <div class="product-reviews__reviewer-top">
                     <div class="product-reviews__stars-group">
@@ -1660,14 +2024,14 @@
                 <div class="product-reviews__sections">
                   <div class="product-reviews__section">
                     <div class="product-reviews__section-head">
-                      <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-plus"></use></svg>
                       <h3 class="product-reviews__section-title">Достоинства</h3>
                     </div>
                     <p class="product-reviews__section-text">Отличное качество материала, тепло даже в сильный мороз</p>
                   </div>
                   <div class="product-reviews__section">
                     <div class="product-reviews__section-head">
-                      <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-comment"></use></svg>
                       <h3 class="product-reviews__section-title">Комментарий</h3>
                     </div>
                     <p class="product-reviews__section-text">Рекомендую всем, кто занимается зимними видами спорта.</p>
@@ -1679,7 +2043,9 @@
             <hr class="product-reviews__divider" aria-hidden="true">
             <div class="product-reviews__row">
               <div class="product-reviews__reviewer">
-                <img class="product-reviews__avatar" src="/images/content/product/review-avatar-2.png" alt="Иван" width="64" height="64" loading="lazy">
+                <img class="product-reviews__avatar" src="/images/content/product/review-avatar-2.png"
+                srcset="/images/content/_responsive/product/review-avatar-2-80.png 80w, /images/content/_responsive/product/review-avatar-2-160.png 160w, /images/content/_responsive/product/review-avatar-2-320.png 320w, /images/content/product/review-avatar-2.png 1027w"
+                sizes="64px" alt="Иван" width="64" height="64" loading="lazy">
                 <div class="product-reviews__reviewer-meta">
                   <div class="product-reviews__reviewer-top">
                     <div class="product-reviews__stars-group">
@@ -1704,14 +2070,14 @@
                 <div class="product-reviews__sections">
                   <div class="product-reviews__section">
                     <div class="product-reviews__section-head">
-                      <img src="/images/icons/icon-review-plus.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-plus"></use></svg>
                       <h3 class="product-reviews__section-title">Достоинства</h3>
                     </div>
                     <p class="product-reviews__section-text">Мембрана реально работает, проверял в дождь и снег</p>
                   </div>
                   <div class="product-reviews__section">
                     <div class="product-reviews__section-head">
-                      <img src="/images/icons/icon-review-comment.svg" alt="" aria-hidden="true" width="16" height="16">
+                      <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-review-comment"></use></svg>
                       <h3 class="product-reviews__section-title">Комментарий</h3>
                     </div>
                     <p class="product-reviews__section-text">Хорошая куртка за свои деньги, брал на рыбалку.</p>
@@ -1728,7 +2094,7 @@
             <hr class="product-reviews__divider" aria-hidden="true">
             <button class="product-reviews__load-more" type="button" data-reviews-load-more>
               <span class="product-reviews__load-more-text">Показать ещё <sup>2</sup></span>
-              <img src="/images/icons/icon-load-more.svg" alt="" aria-hidden="true" width="16" height="16">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-load-more"></use></svg>
             </button>
           </div>
 
@@ -1738,6 +2104,11 @@
       <!-- ─── Правая колонка: форма оценки ─── -->
       <div class="product-reviews__right">
         <form class="product-reviews__form" novalidate data-reviews-form>
+
+          <!-- Кнопка закрытия bottom sheet (только mobile) -->
+          <button class="product-reviews__form-close" type="button" aria-label="Закрыть форму отзыва" data-reviews-form-close>
+            <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
 
           <p class="product-reviews__form-label">Оцените товар</p>
 
@@ -1766,7 +2137,7 @@
             <p class="product-reviews__fit-label">Соответствие размеру</p>
             <div class="product-reviews__fit-options" data-reviews-fit>
               <button type="button" class="product-reviews__fit-btn product-reviews__fit-btn--active" data-fit="match">
-                <img src="/images/icons/icon-check-sm.svg" alt="" aria-hidden="true" width="16" height="16">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
                 Соответствует
               </button>
               <button type="button" class="product-reviews__fit-btn" data-fit="big">Большемерит</button>
@@ -1777,7 +2148,7 @@
           <!-- Загрузить файлы -->
           <label class="product-reviews__upload">
             <span class="product-reviews__upload-icon" aria-hidden="true">
-              <img src="/images/icons/icon-upload-arrow.svg" alt="" width="16" height="16">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
             </span>
             <span class="product-reviews__upload-text">
               <span class="product-reviews__upload-title">Загрузить фотографии или видео</span>
@@ -1814,7 +2185,7 @@
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
-                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/_responsive/recommended/recommended-1-160.png 160w, /images/content/_responsive/recommended/recommended-1-320.png 320w, /images/content/_responsive/recommended/recommended-1-480.png 480w, /images/content/_responsive/recommended/recommended-1-768.png 768w, /images/content/recommended/recommended-1.png 780w" sizes="(max-width: 767px) 44vw, (max-width: 1279px) 25vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
                 <span class="recommendation-card__badge">Новинка</span>
               </a>
               <span class="recommendation-card__actions">
@@ -1846,7 +2217,7 @@
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
-                <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" alt="Куртка FINNTRAIL Wademan" loading="lazy">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" srcset="/images/content/_responsive/recommended/recommended-2-160.png 160w, /images/content/_responsive/recommended/recommended-2-320.png 320w, /images/content/recommended/recommended-2.png 442w" sizes="(max-width: 767px) 44vw, (max-width: 1279px) 25vw, 25vw" alt="Куртка FINNTRAIL Wademan" loading="lazy">
                 <span class="recommendation-card__badge">Топ</span>
               </a>
               <span class="recommendation-card__actions">
@@ -1877,7 +2248,7 @@
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
-                <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" alt="Куртка FINNTRAIL Coaster" loading="lazy">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/_responsive/recommended/recommended-3-160.png 160w, /images/content/_responsive/recommended/recommended-3-320.png 320w, /images/content/_responsive/recommended/recommended-3-480.png 480w, /images/content/recommended/recommended-3.png 498w" sizes="(max-width: 767px) 44vw, (max-width: 1279px) 25vw, 25vw" alt="Куртка FINNTRAIL Coaster" loading="lazy">
                 <span class="recommendation-card__badge">Хит</span>
               </a>
               <span class="recommendation-card__actions">
@@ -1907,7 +2278,7 @@
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
-                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-4.png" alt="Куртка FINNTRAIL Snowranger" loading="lazy">
+                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-4.png" srcset="/images/content/_responsive/recommended/recommended-4-160.png 160w, /images/content/recommended/recommended-4.png 197w" sizes="(max-width: 767px) 44vw, (max-width: 1279px) 25vw, 25vw" alt="Куртка FINNTRAIL Snowranger" loading="lazy">
                 <span class="recommendation-card__badge">Новинка</span>
               </a>
               <span class="recommendation-card__actions">
@@ -1937,6 +2308,13 @@
 
         </div>
       </div>
+
+      <!-- Кнопка «Смотреть все» — те же классы что на главной -->
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/">
+        <span>Смотреть все</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </a>
+
     </section>
 
     <!-- Присоединяйся к комьюнити — переиспользуем с главной -->
@@ -2042,10 +2420,10 @@
             </span>
           </div>
           <div class="product-upload-modal__preview-list" data-product-upload-filled aria-label="Загруженные файлы">
-            <img src="/images/content/product/upload-preview/upload-preview-1.png" srcset="/images/content/product/upload-preview/upload-preview-1.png 1x" sizes="60px" alt="Загруженное изображение 1" loading="lazy">
-            <img src="/images/content/product/upload-preview/upload-preview-2.png" srcset="/images/content/product/upload-preview/upload-preview-2.png 1x" sizes="60px" alt="Загруженное изображение 2" loading="lazy">
-            <img src="/images/content/product/upload-preview/upload-preview-3.png" srcset="/images/content/product/upload-preview/upload-preview-3.png 1x" sizes="60px" alt="Загруженное изображение 3" loading="lazy">
-            <img src="/images/content/product/upload-preview/upload-preview-4.png" srcset="/images/content/product/upload-preview/upload-preview-4.png 1x" sizes="60px" alt="Загруженное изображение 4" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-1.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-1-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-1-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-1-480.png 480w, /images/content/_responsive/product/upload-preview/upload-preview-1-768.png 768w, /images/content/_responsive/product/upload-preview/upload-preview-1-1024.png 1024w, /images/content/product/upload-preview/upload-preview-1.png 1031w" sizes="60px" alt="Загруженное изображение 1" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-2.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-2-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-2-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-2-480.png 480w, /images/content/_responsive/product/upload-preview/upload-preview-2-768.png 768w, /images/content/product/upload-preview/upload-preview-2.png 960w" sizes="60px" alt="Загруженное изображение 2" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-3.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-3-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-3-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-3-480.png 480w, /images/content/_responsive/product/upload-preview/upload-preview-3-768.png 768w, /images/content/_responsive/product/upload-preview/upload-preview-3-1024.png 1024w, /images/content/product/upload-preview/upload-preview-3.png 1031w" sizes="60px" alt="Загруженное изображение 3" loading="lazy">
+            <img src="/images/content/product/upload-preview/upload-preview-4.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-4-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-4-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-4-480.png 480w, /images/content/product/upload-preview/upload-preview-4.png 720w" sizes="60px" alt="Загруженное изображение 4" loading="lazy">
           </div>
           <button class="product-upload-modal__file-button" type="button" data-product-upload-file-button>
             <span>Загрузить файлы</span>

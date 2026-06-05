@@ -574,4 +574,39 @@
     <path d="M25.9648 37.2832L8.99428 54.2538" stroke="currentColor"/>
   </symbol>
 
+  <!-- Review section icons -->
+  <symbol id="icon-review-plus" viewBox="0 0 16 16" fill="none">
+    <rect width="16" height="16" rx="8" fill="white"/>
+    <path d="M8 3L8 13" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M13 8H3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-review-minus" viewBox="0 0 16 16" fill="none">
+    <rect width="16" height="16" rx="8" fill="white"/>
+    <path d="M13 8H3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-review-comment" viewBox="0 0 16 16" fill="none">
+    <rect width="16" height="16" rx="8" fill="white"/>
+    <path d="M13 6H3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M8 10H3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-sort-arrow" viewBox="0 0 16 16" fill="none">
+    <path d="M4.695 6.975a.5.5 0 0 0 .472.808h6.666a.5.5 0 0 0 .373-.808L8.97 3.638a.667.667 0 0 0-1.942 0L4.695 6.975Z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="icon-load-more" viewBox="0 0 16 16" fill="none">
+    <path d="M7.475 11.805a.5.5 0 0 1-.622-.618L6.5 4.667a.5.5 0 0 1 .853-.354l2.857 3.333a.667.667 0 0 1 0 .708L7.475 11.805Z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="icon-check-sm" viewBox="0 0 16 16" fill="none">
+    <path d="M13.333 4L6 11.333 2.666 8" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+  </symbol>
+
+  <symbol id="icon-upload-arrow" viewBox="0 0 16 16" fill="none">
+    <path d="M2 7.99967H12H2ZM12 7.99967L8.11111 3.33301L12 7.99967ZM12 7.99967L8.11111 12.6663L12 7.99967Z" fill="currentColor"/>
+    <path d="M2 7.99967H12M8.11111 12.6663L12 7.99967L8.11111 3.33301" stroke="currentColor" stroke-width="2"/>
+  </symbol>
+
 </svg>

@@ -121,7 +121,7 @@ function responsiveVariantPath(src, width) {
 function getResponsiveSrcset(src) {
   const normalized = normalizePublicImagePath(src);
   const originalWidth = responsiveImageWidths[normalized];
-  if (!originalWidth) return `${resolvePublicAsset(src)} 1x`;
+  if (!originalWidth) return resolvePublicAsset(src);
 
   const entries = responsiveImageBreakpoints
     .filter(width => width < originalWidth)
@@ -1970,6 +1970,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const swatch    = option.querySelector('.product-option__color-swatch');
     const nameEl    = option.querySelector('.product-option__color-name');
     const section   = option.closest('.product-detail');
+    const page      = option.closest('.product-page');
 
     if (!trigger || !dropdown) return;
 
@@ -2000,6 +2001,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Переключаем OOS-состояние
       section.classList.toggle('product-detail--oos', !inStock);
+      page?.classList.toggle('product-page--oos', !inStock);
 
       // Отмечаем is-selected
       dropdown.querySelectorAll('.product-option__color-item').forEach(i => {
@@ -2321,6 +2323,92 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ── Product page — переключение kit-items (desktop + mobile) ────────────
+  // Находим все контейнеры с [data-kit-switch] (product-info-section и product-store-info).
+  // Для каждого: клик на item → is-active на нём, обновляем title/article/desc
+  // в ближайшем элементе с совпадающим data-kit-section.
+  document.querySelectorAll('[data-kit-switch]').forEach(switchEl => {
+    const sectionKey = switchEl.dataset.kitSection;
+    const items = [...switchEl.querySelectorAll('[data-kit-item]')];
+
+    // Ищем текстовый контейнер: тот же data-kit-section, но НЕ сам switchEl.
+    // Атрибуты data-kit-title/article/desc — на дочерних элементах внутри контейнера.
+    const textContainer = document.querySelector(
+      `[data-kit-section="${sectionKey}"]:not([data-kit-switch])`
+    );
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        // Снимаем active со всех
+        items.forEach(i => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+
+        if (!textContainer) return;
+
+        // Обновляем текст если есть данные
+        const titleEl   = textContainer.querySelector('[data-kit-title]');
+        const articleEl = textContainer.querySelector('[data-kit-article]');
+        const descEl    = textContainer.querySelector('[data-kit-desc]');
+
+        if (titleEl   && item.dataset.title)   titleEl.textContent   = item.dataset.title;
+        if (articleEl && item.dataset.article) articleEl.textContent = item.dataset.article;
+        if (descEl    && item.dataset.desc)    descEl.textContent    = item.dataset.desc;
+      });
+    });
+  });
+
+  // ── Product page — форма отзыва (mobile bottom sheet) ────────────────────
+  const reviewsRight = document.querySelector('.product-reviews__right');
+
+  const openReviewForm = () => {
+    if (!reviewsRight) return;
+    reviewsRight.classList.add('is-open');
+    document.documentElement.classList.add('is-modal-open');
+  };
+
+  const closeReviewForm = () => {
+    if (!reviewsRight) return;
+    reviewsRight.classList.remove('is-open');
+    document.documentElement.classList.remove('is-modal-open');
+  };
+
+  // Открытие по кнопке «Отправить отзыв» (mobile)
+  document.querySelectorAll('[data-reviews-form-open]').forEach(btn => {
+    btn.addEventListener('click', openReviewForm);
+  });
+
+  // Закрытие по крестику внутри формы
+  document.querySelectorAll('[data-reviews-form-close]').forEach(btn => {
+    btn.addEventListener('click', closeReviewForm);
+  });
+
+  // Закрытие по клику на backdrop (область вне панели формы)
+  reviewsRight?.addEventListener('click', e => {
+    if (e.target === reviewsRight) closeReviewForm();
+  });
+
+  // Закрытие по Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && reviewsRight?.classList.contains('is-open')) {
+      closeReviewForm();
+    }
+  });
+
+  // ── Product page — аккордеон product-specs (мобильный) ──────────────────
+  // На десктопе панели всегда видны (display: contents в CSS).
+  // На мобиле клик по кнопке тоглит is-open на панели и aria-expanded на кнопке.
+  document.querySelectorAll('[data-specs-accordion-btn]').forEach(btn => {
+    const parent = btn.parentElement;
+    const panel  = parent?.querySelector('[data-specs-accordion-panel]');
+    if (!panel) return;
+
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      panel.classList.toggle('is-open', !expanded);
+    });
+  });
+
   // ── Product page — раскрытие характеристик
   document.querySelectorAll('[data-product-specs-expand]').forEach(btn => {
     const table = btn.closest('[data-product-specs-table]');
@@ -2338,6 +2426,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Product page — media carousel
   document.querySelectorAll('.product-detail__media').forEach(media => {
     const mainImage = media.querySelector('.product-detail__image');
+    const carousel = media.querySelector('.product-media-carousel');
     const inner = media.querySelector('.product-media-carousel__inner');
     const items = [...media.querySelectorAll('.product-media-carousel__item')];
     const btnPrev = media.querySelector('.product-media-btn--prev');
@@ -2345,10 +2434,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!inner || !items.length) return;
 
-    const ITEM_W = 28;
-    const GAP = 40;
-    const VIEWPORT = 504;
     let currentIndex = 0;
+
+    function getMetrics() {
+      const firstItem = items[0];
+      const styles = window.getComputedStyle(inner);
+      const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+      const itemWidth = firstItem?.getBoundingClientRect().width || 0;
+      const viewport = carousel?.clientWidth || inner.parentElement?.clientWidth || 0;
+      return { gap, itemWidth, viewport };
+    }
 
     function goTo(index) {
       const count = items.length;
@@ -2368,11 +2463,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Translate inner strip so the active thumb is centered in the 504px viewport
-      const activeCenter = currentIndex * (ITEM_W + GAP) + ITEM_W / 2;
+      // Translate inner strip so the active thumb is centered in the visible viewport.
+      const { gap, itemWidth, viewport } = getMetrics();
+      const activeCenter = currentIndex * (itemWidth + gap) + itemWidth / 2;
+      const trackWidth = items.length * itemWidth + Math.max(0, items.length - 1) * gap;
       const offset = Math.min(0, Math.max(
-        -(items.length * (ITEM_W + GAP) - GAP - VIEWPORT),
-        VIEWPORT / 2 - activeCenter
+        -(trackWidth - viewport),
+        viewport / 2 - activeCenter
       ));
       inner.style.transform = `translateX(${offset}px)`;
     }
@@ -2381,7 +2478,49 @@ document.addEventListener('DOMContentLoaded', () => {
     btnPrev?.addEventListener('click', () => goTo(currentIndex - 1));
     btnNext?.addEventListener('click', () => goTo(currentIndex + 1));
 
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    media.addEventListener('touchstart', event => {
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    }, { passive: true });
+
+    media.addEventListener('touchend', event => {
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+      goTo(deltaX < 0 ? currentIndex + 1 : currentIndex - 1);
+    }, { passive: true });
+
     goTo(0);
+    new ResizeObserver(() => goTo(currentIndex)).observe(media);
+  });
+
+  // Product mobile sticky buy panel appears only after the full price block is scrolled past.
+  document.querySelectorAll('.product-mobile-buy').forEach(panel => {
+    const productBuy = document.querySelector('.product-buy');
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+
+    if (!productBuy) return;
+
+    const syncMobileBuyPanel = () => {
+      const isProductBuyVisible = productBuy.offsetParent !== null && getComputedStyle(productBuy).display !== 'none';
+      const shouldShow = mobileQuery.matches && isProductBuyVisible && productBuy.getBoundingClientRect().bottom <= 64;
+      panel.classList.toggle('is-visible', shouldShow);
+      panel.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+    };
+
+    window.addEventListener('scroll', syncMobileBuyPanel, { passive: true });
+    window.addEventListener('resize', syncMobileBuyPanel);
+    mobileQuery.addEventListener('change', syncMobileBuyPanel);
+    syncMobileBuyPanel();
   });
 
   // Journal stories modal

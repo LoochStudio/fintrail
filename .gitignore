@@ -8,6 +8,7 @@ tmp/
 AGENTS.md
 docs/client-requirements.md
 .codex/
+.claude/
 .mcp/
 
 # Local test/debug artifacts

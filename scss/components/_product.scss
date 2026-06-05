@@ -1,11 +1,23 @@
 @use '../variables' as *;
 
+// Убирает лишний whitespace выше/ниже текста (line-height ≠ cap-height).
+// В Figma все тексты используют text-box-trim: trim-both / text-box-edge: cap.
+// Chrome 114+, Safari 18+ поддерживают; старые браузеры игнорируют.
+@mixin trim-text {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  leading-trim: both; // черновая запись
+  text-edge: cap;     // черновая запись
+}
+
 .product-page {
   padding: 72px 20px 0;
   background: $color-surface;
 }
 
-.product-footer {
+// footer-desktop { margin-top: 64px } имеет специфичность 0-1-0.
+// Двойной класс даёт 0-2-0 → побеждает, gap обеспечивает product-page padding-bottom.
+.footer-desktop.product-footer {
   margin-top: 0;
 }
 
@@ -22,6 +34,22 @@
 
 .product-header .hero__nav {
   left: calc(50% - 347px);
+}
+
+// На планшете (768–1279px) nav-ссылки скрыты — только лого + иконки
+// (_catalog.scss даёт .catalog-header .hero__nav { display: flex } без media-query,
+//  что показывает nav на планшете у product-header тоже)
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .product-header.catalog-header .hero__nav {
+    display: none;
+  }
+}
+
+// На product-странице хедер всегда с фоном — убираем анимационный ::before
+// (на главной он появляется при скролле через is-header-scrolled,
+//  на product-странице это не нужно: фон всегда виден)
+.product-header.catalog-header .hero__topbar::before {
+  display: none;
 }
 
 .product-detail__side {
@@ -103,24 +131,40 @@
   }
 }
 
+// Хлебные крошки: семантический <ol><li>, разделители через CSS ::after
 .product-detail__crumbs {
   display: flex;
-  align-items: flex-end;
-  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   color: $color-primary-gray;
   font-size: $text-body-b2-size;
   font-weight: 500;
   line-height: $text-body-b2-line;
 
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  // Точка-разделитель между элементами (вместо inline SVG)
+  li + li::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    margin: 0 4px 2px;
+    flex-shrink: 0;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  svg {
-    width: 4px;
-    height: 4px;
-    margin-bottom: 5px;
   }
 }
 
@@ -735,6 +779,12 @@
   overflow: hidden;
 }
 
+.product-detail__mobile-media-actions,
+.product-mobile-kit,
+.product-mobile-buy {
+  display: none;
+}
+
 // ─── Media hover overlay ──────────────────────────────────────────────
 
 .product-media-btn {
@@ -1322,9 +1372,24 @@
   }
 }
 
+.product-buy__actions {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-buy__button-label--mobile {
+  display: none;
+}
+
 .product-buy__button--primary {
   background: $color-primary-black;
   color: $color-white;
+
+  svg {
+    display: none;
+  }
 
   &:disabled {
     background: $color-button-disabled;
@@ -1454,6 +1519,28 @@
     color: $color-primary-black;
   }
 
+  // Actions: pressed state — opacity-down (нет отдельного токена в Figma для этих кнопок)
+  .product-detail__action:active,
+  .product-detail__share:active {
+    opacity: 0.6;
+  }
+
+  // Size selector: click feedback (нажатый размер — чуть темнее текущего цвета)
+  .product-option__sizes button:not(:disabled):active {
+    background: $color-button-secondary-hover; // легкое затемнение при клике
+    color: $color-primary-black;
+  }
+
+  // Color dropdown: hover + pressed
+  .product-option__color:hover,
+  .product-option__color:focus-visible {
+    background: $color-surface;
+  }
+
+  .product-option__color:active {
+    background: $color-button-secondary-hover;
+  }
+
   .product-buy__button--primary:not(:disabled):hover,
   .product-buy__button--primary:not(:disabled):focus-visible {
     background: $color-button-primary-hover;
@@ -1483,12 +1570,92 @@
 }
 
 @media (max-width: 767px) {
+  .is-mobile-menu-open .product-header.catalog-header {
+    z-index: $z-tabbar - 2;
+  }
+
+  .product-header.catalog-header {
+    height: 64px;
+    background: $color-surface;
+
+    .hero__topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      height: 64px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background: $color-surface;
+      color: $color-primary-black;
+    }
+
+    .hero__topbar::before {
+      display: none;
+    }
+
+    .hero__brand {
+      display: contents;
+    }
+
+    .hero__menu-btn {
+      position: static;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      color: $color-primary-black;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    .hero__logo-link {
+      position: static;
+      width: 134px;
+      height: 24px;
+    }
+
+    .hero__logo {
+      filter: brightness(0) saturate(100%);
+    }
+
+    .hero__nav,
+    .hero__tools .hero__tool:not(:first-child) {
+      display: none;
+    }
+
+    .hero__tools {
+      position: static;
+      display: flex;
+      gap: 0;
+    }
+
+    .hero__tool {
+      width: 24px;
+      height: 24px;
+      color: $color-primary-black;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
   .product-page {
-    padding: 88px 20px 0;
+    padding: 84px 0 calc(64px + env(safe-area-inset-bottom)); // bottom: Figma 64px + safe area
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
   .product-detail {
     grid-template-columns: 1fr;
     max-width: 728px;
@@ -1511,25 +1678,114 @@
 
 @media (max-width: 767px) {
   .product-detail {
-    gap: 32px;
+    gap: 20px;
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .product-detail__side--left {
+    display: none;
+  }
+
+  .product-detail__side--right {
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .product-detail__side--right .product-detail__top {
+    gap: 20px;
+    padding: 0 20px;
   }
 
   .product-detail__media {
-    min-height: 420px;
+    min-height: clamp(480px, 149.333vw, 560px);
+    touch-action: pan-y;
   }
 
   .product-detail__image {
-    height: 420px;
+    height: clamp(480px, 149.333vw, 560px);
+    object-fit: cover;
+    object-position: center top;
   }
 
+  .product-detail__mobile-media-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .product-detail__mobile-media-button {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 11px;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-primary-black;
+    text-decoration: none;
+    cursor: pointer;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .product-media-btn,
+  .product-media-carousel,
   .product-detail__actions {
-    align-items: flex-start;
+    display: none;
   }
 
-  .product-detail__action-group {
-    flex-direction: column;
-    align-items: flex-start;
+  .product-detail__summary {
     gap: 12px;
+  }
+
+  .product-detail__badge {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .product-detail__title {
+    width: 100%;
+    max-width: 343px;
+    font-size: 19px;
+    line-height: 19px;
+    letter-spacing: 0;
+  }
+
+  .product-detail__stock {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .product-detail__rating {
+    width: 100%;
+  }
+
+  .product-detail__purchase {
+    gap: 48px;
+    padding: 0 20px;
+  }
+
+  .product-option--color-picker,
+  .product-option--sizes {
+    gap: 16px;
+  }
+
+  .product-option__color {
+    padding: 0;
   }
 
   .product-detail__description {
@@ -1543,16 +1799,686 @@
 
   .product-option__sizes {
     width: 100%;
+    max-width: 342px;
   }
 
   .product-buy__price-row {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 16px;
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 0;
   }
 
   .product-buy__bonus {
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .product-buy__price {
+    gap: 8px;
+
+    del {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    strong {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  .product-buy {
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .product-buy__actions {
+    gap: 4px;
+  }
+
+  .product-buy__button {
+    height: 52px;
+    padding: 18px 32px;
+    border-radius: $radius-xs;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .product-buy__button--primary {
+    gap: 8px;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .product-buy__button-label--desktop {
+    display: none;
+  }
+
+  .product-buy__button-label--mobile {
+    display: inline;
+  }
+
+  .product-buy__button--secondary {
+    border: 0;
+    background: $color-white;
+  }
+
+  .product-buy__installment {
+    display: flex;
+    height: 24px;
+    gap: 24px;
+    margin-top: 0;
+  }
+
+  .product-mobile-buy {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: var(--tabbar-height, 50px);
+    z-index: $z-tabbar - 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    border-radius: 8px 8px 0 0;
+    background: $color-white;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .product-mobile-buy.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .is-mobile-menu-open .product-mobile-buy {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .product-mobile-buy__main-wrap {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .product-mobile-buy__bonus {
+    position: absolute;
+    top: -12px;
+    right: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 100px;
+    background: $color-surface;
+    color: $color-secondary-accent;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    transform: none;
+    white-space: nowrap;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .product-mobile-buy__main,
+  .product-mobile-buy__icon {
+    display: inline-flex;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: $radius-xs;
+    cursor: pointer;
+  }
+
+  .product-mobile-buy__main {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+    gap: 8px;
+    padding: 11px 16px;
+    background: $color-primary-black;
+    color: $color-white;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .product-mobile-buy__icon {
+    width: 38px;
+    flex: 0 0 38px;
+    padding: 7px;
+    background: $color-surface;
+    color: $color-primary-gray;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .product-mobile-buy__bonus {
+      gap: 3px;
+      padding: 3px;
+      font-size: 10px;
+      line-height: 10px;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .product-mobile-kit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .product-mobile-kit--similar {
+    display: none;
+  }
+
+  .product-mobile-kit__title {
+    display: block;
+    width: fit-content;
+    color: $color-primary-black;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .product-mobile-kit__scroller {
+    display: flex;
+    width: calc(100% + 40px);
+    gap: 8px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .product-mobile-kit__card {
+    display: flex;
+    width: 166px;
+    flex: 0 0 166px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    border-radius: $radius-xs;
+    background: $color-white;
+    scroll-snap-align: start;
+  }
+
+  .product-mobile-kit__image-link {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    background: $color-white;
+  }
+
+  .product-mobile-kit__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-mobile-kit__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .product-mobile-kit__name {
+    display: -webkit-box;
+    min-height: 32px;
+    margin: 0;
+    overflow: hidden;
+    color: $color-primary-black;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .product-mobile-kit__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .product-mobile-kit__price {
+    color: $color-primary-black;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .product-mobile-kit__cart {
+    display: flex;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: $color-primary-gray;
+    cursor: pointer;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .product-page--oos {
+    .product-mobile-kit:not(.product-mobile-kit--similar) {
+      display: none;
+    }
+
+    .product-mobile-kit--similar {
+      display: flex;
+    }
+  }
+
+}
+
+// product-store-info скрыта на десктопе
+.product-store-info {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .product-store-info {
+    display: flex;
+    flex-direction: column;
+    gap: 64px; // Figma: gap между main-группой и формой помощи
+    padding: 20px; // Figma: p-[20px] на всём Store Info Section
+    background: linear-gradient(to bottom, #1f1f1f 0%, #314a64 100%); // Figma gradient
+    color: $color-white;
+  }
+
+  // ── Главный контент (комплект + текст + преимущества) ─────────────────
+  .product-store-info__main {
+    display: flex;
+    flex-direction: column;
+    gap: 37px; // Figma: gap-[37px] внутри main-группы
+  }
+
+  // Комплект
+  .product-store-info__kit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-store-info__kit-label {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size; // 12px
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__kit-images {
+    display: flex;
     align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 2px; // место для линии ::after чтобы не обрезалась
+  }
+
+  // Kit-item: кнопка с flex-col + gap 6px между thumb и линией
+  .product-store-info__kit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; // Figma: 6px между картинкой и красной линией
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  // Контейнер изображения
+  .product-store-info__kit-thumb {
+    width: 90px;
+    height: 90px;
+    border-radius: 4px;
+    background: $color-surface;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Линия — всегда занимает место, но прозрачная по умолчанию
+  .product-store-info__kit-item::after {
+    content: '';
+    display: block;
+    width: 90px;
+    height: 2px;
+    border-radius: 10px;
+    background: transparent;
+    flex-shrink: 0;
+    transition: background 0.18s ease;
+  }
+
+  // Активный элемент — красная линия
+  .product-store-info__kit-item.is-active::after {
+    background: $color-secondary-accent;
+  }
+
+  // Текстовый блок (название + описание)
+  .product-store-info__text {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; // Figma: gap-[40px] между heading-группой и body
+  }
+
+  .product-store-info__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; // Figma: gap-[10px] между title и article
+  }
+
+  .product-store-info__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 24px;
+    font-weight: $font-weight-black;
+    line-height: 28px;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__article {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: $color-muted;
+  }
+
+  .product-store-info__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Figma: gap-[20px] между desc и ссылкой
+  }
+
+  .product-store-info__desc {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size; // 14px
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__full-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: $color-white;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  // Преимущества (3 пункта)
+  .product-store-info__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; // Figma: gap-[30px] между пунктами
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-store-info__benefit {
+    display: flex;
+    gap: 10px; // Figma: gap-[10px] между иконкой и текстом
+    align-items: flex-start;
+  }
+
+  .product-store-info__benefit-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: $color-white;
+  }
+
+  .product-store-info__benefit-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; // Figma: gap-[12px] между title и sub
+  }
+
+  .product-store-info__benefit-title {
+    font-family: $font-mono;
+    font-size: $text-body-b2-size; // 12px
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__benefit-sub {
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: #cdd2d5; // Figma: var(--gray/tertiary)
+  }
+
+  // ── Форма помощи с подбором ────────────────────────────────────────────
+  .product-store-info__support {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; // Figma: gap-[16px]
+  }
+
+  .product-store-info__support-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .product-store-info__support-title {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__support-sub {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: #cdd2d5;
+  }
+
+  .product-store-info__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-store-info__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  // Базовый инпут
+  .product-store-info__input {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 4px;
+    background: rgba($color-white, 0.16); // Figma: transparent/primary
+    color: $color-white;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    outline: none;
+
+    &::placeholder {
+      color: $color-muted;
+    }
+
+    &:focus {
+      background: rgba($color-white, 0.22);
+    }
+  }
+
+  // Ряд с флагом + телефоном
+  .product-store-info__phone-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  // Кнопка выбора страны (флаг)
+  .product-store-info__phone-flag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 52px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 4px;
+    background: rgba($color-white, 0.16);
+    color: $color-white;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    svg { display: block; }
+
+    svg:first-child { width: 24px; height: 24px; }
+    svg:last-child  { width: 16px; height: 16px; }
+  }
+
+  .product-store-info__input--phone {
+    flex: 1;
+  }
+
+  // Кнопка «Отправить»
+  .product-store-info__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 52px;
+    padding: 22px 32px;
+    border: 0;
+    border-radius: 4px;
+    background: $color-white;
+    color: $color-primary-black;
+    font-family: $font-display;
+    font-size: $text-body-b1-size; // 14px
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.18s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { background: $color-surface; }
+    }
+  }
+}
+
+// 320px: kit-карточки 90px не влезают (3×90=270 + padding 40 = 310 > 320)
+// Уменьшаем до 72px → 3×72=216, остаток распределяется justify-content: space-between
+@media (max-width: 359px) {
+  .product-store-info__kit-item::after,
+  .product-store-info__kit-thumb {
+    width: 72px;
+  }
+
+  .product-store-info__kit-thumb {
+    height: 72px;
   }
 }
 
@@ -2107,58 +3033,146 @@
 }
 
 @media (max-width: 767px) {
+  // ── Мобильный редизайн «В реальных условиях» по Figma 3881-57676 ─────────
+
   .product-conditions {
-    gap: 24px;
-    margin-top: 64px;
+    // kit даёт padding-bottom: 40px — убираем свой margin чтобы не складывались
+    margin-top: 0;
+    gap: 0; // внутренние отступы контролируем через padding stage
   }
 
   .product-conditions--empty {
-    margin-top: 60px;
+    margin-top: 0;
 
     .product-conditions__stage {
-      height: 300px;
+      height: auto;
     }
   }
 
   .product-conditions__header {
-    padding: 0 20px;
+    padding: 0 20px 16px; // 16px снизу до upload card
   }
 
+  // Заголовок — H6 18px по Figma (не 24px)
   .product-conditions__title {
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
   }
 
+  // Стрелки убираем — на мобиле листают свайпом
+  .product-conditions__nav {
+    display: none;
+  }
+
+  // Stage — линейный flex-col вместо 400px absolute-stage
   .product-conditions__stage {
-    height: 400px;
-  }
-
-  .product-conditions__bg {
-    height: 400px;
-  }
-
-  .product-conditions__upload-card,
-  .product-conditions__slide {
-    flex-basis: 200px;
-    width: 200px;
-  }
-
-  .product-conditions__upload-card {
-    height: 320px;
-    padding: 48px 28px;
-  }
-
-  .product-conditions__slide {
-    height: 320px;
-  }
-
-  .product-conditions__empty-card {
-    bottom: 60px;
-    min-height: 180px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    overflow: visible;
+    display: flex;
     flex-direction: column;
-    gap: 32px;
-    padding: 40px 28px;
+    gap: 16px;
+    padding: 0 20px 0;
   }
+
+  // Bg-фото: декоративный переход к тёмному store-info снизу (130px)
+  .product-conditions__bg {
+    position: absolute;
+    bottom: -16px; // выходит немного за stage чтобы перекрыть gap
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 130px;
+    max-width: none;
+    object-fit: cover;
+    object-position: center bottom;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+
+  // Upload-карточка: всегда видна на мобиле (не только в empty-state)
+  // Встаёт в нормальный поток (не absolute)
+  .product-conditions__empty-card {
+    display: flex;
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 20px;
+    background: $color-surface;
+    border: 1px dashed $color-secondary-gray;
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  .product-conditions__empty-text {
+    gap: 18px;
+    align-items: center;
+    text-align: center;
+  }
+
+  // Viewport — горизонтальный скролл; выходит за padding stage
+  .product-conditions__viewport {
+    position: relative;
+    z-index: 2;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+    padding-bottom: 16px; // пространство над bg-фото
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .product-conditions__track {
+    display: flex;
+    gap: 10px; // Figma: gap-[10px]
+    padding: 0 20px;
+    align-items: flex-start;
+    width: max-content;
+  }
+
+  // Upload card внутри трека скрываем — он показан отдельно сверху
+  .product-conditions__upload-card {
+    display: none;
+  }
+
+  // Фото-слайды: 98×160 по Figma (вместо 200×320)
+  .product-conditions__slide {
+    flex: 0 0 98px;
+    width: 98px;
+    height: 160px;
+    border-radius: 8px;
+  }
+
+  .product-conditions__media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+// ── Враппер двух highlight-секций ─────────────────────────────────────────
+// desktop: display:contents — прозрачен, дочерние section — обычные блоки
+// mobile: горизонтальный scroll-контейнер с двумя карточками 300px
+.product-highlight-row {
+  display: contents;
+}
+
+// Десктопный отступ Sorona (ранее был inline style="padding-bottom:79px")
+.product-highlight--spaced {
+  padding-bottom: 79px;
 }
 
 // ── Промо-блок технологии (фото + текст) ──────────────────────────────────
@@ -2227,11 +3241,37 @@
 }
 
 // ── Похожие товары — переиспользуем recommendations-new с главной ─────────
+// Desktop: выходим за padding product-page (20px × 2) → карточки к краям
 .product-page .recommendations-new {
-  margin-top: 0;         // top: product-reviews даёт 80px снизу
-  margin-right: -20px;   // выходим за padding product-page справа
-  margin-bottom: 0;      // отступ снизу не нужен — даём его через community-showcase
-  margin-left: -20px;    // выходим за padding product-page слева
+  margin-top: 0;
+  margin-right: -20px;
+  margin-bottom: 0;
+  margin-left: -20px;
+}
+
+// Mobile: product-page имеет padding: 0 по бокам → -20px создаст выход за экран.
+// Сбрасываем горизонтальные отступы, оставляем только верхний spacing.
+@media (max-width: 767px) {
+  .product-page .recommendations-new {
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 64px; // Figma: 64px от product-reviews
+    margin-bottom: 0; // community-showcase обеспечит spacing
+  }
+
+  // Заголовок секции — Figma: H6 18px/22px, уже задан в базовом CSS
+  // Кнопки навигации (стрелки) скрыты — уже скрыты в базовом CSS
+
+  // Карточки — горизонтальный скролл (базовый CSS уже правильный: 211×360px, gap-1px)
+  // Viewport уже имеет overflow-x: auto и margin-top: 24px
+
+  // «Смотреть все» кнопка: полная ширина экрана, без закруглений
+  .recommendations-new__more {
+    width: 100%;
+    margin: 8px 0 0;
+    border-radius: 0;
+    justify-content: center;
+  }
 }
 
 // ── Комьюнити — переиспользуем community-showcase с главной ───────────────
@@ -2240,6 +3280,13 @@
   margin-right: -20px;   // компенсируем padding product-page справа
   margin-bottom: 0;
   margin-left: -20px;    // компенсируем padding product-page слева
+}
+
+// На мобиле секции нет в макете — скрываем
+@media (max-width: 767px) {
+  .product-page .community-showcase {
+    display: none;
+  }
 }
 
 // ── Отзывы ───────────────────────────────────────────────────────────────────
@@ -2324,6 +3371,7 @@
   font-weight: $font-weight-extrabold;
   line-height: 14px;
   text-transform: uppercase;
+  @include trim-text;
 }
 
 // Точечные звёзды (6×6px)
@@ -2477,10 +3525,11 @@
 }
 
 // Блок автора (64px аватар + мета)
+// Figma: gap-[16px], align-items: center (аватар и мета центрированы вертикально)
 .product-reviews__reviewer {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: center; // Figma: items-center
 }
 
 .product-reviews__avatar {
@@ -2492,11 +3541,14 @@
   flex-shrink: 0;
 }
 
+// Figma: self-stretch (растягивается под высоту аватара 64px) + h-full + justify-between
+// → stars/name наверху, дата внизу
 .product-reviews__reviewer-meta {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 64px; // выравниваем по высоте аватара
+  align-self: stretch;     // растягивается под высоту аватара (= 64px)
+  min-height: 64px;
 }
 
 .product-reviews__reviewer-top {
@@ -2511,6 +3563,7 @@
   font-weight: $font-weight-extrabold;
   line-height: 14px;
   text-transform: uppercase;
+  @include trim-text;
 }
 
 .product-reviews__reviewer-date {
@@ -2522,6 +3575,10 @@
   font-weight: 500;
   line-height: $text-body-b2-line;
   color: $color-muted;
+
+  span {
+    @include trim-text; // убираем лишний whitespace → дата точно внизу мета-блока
+  }
 }
 
 // Контент отзыва
@@ -2842,12 +3899,15 @@
   padding: 11px;
   border-radius: 4px;
   background: $color-white;
+  color: $color-primary-black;
   flex-shrink: 0;
 
-  img {
+  img,
+  svg {
     display: block;
     width: 16px;
     height: 16px;
+    flex-shrink: 0;
   }
 }
 
@@ -3619,9 +4679,9 @@
 
   h2 {
     font-family: $font-display;
-    font-size: $text-heading-h3-size;
+    font-size: $text-heading-h3-size; // 24px
     font-weight: $font-weight-black;
-    line-height: 16px;
+    line-height: 28px; // было 16px — обрезало текст при 24px font-size
     text-transform: uppercase;
   }
 
@@ -3918,8 +4978,9 @@
 }
 
 @media (max-width: 767px) {
+  // На мобиле скрываем desktop-версию — её заменяет product-store-info
   .product-info-section {
-    margin-top: 64px;
+    display: none;
   }
 
   .product-info-section__panel {
@@ -3988,5 +5049,852 @@
 
   &:focus {
     outline: 1px solid $color-primary-black;
+  }
+}
+
+// Кнопка OOS-формы — собственный BEM-класс (не product-buy__button)
+.product-oos-form__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 14px 24px;
+  border: 1px solid $color-primary-black;
+  border-radius: $radius-xs;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover, &:focus-visible {
+      background: $color-button-secondary-hover;
+      border-color: $color-button-primary-hover;
+      color: $color-button-primary-hover;
+    }
+  }
+}
+
+// ── Mobile bottom sheets: «Полное описание» + «Загрузить фото/видео» ──────
+// На мобиле десктопные side panels (translateX) превращаются в bottom sheets
+// (translateY). Full-width, скруглённые сверху, drag handle, safe-area inset.
+
+@media (max-width: 767px) {
+
+  // ── Полное описание ─────────────────────────────────────────────────────
+  .product-description-modal__panel {
+    top: auto;           // убираем top: 20px
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 85dvh;   // dynamic viewport height — учитывает мобильный chrome
+    border-radius: 16px 16px 0 0;
+    gap: 32px;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px); // start slightly below
+  }
+
+  // Drag handle сверху
+  .product-description-modal__panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: $color-secondary-gray;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+  }
+
+  // Open state: translateY вместо translateX
+  .product-description-modal.is-open {
+    .product-description-modal__panel {
+      transform: translateY(0);
+    }
+  }
+
+  .product-description-modal__header {
+    padding-top: 20px;
+    min-height: auto;
+  }
+
+  .product-description-modal__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  // ── Загрузить фото/видео ────────────────────────────────────────────────
+  .product-upload-modal__panel {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 90dvh;
+    border-radius: 16px 16px 0 0;
+    gap: 24px;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+  }
+
+  // Drag handle
+  .product-upload-modal__panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: $color-secondary-gray;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+  }
+
+  .product-upload-modal.is-open {
+    .product-upload-modal__panel {
+      transform: translateY(0);
+    }
+  }
+
+  .product-upload-modal__top {
+    gap: 16px;
+    padding-top: 20px;
+  }
+
+  .product-upload-modal__header {
+    min-height: auto;
+  }
+
+  .product-upload-modal__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .product-upload-modal__lead {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  // Дропзона: компактнее на мобиле
+  .product-upload-modal__dropzone {
+    min-height: 180px;
+    padding: 32px 20px;
+    border-radius: 8px;
+  }
+
+  .product-upload-modal__dropzone.is-filled {
+    padding: 20px;
+  }
+
+  // Preview thumbnails — чуть меньше
+  .product-upload-modal__preview-list {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    img {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+    }
+  }
+
+  // Submit-кнопка — уменьшаем padding
+  .product-upload-modal__submit {
+    min-height: 48px;
+    padding: 14px 32px;
+  }
+
+  // Note: немного меньше текст
+  .product-upload-modal__note {
+    font-size: 11px;
+  }
+}
+
+
+// ── product-features: мобильный адаптив (горизонтальный скролл) ──────────
+// Figma 3881-57757: 4 карточки по 200px, gap 20px, padding 0 20px
+@media (max-width: 767px) {
+  .product-features {
+    // Та же связка что в product-mobile-kit:
+    // секция с боковым padding → grid разрывает его на -20px → добавляет padding обратно
+    padding: 40px 20px 0;
+  }
+
+  .product-features__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: flex-start;
+    width: calc(100% + 40px); // компенсируем 20px padding секции с обеих сторон
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;       // первая карточка в 20px от края
+    padding-right: 20px;      // последняя карточка в 20px от края
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .product-features__item {
+    flex: 0 0 200px;            // Figma: w-[200px], не сжимается
+    gap: 24px;                  // Figma: gap-[24px] между иконкой и текстом
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  // Иконка остаётся 40×40 (Figma: size-[40px])
+  .product-features__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  // Текстовый блок — gap 12px (Figma: gap-[12px])
+  .product-features__text {
+    gap: 12px;
+  }
+
+  // Title: SCP SemiBold 12px uppercase (Figma)
+  .product-features__title {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  // Desc: SCP Medium 12px, gray (Figma)
+  .product-features__desc {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+}
+
+
+// ── product-props: мобильный адаптив ─────────────────────────────────────
+// Figma 3881-57843: flex-col gap 20px, px 20px, заголовок 18px/22px,
+// горизонтальный скролл (стрелки скрыты — свайп), items 250×224 как на десктопе
+@media (max-width: 767px) {
+  .product-props {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;             // Figma: gap-[20px] между заголовком и треком
+    padding: 40px 20px 40px; // 40px top + bottom (Figma: 40px gap), px-20px sides
+  }
+
+  // Заголовок: H6 18px/22px вместо десктопного 24px/28px
+  .product-props__title {
+    font-size: 18px;
+    line-height: 22px;
+    max-width: 308px; // Figma: w-[308px]
+  }
+
+  // Стрелки скрываем — на мобиле свайп
+  .product-props__controls {
+    display: none;
+  }
+
+  // Убираем margin-bottom — gap секции управляет отступом
+  .product-props__header {
+    margin-bottom: 0;
+  }
+
+  // Viewport → full-bleed scroll container (паттерн = product-features и product-mobile-kit)
+  .product-props__viewport {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    overflow: visible;    // сбрасываем desktop overflow: hidden
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  // Track: убираем собственный overflow (viewport теперь скроллит),
+  // добавляем padding 0 20px для симметричных отступов у первой и последней карточки
+  .product-props__track {
+    padding: 0 20px;
+    overflow-x: visible;
+    scroll-behavior: auto; // убираем smooth (viewport управляет)
+  }
+
+  // Snap для каждого item
+  .product-props__item {
+    scroll-snap-align: start;
+    // 250×224 и padding: 20px 40px 20px 0 уже правильно заданы в базовом CSS
+  }
+}
+
+
+// ── product-highlight: мобильный адаптив ─────────────────────────────────
+// Figma 3881-57886: две карточки 300×(260+auto) в горизонтальном скролле,
+// gap 1px, фото сверху, контент снизу с padding 40px, иконка 36px
+@media (max-width: 767px) {
+
+  // Враппер → горизонтальный скролл
+  .product-highlight-row {
+    display: flex;
+    gap: 1px;                   // Figma: gap-[px] (1px между карточками)
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  // Карточка: 300px, вертикальная, убираем desktop full-bleed margin и padding
+  .product-highlight {
+    flex: 0 0 300px;            // Figma: w-[300px]
+    flex-direction: column;     // фото сверху, контент снизу
+    height: auto;
+    margin: 0;                  // сбрасываем desktop margin: 0 -20px
+    padding-bottom: 0;          // сбрасываем .product-highlight--spaced
+    scroll-snap-align: start;
+  }
+
+  // --spaced на мобиле не нужен — убираем
+  .product-highlight--spaced {
+    padding-bottom: 0;
+  }
+
+  // Фото: всегда сверху (order: -1 перебрасывает TORAY, у Sorona фото и так первое)
+  .product-highlight__image {
+    order: -1;
+    flex: 0 0 260px;            // Figma: h-[260px]
+    height: 260px;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Контент: белый фон, padding 40px, flex-col центрированный
+  .product-highlight__content {
+    flex: 1 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;                  // Figma: gap-[20px] между иконкой и текстом
+    padding: 40px;              // Figma: p-[40px]
+    background: $color-white;
+    text-align: center;
+  }
+
+  // Иконка: 36×36 вместо десктопных 64×64
+  .product-highlight__deco {
+    width: 36px;
+    height: 36px;
+  }
+
+  // Скрываем вторую иконку-декор (на мобиле только одна)
+  .product-highlight__deco:last-child {
+    display: none;
+  }
+
+  // Текстовый блок: центр, gap 20px
+  .product-highlight__text {
+    gap: 20px;                  // Figma: gap-[20px] между title и desc
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  // Заголовок: H5 20px/20px (Figma: leading-[20px] text-[20px])
+  .product-highlight__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  // Описание: SCP SemiBold 14px/18px (Figma: leading-[18px] text-[14px])
+  .product-highlight__desc {
+    font-size: $text-body-b1-size;      // 14px
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+  }
+}
+
+
+// ── product-specs: аккордеон-кнопка (базовые стили для обоих breakpoints) ──
+
+// На десктопе кнопка выглядит как заголовок (без визуального отличия от h2)
+.product-specs__accordion-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;   // 14px — совпадает с product-specs__heading
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  cursor: pointer;
+  text-align: left;
+}
+
+// Стрелка скрыта на десктопе
+.product-specs__accordion-arrow {
+  display: none;
+  flex-shrink: 0;
+  color: $color-primary-black;
+  transition: transform 0.2s ease;
+}
+
+// Панель на десктопе прозрачна: дочерние элементы встают в flex-поток родителя
+.product-specs__accordion-panel {
+  display: contents;
+}
+
+// ── product-specs: мобильный аккордеон ───────────────────────────────────
+// Figma 3881-57920: 3 строки, padding 20px, border-bottom: 1px solid white,
+// Nata Sans ExtraBold 14px, стрелка icon-product-info-chevron 16px
+@media (max-width: 767px) {
+
+  .product-specs {
+    flex-direction: column;
+    gap: 0;
+    padding: 0; // Figma: specs идёт сразу после highlight, без внешних отступов
+  }
+
+  // Убираем фиксированную ширину левой колонки
+  .product-specs__main {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    gap: 0; // gap внутри блока убираем — padding панели управляет отступами
+  }
+
+  // aside становится прозрачным — tech и care идут напрямую в product-specs
+  .product-specs__aside {
+    display: contents;
+  }
+
+  .product-specs__tech,
+  .product-specs__care {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    gap: 0;
+  }
+
+  // Кнопка аккордеона — полная ширина, padding 20px, border-bottom
+  .product-specs__accordion-btn {
+    padding: 20px;                         // Figma: p-[20px]
+    border-bottom: 1px solid $color-white; // Figma: border-b white
+    cursor: pointer;
+    gap: 8px;
+  }
+
+  // Стрелка видна на мобиле
+  .product-specs__accordion-arrow {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  // Открытое состояние: стрелка поворачивается на 180°
+  .product-specs__accordion-btn[aria-expanded="true"] .product-specs__accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  // Панель: по умолчанию скрыта на мобиле
+  .product-specs__accordion-panel {
+    display: none;
+    padding: 20px;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  // Открытая панель
+  .product-specs__accordion-panel.is-open {
+    display: flex;
+  }
+
+  // Внутри открытых панелей сбрасываем desktop-специфичные width/flex
+  .product-specs__table,
+  .product-specs__tech-list,
+  .product-specs__care-list {
+    width: 100%;
+  }
+
+  // Строки характеристик — подгоняем под мобильную ширину
+  .product-specs__row {
+    flex-wrap: wrap;
+    gap: 4px;
+    white-space: normal;
+  }
+
+  .product-specs__value {
+    text-align: right;
+  }
+}
+
+
+// ── product-article: мобильный адаптив ───────────────────────────────────
+// Figma 3881-57933: два блока flex-col gap-64px, оба px-20px;
+// карточки стакаются вертикально gap-20px, посты без изменений
+@media (max-width: 767px) {
+
+  .product-article {
+    flex-direction: column;
+    gap: 64px;               // Figma: gap-[64px] между «в журнале» и «статьи по теме»
+    padding: 64px 20px 0; // Figma: 64px от предыдущей секции, bottom = 0 (следующая даёт свой top)
+  }
+
+  // Левая колонка → full-width, убираем 50% flex
+  .product-article__left {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    gap: 40px; // Figma: gap-[40px] между заголовком и карточками
+  }
+
+  // Заголовок блока — многострочный, остаётся 24px/28px (совпадает с desktop)
+  .product-article__heading {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  // Карточки — стакаются вертикально (на десктопе flex-row)
+  .product-article__cards {
+    flex-direction: column;
+    gap: 20px; // Figma: gap-[20px] между карточками
+  }
+
+  .product-article__card {
+    flex: none;
+    width: 100%;
+  }
+
+  // Изображение карточки — 300px (Figma: h-[300px])
+  .product-article__card-image {
+    height: 300px;
+  }
+
+  // Правая колонка («Статьи по теме») → full-width
+  .product-article__right {
+    flex: none;
+    width: 100%;
+    gap: 40px; // Figma: gap-[40px] между заголовком и постами
+  }
+
+  // Посты — gap-[40px] (уже задан в базовом CSS, подтверждаем)
+  .product-article__posts {
+    gap: 40px;
+  }
+
+  // Пост: date (12px #9b9b9b) + title (14px/18px SCP SemiBold) — без изменений
+  // Все значения уже соответствуют Figma в базовых стилях
+}
+
+
+// ── product-reviews: мобильный адаптив ───────────────────────────────────
+// Figma 3881-57953: single column, форма как bottom sheet,
+// reviews rows flex-col (reviewer сверху, контент снизу)
+@media (max-width: 767px) {
+
+  // ─ Секция: single column ───────────────────────────────────────────────
+  .product-reviews {
+    flex-direction: column;
+    padding: 64px 20px 0; // Figma: 64px от предыдущей секции
+  }
+
+  .product-reviews__left {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  // Шапка: title-group + average (без сортировки — та переехала в mobile-controls)
+  .product-reviews__header {
+    margin-bottom: 0; // gap секции управляет отступами
+  }
+
+  // Сортировку в header-meta скрываем — она показана в mobile-controls
+  .product-reviews__header-meta .product-reviews__sort {
+    display: none;
+  }
+
+  // ─ Mobile-controls: сортировка + кнопка формы ──────────────────────────
+  .product-reviews__mobile-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; // Figma: gap-[10px] между кнопками
+    width: 100%;
+  }
+
+  // Кнопка сортировки на мобиле — полная ширина, surface bg
+  // Figma: pl-16 pr-12 py-10 bg-surface rounded-4
+  .product-reviews__sort--mobile .product-reviews__sort-btn {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 12px 10px 16px;
+    border-radius: 4px;
+    background: $color-surface;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+  }
+
+  // Кнопка «Отправить отзыв» — Figma: white bg, py-15 px-16, rounded-4
+  .product-reviews__mobile-form-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 16px; // Figma: py-[15px] px-[16px]
+    border: 0;
+    border-radius: 4px;
+    background: $color-white;
+    color: $color-primary-black;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.18s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { background: $color-surface; }
+    }
+  }
+
+  // 320px: уменьшаем padding кнопок controls чтобы влезали
+  @media (max-width: 360px) {
+    .product-reviews__sort--mobile .product-reviews__sort-btn {
+      padding: 8px 10px 8px 12px;
+      font-size: 11px;
+    }
+
+    .product-reviews__mobile-form-btn {
+      padding: 10px 12px;
+      font-size: 11px;
+    }
+
+    // Кнопки «Соответствует / Большемерит / Маломерит» в форме:
+    // три кнопки flex:1 в 280px (320 - 40px padding) ≈ 93px каждая — не влазит
+    .product-reviews__fit-btn {
+      padding: 6px 4px;
+      font-size: 10px;
+      line-height: 12px;
+      gap: 4px;
+    }
+
+    .product-reviews__fit-btn--active {
+      padding: 6px 8px 6px 4px; // место для галочки
+    }
+
+    .product-reviews__fit-options {
+      gap: 3px; // чуть сжимаем промежутки между кнопками
+    }
+  }
+
+  // ─ Строки отзывов: flex-col (reviewer сверху, контент снизу) ───────────
+  .product-reviews__row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Figma: gap-[20px] между reviewer и content
+    grid-template-columns: unset; // сбрасываем desktop grid
+    column-gap: 0;
+  }
+
+  .product-reviews__content {
+    flex: none;
+    width: 100%; // вместо fixed 342px
+  }
+
+  // ─ Форма как bottom sheet (правая колонка) ──────────────────────────────
+  // На мобиле скрыта, при .is-open выезжает снизу
+
+  // Правая колонка становится fixed-оверлеем
+  .product-reviews__right {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: block !important; // всегда в DOM
+    pointer-events: none;
+    // Сбрасываем desktop-ограничения, которые остаются при position: fixed
+    flex: none;
+    max-width: none;
+    width: 100%;
+
+    // Backdrop
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba($color-primary-black, 0.3);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  .product-reviews__right.is-open {
+    pointer-events: auto;
+
+    &::before { opacity: 1; }
+
+    .product-reviews__form {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // Форма — bottom sheet панель
+  .product-reviews__form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 90dvh;
+    overflow: hidden auto;
+    border-radius: 16px 16px 0 0;
+    background: $color-surface;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    // Drag handle
+    &::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: $color-secondary-gray;
+      margin: 12px auto 8px;
+      flex-shrink: 0;
+    }
+  }
+
+  // Кнопка закрытия — только mobile
+  .product-reviews__form-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-left: auto;
+    margin-bottom: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-primary-black;
+    cursor: pointer;
+
+    svg { width: 16px; height: 16px; }
+  }
+}
+
+// На десктопе: mobile-controls и close-button скрыты.
+// ВАЖНО: min-width 768px, а не просто глобальное display:none —
+// глобальное правило после медиа-запроса перекрыло бы мобильный display:flex
+@media (min-width: 768px) {
+  .product-reviews__mobile-controls,
+  .product-reviews__form-close {
+    display: none;
+  }
+}
+
+
+// ── Планшет (768–1279px): адаптивные фиксы страницы товара ──────────────────
+// ВАЖНО: блок в конце файла — побеждает глобальные правила с той же специфичностью
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+
+  // ─ product-reviews: flex-col (форма ниже отзывов) ──────────────────────────
+  // На десктопе left(695)+right(343)=1038px > 713px контейнера → overflow
+  .product-reviews {
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 20px;
+  }
+
+  .product-reviews__left {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  .product-reviews__right {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    // Форма видна напрямую (не bottom sheet на планшете)
+    position: static !important;
+    display: block !important;
+    pointer-events: auto !important;
+
+    &::before { display: none !important; }
+  }
+
+  .product-reviews__form {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    max-height: none !important;
+    border-radius: 0;
+    overflow: visible;
+    padding: 0;
+    background: transparent;
+    gap: 16px;
+
+    &::before { display: none; } // убираем drag handle bottom-sheet
+  }
+
+  // Строка отзыва: grid reviewer(174px) + content(остаток)
+  .product-reviews__row {
+    display: grid;
+    grid-template-columns: 174px 1fr;
+    column-gap: 40px;
+  }
+
+  .product-reviews__content {
+    flex: none;
+    width: 100%;
+  }
+
+  // ─ product-specs: aside стекаем вертикально ─────────────────────────────────
+  // 2 столбца по ~163px слишком узко для иконок 40px + текст
+  .product-specs__aside {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .product-specs__tech,
+  .product-specs__care {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  // ─ product-article: правая колонка пропорционально ──────────────────────────
+  // Фиксированные 341px при контейнере 713px (50/50 вместо 65/35)
+  .product-article__right {
+    flex: 0 0 calc(35% - 10px);
   }
 }

@@ -165,10 +165,16 @@
   }
 }
 
-.button--primary:active,
-.button--on-color:active {
-  background: $color-button-primary-pressed;
+// Primary pressed: #323232 (Figma: --black/pressed)
+.button--primary:active {
+  background: $color-button-primary-pressed; // #323232
   color: $color-white;
+}
+
+// On color pressed: #afb4b7 (Figma: --gray/pressed) — отличается от Primary!
+.button--on-color:active {
+  background: $color-gray-pressed; // #afb4b7
+  color: $color-primary-black;
 }
 
 .button--ghost:active {
