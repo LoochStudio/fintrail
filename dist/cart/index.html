@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail - Корзина</title>
+  <script type="module" crossorigin src="/fintrail/assets/main-CeOFODin.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-CgEfidi0.css">
+</head>
+<body>
+  <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
+    <div class="hero__topbar" aria-label="Навигация корзины">
+      <div class="hero__brand">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          <span>Меню</span>
+        </button>
+        <a class="hero__logo-link" href="/">
+          <img class="hero__logo" src="/fintrail/assets/hero-logo-PFrjP13l.svg" alt="FINNTRAIL">
+        </a>
+      </div>
+
+      <nav class="hero__nav" aria-label="Главная навигация">
+        <a href="/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
+        <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
+      </nav>
+
+      <div class="hero__tools">
+        <a href="/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
+        <a href="/personal/" class="hero__tool" aria-label="Профиль"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
+        <a href="/cart/" class="hero__tool is-active" aria-label="Корзина"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg></a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+              <li><a href="/catalog/aksessuary-dlya-obuvi/">Аксессуары для обуви</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ochki/">Очки и маски</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+              <li><a href="/catalog/remni/">Ремни и подтяжки</a></li>
+              <li><a href="/catalog/zashchita/">Защита тела и рук</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/palatki/">Палатки</a></li>
+              <li><a href="/catalog/spalnye-meshki/">Спальные мешки и коврики</a></li>
+              <li><a href="/catalog/stoly/">Столы и стулья</a></li>
+              <li><a href="/catalog/germochehly/">Гермочехлы</a></li>
+              <li><a href="/catalog/termosy/">Термосы</a></li>
+              <li><a href="/catalog/sidushki/">Подкладки / сидушки</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/special/">Специальная экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/veydersy/">Вейдерсы</a></li>
+              <li><a href="/catalog/suhie-kostyumy/">Сухие костюмы</a></li>
+              <li><a href="/catalog/zabrodnaya-ekipirovka/">Забродная экипировка</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-mega__activities" aria-label="Активности">
+          <a class="header-mega__activity" href="/activities/tourism/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a class="header-mega__activity" href="/activities/quad/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a class="header-mega__activity" href="/activities/fishing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a class="header-mega__activity" href="/activities/travel/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a class="header-mega__activity" href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a class="header-mega__activity" href="/activities/skiing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+    <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+
+    <aside class="site-menu__panel">
+      <div class="site-menu__top">
+        <div class="site-menu__bar">
+          <button class="site-menu__close" type="button" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="site-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+
+        <nav class="site-menu__main" aria-label="Основные разделы">
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
+        </nav>
+
+        <div class="site-menu__divider" aria-hidden="true"></div>
+
+        <nav class="site-menu__activities" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+
+      <div class="site-menu__middle">
+        <nav class="site-menu__links" aria-label="Контентные разделы">
+          <a href="/journal/">Журнал</a>
+          <a href="/tours/">Премиальные туры</a>
+        </nav>
+        <nav class="site-menu__links" aria-label="Информация">
+          <button type="button" data-site-menu-info="about">О компании</button>
+          <button type="button" data-site-menu-info="customers">Покупателям</button>
+          <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
+        </nav>
+      </div>
+
+      <div class="site-menu__bottom">
+        <div class="site-menu__contacts">
+          <div class="site-menu__phone-row">
+            <a class="site-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+            <div class="site-menu__socials" aria-label="Социальные сети">
+              <a href="https://t.me/finntrail" aria-label="Telegram" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+              <a href="https://wa.me/78007004273" aria-label="WhatsApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+              <a href="https://dzen.ru/finntrail" aria-label="Дзен" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+            </div>
+          </div>
+          <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
+        </div>
+
+        <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+
+        <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a href="/app/" aria-label="Google Play"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg></a>
+          <a href="/app/" aria-label="App Store"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg></a>
+          <a href="/app/" aria-label="AppGallery"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg></a>
+          <a href="/app/" aria-label="RuStore"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg></a>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
+      <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
+        <div class="site-menu__submenu-top">
+          <nav class="site-menu__categories" aria-label="Категории">
+            <button type="button" data-site-menu-category>Одежда</button>
+            <button type="button" data-site-menu-category>Обувь</button>
+            <button type="button" data-site-menu-category>Аксессуары</button>
+            <button type="button" data-site-menu-category>Снаряжение</button>
+            <button type="button" data-site-menu-category>Экипировка</button>
+          </nav>
+
+          <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
+            <a href="/catalog/">Куртки</a>
+            <a href="/catalog/">Брюки и полукомбинезоны</a>
+            <a href="/catalog/">Костюмы и комбинезоны</a>
+            <a href="/catalog/">Термобелье</a>
+            <a href="/catalog/">Футболки и лонгсливы</a>
+            <a href="/catalog/">Жилеты</a>
+            <a href="/catalog/">Худи и толстовки</a>
+            <a href="/catalog/">Рубашки / шорты</a>
+          </nav>
+        </div>
+
+        <article class="site-menu__promo">
+          <picture>
+            <source srcset="/fintrail/assets/hiking-promo-160-Ch-0cDEU.png 160w, /fintrail/assets/hiking-promo-320-CVe-_pny.png 320w, /fintrail/assets/hiking-promo-480-DJrs1I96.png 480w, /fintrail/assets/hiking-promo-768-CghYdqq9.png 768w, /fintrail/assets/hiking-promo-BDhQp4eg.png 900w" media="(min-width: 1280px)">
+            <img src="/fintrail/assets/hiking-promo-BDhQp4eg.png" srcset="/fintrail/assets/hiking-promo-160-Ch-0cDEU.png 160w, /fintrail/assets/hiking-promo-320-CVe-_pny.png 320w, /fintrail/assets/hiking-promo-480-DJrs1I96.png 480w, /fintrail/assets/hiking-promo-768-CghYdqq9.png 768w, /fintrail/assets/hiking-promo-BDhQp4eg.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
+          </picture>
+          <div class="site-menu__promo-content">
+            <h3>Экипировка<br>для хайкинга</h3>
+            <p>Куртки, штаны, термобельё</p>
+          </div>
+          <a class="site-menu__promo-link" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </a>
+        </article>
+      </div>
+
+      <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/loyalty/">Программа лояльности</a>
+      </nav>
+    </aside>
+  </div>
+
+  <main class="cart-page" aria-label="Корзина">
+    <div class="cart-page__header">
+      <div class="cart-page__top">
+        <div class="cart-page__head">
+          <nav class="cart-page__breadcrumbs" aria-label="Хлебные крошки">
+            <a href="/">Главная</a>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
+            <span>Корзина</span>
+          </nav>
+          <h1>Корзина <span class="cart-page__count">14</span></h1>
+          <div class="cart-page__actions">
+            <button type="button"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg>Удалить корзину</button>
+            <button type="button"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-share"></use></svg>Поделиться</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-page__grid">
+      <section class="cart-page__content" aria-label="Товары в корзине">
+        <div class="cart-delivery">
+          <div class="cart-delivery__tabs" role="tablist" aria-label="Способ доставки">
+            <button class="is-active" type="button">Самовывоз</button>
+            <button type="button">Доставка</button>
+          </div>
+          <button class="cart-delivery__option" type="button" data-cart-pickup-open>
+            <div>
+              <svg class="cart-delivery__icon" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-location"></use></svg>
+              <p class="cart-delivery__primary cart-delivery__primary--split">
+                <span class="cart-delivery__label">Пункт выдачи СДЭК</span>
+                <span class="cart-delivery__dot">·</span>
+                <span class="cart-delivery__date" data-cart-pickup-date>Доставим 11 - 19 июня</span>
+              </p>
+              <small data-cart-pickup-address>Москва, ул. Рождества Христова, д. 151</small>
+            </div>
+            <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+          </button>
+          <button class="cart-delivery__option" type="button">
+            <div>
+              <svg class="cart-delivery__icon" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+              <p class="cart-delivery__primary">Константин Константинопольский</p>
+              <small>+7 (999) 999-66-33</small>
+            </div>
+            <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+          </button>
+        </div>
+
+        <div class="cart-items">
+          <article class="cart-item">
+            <div class="cart-item__badge">Новинка</div>
+            <a class="cart-item__image" href="/catalog/master-hood-1510/">
+              <img src="/fintrail/assets/hero-product-pants-C-7uskgw.png" srcset="/fintrail/assets/cart-product-tactic-orange-160-CtoHQBI0.png 160w, /fintrail/assets/cart-product-tactic-orange-320-CXfXM-Cm.png 320w, /fintrail/assets/cart-product-tactic-orange-480-CMZhzfH2.png 480w, /fintrail/assets/cart-product-tactic-orange-768-Gc94Lu3n.png 768w, /fintrail/assets/hero-product-pants-C-7uskgw.png 1000w" sizes="(min-width: 768px) 266px, 116px" alt="Брюки FINNTRAIL Tactic 4609 Khaki">
+            </a>
+            <div class="cart-item__info">
+              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg></button>
+              <h2><a href="/catalog/master-hood-1510/">Брюки FINNTRAIL Tactic 4609 Khaki</a></h2>
+              <dl>
+                <div><dt>Размер:</dt><dd>42</dd></div>
+                <div><dt>Цвет:</dt><dd>Оранжевый</dd></div>
+              </dl>
+              <div class="cart-item__bottom">
+                <div class="cart-item__prices">
+                  <div class="cart-item__old-row"><del>32 999 ₽</del><span class="cart-item__discount">−15%</span></div>
+                  <span class="cart-item__price-new">25 799 ₽</span>
+                </div>
+                <div class="cart-item__qty" aria-label="Количество товара">
+                  <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
+                </div>
+                <button class="cart-item__icon" type="button" aria-label="Отложить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cart-item">
+            <div class="cart-item__badge">Новинка</div>
+            <a class="cart-item__image" href="/catalog/master-hood-1510/">
+              <img src="/fintrail/assets/cart-product-discovery-boots-ceS_fISu.png" srcset="/fintrail/assets/cart-product-discovery-boots-160-B_fhTdCS.png 160w, /fintrail/assets/cart-product-discovery-boots-320-Bs6FCbTH.png 320w, /fintrail/assets/cart-product-discovery-boots-480-BHQwrxWx.png 480w, /fintrail/assets/cart-product-discovery-boots-768-d3dmIf42.png 768w, /fintrail/assets/cart-product-discovery-boots-ceS_fISu.png 1000w" sizes="(min-width: 768px) 266px, 116px" alt="Ботинки FINNTRAIL Discovery 1531 Graphite" loading="lazy">
+            </a>
+            <div class="cart-item__info">
+              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg></button>
+              <h2><a href="/catalog/master-hood-1510/">Ботинки FINNTRAIL Discovery 1531 Graphite</a></h2>
+              <dl>
+                <div><dt>Размер:</dt><dd>42</dd></div>
+                <div><dt>Цвет:</dt><dd>Оранжевый</dd></div>
+              </dl>
+              <div class="cart-item__bottom">
+                <div class="cart-item__prices">
+                  <div class="cart-item__old-row"><del>24 999 ₽</del><span class="cart-item__discount">−10%</span></div>
+                  <span class="cart-item__price-new">12 699 ₽</span>
+                </div>
+                <div class="cart-item__qty" aria-label="Количество товара">
+                  <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
+                </div>
+                <button class="cart-item__icon" type="button" aria-label="Отложить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="cart-item cart-item--unavailable">
+            <div class="cart-item__badge">Хит</div>
+            <a class="cart-item__image" href="/catalog/master-hood-1510/">
+              <img src="/fintrail/assets/pants-dtowWH7C.png" srcset="/fintrail/assets/cart-product-tactic-khaki-160-CiFETbem.png 160w, /fintrail/assets/cart-product-tactic-khaki-320-B6MKZf2K.png 320w, /fintrail/assets/cart-product-tactic-khaki-480-BjE_ujW6.png 480w, /fintrail/assets/cart-product-tactic-khaki-768-BPImwhLu.png 768w, /fintrail/assets/pants-dtowWH7C.png 1000w" sizes="(min-width: 768px) 266px, 116px" alt="Брюки FINNTRAIL Tactic 4609 Khaki" loading="lazy">
+            </a>
+            <div class="cart-item__info">
+              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg></button>
+              <h2><a href="/catalog/master-hood-1510/">Брюки FINNTRAIL Tactic 4609 Khaki</a></h2>
+              <p class="cart-item__unavailable">Нет в наличии</p>
+              <dl>
+                <div><dt>Размер:</dt><dd>42</dd></div>
+                <div><dt>Цвет:</dt><dd>Оранжевый</dd></div>
+              </dl>
+              <div class="cart-item__unavailable-actions">
+                <button class="cart-item__notify" type="button">Сообщить о наличии</button>
+                <button class="cart-item__icon" type="button" aria-label="Отложить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></button>
+              </div>
+              <div class="cart-item__similar" aria-label="Похожие товары">
+                <div class="cart-item__similar-head">
+                  <p>Похожие товары</p>
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+                </div>
+                <div>
+                  <img src="/fintrail/assets/cart-similar-1-BqW9onxr.png" srcset="/fintrail/assets/cart-similar-1-160-CGXVp4eO.png 160w, /fintrail/assets/cart-similar-1-320-Cv6s6H4l.png 320w, /fintrail/assets/cart-similar-1-BqW9onxr.png 480w" sizes="79px" alt="" loading="lazy">
+                  <img src="/fintrail/assets/cart-similar-2-D-fB27VY.png" srcset="/fintrail/assets/cart-similar-2-160-mkpZYqdQ.png 160w, /fintrail/assets/cart-similar-2-320-C13F486Y.png 320w, /fintrail/assets/cart-similar-2-D-fB27VY.png 480w" sizes="79px" alt="" loading="lazy">
+                  <img src="/fintrail/assets/pants-1-BMUeP-ZF.png" srcset="/fintrail/assets/cart-similar-3-160-4NIpUuKG.png 160w, /fintrail/assets/cart-similar-3-320-BuutYuJP.png 320w, /fintrail/assets/pants-1-BMUeP-ZF.png 480w" sizes="79px" alt="" loading="lazy">
+                  <img src="/fintrail/assets/cart-similar-4-Da2njH2x.png" srcset="/fintrail/assets/cart-similar-4-160-DowodxOx.png 160w, /fintrail/assets/cart-similar-4-320-BxKu9NOj.png 320w, /fintrail/assets/cart-similar-4-Da2njH2x.png 480w" sizes="79px" alt="" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="cart-summary" aria-label="Оформление заказа">
+        <section class="cart-payment">
+          <h2>Способ оплаты</h2>
+          <div class="cart-payment__methods" role="radiogroup" aria-label="Способ оплаты">
+            <label class="cart-payment__method is-active">
+              <input type="radio" name="pay" checked>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-card"></use></svg>
+              <span>Картой онлайн</span>
+            </label>
+            <label class="cart-payment__method">
+              <input type="radio" name="pay">
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-delivery"></use></svg>
+              <span>При получении</span>
+            </label>
+          </div>
+          <p>Купить в рассрочку</p>
+          <div class="cart-payment__installments">
+            <label>
+              <input type="radio" name="installment">
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-pay-grid"></use></svg>
+              <span>Плати Частями</span>
+            </label>
+            <label>
+              <input type="radio" name="installment">
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-dolyami"></use></svg>
+              <span>Плати Долями</span>
+            </label>
+            <label>
+              <input type="radio" name="installment">
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-tbank"></use></svg>
+              <span>Рассрочка Т-Банк</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="cart-total">
+          <h2>Сумма заказа</h2>
+          <dl>
+            <div><dt>2 товара</dt><dd>29 499 ₽</dd></div>
+            <div><dt>Доставка</dt><dd>599 ₽</dd></div>
+            <div class="cart-total__discount-row"><dt>Скидка <svg class="cart-total__discount-toggle" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg></dt><dd>− 1 499 ₽</dd></div>
+            <div class="cart-total__bonus"><dt>Бонусы к начислению</dt><dd>+ 500 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-bonus"></use></svg></dd></div>
+            <div class="cart-total__sum"><dt>Итого</dt><dd>28 000 ₽</dd></div>
+          </dl>
+          <div class="cart-total__promo">
+            <form class="cart-total__promo-row">
+              <label class="visually-hidden" for="cart-promo">Промокод</label>
+              <input id="cart-promo" type="text" placeholder="Промокод или подарочная карта">
+              <button type="submit">Применить</button>
+            </form>
+            <a class="button button--primary button--size-l cart-total__submit" href="/checkout/" data-cart-login-open>Оформить заказ</a>
+          </div>
+          <p class="cart-total__note">Нажимая на кнопку, вы соглашаетесь с <a href="/privacy/">Условиями обработки персональных данных</a> и <a href="/offer/">Условиями продажи</a></p>
+        </section>
+      </aside>
+    </div>
+
+    <section class="cart-recommendations recommendations-new" aria-labelledby="cart-recommendations-title">
+      <div class="recommendations-new__header">
+        <h2 class="recommendations-new__title" id="cart-recommendations-title">Может пригодиться</h2>
+        <div class="recommendations-new__controls" aria-label="Управление слайдером">
+          <button class="recommendations-new__arrow is-inactive" type="button" aria-label="Назад"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg></button>
+          <button class="recommendations-new__arrow" type="button" aria-label="Вперед"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg></button>
+        </div>
+      </div>
+      <div class="recommendations-new__viewport">
+        <div class="recommendations-new__track">
+          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/catalog/master-hood-1510/"><img class="recommendation-card__image recommendation-card__image--fit" src="/fintrail/assets/recommended-1-C_a3qnwX.png" srcset="/fintrail/assets/recommended-1-160-Dt8pvxrL.png 160w, /fintrail/assets/recommended-1-320-Cgo_KP0a.png 320w, /fintrail/assets/recommended-1-480-1B5EHwE7.png 480w, /fintrail/assets/recommended-1-768-pqscZvlp.png 768w, /fintrail/assets/recommended-1-C_a3qnwX.png 780w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Новинка</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
+          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/catalog/master-hood-1510/"><img class="recommendation-card__image" src="/fintrail/assets/recommended-2-tZXGyE9p.png" srcset="/fintrail/assets/recommended-2-160-CRingXHg.png 160w, /fintrail/assets/recommended-2-320-BH0cBWBy.png 320w, /fintrail/assets/recommended-2-tZXGyE9p.png 442w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Топ</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
+          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/catalog/master-hood-1510/"><img class="recommendation-card__image" src="/fintrail/assets/recommended-3-BSxXNUeB.png" srcset="/fintrail/assets/recommended-3-160-BhLFDGip.png 160w, /fintrail/assets/recommended-3-320-yxTk7ncp.png 320w, /fintrail/assets/recommended-3-480-CD7XGwBB.png 480w, /fintrail/assets/recommended-3-BSxXNUeB.png 498w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Хит</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
+          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/catalog/master-hood-1510/"><img class="recommendation-card__image" src="/fintrail/assets/recommended-4-CCxchcuN.png" srcset="/fintrail/assets/recommended-4-160-Dll-__od.png 160w, /fintrail/assets/recommended-4-CCxchcuN.png 197w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Новинка</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
+        </div>
+      </div>
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/"><span>Смотреть все</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
+    </section>
+  </main>
+
+  <footer class="footer-desktop product-footer" aria-label="Футер">
+    <div class="footer-desktop__top">
+      <nav class="footer-desktop__nav" aria-label="Навигация в футере">
+        <div class="footer-desktop__column footer-desktop__column--buyers">
+          <h2 class="footer-desktop__heading">Покупателям</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/delivery/">Доставка и оплата</a></li>
+            <li><a class="footer-desktop__link" href="/return/">Обмен и возврат</a></li>
+            <li><a class="footer-desktop__link" href="/warranty/">Гарантия и сервис</a></li>
+            <li><a class="footer-desktop__link" href="/feedback/">Обратная связь</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--company">
+          <h2 class="footer-desktop__heading">Компания</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
+            <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
+            <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
+            <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
+            <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--gear">
+          <h2 class="footer-desktop__heading">Об экипировке</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
+            <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
+            <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
+            <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
+            <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--app">
+          <h2 class="footer-desktop__heading">Приложение FINNTRAIL</h2>
+          <div class="footer-desktop__app-panel">
+            <img class="footer-desktop__qr" src="/fintrail/assets/qr-B89fPk9A.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
+            <ul class="footer-desktop__app-links">
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg><span>App Store</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/"><span class="footer-desktop__app-icon" aria-hidden="true"><svg class="footer-desktop__app-icon-default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg><svg class="footer-desktop__app-icon-hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg></span><span>Google Play</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg><span>AppGallery</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg><span>RuStore</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-desktop__divider"></div>
+    <div class="footer-desktop__legal">
+      <a class="footer-desktop__legal-link" href="/privacy/">Политика конфиденциальности</a>
+      <a class="footer-desktop__legal-link" href="/offer/">Публичная оферта</a>
+      <a class="footer-desktop__legal-link" href="/personal-data/">Согласие на обработку персональных данных</a>
+    </div>
+    <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL"><img src="/fintrail/assets/footer-wordmark-X6hbH21g.svg" alt="FINNTRAIL" loading="lazy"></a>
+  </footer>
+
+  <nav class="tabbar" aria-label="Мобильная навигация">
+    <a href="/catalog/" class="tabbar__item" aria-label="Каталог"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
+    <a href="/personal/" class="tabbar__item" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
+    <a href="/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
+    <a href="/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
+    <a href="/cart/" class="tabbar__item is-active" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
+  </nav>
+
+  <div class="cart-login-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cart-login-title" data-cart-login-modal>
+    <button class="cart-login-modal__backdrop" type="button" aria-label="Закрыть окно входа" data-cart-login-close></button>
+    <div class="cart-login-modal__panel" role="document">
+      <div class="cart-login-modal__content">
+        <div class="cart-login-modal__text">
+          <h2 class="cart-login-modal__title" id="cart-login-title">Больше выгоды в аккаунте</h2>
+          <p class="cart-login-modal__description">Войдите, чтобы получать кешбэк<br>с каждой покупки, использовать<br>бонусы и отслеживать заказы</p>
+        </div>
+        <div class="cart-login-modal__actions">
+          <a class="cart-login-modal__button cart-login-modal__button--primary" href="/personal/">Войти</a>
+          <a class="cart-login-modal__button cart-login-modal__button--secondary" href="/checkout/">Продолжить как гость</a>
+        </div>
+      </div>
+      <div class="cart-login-modal__media" aria-hidden="true">
+        <img src="/fintrail/assets/cart-login-benefit-728-BnBQuvEr.png" srcset="/fintrail/assets/cart-login-benefit-364-DjCMquSy.png 364w, /fintrail/assets/cart-login-benefit-728-BnBQuvEr.png 728w" sizes="364px" alt="" loading="lazy">
+      </div>
+      <button class="cart-login-modal__close" type="button" aria-label="Закрыть окно входа" data-cart-login-close>
+        <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="cart-pickup-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cart-pickup-title" data-cart-pickup-modal>
+    <button class="cart-pickup-modal__backdrop" type="button" aria-label="Закрыть выбор пункта выдачи" data-cart-pickup-close></button>
+    <div class="cart-pickup-modal__panel" role="document">
+      <div class="cart-pickup-modal__header">
+        <h2 class="cart-pickup-modal__title" id="cart-pickup-title">Выберите пункт выдачи</h2>
+        <button class="cart-pickup-modal__close" type="button" aria-label="Закрыть выбор пункта выдачи" data-cart-pickup-close>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+
+      <div class="cart-pickup-modal__layout">
+        <div class="cart-pickup-modal__sidebar">
+          <label class="cart-pickup-modal__search">
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg>
+            <input type="search" placeholder="Поиск по адресам" autocomplete="off">
+          </label>
+
+          <div class="cart-pickup-modal__list-state" data-cart-pickup-view="list">
+            <div class="cart-pickup-modal__points" role="radiogroup" aria-label="Пункты выдачи">
+              <button class="cart-pickup-modal__point is-active" type="button" role="radio" aria-checked="true" data-cart-pickup-point data-address="Москва, ул. Рождества Христова, д. 151" data-date="3–8 апреля" data-schedule="пн-вс 9:00-21:00" data-delivery="3–8 апреля, 235 ₽">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Москва, ул. Рождества Христова, д. 151</span>
+                  <span class="cart-pickup-modal__point-meta"><span>3–8 апреля</span><span class="cart-pickup-modal__dot"></span><span>пн-вс 9:00-21:00</span></span>
+                </span>
+              </button>
+              <button class="cart-pickup-modal__point" type="button" role="radio" aria-checked="false" data-cart-pickup-point data-address="Санкт-Петербург, Невский проспект, д. 45" data-date="1–5 мая" data-schedule="пн-пт 10:00-20:00" data-delivery="1–5 мая">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Санкт-Петербург, Невский проспект, д. 45</span>
+                  <span class="cart-pickup-modal__point-meta"><span>1–5 мая</span><span class="cart-pickup-modal__dot"></span><span>пн-пт 10:00-20:00</span></span>
+                </span>
+              </button>
+              <button class="cart-pickup-modal__point" type="button" role="radio" aria-checked="false" data-cart-pickup-point data-address="Казань, ул. Баумана, д. 56" data-date="10–15 июня" data-schedule="сб-вс 11:00-22:00" data-delivery="10–15 июня">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Казань, ул. Баумана, д. 56</span>
+                  <span class="cart-pickup-modal__point-meta"><span>10–15 июня</span><span class="cart-pickup-modal__dot"></span><span>сб-вс 11:00-22:00</span></span>
+                </span>
+              </button>
+              <button class="cart-pickup-modal__point" type="button" role="radio" aria-checked="false" data-cart-pickup-point data-address="Екатеринбург, ул. Ленина, д. 120" data-date="20–25 июля" data-schedule="пн-пт 9:00-19:00" data-delivery="20–25 июля">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Екатеринбург, ул. Ленина, д. 120</span>
+                  <span class="cart-pickup-modal__point-meta"><span>20–25 июля</span><span class="cart-pickup-modal__dot"></span><span>пн-пт 9:00-19:00</span></span>
+                </span>
+              </button>
+              <button class="cart-pickup-modal__point" type="button" role="radio" aria-checked="false" data-cart-pickup-point data-address="Новосибирск, Красный проспект, д. 101" data-date="5–10 августа" data-schedule="пн-вс 10:00-21:00" data-delivery="5–10 августа">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Новосибирск, Красный проспект, д. 101</span>
+                  <span class="cart-pickup-modal__point-meta"><span>5–10 августа</span><span class="cart-pickup-modal__dot"></span><span>пн-вс 10:00-21:00</span></span>
+                </span>
+              </button>
+              <button class="cart-pickup-modal__point" type="button" role="radio" aria-checked="false" data-cart-pickup-point data-address="Нижний Новгород, ул. Большая Покровская, д. 32" data-date="15–20 сентября" data-schedule="пн-пт 8:00-18:00" data-delivery="15–20 сентября">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Нижний Новгород, ул. Большая Покровская, д. 32</span>
+                  <span class="cart-pickup-modal__point-meta"><span>15–20 сентября</span><span class="cart-pickup-modal__dot"></span><span>пн-пт 8:00-18:00</span></span>
+                </span>
+              </button>
+              <button class="cart-pickup-modal__point" type="button" role="radio" aria-checked="false" data-cart-pickup-point data-address="Челябинск, проспект Ленина, д. 78" data-date="25–30 октября" data-schedule="сб-вс 10:00-19:00" data-delivery="25–30 октября">
+                <span class="cart-pickup-modal__radio" aria-hidden="true"></span>
+                <span class="cart-pickup-modal__point-text">
+                  <span class="cart-pickup-modal__point-address">Челябинск, проспект Ленина, д. 78</span>
+                  <span class="cart-pickup-modal__point-meta"><span>25–30 октября</span><span class="cart-pickup-modal__dot"></span><span>сб-вс 10:00-19:00</span></span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="cart-pickup-modal__detail-state" hidden data-cart-pickup-view="detail">
+            <div class="cart-pickup-modal__detail">
+              <h3>Пункт выдачи СДЭК</h3>
+              <p>Адрес: <span data-cart-pickup-detail-address>Москва, ул. Рождества Христова, д. 151</span></p>
+              <p>График работы: <span data-cart-pickup-detail-schedule>пн-вс 9:00-21:00</span></p>
+              <p>Доставка: <span data-cart-pickup-detail-delivery>3–8 апреля, 235 ₽</span></p>
+            </div>
+          </div>
+
+          <button class="cart-pickup-modal__submit" type="button" data-cart-pickup-submit>Доставить сюда</button>
+        </div>
+
+        <div class="cart-pickup-modal__map" aria-hidden="true">
+          <img class="cart-pickup-modal__map-image" src="/fintrail/assets/cart-pickup-map-iJSJsSPV.png" alt="">
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--cdek cart-pickup-modal__marker--one"><img src="data:image/svg+xml,%3csvg%20width='33'%20height='33'%20viewBox='0%200%2033%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_3517_44860)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8.65462%2013.3149L7.75837%2012.7974C6.36023%2011.9902%209.14447%209.51353%2010.3215%2010.1931L11.7376%2011.0107C11.9647%2011.1418%2012.3401%2011.416%2012.8717%2010.9505L13.696%2010.2266L11.7541%209.10549C10.7025%208.49836%209.66331%208.40787%208.70173%208.70733C7.04662%209.21449%205.71085%2010.7278%205.48257%2011.6889C5.27792%2012.5815%205.62304%2013.4464%206.60776%2014.0314L7.37499%2014.4826L8.32501%2015.031L8.97436%2014.4445C9.44297%2014.033%209.16847%2013.6115%208.65462%2013.3149ZM20.298%2018.3443L21.1565%2017.5334L18.0316%2015.7292C17.5118%2015.4291%2017.1933%2015.4425%2016.9258%2015.6989L16.0673%2016.5098L19.1922%2018.314C19.712%2018.6141%2020.0304%2018.6007%2020.298%2018.3443ZM14.8682%2017.5104L14.0096%2018.3213L17.1346%2020.1255C17.6484%2020.4221%2017.9728%2020.4122%2018.2403%2020.1558L19.0989%2019.3449L15.974%2017.5407C15.4601%2017.244%2015.1417%2017.2574%2014.8682%2017.5104ZM22.3221%2016.5218L23.1807%2015.7109L20.0558%2013.9067C19.536%2013.6066%2019.2175%2013.6199%2018.95%2013.8764L18.0914%2014.6873L21.2164%2016.4915C21.7303%2016.7882%2022.0486%2016.7747%2022.3221%2016.5218ZM17.488%2013.9938C17.8832%2013.0057%2017.5642%2012.4682%2016.417%2011.8058L14.3258%2010.5985L10.9825%2013.5742L11.7533%2014.0192C12.2134%2014.2848%2012.4429%2014.4255%2013.0792%2013.889L14.4981%2012.6044L15.2748%2013.0529C15.938%2013.4358%2015.294%2014.2062%2014.4791%2014.8451C13.7569%2015.406%2012.8634%2015.753%2012.236%2015.3908L10.9395%2014.6423C10.4197%2014.3421%2010.0953%2014.3521%209.82173%2014.605L8.93331%2015.3987L9.88334%2015.9472L10.819%2016.4792C11.6471%2016.9491%2012.3579%2017.2772%2013.57%2016.9992C14.8584%2016.6994%2016.9864%2015.249%2017.488%2013.9938ZM28.6753%2018.875L26.8649%2017.8297L24.0838%2018.714C23.762%2018.8158%2023.4344%2018.9143%2023.0912%2019.0531L23.0733%2019.0428L25.3949%2016.981L23.9192%2016.129L18.5028%2020.9154L19.9787%2021.7675L21.6901%2020.2657L22.6783%2020.072L22.2232%2022.0608C22.082%2022.6778%2022.1178%2023.0025%2022.4763%2023.2095L23.6055%2023.8615L24.3607%2019.8764L28.6753%2018.875Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_3517_44860'%3e%3crect%20width='24'%20height='24'%20fill='white'%20transform='translate(12)%20rotate(30)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt=""></span>
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--cdek cart-pickup-modal__marker--two"><img src="data:image/svg+xml,%3csvg%20width='33'%20height='33'%20viewBox='0%200%2033%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_3517_44860)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8.65462%2013.3149L7.75837%2012.7974C6.36023%2011.9902%209.14447%209.51353%2010.3215%2010.1931L11.7376%2011.0107C11.9647%2011.1418%2012.3401%2011.416%2012.8717%2010.9505L13.696%2010.2266L11.7541%209.10549C10.7025%208.49836%209.66331%208.40787%208.70173%208.70733C7.04662%209.21449%205.71085%2010.7278%205.48257%2011.6889C5.27792%2012.5815%205.62304%2013.4464%206.60776%2014.0314L7.37499%2014.4826L8.32501%2015.031L8.97436%2014.4445C9.44297%2014.033%209.16847%2013.6115%208.65462%2013.3149ZM20.298%2018.3443L21.1565%2017.5334L18.0316%2015.7292C17.5118%2015.4291%2017.1933%2015.4425%2016.9258%2015.6989L16.0673%2016.5098L19.1922%2018.314C19.712%2018.6141%2020.0304%2018.6007%2020.298%2018.3443ZM14.8682%2017.5104L14.0096%2018.3213L17.1346%2020.1255C17.6484%2020.4221%2017.9728%2020.4122%2018.2403%2020.1558L19.0989%2019.3449L15.974%2017.5407C15.4601%2017.244%2015.1417%2017.2574%2014.8682%2017.5104ZM22.3221%2016.5218L23.1807%2015.7109L20.0558%2013.9067C19.536%2013.6066%2019.2175%2013.6199%2018.95%2013.8764L18.0914%2014.6873L21.2164%2016.4915C21.7303%2016.7882%2022.0486%2016.7747%2022.3221%2016.5218ZM17.488%2013.9938C17.8832%2013.0057%2017.5642%2012.4682%2016.417%2011.8058L14.3258%2010.5985L10.9825%2013.5742L11.7533%2014.0192C12.2134%2014.2848%2012.4429%2014.4255%2013.0792%2013.889L14.4981%2012.6044L15.2748%2013.0529C15.938%2013.4358%2015.294%2014.2062%2014.4791%2014.8451C13.7569%2015.406%2012.8634%2015.753%2012.236%2015.3908L10.9395%2014.6423C10.4197%2014.3421%2010.0953%2014.3521%209.82173%2014.605L8.93331%2015.3987L9.88334%2015.9472L10.819%2016.4792C11.6471%2016.9491%2012.3579%2017.2772%2013.57%2016.9992C14.8584%2016.6994%2016.9864%2015.249%2017.488%2013.9938ZM28.6753%2018.875L26.8649%2017.8297L24.0838%2018.714C23.762%2018.8158%2023.4344%2018.9143%2023.0912%2019.0531L23.0733%2019.0428L25.3949%2016.981L23.9192%2016.129L18.5028%2020.9154L19.9787%2021.7675L21.6901%2020.2657L22.6783%2020.072L22.2232%2022.0608C22.082%2022.6778%2022.1178%2023.0025%2022.4763%2023.2095L23.6055%2023.8615L24.3607%2019.8764L28.6753%2018.875Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_3517_44860'%3e%3crect%20width='24'%20height='24'%20fill='white'%20transform='translate(12)%20rotate(30)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt=""></span>
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--cdek cart-pickup-modal__marker--three"><img src="data:image/svg+xml,%3csvg%20width='33'%20height='33'%20viewBox='0%200%2033%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_3517_44860)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8.65462%2013.3149L7.75837%2012.7974C6.36023%2011.9902%209.14447%209.51353%2010.3215%2010.1931L11.7376%2011.0107C11.9647%2011.1418%2012.3401%2011.416%2012.8717%2010.9505L13.696%2010.2266L11.7541%209.10549C10.7025%208.49836%209.66331%208.40787%208.70173%208.70733C7.04662%209.21449%205.71085%2010.7278%205.48257%2011.6889C5.27792%2012.5815%205.62304%2013.4464%206.60776%2014.0314L7.37499%2014.4826L8.32501%2015.031L8.97436%2014.4445C9.44297%2014.033%209.16847%2013.6115%208.65462%2013.3149ZM20.298%2018.3443L21.1565%2017.5334L18.0316%2015.7292C17.5118%2015.4291%2017.1933%2015.4425%2016.9258%2015.6989L16.0673%2016.5098L19.1922%2018.314C19.712%2018.6141%2020.0304%2018.6007%2020.298%2018.3443ZM14.8682%2017.5104L14.0096%2018.3213L17.1346%2020.1255C17.6484%2020.4221%2017.9728%2020.4122%2018.2403%2020.1558L19.0989%2019.3449L15.974%2017.5407C15.4601%2017.244%2015.1417%2017.2574%2014.8682%2017.5104ZM22.3221%2016.5218L23.1807%2015.7109L20.0558%2013.9067C19.536%2013.6066%2019.2175%2013.6199%2018.95%2013.8764L18.0914%2014.6873L21.2164%2016.4915C21.7303%2016.7882%2022.0486%2016.7747%2022.3221%2016.5218ZM17.488%2013.9938C17.8832%2013.0057%2017.5642%2012.4682%2016.417%2011.8058L14.3258%2010.5985L10.9825%2013.5742L11.7533%2014.0192C12.2134%2014.2848%2012.4429%2014.4255%2013.0792%2013.889L14.4981%2012.6044L15.2748%2013.0529C15.938%2013.4358%2015.294%2014.2062%2014.4791%2014.8451C13.7569%2015.406%2012.8634%2015.753%2012.236%2015.3908L10.9395%2014.6423C10.4197%2014.3421%2010.0953%2014.3521%209.82173%2014.605L8.93331%2015.3987L9.88334%2015.9472L10.819%2016.4792C11.6471%2016.9491%2012.3579%2017.2772%2013.57%2016.9992C14.8584%2016.6994%2016.9864%2015.249%2017.488%2013.9938ZM28.6753%2018.875L26.8649%2017.8297L24.0838%2018.714C23.762%2018.8158%2023.4344%2018.9143%2023.0912%2019.0531L23.0733%2019.0428L25.3949%2016.981L23.9192%2016.129L18.5028%2020.9154L19.9787%2021.7675L21.6901%2020.2657L22.6783%2020.072L22.2232%2022.0608C22.082%2022.6778%2022.1178%2023.0025%2022.4763%2023.2095L23.6055%2023.8615L24.3607%2019.8764L28.6753%2018.875Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_3517_44860'%3e%3crect%20width='24'%20height='24'%20fill='white'%20transform='translate(12)%20rotate(30)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt=""></span>
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--cdek cart-pickup-modal__marker--four"><img src="data:image/svg+xml,%3csvg%20width='33'%20height='33'%20viewBox='0%200%2033%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_3517_44860)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8.65462%2013.3149L7.75837%2012.7974C6.36023%2011.9902%209.14447%209.51353%2010.3215%2010.1931L11.7376%2011.0107C11.9647%2011.1418%2012.3401%2011.416%2012.8717%2010.9505L13.696%2010.2266L11.7541%209.10549C10.7025%208.49836%209.66331%208.40787%208.70173%208.70733C7.04662%209.21449%205.71085%2010.7278%205.48257%2011.6889C5.27792%2012.5815%205.62304%2013.4464%206.60776%2014.0314L7.37499%2014.4826L8.32501%2015.031L8.97436%2014.4445C9.44297%2014.033%209.16847%2013.6115%208.65462%2013.3149ZM20.298%2018.3443L21.1565%2017.5334L18.0316%2015.7292C17.5118%2015.4291%2017.1933%2015.4425%2016.9258%2015.6989L16.0673%2016.5098L19.1922%2018.314C19.712%2018.6141%2020.0304%2018.6007%2020.298%2018.3443ZM14.8682%2017.5104L14.0096%2018.3213L17.1346%2020.1255C17.6484%2020.4221%2017.9728%2020.4122%2018.2403%2020.1558L19.0989%2019.3449L15.974%2017.5407C15.4601%2017.244%2015.1417%2017.2574%2014.8682%2017.5104ZM22.3221%2016.5218L23.1807%2015.7109L20.0558%2013.9067C19.536%2013.6066%2019.2175%2013.6199%2018.95%2013.8764L18.0914%2014.6873L21.2164%2016.4915C21.7303%2016.7882%2022.0486%2016.7747%2022.3221%2016.5218ZM17.488%2013.9938C17.8832%2013.0057%2017.5642%2012.4682%2016.417%2011.8058L14.3258%2010.5985L10.9825%2013.5742L11.7533%2014.0192C12.2134%2014.2848%2012.4429%2014.4255%2013.0792%2013.889L14.4981%2012.6044L15.2748%2013.0529C15.938%2013.4358%2015.294%2014.2062%2014.4791%2014.8451C13.7569%2015.406%2012.8634%2015.753%2012.236%2015.3908L10.9395%2014.6423C10.4197%2014.3421%2010.0953%2014.3521%209.82173%2014.605L8.93331%2015.3987L9.88334%2015.9472L10.819%2016.4792C11.6471%2016.9491%2012.3579%2017.2772%2013.57%2016.9992C14.8584%2016.6994%2016.9864%2015.249%2017.488%2013.9938ZM28.6753%2018.875L26.8649%2017.8297L24.0838%2018.714C23.762%2018.8158%2023.4344%2018.9143%2023.0912%2019.0531L23.0733%2019.0428L25.3949%2016.981L23.9192%2016.129L18.5028%2020.9154L19.9787%2021.7675L21.6901%2020.2657L22.6783%2020.072L22.2232%2022.0608C22.082%2022.6778%2022.1178%2023.0025%2022.4763%2023.2095L23.6055%2023.8615L24.3607%2019.8764L28.6753%2018.875Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_3517_44860'%3e%3crect%20width='24'%20height='24'%20fill='white'%20transform='translate(12)%20rotate(30)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt=""></span>
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--cdek cart-pickup-modal__marker--five"><img src="data:image/svg+xml,%3csvg%20width='33'%20height='33'%20viewBox='0%200%2033%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_3517_44860)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8.65462%2013.3149L7.75837%2012.7974C6.36023%2011.9902%209.14447%209.51353%2010.3215%2010.1931L11.7376%2011.0107C11.9647%2011.1418%2012.3401%2011.416%2012.8717%2010.9505L13.696%2010.2266L11.7541%209.10549C10.7025%208.49836%209.66331%208.40787%208.70173%208.70733C7.04662%209.21449%205.71085%2010.7278%205.48257%2011.6889C5.27792%2012.5815%205.62304%2013.4464%206.60776%2014.0314L7.37499%2014.4826L8.32501%2015.031L8.97436%2014.4445C9.44297%2014.033%209.16847%2013.6115%208.65462%2013.3149ZM20.298%2018.3443L21.1565%2017.5334L18.0316%2015.7292C17.5118%2015.4291%2017.1933%2015.4425%2016.9258%2015.6989L16.0673%2016.5098L19.1922%2018.314C19.712%2018.6141%2020.0304%2018.6007%2020.298%2018.3443ZM14.8682%2017.5104L14.0096%2018.3213L17.1346%2020.1255C17.6484%2020.4221%2017.9728%2020.4122%2018.2403%2020.1558L19.0989%2019.3449L15.974%2017.5407C15.4601%2017.244%2015.1417%2017.2574%2014.8682%2017.5104ZM22.3221%2016.5218L23.1807%2015.7109L20.0558%2013.9067C19.536%2013.6066%2019.2175%2013.6199%2018.95%2013.8764L18.0914%2014.6873L21.2164%2016.4915C21.7303%2016.7882%2022.0486%2016.7747%2022.3221%2016.5218ZM17.488%2013.9938C17.8832%2013.0057%2017.5642%2012.4682%2016.417%2011.8058L14.3258%2010.5985L10.9825%2013.5742L11.7533%2014.0192C12.2134%2014.2848%2012.4429%2014.4255%2013.0792%2013.889L14.4981%2012.6044L15.2748%2013.0529C15.938%2013.4358%2015.294%2014.2062%2014.4791%2014.8451C13.7569%2015.406%2012.8634%2015.753%2012.236%2015.3908L10.9395%2014.6423C10.4197%2014.3421%2010.0953%2014.3521%209.82173%2014.605L8.93331%2015.3987L9.88334%2015.9472L10.819%2016.4792C11.6471%2016.9491%2012.3579%2017.2772%2013.57%2016.9992C14.8584%2016.6994%2016.9864%2015.249%2017.488%2013.9938ZM28.6753%2018.875L26.8649%2017.8297L24.0838%2018.714C23.762%2018.8158%2023.4344%2018.9143%2023.0912%2019.0531L23.0733%2019.0428L25.3949%2016.981L23.9192%2016.129L18.5028%2020.9154L19.9787%2021.7675L21.6901%2020.2657L22.6783%2020.072L22.2232%2022.0608C22.082%2022.6778%2022.1178%2023.0025%2022.4763%2023.2095L23.6055%2023.8615L24.3607%2019.8764L28.6753%2018.875Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_3517_44860'%3e%3crect%20width='24'%20height='24'%20fill='white'%20transform='translate(12)%20rotate(30)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt=""></span>
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--cdek cart-pickup-modal__marker--six"><img src="data:image/svg+xml,%3csvg%20width='33'%20height='33'%20viewBox='0%200%2033%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_3517_44860)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8.65462%2013.3149L7.75837%2012.7974C6.36023%2011.9902%209.14447%209.51353%2010.3215%2010.1931L11.7376%2011.0107C11.9647%2011.1418%2012.3401%2011.416%2012.8717%2010.9505L13.696%2010.2266L11.7541%209.10549C10.7025%208.49836%209.66331%208.40787%208.70173%208.70733C7.04662%209.21449%205.71085%2010.7278%205.48257%2011.6889C5.27792%2012.5815%205.62304%2013.4464%206.60776%2014.0314L7.37499%2014.4826L8.32501%2015.031L8.97436%2014.4445C9.44297%2014.033%209.16847%2013.6115%208.65462%2013.3149ZM20.298%2018.3443L21.1565%2017.5334L18.0316%2015.7292C17.5118%2015.4291%2017.1933%2015.4425%2016.9258%2015.6989L16.0673%2016.5098L19.1922%2018.314C19.712%2018.6141%2020.0304%2018.6007%2020.298%2018.3443ZM14.8682%2017.5104L14.0096%2018.3213L17.1346%2020.1255C17.6484%2020.4221%2017.9728%2020.4122%2018.2403%2020.1558L19.0989%2019.3449L15.974%2017.5407C15.4601%2017.244%2015.1417%2017.2574%2014.8682%2017.5104ZM22.3221%2016.5218L23.1807%2015.7109L20.0558%2013.9067C19.536%2013.6066%2019.2175%2013.6199%2018.95%2013.8764L18.0914%2014.6873L21.2164%2016.4915C21.7303%2016.7882%2022.0486%2016.7747%2022.3221%2016.5218ZM17.488%2013.9938C17.8832%2013.0057%2017.5642%2012.4682%2016.417%2011.8058L14.3258%2010.5985L10.9825%2013.5742L11.7533%2014.0192C12.2134%2014.2848%2012.4429%2014.4255%2013.0792%2013.889L14.4981%2012.6044L15.2748%2013.0529C15.938%2013.4358%2015.294%2014.2062%2014.4791%2014.8451C13.7569%2015.406%2012.8634%2015.753%2012.236%2015.3908L10.9395%2014.6423C10.4197%2014.3421%2010.0953%2014.3521%209.82173%2014.605L8.93331%2015.3987L9.88334%2015.9472L10.819%2016.4792C11.6471%2016.9491%2012.3579%2017.2772%2013.57%2016.9992C14.8584%2016.6994%2016.9864%2015.249%2017.488%2013.9938ZM28.6753%2018.875L26.8649%2017.8297L24.0838%2018.714C23.762%2018.8158%2023.4344%2018.9143%2023.0912%2019.0531L23.0733%2019.0428L25.3949%2016.981L23.9192%2016.129L18.5028%2020.9154L19.9787%2021.7675L21.6901%2020.2657L22.6783%2020.072L22.2232%2022.0608C22.082%2022.6778%2022.1178%2023.0025%2022.4763%2023.2095L23.6055%2023.8615L24.3607%2019.8764L28.6753%2018.875Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_3517_44860'%3e%3crect%20width='24'%20height='24'%20fill='white'%20transform='translate(12)%20rotate(30)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt=""></span>
+          <span class="cart-pickup-modal__marker cart-pickup-modal__marker--selected"><img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M16.4001%2010.6923C18.7994%2010.6661%2021.2384%2010.689%2023.6409%2010.688L26.2257%2010.6875C26.7395%2010.6875%2027.3489%2010.6728%2027.8515%2010.7119C27.7677%2010.9998%2027.4036%2011.5021%2027.2309%2011.7791C26.7261%2012.5884%2026.2233%2013.329%2025.7373%2014.1537C24.0172%2014.2062%2022.1913%2014.1247%2020.4629%2014.1587C19.791%2014.1719%2018.9762%2014.1259%2018.323%2014.1736L17.6321%2015.3468C18.9899%2015.3857%2020.3626%2015.3379%2021.7218%2015.3577C21.9146%2015.3605%2022.587%2015.3282%2022.7122%2015.4517C22.7091%2015.5985%2021.3943%2017.6001%2021.2061%2017.8892C20.989%2018.2349%2020.817%2018.5378%2020.6215%2018.8967C18.9335%2018.903%2016.9822%2018.8447%2015.3184%2018.9052L13.2714%2022.138C12.9574%2022.6244%2012.7537%2023.115%2012.3197%2023.5064C11.8193%2022.7351%2011.3073%2021.9756%2010.8352%2021.187C10.6574%2020.8899%2010.4331%2020.6153%2010.2744%2020.3047C10.634%2019.8144%2010.8448%2019.4409%2011.161%2018.9334L12.1955%2017.3029L16.4001%2010.6923Z'%20fill='white'/%3e%3cpath%20d='M4.25704%2010.7057C4.73216%2010.66%205.6361%2010.6884%206.15007%2010.6885L9.81076%2010.6894L13.0861%2010.6872C13.5409%2010.687%2014.4876%2010.6627%2014.91%2010.7302C14.8401%2010.8852%2014.7641%2011.0254%2014.6671%2011.1648C14.2741%2011.7296%2013.9444%2012.3438%2013.5592%2012.9106C13.2525%2013.3205%2013.0621%2013.7493%2012.76%2014.1542C12.0762%2014.1788%2011.2582%2014.1586%2010.564%2014.1585L6.36426%2014.1575C6.1122%2013.805%205.7732%2013.207%205.53007%2012.8393C5.34851%2012.5646%204.2396%2010.8845%204.25704%2010.7057Z'%20fill='white'/%3e%3c/svg%3e" alt=""></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
