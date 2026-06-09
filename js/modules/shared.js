@@ -122,15 +122,16 @@ export function init() {
   const lazyVideos = document.querySelectorAll('[data-lazy-video]');
 
   if (lazyVideos.length) {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     const loadVideo = video => {
       // Вариант 1: <source data-src="..."> внутри <video>
       const source = video.querySelector('source[data-src]');
       if (source) {
-        source.src = source.dataset.src;
+        source.src = base + source.dataset.src;
       }
       // Вариант 2: data-src прямо на <video>
       if (video.dataset.src) {
-        video.src = video.dataset.src;
+        video.src = base + video.dataset.src;
       }
       video.load(); // инициируем загрузку
       // autoplay запускается браузером автоматически после load() на элементах с атрибутом autoplay
