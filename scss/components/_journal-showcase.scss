@@ -201,14 +201,6 @@
   text-transform: uppercase;
 }
 
-.journal-showcase__card[href*='snowmobile-summer-storage'] {
-  order: 2;
-}
-
-.journal-showcase__card[href*='trekking-shoes-guide'] {
-  order: 3;
-}
-
 .journal-showcase__card-image {
   display: block;
   height: 300px;
@@ -393,14 +385,6 @@
   .journal-showcase__card {
     min-width: 0;
     gap: 16px;
-  }
-
-  .journal-showcase__card[href*='snowmobile-summer-storage'] {
-    order: 2;
-  }
-
-  .journal-showcase__card[href*='trekking-shoes-guide'] {
-    order: 3;
   }
 
   .journal-showcase__card-image {

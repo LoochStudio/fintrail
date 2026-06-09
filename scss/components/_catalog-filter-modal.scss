@@ -97,7 +97,11 @@
   margin-top: 32px;
   overflow: auto;
   padding-right: 2px;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .catalog-filter-modal__toggle-block {

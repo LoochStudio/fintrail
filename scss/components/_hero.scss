@@ -639,6 +639,12 @@
     flex: 0 0 16px;
     color: $color-primary-gray;
     transition: color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -1071,6 +1077,12 @@
     flex-shrink: 0;
     color: $color-primary-gray;
     transition: color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

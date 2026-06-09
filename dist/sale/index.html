@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Распродажа</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CeOFODin.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-CgEfidi0.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-CQg2d2Md.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-D7uRM7wt.css">
 </head>
 <body>
   <header class="catalog-header is-header-dark is-header-compact" data-header-mega-root>
@@ -247,7 +247,7 @@
             <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
           </div>
         </div>
-        <a class="button button--secondary button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
         <div class="mobile-menu__divider" aria-hidden="true"></div>
         <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
           <a href="/app/" aria-label="Google Play"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg></a>
@@ -288,6 +288,27 @@
         </nav>
       </div>
     </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/loyalty/">Программа лояльности</a>
+      </nav>
+    </div>
   </div>
 
   <main class="catalog-page">
@@ -295,7 +316,7 @@
       <div class="catalog-hero__bar">
         <div class="catalog-hero__bar-main">
           <a class="catalog-hero__back" href="../">
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
             <span>Назад</span>
           </a>
           <div class="catalog-hero__heading">
@@ -409,15 +430,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -427,15 +448,15 @@
             </a>
             <span class="recommendation-card__badge">-15%</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -445,15 +466,15 @@
             </a>
             <span class="recommendation-card__badge">Хит</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -463,15 +484,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -481,15 +502,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -499,15 +520,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -517,15 +538,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -535,15 +556,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -553,15 +574,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -571,15 +592,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -589,15 +610,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
 
         <article class="recommendation-card catalog-product-card">
@@ -607,15 +628,15 @@
             </a>
             <span class="recommendation-card__badge">Новинка</span>
             <div class="recommendation-card__actions">
-              <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-              <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
+              <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
             </div>
           </div>
           <div class="recommendation-card__info">
-            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+            <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
             <h3 class="recommendation-card__name"><a href="master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
           </div>
-          <button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
         </article>
       </div>
 
@@ -625,9 +646,9 @@
       </button>
 
       <nav class="catalog-pagination" aria-label="Пагинация каталога">
-        <button class="catalog-pagination__side catalog-pagination__side--prev is-disabled" type="button" disabled>
-          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
-          <span>Предыдущая страница</span>
+        <button class="catalog-pagination__side catalog-pagination__side--prev is-disabled" type="button" disabled aria-label="Предыдущая страница">
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span class="catalog-pagination__side-text">Предыдущая страница</span>
         </button>
         <div class="catalog-pagination__pages">
           <a class="catalog-pagination__page is-active" href="/catalog/" aria-current="page">1</a>
@@ -639,9 +660,9 @@
           <span class="catalog-pagination__page catalog-pagination__page--dots">...</span>
           <a class="catalog-pagination__page" href="/catalog/?page=17">17</a>
         </div>
-        <button class="catalog-pagination__side catalog-pagination__side--next" type="button">
-          <span>Следующая страница</span>
-          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+        <button class="catalog-pagination__side catalog-pagination__side--next" type="button" aria-label="Следующая страница">
+          <span class="catalog-pagination__side-text">Следующая страница</span>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
         </button>
       </nav>
     </section>
@@ -654,7 +675,7 @@
 
       <div class="community-showcase__cards">
         <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--offroad" src="/fintrail/assets/offroad-C3AuSeVY.png" srcset="/fintrail/assets/offroad-C3AuSeVY.png 1x" sizes="100vw" alt="Бездорожье FINNTRAIL" loading="lazy">
+          <img class="community-showcase__image community-showcase__image--offroad" src="/fintrail/assets/offroad-gHZ9-fND.png" srcset="/fintrail/assets/offroad-gHZ9-fND.png 1x" sizes="100vw" alt="Бездорожье FINNTRAIL" loading="lazy">
           <h3 class="community-showcase__name">Бездорожье</h3>
           <div class="community-showcase__stats"><span class="community-showcase__number">~ 550 000</span><span class="community-showcase__caption">Подписчиков</span></div>
           <div class="community-showcase__socials">

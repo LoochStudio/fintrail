@@ -50,22 +50,16 @@
     min-width: 0;
   }
 
-  &__field {
+  // Внешняя обёртка — несёт состояния (is-error, has-value, is-disabled)
+  // caption абсолютный, блок не растягивается
+  &__field-wrap {
     position: relative;
     display: flex;
+    flex-direction: column;
+    gap: 0;
     min-width: 0;
-    height: 52px;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    background: $color-control-glass;
-    border-radius: $radius-xs;
-    transition: background 0.18s ease, border-color 0.18s ease;
 
     &:focus-within {
-      background: $color-control-glass;
-
       .login-bonus__input {
         padding-right: 40px;
       }
@@ -91,9 +85,12 @@
 
     &.is-disabled,
     &:has(.login-bonus__input:disabled) {
-      background: $color-control-glass-disabled;
-      border-color: transparent;
       pointer-events: none;
+
+      .login-bonus__field {
+        background: $color-control-glass-disabled;
+        border-color: transparent;
+      }
 
       .login-bonus__input {
         color: $color-gray-primary;
@@ -109,13 +106,29 @@
     }
 
     &.is-error {
-      border-color: $color-secondary-accent;
-      background: $color-control-glass-disabled;
+      .login-bonus__field {
+        border-color: $color-secondary-accent;
+        background: $color-control-glass-disabled;
+      }
 
       .login-bonus__caption {
         display: block;
       }
     }
+  }
+
+  // Визуальный блок инпута — только внешний вид, без состояний
+  &__field {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    height: 52px;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    background: $color-control-glass;
+    border-radius: $radius-xs;
+    transition: background 0.18s ease, border-color 0.18s ease;
   }
 
   &__field-label {
@@ -179,11 +192,9 @@
   }
 
   &__caption {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
     display: none;
-    width: 100%;
+    margin-top: 4px;
+    white-space: nowrap;
     font-family: $font-mono;
     font-size: $text-body-b2-size;
     font-weight: 500;
@@ -264,15 +275,15 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    &__field:hover {
+    &__field-wrap:hover .login-bonus__field {
       background: $color-control-glass-hover;
     }
 
-    &__field:focus-within:hover {
+    &__field-wrap:focus-within:hover .login-bonus__field {
       background: $color-control-glass;
     }
 
-    &__field.is-error:hover {
+    &__field-wrap.is-error:hover .login-bonus__field {
       background: $color-control-glass-disabled;
     }
 
@@ -317,12 +328,6 @@
     overflow: visible;
   }
 
-  .login-bonus:has(.login-bonus__field.is-error) {
-    min-height: 148px;
-    height: auto;
-    align-items: start;
-  }
-
   .login-bonus__text {
     width: 100%;
     max-width: 700px;
@@ -364,5 +369,12 @@
     height: 52px; // восстанавливаем десктопную высоту
     padding: 14px; // десктоп: 14px (мобайл: 10px)
     min-width: 0;
+  }
+
+  .login-bonus__caption {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    margin-top: 0;
   }
 }

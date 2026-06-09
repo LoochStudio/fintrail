@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail · UI Kit</title>
+  <link rel="stylesheet" href="/scss/main.scss">
+  <style>
+    /* ============================================================
+       UI KIT PAGE LAYOUT
+       Компоненты с префиксом uk- — только для этой страницы.
+       Кнопки используют реальные классы из _buttons.scss.
+       Контролы и инпуты определены здесь до выноса в SCSS.
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #f5f5f5;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    /* --- nav --- */
+    .uk-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 40px;
+      background: #1f1f1f;
+      border-bottom: 1px solid #333;
+    }
+    .uk-nav__logo {
+      font-family: 'Nata Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-right: 12px;
+      letter-spacing: 0.05em;
+    }
+    .uk-nav a {
+      padding: 5px 14px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .uk-nav a:hover { background: rgba(255,255,255,0.16); color: #fff; }
+
+    /* --- sections --- */
+    .uk-section { padding: 56px 40px; }
+    .uk-section--dark { background: #1f1f1f; }
+    .uk-section--gray { background: #e8e8e8; }
+
+    .uk-section-title {
+      margin: 0 0 40px;
+      font-family: 'Nata Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      color: #1f1f1f;
+    }
+    .uk-section--dark .uk-section-title { color: #fff; }
+
+    .uk-subsection { margin-bottom: 40px; }
+    .uk-subsection:last-child { margin-bottom: 0; }
+
+    .uk-subsection-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #a2a7aa;
+    }
+    .uk-subsection-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #cdd2d5;
+    }
+    .uk-section--dark .uk-subsection-title { color: #555; }
+    .uk-section--dark .uk-subsection-title::after { background: #333; }
+
+    /* --- state label --- */
+    .uk-state-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #a2a7aa;
+    }
+    .uk-section--dark .uk-state-label { color: #555; }
+
+    /* ============================================================
+       BUTTONS — states grid
+    ============================================================ */
+    .uk-btn-grid {
+      display: grid;
+      grid-template-columns: 72px repeat(4, auto);
+      gap: 8px 16px;
+      align-items: center;
+      justify-items: start;
+    }
+    .uk-btn-grid-header {
+      display: contents;
+    }
+    .uk-btn-grid-header > span {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #a2a7aa;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e0e0e0;
+      width: 100%;
+    }
+    .uk-section--dark .uk-btn-grid-header > span { color: #555; border-color: #333; }
+
+    /* Frozen hover/active states */
+    .uk-s-hover.button--primary  { background: #000; }
+    .uk-s-hover.button--on-color { background: #d8dde0; }
+    .uk-s-hover.button--ghost    { background: #fff; }
+    .uk-s-hover.button--on-content { background: rgba(255,255,255,0.24); }
+
+    .uk-s-active.button--primary  { background: #323232; }
+    .uk-s-active.button--on-color { background: #afb4b7; }
+    .uk-s-active.button--ghost    { background: #eaeaea; color: #a2a7aa; }
+    .uk-s-active.button--on-content { background: rgba(255,255,255,0.08); }
+
+    /* Icon buttons row */
+    .uk-icon-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       CONTROLS — Toggle, Checkbox, Radio
+    ============================================================ */
+    .uk-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 240px);
+      gap: 40px;
+    }
+
+    .uk-control-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #a2a7aa;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #cdd2d5;
+    }
+    .uk-section--dark .uk-control-title { color: #555; border-color: #333; }
+
+    .uk-control-rows { display: flex; flex-direction: column; gap: 16px; }
+
+    .uk-control-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .uk-control-row-label {
+      width: 64px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #a2a7aa;
+      flex-shrink: 0;
+    }
+    .uk-section--dark .uk-control-row-label { color: #555; }
+
+    .uk-control-pair { display: flex; gap: 12px; align-items: center; }
+
+    /* Toggle — реальная структура из _catalog-filter-modal.scss,
+       цвета состояний из Figma Controls (node 1347:32868) */
+    .uk-toggle-wrap.catalog-filter-toggle {
+      width: auto;
+      justify-content: flex-start;
+      gap: 0;
+    }
+
+    /* Off Default: #b0b0b0 (Figma: main/50) */
+    .uk-toggle-wrap .catalog-filter-toggle__control {
+      background: #b0b0b0;
+    }
+    /* On Default: #e72016 (Figma: brand/secondary-accent) */
+    .uk-toggle-wrap input:checked ~ .catalog-filter-toggle__control {
+      background: #e72016;
+    }
+    .uk-toggle-wrap input:checked ~ .catalog-filter-toggle__control::after {
+      right: 6px;
+      background: #fff;
+    }
+
+    /* Off Hover: #e4e5e7 (Figma: main/30) */
+    .uk-toggle-wrap.uk-s-hover .catalog-filter-toggle__control { background: #e4e5e7; }
+    /* On Hover: #d3170d (Figma: brand/hover) */
+    .uk-toggle-wrap.uk-s-hover input:checked ~ .catalog-filter-toggle__control { background: #d3170d; }
+
+    /* Disabled: #e4e5e7 + border (одинаково для off и on) */
+    .uk-toggle-wrap input:disabled ~ .catalog-filter-toggle__control {
+      background: #e4e5e7;
+      border: 1px solid #e4e5e7;
+    }
+
+    /* Checkbox */
+    .uk-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid #cdd2d5;
+      border-radius: 3px;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .uk-checkbox:checked {
+      background: #1f1f1f;
+      border-color: #1f1f1f;
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3333 4L5.99999 11.3333L2.66666 8' stroke='white' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 14px 14px;
+    }
+    .uk-checkbox:disabled { opacity: 0.4; cursor: default; }
+
+    /* Radio */
+    .uk-radio {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid #cdd2d5;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: border-color 0.15s;
+    }
+    .uk-radio:checked { border-color: #1f1f1f; }
+    .uk-radio:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 10px; height: 10px;
+      background: #1f1f1f;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .uk-radio:disabled { opacity: 0.4; cursor: default; }
+
+    /* ============================================================
+       INPUTS — generic component (light + dark variants)
+       TODO: вынести в scss/components/_input.scss
+    ============================================================ */
+    .uk-inputs-grid {
+      display: grid;
+      grid-template-columns: 320px 320px;
+      gap: 48px 64px;
+    }
+
+    .uk-field-wrap {
+      position: relative;
+    }
+    .uk-field {
+      display: flex;
+      align-items: center;
+      height: 52px;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      gap: 8px;
+      transition: background 0.18s, border-color 0.18s;
+    }
+    .uk-field__input {
+      flex: 1;
+      min-width: 0;
+      border: 0; outline: 0;
+      background: transparent;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .uk-field__input::placeholder { opacity: 1; }
+    .uk-field__clear {
+      display: none;
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      padding: 0; border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 10px;
+      line-height: 16px;
+      text-align: center;
+    }
+    .uk-field-wrap.uk-s-value .uk-field__clear { display: block; }
+    .uk-field__caption {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px); left: 0;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .uk-field-wrap.is-error .uk-field__caption { display: block; }
+
+    /* Textarea */
+    .uk-field--textarea .uk-field {
+      height: auto; min-height: 96px;
+      align-items: flex-start;
+      padding: 12px 16px;
+    }
+    .uk-field--textarea .uk-field__input {
+      height: 72px;
+      resize: none;
+      line-height: 1.5;
+      width: 100%;
+    }
+
+    /* Light variant */
+    .uk-field--light .uk-field        { background: #f2f2f2; }
+    .uk-field--light .uk-field__input { color: #1f1f1f; }
+    .uk-field--light .uk-field__input::placeholder { color: #a2a7aa; }
+    .uk-field--light .uk-field__clear { color: #a2a7aa; }
+    .uk-field--light .uk-field__caption { color: #e72016; }
+    .uk-field--light.uk-s-hover   .uk-field { background: #e8e8e8; }
+    .uk-field--light.uk-s-active  .uk-field { background: #fff; border-color: #1f1f1f; }
+    .uk-field--light.uk-s-disabled .uk-field { background: #f2f2f2; opacity: 0.5; }
+    .uk-field--light.is-error      .uk-field { background: #f2f2f2; border-color: #e72016; }
+
+    /* Dark variant */
+    .uk-field--dark .uk-field        { background: rgba(255,255,255,0.16); }
+    .uk-field--dark .uk-field__input { color: #fff; }
+    .uk-field--dark .uk-field__input::placeholder { color: #a2a7aa; }
+    .uk-field--dark .uk-field__clear { color: #a2a7aa; }
+    .uk-field--dark .uk-field__caption { color: #e72016; }
+    .uk-field--dark.uk-s-hover    .uk-field { background: rgba(255,255,255,0.24); }
+    .uk-field--dark.uk-s-active   .uk-field { background: rgba(255,255,255,0.16); }
+    .uk-field--dark.uk-s-active   .uk-field__input::placeholder { color: #fff; }
+    .uk-field--dark.uk-s-disabled .uk-field { background: rgba(255,255,255,0.08); opacity: 0.6; }
+    .uk-field--dark.uk-s-disabled .uk-field__input { color: #73787b; }
+    .uk-field--dark.is-error       .uk-field { background: rgba(255,255,255,0.08); border-color: #e72016; }
+
+    /* Input state rows layout */
+    .uk-input-rows { display: flex; flex-direction: column; gap: 10px; }
+    .uk-input-row  { display: flex; align-items: flex-start; gap: 12px; }
+    .uk-input-row-label {
+      width: 66px; flex-shrink: 0;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; color: #a2a7aa;
+      line-height: 52px;
+    }
+    .uk-input-row--ta .uk-input-row-label { line-height: 96px; }
+    .uk-section--dark .uk-input-row-label { color: #555; }
+    .uk-input-field { flex: 1; }
+
+    /* Error row extra bottom space for caption */
+    .uk-input-row--error { padding-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <nav class="uk-nav">
+    <span class="uk-nav__logo">Finntrail UI Kit</span>
+    <a href="#buttons">Кнопки</a>
+    <a href="#controls">Контролы</a>
+    <a href="#inputs">Инпуты</a>
+  </nav>
+
+
+  <!-- ============================================================
+       BUTTONS — светлый фон
+  ============================================================ -->
+  <section id="buttons" class="uk-section">
+    <h1 class="uk-section-title">Buttons</h1>
+
+    <!-- PRIMARY -->
+    <div class="uk-subsection">
+      <div class="uk-subsection-title">Primary</div>
+      <div class="uk-btn-grid">
+        <div class="uk-btn-grid-header">
+          <span></span>
+          <span>L — 52px</span>
+          <span>M — 44px</span>
+          <span>S — 36px</span>
+          <span>XS — 24px</span>
+        </div>
+        <span class="uk-state-label">Default</span>
+        <button class="button button--primary button--size-l">Кнопка</button>
+        <button class="button button--primary button--size-m">Кнопка</button>
+        <button class="button button--primary button--size-s">Кнопка</button>
+        <button class="button button--primary button--size-xs">Кнопка</button>
+
+        <span class="uk-state-label">Hover</span>
+        <button class="button button--primary button--size-l uk-s-hover">Кнопка</button>
+        <button class="button button--primary button--size-m uk-s-hover">Кнопка</button>
+        <button class="button button--primary button--size-s uk-s-hover">Кнопка</button>
+        <button class="button button--primary button--size-xs uk-s-hover">Кнопка</button>
+
+        <span class="uk-state-label">Active</span>
+        <button class="button button--primary button--size-l uk-s-active">Кнопка</button>
+        <button class="button button--primary button--size-m uk-s-active">Кнопка</button>
+        <button class="button button--primary button--size-s uk-s-active">Кнопка</button>
+        <button class="button button--primary button--size-xs uk-s-active">Кнопка</button>
+
+        <span class="uk-state-label">Disabled</span>
+        <button class="button button--primary button--size-l" disabled>Кнопка</button>
+        <button class="button button--primary button--size-m" disabled>Кнопка</button>
+        <button class="button button--primary button--size-s" disabled>Кнопка</button>
+        <button class="button button--primary button--size-xs" disabled>Кнопка</button>
+      </div>
+    </div>
+
+    <!-- GHOST -->
+    <div class="uk-subsection">
+      <div class="uk-subsection-title">Ghost</div>
+      <div class="uk-btn-grid">
+        <div class="uk-btn-grid-header">
+          <span></span>
+          <span>L — 52px</span>
+          <span>M — 44px</span>
+          <span>S — 36px</span>
+          <span>XS — 24px</span>
+        </div>
+        <span class="uk-state-label">Default</span>
+        <button class="button button--ghost button--size-l">Кнопка</button>
+        <button class="button button--ghost button--size-m">Кнопка</button>
+        <button class="button button--ghost button--size-s">Кнопка</button>
+        <button class="button button--ghost button--size-xs">Кнопка</button>
+
+        <span class="uk-state-label">Hover</span>
+        <button class="button button--ghost button--size-l uk-s-hover">Кнопка</button>
+        <button class="button button--ghost button--size-m uk-s-hover">Кнопка</button>
+        <button class="button button--ghost button--size-s uk-s-hover">Кнопка</button>
+        <button class="button button--ghost button--size-xs uk-s-hover">Кнопка</button>
+
+        <span class="uk-state-label">Active</span>
+        <button class="button button--ghost button--size-l uk-s-active">Кнопка</button>
+        <button class="button button--ghost button--size-m uk-s-active">Кнопка</button>
+        <button class="button button--ghost button--size-s uk-s-active">Кнопка</button>
+        <button class="button button--ghost button--size-xs uk-s-active">Кнопка</button>
+
+        <span class="uk-state-label">Disabled</span>
+        <button class="button button--ghost button--size-l" disabled>Кнопка</button>
+        <button class="button button--ghost button--size-m" disabled>Кнопка</button>
+        <button class="button button--ghost button--size-s" disabled>Кнопка</button>
+        <button class="button button--ghost button--size-xs" disabled>Кнопка</button>
+      </div>
+    </div>
+
+    <!-- ICON — PRIMARY -->
+    <div class="uk-subsection">
+      <div class="uk-subsection-title">Icon Only</div>
+      <div style="display:flex; gap: 24px; align-items:flex-start; flex-wrap:wrap;">
+        <div>
+          <div class="uk-state-label" style="margin-bottom:8px;">Primary</div>
+          <div class="uk-icon-row">
+            <button class="button button--primary button--icon" title="Default">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--primary button--icon uk-s-hover" title="Hover">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--primary button--icon uk-s-active" title="Active">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--primary button--icon" disabled title="Disabled">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="uk-state-label" style="margin-bottom:8px;">Ghost</div>
+          <div class="uk-icon-row">
+            <button class="button button--ghost button--icon" title="Default">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--ghost button--icon uk-s-hover" title="Hover">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--ghost button--icon uk-s-active" title="Active">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--ghost button--icon" disabled title="Disabled">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTONS — тёмный фон -->
+  <section class="uk-section uk-section--dark">
+    <h1 class="uk-section-title">Buttons — On Color &amp; On Content</h1>
+
+    <!-- ON COLOR -->
+    <div class="uk-subsection">
+      <div class="uk-subsection-title">On Color</div>
+      <div class="uk-btn-grid">
+        <div class="uk-btn-grid-header">
+          <span></span>
+          <span>L — 52px</span>
+          <span>M — 44px</span>
+          <span>S — 36px</span>
+          <span>XS — 24px</span>
+        </div>
+        <span class="uk-state-label">Default</span>
+        <button class="button button--on-color button--size-l">Кнопка</button>
+        <button class="button button--on-color button--size-m">Кнопка</button>
+        <button class="button button--on-color button--size-s">Кнопка</button>
+        <button class="button button--on-color button--size-xs">Кнопка</button>
+
+        <span class="uk-state-label">Hover</span>
+        <button class="button button--on-color button--size-l uk-s-hover">Кнопка</button>
+        <button class="button button--on-color button--size-m uk-s-hover">Кнопка</button>
+        <button class="button button--on-color button--size-s uk-s-hover">Кнопка</button>
+        <button class="button button--on-color button--size-xs uk-s-hover">Кнопка</button>
+
+        <span class="uk-state-label">Active</span>
+        <button class="button button--on-color button--size-l uk-s-active">Кнопка</button>
+        <button class="button button--on-color button--size-m uk-s-active">Кнопка</button>
+        <button class="button button--on-color button--size-s uk-s-active">Кнопка</button>
+        <button class="button button--on-color button--size-xs uk-s-active">Кнопка</button>
+
+        <span class="uk-state-label">Disabled</span>
+        <button class="button button--on-color button--size-l" disabled>Кнопка</button>
+        <button class="button button--on-color button--size-m" disabled>Кнопка</button>
+        <button class="button button--on-color button--size-s" disabled>Кнопка</button>
+        <button class="button button--on-color button--size-xs" disabled>Кнопка</button>
+      </div>
+    </div>
+
+    <!-- ON CONTENT -->
+    <div class="uk-subsection">
+      <div class="uk-subsection-title">On Content</div>
+      <div class="uk-btn-grid">
+        <div class="uk-btn-grid-header">
+          <span></span>
+          <span>L — 52px</span>
+          <span>M — 44px</span>
+          <span>S — 36px</span>
+          <span>XS — 24px</span>
+        </div>
+        <span class="uk-state-label">Default</span>
+        <button class="button button--on-content button--size-l">Кнопка</button>
+        <button class="button button--on-content button--size-m">Кнопка</button>
+        <button class="button button--on-content button--size-s">Кнопка</button>
+        <button class="button button--on-content button--size-xs">Кнопка</button>
+
+        <span class="uk-state-label">Hover</span>
+        <button class="button button--on-content button--size-l uk-s-hover">Кнопка</button>
+        <button class="button button--on-content button--size-m uk-s-hover">Кнопка</button>
+        <button class="button button--on-content button--size-s uk-s-hover">Кнопка</button>
+        <button class="button button--on-content button--size-xs uk-s-hover">Кнопка</button>
+
+        <span class="uk-state-label">Active</span>
+        <button class="button button--on-content button--size-l uk-s-active">Кнопка</button>
+        <button class="button button--on-content button--size-m uk-s-active">Кнопка</button>
+        <button class="button button--on-content button--size-s uk-s-active">Кнопка</button>
+        <button class="button button--on-content button--size-xs uk-s-active">Кнопка</button>
+
+        <span class="uk-state-label">Disabled</span>
+        <button class="button button--on-content button--size-l" disabled>Кнопка</button>
+        <button class="button button--on-content button--size-m" disabled>Кнопка</button>
+        <button class="button button--on-content button--size-s" disabled>Кнопка</button>
+        <button class="button button--on-content button--size-xs" disabled>Кнопка</button>
+      </div>
+    </div>
+
+    <!-- ICON ON DARK -->
+    <div class="uk-subsection">
+      <div class="uk-subsection-title">Icon Only</div>
+      <div style="display:flex; gap: 24px; align-items:flex-start; flex-wrap:wrap;">
+        <div>
+          <div class="uk-state-label" style="margin-bottom:8px;">On Color</div>
+          <div class="uk-icon-row">
+            <button class="button button--on-color button--icon">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--on-color button--icon uk-s-hover">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--on-color button--icon uk-s-active">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--on-color button--icon" disabled>
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="uk-state-label" style="margin-bottom:8px;">On Content</div>
+          <div class="uk-icon-row">
+            <button class="button button--on-content button--icon">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--on-content button--icon uk-s-hover">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--on-content button--icon uk-s-active">
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+            <button class="button button--on-content button--icon" disabled>
+              <svg width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTROLS
+  ============================================================ -->
+  <section id="controls" class="uk-section">
+    <h1 class="uk-section-title">Controls</h1>
+
+    <div class="uk-controls-grid">
+
+      <!-- TOGGLE -->
+      <div>
+        <div class="uk-control-title">Toggle</div>
+        <div class="uk-control-rows">
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Off</span>
+            <div class="uk-control-pair">
+              <label class="catalog-filter-toggle uk-toggle-wrap" title="Off">
+                <input type="checkbox">
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+              <label class="catalog-filter-toggle catalog-filter-toggle--accent uk-toggle-wrap" title="Off accent">
+                <input type="checkbox">
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+            </div>
+          </div>
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">On</span>
+            <div class="uk-control-pair">
+              <label class="catalog-filter-toggle uk-toggle-wrap" title="On">
+                <input type="checkbox" checked>
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+              <label class="catalog-filter-toggle catalog-filter-toggle--accent uk-toggle-wrap" title="On accent (red)">
+                <input type="checkbox" checked>
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+            </div>
+          </div>
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Hover</span>
+            <div class="uk-control-pair">
+              <label class="catalog-filter-toggle uk-toggle-wrap uk-s-hover" title="Hover off">
+                <input type="checkbox">
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+              <label class="catalog-filter-toggle uk-toggle-wrap uk-s-hover" title="Hover on">
+                <input type="checkbox" checked>
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+            </div>
+          </div>
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Disabled</span>
+            <div class="uk-control-pair">
+              <label class="catalog-filter-toggle uk-toggle-wrap" title="Disabled off">
+                <input type="checkbox" disabled>
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+              <label class="catalog-filter-toggle uk-toggle-wrap" title="Disabled on">
+                <input type="checkbox" checked disabled>
+                <span class="catalog-filter-toggle__control"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKBOX -->
+      <div>
+        <div class="uk-control-title">Checkbox</div>
+        <div class="uk-control-rows">
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Default</span>
+            <div class="uk-control-pair">
+              <input type="checkbox" class="uk-checkbox" title="Unchecked">
+              <input type="checkbox" class="uk-checkbox" checked title="Checked">
+            </div>
+          </div>
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Disabled</span>
+            <div class="uk-control-pair">
+              <input type="checkbox" class="uk-checkbox" disabled title="Disabled unchecked">
+              <input type="checkbox" class="uk-checkbox" checked disabled title="Disabled checked">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RADIOBUTTON -->
+      <div>
+        <div class="uk-control-title">Radiobutton</div>
+        <div class="uk-control-rows">
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Default</span>
+            <div class="uk-control-pair">
+              <input type="radio" class="uk-radio" name="demo-r1" title="Unselected">
+              <input type="radio" class="uk-radio" name="demo-r1" checked title="Selected">
+            </div>
+          </div>
+          <div class="uk-control-row">
+            <span class="uk-control-row-label">Disabled</span>
+            <div class="uk-control-pair">
+              <input type="radio" class="uk-radio" name="demo-r2" disabled title="Disabled unselected">
+              <input type="radio" class="uk-radio" name="demo-r2" checked disabled title="Disabled selected">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       INPUTS — светлый фон
+  ============================================================ -->
+  <section id="inputs" class="uk-section">
+    <h1 class="uk-section-title">Inputs &amp; Textarea</h1>
+
+    <div class="uk-inputs-grid">
+
+      <!-- INPUT LIGHT -->
+      <div>
+        <div class="uk-subsection-title">Input — Light</div>
+        <div class="uk-input-rows">
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Default</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" placeholder="Ваш телефон">
+                  <button class="uk-field__clear" type="button">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Hover</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-s-hover">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" placeholder="Ваш телефон">
+                  <button class="uk-field__clear" type="button">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Active</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-s-active uk-s-value">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" value="+7 (999) 123-45-67">
+                  <button class="uk-field__clear" type="button">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Disabled</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-s-disabled">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" placeholder="Ваш телефон" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--error">
+            <span class="uk-input-row-label">Error</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light is-error">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" value="+7 (234) 234-">
+                </div>
+                <span class="uk-field__caption">Введите полный номер</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEXTAREA LIGHT -->
+      <div>
+        <div class="uk-subsection-title">Textarea — Light</div>
+        <div class="uk-input-rows">
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Default</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-field--textarea">
+                <div class="uk-field">
+                  <textarea class="uk-field__input" placeholder="Placeholder"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Hover</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-field--textarea uk-s-hover">
+                <div class="uk-field">
+                  <textarea class="uk-field__input" placeholder="Placeholder"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Active</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-field--textarea uk-s-active uk-s-value">
+                <div class="uk-field">
+                  <textarea class="uk-field__input">Ваш телефон</textarea>
+                  <button class="uk-field__clear" type="button" style="margin-top:2px;">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Disabled</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-field--textarea uk-s-disabled">
+                <div class="uk-field">
+                  <textarea class="uk-field__input" placeholder="Placeholder" disabled></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta uk-input-row--error">
+            <span class="uk-input-row-label">Error</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--light uk-field--textarea is-error">
+                <div class="uk-field">
+                  <textarea class="uk-field__input">Ваш телефон</textarea>
+                </div>
+                <span class="uk-field__caption">Short caption</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INPUTS — тёмный фон
+  ============================================================ -->
+  <section class="uk-section uk-section--dark">
+    <h1 class="uk-section-title">Inputs &amp; Textarea — Dark</h1>
+
+    <div class="uk-inputs-grid">
+
+      <!-- INPUT DARK -->
+      <div>
+        <div class="uk-subsection-title">Input — Dark</div>
+        <div class="uk-input-rows">
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Default</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" placeholder="Ваш телефон">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Hover</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-s-hover">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" placeholder="Ваш телефон">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Active</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-s-active uk-s-value">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" value="+7 (999) 123-45-67">
+                  <button class="uk-field__clear" type="button">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row">
+            <span class="uk-input-row-label">Disabled</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-s-disabled">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" placeholder="Ваш телефон" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--error">
+            <span class="uk-input-row-label">Error</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark is-error">
+                <div class="uk-field">
+                  <input class="uk-field__input" type="text" value="+7 (234) 234-">
+                </div>
+                <span class="uk-field__caption">Введите полный номер</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEXTAREA DARK -->
+      <div>
+        <div class="uk-subsection-title">Textarea — Dark</div>
+        <div class="uk-input-rows">
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Default</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-field--textarea">
+                <div class="uk-field">
+                  <textarea class="uk-field__input" placeholder="Placeholder"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Hover</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-field--textarea uk-s-hover">
+                <div class="uk-field">
+                  <textarea class="uk-field__input" placeholder="Placeholder"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Active</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-field--textarea uk-s-active uk-s-value">
+                <div class="uk-field">
+                  <textarea class="uk-field__input">Ваш телефон</textarea>
+                  <button class="uk-field__clear" type="button" style="margin-top:2px;">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta">
+            <span class="uk-input-row-label">Disabled</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-field--textarea uk-s-disabled">
+                <div class="uk-field">
+                  <textarea class="uk-field__input" placeholder="Placeholder" disabled></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-input-row uk-input-row--ta uk-input-row--error">
+            <span class="uk-input-row-label">Error</span>
+            <div class="uk-input-field">
+              <div class="uk-field-wrap uk-field--dark uk-field--textarea is-error">
+                <div class="uk-field">
+                  <textarea class="uk-field__input">Ваш телефон</textarea>
+                </div>
+                <span class="uk-field__caption">Short caption</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

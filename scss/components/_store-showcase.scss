@@ -22,14 +22,10 @@
 }
 
 .store-showcase__image {
-  position: absolute;
-  top: 0;
-  left: -31.408px;
   display: block;
-  width: 149.893%;
+  width: 100%;
   height: 100%;
-  max-width: none;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .store-showcase__panel {

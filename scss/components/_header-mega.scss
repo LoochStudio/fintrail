@@ -103,6 +103,27 @@
   color: $color-primary-black;
 }
 
+.header-mega__group:hover .header-mega__title,
+.header-mega__group:hover .header-mega__list a,
+.header-mega__group:focus-within .header-mega__title,
+.header-mega__group:focus-within .header-mega__list a {
+  color: $color-primary-gray;
+}
+
+.header-mega__group:hover .header-mega__title:hover,
+.header-mega__group:focus-within .header-mega__title:focus-visible,
+.header-mega__group:hover .header-mega__list a:hover,
+.header-mega__group:focus-within .header-mega__list a:focus-visible {
+  color: $color-primary-black;
+}
+
+.header-mega.is-group-hovered .header-mega__group:hover .header-mega__title:hover,
+.header-mega.is-group-hovered .header-mega__group:focus-within .header-mega__title:focus-visible,
+.header-mega.is-group-hovered .header-mega__group:hover .header-mega__list a:hover,
+.header-mega.is-group-hovered .header-mega__group:focus-within .header-mega__list a:focus-visible {
+  color: $color-primary-black;
+}
+
 .header-mega__activities {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));

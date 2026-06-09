@@ -245,11 +245,16 @@
     border-radius: 50%;
     flex: 0 0 auto;
     border: 0;
+    cursor: pointer;
 
+    // Активное состояние — только кольцо, фон задаётся цветовым модификатором
     &--active {
-      width: 10px;
-      height: 10px;
-      border: 1px solid $color-primary-black;
+      outline: 1.5px solid $color-primary-black;
+      outline-offset: 2px;
+    }
+
+    // Цветовые варианты
+    &--graphite {
       background: #89b9e3;
     }
 
@@ -514,11 +519,6 @@
   .recommendation-card__color {
     width: 12px;
     height: 12px;
-
-    &--active {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   .recommendation-card__name {
@@ -715,11 +715,6 @@
   .recommendation-card__color {
     width: 12px;
     height: 12px;
-
-    &--active {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   .recommendation-card__name {

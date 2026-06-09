@@ -70,7 +70,7 @@
   @include cart-trim-text;
 
   margin: 0;
-  padding-left: calc(25vw - var(--cart-page-gutter));
+  padding-left: 340px;
   font-family: $font-display;
   font-size: 36px;
   font-weight: $font-weight-black;
@@ -1497,7 +1497,7 @@
 
 @media (min-width: 1441px) {
   .cart-page {
-    --cart-page-gutter: 20px;
+    --cart-page-gutter: calc((100vw - 1440px) / 2 + 20px);
   }
 }
 

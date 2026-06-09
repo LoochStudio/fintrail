@@ -230,6 +230,152 @@
   }
 }
 
+@media (max-width: calc($bp-lg - 1px)) {
+  .is-mobile-menu-open .catalog-header {
+    z-index: $z-tabbar - 2;
+  }
+
+  .catalog-header {
+    height: 64px;
+    background: transparent;
+  }
+
+  .catalog-header .hero__topbar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    z-index: 50;
+    display: flex;
+    width: auto;
+    height: auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    background: transparent;
+    color: $color-primary-black;
+    isolation: isolate;
+  }
+
+  .catalog-header .hero__topbar::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    height: 64px;
+    background: $color-surface;
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  .catalog-header .hero__brand {
+    display: contents;
+  }
+
+  .catalog-header .hero__menu-btn {
+    position: static;
+    display: flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    color: $color-primary-black;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  .catalog-header .hero__logo-link {
+    position: static;
+    display: block;
+    width: 134px;
+    height: 24px;
+  }
+
+  .catalog-header .hero__logo {
+    filter: brightness(0) saturate(100%);
+  }
+
+  .catalog-header .hero__nav {
+    display: none;
+  }
+
+  .catalog-header .hero__tools {
+    position: static;
+    display: contents;
+  }
+
+  .catalog-header .hero__tool {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    color: $color-primary-black;
+
+    &:not(:first-child) {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .catalog-header {
+    height: 72px;
+  }
+
+  .catalog-header .hero__topbar {
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 20px;
+  }
+
+  .catalog-header .hero__topbar::before {
+    height: 72px;
+  }
+
+  .catalog-header .hero__brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .catalog-header .hero__menu-btn {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .catalog-header .hero__logo-link {
+    width: 180px;
+    height: 32px;
+  }
+
+  .catalog-header .hero__tools {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .catalog-header .hero__tool,
+  .catalog-header .hero__tool:not(:first-child) {
+    display: flex;
+  }
+}
+
 .catalog-hero {
   display: flex;
   flex-direction: column;
@@ -314,6 +460,7 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
+  flex-wrap: nowrap;
 }
 
 .catalog-hero__title {
@@ -327,6 +474,7 @@
 }
 
 .catalog-hero__count {
+  flex-shrink: 0;
   color: $color-primary-black;
   font-family: $font-display;
   font-size: 12px;
@@ -376,6 +524,14 @@
 }
 
 .catalog-hero--sale {
+  .catalog-hero__image {
+    object-position: center 25%;
+
+    @media (max-width: calc($bp-md - 1px)) {
+      object-position: 30% 15%;
+    }
+  }
+
   .catalog-hero__copy {
     top: auto;
     bottom: 20px;
@@ -751,13 +907,288 @@
   }
 }
 
+@media (max-width: calc($bp-md - 1px)) {
+  .catalog-page {
+    padding-top: 64px;
+  }
+
+  // Hero bar: back+share в одной строке, заголовок под ними
+  .catalog-hero__bar {
+    align-items: flex-start;
+  }
+
+  .catalog-hero__bar-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .catalog-hero__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  // Текст баннера: прижать к низу, ширина в рамках экрана
+  .catalog-hero__copy {
+    top: auto;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: calc(100% - 40px);
+  }
+
+  .catalog-hero__headline {
+    margin: 0;
+  }
+
+  // Теги: две отдельные прокручиваемые строки
+  .catalog-tags {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 20px 0 20px;
+    overflow-x: visible;
+  }
+
+  .catalog-tags__group {
+    overflow-x: auto;
+    padding: 0 20px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .catalog-tags__divider {
+    display: none;
+  }
+
+  // Одиночный тег вне групп (горные лыжи) — скрыть дубликат
+  .catalog-tags > .catalog-tags__chip {
+    display: none;
+  }
+
+  // Тулбар
+  .catalog-toolbar {
+    padding: 0 8px;
+  }
+
+  // Карточки — одна колонка full-width, высота как в макете
+  .catalog-products__grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .catalog-product-card.recommendation-card {
+    width: 100%;
+    height: 560px;
+    grid-template-rows: minmax(0, 1fr) 72px 48px;
+    border-top: 1px solid $color-white;
+    border-bottom: 1px solid $color-white;
+    background: transparent;
+  }
+
+  // Медиа без паддинга — изображение на полную ширину
+  .catalog-product-card .recommendation-card__media {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .catalog-product-card .recommendation-card__image-link {
+    width: 100%;
+    height: 100%;
+  }
+
+  .catalog-product-card .recommendation-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // Бейдж и иконки: позиция 24px от краёв поверх изображения
+  .catalog-product-card .recommendation-card__badge {
+    top: 16px;
+    left: 24px;
+  }
+
+  .catalog-product-card .recommendation-card__actions {
+    display: flex;
+    top: 16px;
+    right: 24px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  // Цветовые кружки скрыты на мобилке
+  .catalog-product-card .recommendation-card__colors {
+    display: none;
+  }
+
+  .catalog-product-card .recommendation-card__info {
+    height: 72px;
+    padding: 0 24px 16px;
+    justify-content: flex-end;
+    gap: 0;
+  }
+
+  .catalog-product-card .recommendation-card__cart {
+    height: 48px;
+    padding: 0 24px;
+  }
+
+  // Показать ещё — surface-фон, без border-radius, с бордером сверху
+  .catalog-products__more {
+    width: 100%;
+    background: $color-surface;
+    border-radius: 0;
+    border-top: 1px solid $color-white;
+  }
+
+  // Пагинация: строка с номерами (order 1), строка со стрелками (order 2, flex-wrap)
+  .catalog-pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .catalog-pagination__pages {
+    order: 1;
+    flex: 0 0 100%;
+    border-top: 1px solid $color-white;
+  }
+
+  .catalog-pagination__page {
+    flex: 1 0 0;
+    width: auto;
+    min-width: 0;
+    padding: 12px 0;
+  }
+
+  .catalog-pagination__page--dots,
+  .catalog-pagination__page:last-child {
+    width: auto;
+  }
+
+  // Prev и next — в одной строке, ровно 50% каждая
+  .catalog-pagination__side {
+    display: flex;
+    order: 2;
+    flex: 0 0 50%;
+    width: auto;
+    min-width: 0;
+    padding: 12px 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .catalog-pagination__side--prev,
+  .catalog-pagination__side--next {
+    width: auto;
+  }
+
+  // Текст кнопок скрыт — только иконка
+  .catalog-pagination__side-text {
+    display: none;
+  }
+}
+
+// Планшет: общая база 768px+
 @media (min-width: $bp-md) {
+  .catalog-product-card {
+    margin-bottom: -1px;
+  }
+}
+
+// Планшет: 768–1023px — 2 колонки, карточки занимают ячейку
+@media (min-width: $bp-md) and (max-width: 1023px) {
+  .catalog-products__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Планшет: 1024–1279px — 3 колонки
+@media (min-width: 1024px) and (max-width: calc($bp-lg - 1px)) {
   .catalog-products__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
 
-  .catalog-product-card {
-    margin-bottom: -1px;
+// Планшет: всё от 768px до 1279px
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  // Отступ от хедера (72px) + 60px = 132px
+  .catalog-page {
+    padding-top: 132px;
+  }
+
+  // Hero bar: паддинги без абсолютного позиционирования (то только на десктопе)
+  .catalog-hero__bar {
+    padding: 0 20px;
+  }
+
+  // Сбрасываем gap: 293px из base — на планшете кнопка «Назад» в потоке
+  .catalog-hero__bar-main {
+    gap: 32px;
+  }
+
+  // Тулбар
+  .catalog-toolbar {
+    padding: 0 20px;
+  }
+
+  // Карточки заполняют grid-ячейку; переопределяем width: 360px из carousel-стилей
+  .catalog-product-card.recommendation-card {
+    width: 100%;
+    height: 560px;
+    margin-right: 0;
+    grid-template-rows: minmax(0, 1fr) 72px 48px;
+  }
+
+  .catalog-product-card .recommendation-card__media {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  .catalog-product-card .recommendation-card__image-link {
+    width: 100%;
+    height: 100%;
+  }
+
+  .catalog-product-card .recommendation-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // Показать ещё
+  .catalog-products__more {
+    border-radius: 0;
+    background: $color-surface;
+  }
+
+  // Пагинация видна на планшете
+  .catalog-pagination {
+    display: flex;
+    height: 52px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // Кнопки prev/next — только иконка, автоширина
+  .catalog-pagination__side {
+    width: auto;
+    padding: 12px 20px;
+  }
+
+  .catalog-pagination__side-text {
+    display: none;
   }
 }
 
