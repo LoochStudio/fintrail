@@ -361,6 +361,7 @@ export function init() {
         });
 
         label.appendChild(select);
+        enhanceSizeSelect(label);
         bottom.appendChild(label);
       }
 
@@ -370,6 +371,70 @@ export function init() {
       article.appendChild(content);
 
       return article;
+    }
+
+    function enhanceSizeSelect(sizeEl) {
+      const select = sizeEl?.querySelector('.build-kit-desktop__size-select');
+      if (!select || sizeEl.querySelector('.build-kit-desktop__size-button')) return;
+
+      sizeEl.classList.add('is-enhanced');
+
+      const button = document.createElement('button');
+      button.className = 'build-kit-desktop__size-button';
+      button.type = 'button';
+      button.textContent = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
+      button.disabled = select.disabled;
+      button.setAttribute('aria-haspopup', 'listbox');
+      button.setAttribute('aria-expanded', 'false');
+
+      const list = document.createElement('div');
+      list.className = 'build-kit-desktop__size-list';
+      list.setAttribute('role', 'listbox');
+
+      Array.from(select.options).forEach((option, index) => {
+        const item = document.createElement('button');
+        item.className = 'build-kit-desktop__size-option';
+        item.type = 'button';
+        item.textContent = option.textContent;
+        item.setAttribute('role', 'option');
+        item.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+
+        item.addEventListener('click', () => {
+          select.selectedIndex = index;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          button.textContent = option.textContent;
+          list.querySelectorAll('.build-kit-desktop__size-option').forEach(optionButton => {
+            optionButton.setAttribute('aria-selected', String(optionButton === item));
+          });
+          sizeEl.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+
+        list.appendChild(item);
+      });
+
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (button.disabled) return;
+
+        section.querySelectorAll('.build-kit-desktop__size.is-open').forEach(item => {
+          if (item === sizeEl) return;
+          item.classList.remove('is-open');
+          item.querySelector('.build-kit-desktop__size-button')?.setAttribute('aria-expanded', 'false');
+        });
+
+        const isOpen = sizeEl.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      select.addEventListener('change', () => {
+        button.textContent = select.selectedOptions[0]?.textContent || '';
+        button.disabled = select.disabled;
+      });
+
+      sizeEl.appendChild(button);
+      sizeEl.appendChild(list);
     }
 
     function selectedProductInKit() {
@@ -438,6 +503,17 @@ export function init() {
     productAddButton?.addEventListener('click', event => {
       event.preventDefault();
       addProductToKit(selectedJacket);
+    });
+
+    section.querySelectorAll('.build-kit-desktop__size').forEach(enhanceSizeSelect);
+
+    document.addEventListener('click', event => {
+      if (event.target.closest('.build-kit-desktop__size')) return;
+
+      section.querySelectorAll('.build-kit-desktop__size.is-open').forEach(sizeEl => {
+        sizeEl.classList.remove('is-open');
+        sizeEl.querySelector('.build-kit-desktop__size-button')?.setAttribute('aria-expanded', 'false');
+      });
     });
 
     btnPrev?.addEventListener('click', () => updatePage(page - 1));

@@ -170,10 +170,27 @@
         <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
 
         <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
-          <a href="/app/" aria-label="Google Play"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg></a>
-          <a href="/app/" aria-label="App Store"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg></a>
-          <a href="/app/" aria-label="AppGallery"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg></a>
-          <a href="/app/" aria-label="RuStore"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg></a>
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
         </div>
       </div>
     </aside>
@@ -201,7 +218,7 @@
           </nav>
         </div>
 
-        <article class="site-menu__promo">
+        <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
           <picture>
             <source srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
             <img src="/images/content/site-menu/hiking-promo.png" srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
@@ -210,10 +227,10 @@
             <h3>Экипировка<br>для хайкинга</h3>
             <p>Куртки, штаны, термобельё</p>
           </div>
-          <a class="site-menu__promo-link" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+          <span class="site-menu__promo-link" aria-hidden="true">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
-          </a>
-        </article>
+          </span>
+        </a>
       </div>
 
       <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
@@ -267,11 +284,11 @@
             </div>
             <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
           </button>
-          <button class="cart-delivery__option" type="button">
+          <button class="cart-delivery__option" type="button" data-cart-recipient-open>
             <div>
               <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
-              <p class="cart-delivery__primary">Константин Константинопольский</p>
-              <small>+7 (999) 999-66-33</small>
+              <p class="cart-delivery__primary" data-cart-recipient-name>Константин Константинопольский</p>
+              <small data-cart-recipient-phone>+7 (999) 999-66-33</small>
             </div>
             <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
           </button>
@@ -618,6 +635,71 @@
           <span class="cart-pickup-modal__marker cart-pickup-modal__marker--selected"><img src="/images/content/cart/cart-pickup-finntrail.svg" alt=""></span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="cart-recipient-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cart-recipient-title" data-cart-recipient-modal>
+    <button class="cart-recipient-modal__backdrop" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close></button>
+    <div class="cart-recipient-modal__panel" role="document">
+      <div class="cart-recipient-modal__header">
+        <h2 class="cart-recipient-modal__title" id="cart-recipient-title">Данные получателя</h2>
+        <button class="cart-recipient-modal__close js-modal-close" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <form class="cart-recipient-modal__form" novalidate>
+        <div class="cart-recipient-modal__fields">
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="first-name" placeholder="Имя" autocomplete="given-name" id="cart-recipient-first-name" aria-describedby="cart-recipient-first-name-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="cart-recipient-first-name-hint" aria-live="polite"></span>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="last-name" placeholder="Фамилия" autocomplete="family-name" id="cart-recipient-last-name" aria-describedby="cart-recipient-last-name-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="cart-recipient-last-name-hint" aria-live="polite"></span>
+          </div>
+          <div class="cart-recipient-modal__phone-row">
+            <button class="cart-recipient-modal__flag-btn" type="button" aria-label="Выбрать код страны">
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+              <svg class="cart-recipient-modal__flag-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+            </button>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" id="cart-recipient-phone" aria-describedby="cart-recipient-phone-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="cart-recipient-phone-hint" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email" id="cart-recipient-email" aria-describedby="cart-recipient-email-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="cart-recipient-email-hint" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="cart-recipient-modal__footer">
+          <label class="cart-recipient-modal__checkbox-label">
+            <input type="checkbox" class="uk-checkbox" name="subscribe">
+            <span>Хочу получать акции и предложения на почту</span>
+          </label>
+          <button class="cart-recipient-modal__submit" type="submit">Сохранить</button>
+        </div>
+      </form>
     </div>
   </div>
 

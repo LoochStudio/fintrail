@@ -301,6 +301,23 @@
   }
 }
 
+.site-menu__app-icon {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.site-menu__app-svg {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.18s ease;
+}
+
+.site-menu__app-svg--hover {
+  opacity: 0;
+}
+
 .site-menu__submenu {
   position: absolute;
   top: 0;
@@ -433,10 +450,12 @@
 
 .site-menu__promo {
   position: relative;
+  display: block;
   width: 100%;
   height: 282px;
   overflow: hidden;
   color: $color-primary-black;
+  text-decoration: none;
 }
 
 .site-menu__promo picture,
@@ -448,6 +467,7 @@
 
 .site-menu__promo img {
   object-fit: cover;
+  transition: transform 0.32s ease;
 }
 
 .site-menu__promo-content {
@@ -460,12 +480,12 @@
   width: 269px;
   text-transform: uppercase;
 
-  h2,
+  h3,
   p {
     margin: 0;
   }
 
-  h2 {
+  h3 {
     width: 183px;
     font-family: $font-display;
     font-size: 20px;
@@ -544,6 +564,34 @@
     color: $color-primary-black;
   }
 
+  .site-menu__app-link--rustore:hover,
+  .site-menu__app-link--rustore:focus-visible {
+    color: #168bff;
+
+    svg {
+      color: #168bff;
+    }
+  }
+
+  .site-menu__app-link--appgallery:hover,
+  .site-menu__app-link--appgallery:focus-visible {
+    color: #e84343;
+
+    svg {
+      color: #e84343;
+    }
+  }
+
+  .site-menu__app-link--google-play:hover .site-menu__app-svg--default,
+  .site-menu__app-link--google-play:focus-visible .site-menu__app-svg--default {
+    opacity: 0;
+  }
+
+  .site-menu__app-link--google-play:hover .site-menu__app-svg--hover,
+  .site-menu__app-link--google-play:focus-visible .site-menu__app-svg--hover {
+    opacity: 1;
+  }
+
   .site-menu__categories button:hover,
   .site-menu__categories button:focus-visible {
     color: $color-primary-black;
@@ -556,13 +604,18 @@
     color: $color-primary-black;
   }
 
-  .site-menu__promo-link:hover,
-  .site-menu__promo-link:focus-visible {
+  .site-menu__promo:hover img,
+  .site-menu__promo:focus-visible img {
+    transform: scale(1.035);
+  }
+
+  .site-menu__promo:hover .site-menu__promo-link,
+  .site-menu__promo:focus-visible .site-menu__promo-link {
     background: $color-button-secondary-hover;
     color: $color-primary-black;
   }
 
-  .site-menu__promo-link:active {
+  .site-menu__promo:active .site-menu__promo-link {
     background: $color-gray-pressed;
   }
 }

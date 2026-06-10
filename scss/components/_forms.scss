@@ -1,0 +1,179 @@
+@use '../variables' as *;
+
+// ─── Input field (uk-field) ───────────────────────────────────────────────────
+// Структура:
+//   .uk-field-wrap[data-input-field]  ← обёртка, получает is-error / uk-s-value от JS
+//     .uk-field                       ← flex-ряд: инпут + кнопка очистки
+//       input.uk-field__input
+//       button.uk-field__clear
+//     span.uk-field__caption          ← текст ошибки, скрыт по умолчанию
+
+.uk-field-wrap {
+  position: relative;
+}
+
+.uk-field {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: $radius-xs;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.uk-field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+
+  &::placeholder {
+    opacity: 1;
+    color: $color-primary-gray;
+  }
+}
+
+.uk-field__clear {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.uk-field-wrap.uk-s-value .uk-field__clear {
+  display: flex;
+}
+
+.uk-field__caption {
+  display: none;
+  padding: 4px 0 0;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: $font-weight-semibold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.uk-field-wrap.is-error .uk-field__caption {
+  display: block;
+}
+
+// Textarea variant
+.uk-field--textarea .uk-field {
+  height: auto;
+  min-height: 96px;
+  align-items: flex-start;
+  padding: 12px 16px;
+}
+
+.uk-field--textarea .uk-field__input {
+  height: 72px;
+  resize: none;
+  line-height: 1.5;
+  width: 100%;
+}
+
+// ─── Light variant — на светлом фоне страницы ($color-page: #f5f5f5) ──────────
+.uk-field--light {
+  .uk-field        { background: $color-surface; }
+  .uk-field__input { color: $color-primary-black; }
+  .uk-field__clear { color: $color-primary-gray; }
+  .uk-field__caption { color: $color-secondary-accent; }
+
+  &.uk-s-hover  .uk-field { background: #e8e8e8; }
+  &.uk-s-active .uk-field { background: $color-white; border-color: $color-primary-black; }
+  &.uk-s-disabled .uk-field { opacity: 0.5; }
+  &.is-error .uk-field { background: $color-surface; border-color: $color-secondary-accent; }
+}
+
+// ─── Surface variant — на сером фоне модалов/карточек ($color-surface: #f2f2f2) ─
+// Инпут всегда белый, фокус добавляет чёрный бордер.
+.uk-field--surface {
+  .uk-field        { background: $color-white; }
+  .uk-field__input { color: $color-primary-black; }
+  .uk-field__clear { color: $color-primary-gray; }
+  .uk-field__caption { color: $color-secondary-accent; }
+
+  &.uk-s-hover  .uk-field { background: $color-gray-hover; }
+  &.uk-s-active .uk-field { background: $color-white; border-color: $color-primary-black; }
+  &.uk-s-disabled .uk-field { opacity: 0.5; }
+  &.is-error .uk-field { border-color: $color-secondary-accent; }
+}
+
+// ─── Dark variant — на тёмном фоне ────────────────────────────────────────────
+.uk-field--dark {
+  .uk-field        { background: rgba($color-white, 0.16); }
+  .uk-field__input { color: $color-white; }
+  .uk-field__input::placeholder { color: $color-primary-gray; }
+  .uk-field__clear { color: $color-primary-gray; }
+  .uk-field__caption { color: $color-secondary-accent; }
+
+  &.uk-s-hover  .uk-field { background: rgba($color-white, 0.24); }
+  &.uk-s-active .uk-field { background: rgba($color-white, 0.16); }
+  &.uk-s-active .uk-field__input::placeholder { color: $color-white; }
+  &.uk-s-disabled .uk-field { background: rgba($color-white, 0.08); opacity: 0.6; }
+  &.uk-s-disabled .uk-field__input { color: $color-gray-primary; }
+  &.is-error .uk-field { background: rgba($color-white, 0.08); border-color: $color-secondary-accent; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .uk-field--light.uk-field-wrap:hover .uk-field,
+  .uk-field--surface.uk-field-wrap:hover .uk-field {
+    background: #e8e8e8;
+  }
+
+  .uk-field--dark.uk-field-wrap:hover .uk-field {
+    background: rgba($color-white, 0.24);
+  }
+
+  .uk-field__clear:hover {
+    opacity: 0.6;
+  }
+}
+
+// ─── Checkbox (uk-checkbox) ───────────────────────────────────────────────────
+// Нативный <input type="checkbox" class="uk-checkbox"> с appearance: none.
+
+.uk-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid $color-secondary-gray;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:checked {
+    background: $color-primary-black url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3333 4L5.99999 11.3333L2.66666 8' stroke='white' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") no-repeat center / 14px 14px;
+    border-color: $color-primary-black;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}

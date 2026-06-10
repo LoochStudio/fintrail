@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH ?>/css/style.css">
     <script src="<?= SITE_TEMPLATE_PATH ?>/js/main.js" defer></script>
   -->
-  <script type="module" crossorigin src="/fintrail/assets/main-fy5eif8h.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DyZK18wo.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Cwf6OPAo.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DRtHWyk4.css">
 </head>
 <body>
 
@@ -200,17 +200,26 @@
         <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
 
         <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
-          <a href="/app/" aria-label="Google Play">
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg>
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
           </a>
-          <a href="/app/" aria-label="App Store">
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
           </a>
-          <a href="/app/" aria-label="AppGallery">
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
           </a>
-          <a href="/app/" aria-label="RuStore">
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
           </a>
         </div>
       </div>
@@ -239,7 +248,7 @@
           </nav>
         </div>
 
-        <article class="site-menu__promo">
+        <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
           <picture>
             <source srcset="/fintrail/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /fintrail/images/content/_responsive/site-menu/hiking-promo-320.png 320w, /fintrail/images/content/_responsive/site-menu/hiking-promo-480.png 480w, /fintrail/images/content/_responsive/site-menu/hiking-promo-768.png 768w, /fintrail/images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
             <img
@@ -254,10 +263,10 @@
             <h3>Экипировка<br>для хайкинга</h3>
             <p>Куртки, штаны, термобельё</p>
           </div>
-          <a class="site-menu__promo-link" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+          <span class="site-menu__promo-link" aria-hidden="true">
             <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
-          </a>
-        </article>
+          </span>
+        </a>
       </div>
 
       <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
@@ -313,10 +322,27 @@
         <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
         <div class="mobile-menu__divider" aria-hidden="true"></div>
         <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
-          <a href="/app/" aria-label="Google Play"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg></a>
-          <a href="/app/" aria-label="App Store"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg></a>
-          <a href="/app/" aria-label="AppGallery"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg></a>
-          <a href="/app/" aria-label="RuStore"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg></a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
         </div>
       </div>
     </div>
@@ -627,7 +653,7 @@
             </span>
           </a>
 
-          <a class="hero-product-card" href="/catalog/finntrail-polar-1400-black/">
+          <a class="hero-product-card hero-product-card--preorder" href="/catalog/finntrail-polar-1400-black/">
             <span class="hero-product-card__pic">
               <img src="/fintrail/images/content/hero/hero-product-jacket.png" srcset="/fintrail/images/content/_responsive/hero/hero-product-jacket-160.png 160w, /fintrail/images/content/_responsive/hero/hero-product-jacket-320.png 320w, /fintrail/images/content/_responsive/hero/hero-product-jacket-480.png 480w, /fintrail/images/content/_responsive/hero/hero-product-jacket-768.png 768w, /fintrail/images/content/hero/hero-product-jacket.png 1000w" sizes="(max-width: 767px) 50vw, 166px" alt="FINNTRAIL Polar 1400 Black" loading="eager">
             </span>
@@ -637,6 +663,7 @@
                 <span class="hero-product-card__price">12 999 ₽</span>
                 <button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="В корзину"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
               </span>
+              <span class="hero-product-card__preorder-btn">Предзаказ</span>
             </span>
           </a>
         </div>
@@ -690,7 +717,7 @@
           <div class="login-bonus__field-wrap" data-input-field>
             <div class="login-bonus__field">
               <label class="login-bonus__field-label" for="login-bonus-phone">Телефон</label>
-              <input class="login-bonus__input js-phone-input" id="login-bonus-phone" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="login-bonus-phone-caption">
+              <input class="login-bonus__input js-phone-input" id="login-bonus-phone" type="tel" name="phone" autocomplete="tel" placeholder="Ваш телефон" aria-describedby="login-bonus-phone-caption">
               <button class="login-bonus__clear js-input-clear" type="button" aria-label="Очистить телефон" hidden>
                 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg>
               </button>
@@ -972,7 +999,7 @@
           </span>
         </a>
 
-        <a class="activity-product-card" href="/catalog/ryukzaki/">
+        <a class="activity-product-card activity-product-card--preorder" href="/catalog/ryukzaki/">
           <span class="activity-product-card__pic">
             <img src="/fintrail/images/content/activity/tourism-product-2.png" srcset="/fintrail/images/content/_responsive/activity/tourism-product-2-160.png 160w, /fintrail/images/content/_responsive/activity/tourism-product-2-320.png 320w, /fintrail/images/content/_responsive/activity/tourism-product-2-480.png 480w, /fintrail/images/content/_responsive/activity/tourism-product-2-768.png 768w, /fintrail/images/content/activity/tourism-product-2.png 1000w" sizes="166px" alt="Герморюкзак FINNTRAIL Trace 30L 1711 Red" loading="lazy">
           </span>
@@ -982,6 +1009,7 @@
               <span class="activity-product-card__price">12 999 ₽</span>
               <svg class="activity-product-card__cart" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
             </span>
+            <span class="activity-product-card__preorder-btn">Предзаказ</span>
           </span>
         </a>
       </div>
@@ -1109,7 +1137,7 @@
           <button class="build-kit-desktop__tile js-kit-tile" type="button" aria-label="Выбрать товар" data-kit-category="hat" data-kit-slot="hat" data-size="false" data-name="Шапка FINNTRAIL Warm Hat 9735 Red" data-price="2 599 ₽"><img src="/fintrail/images/content/build-kit/hat-8.png" srcset="/fintrail/images/content/_responsive/build-kit/hat-8-160.png 160w, /fintrail/images/content/_responsive/build-kit/hat-8-320.png 320w, /fintrail/images/content/_responsive/build-kit/hat-8-480.png 480w, /fintrail/images/content/_responsive/build-kit/hat-8-768.png 768w, /fintrail/images/content/build-kit/hat-8.png 1000w" sizes="108px" alt="Шапка FINNTRAIL Warm Hat 9735 Red" loading="lazy"></button>
           <button class="build-kit-desktop__tile js-kit-tile" type="button" aria-label="Выбрать товар" data-kit-category="hat" data-kit-slot="hat" data-size="false" data-name="Шапка FINNTRAIL Warm Hat 9735 Black" data-price="2 599 ₽"><img src="/fintrail/images/content/build-kit/hat-9.png" srcset="/fintrail/images/content/_responsive/build-kit/hat-9-160.png 160w, /fintrail/images/content/_responsive/build-kit/hat-9-320.png 320w, /fintrail/images/content/_responsive/build-kit/hat-9-480.png 480w, /fintrail/images/content/_responsive/build-kit/hat-9-768.png 768w, /fintrail/images/content/build-kit/hat-9.png 1000w" sizes="108px" alt="Шапка FINNTRAIL Warm Hat 9735 Black" loading="lazy"></button>
           <!-- BITRIX: каждый tile — элемент инфоблока "Куртки". data-name и data-price подставляет Bitrix из NAME и CATALOG_PRICE_1 товара -->
-          <button class="build-kit-desktop__tile is-active" type="button" aria-label="Выбрать товар" data-kit-category="jacket" data-kit-slot="jacket" data-name="FINNTRAIL Aspen 3462 Orange" data-price="37 999 ₽"><img src="/fintrail/images/content/build-kit/jacket.png" srcset="/fintrail/images/content/_responsive/build-kit/jacket-160.png 160w, /fintrail/images/content/_responsive/build-kit/jacket-320.png 320w, /fintrail/images/content/_responsive/build-kit/jacket-480.png 480w, /fintrail/images/content/_responsive/build-kit/jacket-768.png 768w, /fintrail/images/content/build-kit/jacket.png 1000w" sizes="166px" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy"></button>
+          <button class="build-kit-desktop__tile js-kit-tile is-active" type="button" aria-label="Выбрать товар" data-kit-category="jacket" data-kit-slot="jacket" data-name="FINNTRAIL Aspen 3462 Orange" data-price="37 999 ₽"><img src="/fintrail/images/content/build-kit/jacket.png" srcset="/fintrail/images/content/_responsive/build-kit/jacket-160.png 160w, /fintrail/images/content/_responsive/build-kit/jacket-320.png 320w, /fintrail/images/content/_responsive/build-kit/jacket-480.png 480w, /fintrail/images/content/_responsive/build-kit/jacket-768.png 768w, /fintrail/images/content/build-kit/jacket.png 1000w" sizes="166px" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy"></button>
           <button class="build-kit-desktop__tile js-kit-tile" type="button" aria-label="Выбрать товар" data-kit-category="jacket" data-kit-slot="jacket" data-name="Куртка FINNTRAIL Redline 1410 Red" data-price="14 999 ₽"><img src="/fintrail/images/content/build-kit/item-2.png" srcset="/fintrail/images/content/_responsive/build-kit/item-2-160.png 160w, /fintrail/images/content/_responsive/build-kit/item-2-320.png 320w, /fintrail/images/content/_responsive/build-kit/item-2-480.png 480w, /fintrail/images/content/_responsive/build-kit/item-2-768.png 768w, /fintrail/images/content/build-kit/item-2.png 1000w" sizes="108px" alt="Куртка FINNTRAIL Redline 1410 Red" loading="lazy"></button>
           <button class="build-kit-desktop__tile js-kit-tile" type="button" aria-label="Выбрать товар" data-kit-category="jacket" data-kit-slot="jacket" data-name="Куртка FINNTRAIL Aspen 3462 Orange" data-price="37 999 ₽"><img src="/fintrail/images/content/build-kit/item-3.png" srcset="/fintrail/images/content/_responsive/build-kit/item-3-160.png 160w, /fintrail/images/content/_responsive/build-kit/item-3-320.png 320w, /fintrail/images/content/_responsive/build-kit/item-3-480.png 480w, /fintrail/images/content/_responsive/build-kit/item-3-768.png 768w, /fintrail/images/content/build-kit/item-3.png 1000w" sizes="108px" alt="Куртка FINNTRAIL Aspen 3462 Orange" loading="lazy"></button>
           <button class="build-kit-desktop__tile js-kit-tile" type="button" aria-label="Выбрать товар" data-kit-category="jacket" data-kit-slot="jacket" data-name="Куртка FINNTRAIL Speedmaster 1520 Graphite" data-price="19 999 ₽"><img src="/fintrail/images/content/build-kit/item-4.png" srcset="/fintrail/images/content/_responsive/build-kit/item-4-160.png 160w, /fintrail/images/content/_responsive/build-kit/item-4-320.png 320w, /fintrail/images/content/_responsive/build-kit/item-4-480.png 480w, /fintrail/images/content/_responsive/build-kit/item-4-768.png 768w, /fintrail/images/content/build-kit/item-4.png 1000w" sizes="108px" alt="Куртка FINNTRAIL Speedmaster 1520 Graphite" loading="lazy"></button>

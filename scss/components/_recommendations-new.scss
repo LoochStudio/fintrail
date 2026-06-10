@@ -379,6 +379,19 @@
     }
   }
 
+  &--preorder {
+    .recommendation-card__cart {
+      background: $color-surface;
+      color: $color-primary-black;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .recommendation-card__cart-label svg {
+      display: none;
+    }
+  }
+
 }
 
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {

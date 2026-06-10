@@ -226,9 +226,42 @@
   color: $color-primary-black;
 }
 
+.build-kit-desktop__product-bookmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary-gray;
+  cursor: pointer;
+  transition: color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.build-kit-desktop__product-bookmark.is-saved {
+  color: $color-primary-black;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .build-kit-desktop__product-cart:hover,
   .build-kit-desktop__product-cart:focus-visible {
+    color: $color-primary-black;
+  }
+
+  .build-kit-desktop__product-bookmark:hover,
+  .build-kit-desktop__product-bookmark:focus-visible {
     color: $color-primary-black;
   }
 }
@@ -278,6 +311,13 @@
   width: 53.75px;
   height: 53.75px;
   object-fit: contain;
+}
+
+.build-kit-desktop[data-kit-active-slot='hat'] .build-kit-desktop__tile:not([data-kit-category='hat']),
+.build-kit-desktop[data-kit-active-slot='jacket'] .build-kit-desktop__tile:not([data-kit-category='jacket']),
+.build-kit-desktop[data-kit-active-slot='pants'] .build-kit-desktop__tile:not([data-kit-category='pants']),
+.build-kit-desktop[data-kit-active-slot='shoes'] .build-kit-desktop__tile:not([data-kit-category='shoes']) {
+  display: none;
 }
 
 .build-kit-desktop__grid-controls {
@@ -343,6 +383,7 @@
 }
 
 .build-kit-desktop__kit-item {
+  position: relative;
   display: flex;
   width: 100%;
   min-height: 82px;
@@ -460,16 +501,13 @@
   border: 1px solid $color-surface;
 }
 
-.build-kit-desktop__size::after {
-  content: '';
+.build-kit-desktop__size-icon {
   position: absolute;
-  top: 8px;
-  right: 9px;
-  width: 6px;
-  height: 6px;
-  border-right: 2px solid $color-black;
-  border-bottom: 2px solid $color-black;
-  transform: translateY(-2px) rotate(45deg);
+  top: 50%;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
@@ -1265,6 +1303,7 @@
   }
 
   .build-kit-desktop__kit-item {
+    position: relative;
     display: flex;
     width: 340px;
     height: 82px;
@@ -1391,16 +1430,13 @@
     background: transparent;
   }
 
-  .build-kit-desktop__size::after {
-    content: '';
+  .build-kit-desktop__size-icon {
     position: absolute;
-    top: 8px;
-    right: 9px;
-    width: 6px;
-    height: 6px;
-    border-right: 2px solid $color-black;
-    border-bottom: 2px solid $color-black;
-    transform: translateY(-2px) rotate(45deg);
+    top: 50%;
+    right: 4px;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
     pointer-events: none;
   }
 
@@ -1492,4 +1528,173 @@
     height: 16px;
   }
 
+}
+
+// Select states from UI kit: default / hover / pressed / disabled.
+.build-kit-desktop__size {
+  position: relative;
+  box-sizing: border-box;
+  height: 28px;
+  min-height: 28px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: transparent;
+  color: $color-primary-black;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.build-kit-desktop__size.is-open {
+  background: $color-white-pressed;
+  z-index: 20;
+}
+
+.build-kit-desktop__kit-item:has(.build-kit-desktop__size.is-open) {
+  z-index: 21;
+}
+
+.build-kit-desktop__size-icon {
+  right: 4px;
+  transition: transform 0.18s ease;
+}
+
+.build-kit-desktop__size.is-open .build-kit-desktop__size-icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.build-kit-desktop__size-select {
+  height: 28px;
+  padding: 0 30px 0 8px;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.2;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.build-kit-desktop__size.is-enhanced .build-kit-desktop__size-select {
+  position: absolute;
+  inset: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.build-kit-desktop__size-button {
+  display: flex;
+  width: 100%;
+  height: 28px;
+  align-items: center;
+  padding: 4px 30px 4px 8px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.build-kit-desktop__size-button:disabled {
+  color: $color-primary-gray;
+  cursor: default;
+}
+
+.build-kit-desktop__size-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  left: auto;
+  display: none;
+  width: 100%;
+  min-width: 100%;
+  flex-direction: column;
+  gap: 0;
+  padding: 4px;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  box-shadow:
+    0 0 4px rgba(95, 105, 131, 0.07),
+    0 5px 4px rgba(95, 105, 131, 0.05),
+    0 4px 15px rgba(95, 105, 131, 0.12);
+  z-index: 30;
+}
+
+.build-kit-desktop__size.is-open .build-kit-desktop__size-list {
+  display: flex;
+}
+
+.build-kit-desktop__size-option {
+  display: flex;
+  width: 100%;
+  min-height: 32px;
+  align-items: center;
+  padding: 8px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.build-kit-desktop__size-option[aria-selected='true'],
+.build-kit-desktop__size-option:active {
+  background: $color-white;
+}
+
+.build-kit-desktop__size-select:disabled {
+  color: $color-primary-gray;
+  cursor: default;
+}
+
+.build-kit-desktop__size:has(.build-kit-desktop__size-select:disabled) {
+  background: $color-secondary-gray;
+  color: $color-primary-gray;
+}
+
+.build-kit-desktop__size:has(.build-kit-desktop__size-select:focus-visible) {
+  background: $color-white-pressed;
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+.build-kit-desktop__size:has(.build-kit-desktop__size-button:focus-visible) {
+  background: $color-white-pressed;
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__size:hover:not(:has(.build-kit-desktop__size-select:disabled)) {
+    background: $color-white;
+  }
+
+  .build-kit-desktop__size-option:hover,
+  .build-kit-desktop__size-option:focus-visible {
+    background: $color-white;
+  }
+}
+
+.build-kit-desktop__size:active:not(:has(.build-kit-desktop__size-select:disabled)) {
+  background: $color-white-pressed;
 }

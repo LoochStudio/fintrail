@@ -135,8 +135,12 @@ export function init() {
       catalogHeaderCompact = false;
     }
 
+    const isOverlay = catalogHeader.classList.contains('is-header-overlay');
+    const scrolled = window.scrollY > 24;
+
     catalogHeader.classList.toggle('is-header-compact', catalogHeaderCompact);
-    catalogHeader.classList.toggle('is-header-dark', true);
+    catalogHeader.classList.toggle('is-header-dark', isOverlay ? scrolled : true);
+    catalogHeader.classList.toggle('is-header-scrolled', isOverlay && scrolled);
   };
 
   const requestCatalogHeaderSync = () => {
