@@ -45,11 +45,14 @@
   }
 }
 
-// На product-странице хедер всегда с фоном — убираем анимационный ::before
-// (на главной он появляется при скролле через is-header-scrolled,
-//  на product-странице это не нужно: фон всегда виден)
-.product-header.catalog-header .hero__topbar::before {
-  display: none;
+// На десктопе product-страница убирает анимационный ::before хедера —
+// на десктопе topbar имеет собственный background: $color-surface из _catalog.scss.
+// На планшете/мобиле (max-width: 1279px) topbar прозрачный, ::before и даёт фон —
+// поэтому скрываем его только на десктопе.
+@media (min-width: $bp-lg) {
+  .product-header.catalog-header .hero__topbar::before {
+    display: none;
+  }
 }
 
 .product-detail__side {
@@ -710,49 +713,186 @@
   height: auto;
   align-items: center;
   flex: 0 0 auto;
-  background: transparent;
+  box-sizing: border-box;
+  padding: 0;
+  border: 1px solid $color-white;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  color: $color-primary-black;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
 
-  &::after {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 10px;
-    height: 6px;
-    background: currentColor;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    content: '';
-    pointer-events: none;
-    transform: translateY(-50%);
-  }
+.product-kit-item__size-icon {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  flex-shrink: 0;
 }
 
 .product-kit-item__size-select {
   width: auto;
   min-width: 38px;
   height: auto;
-  padding: 0 18px 0 0;
+  padding: 0 24px 0 8px;
   border: 0;
   border-radius: 0;
   appearance: none;
   background: transparent;
   color: $color-primary-black;
   cursor: pointer;
-  font-family: $font-mono;
+  font-family: $font-display;
   font-size: $text-body-b2-size;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-extrabold;
   line-height: $text-body-b2-line;
   outline: none;
   text-transform: uppercase;
 
   &:focus-visible {
-    outline: 1px solid $color-secondary-gray;
-    outline-offset: 2px;
+    outline: none;
   }
 
   option {
     background: $color-surface;
     color: $color-primary-black;
-    font-family: $font-mono;
+    font-family: $font-display;
+  }
+}
+
+.product-kit-item__size:has(.product-kit-item__size-select:focus-visible) {
+  border-color: $color-primary-black;
+  background: $color-white;
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-kit-item__size:hover {
+    background: $color-white;
+    border-color: $color-white;
+  }
+}
+
+// Enhanced select — скрываем нативный select и SVG-иконку
+.product-kit-item__size.is-enhanced .product-kit-item__size-select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.product-kit-item__size.is-enhanced .product-kit-item__size-icon {
+  display: none;
+}
+
+.product-kit-item__size-button {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  padding: 3px 24px 3px 8px;
+  border: 0;
+  background: transparent;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: $text-body-b2-line;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.product-kit-item__size-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.product-kit-item__size.is-open .product-kit-item__size-button::after {
+  transform: translateY(-35%) rotate(225deg);
+}
+
+.product-kit-item__size-list {
+  position: absolute;
+  top: calc(100% + 2px);
+  right: -1px;
+  left: -1px;
+  display: none;
+  min-width: calc(100% + 2px);
+  flex-direction: column;
+  padding: 0;
+  border: 1px solid $color-white;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  box-shadow:
+    0 0 4px rgba(95, 105, 131, 0.07),
+    0 5px 4px rgba(95, 105, 131, 0.05),
+    0 4px 15px rgba(95, 105, 131, 0.12);
+  z-index: 30;
+}
+
+.product-kit-item__size.is-open .product-kit-item__size-list {
+  display: flex;
+}
+
+.product-kit-item__size-option {
+  display: flex;
+  width: 100%;
+  min-height: 26px;
+  align-items: center;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px solid $color-white;
+  border-radius: 0;
+  background: transparent;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-extrabold;
+  line-height: $text-body-b2-line;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.18s ease;
+}
+
+.product-kit-item__size-option:last-child {
+  border-bottom: 0;
+}
+
+.product-kit-item__size-option[aria-selected='true'],
+.product-kit-item__size-option:active {
+  background: $color-white;
+}
+
+.product-kit-item__size:has(.product-kit-item__size-button:focus-visible) {
+  border-color: $color-primary-black;
+  background: $color-white;
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-kit-item__size-option:hover,
+  .product-kit-item__size-option:focus-visible {
+    background: $color-white;
   }
 }
 
@@ -1659,6 +1799,7 @@
   .product-detail {
     grid-template-columns: 1fr;
     max-width: 728px;
+    margin: 0 auto;
   }
 
   .product-detail__side {
@@ -1676,7 +1817,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .product-detail {
     gap: 20px;
     min-height: auto;
@@ -2140,12 +2281,46 @@
 
 }
 
+// ── Планшет (768–1279px): размеры крупнее мобильных ─────────────────────────
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  // Изображение товара выше чем на мобиле
+  .product-detail__media {
+    min-height: 680px;
+  }
+
+  .product-detail__image {
+    height: 680px;
+  }
+
+  // Sticky-бар покупки: без таббара, без safe-area
+  .product-mobile-buy {
+    bottom: 0;
+    padding-bottom: 20px;
+  }
+
+  // Карточки комплекта шире мобильных
+  .product-mobile-kit__card {
+    width: 200px;
+    flex: 0 0 200px;
+  }
+
+  // На планшете product-page убирает горизонтальный padding (как на мобиле):
+  // все секции сами несут padding: 0 20px — на планшете тот же результат,
+  // а store-info/highlight/community идут без компенсирующих отступов.
+  .product-page {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}
+
+
 // product-store-info скрыта на десктопе
 .product-store-info {
   display: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .product-store-info {
     display: flex;
     flex-direction: column;
@@ -2182,7 +2357,8 @@
   .product-store-info__kit-images {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
     padding-bottom: 2px; // место для линии ::after чтобы не обрезалась
   }
 
@@ -2393,9 +2569,9 @@
     width: 100%;
     height: 52px;
     padding: 8px 16px;
-    border: 0;
+    border: 1px solid transparent;
     border-radius: 4px;
-    background: rgba($color-white, 0.16); // Figma: transparent/primary
+    background: rgba($color-white, 0.16);
     color: $color-white;
     font-family: $font-mono;
     font-size: $text-body-b2-size;
@@ -2403,13 +2579,21 @@
     line-height: $text-body-b2-line;
     text-transform: uppercase;
     outline: none;
+    transition: background 0.18s ease, border-color 0.18s ease;
 
     &::placeholder {
       color: $color-muted;
+      opacity: 1;
     }
 
     &:focus {
       background: rgba($color-white, 0.22);
+      border-color: rgba($color-white, 0.4);
+    }
+
+    &.is-error {
+      border-color: $color-secondary-accent;
+      background: rgba($color-white, 0.08);
     }
   }
 
@@ -2441,6 +2625,21 @@
 
   .product-store-info__input--phone {
     flex: 1;
+  }
+
+  // Текст ошибки под phone-row
+  .product-store-info__caption {
+    display: none;
+    margin-top: 4px;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    color: $color-secondary-accent;
+
+    &:not(:empty) {
+      display: block;
+    }
   }
 
   // Кнопка «Отправить»
@@ -3068,7 +3267,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   // ── Мобильный редизайн «В реальных условиях» по Figma 3881-57676 ─────────
 
   .product-conditions {
@@ -3287,7 +3486,7 @@
 
 // Mobile: product-page имеет padding: 0 по бокам → -20px создаст выход за экран.
 // Сбрасываем горизонтальные отступы, оставляем только верхний spacing.
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .product-page .recommendations-new {
     margin-right: 0;
     margin-left: 0;
@@ -3316,6 +3515,7 @@
   margin-right: -20px;   // компенсируем padding product-page справа
   margin-bottom: 0;
   margin-left: -20px;    // компенсируем padding product-page слева
+  padding-bottom: 64px;  // отступ до футера
 }
 
 // На мобиле секции нет в макете — скрываем
@@ -3826,7 +4026,7 @@
   display: block;
   width: 100%;
   padding: 14px 12px;
-  border: 0;
+  border: 1px solid $color-secondary-gray;
   border-radius: 4px;
   background: $color-white;
   color: $color-primary-black;
@@ -3837,18 +4037,29 @@
   text-transform: uppercase;
   outline: none;
   resize: none;
+  transition: border-color 0.18s ease;
 
   &::placeholder {
     color: $color-muted;
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 1px $color-secondary-gray;
+    border-color: $color-primary-black;
+  }
+
+  &.is-error {
+    border-color: $color-secondary-accent;
   }
 
   &--textarea {
     height: 80px;
     align-items: flex-start;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-reviews__field:hover {
+    border-color: $color-primary-gray;
   }
 }
 
@@ -4066,8 +4277,7 @@
   font-size: $text-body-b2-size;   // 12px
   font-weight: 500;
   line-height: $text-body-b2-line; // 16px
-  color: $color-primary-gray;
-  opacity: 0.5;
+  color: $color-primary-black;
 }
 
 // Таблица характеристик
@@ -4101,7 +4311,7 @@
 }
 
 .product-specs__label {
-  color: $color-primary-gray;
+  color: $color-primary-black;
 }
 
 .product-specs__value {
@@ -4229,7 +4439,7 @@
   font-size: $text-body-b2-size;   // 12px
   font-weight: 500;
   line-height: $text-body-b2-line; // 16px
-  color: $color-primary-gray;
+  color: $color-primary-black;
 }
 
 // Уход
@@ -4259,7 +4469,7 @@
   font-size: $text-body-b2-size;
   font-weight: 500;
   line-height: $text-body-b2-line;
-  color: $color-primary-gray;
+  color: $color-primary-black;
 }
 
 .product-specs__care-text {
@@ -5013,7 +5223,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   // На мобиле скрываем desktop-версию — её заменяет product-store-info
   .product-info-section {
     display: none;
@@ -5120,7 +5330,7 @@
 // На мобиле десктопные side panels (translateX) превращаются в bottom sheets
 // (translateY). Full-width, скруглённые сверху, drag handle, safe-area inset.
 
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
 
   // ── Полное описание ─────────────────────────────────────────────────────
   .product-description-modal__panel {
@@ -5254,7 +5464,7 @@
 
 // ── product-features: мобильный адаптив (горизонтальный скролл) ──────────
 // Figma 3881-57757: 4 карточки по 200px, gap 20px, padding 0 20px
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .product-features {
     // Та же связка что в product-mobile-kit:
     // секция с боковым padding → grid разрывает его на -20px → добавляет padding обратно
@@ -5317,7 +5527,7 @@
 // ── product-props: мобильный адаптив ─────────────────────────────────────
 // Figma 3881-57843: flex-col gap 20px, px 20px, заголовок 18px/22px,
 // горизонтальный скролл (стрелки скрыты — свайп), items 250×224 как на десктопе
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .product-props {
     display: flex;
     flex-direction: column;
@@ -5377,7 +5587,7 @@
 // ── product-highlight: мобильный адаптив ─────────────────────────────────
 // Figma 3881-57886: две карточки 300×(260+auto) в горизонтальном скролле,
 // gap 1px, фото сверху, контент снизу с padding 40px, иконка 36px
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
 
   // Враппер → горизонтальный скролл
   .product-highlight-row {
@@ -5504,7 +5714,7 @@
 // ── product-specs: мобильный аккордеон ───────────────────────────────────
 // Figma 3881-57920: 3 строки, padding 20px, border-bottom: 1px solid white,
 // Nata Sans ExtraBold 14px, стрелка icon-product-info-chevron 16px
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
 
   .product-specs {
     flex-direction: column;
@@ -5589,7 +5799,7 @@
 // ── product-article: мобильный адаптив ───────────────────────────────────
 // Figma 3881-57933: два блока flex-col gap-64px, оба px-20px;
 // карточки стакаются вертикально gap-20px, посты без изменений
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
 
   .product-article {
     flex-direction: column;
@@ -5647,7 +5857,7 @@
 // ── product-reviews: мобильный адаптив ───────────────────────────────────
 // Figma 3881-57953: single column, форма как bottom sheet,
 // reviews rows flex-col (reviewer сверху, контент снизу)
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
 
   // ─ Секция: single column ───────────────────────────────────────────────
   .product-reviews {
@@ -5932,5 +6142,36 @@
   // Фиксированные 341px при контейнере 713px (50/50 вместо 65/35)
   .product-article__right {
     flex: 0 0 calc(35% - 10px);
+  }
+
+  // ─ product-article: карточки «В журнале» 2 в ряд ─────────────────────────────
+  // На мобиле стакались вертикально; на планшете возвращаем горизонтальный ряд
+  .product-article__cards {
+    flex-direction: row;
+  }
+
+  .product-article__card {
+    flex: 1 1 0;
+  }
+
+  // ─ community-showcase: сброс negative margin ──────────────────────────────────
+  // Базовое правило .product-page .community-showcase ставит margin: 0 -20px чтобы
+  // компенсировать padding product-page (20px). На планшете product-page имеет
+  // padding: 0 (мы убрали), поэтому negative margins лишние — убираем их здесь,
+  // ПОСЛЕ базового правила (~3475), чтобы выиграть по source-order при равной специфичности.
+  .product-page .community-showcase {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // ─ product-highlight-row: на всю ширину экрана ────────────────────────────────
+  // На мобиле (300px карточки) в 601px не заполняют планшет — убираем скролл,
+  // делаем каждую карточку ровно в половину ширины.
+  .product-highlight-row {
+    overflow-x: hidden;
+  }
+
+  .product-highlight {
+    flex: 0 0 calc(50% - 1px); // -1px = компенсация gap 1px между двумя карточками
   }
 }

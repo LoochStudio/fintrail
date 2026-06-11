@@ -1,4 +1,4 @@
-import { addMouseDrag } from './utils.js';
+import { addMouseDrag, spriteHref } from './utils.js';
 
 export function init() {
   // Product page — description modal
@@ -114,7 +114,7 @@ export function init() {
 
       // Обновляем свотч в кнопке
       if (color === 'bw') {
-        swatch.innerHTML = `<svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-color-bw"></use></svg>`;
+        swatch.innerHTML = `<svg aria-hidden="true"><use href="${spriteHref('icon-color-bw')}"></use></svg>`;
         swatch.style.background = 'none';
         swatch.style.borderRadius = '0';
       } else {
@@ -353,8 +353,11 @@ export function init() {
 
     if (!track || !btnPrev || !btnNext) return;
 
-    const ITEM_W = 250; // ширина одного слайда
-    const SCROLL_STEP = ITEM_W * 3; // скроллим по 3 слайда за клик
+    const getScrollStep = () => {
+      const item = track.querySelector('.product-props__item');
+      const itemW = item ? item.getBoundingClientRect().width : 250;
+      return itemW * 3;
+    };
 
     const updateButtons = () => {
       btnPrev.disabled = track.scrollLeft <= 0;
@@ -362,11 +365,11 @@ export function init() {
     };
 
     btnPrev.addEventListener('click', () => {
-      track.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+      track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
     });
 
     btnNext.addEventListener('click', () => {
-      track.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+      track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
     });
 
     track.addEventListener('scroll', updateButtons, { passive: true });
@@ -642,6 +645,78 @@ export function init() {
 
     goTo(0);
     new ResizeObserver(() => goTo(currentIndex)).observe(media);
+  });
+
+  // Product page — Дополните комплект: кастомные дропдауны выбора размера
+  function enhanceProductKitSelect(sizeEl) {
+    const select = sizeEl?.querySelector('.product-kit-item__size-select');
+    if (!select || sizeEl.querySelector('.product-kit-item__size-button')) return;
+
+    sizeEl.classList.add('is-enhanced');
+
+    const button = document.createElement('button');
+    button.className = 'product-kit-item__size-button';
+    button.type = 'button';
+    button.textContent = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
+    button.setAttribute('aria-haspopup', 'listbox');
+    button.setAttribute('aria-expanded', 'false');
+
+    const list = document.createElement('div');
+    list.className = 'product-kit-item__size-list';
+    list.setAttribute('role', 'listbox');
+
+    Array.from(select.options).forEach((option, index) => {
+      const item = document.createElement('button');
+      item.className = 'product-kit-item__size-option';
+      item.type = 'button';
+      item.textContent = option.textContent;
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+
+      item.addEventListener('click', () => {
+        select.selectedIndex = index;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        button.textContent = option.textContent;
+        list.querySelectorAll('.product-kit-item__size-option').forEach(optBtn => {
+          optBtn.setAttribute('aria-selected', String(optBtn === item));
+        });
+        sizeEl.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+      });
+
+      list.appendChild(item);
+    });
+
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      document.querySelectorAll('.product-kit-item__size.is-open').forEach(el => {
+        if (el === sizeEl) return;
+        el.classList.remove('is-open');
+        el.querySelector('.product-kit-item__size-button')?.setAttribute('aria-expanded', 'false');
+      });
+
+      const isOpen = sizeEl.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    select.addEventListener('change', () => {
+      button.textContent = select.selectedOptions[0]?.textContent || '';
+    });
+
+    sizeEl.appendChild(button);
+    sizeEl.appendChild(list);
+  }
+
+  document.querySelectorAll('.product-kit-item__size').forEach(enhanceProductKitSelect);
+
+  document.addEventListener('click', event => {
+    if (event.target.closest('.product-kit-item__size')) return;
+    document.querySelectorAll('.product-kit-item__size.is-open').forEach(sizeEl => {
+      sizeEl.classList.remove('is-open');
+      sizeEl.querySelector('.product-kit-item__size-button')?.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Product mobile sticky buy panel appears only after the full price block is scrolled past.

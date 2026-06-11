@@ -12,6 +12,8 @@ export default defineConfig({
         catalogCategory: resolve(__dirname, 'catalog/kurtki/index.html'),
         sale: resolve(__dirname, 'sale/index.html'),
         cart: resolve(__dirname, 'cart/index.html'),
+        cartEmpty: resolve(__dirname, 'cart-empty/index.html'),
+        orderConfirmed: resolve(__dirname, 'order-confirmed/index.html'),
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
       },
     },

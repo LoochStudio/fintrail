@@ -381,6 +381,9 @@
     <section class="product-detail" aria-labelledby="product-title">
       <div class="product-detail__side product-detail__side--left">
         <div class="product-detail__top">
+          <!-- BITRIX: хлебные крошки — bitrix:breadcrumb
+               Путь строится автоматически по иерархии инфоблока каталога.
+               Последний элемент (текущий раздел) — без ссылки, aria-current="page" -->
           <div class="product-detail__breadcrumbs">
             <a class="product-detail__back" href="/catalog/">
               <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
@@ -396,6 +399,11 @@
             </nav>
           </div>
 
+          <!-- BITRIX: product-detail__description
+               video[data-src]: PROPERTY_PROMO_VIDEO — если пусто, скрыть <video>, показать только текст
+               poster: DETAIL_PICTURE
+               Текст абзацев: PREVIEW_TEXT (первые 2 строки / первые 200 символов)
+               Кнопка «Перейти к описанию»: якорная ссылка к #product-description-modal -->
           <div class="product-detail__description">
             <video class="product-detail__description-thumb" data-lazy-video data-src="/images/content/product/snowranger/snowranger-video.mp4" poster="/images/content/product/snowranger/snowranger-main.png" autoplay muted loop playsinline preload="none"></video>
             <div class="product-detail__description-text">
@@ -406,6 +414,15 @@
           </div>
         </div>
 
+        <!-- BITRIX: похожие товары (десктоп) — bitrix:catalog.section или bitrix:catalog.viewed_products
+             Выборка: 4–6 товаров из того же раздела / по тегам.
+             Данные каждой карточки:
+               href             → DETAIL_PAGE_URL
+               img src/srcset   → PREVIEW_PICTURE (адаптивные версии с сервера)
+               img alt          → NAME
+               product-similar__name  → NAME
+               product-similar__price → CATALOG_PRICE_1 (форматированная строка «X ₽»)
+             Кнопки «prev/next»: включаются/выключаются через JS когда товаров > видимых слотов -->
         <div class="product-similar">
           <div class="product-similar__header">
             <span class="product-similar__title">Похожие товары</span>
@@ -421,7 +438,7 @@
           <div class="product-similar__cards">
             <article class="product-similar__card">
               <button class="product-similar__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
-              <a class="product-similar__image-link" href="#">
+              <a class="product-similar__image-link" href="/catalog/wademan-1327-darkgrey/">
                 <img class="product-similar__image"
                 src="/images/content/product/similar-wademan.png"
                 srcset="/images/content/_responsive/product/similar-wademan-160.png 160w, /images/content/_responsive/product/similar-wademan-320.png 320w, /images/content/_responsive/product/similar-wademan-480.png 480w, /images/content/_responsive/product/similar-wademan-768.png 768w, /images/content/product/similar-wademan.png 1000w"
@@ -441,7 +458,7 @@
             </article>
             <article class="product-similar__card">
               <button class="product-similar__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
-              <a class="product-similar__image-link" href="#">
+              <a class="product-similar__image-link" href="/catalog/coaster-4023-grey/">
                 <img class="product-similar__image"
                 src="/images/content/product/similar-coaster.png"
                 srcset="/images/content/_responsive/product/similar-coaster-160.png 160w, /images/content/_responsive/product/similar-coaster-320.png 320w, /images/content/_responsive/product/similar-coaster-480.png 480w, /images/content/_responsive/product/similar-coaster-768.png 768w, /images/content/product/similar-coaster.png 1000w"
@@ -462,6 +479,15 @@
           </div>
         </div>
 
+        <!-- BITRIX: «Дополните комплект» (десктоп) — товары из PROPERTY_KIT_ITEMS
+             Список ID товаров из свойства инфоблока. Выводится через bitrix:catalog.element.
+             Данные каждого product-kit-item:
+               img src/srcset       → PREVIEW_PICTURE товара комплекта
+               img alt              → NAME товара комплекта
+               product-kit-item__title → NAME
+               product-kit-item__price → CATALOG_PRICE_1
+               <select> опции       → CATALOG_SKU (PROPERTY_SIZE) товара комплекта, недоступные размеры → disabled
+               кнопка «В корзину»   → добавление SKU в bitrix:sale.basket.basket -->
         <div class="product-detail__kit">
           <a class="product-detail__kit-title" href="/catalog/kurtki/kurtki-fishing/">Дополните комплект</a>
           <article class="product-kit-item">
@@ -482,6 +508,7 @@
                     <option>M</option>
                     <option>XXL</option>
                   </select>
+                  <svg class="product-kit-item__size-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
                 </label>
                 <button class="product-kit-item__cart" type="button" aria-label="Добавить брюки в корзину">
                   <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
@@ -491,8 +518,8 @@
           </article>
           <article class="product-kit-item">
             <img class="product-kit-item__image"
-              src="/images/content/product/snowranger/snowranger-hat.png"
-              srcset="/images/content/_responsive/product/snowranger/snowranger-hat-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-hat-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-hat-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-hat-768.png 768w, /images/content/product/snowranger/snowranger-hat.png 1000w"
+              src="/images/content/product/snowranger/snowranger-info-hat.png"
+              srcset="/images/content/_responsive/product/snowranger/snowranger-info-hat-160.png 160w, /images/content/_responsive/product/snowranger/snowranger-info-hat-320.png 320w, /images/content/_responsive/product/snowranger/snowranger-info-hat-480.png 480w, /images/content/_responsive/product/snowranger/snowranger-info-hat-768.png 768w, /images/content/product/snowranger/snowranger-info-hat.png 1000w"
               sizes="80px"
               alt="Шапка FINNTRAIL Sport Hat 9730 Graphiteyellow"
               loading="lazy">
@@ -506,6 +533,7 @@
                     <option>S-M</option>
                     <option>L-XL</option>
                   </select>
+                  <svg class="product-kit-item__size-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
                 </label>
                 <button class="product-kit-item__cart" type="button" aria-label="Добавить шапку в корзину">
                   <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
@@ -516,6 +544,12 @@
         </div>
       </div>
 
+      <!-- BITRIX: галерея товара
+           Главное фото (product-detail__image): DETAIL_PICTURE — fetchpriority="high", без loading="lazy"
+           Миниатюры (product-media-carousel__item): PROPERTY_MORE_PHOTO — цикл foreach
+             кол-во слайдов динамическое (1–N), aria-label «Фото N» — порядковый номер итерации
+             img alt главного и мини — NAME товара
+           Адаптивные версии src/srcset генерирует сервер (ImageResize / resize handler Битрикса) -->
       <div class="product-detail__media">
         <img class="product-detail__image"
           src="/images/content/product/snowranger/sr-01.png"
@@ -733,7 +767,19 @@
         </div>
 
         <div class="product-detail__purchase">
-          <!-- BITRIX: product-option — CATALOG_SKU, цвет из PROPERTY_COLOR, размер из PROPERTY_SIZE -->
+          <!-- BITRIX: product-option — данные из bitrix:catalog.element (режим детального просмотра)
+               CATALOG_SKU — матрица торговых предложений (офферов), каждый оффер = цвет + размер
+               Цвета (product-option--color-picker):
+                 data-color  → hex/slug из PROPERTY_COLOR каждого оффера
+                 data-name   → PROPERTY_COLOR_NAME
+                 data-in-stock → наличие данного цвета (хотя бы один размер > 0)
+                 style="background: …" → hex-код PROPERTY_COLOR
+                 product-option__more «+N» → кол-во цветов сверх видимых 3-х свотчей в шапке
+               Размеры (product-option--sizes):
+                 Кнопки <button> генерируются foreach по SKU активного цвета
+                 Нет в наличии (CATALOG_QUANTITY = 0) → class="is-oos", disabled
+                 Активный размер → class="is-active"
+                 Таблица размеров href → PROPERTY_SIZE_GUIDE_URL или /sizes/ -->
           <!-- BITRIX: офферы/SKU подгружаются через bitrix:catalog.element (режим детального просмотра) -->
           <div class="product-option product-option--color-picker">
             <p class="product-option__label">Цвет</p>
@@ -859,6 +905,11 @@
       </div>
     </section>
 
+    <!-- BITRIX: мобильная sticky-панель покупки (появляется когда product-buy уходит из viewport)
+         Цена (product-mobile-buy__main span): CATALOG_PRICE_1
+         Бонусы (product-mobile-buy__bonus span): PROPERTY_BONUS
+         Кнопка «В корзину»: добавляет активный SKU в bitrix:sale.basket.basket
+         Управляется через IntersectionObserver в JS — скрыта пока product-buy виден -->
     <div class="product-mobile-buy" aria-label="Быстрая покупка" aria-hidden="true">
       <div class="product-mobile-buy__main-wrap">
         <div class="product-mobile-buy__bonus" aria-label="Бонусов за покупку">
@@ -878,6 +929,9 @@
       </button>
     </div>
 
+    <!-- BITRIX: «Дополните комплект» (мобиль) — те же PROPERTY_KIT_ITEMS что десктопный блок
+         Данные карточек: NAME, CATALOG_PRICE_1, PREVIEW_PICTURE, DETAIL_PAGE_URL
+         Горизонтальный scroll-carousel, без выбора размера (добавление в корзину идёт на страницу товара) -->
     <section class="product-mobile-kit" aria-labelledby="product-mobile-kit-title">
       <a class="product-mobile-kit__title" id="product-mobile-kit-title" href="/catalog/kurtki/kurtki-fishing/">Дополните комплект</a>
       <div class="product-mobile-kit__scroller" aria-label="Карусель товаров для комплекта">
@@ -941,11 +995,15 @@
       </div>
     </section>
 
+    <!-- BITRIX: «Похожие товары» (мобиль) — те же данные что десктопный product-similar
+         bitrix:catalog.viewed_products или выборка по разделу/тегу
+         Данные карточек: NAME, CATALOG_PRICE_1, PREVIEW_PICTURE, DETAIL_PAGE_URL
+         Горизонтальный scroll-carousel (modifier --similar) -->
     <section class="product-mobile-kit product-mobile-kit--similar" aria-labelledby="product-mobile-similar-title">
       <a class="product-mobile-kit__title" id="product-mobile-similar-title" href="/catalog/kurtki/">Похожие товары</a>
       <div class="product-mobile-kit__scroller" aria-label="Карусель похожих товаров">
         <article class="product-mobile-kit__card">
-          <a class="product-mobile-kit__image-link" href="#">
+          <a class="product-mobile-kit__image-link" href="/catalog/wademan-1327-darkgrey/">
             <img class="product-mobile-kit__image"
               src="/images/content/product/similar-wademan.png"
               srcset="/images/content/_responsive/product/similar-wademan-160.png 160w, /images/content/_responsive/product/similar-wademan-320.png 320w, /images/content/_responsive/product/similar-wademan-480.png 480w, /images/content/_responsive/product/similar-wademan-768.png 768w, /images/content/product/similar-wademan.png 1000w"
@@ -964,7 +1022,7 @@
           </div>
         </article>
         <article class="product-mobile-kit__card">
-          <a class="product-mobile-kit__image-link" href="#">
+          <a class="product-mobile-kit__image-link" href="/catalog/coaster-4023-grey/">
             <img class="product-mobile-kit__image"
               src="/images/content/product/similar-coaster.png"
               srcset="/images/content/_responsive/product/similar-coaster-160.png 160w, /images/content/_responsive/product/similar-coaster-320.png 320w, /images/content/_responsive/product/similar-coaster-480.png 480w, /images/content/_responsive/product/similar-coaster-768.png 768w, /images/content/product/similar-coaster.png 1000w"
@@ -1004,6 +1062,14 @@
       </div>
     </section>
 
+    <!-- BITRIX: «В реальных условиях» — UGC-медиа пользователей (фото и видео)
+         Источник: кастомный компонент отзывов или PROPERTY_UGC_MEDIA
+         conditions-bg (фоновое изображение): PROPERTY_CONDITIONS_BG или общий статичный дефолт
+         Слайды генерируются foreach:
+           product-conditions__slide--video → если mime-тип файла video/*
+           product-conditions__slide (фото) → иначе
+         Карточка «Загрузить» (product-conditions__upload-card) — статичная, всегда первая
+         Бонусные баллы за загрузку (1 000): PROPERTY_UGC_BONUS или константа из настроек -->
     <section class="product-conditions" aria-labelledby="product-conditions-title" data-product-conditions>
       <div class="product-conditions__header">
         <h2 class="product-conditions__title" id="product-conditions-title">В реальных условиях</h2>
@@ -1113,7 +1179,9 @@
       <!-- Комплект + описание + преимущества -->
       <div class="product-store-info__main">
 
-        <!-- Комплект: 3 миниатюры товаров -->
+        <!-- BITRIX: мобильный комплект товара — тот же набор, что PROPERTY_KIT_ITEMS в десктопном блоке.
+             data-title/data-article/data-desc сейчас нужны демо-JS для переключения текста; при интеграции
+             генерируются из полей товара комплекта или заменяются серверным рендером выбранного товара. -->
         <div class="product-store-info__kit" data-kit-switch data-kit-section="store">
           <p class="product-store-info__kit-label">Комплект</p>
           <div class="product-store-info__kit-images">
@@ -1208,8 +1276,9 @@
                 <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
                 <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-product-info-chevron"></use></svg>
               </button>
-              <input class="product-store-info__input product-store-info__input--phone" type="tel" placeholder="+7" autocomplete="tel">
+              <input class="product-store-info__input product-store-info__input--phone js-phone-input" id="product-store-info-phone" type="tel" placeholder="Ваш телефон" autocomplete="tel" aria-describedby="product-store-info-phone-caption">
             </div>
+            <span class="product-store-info__caption" id="product-store-info-phone-caption" aria-live="polite"></span>
           </div>
           <button class="product-store-info__submit" type="submit">Отправить</button>
         </form>
@@ -1217,6 +1286,17 @@
 
     </section>
 
+    <!-- BITRIX: блок «О товаре» (десктоп) — дублирует данные product-store-info для десктопного лейаута
+         product-info-section__kit — товары из PROPERTY_KIT_ITEMS (те же что в product-detail__kit)
+           data-kit-item, data-title, data-article, data-desc — атрибуты каждого товара комплекта
+           img → PREVIEW_PICTURE каждого товара комплекта
+         product-info-section__text [data-kit-section] — переключается JS при клике на миниатюру:
+           data-kit-title    → NAME товара комплекта
+           data-kit-article  → «Артикул {PROPERTY_ARTNUMBER}»
+           data-kit-desc     → PREVIEW_TEXT / начало DETAIL_TEXT
+         product-info-section__media video:
+           data-src → PROPERTY_INFO_VIDEO (или PROPERTY_PROMO_VIDEO как фолбэк)
+           poster   → PROPERTY_INFO_POSTER или DETAIL_PICTURE -->
     <section class="product-info-section" aria-labelledby="product-info-title">
       <div class="product-info-section__panel product-info-section__panel--about">
         <div class="product-info-section__about">
@@ -1776,7 +1856,14 @@
       </div>
     </section>
 
-    <!-- BITRIX: блок «в журнале» + «статьи по теме» -->
+    <!-- BITRIX: блок «в журнале» + «статьи по теме» — bitrix:news.list (инфоблок «Журнал»)
+         Левая часть (product-article__left):
+           Заголовок: «О {NAME} в журнале»
+           Карточки (2 шт.): выборка статей, у которых PROPERTY_LINKED_PRODUCT = ID текущего товара
+             img → PREVIEW_PICTURE статьи, теги → PROPERTY_TAGS, заголовок → NAME
+         Правая часть (product-article__right):
+           Список статей (3 шт.): выборка по тем же тегам/разделу журнала
+             дата → DATE_ACTIVE_FROM (формат «D месяц»), заголовок → NAME -->
     <section class="product-article" aria-label="О товаре в журнале">
 
       <!-- Левая часть: две карточки статей -->
@@ -1850,7 +1937,12 @@
 
     </section>
 
-    <!-- BITRIX: отзывы -->
+    <!-- BITRIX: отзывы — bitrix:main.rating или кастомный компонент отзывов
+         product-reviews__count        → общее кол-во одобренных отзывов
+         product-reviews__average-num  → средний рейтинг (float)
+         product-reviews__stars        → CSS-класс --N-X отражает рейтинг (например --4-8 = 4.8)
+         Карточки отзывов: динамический список, сортировка через AJAX (data-sort)
+         Форма написания отзыва — отдельный компонент, открывается кнопкой «Написать отзыв» -->
     <section class="product-reviews" aria-label="Отзывы о товаре">
 
       <!-- ─── Левая колонка: список отзывов ─── -->

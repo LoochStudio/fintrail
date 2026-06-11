@@ -1,4 +1,12 @@
 export function init() {
+  // ─── uk-field: клик по обёртке фокусирует инпут ─────────────────────────────
+  document.addEventListener('click', e => {
+    const field = e.target.closest('.uk-field');
+    if (!field) return;
+    if (e.target.closest('.uk-field__clear') || e.target === field.querySelector('.uk-field__input')) return;
+    field.querySelector('.uk-field__input')?.focus();
+  });
+
   // ─── Маска телефона ──────────────────────────────────────────────────────────
   document.querySelectorAll('.js-phone-input').forEach(input => {
     function applyMask(raw) {

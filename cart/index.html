@@ -258,7 +258,7 @@
           </nav>
           <h1>Корзина <span class="cart-page__count">14</span></h1>
           <div class="cart-page__actions">
-            <button type="button"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg>Удалить корзину</button>
+            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg>Удалить корзину</button>
             <button type="button"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-share"></use></svg>Поделиться</button>
           </div>
         </div>
@@ -267,31 +267,49 @@
 
     <div class="cart-page__grid">
       <section class="cart-page__content" aria-label="Товары в корзине">
-        <div class="cart-delivery">
+        <div class="cart-delivery" data-cart-delivery>
           <div class="cart-delivery__tabs" role="tablist" aria-label="Способ доставки">
-            <button class="is-active" type="button">Самовывоз</button>
-            <button type="button">Доставка</button>
+            <button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="cart-delivery-pickup" data-cart-delivery-tab="pickup">Самовывоз</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cart-delivery-address" data-cart-delivery-tab="delivery">Доставка</button>
           </div>
-          <button class="cart-delivery__option" type="button" data-cart-pickup-open>
-            <div>
-              <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-location"></use></svg>
-              <p class="cart-delivery__primary cart-delivery__primary--split">
-                <span class="cart-delivery__label">Пункт выдачи СДЭК</span>
-                <span class="cart-delivery__dot">·</span>
-                <span class="cart-delivery__date" data-cart-pickup-date>Доставим 11 - 19 июня</span>
-              </p>
-              <small data-cart-pickup-address>Москва, ул. Рождества Христова, д. 151</small>
-            </div>
-            <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
-          </button>
-          <button class="cart-delivery__option" type="button" data-cart-recipient-open>
-            <div>
-              <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
-              <p class="cart-delivery__primary" data-cart-recipient-name>Константин Константинопольский</p>
-              <small data-cart-recipient-phone>+7 (999) 999-66-33</small>
-            </div>
-            <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
-          </button>
+          <div class="cart-delivery__panel is-active" id="cart-delivery-pickup" role="tabpanel" data-cart-delivery-panel="pickup">
+            <button class="cart-delivery__option" type="button" data-cart-pickup-open>
+              <div>
+                <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-location"></use></svg>
+                <p class="cart-delivery__primary cart-delivery__primary--split">
+                  <span class="cart-delivery__label">Пункт выдачи СДЭК</span>
+                  <span class="cart-delivery__dot">·</span>
+                  <span class="cart-delivery__date" data-cart-pickup-date>Доставим 11 - 19 июня</span>
+                </p>
+                <small data-cart-pickup-address>Москва, ул. Рождества Христова, д. 151</small>
+              </div>
+              <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+            </button>
+            <button class="cart-delivery__option" type="button" data-cart-recipient-open>
+              <div>
+                <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+                <p class="cart-delivery__primary" data-cart-recipient-name>Константин Константинопольский</p>
+                <small data-cart-recipient-phone>+7 (999) 999-66-33</small>
+              </div>
+              <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+            </button>
+          </div>
+          <div class="cart-delivery__panel" id="cart-delivery-address" role="tabpanel" data-cart-delivery-panel="delivery" hidden>
+            <button class="cart-delivery__option" type="button" data-cart-address-open>
+              <div>
+                <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-location"></use></svg>
+                <p class="cart-delivery__primary" data-cart-address-summary>Указать адрес</p>
+              </div>
+              <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+            </button>
+            <button class="cart-delivery__option" type="button" data-cart-recipient-open>
+              <div>
+                <svg class="cart-delivery__icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+                <p class="cart-delivery__primary">Добавить получателя</p>
+              </div>
+              <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
+            </button>
+          </div>
         </div>
 
         <div class="cart-items">
@@ -425,11 +443,15 @@
           </dl>
           <div class="cart-total__promo">
             <form class="cart-total__promo-row">
-              <label class="visually-hidden" for="cart-promo">Промокод</label>
-              <input id="cart-promo" type="text" placeholder="Промокод или подарочная карта">
+              <div class="uk-field-wrap uk-field--surface">
+                <label class="visually-hidden" for="cart-promo">Промокод</label>
+                <div class="uk-field">
+                  <input class="uk-field__input" id="cart-promo" type="text" placeholder="Промокод или подарочная карта" autocomplete="off">
+                </div>
+              </div>
               <button type="submit">Применить</button>
             </form>
-            <a class="button button--primary button--size-l cart-total__submit" href="/checkout/" data-cart-login-open>Оформить заказ</a>
+            <a class="button button--primary button--size-l cart-total__submit" href="/order-confirmed/" data-cart-login-open>Оформить заказ</a>
           </div>
           <p class="cart-total__note">Нажимая на кнопку, вы соглашаетесь с <a href="/privacy/">Условиями обработки персональных данных</a> и <a href="/offer/">Условиями продажи</a></p>
         </section>
@@ -529,7 +551,7 @@
         </div>
         <div class="cart-login-modal__actions">
           <a class="cart-login-modal__button cart-login-modal__button--primary" href="/personal/">Войти</a>
-          <a class="cart-login-modal__button cart-login-modal__button--secondary" href="/checkout/">Продолжить как гость</a>
+          <a class="cart-login-modal__button cart-login-modal__button--secondary" href="/order-confirmed/">Продолжить как гость</a>
         </div>
       </div>
       <div class="cart-login-modal__media" aria-hidden="true">
@@ -700,6 +722,133 @@
           <button class="cart-recipient-modal__submit" type="submit">Сохранить</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="cart-recipient-modal cart-address-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cart-address-title" data-cart-address-modal>
+    <button class="cart-recipient-modal__backdrop cart-address-modal__backdrop" type="button" aria-label="Закрыть данные адреса" data-cart-address-close></button>
+    <div class="cart-recipient-modal__panel cart-address-modal__panel" role="document">
+      <div class="cart-recipient-modal__header cart-address-modal__header">
+        <h2 class="cart-recipient-modal__title cart-address-modal__title" id="cart-address-title">Данные адреса</h2>
+        <button class="cart-recipient-modal__close cart-address-modal__close js-modal-close" type="button" aria-label="Закрыть данные адреса" data-cart-address-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <form class="cart-recipient-modal__form cart-address-modal__form" novalidate>
+        <div class="cart-recipient-modal__fields cart-address-modal__fields">
+          <div class="uk-field-wrap uk-field--surface cart-address-modal__select-wrap" data-input-field>
+            <div class="uk-field">
+              <select class="uk-field__input cart-address-modal__select" name="country" id="cart-address-country" aria-label="Страна" required>
+                <option value="">Страна</option>
+                <option value="Россия" selected>Россия</option>
+                <option value="Беларусь">Беларусь</option>
+                <option value="Казахстан">Казахстан</option>
+              </select>
+              <svg class="cart-address-modal__select-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="city" placeholder="Населенный пункт" autocomplete="address-level2" id="cart-address-city" aria-describedby="cart-address-city-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="cart-address-city-hint" aria-live="polite"></span>
+          </div>
+
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="street" placeholder="Улица" autocomplete="address-line1" id="cart-address-street" aria-describedby="cart-address-street-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="cart-address-street-hint" aria-live="polite"></span>
+          </div>
+
+          <div class="cart-address-modal__row cart-address-modal__row--house">
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="house" placeholder="Дом" autocomplete="address-line2" id="cart-address-house" aria-describedby="cart-address-house-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="cart-address-house-hint" aria-live="polite"></span>
+            </div>
+
+            <label class="cart-address-modal__toggle">
+              <span>Частный дом</span>
+              <input type="checkbox" name="private-house">
+              <span class="cart-address-modal__toggle-control" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <div class="cart-address-modal__row cart-address-modal__row--details">
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="entrance" placeholder="Подъезд / корпус" id="cart-address-entrance" aria-describedby="cart-address-entrance-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="cart-address-entrance-hint" aria-live="polite"></span>
+            </div>
+
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="floor" placeholder="Этаж" id="cart-address-floor" aria-describedby="cart-address-floor-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="cart-address-floor-hint" aria-live="polite"></span>
+            </div>
+
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="flat" placeholder="Квартира" id="cart-address-flat" aria-describedby="cart-address-flat-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="cart-address-flat-hint" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="uk-field-wrap uk-field--surface uk-field--textarea cart-address-modal__comment" data-input-field>
+            <div class="uk-field">
+              <textarea class="uk-field__input" name="comment" placeholder="Комментарий к заказу" id="cart-address-comment" aria-describedby="cart-address-comment-hint"></textarea>
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="cart-address-comment-hint" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="cart-recipient-modal__footer cart-address-modal__footer">
+          <button class="cart-recipient-modal__submit cart-address-modal__submit" type="submit">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="cart-clear-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cart-clear-title" data-cart-clear-modal>
+    <button class="cart-clear-modal__backdrop" type="button" aria-label="Закрыть" data-cart-clear-close></button>
+    <div class="cart-clear-modal__panel" role="document">
+      <div class="cart-clear-modal__header">
+        <h2 class="cart-clear-modal__title" id="cart-clear-title">Очистить корзину?</h2>
+        <button class="cart-clear-modal__close js-modal-close" type="button" aria-label="Закрыть" data-cart-clear-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <div class="cart-clear-modal__actions">
+        <a class="button button--on-color button--size-l" href="/cart-empty/">Очистить</a>
+        <button class="button button--primary button--size-l" type="button" data-cart-clear-close>Отменить</button>
+      </div>
     </div>
   </div>
 

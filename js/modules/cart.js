@@ -1,4 +1,28 @@
 export function init() {
+  // Cart page — delivery method switch
+  document.querySelectorAll('[data-cart-delivery]').forEach(delivery => {
+    const tabs = Array.from(delivery.querySelectorAll('[data-cart-delivery-tab]'));
+    const panels = Array.from(delivery.querySelectorAll('[data-cart-delivery-panel]'));
+
+    function selectDeliveryMode(mode) {
+      tabs.forEach(tab => {
+        const isActive = tab.dataset.cartDeliveryTab === mode;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', String(isActive));
+      });
+
+      panels.forEach(panel => {
+        const isActive = panel.dataset.cartDeliveryPanel === mode;
+        panel.hidden = !isActive;
+        panel.classList.toggle('is-active', isActive);
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => selectDeliveryMode(tab.dataset.cartDeliveryTab));
+    });
+  });
+
   // Cart page — login modal
   document.querySelectorAll('[data-cart-login-modal]').forEach(modal => {
     const openButtons = document.querySelectorAll('[data-cart-login-open]');
@@ -125,8 +149,8 @@ export function init() {
     const closeButtons = modal.querySelectorAll('[data-cart-recipient-close]');
     const closeButton = modal.querySelector('.js-modal-close');
     const form = modal.querySelector('.cart-recipient-modal__form');
-    const nameOutput = document.querySelector('[data-cart-recipient-name]');
-    const phoneOutput = document.querySelector('[data-cart-recipient-phone]');
+    const nameOutputs = document.querySelectorAll('[data-cart-recipient-name]');
+    const phoneOutputs = document.querySelectorAll('[data-cart-recipient-phone]');
     let closeTimer = 0;
 
     // Clear buttons + active state for uk-field-wrap
@@ -220,7 +244,6 @@ export function init() {
     }
 
     form?.querySelectorAll('.uk-field__input').forEach(input => {
-      input.addEventListener('blur', () => validateField(input));
       input.addEventListener('input', () => setFieldError(input, ''));
     });
 
@@ -230,14 +253,191 @@ export function init() {
       const firstName = form.querySelector('[name="first-name"]')?.value.trim() || '';
       const lastName = form.querySelector('[name="last-name"]')?.value.trim() || '';
       const phone = form.querySelector('[name="phone"]')?.value.trim() || '';
-      if (nameOutput && (firstName || lastName)) {
-        nameOutput.textContent = [firstName, lastName].filter(Boolean).join(' ');
+      if (firstName || lastName) {
+        nameOutputs.forEach(output => {
+          output.textContent = [firstName, lastName].filter(Boolean).join(' ');
+        });
       }
-      if (phoneOutput && phone) {
-        phoneOutput.textContent = phone;
+      if (phone) {
+        phoneOutputs.forEach(output => {
+          output.textContent = phone;
+        });
       }
       closeModal();
     });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  });
+
+  // Cart page — delivery address modal
+  document.querySelectorAll('[data-cart-address-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-cart-address-open]');
+    const closeButtons = modal.querySelectorAll('[data-cart-address-close]');
+    const closeButton = modal.querySelector('.js-modal-close');
+    const form = modal.querySelector('.cart-address-modal__form');
+    const summary = document.querySelector('[data-cart-address-summary]');
+    let closeTimer = 0;
+
+    modal.querySelectorAll('.uk-field-wrap').forEach(wrap => {
+      const field = wrap.querySelector('.uk-field__input');
+      const clearBtn = wrap.querySelector('.uk-field__clear');
+      if (!field) return;
+
+      function syncClear() {
+        const hasValue = field.value.trim() !== '';
+        wrap.classList.toggle('uk-s-value', hasValue && field.tagName !== 'SELECT');
+      }
+
+      field.addEventListener('focus', () => wrap.classList.add('uk-s-active'));
+      field.addEventListener('blur', () => {
+        wrap.classList.remove('uk-s-active');
+        syncClear();
+      });
+      field.addEventListener('input', syncClear);
+      field.addEventListener('change', syncClear);
+
+      if (clearBtn) {
+        clearBtn.addEventListener('mousedown', event => {
+          event.preventDefault();
+        });
+        clearBtn.addEventListener('click', () => {
+          field.value = '';
+          wrap.classList.remove('uk-s-value');
+          field.focus();
+        });
+      }
+
+      syncClear();
+    });
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus();
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+      }, 200);
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', closeModal));
+
+    const addressFieldRules = [
+      { name: 'city',   test: v => v.trim() !== '', error: 'Заполните поле' },
+      { name: 'street', test: v => v.trim() !== '', error: 'Заполните поле' },
+      { name: 'house',  test: v => v.trim() !== '', error: 'Заполните поле' },
+    ];
+
+    function setAddressFieldError(input, message) {
+      const wrap = input.closest('[data-input-field]');
+      if (!wrap) return;
+      const caption = wrap.querySelector('.uk-field__caption');
+      wrap.classList.toggle('is-error', !!message);
+      if (caption) caption.textContent = message || '';
+    }
+
+    function validateAddressForm() {
+      let valid = true;
+      for (const rule of addressFieldRules) {
+        const input = form.querySelector(`[name="${rule.name}"]`);
+        if (!input) continue;
+        const message = rule.test(input.value) ? '' : rule.error;
+        setAddressFieldError(input, message);
+        if (message) valid = false;
+      }
+      return valid;
+    }
+
+    form?.querySelectorAll('.uk-field__input').forEach(input => {
+      input.addEventListener('input', () => setAddressFieldError(input, ''));
+    });
+
+    form?.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!validateAddressForm()) return;
+      const city = form.elements.city?.value.trim() || '';
+      const street = form.elements.street?.value.trim() || '';
+      const house = form.elements.house?.value.trim() || '';
+      const address = [city, street, house && `д. ${house}`].filter(Boolean).join(', ');
+
+      if (summary && address) {
+        summary.textContent = address;
+      }
+
+      closeModal();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  });
+
+  // Cart page — promo field focus states
+  document.querySelectorAll('.cart-total__promo-row .uk-field-wrap').forEach(wrap => {
+    const input = wrap.querySelector('.uk-field__input');
+    if (!input) return;
+    input.addEventListener('focus', () => wrap.classList.add('uk-s-active'));
+    input.addEventListener('blur', () => wrap.classList.remove('uk-s-active'));
+  });
+
+  // Cart page — promo code: turns discount row green on apply
+  document.querySelectorAll('.cart-total__promo-row').forEach(form => {
+    const discountRow = form.closest('.cart-total')?.querySelector('.cart-total__discount-row');
+    if (!discountRow) return;
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const input = form.querySelector('input');
+      if (input?.value.trim()) {
+        discountRow.classList.add('is-promo-applied');
+      }
+    });
+  });
+
+  // Cart page — clear cart confirmation modal
+  document.querySelectorAll('[data-cart-clear-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-cart-clear-open]');
+    const closeButtons = modal.querySelectorAll('[data-cart-clear-close]');
+    const closeButton = modal.querySelector('.js-modal-close');
+    let closeTimer = 0;
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus();
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+      }, 200);
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', closeModal));
 
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && !modal.hidden) closeModal();
