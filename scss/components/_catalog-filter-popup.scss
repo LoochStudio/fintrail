@@ -1,0 +1,419 @@
+@use '../variables' as *;
+
+// ── Враппер (position: relative нужен для абсолютного позиционирования попапа) ──
+
+.catalog-filter-popup-wrap {
+  position: relative;
+}
+
+.catalog-filter-popup-wrap--sort {
+  // sort-попап выравнивается по правому краю враппера
+}
+
+// ── Базовый попап ─────────────────────────────────────────────────────────────
+
+.catalog-filter-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  padding: 20px;
+  border-radius: 8px;
+  background: $color-white;
+  box-shadow:
+    0 0 4px rgba(95, 105, 131, 0.07),
+    0 5px 4px rgba(95, 105, 131, 0.05),
+    0 4px 15px rgba(95, 105, 131, 0.12);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// ── Модификаторы ширины ───────────────────────────────────────────────────────
+
+.catalog-filter-popup--price {
+  width: 280px;
+}
+
+.catalog-filter-popup--gender {
+  width: 240px;
+}
+
+.catalog-filter-popup--type {
+  width: 280px;
+}
+
+.catalog-filter-popup--season {
+  width: 240px;
+}
+
+.catalog-filter-popup--color {
+  width: 280px;
+}
+
+.catalog-filter-popup--sort {
+  width: 280px;
+  left: auto;
+  right: 0;
+}
+
+// ── Шеврон в чипе ─────────────────────────────────────────────────────────────
+// Вращается когда чип открыт (aria-expanded="true" на кнопке выше в DOM)
+
+.catalog-toolbar__chip[aria-expanded='true'] .catalog-filter-popup__chevron,
+.catalog-toolbar__button[aria-expanded='true'] .catalog-filter-popup__chevron {
+  transform: rotate(180deg);
+}
+
+.catalog-filter-popup__chevron {
+  transition: transform 0.2s ease;
+}
+
+// ── Попап цены ────────────────────────────────────────────────────────────────
+
+.catalog-filter-popup__price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.catalog-filter-popup__price-input {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 52px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  color: $color-primary-gray;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  outline: none;
+  appearance: none;
+
+  &::placeholder {
+    color: $color-primary-gray;
+  }
+
+  &:focus {
+    outline: 1.5px solid $color-secondary-gray;
+    outline-offset: -1.5px;
+  }
+}
+
+.catalog-filter-popup__price-sep {
+  flex: 0 0 auto;
+  color: #1f1f1f;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+// ── Кнопка «Применить» ────────────────────────────────────────────────────────
+
+.catalog-filter-popup__apply {
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: #000;
+    }
+  }
+
+  &:active {
+    background: #323232;
+  }
+}
+
+// ── Список чекбоксов ──────────────────────────────────────────────────────────
+
+.catalog-filter-popup__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog-filter-popup__item {
+  // первый item — без верхней границы
+  & + & {
+    border-top: 1px solid $color-surface;
+  }
+}
+
+.catalog-filter-popup__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+.catalog-filter-popup__item-text {
+  flex: 1 1 0;
+  min-width: 0;
+  color: #141415;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+// ── Кастомный чекбокс ─────────────────────────────────────────────────────────
+
+.catalog-filter-popup__checkbox {
+  display: flex;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: $color-white;
+    opacity: 0; // скрыта галочка у неактивного чекбокса
+    transition: opacity 0.15s ease;
+  }
+
+  // Сам квадратик (через ::before)
+  &::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid $color-secondary-gray;
+    border-radius: $radius-xs;
+    background: $color-white;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  // Позиционирование: svg поверх ::before
+  position: relative;
+
+  svg {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Активное состояние
+  &.is-checked {
+    &::before {
+      background: $color-primary-black;
+      border-color: $color-primary-black;
+    }
+
+    svg {
+      opacity: 1;
+    }
+  }
+}
+
+// ── Прокручиваемые попапы (type, color) ───────────────────────────────────────
+
+.catalog-filter-popup__scroll-wrap {
+  position: relative;
+  overflow: hidden;
+  --fp-scroll-thumb-y: 0px;
+
+  // Трек скроллбара
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 336px;
+    background: #eaeaea;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  // Бегунок скроллбара
+  // --fp-scroll-thumb-h задаётся JS динамически (clientHeight / scrollHeight * 336)
+  --fp-scroll-thumb-h: 80px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(2px + var(--fp-scroll-thumb-y));
+    right: 2px;
+    width: 2px;
+    height: var(--fp-scroll-thumb-h);
+    background: $color-white;
+    border-radius: 1px;
+    pointer-events: none;
+  }
+}
+
+.catalog-filter-popup__scroll-list {
+  max-height: 336px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  // Отступ справа, чтобы текст не наезжал на скроллбар
+  padding-right: 14px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// ── Попап цвета: items с кружком-свотчем ──────────────────────────────────────
+
+.catalog-filter-popup__color-info {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.catalog-filter-popup__color-swatch {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &--svg {
+    border-radius: 0;
+    background: none;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.catalog-filter-popup__color-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.catalog-filter-popup__color-name {
+  color: #141415;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.catalog-filter-popup__color-code {
+  color: #6c6760;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+// ── Попап сортировки ──────────────────────────────────────────────────────────
+
+.catalog-filter-popup__sort-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog-filter-popup__sort-item {
+  & + & {
+    border-top: 1px solid $color-surface;
+  }
+}
+
+.catalog-filter-popup__sort-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary-black;
+  cursor: pointer;
+  text-align: left;
+}
+
+.catalog-filter-popup__sort-icon {
+  display: flex;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.catalog-filter-popup__sort-symbol {
+  font-family: $font-mono;
+  font-size: 18px;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  color: $color-primary-black;
+}
+
+.catalog-filter-popup__sort-arrow {
+  display: block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  // "вниз" — стрелка по умолчанию (иконка icon-sort-arrow смотрит вниз)
+  // rotate уже не нужен для "вниз"
+
+  &--up {
+    transform: rotate(180deg);
+  }
+}
+
+.catalog-filter-popup__sort-text {
+  flex: 1 1 0;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+// Активный пункт сортировки
+.catalog-filter-popup__sort-item.is-selected .catalog-filter-popup__sort-text {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+// hover на кнопках сортировки
+@media (hover: hover) and (pointer: fine) {
+  .catalog-filter-popup__sort-btn:hover .catalog-filter-popup__sort-text {
+    opacity: 0.6;
+  }
+}

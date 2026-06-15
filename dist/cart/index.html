@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Корзина</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-F_rsHlD5.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-C6rhD9vB.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-qCmGxXzW.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-z3C7TbvW.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -248,6 +248,165 @@
     </aside>
   </div>
 
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню" data-mobile-menu>
+    <div class="mobile-menu__panel" data-mobile-menu-view="main">
+      <div class="mobile-menu__top">
+        <div class="mobile-menu__bar">
+          <button class="mobile-menu__close" type="button" data-mobile-menu-close>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="mobile-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+
+        <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+          <div class="mobile-menu__group">
+            <a href="/journal/">Журнал</a>
+            <a href="/tours/">Премиальные туры</a>
+          </div>
+          <div class="mobile-menu__group">
+            <a href="/about/">О компании</a>
+            <button type="button" data-mobile-menu-customers>Покупателям</button>
+            <a href="/wholesale/">Оптовикам</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="mobile-menu__bottom">
+        <div class="mobile-menu__contacts">
+          <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+          <div class="mobile-menu__socials" aria-label="Социальные сети">
+            <a href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+            <a href="https://wa.me/78007004273" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+          </div>
+        </div>
+        <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/loyalty/">Программа лояльности</a>
+      </nav>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
+      <div class="mobile-menu__catalog-top">
+        <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle>
+            <span>Мужчинам</span>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+          </button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+        <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle>
+            <span>Женщинам</span>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+          </button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--category" hidden data-mobile-menu-view="category">
+      <div class="mobile-menu__category-top">
+        <button class="mobile-menu__category-back" type="button" data-mobile-menu-catalog-back>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span data-mobile-menu-category-title>Одежда</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <nav class="mobile-menu__subcategory-links" aria-label="Подкатегории">
+          <a href="/catalog/">Куртки</a>
+          <a href="/catalog/">Брюки и полукомбинезоны</a>
+          <a href="/catalog/">Костюмы и комбинезоны</a>
+          <a href="/catalog/">Термобелье</a>
+          <a href="/catalog/">Футболки и лонгсливы</a>
+          <a href="/catalog/">Жилеты</a>
+          <a href="/catalog/">Худи и толстовки</a>
+          <a href="/catalog/">Рубашки / шорты</a>
+        </nav>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
   <main class="cart-page" aria-label="Корзина">
     <div class="cart-page__header">
       <div class="cart-page__top">
@@ -259,8 +418,8 @@
           </nav>
           <h1>Корзина <span class="cart-page__count">14</span></h1>
           <div class="cart-page__actions">
-            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg>Удалить корзину</button>
-            <button type="button"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-share"></use></svg>Поделиться</button>
+            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg><span>Удалить корзину</span></button>
+            <button type="button"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-share"></use></svg><span>Поделиться</span></button>
           </div>
         </div>
       </div>
@@ -320,7 +479,8 @@
               <img src="/fintrail/images/content/cart/cart-product-tactic-orange.png" srcset="/fintrail/images/content/_responsive/cart/cart-product-tactic-orange-160.png 160w, /fintrail/images/content/_responsive/cart/cart-product-tactic-orange-320.png 320w, /fintrail/images/content/_responsive/cart/cart-product-tactic-orange-480.png 480w, /fintrail/images/content/_responsive/cart/cart-product-tactic-orange-768.png 768w, /fintrail/images/content/cart/cart-product-tactic-orange.png 1000w" sizes="(min-width: 768px) 266px, 116px" alt="Брюки FINNTRAIL Tactic 4609 Khaki">
             </a>
             <div class="cart-item__info">
-              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg></button>
+              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg></button>
+              <button class="cart-item__bookmark" type="button" aria-label="В закладки"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
               <h2><a href="/catalog/master-hood-1510/">Брюки FINNTRAIL Tactic 4609 Khaki</a></h2>
               <dl>
                 <div><dt>Размер:</dt><dd>42</dd></div>
@@ -328,24 +488,24 @@
               </dl>
               <div class="cart-item__bottom">
                 <div class="cart-item__prices">
-                  <div class="cart-item__old-row"><del>32 999 ₽</del><span class="cart-item__discount">−15%</span></div>
+                  <div class="cart-item__old-row"><del>32 999 ₽</del></div>
                   <span class="cart-item__price-new">25 799 ₽</span>
                 </div>
                 <div class="cart-item__qty" aria-label="Количество товара">
                   <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
                 </div>
-                <button class="cart-item__icon" type="button" aria-label="Отложить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></button>
               </div>
             </div>
           </article>
 
           <article class="cart-item">
-            <div class="cart-item__badge">Новинка</div>
+            <div class="cart-item__badge">−10%</div>
             <a class="cart-item__image" href="/catalog/master-hood-1510/">
               <img src="/fintrail/images/content/cart/cart-product-discovery-boots.png" srcset="/fintrail/images/content/_responsive/cart/cart-product-discovery-boots-160.png 160w, /fintrail/images/content/_responsive/cart/cart-product-discovery-boots-320.png 320w, /fintrail/images/content/_responsive/cart/cart-product-discovery-boots-480.png 480w, /fintrail/images/content/_responsive/cart/cart-product-discovery-boots-768.png 768w, /fintrail/images/content/cart/cart-product-discovery-boots.png 1000w" sizes="(min-width: 768px) 266px, 116px" alt="Ботинки FINNTRAIL Discovery 1531 Graphite" loading="lazy">
             </a>
             <div class="cart-item__info">
-              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg></button>
+              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg></button>
+              <button class="cart-item__bookmark" type="button" aria-label="В закладки"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
               <h2><a href="/catalog/master-hood-1510/">Ботинки FINNTRAIL Discovery 1531 Graphite</a></h2>
               <dl>
                 <div><dt>Размер:</dt><dd>42</dd></div>
@@ -359,7 +519,6 @@
                 <div class="cart-item__qty" aria-label="Количество товара">
                   <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
                 </div>
-                <button class="cart-item__icon" type="button" aria-label="Отложить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></button>
               </div>
             </div>
           </article>
@@ -370,7 +529,8 @@
               <img src="/fintrail/images/content/cart/cart-product-tactic-khaki.png" srcset="/fintrail/images/content/_responsive/cart/cart-product-tactic-khaki-160.png 160w, /fintrail/images/content/_responsive/cart/cart-product-tactic-khaki-320.png 320w, /fintrail/images/content/_responsive/cart/cart-product-tactic-khaki-480.png 480w, /fintrail/images/content/_responsive/cart/cart-product-tactic-khaki-768.png 768w, /fintrail/images/content/cart/cart-product-tactic-khaki.png 1000w" sizes="(min-width: 768px) 266px, 116px" alt="Брюки FINNTRAIL Tactic 4609 Khaki" loading="lazy">
             </a>
             <div class="cart-item__info">
-              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg></button>
+              <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg></button>
+              <button class="cart-item__bookmark" type="button" aria-label="В закладки"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
               <h2><a href="/catalog/master-hood-1510/">Брюки FINNTRAIL Tactic 4609 Khaki</a></h2>
               <p class="cart-item__unavailable">Нет в наличии</p>
               <dl>
@@ -378,10 +538,9 @@
                 <div><dt>Цвет:</dt><dd>Оранжевый</dd></div>
               </dl>
               <div class="cart-item__unavailable-actions">
-                <button class="cart-item__notify" type="button">Сообщить о наличии</button>
-                <button class="cart-item__icon" type="button" aria-label="Отложить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></button>
+                <button class="cart-item__notify" type="button">Уведомить о поступлении<svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></button>
               </div>
-              <div class="cart-item__similar" aria-label="Похожие товары">
+              <button class="cart-item__similar" type="button" aria-label="Похожие товары">
                 <div class="cart-item__similar-head">
                   <p>Похожие товары</p>
                   <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
@@ -392,7 +551,7 @@
                   <img src="/fintrail/images/content/cart/cart-similar-3.png" srcset="/fintrail/images/content/_responsive/cart/cart-similar-3-160.png 160w, /fintrail/images/content/_responsive/cart/cart-similar-3-320.png 320w, /fintrail/images/content/cart/cart-similar-3.png 480w" sizes="79px" alt="" loading="lazy">
                   <img src="/fintrail/images/content/cart/cart-similar-4.png" srcset="/fintrail/images/content/_responsive/cart/cart-similar-4-160.png 160w, /fintrail/images/content/_responsive/cart/cart-similar-4-320.png 320w, /fintrail/images/content/cart/cart-similar-4.png 480w" sizes="79px" alt="" loading="lazy">
                 </div>
-              </div>
+              </button>
             </div>
           </article>
         </div>
@@ -450,7 +609,10 @@
                   <input class="uk-field__input" id="cart-promo" type="text" placeholder="Промокод или подарочная карта" autocomplete="off">
                 </div>
               </div>
-              <button type="submit">Применить</button>
+              <button type="submit">
+                <span>Применить</span>
+                <svg class="cart-total__promo-check" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-promo-check"></use></svg>
+              </button>
             </form>
             <a class="button button--primary button--size-l cart-total__submit" href="/order-confirmed/" data-cart-login-open>Оформить заказ</a>
           </div>
@@ -516,8 +678,8 @@
           <div class="footer-desktop__app-panel">
             <img class="footer-desktop__qr" src="/fintrail/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
             <ul class="footer-desktop__app-links">
-              <li><a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg><span>App Store</span></a></li>
               <li><a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/"><span class="footer-desktop__app-icon" aria-hidden="true"><svg class="footer-desktop__app-icon-default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg><svg class="footer-desktop__app-icon-hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg></span><span>Google Play</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg><span>App Store</span></a></li>
               <li><a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg><span>AppGallery</span></a></li>
               <li><a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg><span>RuStore</span></a></li>
             </ul>
@@ -534,8 +696,15 @@
     <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL"><img src="/fintrail/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy"></a>
   </footer>
 
+  <div class="cart-mobile-buy" aria-hidden="true">
+    <a class="cart-mobile-buy__btn" href="/order-confirmed/" data-cart-login-open>
+      <span class="cart-mobile-buy__price"></span>
+      <span class="cart-mobile-buy__cta-text">Оформить заказ</span>
+    </a>
+  </div>
+
   <nav class="tabbar" aria-label="Мобильная навигация">
-    <a href="/catalog/" class="tabbar__item" aria-label="Каталог"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
+    <a href="/catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
     <a href="/personal/" class="tabbar__item" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
     <a href="/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
     <a href="/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
@@ -547,7 +716,12 @@
     <div class="cart-login-modal__panel" role="document">
       <div class="cart-login-modal__content">
         <div class="cart-login-modal__text">
-          <h2 class="cart-login-modal__title" id="cart-login-title">Больше выгоды в аккаунте</h2>
+          <div class="cart-login-modal__header">
+            <h2 class="cart-login-modal__title" id="cart-login-title">Больше выгоды в аккаунте</h2>
+            <button class="cart-login-modal__close js-modal-close" type="button" aria-label="Закрыть окно входа" data-cart-login-close>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            </button>
+          </div>
           <p class="cart-login-modal__description">Войдите, чтобы получать кешбэк<br>с каждой покупки, использовать<br>бонусы и отслеживать заказы</p>
         </div>
         <div class="cart-login-modal__actions">
@@ -558,9 +732,6 @@
       <div class="cart-login-modal__media" aria-hidden="true">
         <img src="/fintrail/images/content/_responsive/cart/cart-login-benefit-728.png" srcset="/fintrail/images/content/_responsive/cart/cart-login-benefit-364.png 364w, /fintrail/images/content/_responsive/cart/cart-login-benefit-728.png 728w" sizes="364px" alt="" loading="lazy">
       </div>
-      <button class="cart-login-modal__close js-modal-close" type="button" aria-label="Закрыть окно входа" data-cart-login-close>
-        <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
-      </button>
     </div>
   </div>
 
@@ -570,7 +741,8 @@
       <div class="cart-pickup-modal__header">
         <h2 class="cart-pickup-modal__title" id="cart-pickup-title">Выберите пункт выдачи</h2>
         <button class="cart-pickup-modal__close js-modal-close" type="button" aria-label="Закрыть выбор пункта выдачи" data-cart-pickup-close>
-          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          <svg class="cart-pickup-modal__icon-close" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          <svg class="cart-pickup-modal__icon-back" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
         </button>
       </div>
 
@@ -637,7 +809,12 @@
 
           <div class="cart-pickup-modal__detail-state" hidden data-cart-pickup-view="detail">
             <div class="cart-pickup-modal__detail">
-              <h3>Пункт выдачи СДЭК</h3>
+              <div class="cart-pickup-modal__detail-header">
+                <h3>Пункт выдачи СДЭК</h3>
+                <button class="cart-pickup-modal__detail-close" type="button" aria-label="Закрыть" data-cart-pickup-detail-close>
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
               <p>Адрес: <span data-cart-pickup-detail-address>Москва, ул. Рождества Христова, д. 151</span></p>
               <p>График работы: <span data-cart-pickup-detail-schedule>пн-вс 9:00-21:00</span></p>
               <p>Доставка: <span data-cart-pickup-detail-delivery>3–8 апреля, 235 ₽</span></p>
@@ -665,7 +842,7 @@
     <button class="cart-recipient-modal__backdrop" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close></button>
     <div class="cart-recipient-modal__panel" role="document">
       <div class="cart-recipient-modal__header">
-        <h2 class="cart-recipient-modal__title" id="cart-recipient-title">Данные получателя</h2>
+        <h2 class="cart-recipient-modal__title" id="cart-recipient-title">Данные<br>получателя</h2>
         <button class="cart-recipient-modal__close js-modal-close" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close>
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
         </button>

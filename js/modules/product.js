@@ -104,7 +104,18 @@ export function init() {
     const section   = option.closest('.product-detail');
     const page      = option.closest('.product-page');
 
-    if (!trigger || !dropdown) return;
+    const colorList = dropdown.querySelector('.product-option__color-list');
+
+    if (!trigger || !dropdown || !colorList) return;
+
+    function updateColorScrollbar() {
+      const trackHeight = 336;
+      const thumbHeight = 159;
+      const maxThumbOffset = Math.max(0, trackHeight - thumbHeight - 4);
+      const maxScroll = Math.max(0, colorList.scrollHeight - colorList.clientHeight);
+      const progress = maxScroll > 0 ? colorList.scrollTop / maxScroll : 0;
+      dropdown.style.setProperty('--color-scroll-thumb-y', `${Math.round(progress * maxThumbOffset)}px`);
+    }
 
     // Инициализируем начальное состояние из первого is-selected
     function applyColor(item) {
@@ -152,7 +163,11 @@ export function init() {
       const isOpen = !dropdown.hidden;
       dropdown.hidden = isOpen;
       trigger.setAttribute('aria-expanded', String(!isOpen));
+      if (isOpen) return;
+      requestAnimationFrame(updateColorScrollbar);
     });
+
+    colorList.addEventListener('scroll', updateColorScrollbar, { passive: true });
 
     // Выбор цвета
     dropdown.addEventListener('click', e => {
@@ -170,6 +185,8 @@ export function init() {
         trigger.setAttribute('aria-expanded', 'false');
       }
     });
+
+    updateColorScrollbar();
   });
 
   // Product page — size selector

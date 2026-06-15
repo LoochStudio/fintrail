@@ -1,6 +1,7 @@
 import { init as initAnimations } from './modules/animations.js';
 import { init as initUiState } from './modules/ui-state.js';
 import { init as initCatalog } from './modules/catalog.js';
+import { init as initCatalogFilterPopup } from './modules/catalog-filter-popup.js';
 import { init as initHero } from './modules/hero.js';
 import { init as initActivityPicker } from './modules/activity-picker.js';
 import { init as initRecommendations } from './modules/recommendations.js';
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
   initUiState();
   initCatalog();
+  initCatalogFilterPopup();
   initHero();
   initActivityPicker();
   initRecommendations();

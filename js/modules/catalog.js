@@ -68,7 +68,6 @@ export function init() {
         const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
         closeCatalogDropdowns(button);
         button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
-        if (button.matches('[data-filter-key], [data-sort-toggle]')) showCatalogLoading();
       });
     });
 

@@ -436,17 +436,343 @@
         </button>
 
         <div class="catalog-toolbar__chips" aria-label="Быстрые фильтры">
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="price" aria-expanded="false"><span>Цена</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="gender" aria-expanded="false"><span>Для кого</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="type" aria-expanded="false"><span>Тип товара</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="season" aria-expanded="false"><span>Сезон</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
-          <button class="catalog-toolbar__chip" type="button" data-filter-key="color" aria-expanded="false"><span>Цвет</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+
+          <div class="catalog-filter-popup-wrap">
+            <button class="catalog-toolbar__chip" type="button" data-filter-key="price" aria-expanded="false"><span>Цена</span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+            <div class="catalog-filter-popup catalog-filter-popup--price" data-filter-popup="price" hidden>
+              <div class="catalog-filter-popup__price-row">
+                <input class="catalog-filter-popup__price-input" type="text" inputmode="numeric" placeholder="399 ₽" aria-label="Минимальная цена">
+                <span class="catalog-filter-popup__price-sep">—</span>
+                <input class="catalog-filter-popup__price-input" type="text" inputmode="numeric" placeholder="167 939 ₽" aria-label="Максимальная цена">
+              </div>
+              <button class="catalog-filter-popup__apply" type="button">Применить</button>
+            </div>
+          </div>
+
+          <div class="catalog-filter-popup-wrap">
+            <button class="catalog-toolbar__chip" type="button" data-filter-key="gender" aria-expanded="false"><span>Для кого</span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+            <div class="catalog-filter-popup catalog-filter-popup--gender" data-filter-popup="gender" hidden>
+              <ul class="catalog-filter-popup__list" role="list">
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Мужской</span>
+                    <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox" checked>
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Женский</span>
+                    <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox" checked>
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Унисекс</span>
+                    <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox">
+                  </label>
+                </li>
+              </ul>
+              <button class="catalog-filter-popup__apply" type="button">Применить</button>
+            </div>
+          </div>
+
+          <div class="catalog-filter-popup-wrap">
+            <button class="catalog-toolbar__chip" type="button" data-filter-key="type" aria-expanded="false"><span>Тип товара</span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+            <div class="catalog-filter-popup catalog-filter-popup--type" data-filter-popup="type" hidden>
+              <div class="catalog-filter-popup__scroll-wrap">
+                <ul class="catalog-filter-popup__scroll-list catalog-filter-popup__list" role="list">
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Утепленный костюм</span>
+                      <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox" checked>
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Костюм-поплавок</span>
+                      <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox" checked>
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Ботинки для вейдерсов</span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Ботинки для треккинга</span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Сапоги</span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Снегоходные ботинки</span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__item-text">Снегоходные сапоги</span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <button class="catalog-filter-popup__apply" type="button">Применить</button>
+            </div>
+          </div>
+
+          <div class="catalog-filter-popup-wrap">
+            <button class="catalog-toolbar__chip" type="button" data-filter-key="season" aria-expanded="false"><span>Сезон</span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+            <div class="catalog-filter-popup catalog-filter-popup--season" data-filter-popup="season" hidden>
+              <ul class="catalog-filter-popup__list" role="list">
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Всесезонный</span>
+                    <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox" checked>
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Демисезон</span>
+                    <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox">
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Весна</span>
+                    <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox" checked>
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Зима</span>
+                    <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox">
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Лето</span>
+                    <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox">
+                  </label>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <label class="catalog-filter-popup__label">
+                    <span class="catalog-filter-popup__item-text">Осень</span>
+                    <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                      <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                    </span>
+                    <input class="visually-hidden" type="checkbox">
+                  </label>
+                </li>
+              </ul>
+              <button class="catalog-filter-popup__apply" type="button">Применить</button>
+            </div>
+          </div>
+
+          <div class="catalog-filter-popup-wrap">
+            <button class="catalog-toolbar__chip" type="button" data-filter-key="color" aria-expanded="false"><span>Цвет</span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+            <div class="catalog-filter-popup catalog-filter-popup--color" data-filter-popup="color" hidden>
+              <div class="catalog-filter-popup__scroll-wrap">
+                <ul class="catalog-filter-popup__scroll-list catalog-filter-popup__list" role="list">
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__color-info">
+                        <span class="catalog-filter-popup__color-swatch" style="background:#ff731f;"></span>
+                        <span class="catalog-filter-popup__color-texts">
+                          <span class="catalog-filter-popup__color-name">Оранжевый</span>
+                          <span class="catalog-filter-popup__color-code">Orange</span>
+                        </span>
+                      </span>
+                      <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox" checked>
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__color-info">
+                        <span class="catalog-filter-popup__color-swatch" style="background:#25c3b3;"></span>
+                        <span class="catalog-filter-popup__color-texts">
+                          <span class="catalog-filter-popup__color-name">Бирюзовый</span>
+                          <span class="catalog-filter-popup__color-code">Teal</span>
+                        </span>
+                      </span>
+                      <span class="catalog-filter-popup__checkbox is-checked" role="checkbox" aria-checked="true" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox" checked>
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__color-info">
+                        <span class="catalog-filter-popup__color-swatch" style="background:#323836;"></span>
+                        <span class="catalog-filter-popup__color-texts">
+                          <span class="catalog-filter-popup__color-name">Тёмный</span>
+                          <span class="catalog-filter-popup__color-code">Dark</span>
+                        </span>
+                      </span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__color-info">
+                        <span class="catalog-filter-popup__color-swatch" style="background:#adb0b2;"></span>
+                        <span class="catalog-filter-popup__color-texts">
+                          <span class="catalog-filter-popup__color-name">Серый</span>
+                          <span class="catalog-filter-popup__color-code">Grey</span>
+                        </span>
+                      </span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__color-info">
+                        <span class="catalog-filter-popup__color-swatch catalog-filter-popup__color-swatch--svg">
+                          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-color-bw"></use></svg>
+                        </span>
+                        <span class="catalog-filter-popup__color-texts">
+                          <span class="catalog-filter-popup__color-name">Черно-белый</span>
+                          <span class="catalog-filter-popup__color-code">Black &amp; White</span>
+                        </span>
+                      </span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                  <li class="catalog-filter-popup__item">
+                    <label class="catalog-filter-popup__label">
+                      <span class="catalog-filter-popup__color-info">
+                        <span class="catalog-filter-popup__color-swatch" style="background:#1a2a4a;"></span>
+                        <span class="catalog-filter-popup__color-texts">
+                          <span class="catalog-filter-popup__color-name">Тёмно-синий</span>
+                          <span class="catalog-filter-popup__color-code">Dark blue</span>
+                        </span>
+                      </span>
+                      <span class="catalog-filter-popup__checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+                      </span>
+                      <input class="visually-hidden" type="checkbox">
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <button class="catalog-filter-popup__apply" type="button">Применить</button>
+            </div>
+          </div>
+
         </div>
 
-        <button class="catalog-toolbar__button catalog-toolbar__button--sort" type="button" data-sort-toggle aria-expanded="false">
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-sort"></use></svg>
-          <span>Популярные</span>
-        </button>
+        <div class="catalog-filter-popup-wrap catalog-filter-popup-wrap--sort">
+          <button class="catalog-toolbar__button catalog-toolbar__button--sort" type="button" data-sort-toggle aria-expanded="false">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-sort"></use></svg>
+            <span>Популярные</span>
+          </button>
+          <div class="catalog-filter-popup catalog-filter-popup--sort" data-filter-popup="sort" hidden>
+            <ul class="catalog-filter-popup__sort-list" role="list">
+              <li class="catalog-filter-popup__sort-item is-selected" data-sort-value="price-desc">
+                <button class="catalog-filter-popup__sort-btn" type="button">
+                  <span class="catalog-filter-popup__sort-icon">
+                    <span class="catalog-filter-popup__sort-symbol">₽</span>
+                    <svg class="catalog-filter-popup__sort-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+                  </span>
+                  <span class="catalog-filter-popup__sort-text">По убыванию цены</span>
+                </button>
+              </li>
+              <li class="catalog-filter-popup__sort-item" data-sort-value="price-asc">
+                <button class="catalog-filter-popup__sort-btn" type="button">
+                  <span class="catalog-filter-popup__sort-icon">
+                    <span class="catalog-filter-popup__sort-symbol">₽</span>
+                    <svg class="catalog-filter-popup__sort-arrow catalog-filter-popup__sort-arrow--up" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+                  </span>
+                  <span class="catalog-filter-popup__sort-text">По возрастанию цены</span>
+                </button>
+              </li>
+              <li class="catalog-filter-popup__sort-item" data-sort-value="discount-desc">
+                <button class="catalog-filter-popup__sort-btn" type="button">
+                  <span class="catalog-filter-popup__sort-icon">
+                    <span class="catalog-filter-popup__sort-symbol">%</span>
+                    <svg class="catalog-filter-popup__sort-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+                  </span>
+                  <span class="catalog-filter-popup__sort-text">По убыванию цены скидки</span>
+                </button>
+              </li>
+              <li class="catalog-filter-popup__sort-item" data-sort-value="discount-asc">
+                <button class="catalog-filter-popup__sort-btn" type="button">
+                  <span class="catalog-filter-popup__sort-icon">
+                    <span class="catalog-filter-popup__sort-symbol">%</span>
+                    <svg class="catalog-filter-popup__sort-arrow catalog-filter-popup__sort-arrow--up" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+                  </span>
+                  <span class="catalog-filter-popup__sort-text">По возрастанию скидки</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div class="catalog-products__loading" role="status" aria-live="polite" hidden>
@@ -879,18 +1205,18 @@
             <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
             <ul class="footer-desktop__app-links">
               <li>
-                <a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/">
-                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
-                  <span>App Store</span>
-                </a>
-              </li>
-              <li>
                 <a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/">
                   <span class="footer-desktop__app-icon" aria-hidden="true">
                     <svg class="footer-desktop__app-icon-default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
                     <svg class="footer-desktop__app-icon-hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
                   </span>
                   <span>Google Play</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+                  <span>App Store</span>
                 </a>
               </li>
               <li>

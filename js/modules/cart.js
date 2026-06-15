@@ -64,6 +64,7 @@ export function init() {
     const openButtons = document.querySelectorAll('[data-cart-pickup-open]');
     const closeButtons = modal.querySelectorAll('[data-cart-pickup-close]');
     const closeButton = modal.querySelector('.js-modal-close');
+    const panel = modal.querySelector('.cart-pickup-modal__panel');
     const points = Array.from(modal.querySelectorAll('[data-cart-pickup-point]'));
     const submitButton = modal.querySelector('[data-cart-pickup-submit]');
     const listView = modal.querySelector('[data-cart-pickup-view="list"]');
@@ -73,20 +74,27 @@ export function init() {
     const detailAddress = modal.querySelector('[data-cart-pickup-detail-address]');
     const detailSchedule = modal.querySelector('[data-cart-pickup-detail-schedule]');
     const detailDelivery = modal.querySelector('[data-cart-pickup-detail-delivery]');
+    const searchInput = modal.querySelector('.cart-pickup-modal__search input');
+    const detailCloseBtn = modal.querySelector('[data-cart-pickup-detail-close]');
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
     let activePoint = points.find(point => point.classList.contains('is-active')) || points[0] || null;
     let closeTimer = 0;
 
     function syncDetail(point) {
       if (!point) return;
-
       if (detailAddress) detailAddress.textContent = point.dataset.address || '';
       if (detailSchedule) detailSchedule.textContent = point.dataset.schedule || '';
       if (detailDelivery) detailDelivery.textContent = point.dataset.delivery || point.dataset.date || '';
     }
 
+    function resetToMapView() {
+      panel?.classList.remove('is-list-view', 'has-detail');
+      if (listView) listView.hidden = false;
+      if (detailView) detailView.hidden = true;
+    }
+
     function selectPoint(point, showDetail = true) {
       if (!point) return;
-
       activePoint = point;
       points.forEach(item => {
         const isActive = item === point;
@@ -95,9 +103,15 @@ export function init() {
       });
       syncDetail(point);
 
-      if (showDetail && listView && detailView) {
-        listView.hidden = true;
-        detailView.hidden = false;
+      if (showDetail) {
+        const isMobileMapView = mobileQuery.matches && !panel?.classList.contains('is-list-view');
+        if (isMobileMapView) {
+          if (detailView) detailView.hidden = false;
+          panel?.classList.add('has-detail');
+        } else if (listView && detailView) {
+          listView.hidden = true;
+          detailView.hidden = false;
+        }
       }
     }
 
@@ -106,10 +120,7 @@ export function init() {
       window.clearTimeout(closeTimer);
       modal.hidden = false;
       modal.setAttribute('aria-hidden', 'false');
-      if (listView && detailView) {
-        listView.hidden = false;
-        detailView.hidden = true;
-      }
+      resetToMapView();
       syncDetail(activePoint);
       document.documentElement.classList.add('is-modal-open');
       window.requestAnimationFrame(() => {
@@ -127,9 +138,48 @@ export function init() {
       }, 200);
     }
 
+    function handleBackOrClose() {
+      if (mobileQuery.matches && panel?.classList.contains('is-list-view')) {
+        resetToMapView();
+      } else {
+        closeModal();
+      }
+    }
+
     openButtons.forEach(button => button.addEventListener('click', openModal));
-    closeButtons.forEach(button => button.addEventListener('click', closeModal));
+
+    // Backdrop and other data-cart-pickup-close elements always close
+    closeButtons.forEach(button => {
+      if (button !== closeButton) button.addEventListener('click', closeModal);
+    });
+    // Main header button: back or close depending on mobile view state
+    closeButton?.addEventListener('click', handleBackOrClose);
+
     points.forEach(point => point.addEventListener('click', () => selectPoint(point)));
+
+    // Map markers: clicking any marker selects the corresponding list point
+    const mapMarkers = Array.from(modal.querySelectorAll('.cart-pickup-modal__marker'));
+    mapMarkers.forEach((marker, i) => {
+      const point = points[Math.min(i, points.length - 1)];
+      if (point) marker.addEventListener('click', () => selectPoint(point));
+    });
+
+    // Detail bottom-sheet close: dismiss card, stay on map
+    detailCloseBtn?.addEventListener('click', () => {
+      panel?.classList.remove('has-detail');
+      if (detailView) detailView.hidden = true;
+    });
+
+    // Search focus on mobile → switch to list view
+    searchInput?.addEventListener('focus', () => {
+      if (mobileQuery.matches && !panel?.classList.contains('is-list-view')) {
+        panel?.classList.add('is-list-view');
+        panel?.classList.remove('has-detail');
+        if (listView) listView.hidden = false;
+        if (detailView) detailView.hidden = true;
+      }
+    });
+
     submitButton?.addEventListener('click', () => {
       if (activePoint) {
         if (deliveryAddress) deliveryAddress.textContent = activePoint.dataset.address || deliveryAddress.textContent;
@@ -386,6 +436,55 @@ export function init() {
     });
   });
 
+  // Cart page — mobile sticky checkout bar
+  const mobileBuyPanel = document.querySelector('.cart-mobile-buy');
+  const cartSubmitBtn = document.querySelector('.cart-total__submit');
+  const cartTotalSum = document.querySelector('.cart-total__sum');
+  const mobileBuyQuery = window.matchMedia('(max-width: 767px)');
+
+  if (mobileBuyPanel && cartSubmitBtn) {
+    const priceEl = cartTotalSum?.querySelector('dd');
+    const priceSpan = mobileBuyPanel.querySelector('.cart-mobile-buy__price');
+    if (priceEl && priceSpan) priceSpan.textContent = priceEl.textContent.trim();
+
+    const syncMobileBuy = () => {
+      if (!mobileBuyQuery.matches) {
+        mobileBuyPanel.classList.remove('is-visible');
+        mobileBuyPanel.setAttribute('aria-hidden', 'true');
+        return;
+      }
+      const submitRect = cartSubmitBtn.getBoundingClientRect();
+      const submitVisible = submitRect.top < window.innerHeight && submitRect.bottom > 0;
+      mobileBuyPanel.classList.toggle('is-visible', !submitVisible);
+      mobileBuyPanel.setAttribute('aria-hidden', String(submitVisible));
+
+      if (cartTotalSum) {
+        const totalRect = cartTotalSum.getBoundingClientRect();
+        mobileBuyPanel.classList.toggle('has-price', totalRect.bottom < 0);
+      }
+    };
+
+    window.addEventListener('scroll', syncMobileBuy, { passive: true });
+    window.addEventListener('resize', syncMobileBuy);
+    mobileBuyQuery.addEventListener('change', syncMobileBuy);
+    syncMobileBuy();
+  }
+
+  // Cart page — payment method switch
+  document.querySelectorAll('.cart-payment__methods').forEach(group => {
+    const methods = Array.from(group.querySelectorAll('.cart-payment__method'));
+    methods.forEach(method => {
+      const radio = method.querySelector('input[type="radio"]');
+      if (!radio) return;
+      radio.addEventListener('change', () => {
+        methods.forEach(m => m.classList.toggle('is-active', m === method));
+      });
+      method.addEventListener('click', () => {
+        methods.forEach(m => m.classList.toggle('is-active', m === method));
+      });
+    });
+  });
+
   // Cart page — promo field focus states
   document.querySelectorAll('.cart-total__promo-row .uk-field-wrap').forEach(wrap => {
     const input = wrap.querySelector('.uk-field__input');
@@ -404,6 +503,9 @@ export function init() {
       const input = form.querySelector('input');
       if (input?.value.trim()) {
         discountRow.classList.add('is-promo-applied');
+        form.classList.add('is-promo-applied');
+        const label = form.querySelector('button span');
+        if (label) label.textContent = 'Применено';
       }
     });
   });

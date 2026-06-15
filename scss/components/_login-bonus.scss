@@ -11,15 +11,15 @@
   &__text {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
   }
 
   &__title {
     margin: 0;
     font-family: $font-display;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: $font-weight-black;
-    line-height: 20px;
+    line-height: 28px;
     letter-spacing: 0;
     color: $color-white;
     text-transform: uppercase;
@@ -28,9 +28,9 @@
   &__desc {
     margin: 0;
     font-family: $font-mono;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: $font-weight-semibold;
-    line-height: 18px;
+    line-height: 16px;
     letter-spacing: 0;
     color: $color-muted;
     text-transform: uppercase;
@@ -159,6 +159,14 @@
       color: $color-muted;
       opacity: 1;
       text-transform: uppercase;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px #292929 inset;
+      box-shadow: 0 0 0 1000px #292929 inset;
+      -webkit-text-fill-color: $color-white;
     }
   }
 
@@ -331,11 +339,7 @@
   .login-bonus__text {
     width: 100%;
     max-width: 700px;
-    gap: 15px;
-  }
-
-  .login-bonus__desc {
-    font-size: 16px;
+    gap: 16px;
   }
 
   .login-bonus__form {
