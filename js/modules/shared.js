@@ -57,6 +57,30 @@ export function init() {
     });
   });
 
+  // ─── Счётчик корзины ─────────────────────────────────────────────────────────
+  const CART_KEY = 'cart_count';
+
+  function getCartCount() {
+    return parseInt(localStorage.getItem(CART_KEY) || '0', 10);
+  }
+
+  function setCartCount(n) {
+    localStorage.setItem(CART_KEY, String(n));
+  }
+
+  function updateCartBadges(count) {
+    document.querySelectorAll('.hero-cart-badge').forEach(badge => {
+      if (count > 0) {
+        badge.textContent = count > 99 ? '99+' : String(count);
+        badge.hidden = false;
+      } else {
+        badge.hidden = true;
+      }
+    });
+  }
+
+  updateCartBadges(getCartCount());
+
   // ─── UX-4: stopPropagation для кнопок внутри ссылок ─────────────────────────
   // hero-product-card__cart находится внутри <a> — без stopPropagation
   // клик по кнопке одновременно переходит на страницу товара
@@ -68,7 +92,9 @@ export function init() {
       e.preventDefault();
       e.stopPropagation();
     }
-    // TODO: здесь будет логика добавления в корзину (Битрикс)
+    const newCount = getCartCount() + 1;
+    setCartCount(newCount);
+    updateCartBadges(newCount);
   });
 
   // ─── Цветовые точки в карточках товаров ─────────────────────────────────────

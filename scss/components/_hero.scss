@@ -278,6 +278,7 @@
 
 .hero__menu-btn,
 .hero__tool {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1674,5 +1675,38 @@
       right: $spacing-page-desktop;
       left: auto;
     }
+  }
+}
+
+// ── Бейдж счётчика корзины ────────────────────────────────────────────────────
+
+.hero-cart-badge {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 2px solid #f2f2f2;
+  border-radius: 12px;
+  background: #e72016;
+  color: #fff;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+
+  &[hidden] {
+    display: none;
   }
 }

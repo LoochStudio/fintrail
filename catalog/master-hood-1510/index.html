@@ -38,6 +38,7 @@
         </a>
         <a href="/cart/" class="hero__tool" aria-label="Корзина">
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+          <span class="hero-cart-badge" hidden></span>
         </a>
       </div>
     </div>
@@ -551,33 +552,54 @@
              img alt главного и мини — NAME товара
            Адаптивные версии src/srcset генерирует сервер (ImageResize / resize handler Битрикса) -->
       <div class="product-detail__media">
-        <img class="product-detail__image"
-          src="/images/content/product/snowranger/sr-01.png"
-          srcset="/images/content/_responsive/product/snowranger/sr-01-160.png 160w, /images/content/_responsive/product/snowranger/sr-01-320.png 320w, /images/content/_responsive/product/snowranger/sr-01-480.png 480w, /images/content/_responsive/product/snowranger/sr-01-768.png 768w, /images/content/product/snowranger/sr-01.png 1000w"
-          sizes="(max-width: 1280px) 100vw, 50vw"
-          alt="Куртка FINNTRAIL Snowranger 3758 Lightgrey"
-          fetchpriority="high">
-
         <div class="product-detail__mobile-media-actions" aria-label="Действия с товаром">
           <a class="product-detail__mobile-media-button" href="/catalog/" aria-label="Назад">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
           </a>
+          <div class="product-detail__mobile-info" aria-hidden="true">
+            <div class="product-detail__mobile-info-top">
+              <p class="product-detail__badge">Новинка</p>
+              <p class="product-detail__title">Куртка FINNTRAIL Snowranger 3758 Lightgrey</p>
+              <p class="product-detail__stock">В наличии</p>
+              <p class="product-detail__stock product-detail__stock--oos">
+                <span class="product-detail__stock-badge" aria-hidden="true">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-stock-sep"></use></svg>
+                  <span>!</span>
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-stock-sep"></use></svg>
+                </span>
+                Нет в наличии
+              </p>
+            </div>
+            <div class="product-detail__rating">
+              <span class="product-detail__stars"><span></span><span></span><span></span><span></span><span></span></span>
+              <strong>4.8</strong>
+              <a href="#reviews">24 отзыва <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
+            </div>
+          </div>
           <button class="product-detail__mobile-media-button" type="button" aria-label="Поделиться">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-share"></use></svg>
           </button>
         </div>
 
-        <button class="product-media-btn product-media-btn--prev js-slider-prev" type="button" aria-label="Предыдущее фото">
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
-        </button>
-        <button class="product-media-btn product-media-btn--next js-slider-next" type="button" aria-label="Следующее фото">
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
-        </button>
-        <button class="product-media-btn product-media-btn--zoom" type="button" aria-label="Увеличить фото">
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-zoom"></use></svg>
-        </button>
+        <div class="product-detail__media-inner">
+          <img class="product-detail__image"
+            src="/images/content/product/snowranger/sr-01.png"
+            srcset="/images/content/_responsive/product/snowranger/sr-01-160.png 160w, /images/content/_responsive/product/snowranger/sr-01-320.png 320w, /images/content/_responsive/product/snowranger/sr-01-480.png 480w, /images/content/_responsive/product/snowranger/sr-01-768.png 768w, /images/content/product/snowranger/sr-01.png 1000w"
+            sizes="(min-width: 768px) and (max-width: 1279px) 375px, (max-width: 1280px) 100vw, 50vw"
+            alt="Куртка FINNTRAIL Snowranger 3758 Lightgrey"
+            fetchpriority="high">
 
-        <div class="product-media-carousel" aria-label="Галерея товара">
+          <button class="product-media-btn product-media-btn--prev js-slider-prev" type="button" aria-label="Предыдущее фото">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-left"></use></svg>
+          </button>
+          <button class="product-media-btn product-media-btn--next js-slider-next" type="button" aria-label="Следующее фото">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </button>
+          <button class="product-media-btn product-media-btn--zoom" type="button" aria-label="Увеличить фото">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-zoom"></use></svg>
+          </button>
+
+          <div class="product-media-carousel" aria-label="Галерея товара">
           <div class="product-media-carousel__inner">
             <button class="product-media-carousel__item js-carousel-item is-active" type="button" aria-label="Фото 1">
               <img src="/images/content/product/snowranger/sr-01.png"
@@ -723,6 +745,7 @@
               <span class="product-media-carousel__bar"></span>
             </button>
           </div>
+          </div>
         </div>
       </div>
 
@@ -781,6 +804,7 @@
                  Активный размер → class="is-active"
                  Таблица размеров href → PROPERTY_SIZE_GUIDE_URL или /sizes/ -->
           <!-- BITRIX: офферы/SKU подгружаются через bitrix:catalog.element (режим детального просмотра) -->
+          <div class="product-detail__options">
           <div class="product-option product-option--color-picker">
             <p class="product-option__label">Цвет</p>
             <div class="product-option__color-wrapper">
@@ -860,6 +884,27 @@
                 <span>Таблица размеров</span>
               </a>
             </div>
+            <div class="product-option__size-select-wrap">
+              <select class="product-option__size-select" aria-label="Размер">
+                <option value="xxs">XXS</option>
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="sk">SK</option>
+                <option value="m">M</option>
+                <option value="ml">ML</option>
+                <option value="mk">MK</option>
+                <option value="l">L</option>
+                <option value="ll">LL</option>
+                <option value="lk">LK</option>
+                <option value="xl" selected>XL</option>
+                <option value="xll">XLL</option>
+                <option value="xlk">XLK</option>
+                <option value="xxl">XXL</option>
+                <option value="xxlk">XXLK</option>
+                <option value="xxxl">XXXL</option>
+              </select>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+            </div>
             <div class="product-option__sizes" aria-label="Размер">
               <button type="button">XXS</button>
               <button type="button">XS</button>
@@ -879,6 +924,7 @@
               <button type="button">XXXL</button>
             </div>
           </div>
+          </div><!-- /.product-detail__options -->
 
           <!-- BITRIX: product-oos-form — уведомление о поступлении, AJAX-обработчик на стороне Bitrix -->
           <form class="product-oos-form" novalidate>
@@ -904,6 +950,12 @@
                 <span class="product-buy__button-label product-buy__button-label--desktop">Добавить в корзину</span>
                 <span class="product-buy__button-label product-buy__button-label--mobile">30 799 ₽</span>
                 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+              <button class="product-buy__button product-buy__button--icon" type="button" aria-label="В избранное">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-buy-bookmark"></use></svg>
+              </button>
+              <button class="product-buy__button product-buy__button--icon" type="button" aria-label="К сравнению">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-buy-compare"></use></svg>
               </button>
               <button class="product-buy__button product-buy__button--secondary" type="button">Купить в один клик</button>
             </div>
@@ -955,6 +1007,9 @@
       <a class="product-mobile-kit__title" id="product-mobile-kit-title" href="/catalog/kurtki/kurtki-fishing/">Дополните комплект</a>
       <div class="product-mobile-kit__scroller" aria-label="Карусель товаров для комплекта">
         <article class="product-mobile-kit__card">
+          <button class="product-mobile-kit__bookmark" type="button" aria-label="В избранное">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg>
+          </button>
           <a class="product-mobile-kit__image-link" href="/catalog/shapki/daily-9727/">
             <img class="product-mobile-kit__image"
               src="/images/content/build-kit/hat-1.png"
@@ -974,6 +1029,9 @@
           </div>
         </article>
         <article class="product-mobile-kit__card">
+          <button class="product-mobile-kit__bookmark" type="button" aria-label="В избранное">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg>
+          </button>
           <a class="product-mobile-kit__image-link" href="/catalog/kurtki/sherpa-1397/">
             <img class="product-mobile-kit__image"
               src="/images/content/build-kit/jacket.png"
@@ -993,6 +1051,9 @@
           </div>
         </article>
         <article class="product-mobile-kit__card">
+          <button class="product-mobile-kit__bookmark" type="button" aria-label="В избранное">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg>
+          </button>
           <a class="product-mobile-kit__image-link" href="/catalog/bryuki/tactic-4609/">
             <img class="product-mobile-kit__image"
               src="/images/content/build-kit/pants.png"
@@ -1022,6 +1083,9 @@
       <a class="product-mobile-kit__title" id="product-mobile-similar-title" href="/catalog/kurtki/">Похожие товары</a>
       <div class="product-mobile-kit__scroller" aria-label="Карусель похожих товаров">
         <article class="product-mobile-kit__card">
+          <button class="product-mobile-kit__bookmark" type="button" aria-label="В избранное">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg>
+          </button>
           <a class="product-mobile-kit__image-link" href="/catalog/wademan-1327-darkgrey/">
             <img class="product-mobile-kit__image"
               src="/images/content/product/similar-wademan.png"
@@ -1041,6 +1105,9 @@
           </div>
         </article>
         <article class="product-mobile-kit__card">
+          <button class="product-mobile-kit__bookmark" type="button" aria-label="В избранное">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg>
+          </button>
           <a class="product-mobile-kit__image-link" href="/catalog/coaster-4023-grey/">
             <img class="product-mobile-kit__image"
               src="/images/content/product/similar-coaster.png"
@@ -1060,6 +1127,9 @@
           </div>
         </article>
         <article class="product-mobile-kit__card">
+          <button class="product-mobile-kit__bookmark" type="button" aria-label="В избранное">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg>
+          </button>
           <a class="product-mobile-kit__image-link" href="/catalog/shapki/daily-9727/">
             <img class="product-mobile-kit__image"
               src="/images/content/build-kit/hat-1.png"
@@ -1649,6 +1719,35 @@
             src="/images/content/product/feature-deco-2.svg"
             alt=""
             aria-hidden="true">
+        </div>
+      </section>
+
+      <!-- 3й слайд для планшетной карусели — peek эффект (Figma 4405:52145) -->
+      <section class="product-highlight" aria-label="Мембрана TORAY DERMIZAX" aria-hidden="true">
+        <div class="product-highlight__content">
+          <img class="product-highlight__deco"
+            src="/images/content/product/feature-deco.svg"
+            alt=""
+            aria-hidden="true">
+
+          <div class="product-highlight__text">
+            <h2 class="product-highlight__title">Мембрана TORAY DERMIZAX</h2>
+            <p class="product-highlight__desc">Прочный двухслойный материал с технологичной японской беспоровой мембраной TORAY DERMIZAX обеспечивает 100% защиту от дождя, мокрого снега и штормового ветра</p>
+          </div>
+
+          <img class="product-highlight__deco"
+            src="/images/content/product/feature-deco.svg"
+            alt=""
+            aria-hidden="true">
+        </div>
+
+        <div class="product-highlight__image">
+          <img
+            src="/images/content/product/snowranger/feature-membrane.png"
+            srcset="/images/content/_responsive/product/snowranger/feature-membrane-160.png 160w, /images/content/_responsive/product/snowranger/feature-membrane-320.png 320w, /images/content/_responsive/product/snowranger/feature-membrane-480.png 480w, /images/content/_responsive/product/snowranger/feature-membrane-768.png 768w, /images/content/product/snowranger/feature-membrane.png 1000w"
+            sizes="50vw"
+            alt=""
+            loading="lazy">
         </div>
       </section>
 

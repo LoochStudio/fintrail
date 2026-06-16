@@ -75,8 +75,12 @@ export function init() {
     const detailSchedule = modal.querySelector('[data-cart-pickup-detail-schedule]');
     const detailDelivery = modal.querySelector('[data-cart-pickup-detail-delivery]');
     const searchInput = modal.querySelector('.cart-pickup-modal__search input');
+    const searchClearBtn = modal.querySelector('[data-cart-pickup-search-clear]');
+    const noResults = modal.querySelector('.cart-pickup-modal__no-results');
+    const pointsContainer = modal.querySelector('.cart-pickup-modal__points');
     const detailCloseBtn = modal.querySelector('[data-cart-pickup-detail-close]');
     const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1279px)');
     let activePoint = points.find(point => point.classList.contains('is-active')) || points[0] || null;
     let closeTimer = 0;
 
@@ -105,7 +109,9 @@ export function init() {
 
       if (showDetail) {
         const isMobileMapView = mobileQuery.matches && !panel?.classList.contains('is-list-view');
-        if (isMobileMapView) {
+        const isTablet = tabletQuery.matches;
+        if (isMobileMapView || isTablet) {
+          panel?.classList.remove('is-list-view');
           if (detailView) detailView.hidden = false;
           panel?.classList.add('has-detail');
         } else if (listView && detailView) {
@@ -170,9 +176,43 @@ export function init() {
       if (detailView) detailView.hidden = true;
     });
 
-    // Search focus on mobile → switch to list view
+    searchClearBtn?.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input'));
+        searchInput.focus();
+      }
+    });
+
+    function filterPoints() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        points.forEach(p => { p.hidden = false; });
+        if (pointsContainer) pointsContainer.style.display = '';
+        if (noResults) noResults.hidden = true;
+        return;
+      }
+      let hasVisible = false;
+      points.forEach(point => {
+        const address = (point.dataset.address || '').toLowerCase();
+        const matches = address.includes(query);
+        point.hidden = !matches;
+        if (matches) hasVisible = true;
+      });
+      if (pointsContainer) pointsContainer.style.display = hasVisible ? '' : 'none';
+      if (noResults) noResults.hidden = hasVisible;
+    }
+
+    searchInput?.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        filterPoints();
+      }
+    });
+
+    // Search focus on mobile/tablet → switch to list view
     searchInput?.addEventListener('focus', () => {
-      if (mobileQuery.matches && !panel?.classList.contains('is-list-view')) {
+      if ((mobileQuery.matches || tabletQuery.matches) && !panel?.classList.contains('is-list-view')) {
         panel?.classList.add('is-list-view');
         panel?.classList.remove('has-detail');
         if (listView) listView.hidden = false;
@@ -540,6 +580,11 @@ export function init() {
 
     openButtons.forEach(button => button.addEventListener('click', openModal));
     closeButtons.forEach(button => button.addEventListener('click', closeModal));
+
+    // Кнопка подтверждения очистки — сбрасываем счётчик корзины
+    modal.querySelector('.cart-clear-modal__actions a')?.addEventListener('click', () => {
+      localStorage.setItem('cart_count', '0');
+    });
 
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && !modal.hidden) closeModal();
