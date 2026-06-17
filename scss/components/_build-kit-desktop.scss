@@ -1634,18 +1634,13 @@
 
 .build-kit-desktop__size-list {
   position: absolute;
-  top: calc(100% + 2px);
-  right: -1px;
-  left: -1px;
+  top: calc(100% + 4px);
+  right: 0;
+  left: 0;
   display: none;
-  width: calc(100% + 2px);
-  min-width: calc(100% + 2px);
-  flex-direction: column;
-  gap: 0;
-  padding: 0;
-  border: 1px solid $color-white;
-  border-radius: $radius-xs;
-  background: $color-surface;
+  padding: 10px;
+  border-radius: 8px;
+  background: $color-white;
   box-shadow:
     0 0 4px rgba(95, 105, 131, 0.07),
     0 5px 4px rgba(95, 105, 131, 0.05),
@@ -1654,37 +1649,73 @@
 }
 
 .build-kit-desktop__size.is-open .build-kit-desktop__size-list {
+  display: block;
+}
+
+.build-kit-desktop__size-inner {
   display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.build-kit-desktop__size-scroll {
+  flex: 1 0 0;
+  min-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.build-kit-desktop__size-scrollbar {
+  flex: 0 0 6px;
+  width: 6px;
+  align-self: stretch;
+  background: #eaeaea;
+  border-radius: 3px;
+  position: relative;
+  overflow: clip;
+}
+
+.build-kit-desktop__size-scrollbar-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 2px;
+  height: 40px;
+  background: $color-white;
+  border-radius: 1px;
 }
 
 .build-kit-desktop__size-option {
   display: flex;
   width: 100%;
-  min-height: 28px;
   align-items: center;
-  padding: 8px;
+  justify-content: center;
+  padding: 12px;
   border: 0;
-  border-bottom: 1px solid $color-white;
-  border-radius: 0;
-  background: transparent;
+  border-radius: 4px;
+  background: $color-white;
   color: $color-primary-black;
   font-family: $font-display;
   font-size: $text-body-b2-size;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-black;
   line-height: 1.2;
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.18s ease;
 }
 
-.build-kit-desktop__size-option:last-child {
-  border-bottom: 0;
-}
-
 .build-kit-desktop__size-option[aria-selected='true'],
 .build-kit-desktop__size-option:active {
-  background: $color-white;
+  background: $color-surface;
 }
 
 .build-kit-desktop__size-select:disabled {
@@ -1720,7 +1751,7 @@
 
   .build-kit-desktop__size-option:hover,
   .build-kit-desktop__size-option:focus-visible {
-    background: $color-white;
+    background: $color-surface;
   }
 }
 

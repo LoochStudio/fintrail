@@ -14,6 +14,7 @@ export default defineConfig({
         cart: resolve(__dirname, 'cart/index.html'),
         cartEmpty: resolve(__dirname, 'cart-empty/index.html'),
         orderConfirmed: resolve(__dirname, 'order-confirmed/index.html'),
+        personal: resolve(__dirname, 'personal/index.html'),
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
       },
     },

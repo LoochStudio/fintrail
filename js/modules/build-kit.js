@@ -391,6 +391,21 @@ export function init() {
       list.className = 'build-kit-desktop__size-list';
       list.setAttribute('role', 'listbox');
 
+      const inner = document.createElement('div');
+      inner.className = 'build-kit-desktop__size-inner';
+      list.appendChild(inner);
+
+      const scroll = document.createElement('div');
+      scroll.className = 'build-kit-desktop__size-scroll';
+      inner.appendChild(scroll);
+
+      const scrollbar = document.createElement('div');
+      scrollbar.className = 'build-kit-desktop__size-scrollbar';
+      const thumb = document.createElement('div');
+      thumb.className = 'build-kit-desktop__size-scrollbar-thumb';
+      scrollbar.appendChild(thumb);
+      inner.appendChild(scrollbar);
+
       Array.from(select.options).forEach((option, index) => {
         const item = document.createElement('button');
         item.className = 'build-kit-desktop__size-option';
@@ -403,15 +418,31 @@ export function init() {
           select.selectedIndex = index;
           select.dispatchEvent(new Event('change', { bubbles: true }));
           button.textContent = option.textContent;
-          list.querySelectorAll('.build-kit-desktop__size-option').forEach(optionButton => {
+          scroll.querySelectorAll('.build-kit-desktop__size-option').forEach(optionButton => {
             optionButton.setAttribute('aria-selected', String(optionButton === item));
           });
           sizeEl.classList.remove('is-open');
           button.setAttribute('aria-expanded', 'false');
         });
 
-        list.appendChild(item);
+        scroll.appendChild(item);
       });
+
+      function updateBkitScrollbar() {
+        const { scrollTop, scrollHeight, clientHeight } = scroll;
+        if (!clientHeight) return;
+        const maxScroll = Math.max(0, scrollHeight - clientHeight);
+        const ratio = Math.min(1, clientHeight / scrollHeight);
+        const thumbH = Math.max(16, Math.round(ratio * clientHeight));
+        const maxOffset = Math.max(0, clientHeight - thumbH - 4);
+        const thumbY = Math.round((maxScroll > 0 ? scrollTop / maxScroll : 0) * maxOffset);
+        thumb.style.top = `${2 + thumbY}px`;
+        thumb.style.height = `${thumbH}px`;
+      }
+
+      scroll.addEventListener('scroll', updateBkitScrollbar, { passive: true });
+
+      const sizeGrid = sizeEl.closest('.build-kit-desktop__grid');
 
       button.addEventListener('click', event => {
         event.preventDefault();
@@ -426,6 +457,9 @@ export function init() {
 
         const isOpen = sizeEl.classList.toggle('is-open');
         button.setAttribute('aria-expanded', String(isOpen));
+        if (sizeGrid) sizeGrid.style.overflow = isOpen ? 'visible' : '';
+        section.style.overflow = isOpen ? 'visible' : '';
+        if (isOpen) requestAnimationFrame(updateBkitScrollbar);
       });
 
       select.addEventListener('change', () => {
@@ -514,6 +548,9 @@ export function init() {
         sizeEl.classList.remove('is-open');
         sizeEl.querySelector('.build-kit-desktop__size-button')?.setAttribute('aria-expanded', 'false');
       });
+      section.style.overflow = '';
+      const bkGrid = section.querySelector('.build-kit-desktop__grid');
+      if (bkGrid) bkGrid.style.overflow = '';
     });
 
     btnPrev?.addEventListener('click', () => updatePage(page - 1));

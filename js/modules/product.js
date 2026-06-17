@@ -430,14 +430,16 @@ export function init() {
   // Форма: кликабельные звёзды-эллипсы
   document.querySelectorAll('[data-reviews-form-stars]').forEach(starsEl => {
     const stars  = [...starsEl.querySelectorAll('.js-review-star')];
-    const numEl  = starsEl.closest('[data-reviews-form]')
-                          ?.querySelector('[data-reviews-rating-num]');
+    const formEl = starsEl.closest('[data-reviews-form]');
+    const numEl  = formEl?.querySelector('[data-reviews-rating-num]');
 
     const setRating = value => {
       stars.forEach(s => {
         s.classList.toggle('is-active', Number(s.dataset.value) <= value);
+        s.classList.remove('is-preview');
       });
       if (numEl) numEl.textContent = value;
+      formEl?.classList.toggle('personal-rating-card--rated', value > 0);
     };
 
     // Инициализируем из начального состояния (4 активных)
@@ -450,11 +452,13 @@ export function init() {
       // Hover preview
       star.addEventListener('mouseenter', () => {
         stars.forEach(s => {
-          s.style.background = Number(s.dataset.value) <= Number(star.dataset.value)
-            ? '' // вернёт к is-active или дефолту через CSS
-            : '';
+          s.classList.toggle('is-preview', Number(s.dataset.value) <= Number(star.dataset.value));
         });
       });
+    });
+
+    starsEl.addEventListener('mouseleave', () => {
+      stars.forEach(s => s.classList.remove('is-preview'));
     });
   });
 
@@ -674,13 +678,38 @@ export function init() {
     const button = document.createElement('button');
     button.className = 'product-kit-item__size-button';
     button.type = 'button';
-    button.textContent = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
     button.setAttribute('aria-haspopup', 'listbox');
     button.setAttribute('aria-expanded', 'false');
+
+    const btnLabel = document.createElement('span');
+    btnLabel.textContent = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
+    const btnIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    btnIcon.setAttribute('aria-hidden', 'true');
+    btnIcon.setAttribute('class', 'product-kit-item__size-btn-icon');
+    const btnIconUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    btnIconUse.setAttribute('href', spriteHref('icon-rec-button-arrow-down'));
+    btnIcon.appendChild(btnIconUse);
+    button.appendChild(btnLabel);
+    button.appendChild(btnIcon);
 
     const list = document.createElement('div');
     list.className = 'product-kit-item__size-list';
     list.setAttribute('role', 'listbox');
+
+    const inner = document.createElement('div');
+    inner.className = 'product-kit-item__size-inner';
+    list.appendChild(inner);
+
+    const scroll = document.createElement('div');
+    scroll.className = 'product-kit-item__size-scroll';
+    inner.appendChild(scroll);
+
+    const scrollbar = document.createElement('div');
+    scrollbar.className = 'product-kit-item__size-scrollbar';
+    const thumb = document.createElement('div');
+    thumb.className = 'product-kit-item__size-scrollbar-thumb';
+    scrollbar.appendChild(thumb);
+    inner.appendChild(scrollbar);
 
     Array.from(select.options).forEach((option, index) => {
       const item = document.createElement('button');
@@ -693,16 +722,30 @@ export function init() {
       item.addEventListener('click', () => {
         select.selectedIndex = index;
         select.dispatchEvent(new Event('change', { bubbles: true }));
-        button.textContent = option.textContent;
-        list.querySelectorAll('.product-kit-item__size-option').forEach(optBtn => {
+        btnLabel.textContent = option.textContent;
+        scroll.querySelectorAll('.product-kit-item__size-option').forEach(optBtn => {
           optBtn.setAttribute('aria-selected', String(optBtn === item));
         });
         sizeEl.classList.remove('is-open');
         button.setAttribute('aria-expanded', 'false');
       });
 
-      list.appendChild(item);
+      scroll.appendChild(item);
     });
+
+    function updateKitScrollbar() {
+      const { scrollTop, scrollHeight, clientHeight } = scroll;
+      if (!clientHeight) return;
+      const maxScroll = Math.max(0, scrollHeight - clientHeight);
+      const ratio = Math.min(1, clientHeight / scrollHeight);
+      const thumbH = Math.max(16, Math.round(ratio * clientHeight));
+      const maxOffset = Math.max(0, clientHeight - thumbH - 4);
+      const thumbY = Math.round((maxScroll > 0 ? scrollTop / maxScroll : 0) * maxOffset);
+      thumb.style.top = `${2 + thumbY}px`;
+      thumb.style.height = `${thumbH}px`;
+    }
+
+    scroll.addEventListener('scroll', updateKitScrollbar, { passive: true });
 
     button.addEventListener('click', event => {
       event.preventDefault();
@@ -716,10 +759,11 @@ export function init() {
 
       const isOpen = sizeEl.classList.toggle('is-open');
       button.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen) requestAnimationFrame(updateKitScrollbar);
     });
 
     select.addEventListener('change', () => {
-      button.textContent = select.selectedOptions[0]?.textContent || '';
+      btnLabel.textContent = select.selectedOptions[0]?.textContent || '';
     });
 
     sizeEl.appendChild(button);
@@ -733,6 +777,118 @@ export function init() {
     document.querySelectorAll('.product-kit-item__size.is-open').forEach(sizeEl => {
       sizeEl.classList.remove('is-open');
       sizeEl.querySelector('.product-kit-item__size-button')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Product page — детальная товара: кастомный dropdown выбора размера (планшет + мобилка)
+  function enhanceProductSizeSelect(wrap) {
+    const select = wrap?.querySelector('.product-option__size-select');
+    if (!select || wrap.querySelector('.product-option__size-btn')) return;
+
+    wrap.classList.add('is-enhanced');
+
+    const button = document.createElement('button');
+    button.className = 'product-option__size-btn';
+    button.type = 'button';
+    button.setAttribute('aria-haspopup', 'listbox');
+    button.setAttribute('aria-expanded', 'false');
+
+    const psizeBtnLabel = document.createElement('span');
+    psizeBtnLabel.textContent = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
+    const psizeBtnIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    psizeBtnIcon.setAttribute('aria-hidden', 'true');
+    psizeBtnIcon.setAttribute('class', 'product-option__size-btn-icon');
+    const psizeBtnIconUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    psizeBtnIconUse.setAttribute('href', spriteHref('icon-rec-button-arrow-down'));
+    psizeBtnIcon.appendChild(psizeBtnIconUse);
+    button.appendChild(psizeBtnLabel);
+    button.appendChild(psizeBtnIcon);
+
+    const list = document.createElement('div');
+    list.className = 'product-option__size-list';
+    list.setAttribute('role', 'listbox');
+
+    const inner = document.createElement('div');
+    inner.className = 'product-option__size-inner';
+    list.appendChild(inner);
+
+    const scroll = document.createElement('div');
+    scroll.className = 'product-option__size-scroll';
+    inner.appendChild(scroll);
+
+    const scrollbar = document.createElement('div');
+    scrollbar.className = 'product-option__size-scrollbar';
+    const thumb = document.createElement('div');
+    thumb.className = 'product-option__size-scrollbar-thumb';
+    scrollbar.appendChild(thumb);
+    inner.appendChild(scrollbar);
+
+    Array.from(select.options).forEach((option, index) => {
+      const item = document.createElement('button');
+      item.className = 'product-option__size-item';
+      item.type = 'button';
+      item.textContent = option.textContent;
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+
+      item.addEventListener('click', () => {
+        select.selectedIndex = index;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        psizeBtnLabel.textContent = option.textContent;
+        scroll.querySelectorAll('.product-option__size-item').forEach(btn => {
+          btn.setAttribute('aria-selected', String(btn === item));
+        });
+        wrap.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+      });
+
+      scroll.appendChild(item);
+    });
+
+    function updatePsizeScrollbar() {
+      const { scrollTop, scrollHeight, clientHeight } = scroll;
+      if (!clientHeight) return;
+      const maxScroll = Math.max(0, scrollHeight - clientHeight);
+      const ratio = Math.min(1, clientHeight / scrollHeight);
+      const thumbH = Math.max(16, Math.round(ratio * clientHeight));
+      const maxOffset = Math.max(0, clientHeight - thumbH - 4);
+      const thumbY = Math.round((maxScroll > 0 ? scrollTop / maxScroll : 0) * maxOffset);
+      thumb.style.top = `${2 + thumbY}px`;
+      thumb.style.height = `${thumbH}px`;
+    }
+
+    scroll.addEventListener('scroll', updatePsizeScrollbar, { passive: true });
+
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      document.querySelectorAll('.product-option__size-select-wrap.is-open').forEach(el => {
+        if (el === wrap) return;
+        el.classList.remove('is-open');
+        el.querySelector('.product-option__size-btn')?.setAttribute('aria-expanded', 'false');
+      });
+
+      const isOpen = wrap.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen) requestAnimationFrame(updatePsizeScrollbar);
+    });
+
+    select.addEventListener('change', () => {
+      psizeBtnLabel.textContent = select.selectedOptions[0]?.textContent || '';
+    });
+
+    wrap.appendChild(button);
+    wrap.appendChild(list);
+  }
+
+  document.querySelectorAll('.product-option__size-select-wrap').forEach(enhanceProductSizeSelect);
+
+  document.addEventListener('click', event => {
+    if (event.target.closest('.product-option__size-select-wrap')) return;
+    document.querySelectorAll('.product-option__size-select-wrap.is-open').forEach(wrap => {
+      wrap.classList.remove('is-open');
+      wrap.querySelector('.product-option__size-btn')?.setAttribute('aria-expanded', 'false');
     });
   });
 

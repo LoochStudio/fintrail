@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Корзина</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-LVKHGa_k.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-D_YrSp0r.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-CVGe9-2X.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-C4hQEWCb.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -530,7 +530,6 @@
             </a>
             <div class="cart-item__info">
               <button class="cart-item__remove" type="button" aria-label="Удалить товар"><svg class="cart-item__remove-icon cart-item__remove-icon--close" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg><svg class="cart-item__remove-icon cart-item__remove-icon--trash" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg></button>
-              <button class="cart-item__bookmark" type="button" aria-label="В закладки"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
               <h2><a href="/catalog/master-hood-1510/">Брюки FINNTRAIL Tactic 4609 Khaki</a></h2>
               <p class="cart-item__unavailable">Нет в наличии</p>
               <dl>
@@ -538,7 +537,8 @@
                 <div><dt>Цвет:</dt><dd>Оранжевый</dd></div>
               </dl>
               <div class="cart-item__unavailable-actions">
-                <button class="cart-item__notify" type="button">Уведомить о поступлении<svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></button>
+                <button class="cart-item__notify" type="button"><span class="cart-item__notify-text cart-item__notify-text--desktop">Сообщить о наличии</span><span class="cart-item__notify-text cart-item__notify-text--mobile">Уведомить о поступлении</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></button>
+                <button class="cart-item__bookmark" type="button" aria-label="В закладки"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
               </div>
               <button class="cart-item__similar" type="button" aria-label="Похожие товары">
                 <div class="cart-item__similar-head">
@@ -616,7 +616,7 @@
             </form>
             <a class="button button--primary button--size-l cart-total__submit" href="/order-confirmed/" data-cart-login-open>Оформить заказ</a>
           </div>
-          <p class="cart-total__note">Нажимая на кнопку, вы соглашаетесь с <a href="/privacy/">Условиями обработки персональных данных</a> и <a href="/offer/">Условиями продажи</a></p>
+          <p class="cart-total__note"><span>Нажимая на кнопку, вы соглашаетесь</span><span class="cart-total__note-links"><span>с</span><a href="/privacy/">Условиями обработки персональных данных</a><span>и</span><a href="/offer/">Условиями продажи</a></span></p>
         </section>
       </aside>
     </div>
@@ -751,6 +751,9 @@
           <label class="cart-pickup-modal__search">
             <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg>
             <input type="search" placeholder="Поиск по адресам" autocomplete="off">
+            <button class="cart-pickup-modal__search-clear" type="button" aria-label="Очистить поиск" tabindex="-1" data-cart-pickup-search-clear>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            </button>
           </label>
 
           <div class="cart-pickup-modal__list-state" data-cart-pickup-view="list">
@@ -805,6 +808,7 @@
                 </span>
               </button>
             </div>
+            <p class="cart-pickup-modal__no-results" hidden>Пункт выдачи по такому адресу не найден. Попробуйте изменить запрос.</p>
           </div>
 
           <div class="cart-pickup-modal__detail-state" hidden data-cart-pickup-view="detail">

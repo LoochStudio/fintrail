@@ -1,0 +1,1390 @@
+@use '../variables' as *;
+
+// В Figma все тексты используют text-box-trim: trim-both / text-box-edge: cap.
+// Убирает half-leading выше cap-height и ниже baseline.
+@mixin trim-text {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  leading-trim: both;
+  text-edge: cap;
+}
+
+// ─── Page layout ────────────────────────────────────────────────────────────
+
+.personal-page {
+  flex: 1 1 auto;
+  padding: 72px $spacing-page-desktop 0; // 72px — высота compact-хедера
+  background: $color-page;
+}
+
+// Гриду место только там, где реально два столбца (контент будущих блоков)
+.personal-page__layout {
+  display: grid;
+  grid-template-columns: calc(25vw - #{$spacing-page-desktop} - 20px) 1fr;
+  column-gap: 20px;
+}
+
+.personal-page__sidebar { }
+.personal-page__content { min-width: 0; }
+
+// ─── Personal header (first block) ──────────────────────────────────────────
+// Полноширный блок, контент выровнен через padding-left: calc(25vw - gutter),
+// как заголовок в корзине — никакого грида с пустым сайдбаром.
+
+.personal-header {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  padding-left: calc(25vw - #{$spacing-page-desktop});
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.personal-header__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-heading-h1-size;
+  font-weight: $font-weight-black;
+  line-height: 36px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-header__nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+// Tabs nav
+
+.personal-header__tabs {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.personal-header__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.personal-header__tab-inner {
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  color: $color-gray-primary;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.personal-header__tab-count {
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  color: $color-secondary-accent;
+}
+
+.personal-header__tab-line {
+  height: 1px;
+  width: 100%;
+  background: $color-surface;
+  display: block;
+}
+
+.personal-header__tab.is-active {
+  .personal-header__tab-inner {
+    color: $color-primary-black;
+  }
+
+  .personal-header__tab-line {
+    background: $color-primary-black;
+  }
+}
+
+// Settings link
+
+.personal-header__settings {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.personal-header__settings-short {
+  display: none;
+}
+
+.personal-header__settings-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+// ─── Loyalty banner ──────────────────────────────────────────────────────────
+
+.personal-banner {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  // Пробивает padding страницы, как cart-recommendations
+  width: calc(100% + #{$spacing-page-desktop * 2});
+  margin-left: -$spacing-page-desktop;
+  margin-right: -$spacing-page-desktop;
+}
+
+.personal-banner__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  transform: scaleX(-1);
+}
+
+.personal-banner__card {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 342px;
+  height: 360px;
+  background: $color-white;
+  border-radius: $radius-md;
+  padding: 20px 8px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.personal-banner__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 12px;
+}
+
+.personal-banner__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.personal-banner__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &--stat {
+    gap: 12px;
+  }
+}
+
+.personal-banner__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: $color-primary-gray;
+}
+
+.personal-banner__label-text {
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b1-line;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.personal-banner__value {
+  font-family: $font-display;
+  font-weight: $font-weight-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $color-primary-black;
+  font-style: normal;
+  margin: 0;
+
+  &--lg {
+    font-size: $text-heading-h2-size;
+    line-height: $text-heading-h2-size; // 32px — line-height = font-size per Figma
+  }
+
+  &--md {
+    font-size: $text-subtitle-s1-size;
+    line-height: $text-subtitle-s1-line;
+  }
+}
+
+.personal-banner__divider {
+  height: 1px;
+  background: $color-surface;
+  flex-shrink: 0;
+}
+
+.personal-banner__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// Referral sub-block
+
+.personal-banner__referral {
+  background: $color-surface;
+  border-radius: 8px;
+  padding: 12px 4px 4px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.personal-banner__referral-text {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-gray-primary;
+  margin: 0;
+
+  a {
+    color: $color-primary-black;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.personal-banner__referral-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.personal-banner__referral-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.personal-banner__referral-label {
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b1-line;
+  color: $color-gray-primary;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.personal-banner__referral-url {
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: $text-body-b1-size; // 14px = line-height per Figma
+  color: $color-primary-black;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+// ─── Interests block ─────────────────────────────────────────────────────────
+
+.personal-interests {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.personal-interests__header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 577px;
+}
+
+.personal-interests__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-heading-h3-size; // 24px
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-interests__desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b1-line;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-interests__list {
+  display: flex;
+  gap: clamp(16px, 4.2vw, 60px);
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.personal-interests__item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-radius: $radius-xs;
+}
+
+.personal-interests__icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  color: $color-primary-black;
+}
+
+.personal-interests__label {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.personal-interests__toggle {
+  display: block;
+  width: 56px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+.personal-interests__toggle-control {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 24px;
+  border-radius: 32px;
+  background: #b0b0b0;
+  transition: background 0.18s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 26px;
+    width: 24px;
+    height: 12px;
+    border-radius: 32px;
+    background: $color-white;
+    transform: translateY(-50%);
+    transition: right 0.18s ease;
+    box-shadow: 0 0 0 2px $color-white, 1px 3px 10px 0px rgba(80, 80, 80, 0.1);
+  }
+}
+
+.personal-interests__toggle input:checked ~ .personal-interests__toggle-control {
+  background: $color-secondary-accent;
+
+  &::after {
+    right: 6px;
+  }
+}
+
+.personal-interests__toggle:hover .personal-interests__toggle-control {
+  background: #9a9a9a;
+}
+
+.personal-interests__toggle:hover input:checked ~ .personal-interests__toggle-control {
+  background: #d3170d;
+}
+
+// ─── Orders section ──────────────────────────────────────────────────────────
+
+$order-success-color: #338532;
+
+.personal-orders {
+  padding: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.personal-orders__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.personal-orders__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-heading-h3-size;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-orders__all-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 14px 24px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+
+  svg { width: 16px; height: 16px; flex-shrink: 0; }
+  &:hover { opacity: 0.7; }
+}
+
+// Slider
+
+.personal-orders__slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  align-items: stretch;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+// Card
+
+.order-card {
+  flex-shrink: 0;
+  width: min(420px, calc(100vw - 40px));
+  background: $color-white;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-snap-align: start;
+}
+
+.order-card__top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+// Head: status row + actions
+
+.order-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-card__status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-card__status-text {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  color: rgba($color-black, 0.9);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+// Progress bar
+
+.order-card__progress {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.order-card__progress-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $color-secondary-gray;
+}
+
+.order-card__progress-line {
+  flex: 1;
+  height: 2px;
+  background: $color-secondary-gray;
+}
+
+// Active steps via data-step on .order-card__progress
+// Structure: dot(1) line(2) dot(3) line(4) dot(5) line(6) dot(7)
+// Step N activates first (N*2-1) children
+@for $i from 1 through 4 {
+  .order-card__progress[data-step="#{$i}"] > *:nth-child(-n+#{$i * 2 - 1}) {
+    background: $color-secondary-accent;
+  }
+}
+
+// Action buttons
+
+.order-card__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.order-card__action-btn {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 8px 11px 16px;
+  background: transparent;
+  border: 1px solid $color-surface;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  svg { width: 16px; height: 16px; flex-shrink: 0; }
+  &:hover { background: $color-surface; }
+}
+
+.order-card__action-btn--single {
+  flex: 0 0 auto;
+  width: 184px;
+}
+
+// Delivery info
+
+.order-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card__info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-card__info-label {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: $text-body-b1-size;
+  color: rgba($color-black, 0.9);
+  text-transform: uppercase;
+}
+
+.order-card__info-value {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: 500;
+  line-height: $text-body-b1-line;
+  color: rgba($color-black, 0.9);
+  @include trim-text;
+}
+
+// Bottom: products + footer
+
+.order-card__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.order-card__bottom--pay {
+  gap: 20px;
+}
+
+// Products
+
+.order-card__products-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.order-card__products {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1 0 0;
+  min-width: 0;
+  min-height: 48px; // flex-basis:0 в column-flex схлопывает контейнер до 0
+  overflow: hidden;
+}
+
+.order-card__product-img {
+  display: block;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: $radius-xs;
+}
+
+.order-card__more {
+  flex-shrink: 0;
+  padding: 15px 16px;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+// Footer
+
+.order-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-card__pay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px;
+  background: $color-primary-black;
+  border: none;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  color: $color-white;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover { background: $color-button-primary-hover; }
+  &:active { background: $color-button-primary-pressed; }
+}
+
+.order-card__payment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: 500;
+  line-height: $text-body-b1-line;
+  color: $color-gray-primary;
+  @include trim-text;
+
+  svg { width: 16px; height: 16px; flex-shrink: 0; }
+}
+
+.order-card__price {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-subtitle-s1-size;
+  font-weight: $font-weight-black;
+  line-height: $text-subtitle-s1-line;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+  @include trim-text;
+}
+
+// Status modifiers
+
+.order-card--success {
+  .order-card__status-text { color: $order-success-color; }
+}
+
+.order-card--done {
+  .order-card__status-text { color: $color-primary-gray; }
+  .order-card__price { color: $color-primary-gray; }
+  .order-card__payment { color: $color-primary-gray; }
+}
+
+.order-card--success .order-card__payment { color: $order-success-color; }
+
+// ─── Favorites section ───────────────────────────────────────────────────────
+
+.personal-favorites {
+  padding: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.personal-favorites__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.personal-favorites__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-heading-h3-size;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-favorites__all-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px 14px 24px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+}
+
+.personal-favorites__slider {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.personal-favorite-card {
+  position: relative;
+  flex: 0 0 166px;
+  width: 166px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  scroll-snap-align: start;
+}
+
+.personal-favorite-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 12px;
+  color: $color-primary-black;
+  text-decoration: none;
+}
+
+.personal-favorite-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.personal-favorite-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.personal-favorite-card__discount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  max-width: calc(100% - 24px);
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 600;
+  line-height: 16px;
+  color: $color-secondary-accent;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.personal-favorite-card__bookmark,
+.personal-favorite-card__cart {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: $color-primary-gray;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $color-primary-black;
+  }
+}
+
+.personal-favorite-card__bookmark {
+  top: 12px;
+  right: 12px;
+
+  &.is-active {
+    color: $color-secondary-accent;
+  }
+
+  &.is-active:hover,
+  &.is-active:focus-visible {
+    color: $color-primary-black;
+  }
+}
+
+.personal-favorite-card__cart {
+  right: 12px;
+  bottom: 12px;
+}
+
+.personal-favorite-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 0 auto;
+}
+
+.personal-favorite-card__name {
+  overflow: hidden;
+  width: 100%;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 600;
+  line-height: 16px;
+  color: $color-primary-black;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.personal-favorite-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-right: 20px;
+}
+
+.personal-favorite-card__price {
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  color: $color-primary-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .personal-favorite-card:hover .personal-favorite-card__image {
+    transform: scale(1.03);
+  }
+}
+
+// ─── Rate products ──────────────────────────────────────────────────────────
+
+.personal-ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 20px 40px;
+}
+
+.personal-ratings__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-ratings__list {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.personal-rating-card {
+  display: flex;
+  flex: 0 0 343px;
+  align-items: flex-start;
+  gap: 20px;
+  width: 343px;
+  padding: 12px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  scroll-snap-align: start;
+}
+
+.personal-rating-card__image {
+  display: block;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.personal-rating-card__content {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.personal-rating-card__name {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: 600;
+  line-height: 18px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.personal-rating-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.personal-rating-card__dots {
+  display: flex;
+  flex: 0 0 152px;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+}
+
+.personal-rating-card__dot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: $color-secondary-gray;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+
+  &.is-active,
+  &.is-preview {
+    background: $color-primary-black;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary-black;
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
+}
+
+.personal-rating-card__value {
+  font-family: $font-display;
+  font-size: 36px;
+  font-weight: $font-weight-black;
+  line-height: 36px;
+  color: $color-secondary-gray;
+  text-transform: uppercase;
+}
+
+.personal-rating-card--rated {
+  .personal-rating-card__value {
+    color: $color-primary-black;
+  }
+}
+
+// ─── Section divider ─────────────────────────────────────────────────────────
+
+.personal-section-divider {
+  height: 0;
+  border: none;
+  border-top: 2px solid $color-white;
+  align-self: stretch;
+  margin: 0 0 40px;
+}
+
+.personal-viewed-products {
+  margin-top: 0;
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+
+  // ─── Page ──────────────────────────────────────────────────────────────────
+
+  .personal-page {
+    padding-bottom: 80px; // запас под таббар
+  }
+
+  // ─── Personal header ───────────────────────────────────────────────────────
+  // На мобилке: title + settings в одну строку, табы ниже.
+  // display: contents на nav-row "растворяет" обёртку — дети становятся
+  // прямыми flex-детьми .personal-header, и мы управляем порядком через order.
+
+  .personal-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 36px;
+    padding-top: 20px;
+    padding-left: 0;
+  }
+
+  .personal-header__title {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  // display: contents растворяет обёртку — табы и настройки
+  // становятся прямыми grid-детьми personal-header
+  .personal-header__nav-row {
+    display: contents;
+  }
+
+  .personal-header__settings {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .personal-header__settings-full { display: none; }
+  .personal-header__settings-short { display: inline; }
+
+  .personal-header__tabs {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 10px;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .personal-header__tab {
+    flex-shrink: 0;
+  }
+
+  // ─── Loyalty banner ────────────────────────────────────────────────────────
+  // На мобилке фоновое фото скрыто (в Figma rect сдвинут за правый край).
+  // Карточка занимает почти всю ширину, позиционируется статично.
+
+  .personal-banner {
+    height: 360px; // 20px top + 320px card + 20px bottom
+    padding: 0;
+    // overflow: hidden и full-bleed width/margin наследуются с десктопа
+  }
+
+  .personal-banner__img {
+    display: block; // фото видно как фон
+  }
+
+  .personal-banner__card {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: calc(100% - 41px); // 20px слева + 21px справа = 375 - 41 = 334px
+    height: 320px;
+    transform: none;
+    min-height: unset;
+  }
+
+  .personal-banner__referral {
+    padding: 4px 4px 4px 12px; // на десктопе 12px top (для текста), на мобилке текст скрыт
+  }
+
+  .personal-banner__referral-text {
+    display: none;
+  }
+
+  // ─── Interests ─────────────────────────────────────────────────────────────
+  // Из горизонтальной сетки (7 колонок) → вертикальный список.
+  // Каждый элемент: [иконка] [текст     ] [тоггл]
+
+  .personal-interests {
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  .personal-interests__list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .personal-interests__item {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 64px;
+    padding: 14px 0;
+    border-radius: 0;
+  }
+
+  .personal-interests__icon {
+    margin-right: 20px;
+  }
+
+  .personal-interests__label {
+    flex: 1 1 auto;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .personal-interests__toggle {
+    margin-left: auto;
+  }
+
+  // ─── Section divider ───────────────────────────────────────────────────────
+
+  .personal-section-divider {
+    margin: 20px 0;
+  }
+
+  // ─── Orders ────────────────────────────────────────────────────────────────
+
+  .personal-orders {
+    padding-bottom: 0;
+  }
+
+  .personal-orders__all-link {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    justify-content: center;
+
+    > span:first-child { display: none; }
+  }
+
+  .order-card {
+    width: 290px;
+    justify-content: flex-start;
+  }
+
+  // На мобилке прогресс-индикатор идёт ВЫШЕ статуса.
+  // column-reverse: второй ребёнок (dots) визуально наверху.
+
+  .order-card__status-row {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .order-card__action-btn {
+    padding: 7px 8px 7px 12px;
+  }
+
+  .order-card__bottom {
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  // ─── Favorites ─────────────────────────────────────────────────────────────
+
+  .personal-favorites__all-link {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    justify-content: center;
+
+    > span:first-child { display: none; }
+  }
+
+  // ─── Ratings ───────────────────────────────────────────────────────────────
+
+  .personal-ratings {
+    padding: 0 0 40px; // убираем лишний горизонтальный padding (страница уже имеет 20px)
+  }
+
+  .personal-rating-card {
+    flex: 0 0 280px;
+    width: 280px;
+  }
+
+  // ─── Viewed products + Community (bleed) ───────────────────────────────────
+
+  .personal-viewed-products,
+  .personal-viewed-products + .community-showcase {
+    width: calc(100% + #{$spacing-page-desktop * 2});
+    margin-right: -$spacing-page-desktop;
+    margin-left: -$spacing-page-desktop;
+  }
+}
+
+@media (max-width: 374px) {
+
+  .personal-header__title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+.personal-banner__copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  cursor: pointer;
+  color: $color-secondary-accent;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
