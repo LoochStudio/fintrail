@@ -150,6 +150,69 @@ export function init() {
     }
   });
 
+  // ─── Orders load more ────────────────────────────────────────────────────────
+  // data-orders-load-more — кнопка «Показать ещё» на странице заказов.
+  // Bitrix: заменить fetch-заглушку на реальный AJAX-запрос к компоненту
+  // bitrix:main.profile (personal/orders/index.php) с параметром PAGEN_1.
+  document.querySelectorAll('[data-orders-load-more]').forEach(btn => {
+    const list = document.querySelector('.orders-list');
+    if (!list) return;
+
+    btn.addEventListener('click', async () => {
+      if (btn.disabled) return;
+
+      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
+
+      try {
+        // TODO: заменить на реальный URL Bitrix с параметром страницы
+        // const nextPage = parseInt(btn.dataset.page || '1', 10) + 1;
+        // const res = await fetch(`?PAGEN_1=${nextPage}&ajax=y`);
+        // const html = await res.text();
+        // вставить карточки из html в list
+
+        // Временная заглушка для разработки
+        await new Promise(resolve => setTimeout(resolve, 800));
+        btn.hidden = true; // скрываем если больше нет страниц
+      } catch {
+        btn.disabled = false;
+      } finally {
+        btn.removeAttribute('aria-busy');
+      }
+    });
+  });
+
+  // ─── Orders sort dropdown ────────────────────────────────────────────────────
+  document.querySelectorAll('[data-orders-sort]').forEach(wrap => {
+    const btn  = wrap.querySelector('[data-orders-sort-btn]');
+    const menu = wrap.querySelector('.orders-page__sort-dropdown');
+    if (!btn || !menu) return;
+
+    const close = () => {
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    };
+
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = !menu.hidden;
+      menu.hidden = isOpen;
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    menu.querySelectorAll('button').forEach(opt => {
+      opt.addEventListener('click', () => {
+        menu.querySelectorAll('button').forEach(o => o.removeAttribute('aria-selected'));
+        opt.setAttribute('aria-selected', 'true');
+        const label = wrap.querySelector('.orders-page__sort-label');
+        if (label) label.textContent = opt.textContent.trim();
+        close();
+      });
+    });
+
+    document.addEventListener('click', close);
+  });
+
   // ─── Lazy loading видео ──────────────────────────────────────────────────────
   // Видео не грузятся до тех пор, пока не окажутся в зоне видимости (+ 200px запас).
   // В HTML: preload="none" + data-src (или data-src на <source>).

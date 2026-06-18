@@ -11,6 +11,7 @@ import { init as initCart } from './modules/cart.js';
 import { init as initStories } from './modules/stories.js';
 import { init as initProduct } from './modules/product.js';
 import { init as initShared } from './modules/shared.js';
+import { init as initPersonal } from './modules/personal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -26,4 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initStories();
   initProduct();
   initShared();
+  initPersonal();
 });
