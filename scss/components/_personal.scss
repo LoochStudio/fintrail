@@ -2059,53 +2059,10 @@ $order-success-color: #338532;
 
   // ─── Order detail ──────────────────────────────────────────────────────────
 
-  .order-detail__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .order-detail__title {
-    font-size: 20px;
-    line-height: 20px;
-  }
-
-  .order-info__meta {
-    flex-direction: column;
-    gap: 30px;
-  }
-
   .order-tracking-cards {
     flex-direction: column;
   }
 
-  .order-item {
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-  }
-
-  .order-item__icon-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-  }
-
-  .order-item__details {
-    justify-content: flex-start;
-    gap: 20px;
-  }
-
-  .order-pricing-card {
-    padding: 20px;
-    gap: 20px;
-  }
-
-  .order-sum__total-value {
-    font-size: 20px;
-    line-height: 20px;
-  }
 }
 
 @media (max-width: 374px) {
@@ -2763,4 +2720,1174 @@ $order-success-color: #338532;
   text-decoration: none;
 
   &:hover { opacity: 0.8; }
+}
+
+// ─── Order detail: mobile overrides ──────────────────────────────────────────
+// Вынесено после базовых стилей, иначе каскад перебивался базовыми правилами
+
+@media (max-width: calc($bp-md - 1px)) {
+  .order-detail__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .order-detail__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .personal-page--order-detail .personal-header {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+
+  .personal-page--order-detail .personal-header + .personal-section-divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .order-info__meta {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  // Скрываем первый разделитель — он идёт сразу после заголовка «Состав заказа»
+  .order-items > .order-item__rule:first-child {
+    display: none;
+  }
+
+  .order-item {
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+
+  .order-item__icon-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .order-item__details {
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .order-detail-page {
+    padding-bottom: 0;
+  }
+
+  .order-pricing-card {
+    padding: 20px;
+    gap: 20px;
+    border-top: 1px solid $color-white;
+  }
+
+  .order-sum__total-value {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .personal-page--order-detail {
+    padding-bottom: 20px;
+  }
+
+}
+
+// Карусель «Вы смотрели» на detail: full-bleed на планшете и мобилке (на десктопе сброшен)
+@media (max-width: calc($bp-lg - 1px)) {
+  .personal-page--order-detail .personal-viewed-products {
+    margin-right: -$spacing-page-desktop;
+    margin-left: -$spacing-page-desktop;
+    width: calc(100% + #{$spacing-page-desktop * 2});
+  }
+}
+
+// ─── Reviews page ─────────────────────────────────────────────────────────────
+
+// Dividers inside the reviews section: 24px top/bottom
+.personal-page--reviews .recommendations-new > .personal-section-divider {
+  display: none;
+}
+
+.reviews-page .personal-section-divider {
+  margin: 24px 0;
+}
+
+// Divider right before the «Показать ещё» button has no bottom gap
+.reviews-page .personal-section-divider:last-of-type {
+  margin-bottom: 0;
+}
+
+.reviews-page__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.reviews-page__tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: $color-white;
+  border-radius: 8px;
+}
+
+.reviews-page__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px;
+  border-radius: 4px;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &.is-active {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+
+  &:not(.is-active):active { background: $color-button-ghost-pressed; }
+  &.is-active:active       { background: $color-button-primary-pressed; }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary-black;
+    outline-offset: 2px;
+  }
+  &.is-active:focus-visible { outline-color: $color-white; }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(.is-active):hover { background: $color-surface; }
+    &.is-active:hover       { background: $color-button-primary-hover; }
+  }
+}
+
+.reviews-page__sort {
+  position: relative;
+}
+
+.reviews-page__sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 10px 12px;
+  background: $color-surface;
+  border: none;
+  border-radius: $radius-xs;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: $text-body-b2-size;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  white-space: nowrap;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &[aria-expanded="true"] {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+
+  &:not([aria-expanded="true"]):active { background: $color-button-ghost-pressed; }
+  &[aria-expanded="true"]:active       { background: $color-button-primary-pressed; }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary-black;
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not([aria-expanded="true"]):hover { background: $color-button-ghost-hover; }
+    &[aria-expanded="true"]:hover       { background: $color-button-primary-hover; }
+  }
+}
+
+.reviews-page__sort-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 20;
+  min-width: 100%;
+  padding: 4px;
+  border-radius: $radius-xs;
+  background: $color-white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  white-space: nowrap;
+  list-style: none;
+  margin: 0;
+
+  &[hidden] { display: none; }
+
+  li { list-style: none; }
+
+  li button {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: $font-display;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: $text-body-b2-size;
+    text-transform: uppercase;
+    color: $color-primary-black;
+    white-space: nowrap;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { background: $color-surface; }
+    }
+  }
+}
+
+// ─── Reviews bonuses block ────────────────────────────────────────────────────
+
+.reviews-bonuses {
+  background: $color-white;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.reviews-bonuses__header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 309px;
+}
+
+.reviews-bonuses__title-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.reviews-bonuses__title {
+  font-family: $font-main;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  margin: 0;
+}
+
+.reviews-bonuses__coin {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: $color-secondary-accent;
+  }
+
+  span {
+    font-family: $font-main;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: $color-secondary-accent;
+  }
+}
+
+.reviews-bonuses__desc {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  margin: 0;
+}
+
+.reviews-bonuses__list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+// ─── Review card ──────────────────────────────────────────────────────────────
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-card {
+  background: $color-white;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.review-card__rating-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 140px;
+}
+
+.review-card__rating-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-card__rating-label {
+  font-family: $font-main;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  margin: 0;
+}
+
+.review-card__stars-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-card__stars {
+  display: flex;
+  gap: 4px;
+}
+
+.review-card__star {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $color-secondary-gray;
+
+  &.is-active {
+    background: $color-primary-black;
+  }
+}
+
+.review-card__rating-value {
+  font-family: $font-main;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.review-card__date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span {
+    display: block;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: $color-primary-gray;
+  }
+}
+
+.review-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+  min-width: 0;
+}
+
+.review-card__photos {
+  display: flex;
+  gap: 10px;
+}
+
+.review-card__photo {
+  width: 79px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.review-card__tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.review-card__tag {
+  background: $color-primary-black;
+  color: $color-white;
+  border-radius: 20px;
+  padding: 4px 6px;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.review-card__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card__text-row {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.review-card__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.review-card__section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  span {
+    font-family: $font-main;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: $color-primary-black;
+  }
+}
+
+.review-card__section-text {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $color-primary-black;
+  margin: 0;
+}
+
+.review-card__actions {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.review-card__menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: $color-white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  color: $color-primary-gray;
+  transition: color 0.15s ease;
+
+  &[aria-expanded="true"] {
+    color: $color-primary-black;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { color: $color-primary-black; }
+  }
+}
+
+.review-card__dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  background: $color-white;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 200px;
+  z-index: 10;
+
+  &[hidden] { display: none; }
+}
+
+.review-card__dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 1;
+  transition: opacity 0.15s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: $color-primary-black;
+  }
+
+  span {
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: $color-primary-black;
+    white-space: nowrap;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { opacity: 0.6; }
+  }
+
+  &--delete {
+    svg { color: $color-secondary-accent; }
+    span { color: $color-secondary-accent; }
+  }
+}
+
+// ─── Reviews «Показать ещё» ───────────────────────────────────────────────────
+
+.reviews-page__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 24px 12px 32px;
+  background: $color-page;
+  border: none;
+  cursor: pointer;
+  color: $color-primary-gray;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  > span {
+    --roll-hover-line: #{$text-body-b1-line};
+    --roll-hover-from: #{$color-primary-gray};
+    --roll-hover-to: #{$color-primary-black};
+  }
+
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b1-line;
+  text-transform: uppercase;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $color-primary-black;
+      background: $color-white;
+    }
+  }
+}
+
+// ─── Reviews: mobile + tablet (<$bp-lg) ──────────────────────────────────────
+
+@media (max-width: calc($bp-lg - 1px)) {
+
+  // Dividers inside reviews section: 20px spacing on mobile/tablet
+  .reviews-page .personal-section-divider {
+    margin: 20px 0;
+  }
+  .reviews-page .personal-section-divider:last-of-type {
+    margin-bottom: 0;
+  }
+
+  // Controls: vertical stack, full-width tabs and sort
+  .reviews-page__controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .reviews-page__tabs {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .reviews-page__tab {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 6px;
+  }
+
+  .reviews-page__sort-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  // Bonuses: smaller padding, coin above title, list stacks vertically
+  .reviews-bonuses {
+    padding: 20px;
+  }
+
+  .reviews-bonuses__header {
+    max-width: none;
+  }
+
+  .reviews-bonuses__title-row {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .reviews-bonuses__list {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .reviews-bonuses .personal-rating-card {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .reviews-bonuses .personal-rating-card__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .reviews-bonuses .personal-rating-card__rating {
+    gap: 8px;
+  }
+
+  .reviews-bonuses .personal-rating-card__dots {
+    flex: 0 1 152px;
+  }
+
+  .review-card__photo {
+    width: calc((100% - 20px) / 3);
+  }
+
+  // Review card: vertical layout, smaller padding
+  .review-card {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  // Rating col: date first (column-reverse), padding-right to clear the three-dot button
+  .review-card__rating-col {
+    flex-direction: column-reverse;
+    width: 100%;
+    align-self: auto;
+    padding-right: 52px;
+  }
+
+  // Date on one line
+  .review-card__date {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  // Three-dot button: absolute top-right corner
+  .review-card__actions {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  // Dropdown stays relative to the absolute-positioned actions
+  .review-card__dropdown {
+    right: 0;
+    top: 44px;
+  }
+
+  // Content: tighter gap
+  .review-card__content {
+    gap: 20px;
+  }
+
+  // Достоинства/Недостатки: stack vertically
+  .review-card__text-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  // Bottom spacing below «Показать ещё»
+  .reviews-page__more {
+    padding-bottom: 20px;
+  }
+
+  // Divider after «Смотреть всё» in the slider section: 24px top and bottom
+  .personal-page--reviews .recommendations-new > .personal-section-divider {
+    display: block;
+    margin: 24px 0;
+  }
+
+  // community-showcase has its own margin-top: 64px — zero it out so only the hr spacing applies
+  .recommendations-new + .community-showcase {
+    margin-top: 0;
+  }
+}
+
+// Smaller text for very narrow phones (< 375px)
+@media (max-width: 374px) {
+  .reviews-page__tab {
+    font-size: 10px;
+    line-height: 10px;
+  }
+
+  .reviews-page__sort-btn {
+    font-size: 10px;
+  }
+}
+
+// ─── Review Form Modal ────────────────────────────────────────────────────────
+
+.review-form-modal {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  pointer-events: none;
+}
+
+.review-form-modal[hidden] {
+  display: none;
+}
+
+.review-form-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-primary-black, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.review-form-modal__panel {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  width: min(520px, calc(100vw - 20px));
+  padding: 40px;
+  overflow: hidden auto;
+  background: $color-surface;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translateX(-16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.review-form-modal.is-open {
+  pointer-events: auto;
+
+  .review-form-modal__backdrop,
+  .review-form-modal__panel {
+    opacity: 1;
+  }
+
+  .review-form-modal__panel {
+    transform: translateX(0);
+  }
+}
+
+// Header
+.review-form-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 38px;
+}
+
+.review-form-modal__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.review-form-modal__close {
+  display: inline-flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $color-gray-hover;
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Top section
+.review-form-modal__top {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+// Product card
+.review-form-modal__product {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.review-form-modal__product-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form-modal__product-img {
+  display: block;
+  flex: 0 0 64px;
+  width: 64px;
+  height: 90px;
+  object-fit: cover;
+}
+
+.review-form-modal__product-name {
+  flex: 1;
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.review-form-modal__divider {
+  margin: 0;
+  border: none;
+  border-top: 1px dashed $color-secondary-gray;
+}
+
+// Form section
+.review-form-modal__form {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Rating
+.review-form-modal__rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-form-modal__stars {
+  display: flex;
+  gap: 4px;
+}
+
+.review-form-modal__star {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: $color-secondary-gray;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &.is-active {
+    background: $color-primary-black;
+  }
+}
+
+.review-form-modal__rating-value {
+  font-family: $font-display;
+  font-size: 36px;
+  font-weight: $font-weight-black;
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
+// Text fields
+.review-form-modal__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-form-modal__field {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 12px;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-primary-gray;
+  outline: none;
+  appearance: none;
+
+  &::placeholder {
+    color: $color-primary-gray;
+  }
+}
+
+.review-form-modal__field--textarea {
+  display: block;
+  height: 80px;
+  resize: none;
+}
+
+// Size fit
+.review-form-modal__size-fit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form-modal__size-fit-label {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.review-form-modal__size-options {
+  display: flex;
+  gap: 4px;
+}
+
+.review-form-modal__size-option {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  border: none;
+  border-radius: $radius-xs;
+  background: $color-white;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  svg {
+    display: none;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &.is-active {
+    background: $color-primary-black;
+    color: $color-white;
+
+    svg {
+      display: block;
+    }
+  }
+}
+
+// Upload area
+.review-form-modal__upload {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px;
+  border: 1px dashed $color-secondary-gray;
+  border-radius: $radius-xs;
+}
+
+.review-form-modal__upload-btn {
+  display: inline-flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.review-form-modal__upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.review-form-modal__upload-title {
+  font-weight: $font-weight-semibold;
+}
+
+.review-form-modal__upload-hint {
+  font-weight: 500;
+  color: $color-gray-primary;
+}
+
+// Submit button
+.review-form-modal__submit {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 0;
+}
+// Tablet + mobile: reuse the product-page bottom-sheet modal pattern.
+@media (max-width: calc($bp-lg - 1px)) {
+  .review-form-modal__panel {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 90dvh;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    border-radius: 16px 16px 0 0;
+    transform: translateY(16px);
+    overscroll-behavior: contain;
+
+    &::before {
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      width: 36px;
+      height: 4px;
+      margin: 12px auto 0;
+      border-radius: 2px;
+      background: $color-secondary-gray;
+    }
+  }
+
+  .review-form-modal.is-open .review-form-modal__panel {
+    transform: translateY(0);
+  }
+
+  .review-form-modal__top {
+    gap: 16px;
+    padding-top: 20px;
+  }
+
+  .review-form-modal__header {
+    min-height: auto;
+  }
+
+  .review-form-modal__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .review-form-modal__size-options {
+    gap: 3px;
+  }
+
+  .review-form-modal__size-option {
+    gap: 4px;
+    padding: 6px 4px;
+    font-size: 10px;
+    line-height: 12px;
+
+    &.is-active {
+      padding: 6px 8px 6px 4px;
+    }
+  }
+
+  .review-form-modal__upload {
+    gap: 12px;
+  }
+
+  .review-form-modal__upload-text {
+    min-width: 0;
+  }
 }

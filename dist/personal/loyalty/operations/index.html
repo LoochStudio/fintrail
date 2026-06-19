@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finntrail — Пустая корзина</title>
+  <title>Finntrail - Последние операции</title>
   <script type="module" crossorigin src="/fintrail/assets/main-CQ59Pd-E.js"></script>
   <link rel="stylesheet" crossorigin href="/fintrail/assets/main-dNZLeL3E.css">
 </head>
 <body>
-  <header class="catalog-header product-header is-header-overlay is-header-compact" data-header-mega-root>
+  <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
     <div class="hero__topbar" aria-label="Навигация">
       <div class="hero__brand">
         <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
@@ -29,9 +29,9 @@
 
       <div class="hero__tools">
         <a href="/fintrail/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
-        <a href="/fintrail/personal/" class="hero__tool" aria-label="Профиль"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/fintrail/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
         <a href="/fintrail/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
-        <a href="/fintrail/cart/" class="hero__tool is-active" aria-label="Корзина"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
+        <a href="/fintrail/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
     </div>
 
@@ -112,6 +112,7 @@
 
   <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
     <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+
     <aside class="site-menu__panel">
       <div class="site-menu__top">
         <div class="site-menu__bar">
@@ -124,11 +125,14 @@
             <span>Москва</span>
           </button>
         </div>
+
         <nav class="site-menu__main" aria-label="Основные разделы">
           <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
           <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
         </nav>
+
         <div class="site-menu__divider" aria-hidden="true"></div>
+
         <nav class="site-menu__activities" aria-label="Активности">
           <a href="/fintrail/activities/tourism/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
           <a href="/fintrail/activities/quad/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
@@ -138,6 +142,7 @@
           <a href="/fintrail/activities/skiing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
         </nav>
       </div>
+
       <div class="site-menu__middle">
         <nav class="site-menu__links" aria-label="Контентные разделы">
           <a href="/fintrail/journal/">Журнал</a>
@@ -149,6 +154,7 @@
           <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
         </nav>
       </div>
+
       <div class="site-menu__bottom">
         <div class="site-menu__contacts">
           <div class="site-menu__phone-row">
@@ -161,7 +167,9 @@
           </div>
           <a class="button button--on-color button--size-xs site-menu__callback" href="/fintrail/callback/">Заказать звонок</a>
         </div>
+
         <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+
         <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
           <a class="site-menu__app-link site-menu__app-link--google-play" href="/fintrail/app/" aria-label="Google Play">
             <span class="site-menu__app-icon" aria-hidden="true">
@@ -187,6 +195,7 @@
         </div>
       </div>
     </aside>
+
     <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
       <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
         <div class="site-menu__submenu-top">
@@ -197,6 +206,7 @@
             <button type="button" data-site-menu-category>Снаряжение</button>
             <button type="button" data-site-menu-category>Экипировка</button>
           </nav>
+
           <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
             <a href="/fintrail/catalog/">Куртки</a>
             <a href="/fintrail/catalog/">Брюки и полукомбинезоны</a>
@@ -208,6 +218,7 @@
             <a href="/fintrail/catalog/">Рубашки / шорты</a>
           </nav>
         </div>
+
         <a class="site-menu__promo" href="/fintrail/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
           <picture>
             <source srcset="/fintrail/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /fintrail/images/content/_responsive/site-menu/hiking-promo-320.png 320w, /fintrail/images/content/_responsive/site-menu/hiking-promo-480.png 480w, /fintrail/images/content/_responsive/site-menu/hiking-promo-768.png 768w, /fintrail/images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
@@ -222,6 +233,7 @@
           </span>
         </a>
       </div>
+
       <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
         <a href="/fintrail/delivery/">Доставка и оплата</a>
         <a href="/fintrail/return/">Обмен и возврат</a>
@@ -249,6 +261,7 @@
             <span>Москва</span>
           </button>
         </div>
+
         <nav class="mobile-menu__nav" aria-label="Мобильное меню">
           <div class="mobile-menu__group">
             <a href="/fintrail/journal/">Журнал</a>
@@ -261,6 +274,7 @@
           </div>
         </nav>
       </div>
+
       <div class="mobile-menu__bottom">
         <div class="mobile-menu__contacts">
           <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
@@ -393,58 +407,227 @@
     </div>
   </div>
 
-  <main class="cart-empty-page" aria-label="Пустая корзина">
+  <main class="personal-page personal-page--loyalty-operations" aria-label="Последние операции">
 
-    <section class="cart-empty-hero" aria-label="Пустая корзина">
-      <div class="cart-empty-hero__bg" aria-hidden="true">
-        <img
-          src="/fintrail/assets/cart-empty-hero-BTm2r8zt.png"
-          srcset="/fintrail/assets/cart-empty-hero-BTm2r8zt.png 1440w"
-          sizes="100vw"
-          alt=""
-        >
-      </div>
-
-      <div class="cart-empty-hero__content">
-        <div class="cart-empty-hero__text">
-          <h1 class="cart-empty-hero__title">В корзине<br>пока пусто</h1>
-          <p class="cart-empty-hero__caption">Но это легко исправить</p>
-        </div>
-
-        <a href="/fintrail/catalog/" class="cart-empty-hero__button button button--on-color button--size-m">
-          <span>Перейти в каталог</span>
+    <section class="personal-header" aria-label="Заголовок страницы">
+      <div class="order-detail__header">
+        <a class="order-detail__back" href="/fintrail/personal/loyalty/">
+          <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Назад</span>
         </a>
+        <h1 class="order-detail__title">Последние операции</h1>
       </div>
     </section>
 
-    <section class="cart-recommendations recommendations-new" aria-labelledby="order-recommendations-title">
-      <div class="recommendations-new__header">
-        <h2 class="recommendations-new__title" id="order-recommendations-title">Может пригодиться</h2>
-        <div class="recommendations-new__controls" aria-label="Управление слайдером">
-          <button class="recommendations-new__arrow js-slider-prev is-inactive" type="button" aria-label="Назад"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg></button>
-          <button class="recommendations-new__arrow js-slider-next" type="button" aria-label="Вперед"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg></button>
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <section class="loyalty-ops" aria-label="История операций">
+      <div class="loyalty-ops__inner">
+
+        <div class="loyalty-ops__tabs" role="tablist" aria-label="Фильтр операций">
+          <button class="loyalty-ops__tab is-active" type="button" role="tab" aria-selected="true">
+            <span>Все операции</span>
+            <span class="loyalty-ops__tab-line" aria-hidden="true"></span>
+          </button>
+          <button class="loyalty-ops__tab" type="button" role="tab" aria-selected="false">
+            <span>Поступления</span>
+            <span class="loyalty-ops__tab-line" aria-hidden="true"></span>
+          </button>
+          <button class="loyalty-ops__tab" type="button" role="tab" aria-selected="false">
+            <span>Списания</span>
+            <span class="loyalty-ops__tab-line" aria-hidden="true"></span>
+          </button>
         </div>
-      </div>
-      <div class="recommendations-new__viewport">
-        <div class="recommendations-new__track">
-          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/fintrail/catalog/master-hood-1510/"><img class="recommendation-card__image recommendation-card__image--fit" src="/fintrail/images/content/recommended/recommended-1.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-1-160.png 160w, /fintrail/images/content/_responsive/recommended/recommended-1-320.png 320w, /fintrail/images/content/_responsive/recommended/recommended-1-480.png 480w, /fintrail/images/content/_responsive/recommended/recommended-1-768.png 768w, /fintrail/images/content/recommended/recommended-1.png 780w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Новинка</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/fintrail/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
-          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/fintrail/catalog/master-hood-1510/"><img class="recommendation-card__image" src="/fintrail/images/content/recommended/recommended-2.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-2-160.png 160w, /fintrail/images/content/_responsive/recommended/recommended-2-320.png 320w, /fintrail/images/content/recommended/recommended-2.png 442w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Топ</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/fintrail/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
-          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/fintrail/catalog/master-hood-1510/"><img class="recommendation-card__image" src="/fintrail/images/content/recommended/recommended-3.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-3-160.png 160w, /fintrail/images/content/_responsive/recommended/recommended-3-320.png 320w, /fintrail/images/content/_responsive/recommended/recommended-3-480.png 480w, /fintrail/images/content/recommended/recommended-3.png 498w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Хит</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/fintrail/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
-          <article class="recommendation-card"><div class="recommendation-card__media"><a class="recommendation-card__image-link" href="/fintrail/catalog/master-hood-1510/"><img class="recommendation-card__image" src="/fintrail/images/content/recommended/recommended-4.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-4-160.png 160w, /fintrail/images/content/recommended/recommended-4.png 197w" sizes="(min-width: 1280px) 25vw, 50vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy"></a><span class="recommendation-card__badge">Новинка</span></div><div class="recommendation-card__info"><p class="recommendation-card__name"><a href="/fintrail/catalog/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></p></div><button class="recommendation-card__cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button></article>
+
+        <div class="loyalty-ops__list">
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-04-11">11.04.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">День рождения</span>
+                <span class="loyalty-ops__type">Начисление</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-positive">
+              + 1&nbsp;000
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-04-09">09.04.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Покупка</span>
+                <span class="loyalty-ops__type">Списание</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-negative">
+              &minus;&nbsp;1&nbsp;500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-03-22">22.03.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Отзыв с фото</span>
+                <span class="loyalty-ops__type">Начисление</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-positive">
+              + 500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-03-15">15.03.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Покупка</span>
+                <span class="loyalty-ops__type">Списание</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-negative">
+              &minus;&nbsp;1&nbsp;500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-03-10">10.03.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Отзыв с фото</span>
+                <span class="loyalty-ops__type">Начисление</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-positive">
+              + 500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-02-28">28.02.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Покупка</span>
+                <span class="loyalty-ops__type">Списание</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-negative">
+              &minus;&nbsp;1&nbsp;500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-02-14">14.02.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Покупка</span>
+                <span class="loyalty-ops__type">Списание</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-negative">
+              &minus;&nbsp;200
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-02-05">05.02.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Отзыв с фото</span>
+                <span class="loyalty-ops__type">Начисление</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-positive">
+              + 500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-01-20">20.01.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Первая регистрация</span>
+                <span class="loyalty-ops__type">Начисление</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-positive">
+              + 2&nbsp;000
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-01-15">15.01.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Отзыв с фото</span>
+                <span class="loyalty-ops__type">Начисление</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-positive">
+              + 500
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2026-01-08">08.01.2026</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Покупка</span>
+                <span class="loyalty-ops__type">Списание</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-negative">
+              &minus;&nbsp;200
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
+
+          <article class="loyalty-ops__item">
+            <div class="loyalty-ops__info">
+              <time class="loyalty-ops__date" datetime="2025-12-30">30.12.2025</time>
+              <div class="loyalty-ops__texts">
+                <span class="loyalty-ops__name">Покупка</span>
+                <span class="loyalty-ops__type">Списание</span>
+              </div>
+            </div>
+            <strong class="loyalty-ops__amount is-negative">
+              &minus;&nbsp;200
+              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
+            </strong>
+          </article>
         </div>
+
+        <div class="loyalty-ops__more-wrap">
+          <button class="loyalty-ops__more" type="button">
+            <span class="roll-hover-text" data-hover-text="Показать ещё">Показать ещё</span>
+            <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+          </button>
+        </div>
+
       </div>
-      <a class="recommendations-new__more button button--ghost button--size-m" href="/fintrail/catalog/"><span>Смотреть все</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
     </section>
 
-    <section class="community-showcase" aria-labelledby="cart-empty-community-title">
+    <section class="community-showcase" aria-labelledby="loyalty-ops-community-title">
       <div class="community-showcase__intro">
-        <h2 class="community-showcase__title" id="cart-empty-community-title">Присоединяйся<br>к коммьюнити</h2>
+        <h2 class="community-showcase__title" id="loyalty-ops-community-title">Присоединяйся<br>к коммьюнити</h2>
         <p class="community-showcase__description">Крупнейшие тематические сообщества любителей активного отдыха</p>
       </div>
 
       <div class="community-showcase__cards">
         <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--offroad" src="/fintrail/images/content/community-showcase/offroad.png" srcset="/fintrail/images/content/_responsive/community-showcase/offroad-160.png 160w, /fintrail/images/content/_responsive/community-showcase/offroad-320.png 320w, /fintrail/images/content/_responsive/community-showcase/offroad-480.png 480w, /fintrail/images/content/_responsive/community-showcase/offroad-768.png 768w, /fintrail/images/content/community-showcase/offroad.png 848w" sizes="100vw" alt="Бездорожье FINNTRAIL" loading="lazy">
+          <img class="community-showcase__image community-showcase__image--offroad" src="/fintrail/images/content/community-showcase/offroad.png" srcset="/fintrail/images/content/_responsive/community-showcase/offroad-160.png 160w, /fintrail/images/content/_responsive/community-showcase/offroad-320.png 320w, /fintrail/images/content/_responsive/community-showcase/offroad-480.png 480w, /fintrail/images/content/_responsive/community-showcase/offroad-768.png 768w, /fintrail/images/content/community-showcase/offroad.png 848w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Бездорожье FINNTRAIL" loading="lazy">
           <h3 class="community-showcase__name">Бездорожье</h3>
           <div class="community-showcase__stats">
             <span class="community-showcase__number">~ 550 000</span>
@@ -459,7 +642,7 @@
         </article>
 
         <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--tourism" src="/fintrail/images/content/community-showcase/tourism.png" srcset="/fintrail/images/content/_responsive/community-showcase/tourism-160.png 160w, /fintrail/images/content/_responsive/community-showcase/tourism-320.png 320w, /fintrail/images/content/_responsive/community-showcase/tourism-480.png 480w, /fintrail/images/content/_responsive/community-showcase/tourism-768.png 768w, /fintrail/images/content/_responsive/community-showcase/tourism-1024.png 1024w, /fintrail/images/content/community-showcase/tourism.png 1094w" sizes="100vw" alt="Туризм FINNTRAIL" loading="lazy">
+          <img class="community-showcase__image community-showcase__image--tourism" src="/fintrail/images/content/community-showcase/tourism.png" srcset="/fintrail/images/content/_responsive/community-showcase/tourism-160.png 160w, /fintrail/images/content/_responsive/community-showcase/tourism-320.png 320w, /fintrail/images/content/_responsive/community-showcase/tourism-480.png 480w, /fintrail/images/content/_responsive/community-showcase/tourism-768.png 768w, /fintrail/images/content/_responsive/community-showcase/tourism-1024.png 1024w, /fintrail/images/content/community-showcase/tourism.png 1094w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Туризм FINNTRAIL" loading="lazy">
           <h3 class="community-showcase__name">Туризм</h3>
           <div class="community-showcase__stats">
             <span class="community-showcase__number">~ 1 340 000</span>
@@ -474,7 +657,7 @@
         </article>
 
         <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--fishing" src="/fintrail/images/content/community-showcase/fishing.png" srcset="/fintrail/images/content/_responsive/community-showcase/fishing-160.png 160w, /fintrail/images/content/_responsive/community-showcase/fishing-320.png 320w, /fintrail/images/content/_responsive/community-showcase/fishing-480.png 480w, /fintrail/images/content/_responsive/community-showcase/fishing-768.png 768w, /fintrail/images/content/community-showcase/fishing.png 987w" sizes="100vw" alt="Рыбалка FINNTRAIL" loading="lazy">
+          <img class="community-showcase__image community-showcase__image--fishing" src="/fintrail/images/content/community-showcase/fishing.png" srcset="/fintrail/images/content/_responsive/community-showcase/fishing-160.png 160w, /fintrail/images/content/_responsive/community-showcase/fishing-320.png 320w, /fintrail/images/content/_responsive/community-showcase/fishing-480.png 480w, /fintrail/images/content/_responsive/community-showcase/fishing-768.png 768w, /fintrail/images/content/community-showcase/fishing.png 987w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Рыбалка FINNTRAIL" loading="lazy">
           <h3 class="community-showcase__name">Рыбалка</h3>
           <div class="community-showcase__stats">
             <span class="community-showcase__number">~ 2 700 000</span>
@@ -548,10 +731,10 @@
 
   <nav class="tabbar" aria-label="Мобильная навигация">
     <a href="/fintrail/catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
-    <a href="/fintrail/personal/" class="tabbar__item" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
+    <a href="/fintrail/personal/" class="tabbar__item is-active" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
     <a href="/fintrail/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
     <a href="/fintrail/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
-    <a href="/fintrail/cart/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-cart"></use></svg></span></a>
+    <a href="/fintrail/cart/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
   </nav>
 
 </body>

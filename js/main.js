@@ -12,6 +12,8 @@ import { init as initStories } from './modules/stories.js';
 import { init as initProduct } from './modules/product.js';
 import { init as initShared } from './modules/shared.js';
 import { init as initPersonal } from './modules/personal.js';
+import { init as initReviews } from './modules/reviews.js';
+import { init as initLoyalty } from './modules/loyalty.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -28,4 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initProduct();
   initShared();
   initPersonal();
+  initReviews();
+  initLoyalty();
 });
