@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BITRIX: title страницы с номером заказа — bitrix:sale.order.detail -->
   <title>Finntrail - Заказ 483632247573</title>
   <link rel="stylesheet" href="/scss/main.scss">
 </head>
@@ -29,6 +30,7 @@
       <div class="hero__tools">
         <a href="/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
         <a href="/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
         <a href="/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
@@ -413,6 +415,7 @@
           <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
           <span>Назад</span>
         </a>
+        <!-- BITRIX: номер заказа в заголовке страницы — bitrix:sale.order.detail -->
         <h1 class="order-detail__title">Заказ: 483632247573</h1>
       </div>
     </section>
@@ -424,6 +427,16 @@
       <!-- ─── Левая колонка: статус, треки, состав ─────────────────────────── -->
       <div class="order-info">
 
+        <!--
+          BITRIX: мета-информация заказа: статус, номер, дата, способ доставки, адрес, срок хранения — bitrix:sale.order.detail
+          Компонент: bitrix:sale.order.detail
+          Статус: <?= $arOrder['STATUS_TEXT'] ?>
+          Номер: <?= $arOrder['ACCOUNT_NUMBER'] ?>
+          Дата: <?= $arOrder['DATE_INSERT'] ?>
+          Способ доставки: <?= $arDelivery['NAME'] ?>
+          Адрес доставки: <?= $arShipment['DELIVERY_LOCATION'] ?>
+          Срок хранения: <?= $arShipment['STORE_DAYS'] ?>, до <?= $arShipment['STORE_DATE'] ?>
+        -->
         <div class="order-info__meta">
           <div class="order-info__meta-col">
             <p class="order-info__meta-label">Едет к вам</p>
@@ -440,32 +453,45 @@
           </div>
         </div>
 
+        <!--
+          BITRIX: трекинг-карточки — номер отслеживания и ссылка на сайт службы доставки — bitrix:sale.order.detail
+          Компонент: bitrix:sale.order.detail
+          Трек-номер: <?= $arShipment['TRACKING_NUMBER'] ?>
+          Ссылка на отслеживание: <?= $arShipment['TRACKING_URL'] ?>
+          Название службы доставки: <?= $arDelivery['NAME'] ?>
+        -->
         <div class="order-tracking-cards">
           <button class="order-tracking-card" type="button" aria-label="Скопировать трек-номер">
             <span class="order-tracking-card__label">Трек-номер</span>
             <span class="order-tracking-card__row">
               <span class="order-tracking-card__value">14083748647387</span>
-              <svg class="order-tracking-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect width="13" height="13" rx="1" transform="matrix(-1 0 0 1 21 8)" stroke="currentColor" stroke-width="2"/>
-                <path d="M16 8V4C16 3.44772 15.5523 3 15 3H4C3.44772 3 3 3.44772 3 4V15C3 15.5523 3.44772 16 4 16H8" stroke="currentColor" stroke-width="2"/>
-              </svg>
+              <svg class="order-tracking-card__icon" width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-copy"></use></svg>
             </span>
           </button>
           <a class="order-tracking-card" href="https://www.pochta.ru/tracking" target="_blank" rel="noopener" aria-label="Отследить заказ на Почте России">
             <span class="order-tracking-card__label">Отследить</span>
             <span class="order-tracking-card__row">
               <span class="order-tracking-card__value">Сайт Почты России</span>
-              <svg class="order-tracking-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M19 12V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5H12" stroke="currentColor" stroke-width="2"/>
-                <path d="M15 4H19C19.5523 4 20 4.44772 20 5V9" stroke="currentColor" stroke-width="2"/>
-                <path d="M19 5L14 10" stroke="currentColor" stroke-width="2"/>
-              </svg>
+              <svg class="order-tracking-card__icon" width="24" height="24" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-external-link"></use></svg>
             </span>
           </a>
         </div>
 
         <h2 class="order-composition__title">Состав заказа</h2>
 
+        <!--
+          BITRIX: список товаров в заказе — bitrix:sale.order.detail
+          Компонент: bitrix:sale.order.detail
+          Каждый товар: <?php foreach ($arOrder['BASKET'] as $arItem): ?>
+            Название: <?= $arItem['NAME'] ?>
+            Изображение: <?= $arItem['PREVIEW_PICTURE'] ?>
+            Размер: <?= $arItem['PROPS']['SIZE'] ?>
+            Цвет: <?= $arItem['PROPS']['COLOR'] ?>
+            Цена со скидкой: <?= $arItem['PRICE'] ?>
+            Цена без скидки: <?= $arItem['BASE_PRICE'] ?>
+            ID в избранном: <?= $arItem['PRODUCT_ID'] ?> — состояние кнопки «в избранное»
+          <?php endforeach; ?>
+        -->
         <div class="order-items">
           <hr class="order-item__rule">
           <div class="order-item">
@@ -647,6 +673,13 @@
 
         <div class="order-pricing-card">
 
+          <!--
+            BITRIX: данные получателя заказа — bitrix:sale.order.detail
+            Компонент: bitrix:sale.order.detail
+            Имя: <?= $arOrder['USER_PROPS']['NAME'] ?>
+            Телефон: <?= $arOrder['USER_PROPS']['PHONE'] ?>
+            Email: <?= $arOrder['USER_PROPS']['EMAIL'] ?>
+          -->
           <div class="order-recipient">
             <h2 class="order-pricing__section-title">Получатель</h2>
             <div class="order-recipient__item">
@@ -660,6 +693,17 @@
             </div>
           </div>
 
+          <!--
+            BITRIX: итоговые суммы заказа: товары, скидки, промокод, доставка, баллы — bitrix:sale.order.detail
+            Компонент: bitrix:sale.order.detail
+            Стоимость товаров: <?= $arOrder['PRICE'] ?>
+            Выгода по акциям: <?= $arOrder['DISCOUNT_PRICE'] ?>
+            Промокод (скидка): <?= $arOrder['COUPON_DISCOUNT'] ?>
+            Стоимость доставки: <?= $arOrder['DELIVERY_PRICE'] ?>
+            Списание баллов: <?= $arOrder['BONUS_USED'] ?>
+            Бонусы к начислению: <?= $arOrder['BONUS_ADD'] ?>
+            Итого: <?= $arOrder['PRICE_TOTAL'] ?>
+          -->
           <div class="order-sum">
             <h2 class="order-pricing__section-title">Сумма заказа</h2>
             <div class="order-sum__rows">
@@ -699,6 +743,7 @@
               </div>
             </div>
 
+            <!-- BITRIX: статус оплаты и способ оплаты (тип карты, последние цифры) — bitrix:sale.order.detail -->
             <div class="order-payment-row">
               <div class="order-payment__status">
                 <span class="order-payment__status-icon">
@@ -714,6 +759,7 @@
               </div>
             </div>
 
+            <!-- BITRIX: кнопки действий с заказом (повторить / отменить) — видимость «Отменить заказ» зависит от статуса — bitrix:sale.order.detail -->
             <div class="order-pricing-actions">
               <button class="button button--primary button--size-m" type="button">Повторить заказ</button>
               <button class="button button--on-color button--size-m order-pricing-actions__cancel" type="button">
@@ -725,6 +771,7 @@
 
         </div>
 
+        <!-- BITRIX: ссылка на чеки и документы по заказу — URL содержит ID заказа — bitrix:sale.order.detail -->
         <a class="order-docs-btn" href="/personal/orders/483632247573/docs/">
           <span>Чеки и другие документы</span>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
@@ -736,6 +783,7 @@
 
     <hr class="personal-section-divider personal-orders-mobile-section" aria-hidden="true">
 
+    <!-- BITRIX: слайдер «Вы смотрели» — последние просмотренные товары пользователя — bitrix:catalog.viewed.products -->
     <section class="recommendations-new personal-viewed-products personal-orders-mobile-section" aria-labelledby="order-detail-viewed-title">
       <div class="recommendations-new__header">
         <h2 class="recommendations-new__title" id="order-detail-viewed-title">Вы смотрели</h2>

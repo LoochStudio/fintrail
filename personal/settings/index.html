@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail - Настройки аккаунта</title>
+  <link rel="stylesheet" href="/scss/main.scss">
+</head>
+<body>
+  <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
+    <div class="hero__topbar" aria-label="Навигация">
+      <div class="hero__brand">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          <span>Меню</span>
+        </button>
+        <a class="hero__logo-link" href="/">
+          <img class="hero__logo" src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
+        </a>
+      </div>
+
+      <nav class="hero__nav" aria-label="Главная навигация">
+        <a href="/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
+        <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
+      </nav>
+
+      <div class="hero__tools">
+        <a href="/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
+        <a href="/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
+        <a href="/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
+        <a href="/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+              <li><a href="/catalog/aksessuary-dlya-obuvi/">Аксессуары для обуви</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ochki/">Очки и маски</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+              <li><a href="/catalog/remni/">Ремни и подтяжки</a></li>
+              <li><a href="/catalog/zashchita/">Защита тела и рук</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/rybalka/">Рыбалка</a></li>
+              <li><a href="/catalog/oxota/">Охота</a></li>
+              <li><a href="/catalog/turizm/">Туризм</a></li>
+              <li><a href="/catalog/snowmobile/">Снегоход</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/ekipirovka/">Экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki-moto/">Перчатки мото</a></li>
+              <li><a href="/catalog/nakolenniky/">Наколенники</a></li>
+              <li><a href="/catalog/naloktniki/">Налокотники</a></li>
+              <li><a href="/catalog/zashchita-tela/">Защита тела</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── Мобильное меню ──────────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню">
+    <button class="mobile-menu__backdrop" type="button" aria-label="Закрыть меню" data-mobile-menu-close></button>
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__header">
+        <button class="mobile-menu__close" type="button" aria-label="Закрыть меню" data-mobile-menu-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+        </button>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Мобильная навигация">
+        <a href="/catalog/men/">Мужчинам</a>
+        <a href="/catalog/women/">Женщинам</a>
+        <a href="/sale/">Распродажа</a>
+        <a href="/new/">Новинки</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ─── Боковое меню (site-menu) ──────────────────────────────── -->
+  <aside class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+    <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+    <div class="site-menu__panel" role="document">
+      <div class="site-menu__top">
+        <div class="site-menu__head">
+          <a class="site-menu__logo" href="/" aria-label="FINNTRAIL">
+            <img src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
+          </a>
+          <button class="site-menu__close" type="button" aria-label="Закрыть меню" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
+        </div>
+        <nav class="site-menu__main" aria-label="Основные разделы">
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
+        </nav>
+        <div class="site-menu__divider" aria-hidden="true"></div>
+        <nav class="site-menu__activities" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+      <div class="site-menu__middle">
+        <nav class="site-menu__links" aria-label="Контентные разделы">
+          <a href="/journal/">Журнал</a>
+          <a href="/tours/">Премиальные туры</a>
+        </nav>
+        <nav class="site-menu__links" aria-label="Информация">
+          <button type="button" data-site-menu-info="about">О компании</button>
+          <button type="button" data-site-menu-info="customers">Покупателям</button>
+          <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
+        </nav>
+      </div>
+      <div class="site-menu__bottom">
+        <div class="site-menu__contacts">
+          <div class="site-menu__phone-row">
+            <a class="site-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+            <div class="site-menu__socials" aria-label="Социальные сети">
+              <a href="https://t.me/finntrail" aria-label="Telegram" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+              <a href="https://wa.me/78007004273" aria-label="WhatsApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+              <a href="https://dzen.ru/finntrail" aria-label="Дзен" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+            </div>
+          </div>
+          <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
+        </div>
+        <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+        <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
+      <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
+        <div class="site-menu__submenu-top">
+          <nav class="site-menu__categories" aria-label="Категории">
+            <button type="button" data-site-menu-category>Одежда</button>
+            <button type="button" data-site-menu-category>Обувь</button>
+            <button type="button" data-site-menu-category>Аксессуары</button>
+            <button type="button" data-site-menu-category>Снаряжение</button>
+            <button type="button" data-site-menu-category>Экипировка</button>
+          </nav>
+        </div>
+      </div>
+    </aside>
+  </aside>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- MAIN                                                            -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+
+  <main class="personal-page personal-page--settings" aria-label="Настройки аккаунта">
+
+    <!-- ─── Заголовок: Назад + имя пользователя ───────────────────── -->
+    <section class="personal-header" aria-label="Заголовок страницы настроек">
+      <div class="settings__header">
+        <a class="settings__back" href="/personal/">
+          <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Назад</span>
+        </a>
+        <!-- BITRIX: имя пользователя — bitrix:main.profile -->
+        <h1 class="settings__title">Константин<br>Константинопольский</h1>
+      </div>
+    </section>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Фото профиля ──────────────────────────────────────────── -->
+    <!-- BITRIX: фото и отображаемое имя пользователя — bitrix:main.profile -->
+    <section class="settings-avatar" aria-label="Фото профиля">
+      <div class="settings-avatar__inner">
+        <div class="settings-avatar__photo-wrap">
+          <img class="settings-avatar__photo" src="/images/content/settings/avatar.png" alt="Фото профиля" width="140" height="140">
+          <button class="settings-avatar__edit-btn" type="button" aria-label="Изменить фото профиля">
+            <img src="/images/icons/settings-avatar-edit.svg" alt="" aria-hidden="true" width="16" height="16">
+          </button>
+        </div>
+        <div class="settings-avatar__name-col">
+          <div class="uk-field-wrap uk-field--surface uk-s-value" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="display-name" placeholder="Отображаемое имя" autocomplete="nickname">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <p class="settings-avatar__caption">Отображается в ваших отзывах, комментариях и статьях</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Личные данные ─────────────────────────────────────────── -->
+    <!--
+      BITRIX: форма редактирования личных данных и пола — bitrix:main.profile
+      Компонент: bitrix:main.profile
+      Поля: NAME, LAST_NAME, PERSONAL_BIRTHDAY, EMAIL, PERSONAL_PHONE, PERSONAL_GENDER
+      action="<?= $APPLICATION->GetCurPage() ?>"
+    -->
+    <form class="settings-personal-form" method="post" action="">
+      <section class="settings-section" aria-labelledby="settings-fields-title">
+        <div class="settings-section__inner">
+          <h2 class="settings-section__title" id="settings-fields-title">Личные данные</h2>
+          <div class="settings-fields">
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="NAME" placeholder="Имя" autocomplete="given-name">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+              </div>
+              <span class="uk-field__caption" aria-live="polite"></span>
+            </div>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="LAST_NAME" placeholder="Фамилия" autocomplete="family-name">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+              </div>
+              <span class="uk-field__caption" aria-live="polite"></span>
+            </div>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="PERSONAL_BIRTHDAY" placeholder="Дата рождения" autocomplete="bday">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+              </div>
+              <span class="uk-field__caption" aria-live="polite"></span>
+            </div>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="email" name="EMAIL" placeholder="EMAIL" autocomplete="email">
+                <button class="uk-field__clear" type="button" aria-label="Очистить"><svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-close"></use></svg></button>
+              </div>
+            </div>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="tel" name="PERSONAL_PHONE" placeholder="ТЕЛЕФОН" autocomplete="tel">
+                <button class="uk-field__clear" type="button" aria-label="Очистить"><svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-close"></use></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="personal-section-divider" aria-hidden="true">
+
+      <!-- ─── Пол ───────────────────────────────────────────────────── -->
+      <section class="settings-section" aria-labelledby="settings-gender-title">
+        <div class="settings-section__inner">
+          <h2 class="settings-section__title" id="settings-gender-title">Пол</h2>
+          <div class="settings-gender">
+            <label class="settings-gender__option">
+              <input class="uk-radio" type="radio" name="PERSONAL_GENDER" value="male" checked>
+              <span class="settings-gender__label">Мужской</span>
+            </label>
+            <label class="settings-gender__option">
+              <input class="uk-radio" type="radio" name="PERSONAL_GENDER" value="female">
+              <span class="settings-gender__label">Женский</span>
+            </label>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Адреса доставки ───────────────────────────────────────── -->
+    <!--
+      BITRIX: список сохранённых адресов доставки пользователя — bitrix:sale.personal.profile
+      Компонент: bitrix:sale.personal.profile (секция адресов)
+      Каждый <li> — один адрес из таблицы b_sale_order_address
+    -->
+    <section class="settings-section" aria-labelledby="settings-addresses-title">
+      <div class="settings-section__inner">
+        <div class="settings-section__head">
+          <h2 class="settings-section__title" id="settings-addresses-title">Адреса доставки</h2>
+          <button class="settings-section__add-btn" type="button" aria-label="Добавить адрес" data-cart-address-open>
+            <svg aria-hidden="true" width="20" height="20"><use href="/images/icons/sprite.svg#icon-plus"></use></svg>
+          </button>
+        </div>
+        <ul class="settings-list" aria-label="Сохранённые адреса">
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="default-address" checked>
+              </label>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать адрес" data-cart-address-open>
+                <div class="settings-list__info">
+                  <span class="settings-list__name">Константин Константинопольский</span>
+                  <span class="settings-list__sub">+7 (989) 937-34-34, kkonst@yandex.ru</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </button>
+            </div>
+          </li>
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="default-address">
+              </label>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать адрес" data-cart-address-open>
+                <div class="settings-list__info">
+                  <span class="settings-list__name">Александра Александрийская</span>
+                  <span class="settings-list__sub">+7 (988) 987-65-43, helloalexa@yandex.ru</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Получатели ────────────────────────────────────────────── -->
+    <!--
+      BITRIX: список сохранённых получателей пользователя — bitrix:sale.personal.profile
+      Компонент: bitrix:sale.personal.profile (секция получателей)
+      Каждый <li> — один получатель; имя, телефон, email из профиля или предыдущих заказов
+    -->
+    <section class="settings-section" aria-labelledby="settings-recipients-title">
+      <div class="settings-section__inner">
+        <div class="settings-section__head">
+          <h2 class="settings-section__title" id="settings-recipients-title">Получатели</h2>
+          <button class="settings-section__add-btn" type="button" aria-label="Добавить получателя" data-cart-recipient-open>
+            <svg aria-hidden="true" width="20" height="20"><use href="/images/icons/sprite.svg#icon-plus"></use></svg>
+          </button>
+        </div>
+        <ul class="settings-list" aria-label="Сохранённые получатели">
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="default-recipient" checked>
+              </label>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать получателя" data-cart-recipient-open>
+                <div class="settings-list__info">
+                  <span class="settings-list__name">Москва, ул. Пушкина, д. 375</span>
+                  <span class="settings-list__badge">Основной</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </button>
+            </div>
+          </li>
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="default-recipient">
+              </label>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать получателя" data-cart-recipient-open>
+                <div class="settings-list__info">
+                  <span class="settings-list__name">Москва, ул. Ленина, д. 12</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Способы оплаты ────────────────────────────────────────── -->
+    <!--
+      BITRIX: список сохранённых способов оплаты (привязанных карт) — bitrix:sale.personal.profile
+      Компонент: bitrix:sale.personal.profile (секция оплаты) или кастомный компонент платёжной системы
+      Каждый <li> — одна карта: иконка платёжной системы, маскированный номер, признак основного
+    -->
+    <section class="settings-section" aria-labelledby="settings-payment-title">
+      <div class="settings-section__inner">
+        <div class="settings-section__head">
+          <h2 class="settings-section__title" id="settings-payment-title">Способы оплаты</h2>
+          <button class="settings-section__add-btn" type="button" aria-label="Добавить способ оплаты">
+            <svg aria-hidden="true" width="20" height="20"><use href="/images/icons/sprite.svg#icon-plus"></use></svg>
+          </button>
+        </div>
+        <ul class="settings-list" aria-label="Сохранённые способы оплаты">
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="payment" checked>
+              </label>
+              <div class="settings-list__edit">
+                <div class="settings-list__payment">
+                  <svg class="settings-list__bank-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-cart-tbank"></use></svg>
+                  <span class="settings-list__name">*3223</span>
+                  <span class="settings-list__badge">Основной</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </div>
+            </div>
+          </li>
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="payment">
+              </label>
+              <div class="settings-list__edit">
+                <div class="settings-list__payment">
+                  <svg class="settings-list__bank-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-cart-card"></use></svg>
+                  <span class="settings-list__name">*0990</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </div>
+            </div>
+          </li>
+          <li class="settings-list__item">
+            <div class="settings-list__row">
+              <label class="settings-list__radio-wrap">
+                <input class="uk-radio" type="radio" name="payment">
+              </label>
+              <div class="settings-list__edit">
+                <div class="settings-list__payment">
+                  <svg class="settings-list__bank-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-cart-card"></use></svg>
+                  <span class="settings-list__name">*6699</span>
+                </div>
+                <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Выйти / Удалить аккаунт ──────────────────────────────── -->
+    <!-- BITRIX: кнопки завершения сессии и удаления аккаунта — bitrix:main.logout / bitrix:main.profile (действие DELETE) -->
+    <section class="settings-actions" aria-label="Действия с аккаунтом">
+      <div class="settings-section__inner">
+        <div class="settings-actions__row">
+          <button class="settings-actions__btn" type="button">
+            <span>Удалить аккаунт</span>
+            <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg>
+          </button>
+          <button class="settings-actions__btn" type="button">
+            <span>Выйти</span>
+            <img src="/images/icons/settings-arrow-right.svg" aria-hidden="true" width="16" height="16">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Комьюнити ─────────────────────────────────────────────── -->
+    <section class="community-showcase" aria-labelledby="settings-community-title">
+      <div class="community-showcase__intro">
+        <h2 class="community-showcase__title" id="settings-community-title">Присоединяйся<br>к коммьюнити</h2>
+        <p class="community-showcase__description">Крупнейшие тематические сообщества любителей активного отдыха</p>
+      </div>
+
+      <div class="community-showcase__cards">
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--offroad" src="/images/content/community-showcase/offroad.png" srcset="/images/content/_responsive/community-showcase/offroad-160.png 160w, /images/content/_responsive/community-showcase/offroad-320.png 320w, /images/content/_responsive/community-showcase/offroad-480.png 480w, /images/content/_responsive/community-showcase/offroad-768.png 768w, /images/content/community-showcase/offroad.png 848w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Бездорожье FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Бездорожье</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 550 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="community-showcase__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="Бездорожье на YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--tourism" src="/images/content/community-showcase/tourism.png" srcset="/images/content/_responsive/community-showcase/tourism-160.png 160w, /images/content/_responsive/community-showcase/tourism-320.png 320w, /images/content/_responsive/community-showcase/tourism-480.png 480w, /images/content/_responsive/community-showcase/tourism-768.png 768w, /images/content/_responsive/community-showcase/tourism-1024.png 1024w, /images/content/community-showcase/tourism.png 1094w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Туризм FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Туризм</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 1 340 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="community-showcase__social" href="https://youtube.com/@finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм на YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="community-showcase__card">
+          <img class="community-showcase__image community-showcase__image--fishing" src="/images/content/community-showcase/fishing.png" srcset="/images/content/_responsive/community-showcase/fishing-160.png 160w, /images/content/_responsive/community-showcase/fishing-320.png 320w, /images/content/_responsive/community-showcase/fishing-480.png 480w, /images/content/_responsive/community-showcase/fishing-768.png 768w, /images/content/community-showcase/fishing.png 987w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Рыбалка FINNTRAIL" loading="lazy">
+          <h3 class="community-showcase__name">Рыбалка</h3>
+          <div class="community-showcase__stats">
+            <span class="community-showcase__number">~ 2 700 000</span>
+            <span class="community-showcase__caption">Подписчиков</span>
+          </div>
+          <div class="community-showcase__socials">
+            <a class="community-showcase__social" href="https://vk.com/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка во ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="community-showcase__social" href="https://t.me/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="community-showcase__social" href="https://dzen.ru/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Дзене"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Футер ──────────────────────────────────────────────────── -->
+  <footer class="footer-desktop product-footer" aria-label="Футер">
+    <div class="footer-desktop__top">
+      <nav class="footer-desktop__nav" aria-label="Навигация в футере">
+        <div class="footer-desktop__column footer-desktop__column--buyers">
+          <h2 class="footer-desktop__heading">Покупателям</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/delivery/">Доставка и оплата</a></li>
+            <li><a class="footer-desktop__link" href="/return/">Обмен и возврат</a></li>
+            <li><a class="footer-desktop__link" href="/warranty/">Гарантия и сервис</a></li>
+            <li><a class="footer-desktop__link" href="/feedback/">Обратная связь</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--company">
+          <h2 class="footer-desktop__heading">Компания</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
+            <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
+            <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
+            <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
+            <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--gear">
+          <h2 class="footer-desktop__heading">Об экипировке</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
+            <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
+            <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
+            <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
+            <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--app">
+          <h2 class="footer-desktop__heading">Приложение FINNTRAIL</h2>
+          <div class="footer-desktop__app-panel">
+            <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
+            <ul class="footer-desktop__app-links">
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/"><span class="footer-desktop__app-icon" aria-hidden="true"><svg class="footer-desktop__app-icon-default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg><svg class="footer-desktop__app-icon-hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg></span><span>Google Play</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg><span>App Store</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/app/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg><span>AppGallery</span></a></li>
+              <li><a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/app/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg><span>RuStore</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-desktop__divider"></div>
+    <div class="footer-desktop__legal">
+      <a class="footer-desktop__legal-link" href="/privacy/">Политика конфиденциальности</a>
+      <a class="footer-desktop__legal-link" href="/offer/">Публичная оферта</a>
+      <a class="footer-desktop__legal-link" href="/personal-data/">Согласие на обработку персональных данных</a>
+    </div>
+    <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL"><img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy"></a>
+  </footer>
+
+  <!-- ─── Таббар ─────────────────────────────────────────────────── -->
+  <nav class="tabbar" aria-label="Мобильная навигация">
+    <a href="/catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
+    <a href="/personal/" class="tabbar__item is-active" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
+    <a href="/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
+    <a href="/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
+    <a href="/cart/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
+  </nav>
+
+  <!-- ─── Модал: Данные получателя ─────────────────────────────── -->
+  <!--
+    BITRIX: форма добавления/редактирования получателя — bitrix:sale.personal.profile
+    Поля: first-name (NAME), last-name (LAST_NAME), phone (PERSONAL_PHONE), email (EMAIL)
+    Сохраняет/обновляет запись получателя для последующего использования в заказах
+  -->
+  <div class="cart-recipient-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-recipient-title" data-cart-recipient-modal>
+    <button class="cart-recipient-modal__backdrop" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close></button>
+    <div class="cart-recipient-modal__panel" role="document">
+      <div class="cart-recipient-modal__header">
+        <h2 class="cart-recipient-modal__title" id="settings-recipient-title">Данные<br>получателя</h2>
+        <button class="cart-recipient-modal__close js-modal-close" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <form class="cart-recipient-modal__form" novalidate>
+        <div class="cart-recipient-modal__fields">
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="first-name" placeholder="Имя" autocomplete="given-name" id="settings-recipient-first-name">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="last-name" placeholder="Фамилия" autocomplete="family-name" id="settings-recipient-last-name">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <div class="cart-recipient-modal__phone-row">
+            <button class="cart-recipient-modal__flag-btn" type="button" aria-label="Выбрать код страны">
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+              <svg class="cart-recipient-modal__flag-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+            </button>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" id="settings-recipient-phone">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+              </div>
+              <span class="uk-field__caption" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="email" name="email" placeholder="Email" autocomplete="email" id="settings-recipient-email">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="cart-recipient-modal__footer">
+          <button class="cart-recipient-modal__submit" type="submit">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Модал: Данные адреса ─────────────────────────────────── -->
+  <!--
+    BITRIX: форма добавления/редактирования адреса доставки — bitrix:sale.personal.profile
+    Поля: country, city, street, house, apartment
+    Сохраняет/обновляет адрес в профиле пользователя (b_sale_order_address)
+  -->
+  <div class="cart-recipient-modal cart-address-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-address-title" data-cart-address-modal>
+    <button class="cart-recipient-modal__backdrop cart-address-modal__backdrop" type="button" aria-label="Закрыть данные адреса" data-cart-address-close></button>
+    <div class="cart-recipient-modal__panel cart-address-modal__panel" role="document">
+      <div class="cart-recipient-modal__header cart-address-modal__header">
+        <h2 class="cart-recipient-modal__title cart-address-modal__title" id="settings-address-title">Данные адреса</h2>
+        <button class="cart-recipient-modal__close cart-address-modal__close js-modal-close" type="button" aria-label="Закрыть данные адреса" data-cart-address-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <form class="cart-recipient-modal__form cart-address-modal__form" novalidate>
+        <div class="cart-recipient-modal__fields cart-address-modal__fields">
+          <div class="uk-field-wrap uk-field--surface cart-address-modal__select-wrap" data-input-field>
+            <div class="uk-field">
+              <select class="uk-field__input cart-address-modal__select" name="country" id="settings-address-country" aria-label="Страна" required>
+                <option value="" disabled selected>Страна</option>
+                <option value="ru">Россия</option>
+                <option value="by">Беларусь</option>
+                <option value="kz">Казахстан</option>
+              </select>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="city" placeholder="Город" autocomplete="address-level2" id="settings-address-city">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="street" placeholder="Улица" autocomplete="address-line1" id="settings-address-street">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="house" placeholder="Дом" id="settings-address-house">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="apartment" placeholder="Квартира" id="settings-address-apartment">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+            </div>
+            <span class="uk-field__caption" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="cart-recipient-modal__footer cart-address-modal__footer">
+          <button class="cart-recipient-modal__submit cart-address-modal__submit" type="submit">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

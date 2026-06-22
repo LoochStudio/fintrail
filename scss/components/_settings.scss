@@ -1,0 +1,433 @@
+@use '../variables' as *;
+
+// ─── Page modifier ────────────────────────────────────────────────────────────
+
+.personal-page--settings {
+  .personal-section-divider {
+    margin-top: 40px;
+  }
+
+  .personal-header + .personal-section-divider {
+    margin-top: 20px;
+  }
+
+  .community-showcase {
+    margin-top: 0;
+    margin-left: -$spacing-page-desktop;
+    margin-right: -$spacing-page-desktop;
+    width: calc(100% + #{$spacing-page-desktop * 2});
+  }
+
+  // padding-left из _personal.scss оставляем — он выравнивает title по nav-ссылкам.
+  // Кнопку "Назад" позиционируем абсолютно, чтобы она не ломала выравнивание.
+  .personal-header {
+    padding-top: 20px;
+    position: relative;
+  }
+}
+
+// ─── Header: назад + имя ──────────────────────────────────────────────────────
+
+// .settings__header содержит только title — кнопка "Назад" абсолютная
+.settings__header {
+  display: block;
+}
+
+// Абсолютно на левый край .personal-header (= $spacing-page-desktop от вьюпорта)
+// bottom: 20px совпадает с padding-bottom .personal-header — выравнивает по низу title
+.settings__back {
+  position: absolute;
+  left: 0;
+  bottom: $spacing-page-desktop;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { opacity: 0.7; }
+  }
+}
+
+.settings__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-heading-h1-size;
+  font-weight: $font-weight-black;
+  line-height: 36px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+// ─── Shared section layout ────────────────────────────────────────────────────
+
+.settings-section__inner {
+  max-width: 694px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-section__title {
+  margin: 0;
+  font-family: $font-display;
+  font-weight: $font-weight-black;
+  font-size: $text-heading-h3-size;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.settings-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-section__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: $color-primary-black;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { background: $color-secondary-gray; }
+  }
+}
+
+// ─── Avatar ───────────────────────────────────────────────────────────────────
+
+.settings-avatar__inner {
+  max-width: 694px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.settings-avatar__photo-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.settings-avatar__photo {
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.settings-avatar__edit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { background: $color-secondary-gray; }
+  }
+}
+
+.settings-avatar__name-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.settings-avatar__caption {
+  margin: 0;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: $color-gray-primary;
+}
+
+// ─── Personal data fields ─────────────────────────────────────────────────────
+
+.settings-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .uk-field-wrap {
+    position: relative;
+  }
+}
+
+// ─── Gender ───────────────────────────────────────────────────────────────────
+
+.settings-gender {
+  display: flex;
+  gap: 60px;
+}
+
+.settings-gender__option {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+
+.settings-gender__label {
+  font-family: $font-display;
+  font-weight: $font-weight-extrabold;
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+// ─── Shared list (addresses / recipients / payment) ───────────────────────────
+
+.settings-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.settings-list__item {
+  border-top: 1px solid $color-white;
+}
+
+.settings-list__row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 20px 12px 20px 0;
+  gap: 16px;
+}
+
+.settings-list__radio-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.settings-list__edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { opacity: 0.8; }
+  }
+}
+
+.settings-list__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.settings-list__name {
+  font-family: $font-display;
+  font-weight: $font-weight-extrabold;
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-list__sub {
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $color-primary-gray;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-list__badge {
+  font-family: $font-mono;
+  font-weight: $font-weight-semibold;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-secondary-accent;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.settings-list__payment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-list__bank-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.settings-list__arrow {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: $color-primary-black;
+}
+
+// ─── Actions: Logout / Delete ─────────────────────────────────────────────────
+
+.settings-actions__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-actions__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 8px 11px 16px;
+  background: $color-surface;
+  border: none;
+  border-radius: $radius-xs;
+  cursor: pointer;
+  font-family: $font-display;
+  font-weight: $font-weight-black;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: $color-primary-gray;
+
+  img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { background: $color-white-pressed; }
+  }
+}
+
+// ─── Планшет + мобилка (<1280px): кнопка в нормальный поток ─────────────────
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .personal-page--settings .personal-header {
+    position: static;
+    padding-bottom: 0;
+  }
+
+  .settings__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .settings__back {
+    position: static;
+  }
+}
+
+// ─── Мобилка (<768px) ────────────────────────────────────────────────────────
+
+@media (max-width: calc($bp-md - 1px)) {
+  .personal-page--settings .personal-section-divider {
+    margin: 20px 0;
+  }
+
+  .settings__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  @media (max-width: 320px) {
+    .settings__title {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+
+  .settings-avatar__inner {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .settings-avatar__name-col {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .settings-avatar__edit-btn {
+    border-radius: 34px;
+  }
+
+  .settings-gender {
+    gap: 32px;
+  }
+
+  .settings-list__name {
+    white-space: normal;
+  }
+
+  .settings-list__sub {
+    white-space: normal;
+  }
+}

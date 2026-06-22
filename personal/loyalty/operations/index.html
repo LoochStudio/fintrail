@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -29,6 +29,7 @@
       <div class="hero__tools">
         <a href="/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
         <a href="/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
         <a href="/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
@@ -423,6 +424,11 @@
     <section class="loyalty-ops" aria-label="История операций">
       <div class="loyalty-ops__inner">
 
+        <!--
+          BITRIX: фильтр операций по типу (все / поступления / списания) — bitrix:main.ui.filter
+          Активный таб определяется текущим фильтром из URL или сессии.
+          Класс is-active и aria-selected="true" ставятся на активный таб.
+        -->
         <div class="loyalty-ops__tabs" role="tablist" aria-label="Фильтр операций">
           <button class="loyalty-ops__tab is-active" type="button" role="tab" aria-selected="true">
             <span>Все операции</span>
@@ -438,6 +444,16 @@
           </button>
         </div>
 
+        <!--
+          BITRIX: список операций лояльности — bitrix:sale.personal.bonus.history
+          Каждый <article class="loyalty-ops__item"> — одна операция из истории.
+          Поля внутри каждого элемента:
+            datetime и текст даты — <?= $OPERATION_DATE ?>
+            loyalty-ops__name — название операции (<?= $OPERATION_NAME ?>)
+            loyalty-ops__type — тип (Начисление / Списание) (<?= $OPERATION_TYPE ?>)
+            loyalty-ops__amount — сумма баллов со знаком (<?= $OPERATION_AMOUNT ?>)
+            is-positive / is-negative — CSS-класс определяется типом операции
+        -->
         <div class="loyalty-ops__list">
           <article class="loyalty-ops__item">
             <div class="loyalty-ops__info">
@@ -608,6 +624,7 @@
           </article>
         </div>
 
+        <!-- BITRIX: кнопка подгрузки следующей страницы операций (пагинация) — скрывается если операций больше нет -->
         <div class="loyalty-ops__more-wrap">
           <button class="loyalty-ops__more" type="button">
             <span class="roll-hover-text" data-hover-text="Показать ещё">Показать ещё</span>

@@ -38,6 +38,8 @@ export default defineConfig({
         personalReviews: resolve(__dirname, 'personal/reviews/index.html'),
         personalLoyalty: resolve(__dirname, 'personal/loyalty/index.html'),
         personalLoyaltyOperations: resolve(__dirname, 'personal/loyalty/operations/index.html'),
+        personalSupport: resolve(__dirname, 'personal/support/index.html'),
+        personalSettings: resolve(__dirname, 'personal/settings/index.html'),
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
       },
     },

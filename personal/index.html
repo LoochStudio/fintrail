@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -29,6 +29,7 @@
       <div class="hero__tools">
         <a href="/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
         <a href="/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
         <a href="/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
@@ -416,6 +417,7 @@
             <span class="personal-header__tab-inner">Профиль</span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
+          <!-- BITRIX: счётчик активных заказов в табе — bitrix:sale.order.list -->
           <a href="/personal/orders/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Заказы
@@ -423,6 +425,7 @@
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
+          <!-- BITRIX: счётчик отзывов пользователя в табе — bitrix:catalog.review.list -->
           <a href="/personal/reviews/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Отзывы
@@ -458,6 +461,11 @@
         aria-hidden="true"
         loading="eager"
       >
+      <!--
+        BITRIX: карточка лояльности — данные баллов, уровня и кешбэка пользователя
+        Компонент: bitrix:sale.bonus.account (режим: card)
+        <?= $USER_BONUS_POINTS ?>, <?= $USER_LOYALTY_LEVEL ?>, <?= $USER_CASHBACK_PERCENT ?>
+      -->
       <div class="personal-banner__card" data-loyalty-card>
         <div class="personal-banner__body">
 
@@ -468,6 +476,7 @@
               </svg>
               <span class="personal-banner__label-text">Бонусные баллы</span>
             </div>
+            <!-- BITRIX: количество бонусных баллов пользователя — bitrix:sale.bonus.account -->
             <p class="personal-banner__value personal-banner__value--lg" data-loyalty-points>22 750</p>
           </div>
 
@@ -481,6 +490,7 @@
                 </svg>
                 <span class="personal-banner__label-text">Уровень</span>
               </div>
+              <!-- BITRIX: уровень лояльности пользователя — bitrix:sale.bonus.account -->
               <p class="personal-banner__value personal-banner__value--md" data-loyalty-level>Любитель</p>
             </div>
 
@@ -491,6 +501,7 @@
                 </svg>
                 <span class="personal-banner__label-text">Кешбэк с покупок</span>
               </div>
+              <!-- BITRIX: процент кешбэка текущего уровня лояльности — bitrix:sale.bonus.account -->
               <p class="personal-banner__value personal-banner__value--md" data-loyalty-cashback>5%</p>
             </div>
           </div>
@@ -504,6 +515,7 @@
           <div class="personal-banner__referral-row">
             <div class="personal-banner__referral-info">
               <p class="personal-banner__referral-label">Реферальная ссылка</p>
+              <!-- BITRIX: персональная реферальная ссылка пользователя — bitrix:sale.bonus.account -->
               <a href="/ref/34526112" class="personal-banner__referral-url" data-loyalty-ref>finntrail.ru/ref/34526112</a>
             </div>
             <button
@@ -521,6 +533,11 @@
       </div>
     </section>
 
+    <!--
+      BITRIX: интересы пользователя — сохранённые предпочтения из профиля
+      Компонент: bitrix:main.profile (режим: interests)
+      Состояние чекбоксов (checked) берётся из пользовательских данных <?= $USER_INTERESTS ?>
+    -->
     <section class="personal-interests" aria-label="Мои интересы" data-interests>
       <div class="personal-interests__header">
         <h2 class="personal-interests__title">Мои интересы</h2>
@@ -614,12 +631,20 @@
         </a>
       </div>
 
+      <!--
+        BITRIX: список актуальных заказов пользователя (слайдер)
+        Компонент: bitrix:sale.order.list (режим: active)
+        Каждый <article class="order-card"> — один заказ, данные из <?= $ORDER ?>
+      -->
       <div class="personal-orders__slider" aria-label="Слайдер актуальных заказов">
+        <!-- BITRIX: начало карточки заказа — статус, номер, прогресс, детали доставки, товары, сумма -->
         <article class="order-card">
           <div class="order-card__top">
             <div class="order-card__head">
               <div class="order-card__status-row">
+                <!-- BITRIX: текстовый статус заказа — bitrix:sale.order.list <?= $ORDER_STATUS_TEXT ?> -->
                 <h3 class="order-card__status-text">Ждет оплаты</h3>
+                <!-- BITRIX: шаг прогресса (data-step) и aria-label берутся из статуса заказа <?= $ORDER_STEP ?> -->
                 <div class="order-card__progress" data-step="1" aria-label="Этап 1 из 4">
                   <span class="order-card__progress-dot"></span>
                   <span class="order-card__progress-line"></span>
@@ -647,6 +672,7 @@
               </div>
             </div>
 
+            <!-- BITRIX: детали доставки заказа — метод и адрес из <?= $ORDER_DELIVERY ?> -->
             <div class="order-card__info">
               <div class="order-card__info-group">
                 <p class="order-card__info-label">Пункт 5Post</p>
@@ -660,10 +686,12 @@
           </div>
 
           <div class="order-card__bottom order-card__bottom--pay">
+            <!-- BITRIX: миниатюры товаров в заказе — bitrix:sale.order.list <?= $ORDER_ITEMS ?> -->
             <div class="order-card__products" aria-label="Товары в заказе">
               <img class="order-card__product-img" src="/images/content/personal/orders/product-1.png" srcset="/images/content/personal/orders/product-1.png 48w" sizes="48px" width="48" height="48" loading="lazy" alt="Товар из заказа">
               <img class="order-card__product-img" src="/images/content/personal/orders/product-2.png" srcset="/images/content/personal/orders/product-2.png 48w" sizes="48px" width="48" height="48" loading="lazy" alt="Товар из заказа">
             </div>
+            <!-- BITRIX: кнопка оплаты (href на корзину с заказом) и сумма заказа <?= $ORDER_PRICE ?> -->
             <div class="order-card__footer">
               <a class="order-card__pay-btn" href="/cart/">Оплатить</a>
               <p class="order-card__price">17 293 ₽</p>
@@ -912,6 +940,12 @@
         </a>
       </div>
 
+      <!--
+        BITRIX: список избранных товаров пользователя
+        Компонент: bitrix:catalog.wishlist (режим: list)
+        Каждый <article class="personal-favorite-card"> — один товар из <?= $WISHLIST_ITEMS ?>
+        Поля карточки: ссылка на товар, фото, скидка, название, цена, флаг "в корзине"
+      -->
       <div class="personal-favorites__slider" aria-label="Слайдер избранных товаров">
         <article class="personal-favorite-card">
           <a class="personal-favorite-card__link" href="/catalog/master-hood-1510/">
@@ -1144,6 +1178,12 @@
 
     <section class="personal-ratings" aria-labelledby="personal-ratings-title">
       <h2 class="personal-ratings__title" id="personal-ratings-title">Оцените товары</h2>
+      <!--
+        BITRIX: товары, купленные пользователем, которые ещё не оценены
+        Компонент: bitrix:catalog.review.list (режим: pending)
+        Каждый <article class="personal-rating-card"> — один товар из <?= $PENDING_REVIEWS ?>
+        Состояние is-active на звёздах берётся из уже сохранённой оценки <?= $ITEM_RATING ?>
+      -->
       <div class="personal-ratings__list" aria-label="Товары для оценки">
         <article class="personal-rating-card" data-reviews-form>
           <img class="personal-rating-card__image" src="/images/content/product/snowranger/snowranger-hat.png" srcset="/images/content/product/snowranger/snowranger-hat.png 48w" sizes="48px" width="48" height="48" loading="lazy" alt="Шапка FINNTRAIL Sport Hat 9730 Graphiteyellow">
@@ -1196,6 +1236,12 @@
         </div>
       </div>
 
+      <!--
+        BITRIX: список просмотренных товаров пользователя
+        Компонент: bitrix:catalog.recently.viewed (режим: list)
+        Каждый <article class="recommendation-card"> — один товар из истории просмотров
+        Поля: ссылка, фото, бейдж, название, цена, старая цена
+      -->
       <div class="recommendations-new__viewport">
         <div class="recommendations-new__track">
           <article class="recommendation-card">

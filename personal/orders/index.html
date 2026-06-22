@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -29,6 +29,7 @@
       <div class="hero__tools">
         <a href="/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
         <a href="/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
         <a href="/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
@@ -419,6 +420,7 @@
           <a href="/personal/orders/" class="personal-header__tab is-active" aria-current="page">
             <span class="personal-header__tab-inner">
               Заказы
+              <!-- BITRIX: количество заказов пользователя — bitrix:sale.personal.order (счётчик вкладки) -->
               <span class="personal-header__tab-count">2</span>
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
@@ -426,6 +428,7 @@
           <a href="/personal/reviews/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Отзывы
+              <!-- BITRIX: количество отзывов пользователя — bitrix:catalog.review (счётчик вкладки) -->
               <span class="personal-header__tab-count">17</span>
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
@@ -454,6 +457,13 @@
 
     <section class="orders-page" aria-label="Список заказов">
       <div class="orders-page__controls">
+        <!--
+          BITRIX: фильтр заказов по статусу — bitrix:sale.personal.order
+          Компонент: bitrix:sale.personal.order
+          Активная вкладка определяется GET-параметром или переменной фильтра
+          Актуальные = заказы со статусами "в обработке / доставляется"
+          Завершенные = заказы со статусами "выполнен / отменён"
+        -->
         <div class="orders-page__tabs" role="group" aria-label="Фильтр заказов">
           <button class="orders-page__tab is-active" type="button" aria-pressed="true">Актуальные</button>
           <button class="orders-page__tab" type="button" aria-pressed="false">Завершенные</button>
@@ -472,14 +482,27 @@
         </div>
       </div>
 
+      <!--
+        BITRIX: список заказов пользователя — bitrix:sale.personal.order
+        Компонент: bitrix:sale.personal.order
+        Каждый <article class="order-card"> — один заказ из $arResult["ORDERS"]
+        Статус, номер, дата, сумма, состав товаров — из свойств заказа
+      -->
       <div class="orders-page__list">
 
         <!-- Карточка 1: Можно забирать -->
+        <!--
+          BITRIX: карточка заказа — bitrix:sale.personal.order
+          CSS-модификатор order-card--success / статус устанавливается динамически по статусу заказа
+          <?= $arOrder["STATUS_ID"] ?> → класс карточки
+        -->
         <article class="order-card order-card--list order-card--success">
           <div class="order-card__top">
             <div class="order-card__head">
               <div class="order-card__status-row">
+                <!-- BITRIX: текст статуса заказа и ссылка на детальную страницу — <?= $arOrder["STATUS_NAME"] ?>, <?= $arOrder["DETAIL_URL"] ?> -->
                 <h3 class="order-card__status-text"><a href="/personal/orders/detail/">Можно забирать</a></h3>
+                <!-- BITRIX: прогресс доставки (шаг 1–4) — data-step из статуса заказа <?= $arOrder["DELIVERY_STEP"] ?> -->
                 <div class="order-card__progress" data-step="4" aria-label="Этап 4 из 4">
                   <span class="order-card__progress-dot"></span>
                   <span class="order-card__progress-line"></span>
@@ -490,6 +513,7 @@
                   <span class="order-card__progress-dot"></span>
                 </div>
               </div>
+              <!-- BITRIX: ссылка на трекинг и номер заказа — <?= $arOrder["TRACK_URL"] ?>, <?= $arOrder["ACCOUNT_NUMBER"] ?> -->
               <div class="order-card__actions">
                 <a class="order-card__action-btn" href="/personal/orders/483632347573/track/">
                   <span class="order-card__track-label order-card__track-label--desktop">Отследить</span>
@@ -502,12 +526,19 @@
                 </button>
               </div>
             </div>
+            <!-- BITRIX: статус оплаты заказа — <?= $arOrder["PAYED"] ?>, <?= $arOrder["PAY_SYSTEM_NAME"] ?>, <?= $arOrder["PRICE"] ?> -->
             <p class="order-card__payment">
               <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
               <span>Оплачен</span>
             </p>
           </div>
 
+          <!--
+            BITRIX: информация о доставке заказа — bitrix:sale.personal.order
+            <?= $arOrder["DELIVERY_NAME"] ?> — название службы доставки
+            <?= $arOrder["DELIVERY_ADDRESS"] ?> — адрес пункта выдачи или курьерской доставки
+            <?= $arOrder["DELIVERY_DATE"] ?> — дата доставки / хранения
+          -->
           <div class="order-card__info">
             <div class="order-card__info-group">
               <p class="order-card__info-label">Пункт 5Post</p>
@@ -520,6 +551,12 @@
           </div>
 
           <div class="order-card__bottom">
+            <!--
+              BITRIX: список товаров в заказе — bitrix:sale.personal.order
+              Каждый <a class="order-card__product-item"> — один товар из $arOrder["BASKET"]
+              <?= $arBasketItem["NAME"] ?>, <?= $arBasketItem["PRICE"] ?>, <?= $arBasketItem["DETAIL_PAGE_URL"] ?>
+              Фото товара: <?= $arBasketItem["PICTURE"] ?>
+            -->
             <div class="order-card__products" aria-label="Товары в заказе">
               <a class="order-card__product-item" href="/catalog/aspen-3462/">
                 <div class="order-card__product-pic">
@@ -600,11 +637,17 @@
         </article>
 
         <!-- Карточка 2: Едет к вам -->
+        <!--
+          BITRIX: карточка заказа — bitrix:sale.personal.order
+          <?= $arOrder["STATUS_ID"] ?> → класс карточки (без модификатора = нейтральный статус)
+        -->
         <article class="order-card order-card--list">
           <div class="order-card__top">
             <div class="order-card__head">
               <div class="order-card__status-row">
+                <!-- BITRIX: текст статуса заказа и ссылка на детальную страницу — <?= $arOrder["STATUS_NAME"] ?>, <?= $arOrder["DETAIL_URL"] ?> -->
                 <h3 class="order-card__status-text"><a href="/personal/orders/detail/">Едет к вам</a></h3>
+                <!-- BITRIX: прогресс доставки (шаг 1–4) — data-step из статуса заказа <?= $arOrder["DELIVERY_STEP"] ?> -->
                 <div class="order-card__progress" data-step="3" aria-label="Этап 3 из 4">
                   <span class="order-card__progress-dot"></span>
                   <span class="order-card__progress-line"></span>
@@ -615,6 +658,7 @@
                   <span class="order-card__progress-dot"></span>
                 </div>
               </div>
+              <!-- BITRIX: ссылка на трекинг и номер заказа — <?= $arOrder["TRACK_URL"] ?>, <?= $arOrder["ACCOUNT_NUMBER"] ?> -->
               <div class="order-card__actions">
                 <a class="order-card__action-btn" href="/personal/orders/483632247573/track/">
                   <span class="order-card__track-label order-card__track-label--desktop">Отследить</span>
@@ -627,12 +671,18 @@
                 </button>
               </div>
             </div>
+            <!-- BITRIX: статус оплаты заказа — <?= $arOrder["PAYED"] ?>, <?= $arOrder["PAY_SYSTEM_NAME"] ?>, <?= $arOrder["PRICE"] ?> -->
             <p class="order-card__payment">
               <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-receipt"></use></svg>
               <span>Оплата при получении 9 665 ₽</span>
             </p>
           </div>
 
+          <!--
+            BITRIX: информация о доставке заказа — bitrix:sale.personal.order
+            <?= $arOrder["DELIVERY_NAME"] ?> — название службы доставки
+            <?= $arOrder["DELIVERY_DATE"] ?> — ожидаемая дата доставки
+          -->
           <div class="order-card__info">
             <div class="order-card__info-group">
               <p class="order-card__info-label">Ожидаем 11 апр. в среду</p>
@@ -641,6 +691,12 @@
           </div>
 
           <div class="order-card__bottom">
+            <!--
+              BITRIX: список товаров в заказе — bitrix:sale.personal.order
+              Каждый <a class="order-card__product-item"> — один товар из $arOrder["BASKET"]
+              <?= $arBasketItem["NAME"] ?>, <?= $arBasketItem["PRICE"] ?>, <?= $arBasketItem["DETAIL_PAGE_URL"] ?>
+              Фото товара: <?= $arBasketItem["PICTURE"] ?>
+            -->
             <div class="order-card__products" aria-label="Товары в заказе">
               <a class="order-card__product-item" href="/catalog/shapka-daily-9727/">
                 <div class="order-card__product-pic">
@@ -674,6 +730,7 @@
 
       </div>
 
+      <!-- BITRIX: пагинация списка заказов — показывается если есть ещё заказы <?= ($arResult["NAV_OBJECT"]->NavPageCount > 1) ? "" : "hidden" ?> -->
       <div class="orders-page__more-wrap">
         <button class="orders-page__more" type="button" data-orders-load-more>
           <span class="roll-hover-text" data-hover-text="Показать еще">Показать еще</span>
@@ -684,6 +741,12 @@
 
     <hr class="personal-section-divider orders-page__desktop-divider" aria-hidden="true">
 
+    <!--
+      BITRIX: список избранных товаров пользователя — bitrix:sale.personal.order или bitrix:catalog.personal.compare
+      Каждый <article class="personal-favorite-card"> — один товар из вишлиста
+      <?= $arItem["NAME"] ?>, <?= $arItem["PRICE"] ?>, <?= $arItem["DISCOUNT_PERCENT"] ?>, <?= $arItem["DETAIL_PAGE_URL"] ?>
+      Фото: <?= $arItem["PREVIEW_PICTURE"] ?>
+    -->
     <section class="personal-favorites personal-orders-mobile-section" aria-labelledby="orders-favorites-title">
       <div class="personal-favorites__header">
         <h2 class="personal-favorites__title" id="orders-favorites-title">Избранное</h2>
@@ -760,9 +823,16 @@
 
     <hr class="personal-section-divider personal-orders-mobile-section" aria-hidden="true">
 
+    <!--
+      BITRIX: товары из завершённых заказов пользователя, ещё не получившие отзыв — bitrix:sale.personal.order + bitrix:catalog.review
+      Каждый <article class="personal-rating-card"> — один товар, ожидающий оценки
+      <?= $arItem["NAME"] ?>, <?= $arItem["PREVIEW_PICTURE"] ?>, <?= $arItem["ELEMENT_ID"] ?>
+      personal-rating-card--rated — класс для уже оценённых товаров
+    -->
     <section class="personal-ratings personal-orders-mobile-section" aria-labelledby="orders-ratings-title">
       <h2 class="personal-ratings__title" id="orders-ratings-title">Оцените товары</h2>
       <div class="personal-ratings__list" aria-label="Товары для оценки">
+        <!-- BITRIX: карточка товара для оценки — текущий рейтинг <?= $arItem["RATING"] ?>, ID элемента для отправки отзыва -->
         <article class="personal-rating-card" data-reviews-form>
           <img class="personal-rating-card__image" src="/images/content/product/snowranger/snowranger-hat.png" srcset="/images/content/product/snowranger/snowranger-hat.png 48w" sizes="48px" width="48" height="48" loading="lazy" alt="Шапка FINNTRAIL Sport Hat 9730 Graphiteyellow">
           <div class="personal-rating-card__content">
@@ -801,6 +871,12 @@
 
     <hr class="personal-section-divider personal-orders-mobile-section" aria-hidden="true">
 
+    <!--
+      BITRIX: история просмотренных товаров пользователя — bitrix:catalog.personal.viewed.products
+      Каждый <article class="recommendation-card"> — один просмотренный товар
+      <?= $arItem["NAME"] ?>, <?= $arItem["PRICE"] ?>, <?= $arItem["OLD_PRICE"] ?>, <?= $arItem["DETAIL_PAGE_URL"] ?>
+      Бейдж (Хит / Новинка / Топ): <?= $arItem["LABEL"] ?>
+    -->
     <section class="recommendations-new personal-viewed-products" aria-labelledby="personal-viewed-products-title">
       <div class="recommendations-new__header">
         <h2 class="recommendations-new__title" id="personal-viewed-products-title">Вы смотрели</h2>

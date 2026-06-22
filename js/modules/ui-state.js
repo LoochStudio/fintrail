@@ -31,26 +31,29 @@ export function init() {
   window.addEventListener('resize', updateLayoutVars);
 
   document.querySelectorAll('[data-input-field]').forEach(field => {
-    const input = field.querySelector('input');
-    const clear = field.querySelector('.js-input-clear');
+    const input = field.querySelector('input, textarea');
     if (!input) return;
+
+    const clearBtn = field.querySelector('.uk-field__clear');
 
     const syncInputState = () => {
       const hasValue = input.value.trim().length > 0;
-      const isFocused = document.activeElement === input;
-      field.classList.toggle('has-value', hasValue && !input.disabled);
-      field.classList.toggle('is-disabled', input.disabled);
-      if (clear) clear.hidden = (!hasValue && !isFocused) || input.disabled;
+      field.classList.toggle('uk-s-value', hasValue && !input.disabled);
+      field.classList.toggle('uk-s-disabled', input.disabled);
     };
 
     input.addEventListener('input', syncInputState);
     input.addEventListener('change', syncInputState);
-    input.addEventListener('focus', syncInputState);
+    input.addEventListener('focus', () => {
+      field.classList.add('uk-s-active');
+      syncInputState();
+    });
     input.addEventListener('blur', () => {
+      field.classList.remove('uk-s-active');
       window.setTimeout(syncInputState, 0);
     });
 
-    clear?.addEventListener('click', () => {
+    clearBtn?.addEventListener('click', () => {
       input.value = '';
       field.classList.remove('is-error');
       input.focus();
@@ -128,7 +131,8 @@ export function init() {
 
     if (!desktopHeaderQuery.matches) {
       catalogHeaderCompact = false;
-    } else if (!catalogHeaderCompact && window.scrollY > 24) {
+    } else if (!catalogHeaderCompact && (window.scrollY > 24 || catalogHeaderInitiallyCompact)) {
+      // Compact если проскроллено ИЛИ если страница изначально стартовала compact (не главная)
       catalogHeaderCompact = true;
     } else if (catalogHeaderCompact && window.scrollY <= 0 && !catalogHeaderInitiallyCompact) {
       // Разворачиваем только если страница изначально не была compact

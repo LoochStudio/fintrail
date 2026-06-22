@@ -153,6 +153,44 @@
   }
 }
 
+// ─── Radio (uk-radio) ────────────────────────────────────────────────────────
+// Нативный <input type="radio" class="uk-radio"> с appearance: none.
+
+.uk-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid $color-secondary-gray;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease;
+
+  &:checked {
+    border-color: $color-primary-black;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background: $color-primary-black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
 // ─── Checkbox (uk-checkbox) ───────────────────────────────────────────────────
 // Нативный <input type="checkbox" class="uk-checkbox"> с appearance: none.
 

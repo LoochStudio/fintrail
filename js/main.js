@@ -14,6 +14,7 @@ import { init as initShared } from './modules/shared.js';
 import { init as initPersonal } from './modules/personal.js';
 import { init as initReviews } from './modules/reviews.js';
 import { init as initLoyalty } from './modules/loyalty.js';
+import { init as initSupport } from './modules/support.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -32,4 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initPersonal();
   initReviews();
   initLoyalty();
+  initSupport();
 });

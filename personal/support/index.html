@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finntrail - Программа лояльности</title>
+  <title>Finntrail - Обращения</title>
   <link rel="stylesheet" href="/scss/main.scss">
 </head>
 <body>
@@ -112,6 +112,7 @@
 
   <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
     <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+
     <aside class="site-menu__panel">
       <div class="site-menu__top">
         <div class="site-menu__bar">
@@ -124,11 +125,14 @@
             <span>Москва</span>
           </button>
         </div>
+
         <nav class="site-menu__main" aria-label="Основные разделы">
           <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
           <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
         </nav>
+
         <div class="site-menu__divider" aria-hidden="true"></div>
+
         <nav class="site-menu__activities" aria-label="Активности">
           <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
           <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
@@ -138,6 +142,7 @@
           <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
         </nav>
       </div>
+
       <div class="site-menu__middle">
         <nav class="site-menu__links" aria-label="Контентные разделы">
           <a href="/journal/">Журнал</a>
@@ -149,6 +154,7 @@
           <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
         </nav>
       </div>
+
       <div class="site-menu__bottom">
         <div class="site-menu__contacts">
           <div class="site-menu__phone-row">
@@ -161,15 +167,35 @@
           </div>
           <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
         </div>
+
         <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+
         <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
-          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play"><span class="site-menu__app-icon" aria-hidden="true"><svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg><svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg></span></a>
-          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store"><span class="site-menu__app-icon" aria-hidden="true"><svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg></span></a>
-          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery"><span class="site-menu__app-icon" aria-hidden="true"><svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg></span></a>
-          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore"><span class="site-menu__app-icon" aria-hidden="true"><svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg></span></a>
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
         </div>
       </div>
     </aside>
+
     <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
       <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
         <div class="site-menu__submenu-top">
@@ -180,6 +206,7 @@
             <button type="button" data-site-menu-category>Снаряжение</button>
             <button type="button" data-site-menu-category>Экипировка</button>
           </nav>
+
           <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
             <a href="/catalog/">Куртки</a>
             <a href="/catalog/">Брюки и полукомбинезоны</a>
@@ -191,6 +218,7 @@
             <a href="/catalog/">Рубашки / шорты</a>
           </nav>
         </div>
+
         <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
           <picture>
             <source srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
@@ -200,9 +228,12 @@
             <h3>Экипировка<br>для хайкинга</h3>
             <p>Куртки, штаны, термобельё</p>
           </div>
-          <span class="site-menu__promo-link" aria-hidden="true"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg></span>
+          <span class="site-menu__promo-link" aria-hidden="true">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </span>
         </a>
       </div>
+
       <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
         <a href="/delivery/">Доставка и оплата</a>
         <a href="/return/">Обмен и возврат</a>
@@ -230,6 +261,7 @@
             <span>Москва</span>
           </button>
         </div>
+
         <nav class="mobile-menu__nav" aria-label="Мобильное меню">
           <div class="mobile-menu__group">
             <a href="/journal/">Журнал</a>
@@ -242,6 +274,7 @@
           </div>
         </nav>
       </div>
+
       <div class="mobile-menu__bottom">
         <div class="mobile-menu__contacts">
           <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
@@ -254,13 +287,31 @@
         <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
         <div class="mobile-menu__divider" aria-hidden="true"></div>
         <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
-          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play"><span class="mobile-menu__app-icon" aria-hidden="true"><svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg><svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg></span></a>
-          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store"><span class="mobile-menu__app-icon" aria-hidden="true"><svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg></span></a>
-          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery"><span class="mobile-menu__app-icon" aria-hidden="true"><svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg></span></a>
-          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore"><span class="mobile-menu__app-icon" aria-hidden="true"><svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg></span></a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
         </div>
       </div>
     </div>
+
     <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
       <div class="mobile-menu__subhead">
         <button class="mobile-menu__back" type="button" data-mobile-menu-back>
@@ -281,6 +332,7 @@
         <a href="/personal/loyalty/">Программа лояльности</a>
       </nav>
     </div>
+
     <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
       <div class="mobile-menu__catalog-top">
         <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
@@ -322,6 +374,7 @@
         </nav>
       </div>
     </div>
+
     <div class="mobile-menu__panel mobile-menu__panel--category" hidden data-mobile-menu-view="category">
       <div class="mobile-menu__category-top">
         <button class="mobile-menu__category-back" type="button" data-mobile-menu-catalog-back>
@@ -354,8 +407,7 @@
     </div>
   </div>
 
-  <main class="personal-page personal-page--loyalty" aria-label="Личный кабинет">
-
+  <main class="personal-page personal-page--support" aria-label="Личный кабинет">
     <section class="personal-header" aria-label="Навигация личного кабинета">
       <h1 class="personal-header__title">Личный кабинет</h1>
 
@@ -365,7 +417,7 @@
             <span class="personal-header__tab-inner">Профиль</span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
-          <!-- BITRIX: счётчик активных заказов пользователя — bitrix:sale.personal.order (список) -->
+          <!-- BITRIX: счётчик активных заказов пользователя в табе -->
           <a href="/personal/orders/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Заказы
@@ -373,7 +425,7 @@
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
-          <!-- BITRIX: счётчик отзывов пользователя — bitrix:catalog.review (список) -->
+          <!-- BITRIX: счётчик отзывов пользователя в табе -->
           <a href="/personal/reviews/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Отзывы
@@ -381,11 +433,11 @@
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
-          <a href="/personal/loyalty/" class="personal-header__tab is-active" aria-current="page">
+          <a href="/personal/loyalty/" class="personal-header__tab">
             <span class="personal-header__tab-inner">Программа лояльности</span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
-          <a href="/personal/support/" class="personal-header__tab">
+          <a href="/personal/support/" class="personal-header__tab is-active" aria-current="page">
             <span class="personal-header__tab-inner">Обращения</span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
@@ -401,96 +453,244 @@
       </div>
     </section>
 
-    <section class="loyalty-progress" aria-labelledby="loyalty-progress-title" data-loyalty-progress>
-      <img class="loyalty-progress__background" src="/images/content/loyalty/loyalty-levels-bg.png" alt="" aria-hidden="true">
-      <div class="loyalty-progress__shade" aria-hidden="true"></div>
-      <div class="loyalty-progress__intro">
-        <h2 class="loyalty-progress__title" id="loyalty-progress-title">Повышайте кешбэк с покупок</h2>
-        <p class="loyalty-progress__description">Чем выше уровень, тем больше кешбэк</p>
-      </div>
-      <!--
-        BITRIX: прогресс-бар уровня лояльности — bitrix:main.loyalty.program
-        Текущий уровень: is-active на нужном .loyalty-progress__level
-        Процент кешбэка на каждом уровне, сумма до следующего уровня (.loyalty-progress__remaining)
-        aria-valuenow = процент прогресса до следующего уровня (0–100)
-      -->
-      <div class="loyalty-progress__scale-wrap">
-        <div class="loyalty-progress__scale" role="progressbar" aria-label="Прогресс уровня кешбэка" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25">
-          <div class="loyalty-progress__rail" aria-hidden="true"><span class="loyalty-progress__fill"></span></div>
-          <div class="loyalty-progress__level" data-loyalty-level><div class="loyalty-progress__rate">5%</div><span class="loyalty-progress__dot" aria-hidden="true"></span><span class="loyalty-progress__name">Новичок</span></div>
-          <div class="loyalty-progress__level is-active" data-loyalty-level><div class="loyalty-progress__rate">7%</div><span class="loyalty-progress__dot" aria-hidden="true"></span><span class="loyalty-progress__name">Любитель</span></div>
-          <div class="loyalty-progress__level" data-loyalty-level><div class="loyalty-progress__rate">10%</div><span class="loyalty-progress__dot" aria-hidden="true"></span><span class="loyalty-progress__name">Профессионал</span><span class="loyalty-progress__remaining">Ещё 23 000 ₽</span></div>
-          <div class="loyalty-progress__level" data-loyalty-level><div class="loyalty-progress__rate">12%</div><span class="loyalty-progress__dot" aria-hidden="true"></span><span class="loyalty-progress__name">Эксперт</span></div>
-          <div class="loyalty-progress__level" data-loyalty-level><div class="loyalty-progress__rate">15%</div><span class="loyalty-progress__dot" aria-hidden="true"></span><span class="loyalty-progress__name">Легенда</span></div>
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Форма обращения ─────────────────────────────────────────── -->
+    <!--
+      BITRIX: форма создания нового обращения — bitrix:support.ticket (режим: form)
+      Компонент: bitrix:support.ticket
+      Отправляет данные: тема обращения (тип), текст, прикреплённые файлы
+      Привязка к пользователю: автоматически через сессию
+    -->
+    <section class="support-form" aria-label="Форма обращения">
+      <form class="support-form__inner" method="post" action="">
+        <!-- BITRIX: список доступных тем обращений — справочник из настроек компонента -->
+        <div class="support-form__topics" role="group" aria-label="Тема обращения">
+          <button class="support-form__topic is-active" type="button">Гарантийное обслуживание</button>
+          <button class="support-form__topic" type="button">Уход за экипировкой</button>
+          <button class="support-form__topic" type="button">Ремонт экипировки</button>
+          <button class="support-form__topic" type="button">Брак экипировки</button>
+          <button class="support-form__topic" type="button">Запрос о статусе обращения</button>
+          <button class="support-form__topic" type="button">Другое</button>
         </div>
-      </div>
-    </section>
 
-    <section class="loyalty-tiers" aria-label="Уровни программы лояльности" data-loyalty-accordion>
-      <article class="loyalty-tier is-open" data-loyalty-accordion-item>
-        <div class="loyalty-tier__head"><div><h2 class="loyalty-tier__title">Новичок</h2><p class="loyalty-tier__range">0—20 тыс ₽</p></div><button class="loyalty-tier__toggle" type="button" aria-expanded="true" aria-label="Свернуть уровень Новичок" data-loyalty-accordion-toggle><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg></button></div>
-        <div class="loyalty-tier__panel" data-loyalty-accordion-panel>
-          <dl class="loyalty-tier__benefits"><div><dt>12 мес</dt><dd>Срок жизни статуса</dd></div><div><dt>5%</dt><dd>Базовый кешбэк баллами</dd></div><div><dt>10%</dt><dd>Оплата баллами</dd></div><div><dt>6 мес</dt><dd>Срок действия баллов</dd></div></dl>
-          <ul class="loyalty-tier__limits"><li><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg><span>Выкуп старой вещи</span></li><li><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg><span>Повышенный кешбэк на отдельные товары (до 50%)</span></li><li><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg><span>Индивидуальное брендирование экипировки</span></li><li><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg><span>Ранний доступ к распродажам</span></li></ul>
-          <dl class="loyalty-tier__benefits"><div><dt>12 мес</dt><dd>Бесплатный ремонт</dd></div><div><dt>2 000</dt><dd>Подарок на день рождения (баллы)</dd></div><div><dt>30</dt><dd>Дней на обмен или возврат</dd></div></dl>
+        <textarea
+          class="support-form__textarea"
+          placeholder="Опишите, что у вас случилось"
+          aria-label="Описание обращения"
+          rows="5"
+        ></textarea>
+
+        <div class="support-form__actions">
+          <button class="support-form__submit button button--primary button--size-m" type="submit">Отправить</button>
+          <button class="support-form__attach button button--ghost button--size-m" type="button">
+            <span>Добавить файлы</span>
+            <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+          </button>
         </div>
-      </article>
-      <article class="loyalty-tier" data-loyalty-accordion-item><div class="loyalty-tier__head"><div><h2 class="loyalty-tier__title">Любитель</h2><p class="loyalty-tier__range">20—60 тыс ₽</p></div><button class="loyalty-tier__toggle" type="button" aria-expanded="false" data-loyalty-accordion-toggle aria-label="Развернуть уровень Любитель"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg></button></div><div class="loyalty-tier__panel" hidden data-loyalty-accordion-panel><p class="loyalty-tier__copy">Повышенный кешбэк и дополнительные привилегии участника программы.</p></div></article>
-      <article class="loyalty-tier" data-loyalty-accordion-item><div class="loyalty-tier__head"><div><h2 class="loyalty-tier__title">Профессионал</h2><p class="loyalty-tier__range">0—20 тыс ₽</p></div><button class="loyalty-tier__toggle" type="button" aria-expanded="false" data-loyalty-accordion-toggle aria-label="Развернуть уровень Профессионал"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg></button></div><div class="loyalty-tier__panel" hidden data-loyalty-accordion-panel><p class="loyalty-tier__copy">Расширенный набор сервисных преимуществ и повышенный кешбэк.</p></div></article>
-      <article class="loyalty-tier" data-loyalty-accordion-item><div class="loyalty-tier__head"><div><h2 class="loyalty-tier__title">Эксперт</h2><p class="loyalty-tier__range">0—20 тыс ₽</p></div><button class="loyalty-tier__toggle" type="button" aria-expanded="false" data-loyalty-accordion-toggle aria-label="Развернуть уровень Эксперт"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg></button></div><div class="loyalty-tier__panel" hidden data-loyalty-accordion-panel><p class="loyalty-tier__copy">Максимальные преимущества обслуживания и высокий уровень кешбэка.</p></div></article>
-      <article class="loyalty-tier" data-loyalty-accordion-item><div class="loyalty-tier__head"><div><h2 class="loyalty-tier__title">Легенда (VIP)</h2><p class="loyalty-tier__range">0—20 тыс ₽</p></div><button class="loyalty-tier__toggle" type="button" aria-expanded="false" data-loyalty-accordion-toggle aria-label="Развернуть уровень Легенда"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg></button></div><div class="loyalty-tier__panel" hidden data-loyalty-accordion-panel><p class="loyalty-tier__copy">VIP-уровень программы с максимальным кешбэком и персональными привилегиями.</p></div></article>
-    </section>
-
-    <section class="loyalty-operations" aria-labelledby="loyalty-operations-title">
-      <a class="loyalty-operations__heading" href="/personal/loyalty/operations/"><h2 id="loyalty-operations-title">Последние операции</h2><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
-      <!--
-        BITRIX: последние операции по баллам — bitrix:main.loyalty.program (история транзакций)
-        Каждый .loyalty-operation: дата, тип операции (название), направление (начисление/списание), сумма баллов
-        Класс is-positive — начисление, is-negative — списание
-      -->
-      <div class="loyalty-operations__list" role="region" aria-label="Карусель последних операций" tabindex="0" data-loyalty-operations-carousel>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>День рождения</h3><p>Начисление</p><strong class="is-positive">+ 1 000 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Покупка</h3><p>Списание</p><strong class="is-negative">- 1 500 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Отзыв с фото</h3><p>Начисление</p><strong class="is-positive">+ 500 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Покупка</h3><p>Списание</p><strong class="is-negative">- 1 500 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Отзыв с фото</h3><p>Начисление</p><strong class="is-positive">+ 500 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Покупка</h3><p>Списание</p><strong class="is-negative">- 1 500 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-        <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Покупка</h3><p>Списание</p><strong class="is-negative">- 200 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
-      </div>
-    </section>
-
-    <section class="loyalty-info" aria-label="Подробнее о программе">
-      <div class="loyalty-faq" data-loyalty-faq>
-        <h2 class="loyalty-info__title">Подробнее о программе</h2>
-        <div class="loyalty-faq__list">
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Что такое кешбэк бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Бонусы начисляются за покупки и отдельные действия в программе лояльности FINNTRAIL.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>На что я могу потратить кешбэк бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Бонусами можно оплатить часть стоимости доступных товаров в интернет-магазине.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Как повысить уровень кешбэка?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Совершайте покупки: учитываемая сумма постепенно переводит вас на следующий уровень.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>За что начисляются бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>За покупки, отзывы и специальные активности, отмеченные условиями программы.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Сколько стоит 1 бонус?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Один бонус равен одному рублю скидки при доступной оплате бонусами.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Какую часть покупки можно оплатить бонусами?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Доступная доля оплаты зависит от вашего уровня и условий конкретного товара.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Что случится с бонусами, если я верну товар?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Начисленные за возвращённый товар бонусы будут списаны, а потраченные — возвращены.</p></div></article>
-          <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Сколько действуют бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>На уровне «Новичок» бонусы действуют 6 месяцев; актуальный срок указан в условиях уровня.</p></div></article>
-        </div>
-      </div>
-      <aside class="loyalty-trade-in">
-        <h2>Trade-in экипировки</h2>
-        <img src="/images/content/loyalty/loyalty-trade-in.png" srcset="/images/content/loyalty/loyalty-trade-in.png 818w" sizes="360px" width="360" height="291" loading="lazy" alt="Путешественник в горах">
-        <a class="loyalty-trade-in__button" href="/trade-in/"><span>Сдать старую экипировку</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
-        <a class="loyalty-trade-in__button" href="/catalog/"><span>Получить скидку на новую</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
-      </aside>
-    </section>
-
-    <section class="loyalty-help" aria-labelledby="loyalty-help-title">
-      <h2 id="loyalty-help-title">Нужна помощь?</h2>
-      <div class="loyalty-help__links"><a href="/help/order/">Оформление заказа</a><a href="/delivery/">Оплата и доставка</a><a href="/return/">Отмена и возврат</a><a href="/faq/">Другие вопросы</a></div>
+      </form>
     </section>
 
     <hr class="personal-section-divider" aria-hidden="true">
 
-    <section class="recommendations-new personal-viewed-products" aria-labelledby="loyalty-viewed-products-title">
+    <!-- ─── История обращений ──────────────────────────────────────── -->
+    <!--
+      BITRIX: список обращений текущего пользователя — bitrix:support.list
+      Компонент: bitrix:support.list
+      Выводит тикеты пользователя: тема, дата создания, текст вопроса, ответ поддержки
+    -->
+    <section class="support-history" aria-labelledby="support-history-title">
+      <div class="support-history__inner">
+        <h2 class="support-history__title" id="support-history-title">История обращений</h2>
+
+        <ul class="support-history__list">
+
+          <!-- Обращение 1 — развёрнуто -->
+          <!-- BITRIX: тикет — тема, дата создания, текст вопроса пользователя -->
+          <li class="support-history__item is-open">
+            <button class="support-history__toggle" type="button" aria-expanded="true" aria-controls="support-ticket-1">
+              <div class="support-history__meta">
+                <div class="support-history__avatar" aria-hidden="true">
+                  <!-- BITRIX: аватар сотрудника поддержки, назначенного на тикет -->
+                  <img src="/images/content/support/avatar-staff.png" alt="" width="32" height="32">
+                </div>
+                <div class="support-history__info">
+                  <div class="support-history__head">
+                    <!-- BITRIX: тема (тип) обращения -->
+                    <span class="support-history__tag">Уход за экипировкой</span>
+                    <!-- BITRIX: дата создания обращения -->
+                    <time class="support-history__date" datetime="2026-03-17">17.03.2026</time>
+                  </div>
+                  <!-- BITRIX: текст вопроса пользователя (первое сообщение тикета) -->
+                  <p class="support-history__question">Режимы стирки термобелья?</p>
+                </div>
+              </div>
+              <svg class="support-history__arrow" aria-hidden="true" width="16" height="16">
+                <use href="/images/icons/sprite.svg#icon-sort-arrow"></use>
+              </svg>
+            </button>
+
+            <!--
+              BITRIX: ответ поддержки на обращение — текст из тикета
+              Компонент: bitrix:support.ticket.detail
+              <?= $arTicket['ANSWER_TEXT'] ?>
+            -->
+            <div class="support-history__panel" id="support-ticket-1">
+              <div class="support-history__response">
+                <div class="support-history__avatar support-history__avatar--staff" aria-hidden="true">
+                  <!-- BITRIX: аватар пользователя, создавшего обращение -->
+                  <img src="/images/content/support/avatar-user.png" alt="" width="32" height="32">
+                </div>
+                <!-- BITRIX: блоки ответа — динамический HTML из поля ответа тикета -->
+                <div class="support-history__blocks">
+                  <div class="support-history__block">
+                    <h3 class="support-history__block-title">Чистка</h3>
+                    <p class="support-history__block-text">Для удаления незначительных загрязнений достаточно использовать обычное мыло и щётку.</p>
+                  </div>
+                  <div class="support-history__block">
+                    <h3 class="support-history__block-title">Стирка</h3>
+                    <p class="support-history__block-text">Возможна «Ручная стирка» или «Деликатная стирка» в стиральной машине при температуре 30&nbsp;°C.</p>
+                    <p class="support-history__block-text">Для увеличения срока службы старайтесь стирать вейдерсы как можно реже.</p>
+                    <p class="support-history__block-text">Старайтесь использовать только специальные моющие средства для мембранных тканей от компаний MCNett, Nikwax или Ласка Active&nbsp;&amp;&nbsp;Fresh. Нельзя использовать стиральные порошки, кондиционеры и отбеливатели.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Обращение 2 — свёрнуто -->
+          <!-- BITRIX: тикет — тема, дата создания, текст вопроса пользователя -->
+          <li class="support-history__item">
+            <button class="support-history__toggle" type="button" aria-expanded="false" aria-controls="support-ticket-2">
+              <div class="support-history__meta">
+                <div class="support-history__avatar" aria-hidden="true">
+                  <!-- BITRIX: аватар сотрудника поддержки, назначенного на тикет -->
+                  <img src="/images/content/support/avatar-staff.png" alt="" width="32" height="32">
+                </div>
+                <div class="support-history__info">
+                  <div class="support-history__head">
+                    <!-- BITRIX: тема (тип) обращения -->
+                    <span class="support-history__tag">Другое</span>
+                    <!-- BITRIX: дата создания обращения -->
+                    <time class="support-history__date" datetime="2026-03-17">17.03.2026</time>
+                  </div>
+                  <!-- BITRIX: текст вопроса пользователя (первое сообщение тикета) -->
+                  <p class="support-history__question">Могу ли я изменить заказ после его оформления?</p>
+                </div>
+              </div>
+              <svg class="support-history__arrow" aria-hidden="true" width="16" height="16">
+                <use href="/images/icons/sprite.svg#icon-sort-arrow"></use>
+              </svg>
+            </button>
+
+            <!-- BITRIX: ответ поддержки на обращение — текст из тикета -->
+            <div class="support-history__panel" id="support-ticket-2" hidden>
+              <div class="support-history__response">
+                <div class="support-history__avatar support-history__avatar--staff" aria-hidden="true">
+                  <!-- BITRIX: аватар пользователя, создавшего обращение -->
+                  <img src="/images/content/support/avatar-user.png" alt="" width="32" height="32">
+                </div>
+                <!-- BITRIX: блоки ответа — динамический HTML из поля ответа тикета -->
+                <div class="support-history__blocks">
+                  <div class="support-history__block">
+                    <h3 class="support-history__block-title">Изменение заказа</h3>
+                    <p class="support-history__block-text">Изменить заказ можно до момента его передачи в службу доставки. Свяжитесь с нами по телефону&nbsp;8&nbsp;800&nbsp;700-42-73 или через форму обратной связи.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Обращение 3 — свёрнуто -->
+          <!-- BITRIX: тикет — тема, дата создания, текст вопроса пользователя -->
+          <li class="support-history__item">
+            <button class="support-history__toggle" type="button" aria-expanded="false" aria-controls="support-ticket-3">
+              <div class="support-history__meta">
+                <div class="support-history__avatar" aria-hidden="true">
+                  <!-- BITRIX: аватар сотрудника поддержки, назначенного на тикет -->
+                  <img src="/images/content/support/avatar-staff.png" alt="" width="32" height="32">
+                </div>
+                <div class="support-history__info">
+                  <div class="support-history__head">
+                    <!-- BITRIX: тема (тип) обращения -->
+                    <span class="support-history__tag">Другое</span>
+                    <!-- BITRIX: дата создания обращения -->
+                    <time class="support-history__date" datetime="2026-03-17">17.03.2026</time>
+                  </div>
+                  <!-- BITRIX: текст вопроса пользователя (первое сообщение тикета) -->
+                  <p class="support-history__question">Какие преимущества есть у зарегистрированных пользователей?</p>
+                </div>
+              </div>
+              <svg class="support-history__arrow" aria-hidden="true" width="16" height="16">
+                <use href="/images/icons/sprite.svg#icon-sort-arrow"></use>
+              </svg>
+            </button>
+
+            <!-- BITRIX: ответ поддержки на обращение — текст из тикета -->
+            <div class="support-history__panel" id="support-ticket-3" hidden>
+              <div class="support-history__response">
+                <div class="support-history__avatar support-history__avatar--staff" aria-hidden="true">
+                  <!-- BITRIX: аватар пользователя, создавшего обращение -->
+                  <img src="/images/content/support/avatar-user.png" alt="" width="32" height="32">
+                </div>
+                <!-- BITRIX: блоки ответа — динамический HTML из поля ответа тикета -->
+                <div class="support-history__blocks">
+                  <div class="support-history__block">
+                    <h3 class="support-history__block-title">Преимущества</h3>
+                    <p class="support-history__block-text">Зарегистрированные пользователи получают доступ к программе лояльности, накапливают бонусные баллы и&nbsp;могут отслеживать историю заказов.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── Подробнее + Нужна помощь (только мобилка и планшетка) ─── -->
+    <div class="support-mobile-sections">
+      <hr class="personal-section-divider" aria-hidden="true">
+      <section class="loyalty-info" aria-label="Подробнее о программе">
+        <div class="loyalty-faq" data-loyalty-faq>
+          <h2 class="loyalty-info__title">Подробнее о программе</h2>
+          <div class="loyalty-faq__list">
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Что такое кешбэк бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Бонусы начисляются за покупки и отдельные действия в программе лояльности FINNTRAIL.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>На что я могу потратить кешбэк бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Бонусами можно оплатить часть стоимости доступных товаров в интернет-магазине.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Как повысить уровень кешбэка?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Совершайте покупки: учитываемая сумма постепенно переводит вас на следующий уровень.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>За что начисляются бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>За покупки, отзывы и специальные активности, отмеченные условиями программы.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Сколько стоит 1 бонус?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Один бонус равен одному рублю скидки при доступной оплате бонусами.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Какую часть покупки можно оплатить бонусами?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Доступная доля оплаты зависит от вашего уровня и условий конкретного товара.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Что случится с бонусами, если я верну товар?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>Начисленные за возвращённый товар бонусы будут списаны, а потраченные — возвращены.</p></div></article>
+            <article class="loyalty-faq__item"><button type="button" aria-expanded="false" data-loyalty-faq-toggle><span>Сколько действуют бонусы?</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button><div hidden data-loyalty-faq-panel><p>На уровне «Новичок» бонусы действуют 6 месяцев; актуальный срок указан в условиях уровня.</p></div></article>
+          </div>
+        </div>
+        <aside class="loyalty-trade-in">
+          <h2>Trade-in экипировки</h2>
+          <img src="/images/content/loyalty/loyalty-trade-in.png" srcset="/images/content/loyalty/loyalty-trade-in.png 818w" sizes="360px" width="360" height="291" loading="lazy" alt="Путешественник в горах">
+          <a class="loyalty-trade-in__button" href="/trade-in/"><span>Сдать старую экипировку</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
+          <a class="loyalty-trade-in__button" href="/catalog/"><span>Получить скидку на новую</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
+        </aside>
+      </section>
+
+      <section class="loyalty-help" aria-labelledby="support-loyalty-help-title">
+        <h2 id="support-loyalty-help-title">Нужна помощь?</h2>
+        <div class="loyalty-help__links">
+          <a href="/help/order/">Оформление заказа</a>
+          <a href="/delivery/">Оплата и доставка</a>
+          <a href="/return/">Отмена и возврат</a>
+          <a href="/faq/">Другие вопросы</a>
+        </div>
+      </section>
+    </div>
+
+    <hr class="personal-section-divider" aria-hidden="true">
+
+    <!-- ─── Вы смотрели ────────────────────────────────────────────── -->
+    <!-- BITRIX: история просмотренных товаров пользователя — bitrix:catalog.personal.viewed.products -->
+    <section class="recommendations-new personal-viewed-products" aria-labelledby="support-viewed-products-title">
       <div class="recommendations-new__header">
-        <h2 class="recommendations-new__title" id="loyalty-viewed-products-title">Вы смотрели</h2>
+        <h2 class="recommendations-new__title" id="support-viewed-products-title">Вы смотрели</h2>
         <div class="recommendations-new__controls">
           <button class="recommendations-new__arrow js-slider-prev button button--icon button--size-m button--ghost is-inactive" type="button" aria-label="Назад">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
@@ -501,29 +701,35 @@
         </div>
       </div>
 
-      <!--
-        BITRIX: просмотренные товары пользователя — bitrix:catalog.viewed.products
-        Список .recommendation-card: ссылка на товар, изображение, название, цена, старая цена, бейдж
-      -->
       <div class="recommendations-new__viewport">
+        <!-- BITRIX: карточки просмотренных товаров — повторяемый блок для каждого товара -->
         <div class="recommendations-new__track">
+          <!-- BITRIX: карточка просмотренного товара — ссылка, фото, название, цена, бейдж -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
                 <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/_responsive/recommended/recommended-3-160.png 160w, /images/content/_responsive/recommended/recommended-3-320.png 320w, /images/content/_responsive/recommended/recommended-3-480.png 480w, /images/content/recommended/recommended-3.png 498w" sizes="(max-width: 767px) 211px, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <!-- BITRIX: метка товара (Хит / Новинка / Топ и т.д.) -->
                 <span class="recommendation-card__badge">Хит</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg>
+                </button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+                </button>
               </span>
             </div>
+            <!-- BITRIX: название товара -->
             <div class="recommendation-card__info">
               <p class="recommendation-card__name">Куртка FINNTRAIL Master Hood 1510 Graphite</p>
             </div>
             <button class="recommendation-card__cart" type="button" aria-label="Добавить в корзину">
               <span class="recommendation-card__prices">
+                <!-- BITRIX: актуальная цена товара -->
                 <span class="recommendation-card__price">13 999 ₽</span>
+                <!-- BITRIX: старая цена товара (если есть скидка) -->
                 <span class="recommendation-card__old-price">16 999 ₽</span>
               </span>
               <span class="recommendation-card__cart-label">
@@ -533,15 +739,21 @@
             </button>
           </article>
 
+          <!-- BITRIX: карточка просмотренного товара — ссылка, фото, название, цена, бейдж -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
                 <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/_responsive/recommended/recommended-1-160.png 160w, /images/content/_responsive/recommended/recommended-1-320.png 320w, /images/content/_responsive/recommended/recommended-1-480.png 480w, /images/content/_responsive/recommended/recommended-1-768.png 768w, /images/content/recommended/recommended-1.png 780w" sizes="(max-width: 767px) 211px, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <!-- BITRIX: метка товара (Хит / Новинка / Топ и т.д.) -->
                 <span class="recommendation-card__badge">Новинка</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg>
+                </button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+                </button>
               </span>
             </div>
             <div class="recommendation-card__info">
@@ -559,6 +771,7 @@
             </button>
           </article>
 
+          <!-- BITRIX: карточка просмотренного товара — ссылка, фото, название, цена, бейдж -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
@@ -566,8 +779,12 @@
                 <span class="recommendation-card__badge">Новинка</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg>
+                </button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+                </button>
               </span>
             </div>
             <div class="recommendation-card__info">
@@ -585,6 +802,7 @@
             </button>
           </article>
 
+          <!-- BITRIX: карточка просмотренного товара — ссылка, фото, название, цена, бейдж -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/catalog/finntrail-master-hood-1510-graphite/">
@@ -592,8 +810,12 @@
                 <span class="recommendation-card__badge">Топ</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg></button>
-                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-compare"></use></svg>
+                </button>
+                <button class="recommendation-card__icon-btn" type="button" aria-label="В избранное">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+                </button>
               </span>
             </div>
             <div class="recommendation-card__info">
@@ -621,9 +843,10 @@
 
     <hr class="personal-section-divider" aria-hidden="true">
 
-    <section class="community-showcase" aria-labelledby="loyalty-community-title">
+    <!-- ─── Комьюнити ─────────────────────────────────────────────── -->
+    <section class="community-showcase" aria-labelledby="support-community-title">
       <div class="community-showcase__intro">
-        <h2 class="community-showcase__title" id="loyalty-community-title">Присоединяйся<br>к коммьюнити</h2>
+        <h2 class="community-showcase__title" id="support-community-title">Присоединяйся<br>к коммьюнити</h2>
         <p class="community-showcase__description">Крупнейшие тематические сообщества любителей активного отдыха</p>
       </div>
 
@@ -673,7 +896,6 @@
         </article>
       </div>
     </section>
-
   </main>
 
   <footer class="footer-desktop product-footer" aria-label="Футер">

@@ -1,0 +1,342 @@
+@use '../variables' as *;
+
+// ─── Page modifier ───────────────────────────────────────────────────────────
+
+.personal-page--support {
+  .personal-header + .personal-section-divider {
+    margin-top: 20px;
+  }
+
+  .personal-section-divider {
+    margin-top: 40px;
+  }
+
+  // Секции сами имеют margin-top — обнуляем, чтобы не складывался с divider
+  .recommendations-new {
+    margin-top: 0;
+  }
+
+  // hr между "Вы смотрели" и community-showcase разрывает + селектор в _personal.scss,
+  // поэтому повторяем bleed-компенсацию здесь вручную
+  .community-showcase {
+    margin-top: 0;
+    margin-left: -$spacing-page-desktop;
+    margin-right: -$spacing-page-desktop;
+    width: calc(100% + #{$spacing-page-desktop * 2});
+  }
+
+  .support-mobile-sections .loyalty-info {
+    margin-top: 0;
+  }
+
+  .support-mobile-sections .loyalty-help {
+    margin-top: 20px;
+  }
+}
+
+// ─── Support form ────────────────────────────────────────────────────────────
+
+.support-form {
+  padding-bottom: 0;
+}
+
+.support-form__inner {
+  max-width: 694px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-form__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.support-form__topic {
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  padding: 8px 12px;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: $text-body-b2-size;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  &.is-active {
+    background: $color-primary-black;
+    color: $color-white;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(.is-active):hover {
+      background: $color-secondary-gray;
+    }
+  }
+}
+
+.support-form__textarea {
+  width: 100%;
+  height: 120px;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  padding: 20px;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: $text-body-b2-size;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  resize: none;
+  outline: none;
+
+  &::placeholder {
+    color: $color-primary-gray;
+    text-transform: uppercase;
+  }
+}
+
+.support-form__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.support-form__submit {
+  flex-shrink: 0;
+}
+
+.support-form__attach {
+  padding: 14px 16px;
+  gap: 8px;
+
+  svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// ─── Support history ─────────────────────────────────────────────────────────
+
+.support-history__inner {
+  max-width: 694px;
+  margin: 0 auto;
+}
+
+.support-history__title {
+  margin: 0 0 12px;
+  font-family: $font-display;
+  font-weight: $font-weight-black;
+  font-size: $text-subtitle-s1-size;
+  line-height: $text-subtitle-s1-line;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.support-history__rule {
+  height: 0;
+  border: none;
+  border-top: 2px solid $color-white;
+  margin: 0 0 0;
+}
+
+.support-history__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.support-history__item {
+  border-top: 1px solid $color-white;
+}
+
+.support-history__toggle {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.support-history__meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+.support-history__avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.support-history__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.support-history__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.support-history__tag {
+  background: $color-white;
+  border-radius: $radius-xs;
+  padding: 8px 12px;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: $text-body-b2-size;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  white-space: nowrap;
+}
+
+.support-history__date {
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: $text-body-b2-size;
+  line-height: $text-body-b2-line;
+  color: $color-gray-primary;
+  white-space: nowrap;
+}
+
+.support-history__question {
+  margin: 0;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: $text-body-b1-size;
+  line-height: 18px;
+  color: $color-primary-black;
+}
+
+.support-history__arrow {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  fill: $color-primary-black;
+  transition: transform 0.3s ease;
+
+  .support-history__item.is-open & {
+    transform: rotate(180deg);
+  }
+}
+
+.support-history__panel {
+  padding-bottom: 20px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.support-history__response {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.support-history__blocks {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.support-history__block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.support-history__block-title {
+  margin: 0;
+  font-family: $font-display;
+  font-weight: $font-weight-extrabold;
+  font-size: $text-body-b1-size;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.support-history__block-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: $text-body-b2-size;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+}
+
+// ─── Loyalty-info и loyalty-help — скрыты на десктопе, видны на мобилке/планшетке
+
+.personal-page--support {
+  .support-mobile-sections {
+    display: none;
+  }
+}
+
+// ─── Планшетка (768px – 1279px) ───────────────────────────────────────────────
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .personal-page--support .support-mobile-sections {
+    display: block;
+  }
+
+  .personal-page--support .loyalty-trade-in {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// ─── Мобилка (<768px) ────────────────────────────────────────────────────────
+
+@media (max-width: calc($bp-md - 1px)) {
+  .personal-page--support .personal-section-divider {
+    margin: 20px 0;
+  }
+
+  .support-form__inner {
+    gap: 12px;
+  }
+
+  .support-form__actions {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .support-form__submit {
+    flex: 1;
+  }
+
+  .personal-page--support .support-mobile-sections {
+    display: block;
+  }
+}
