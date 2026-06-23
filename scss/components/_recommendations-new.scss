@@ -207,11 +207,15 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      &:hover,
-      &:focus-visible {
+      &:not(.is-saved):hover,
+      &:not(.is-saved):focus-visible {
         color: $color-primary-black;
       }
     }
+  }
+
+  &__icon-btn.is-saved {
+    color: $color-secondary-accent;
   }
 
   &__info {
@@ -392,6 +396,21 @@
     }
   }
 
+  &__cart.is-in-cart {
+    pointer-events: none;
+
+    .recommendation-card__cart-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &:has(.js-wishlist.is-saved) &__actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
 }
 
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
@@ -503,7 +522,8 @@
   }
 
   .recommendation-card:hover .recommendation-card__actions,
-  .recommendation-card:focus-within .recommendation-card__actions {
+  .recommendation-card:focus-within .recommendation-card__actions,
+  .recommendation-card:has(.js-wishlist.is-saved) .recommendation-card__actions {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -689,7 +709,8 @@
   }
 
   .recommendation-card:hover .recommendation-card__actions,
-  .recommendation-card:focus-within .recommendation-card__actions {
+  .recommendation-card:focus-within .recommendation-card__actions,
+  .recommendation-card:has(.js-wishlist.is-saved) .recommendation-card__actions {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Отзывы</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CQ59Pd-E.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-dNZLeL3E.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-rp5TtMXs.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DPdDcNmp.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -30,6 +30,7 @@
       <div class="hero__tools">
         <a href="/fintrail/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
         <a href="/fintrail/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/fintrail/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/fintrail/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
         <a href="/fintrail/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
@@ -212,7 +213,7 @@
         <a href="/fintrail/technology/">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
         <a href="/fintrail/sizes/">Таблицы размеров</a>
-        <a href="/fintrail/loyalty/">Программа лояльности</a>
+        <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </aside>
   </div>
@@ -278,7 +279,7 @@
         <a href="/fintrail/technology/">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
         <a href="/fintrail/sizes/">Таблицы размеров</a>
-        <a href="/fintrail/loyalty/">Программа лояльности</a>
+        <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </div>
     <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
@@ -368,6 +369,7 @@
           <a href="/fintrail/personal/orders/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Заказы
+              <!-- BITRIX: количество заказов пользователя — bitrix:sale.personal.order (список) -->
               <span class="personal-header__tab-count">2</span>
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
@@ -375,6 +377,7 @@
           <a href="/fintrail/personal/reviews/" class="personal-header__tab is-active" aria-current="page">
             <span class="personal-header__tab-inner">
               Отзывы
+              <!-- BITRIX: общее количество отзывов пользователя — bitrix:iblock.element.list -->
               <span class="personal-header__tab-count">17</span>
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
@@ -435,8 +438,14 @@
           </div>
           <p class="reviews-bonuses__desc">Зарабатывайте бонусные баллы, публикуя фото/видео и обзоры</p>
         </div>
+        <!--
+          BITRIX: список товаров из заказов пользователя, ожидающих оценки — bitrix:sale.personal.order
+          Компонент: bitrix:catalog.element (или выборка через API заказов)
+          Перебираем товары без отзыва: foreach $UNREVIEWED_PRODUCTS
+        -->
         <div class="reviews-bonuses__list" aria-label="Товары для оценки">
 
+          <!-- BITRIX: карточка товара для оценки — начало цикла $PRODUCT -->
           <article class="personal-rating-card" data-reviews-form>
             <img class="personal-rating-card__image" src="/fintrail/images/content/product/snowranger/snowranger-hat.png" srcset="/fintrail/images/content/product/snowranger/snowranger-hat.png 48w" sizes="48px" width="48" height="48" loading="lazy" alt="Шапка FINNTRAIL Sport Hat 9730 Graphiteyellow">
             <div class="personal-rating-card__content">
@@ -454,6 +463,7 @@
             </div>
           </article>
 
+          <!-- BITRIX: карточка товара для оценки — следующий элемент цикла $PRODUCT -->
           <article class="personal-rating-card" data-reviews-form>
             <img class="personal-rating-card__image" src="/fintrail/images/content/product/snowranger/snowranger-pants.png" srcset="/fintrail/images/content/product/snowranger/snowranger-pants.png 48w" sizes="48px" width="48" height="48" loading="lazy" alt="Горнолыжные брюки FINNTRAIL Aspen 4622 Graphite">
             <div class="personal-rating-card__content">
@@ -476,15 +486,21 @@
 
       <hr class="personal-section-divider" aria-hidden="true">
 
-      <!-- Список отзывов -->
+      <!--
+        BITRIX: список отзывов текущего пользователя — bitrix:iblock.element.list
+        Фильтр: CREATED_BY = $USER_ID, IBLOCK_ID = reviews
+        Сортировка: DATE_CREATE DESC / ASC — управляется виджетом сортировки выше
+        Вкладки (Опубликованные / На модерации): фильтр по полю ACTIVE = Y / N
+      -->
       <div class="reviews-list">
 
-        <!-- Отзыв 1 -->
+        <!-- BITRIX: карточка отзыва — начало цикла $arResult["ITEMS"] -->
         <article class="review-card">
           <div class="review-card__rating-col">
             <div class="review-card__rating-top">
               <p class="review-card__rating-label">Ваша оценка</p>
               <div class="review-card__stars-row">
+                <!-- BITRIX: рейтинг отзыва — <?= $arItem["RATING"] ?> (1–5) -->
                 <span class="review-card__stars" aria-label="Оценка 4 из 5">
                   <span class="review-card__star is-active"></span>
                   <span class="review-card__star is-active"></span>
@@ -495,6 +511,7 @@
                 <span class="review-card__rating-value">4</span>
               </div>
             </div>
+            <!-- BITRIX: дата публикации отзыва — <?= $arItem["DATE_CREATE"] ?> -->
             <time class="review-card__date" datetime="2026-04-11">
               <span>11 апреля</span>
               <span>2026</span>
@@ -502,12 +519,14 @@
           </div>
 
           <div class="review-card__content">
+            <!-- BITRIX: фотографии к отзыву — <?= $arItem["PHOTOS"] ?> (массив изображений) -->
             <div class="review-card__photos">
               <img class="review-card__photo" src="/fintrail/images/content/_responsive/recommended/recommended-1-160.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-1-160.png 160w, /fintrail/images/content/_responsive/recommended/recommended-1-320.png 320w" sizes="79px" width="79" height="120" loading="lazy" alt="Фото к отзыву">
               <img class="review-card__photo" src="/fintrail/images/content/_responsive/recommended/recommended-3-160.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-3-160.png 160w, /fintrail/images/content/_responsive/recommended/recommended-3-320.png 320w" sizes="79px" width="79" height="120" loading="lazy" alt="Фото к отзыву">
               <img class="review-card__photo" src="/fintrail/images/content/_responsive/recommended/recommended-4-160.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-4-160.png 160w" sizes="79px" width="79" height="120" loading="lazy" alt="Фото к отзыву">
             </div>
 
+            <!-- BITRIX: теги / характеристики товара из отзыва — <?= $arItem["TAGS"] ?> (соответствие размеру, пометки) -->
             <div class="review-card__tags">
               <span class="review-card__tag">Качество замков</span>
               <span class="review-card__tag">Соответствует</span>
@@ -520,6 +539,7 @@
                     <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-review-plus"></use></svg>
                     <span>Достоинства</span>
                   </div>
+                  <!-- BITRIX: текст «Достоинства» — <?= $arItem["PROS"] ?> -->
                   <p class="review-card__section-text">Куртка понравилась многим, поэтому пришлось покупать и друзьям</p>
                 </div>
                 <div class="review-card__section">
@@ -527,6 +547,7 @@
                     <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-review-minus"></use></svg>
                     <span>Недостатки</span>
                   </div>
+                  <!-- BITRIX: текст «Недостатки» — <?= $arItem["CONS"] ?> -->
                   <p class="review-card__section-text">Не выявлены</p>
                 </div>
               </div>
@@ -535,6 +556,7 @@
                   <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-review-comment"></use></svg>
                   <span>Комментарий</span>
                 </div>
+                <!-- BITRIX: основной текст отзыва — <?= $arItem["DETAIL_TEXT"] ?> -->
                 <p class="review-card__section-text">Куртка Finntrail Mist W 4133 Light Grey — это идеальный выбор для активных женщин, которые ценят комфорт и стиль на природе. Легкая и при этом прочная, она защищает от ветра и влаги, благодаря использованию высококачественных материалов. Куртка имеет хорошую посадку и не сковывает движения, что делает её отличным вариантом для активных outdoor-мероприятий. Современный дизайн в светло-сером цвете легко сочетать с различной одеждой, а функциональные карманы и регулируемые элементы добавляют удобства. Это отличный вариант для тех, кто ищет практичную и стильную вещь для активного отдыха.</p>
               </div>
             </div>
@@ -542,11 +564,7 @@
 
           <div class="review-card__actions">
             <button class="review-card__menu-btn" type="button" aria-label="Действия с отзывом" aria-expanded="false" aria-haspopup="true" data-review-menu>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="5" cy="12" r="2" fill="currentColor"/>
-                <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                <circle cx="19" cy="12" r="2" fill="currentColor"/>
-              </svg>
+              <svg width="24" height="24" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-more-dots"></use></svg>
             </button>
             <div class="review-card__dropdown" hidden>
               <button class="review-card__dropdown-item" type="button" data-review-form-open>
@@ -561,12 +579,13 @@
           </div>
         </article>
 
-        <!-- Отзыв 2 -->
+        <!-- BITRIX: карточка отзыва — следующий элемент цикла $arResult["ITEMS"] -->
         <article class="review-card">
           <div class="review-card__rating-col">
             <div class="review-card__rating-top">
               <p class="review-card__rating-label">Ваша оценка</p>
               <div class="review-card__stars-row">
+                <!-- BITRIX: рейтинг отзыва — <?= $arItem["RATING"] ?> (1–5) -->
                 <span class="review-card__stars" aria-label="Оценка 5 из 5">
                   <span class="review-card__star is-active"></span>
                   <span class="review-card__star is-active"></span>
@@ -577,6 +596,7 @@
                 <span class="review-card__rating-value">5</span>
               </div>
             </div>
+            <!-- BITRIX: дата публикации отзыва — <?= $arItem["DATE_CREATE"] ?> -->
             <time class="review-card__date" datetime="2026-04-11">
               <span>11 апреля</span>
               <span>2026</span>
@@ -584,6 +604,7 @@
           </div>
 
           <div class="review-card__content">
+            <!-- BITRIX: теги / характеристики товара из отзыва — <?= $arItem["TAGS"] ?> -->
             <div class="review-card__tags">
               <span class="review-card__tag">Качество замков</span>
               <span class="review-card__tag">Соответствует</span>
@@ -596,6 +617,7 @@
                     <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-review-plus"></use></svg>
                     <span>Достоинства</span>
                   </div>
+                  <!-- BITRIX: текст «Достоинства» — <?= $arItem["PROS"] ?> -->
                   <p class="review-card__section-text">Куртка понравилась многим, поэтому пришлось покупать и друзьям</p>
                 </div>
                 <div class="review-card__section">
@@ -603,6 +625,7 @@
                     <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-review-minus"></use></svg>
                     <span>Недостатки</span>
                   </div>
+                  <!-- BITRIX: текст «Недостатки» — <?= $arItem["CONS"] ?> -->
                   <p class="review-card__section-text">Не выявлены</p>
                 </div>
               </div>
@@ -611,6 +634,7 @@
                   <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-review-comment"></use></svg>
                   <span>Комментарий</span>
                 </div>
+                <!-- BITRIX: основной текст отзыва — <?= $arItem["DETAIL_TEXT"] ?> -->
                 <p class="review-card__section-text">Куртка Finntrail Mist W 4133 Light Grey — это идеальный выбор для активных женщин, которые ценят комфорт и стиль на природе. Легкая и при этом прочная, она защищает от ветра и влаги, благодаря использованию высококачественных материалов. Куртка имеет хорошую посадку и не сковывает движения, что делает её отличным вариантом для активных outdoor-мероприятий. Современный дизайн в светло-сером цвете легко сочетать с различной одеждой, а функциональные карманы и регулируемые элементы добавляют удобства.</p>
               </div>
             </div>
@@ -618,11 +642,7 @@
 
           <div class="review-card__actions">
             <button class="review-card__menu-btn" type="button" aria-label="Действия с отзывом" aria-expanded="false" aria-haspopup="true" data-review-menu>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="5" cy="12" r="2" fill="currentColor"/>
-                <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                <circle cx="19" cy="12" r="2" fill="currentColor"/>
-              </svg>
+              <svg width="24" height="24" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-more-dots"></use></svg>
             </button>
             <div class="review-card__dropdown" hidden>
               <button class="review-card__dropdown-item" type="button" data-review-form-open>
@@ -641,7 +661,7 @@
 
       <hr class="personal-section-divider" aria-hidden="true">
 
-      <!-- Кнопка «Показать ещё» -->
+      <!-- BITRIX: кнопка «Показать ещё» — показывается если есть следующая страница пагинации; скрыть если $NAV_RESULT->NavPageCount <= 1 -->
       <button class="reviews-page__more" type="button">
         <span class="roll-hover-text" data-hover-text="Показать ещё">Показать ещё</span>
         <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
@@ -649,6 +669,10 @@
 
     </section>
 
+    <!--
+      BITRIX: блок «Вы смотрели» — bitrix:catalog.viewed.products
+      Показывает товары из истории просмотров текущего пользователя (сессия или профиль)
+    -->
     <section class="recommendations-new personal-viewed-products" aria-labelledby="reviews-viewed-products-title">
       <div class="recommendations-new__header">
         <h2 class="recommendations-new__title" id="reviews-viewed-products-title">Вы смотрели</h2>
@@ -664,10 +688,13 @@
 
       <div class="recommendations-new__viewport">
         <div class="recommendations-new__track">
+          <!-- BITRIX: карточка просмотренного товара — начало цикла $arResult["ITEMS"] (bitrix:catalog.viewed.products) -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
+              <!-- BITRIX: ссылка и изображение товара — <?= $arItem["DETAIL_PAGE_URL"] ?>, <?= $arItem["PREVIEW_PICTURE"] ?> -->
               <a class="recommendation-card__image-link" href="/fintrail/catalog/finntrail-master-hood-1510-graphite/">
                 <img class="recommendation-card__image" src="/fintrail/images/content/recommended/recommended-3.png" srcset="/fintrail/images/content/_responsive/recommended/recommended-3-160.png 160w, /fintrail/images/content/_responsive/recommended/recommended-3-320.png 320w, /fintrail/images/content/_responsive/recommended/recommended-3-480.png 480w, /fintrail/images/content/recommended/recommended-3.png 498w" sizes="(max-width: 767px) 211px, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <!-- BITRIX: бейдж товара (Хит / Новинка / Топ) — <?= $arItem["BADGE"] ?> -->
                 <span class="recommendation-card__badge">Хит</span>
               </a>
               <span class="recommendation-card__actions">
@@ -676,10 +703,12 @@
               </span>
             </div>
             <div class="recommendation-card__info">
+              <!-- BITRIX: название товара — <?= $arItem["NAME"] ?> -->
               <p class="recommendation-card__name">Куртка FINNTRAIL Master Hood 1510 Graphite</p>
             </div>
             <button class="recommendation-card__cart" type="button" aria-label="Добавить в корзину">
               <span class="recommendation-card__prices">
+                <!-- BITRIX: цена товара — <?= $arItem["PRICE"] ?>, старая цена — <?= $arItem["COMPARE_PRICE"] ?> -->
                 <span class="recommendation-card__price">13 999 ₽</span>
                 <span class="recommendation-card__old-price">16 999 ₽</span>
               </span>
@@ -690,6 +719,7 @@
             </button>
           </article>
 
+          <!-- BITRIX: карточка просмотренного товара — следующий элемент цикла -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/fintrail/catalog/finntrail-master-hood-1510-graphite/">
@@ -716,6 +746,7 @@
             </button>
           </article>
 
+          <!-- BITRIX: карточка просмотренного товара — следующий элемент цикла -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/fintrail/catalog/finntrail-master-hood-1510-graphite/">
@@ -742,6 +773,7 @@
             </button>
           </article>
 
+          <!-- BITRIX: карточка просмотренного товара — следующий элемент цикла -->
           <article class="recommendation-card">
             <div class="recommendation-card__media">
               <a class="recommendation-card__image-link" href="/fintrail/catalog/finntrail-master-hood-1510-graphite/">
@@ -831,7 +863,11 @@
       </div>
     </section>
 
-  <!-- Review form modal -->
+  <!--
+    BITRIX: модальная форма отправки/редактирования отзыва — bitrix:iblock.element.add.form или custom Ajax-обработчик
+    Открывается при клике на звёзды в блоке «Бонусы за отзыв» или на кнопку «Редактировать» в карточке отзыва
+    Форма привязана к товару: передаётся PRODUCT_ID через data-атрибуты
+  -->
   <div class="review-form-modal" id="review-form-modal" hidden data-review-form-modal>
     <div class="review-form-modal__backdrop" data-review-form-close></div>
     <aside class="review-form-modal__panel" role="dialog" aria-modal="true" aria-labelledby="review-form-title">
@@ -845,8 +881,11 @@
         </header>
 
         <div class="review-form-modal__product-block">
+          <!-- BITRIX: товар, для которого открыта форма — изображение и название подставляются через JS из data-атрибутов триггера -->
           <div class="review-form-modal__product">
+            <!-- BITRIX: фото товара — <?= $arProduct["PREVIEW_PICTURE"] ?> -->
             <img class="review-form-modal__product-img" src="/fintrail/images/content/product/snowranger/snowranger-main.png" width="64" height="90" loading="lazy" alt="">
+            <!-- BITRIX: название товара — <?= $arProduct["NAME"] ?> -->
             <p class="review-form-modal__product-name">Куртка FINNTRAIL Mist W 4133 Light Grey</p>
           </div>
 
@@ -856,6 +895,7 @@
 
       <div class="review-form-modal__form">
         <div class="review-form-modal__rating-row">
+          <!-- BITRIX: начальный рейтинг при редактировании — предзаполняется из <?= $arReview["RATING"] ?>, при новом отзыве = 0 -->
           <div class="review-form-modal__stars" data-review-form-stars>
             <button class="review-form-modal__star is-active" type="button" data-value="1" aria-label="Оценить на 1"></button>
             <button class="review-form-modal__star is-active" type="button" data-value="2" aria-label="Оценить на 2"></button>
@@ -866,11 +906,13 @@
           <span class="review-form-modal__rating-value" data-review-form-rating>4</span>
         </div>
 
+        <!-- BITRIX: поля формы отзыва — при редактировании предзаполняются из $arReview (AUTHOR_NAME, PROS, CONS, DETAIL_TEXT) -->
         <div class="review-form-modal__fields">
-          <input class="review-form-modal__field" type="text" placeholder="Имя" autocomplete="name">
-          <input class="review-form-modal__field" type="text" placeholder="Достоинства">
-          <input class="review-form-modal__field" type="text" placeholder="Недостатки">
-          <textarea class="review-form-modal__field review-form-modal__field--textarea" placeholder="Комментарий"></textarea>
+          <!-- BITRIX: имя автора — <?= $arUser["NAME"] ?> (предзаполнено из профиля) -->
+          <input class="review-form-modal__field" type="text" placeholder="Имя" autocomplete="name" aria-label="Имя">
+          <input class="review-form-modal__field" type="text" placeholder="Достоинства" aria-label="Достоинства">
+          <input class="review-form-modal__field" type="text" placeholder="Недостатки" aria-label="Недостатки">
+          <textarea class="review-form-modal__field review-form-modal__field--textarea" placeholder="Комментарий" aria-label="Комментарий"></textarea>
         </div>
 
         <div class="review-form-modal__size-fit">
@@ -900,6 +942,7 @@
         </div>
       </div>
 
+      <!-- BITRIX: кнопка отправки — POST на Ajax-обработчик или bitrix:form.result.new; при редактировании передаётся ID существующего отзыва -->
       <button class="review-form-modal__submit button button--primary button--size-l" type="button">
         Отправить отзыв
       </button>

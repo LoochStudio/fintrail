@@ -321,7 +321,10 @@
   <symbol id="icon-kit-check" viewBox="0 0 11 8" fill="none">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4631 0.195191C10.5881 0.32021 10.6583 0.489748 10.6583 0.666524C10.6583 0.8433 10.5881 1.01284 10.4631 1.13786L4.12981 7.47119C4.00479 7.59617 3.83525 7.66638 3.65847 7.66638C3.4817 7.66638 3.31216 7.59617 3.18714 7.47119L0.187142 4.47119C0.0657028 4.34546 -0.00149374 4.17705 2.52016e-05 4.00226C0.00154415 3.82746 0.0716569 3.66025 0.195262 3.53665C0.318868 3.41304 0.486076 3.34293 0.660874 3.34141C0.835672 3.33989 1.00407 3.40709 1.12981 3.52852L3.65847 6.05719L9.52047 0.195191C9.64549 0.0702104 9.81503 0 9.99181 0C10.1686 0 10.3381 0.0702104 10.4631 0.195191Z" fill="currentColor"/>
   </symbol>
-
+  <symbol id="icon-kit-remove" viewBox="0 0 16 16" fill="none">
+    <path d="M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+  </symbol>
   <symbol id="icon-story-close" viewBox="0 0 24 24" fill="none">
     <path d="M17.8743 6.12615L6.12549 17.875" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
     <path d="M17.8748 17.8739L6.12598 6.125" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>

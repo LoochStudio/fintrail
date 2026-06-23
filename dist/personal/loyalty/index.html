@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Программа лояльности</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CQ59Pd-E.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-dNZLeL3E.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-rp5TtMXs.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DPdDcNmp.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -30,6 +30,7 @@
       <div class="hero__tools">
         <a href="/fintrail/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
         <a href="/fintrail/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/fintrail/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/fintrail/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
         <a href="/fintrail/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
       </div>
@@ -212,7 +213,7 @@
         <a href="/fintrail/technology/">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
         <a href="/fintrail/sizes/">Таблицы размеров</a>
-        <a href="/fintrail/loyalty/">Программа лояльности</a>
+        <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </aside>
   </div>
@@ -278,7 +279,7 @@
         <a href="/fintrail/technology/">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
         <a href="/fintrail/sizes/">Таблицы размеров</a>
-        <a href="/fintrail/loyalty/">Программа лояльности</a>
+        <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </div>
     <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
@@ -365,6 +366,7 @@
             <span class="personal-header__tab-inner">Профиль</span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
+          <!-- BITRIX: счётчик активных заказов пользователя — bitrix:sale.personal.order (список) -->
           <a href="/fintrail/personal/orders/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Заказы
@@ -372,6 +374,7 @@
             </span>
             <span class="personal-header__tab-line" aria-hidden="true"></span>
           </a>
+          <!-- BITRIX: счётчик отзывов пользователя — bitrix:catalog.review (список) -->
           <a href="/fintrail/personal/reviews/" class="personal-header__tab">
             <span class="personal-header__tab-inner">
               Отзывы
@@ -406,6 +409,12 @@
         <h2 class="loyalty-progress__title" id="loyalty-progress-title">Повышайте кешбэк с покупок</h2>
         <p class="loyalty-progress__description">Чем выше уровень, тем больше кешбэк</p>
       </div>
+      <!--
+        BITRIX: прогресс-бар уровня лояльности — bitrix:main.loyalty.program
+        Текущий уровень: is-active на нужном .loyalty-progress__level
+        Процент кешбэка на каждом уровне, сумма до следующего уровня (.loyalty-progress__remaining)
+        aria-valuenow = процент прогресса до следующего уровня (0–100)
+      -->
       <div class="loyalty-progress__scale-wrap">
         <div class="loyalty-progress__scale" role="progressbar" aria-label="Прогресс уровня кешбэка" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25">
           <div class="loyalty-progress__rail" aria-hidden="true"><span class="loyalty-progress__fill"></span></div>
@@ -435,6 +444,11 @@
 
     <section class="loyalty-operations" aria-labelledby="loyalty-operations-title">
       <a class="loyalty-operations__heading" href="/fintrail/personal/loyalty/operations/"><h2 id="loyalty-operations-title">Последние операции</h2><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></a>
+      <!--
+        BITRIX: последние операции по баллам — bitrix:main.loyalty.program (история транзакций)
+        Каждый .loyalty-operation: дата, тип операции (название), направление (начисление/списание), сумма баллов
+        Класс is-positive — начисление, is-negative — списание
+      -->
       <div class="loyalty-operations__list" role="region" aria-label="Карусель последних операций" tabindex="0" data-loyalty-operations-carousel>
         <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>День рождения</h3><p>Начисление</p><strong class="is-positive">+ 1 000 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
         <article class="loyalty-operation"><time datetime="2026-04-11">11.04.2026</time><h3>Покупка</h3><p>Списание</p><strong class="is-negative">- 1 500 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg></strong></article>
@@ -488,6 +502,10 @@
         </div>
       </div>
 
+      <!--
+        BITRIX: просмотренные товары пользователя — bitrix:catalog.viewed.products
+        Список .recommendation-card: ссылка на товар, изображение, название, цена, старая цена, бейдж
+      -->
       <div class="recommendations-new__viewport">
         <div class="recommendations-new__track">
           <article class="recommendation-card">

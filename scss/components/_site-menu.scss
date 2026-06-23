@@ -33,10 +33,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 32px;
   width: 360px;
   max-width: calc(100vw - 40px);
   height: 100dvh;
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 20px;
   border-right: 1px solid $color-white;
   background: $color-surface;
@@ -56,8 +59,9 @@
 
 .site-menu__top {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
   width: 100%;
 }
 
@@ -98,7 +102,7 @@
 .site-menu__main {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 
   a,
   button {
@@ -153,7 +157,7 @@
     align-items: center;
     gap: 16px;
     width: 100%;
-    min-height: 28px;
+    min-height: 32px;
     padding: 4px 0;
     border-radius: $radius-xs;
     color: $color-primary-black;
@@ -168,27 +172,27 @@
 
   svg {
     display: block;
-    width: 20px;
-    height: 20px;
-    flex: 0 0 20px;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
   }
 }
 
 .site-menu__middle {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
-  justify-content: center;
-  flex: 1 1 auto;
+  justify-content: flex-start;
   gap: 60px;
   width: 100%;
   min-height: 0;
-  padding: 40px 0;
+  padding: 0;
 }
 
 .site-menu__links {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 7px;
 
   a {
     width: max-content;
@@ -229,6 +233,8 @@
 
 .site-menu__bottom {
   display: flex;
+  flex: 0 0 auto;
+  margin-top: auto;
   flex-direction: column;
   gap: 10px;
   width: 100%;
@@ -274,7 +280,7 @@
 
 .site-menu__callback {
   width: max-content;
-  min-width: 143px;
+  min-width: 142px;
 }
 
 .site-menu__apps {

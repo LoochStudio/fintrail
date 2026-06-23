@@ -379,6 +379,11 @@
 }
 
 .hero-product-card__bookmark.is-saved {
+  color: $color-secondary-accent;
+}
+
+.hero-product-card__cart.is-in-cart {
+  pointer-events: none;
   color: $color-primary-black;
 }
 
@@ -402,13 +407,13 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .hero-product-card__cart:hover,
-  .hero-product-card__cart:focus-visible {
+  .hero-product-card__cart:not(.is-in-cart):hover,
+  .hero-product-card__cart:not(.is-in-cart):focus-visible {
     color: $color-primary-black;
   }
 
-  .hero-product-card__bookmark:hover,
-  .hero-product-card__bookmark:focus-visible {
+  .hero-product-card__bookmark:not(.is-saved):hover,
+  .hero-product-card__bookmark:not(.is-saved):focus-visible {
     color: $color-primary-black;
   }
 

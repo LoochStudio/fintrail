@@ -41,6 +41,7 @@ export function init() {
       row?.querySelectorAll('.build-kit-desktop__filter').forEach(item => item.classList.remove('is-active'));
       button.classList.add('is-active');
       section.dataset.kitActiveSlot = category;
+      setFilterSelectValue(categorySelect, category);
 
       // Если категория сменилась — перестраиваем карусель и обновляем превью
       if (category === currentCategory) return;
@@ -70,7 +71,123 @@ export function init() {
         const row = button.closest('.build-kit-desktop__filter-row');
         row?.querySelectorAll('.build-kit-desktop__filter').forEach(item => item.classList.remove('is-active'));
         button.classList.add('is-active');
+        setFilterSelectValue(activitySelect, button.dataset.kitActivity);
       });
+    });
+
+    const activitySelect = section.querySelector('.js-kit-activity-select');
+    const categorySelect = section.querySelector('.js-kit-category-select');
+
+    function syncFilterSelect(select) {
+      if (!select) return;
+      const wrap = select.closest('.build-kit-desktop__filter-select-wrap');
+      const button = wrap?.querySelector('.build-kit-desktop__filter-select-button');
+      const options = wrap?.querySelectorAll('.build-kit-desktop__filter-select-option');
+      const selectedText = select.selectedOptions[0]?.textContent || select.options[0]?.textContent || '';
+      const label = button?.querySelector('.build-kit-desktop__filter-select-button-text');
+
+      if (label) {
+        label.textContent = selectedText;
+      } else if (button) {
+        button.textContent = selectedText;
+      }
+      options?.forEach((option, index) => {
+        option.setAttribute('aria-selected', String(index === select.selectedIndex));
+      });
+    }
+
+    function setFilterSelectValue(select, value) {
+      if (!select || !value) return;
+      if (select.value !== value) select.value = value;
+      syncFilterSelect(select);
+    }
+
+    function closeFilterSelects(except = null) {
+      section.querySelectorAll('.build-kit-desktop__filter-select-wrap.is-open').forEach(wrap => {
+        if (wrap === except) return;
+        wrap.classList.remove('is-open');
+        wrap.querySelector('.build-kit-desktop__filter-select-button')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function enhanceFilterSelect(select) {
+      const wrap = select?.closest('.build-kit-desktop__filter-select-wrap');
+      if (!select || !wrap || wrap.querySelector('.build-kit-desktop__filter-select-button')) return;
+
+      wrap.classList.add('is-enhanced');
+
+      const button = document.createElement('button');
+      button.className = 'build-kit-desktop__filter-select-button';
+      button.type = 'button';
+      button.setAttribute('aria-haspopup', 'listbox');
+      button.setAttribute('aria-expanded', 'false');
+
+      const buttonText = document.createElement('span');
+      buttonText.className = 'build-kit-desktop__filter-select-button-text';
+      const buttonIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      buttonIcon.classList.add('build-kit-desktop__filter-select-button-icon');
+      buttonIcon.setAttribute('aria-hidden', 'true');
+      const buttonIconUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      buttonIconUse.setAttribute('href', spriteHref('icon-rec-button-arrow-down'));
+      buttonIcon.appendChild(buttonIconUse);
+      button.appendChild(buttonText);
+      button.appendChild(buttonIcon);
+
+      const list = document.createElement('div');
+      list.className = 'build-kit-desktop__filter-select-list';
+      list.setAttribute('role', 'listbox');
+
+      Array.from(select.options).forEach((option, index) => {
+        const item = document.createElement('button');
+        item.className = 'build-kit-desktop__filter-select-option';
+        item.type = 'button';
+        item.textContent = option.textContent;
+        item.setAttribute('role', 'option');
+        item.setAttribute('aria-selected', String(option.selected));
+
+        item.addEventListener('click', event => {
+          event.preventDefault();
+          event.stopPropagation();
+          select.selectedIndex = index;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          syncFilterSelect(select);
+          closeFilterSelects();
+        });
+
+        list.appendChild(item);
+      });
+
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        const isOpen = wrap.classList.toggle('is-open');
+        closeFilterSelects(isOpen ? wrap : null);
+        button.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      button.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeFilterSelects();
+          button.focus();
+        }
+      });
+
+      select.addEventListener('change', () => syncFilterSelect(select));
+      wrap.appendChild(button);
+      wrap.appendChild(list);
+      syncFilterSelect(select);
+    }
+
+    enhanceFilterSelect(activitySelect);
+    enhanceFilterSelect(categorySelect);
+
+    activitySelect?.addEventListener('change', () => {
+      const btn = filterButtons.find(b => b.dataset.kitActivity === activitySelect.value);
+      btn?.click();
+    });
+
+    categorySelect?.addEventListener('change', () => {
+      activateCategory(categorySelect.value);
     });
 
     previewTiles.forEach(tile => {
@@ -98,6 +215,8 @@ export function init() {
     const productPrice = section.querySelector('.build-kit-desktop__product-price');
     const productAddButton = section.querySelector('[data-kit-add-selected]');
     const productAddIcon = productAddButton?.querySelector('use');
+    const submitButton = section.querySelector('.build-kit-desktop__submit');
+    const submitLabel = submitButton?.querySelector('span');
 
     const perPage = 9;
     const pageWidth = 340;
@@ -105,6 +224,8 @@ export function init() {
     let page = 0;
     let pages = 1;
     let isDesktopCarouselReady = false;
+    let isPageAnimating = false;
+    let pageAnimationTimer = 0;
     let dots = [];
 
     function normalize(index) {
@@ -135,21 +256,53 @@ export function init() {
       });
     }
 
-    function updatePage(nextPage) {
-      if (!grid || !isDesktopCarouselReady) return;
+    function clearPageAnimation() {
+      isPageAnimating = false;
+      grid?.classList.remove('is-animating');
+      if (pageAnimationTimer) {
+        window.clearTimeout(pageAnimationTimer);
+        pageAnimationTimer = 0;
+      }
+    }
 
-      page = normalize(nextPage);
+    function updatePage(nextPage, instant = false) {
+      if (!grid || !isDesktopCarouselReady) return;
+      if (isPageAnimating && !instant) return;
+
+      const next = normalize(nextPage);
+      if (next === page && !instant) return;
+
+      page = next;
+
+      if (instant) {
+        grid.classList.add('is-initializing');
+      } else {
+        clearPageAnimation();
+        isPageAnimating = true;
+        grid.classList.add('is-animating');
+      }
+
       grid.style.transform = `translateX(-${page * pageWidth}px)`;
 
       dots.forEach((dot, index) => {
         dot.classList.toggle('is-active', index === page);
       });
+
+      if (instant) {
+        requestAnimationFrame(() => {
+          grid.classList.remove('is-initializing');
+        });
+      } else {
+        pageAnimationTimer = window.setTimeout(clearPageAnimation, 460);
+      }
     }
 
     function destroyDesktopCarousel() {
       if (!grid || !isDesktopCarouselReady) return;
 
+      clearPageAnimation();
       grid.style.transform = '';
+      grid.querySelectorAll('.build-kit-desktop__tile--clone').forEach(tile => tile.remove());
       allTiles.forEach(tile => {
         tile.hidden = false;
         grid.appendChild(tile);
@@ -167,23 +320,39 @@ export function init() {
         if (!activeTiles.includes(tile)) tile.hidden = true;
       });
 
-      pages = Math.max(1, Math.ceil(activeTiles.length / perPage));
+      const realPages = Math.max(1, Math.ceil(activeTiles.length / perPage));
+      const usePreviewClonePage = realPages === 1 && activeTiles.length > 1;
+      pages = usePreviewClonePage ? 2 : realPages;
       page = Math.min(page, pages - 1);
 
       for (let i = 0; i < pages; i += 1) {
         const pageEl = document.createElement('div');
         pageEl.className = 'build-kit-desktop__page';
-        activeTiles.slice(i * perPage, (i + 1) * perPage).forEach(tile => {
-          pageEl.appendChild(tile);
-          tile.hidden = false;
-        });
+
+        if (usePreviewClonePage && i === 1) {
+          activeTiles.forEach(tile => {
+            const clone = tile.cloneNode(true);
+            clone.classList.add('build-kit-desktop__tile--clone');
+            clone.classList.remove('is-active');
+            clone.setAttribute('aria-hidden', 'true');
+            clone.tabIndex = -1;
+            clone.disabled = true;
+            pageEl.appendChild(clone);
+          });
+        } else {
+          activeTiles.slice(i * perPage, (i + 1) * perPage).forEach(tile => {
+            pageEl.appendChild(tile);
+            tile.hidden = false;
+          });
+        }
+
         grid.appendChild(pageEl);
       }
 
       isDesktopCarouselReady = true;
       renderDots();
       updateControls();
-      updatePage(page);
+      updatePage(page, true);
     }
 
     function syncDesktopCarousel() {
@@ -257,6 +426,7 @@ export function init() {
 
       updateKitSummary();
       syncProductAddState();
+      setSubmitState(false);
     }
 
     function getKitItems() {
@@ -332,6 +502,14 @@ export function init() {
       removeBtn.type = 'button';
       removeBtn.setAttribute('aria-label', 'Удалить');
 
+      const removeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      removeIcon.setAttribute('aria-hidden', 'true');
+
+      const removeIconUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      removeIconUse.setAttribute('href', spriteHref('icon-kit-remove'));
+      removeIcon.appendChild(removeIconUse);
+      removeBtn.appendChild(removeIcon);
+
       top.appendChild(nameEl);
       top.appendChild(removeBtn);
 
@@ -386,6 +564,7 @@ export function init() {
       button.disabled = select.disabled;
       button.setAttribute('aria-haspopup', 'listbox');
       button.setAttribute('aria-expanded', 'false');
+
 
       const list = document.createElement('div');
       list.className = 'build-kit-desktop__size-list';
@@ -482,7 +661,15 @@ export function init() {
       const isAdded = selectedProductInKit();
       productAddButton.classList.toggle('is-added', isAdded);
       productAddButton.setAttribute('aria-label', isAdded ? 'Товар уже в комплекте' : 'Добавить товар в комплект');
-      productAddIcon.setAttribute('href', spriteHref(isAdded ? 'icon-kit-check' : 'icon-rec-plus'));
+      productAddIcon.setAttribute('href', spriteHref(isAdded ? 'icon-kit-check' : 'icon-hero-card-cart'));
+    }
+
+    function setSubmitState(isInCart) {
+      if (!submitButton || !submitLabel) return;
+
+      submitButton.classList.toggle('is-in-cart', isInCart);
+      submitButton.setAttribute('aria-label', isInCart ? 'Перейти в корзину' : 'Добавить комплект в корзину');
+      submitLabel.textContent = isInCart ? 'Перейти в корзину' : 'Добавить в корзину';
     }
 
     function addProductToKit(product) {
@@ -503,6 +690,7 @@ export function init() {
 
       updateKitSummary();
       syncProductAddState();
+      setSubmitState(false);
     }
 
     allTiles.forEach(tile => {
@@ -532,6 +720,7 @@ export function init() {
       item?.replaceWith(createEmptyKitSlot(fallbackLabel, slot));
       updateKitSummary();
       syncProductAddState();
+      setSubmitState(false);
     });
 
     productAddButton?.addEventListener('click', event => {
@@ -539,9 +728,19 @@ export function init() {
       addProductToKit(selectedJacket);
     });
 
+    submitButton?.addEventListener('click', event => {
+      if (submitButton.classList.contains('is-in-cart')) return;
+
+      event.preventDefault();
+      setSubmitState(true);
+    });
+
     section.querySelectorAll('.build-kit-desktop__size').forEach(enhanceSizeSelect);
 
     document.addEventListener('click', event => {
+      if (event.target.closest('.build-kit-desktop__filter-select-wrap')) return;
+      closeFilterSelects();
+
       if (event.target.closest('.build-kit-desktop__size')) return;
 
       section.querySelectorAll('.build-kit-desktop__size.is-open').forEach(sizeEl => {

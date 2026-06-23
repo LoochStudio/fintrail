@@ -1,25 +1,36 @@
-# Design QA — Программа лояльности
+# Design QA — Главная / Собрать комплект mobile
 
-- Final result: passed
-- Scope: desktop, 1440 × 900
-- Source of truth: Figma `4212:55890`, `4339:48261`, `3696:51174`, `3881:58506`, `3696:51246`
-- Implementation: `http://127.0.0.1:5173/personal/loyalty/`
-- State checked: initial page, operations carousel at start and fully scrolled right, second loyalty level expanded, first FAQ expanded, animated progress state
+- final result: passed
+- source visual truth path: Figma `gEearPQv7btgf3igT651f9`, node `2170:55619`
+- implementation screenshot: captured in Browser session at 320 × 900; PNG was not kept in the repo to avoid binary QA artifacts
+- implementation URL: `http://127.0.0.1:5173/`
+- viewport: 320 × 900 and spot-check 390 × 900
+- state: mobile section, category dropdown open
 
-## Evidence
+## Full-view comparison evidence
 
-- Full-view pass: section order, shared personal header, viewed products, community and footer verified in the browser.
-- Focused pass: hero 366 px; tiers 549 px; operations 167 px; FAQ/Trade-in 495 px; help 92 px.
-- Gaps: 40 px after personal header/hero/tier/operations, 60 px before help and viewed products.
-- Interaction: operations carousel scrolls by mouse drag, touch/trackpad overflow and keyboard arrows; level and FAQ accordions open and close siblings; progress updates ARIA state and loops.
-- Runtime: no browser console errors.
+- Figma node uses mobile container padding 20px, title 24/28, gender tabs, two 28px dropdowns with 16px gap, preview area 254px high.
+- Implementation at 320px: product card is 166 × 240 at left 20px; mannequin container is 194 × 254 pinned right; mannequin image is clipped and shifted right by 24.62% like Figma.
+- Implementation at 390px: dropdowns expand to 160px each with the same 16px gap; mannequin remains pinned right and does not visually collide with the product card.
+
+## Focused region comparison evidence
+
+- Dropdowns: two enhanced controls are rendered over the original native selects; category dropdown opens as a white list, closes siblings, uses sprite icon `/images/icons/sprite.svg#icon-rec-button-arrow-down`.
+- Mannequin: base mobile model area follows Figma dimensions; source image is clipped inside the right-side frame instead of shrinking to `calc(100% - 140px)`.
+- Runtime: no browser console errors during open/reload/dropdown checks.
 - Build: `npm run build` passed.
 
-## Patches made
+## Findings
 
-- Converted the operations row into an accessible horizontal carousel while preserving the intentionally clipped final card in its initial state.
-- Replaced operation amount icons with the matching `icon-loyalty-cashback` sprite symbol.
+- No actionable P0/P1/P2 findings remain for the requested mobile fixes.
 
-## Notes
+## Patches made since previous QA pass
 
-- Desktop implementation matches the supplied Figma frames. Tablet and mobile layouts are intentionally outside this iteration.
+- Replaced mobile native-looking selects in the build-kit filters with accessible custom dropdown controls synced to the existing native `<select>` values.
+- Used the existing sprite arrow icon for the dropdown affordance.
+- Corrected the mobile mannequin container to match Figma: fixed 194px right-pinned clipped frame with image shifted inside it.
+- Added explicit focus styling to avoid browser-default yellow focus ring.
+
+## Follow-up polish
+
+- If the client later asks for a fully custom selected/hover state inside these dropdown lists, align it with the category filter popup states globally.

@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH ?>/css/style.css">
     <script src="<?= SITE_TEMPLATE_PATH ?>/js/main.js" defer></script>
   -->
-  <script type="module" crossorigin src="/fintrail/assets/main-CQ59Pd-E.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-dNZLeL3E.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-rp5TtMXs.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DPdDcNmp.css">
 </head>
 <body>
 
@@ -278,7 +278,7 @@
         <a href="/fintrail/technology/">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
         <a href="/fintrail/sizes/">Таблицы размеров</a>
-        <a href="/fintrail/loyalty/">Программа лояльности</a>
+        <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </aside>
   </div>
@@ -364,7 +364,7 @@
         <a href="/fintrail/technology/">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
         <a href="/fintrail/sizes/">Таблицы размеров</a>
-        <a href="/fintrail/loyalty/">Программа лояльности</a>
+        <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </div>
 
@@ -504,6 +504,7 @@
         <a href="/fintrail/personal/" class="hero__tool" aria-label="Профиль">
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg>
         </a>
+        <a href="/fintrail/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></a>
         <a href="/fintrail/wishlist/" class="hero__tool" aria-label="Избранное">
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg>
         </a>
@@ -1087,7 +1088,8 @@
       Правая колонка — состояние выбранных товаров.
     -->
     <section class="build-kit-desktop" aria-labelledby="build-kit-desktop-title">
-      <h2 class="build-kit-desktop__title" id="build-kit-desktop-title">Собрать комплект</h2>
+      <div class="build-kit-desktop__info">
+      <h2 class="build-kit-desktop__title" id="build-kit-desktop-title">Собрать<br>комплект</h2>
 
       <div class="build-kit-desktop__gender" role="tablist" aria-label="Пол">
         <button class="build-kit-desktop__gender-btn js-kit-gender is-active" type="button" role="tab" aria-selected="true" data-model="/images/content/build-kit/model.png">Мужчинам</button>
@@ -1108,6 +1110,26 @@
           <button class="build-kit-desktop__filter js-kit-filter" type="button" data-kit-category="pants">Штаны</button>
           <button class="build-kit-desktop__filter js-kit-filter" type="button" data-kit-category="shoes">Обувь</button>
         </div>
+
+        <label class="build-kit-desktop__filter-select-wrap">
+          <select class="build-kit-desktop__filter-select js-kit-activity-select" aria-label="Активность">
+            <option value="fishing">Рыбалка</option>
+            <option value="quad">Квадро</option>
+            <option value="snowmobile">Снегоходы</option>
+            <option value="hiking" selected>Хайкинг</option>
+            <option value="ski">Лыжи</option>
+          </select>
+          <svg class="build-kit-desktop__filter-select-icon" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+        </label>
+        <label class="build-kit-desktop__filter-select-wrap">
+          <select class="build-kit-desktop__filter-select js-kit-category-select" aria-label="Категория">
+            <option value="hat">Шапка</option>
+            <option value="jacket" selected>Куртка</option>
+            <option value="pants">Штаны</option>
+            <option value="shoes">Обувь</option>
+          </select>
+          <svg class="build-kit-desktop__filter-select-icon" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+        </label>
       </div>
 
       <div class="build-kit-desktop__example">
@@ -1126,7 +1148,7 @@
             <span class="build-kit-desktop__product-bottom">
               <span class="build-kit-desktop__product-price">37 999 ₽</span>
               <button class="build-kit-desktop__product-cart" type="button" data-kit-add-selected aria-label="Добавить куртку в комплект">
-                <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg>
+                <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-card-cart"></use></svg>
               </button>
             </span>
           </span>
@@ -1188,6 +1210,7 @@
           </button>
         </div>
       </div>
+      </div><!-- /.build-kit-desktop__info -->
 
       <div class="build-kit-desktop__additional">
         <div class="build-kit-desktop__kit-meta">
@@ -1204,7 +1227,9 @@
             <div class="build-kit-desktop__kit-content">
               <div class="build-kit-desktop__kit-top">
                 <h3 class="build-kit-desktop__kit-name">Шапка FINNTRAIL Daily 9727 Graphitegrey</h3>
-                <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
+                <button class="build-kit-desktop__remove" type="button" aria-label="Удалить">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-kit-remove"></use></svg>
+                </button>
               </div>
               <div class="build-kit-desktop__kit-bottom">
                 <span class="build-kit-desktop__kit-price">1 999 ₽</span>
@@ -1221,7 +1246,9 @@
             <div class="build-kit-desktop__kit-content">
               <div class="build-kit-desktop__kit-top">
                 <h3 class="build-kit-desktop__kit-name">Брюки FINNTRAIL Tactic 4609 Khaki</h3>
-                <button class="build-kit-desktop__remove" type="button" aria-label="Удалить"></button>
+                <button class="build-kit-desktop__remove" type="button" aria-label="Удалить">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-kit-remove"></use></svg>
+                </button>
               </div>
               <div class="build-kit-desktop__kit-bottom">
                 <span class="build-kit-desktop__kit-price">9 499 ₽</span>

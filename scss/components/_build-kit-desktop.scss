@@ -6,9 +6,9 @@
   flex-direction: column;
   gap: 0;
   margin-top: 64px;
-  padding: 40px 20px;
+  padding: 20px;
   background: $color-surface;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .build-kit-desktop__title {
@@ -64,16 +64,175 @@
 
 .build-kit-desktop__filters {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-top: 32px;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 .build-kit-desktop__filter-row {
+  display: none;
+}
+
+.build-kit-desktop__filter-select-wrap {
+  position: relative;
   display: flex;
+  flex: 1 0 0;
   align-items: center;
-  flex-wrap: wrap; // на 320px кнопки фильтров переносятся на следующую строку
-  gap: 12px;
+  height: 28px;
+  min-width: 0;
+  border-radius: 4px;
+  background: $color-white;
+  overflow: visible;
+  z-index: 4;
+}
+
+.build-kit-desktop__filter-select {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  padding: 4px 24px 4px 8px;
+  border: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: 0;
+}
+
+.build-kit-desktop__filter-select-wrap.is-enhanced .build-kit-desktop__filter-select {
+  position: absolute;
+  inset: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.build-kit-desktop__filter-select-icon {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__filter-select-wrap.is-enhanced .build-kit-desktop__filter-select-icon {
+  display: none;
+}
+
+.build-kit-desktop__filter-select-button {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 28px;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 4px 4px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.build-kit-desktop__filter-select-button:focus-visible {
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+.build-kit-desktop__filter-select-button-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.build-kit-desktop__filter-select-button-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  transition: transform 0.18s ease;
+}
+
+.build-kit-desktop__filter-select-wrap.is-open .build-kit-desktop__filter-select-button-icon {
+  transform: rotate(180deg);
+}
+.build-kit-desktop__filter-select-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: none;
+  padding: 4px;
+  border-radius: 8px;
+  background: $color-white;
+  box-shadow:
+    0 0 4px rgba(95, 105, 131, 0.07),
+    0 5px 4px rgba(95, 105, 131, 0.05),
+    0 4px 15px rgba(95, 105, 131, 0.12);
+}
+
+.build-kit-desktop__filter-select-wrap.is-open {
+  z-index: 35;
+}
+
+.build-kit-desktop__filter-select-wrap.is-open .build-kit-desktop__filter-select-list {
+  display: block;
+}
+
+.build-kit-desktop__filter-select-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.build-kit-desktop__filter-select-option:active {
+  background: $color-surface;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__filter-select-option:hover,
+  .build-kit-desktop__filter-select-option:focus-visible {
+    background: $color-surface;
+  }
 }
 
 .build-kit-desktop__filter {
@@ -91,31 +250,31 @@
 
 .build-kit-desktop__example {
   position: relative;
-  height: 350px;
-  margin-top: 16px;
+  height: 254px;
+  margin-top: 12px;
 }
 
 .build-kit-desktop__model {
   position: absolute;
-  top: -2px;
-  right: -78px;
-  width: 268px;
-  height: 350px;
+  top: 0;
+  right: 0;
+  width: 194px;
+  height: 254px;
+  overflow: hidden;
 }
 
 .build-kit-desktop__model-img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 268px;
-  height: 100.19%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
+  transform: translateX(24.62%);
+  transform-origin: left top;
 }
 
 .build-kit-desktop__product-card {
   position: absolute;
-  top: 63px;
+  top: 7px;
   left: 0;
   z-index: 2;
   display: flex;
@@ -267,7 +426,7 @@
 }
 
 .build-kit-desktop__grid {
-  margin-top: 16px;
+  margin-top: 12px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -286,9 +445,9 @@
 
 .build-kit-desktop__tile {
   display: flex;
-  width: 77.75px;
-  height: 77.75px;
-  flex: 0 0 77.75px;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
   align-items: center;
   justify-content: center;
   padding: 12px;
@@ -308,8 +467,8 @@
 }
 
 .build-kit-desktop__tile img {
-  width: 53.75px;
-  height: 53.75px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
@@ -329,7 +488,7 @@
   height: 52px;
   align-items: center;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 32px;
   padding: 8px;
   border-bottom: 1px solid $color-primary-black;
   border-radius: 2px;
@@ -373,9 +532,11 @@
 
 .build-kit-desktop__kit-list {
   display: none;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 4px;
-  margin-top: 0;
+  margin-top: 8px;
+  height: auto;
 }
 
 .build-kit-desktop.is-kit-open .build-kit-desktop__kit-list {
@@ -385,10 +546,11 @@
 .build-kit-desktop__kit-item {
   position: relative;
   display: flex;
-  width: 100%;
-  min-height: 82px;
-  align-items: center;
-  gap: 24px;
+  flex: 1 0 calc(50% - 2px);
+  min-height: unset;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
   padding: 12px;
   border-radius: 8px;
   background: $color-white;
@@ -396,6 +558,7 @@
 
 .build-kit-desktop__kit-item--empty {
   justify-content: center;
+  align-items: center;
   min-height: 82px;
   padding: 20px 12px;
   border: 1px dashed #ccc;
@@ -414,8 +577,8 @@
 }
 
 .build-kit-desktop__kit-img {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -446,32 +609,37 @@
 }
 
 .build-kit-desktop__remove {
-  position: relative;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
   width: 16px;
   height: 16px;
   flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   border: 0;
   background: transparent;
+  color: $color-muted;
+  cursor: pointer;
+  transition: color 0.18s ease;
 }
 
-.build-kit-desktop__remove::before,
-.build-kit-desktop__remove::after {
-  content: '';
-  position: absolute;
-  top: 7px;
-  left: 3px;
-  width: 10px;
-  height: 1.5px;
-  background: $color-muted;
+.build-kit-desktop__remove svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+.build-kit-desktop__remove:focus-visible {
+  color: $color-primary-black;
+  outline: none;
 }
 
-.build-kit-desktop__remove::before {
-  transform: rotate(45deg);
-}
-
-.build-kit-desktop__remove::after {
-  transform: rotate(-45deg);
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__remove:hover {
+    color: $color-primary-black;
+  }
 }
 
 .build-kit-desktop__kit-bottom {
@@ -588,28 +756,46 @@
   height: 16px;
 }
 
+.build-kit-desktop__submit.is-in-cart {
+  background: $color-secondary-accent;
+  color: $color-white;
+  font-family: $font-display;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+}
+
 .build-kit-desktop__additional {
   display: contents;
 }
 
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  // ─── секция: flex-col, нет grid ───
   .build-kit-desktop {
+    position: relative;
     display: flex;
-    gap: 0;
+    flex-direction: column;
     margin-top: $section-gap-xl;
-    padding: 0 $spacing-page-desktop;
+    padding: 40px $spacing-page-desktop;
     background: $color-surface;
-    overflow: hidden;
+    overflow: visible;
+  }
+
+  // Info group — relative контейнер 452px, все дочерние абсолютные
+  .build-kit-desktop__info {
+    position: relative;
+    height: 452px;
+    overflow: visible;
+    margin-bottom: 24px;
   }
 
   .build-kit-desktop__title {
-    font-size: $text-heading-h3-size;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 28px;
   }
 
   .build-kit-desktop__gender {
     gap: 17px;
-    margin-top: 48px;
+    margin-top: 20px;
   }
 
   .build-kit-desktop__gender-btn {
@@ -619,97 +805,110 @@
   }
 
   .build-kit-desktop__filters {
-    gap: 24px;
-    width: 362px;
-    margin-top: 36px;
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    align-items: flex-start;
+    width: auto;
+    margin-top: 48px;
   }
 
   .build-kit-desktop__filter-row {
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .build-kit-desktop__filter-select-wrap {
+    display: none;
   }
 
   .build-kit-desktop__filter {
-    font-size: $text-body-b1-size;
-    line-height: $text-body-b1-line;
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
   }
 
+  // Манекен + карточка — абсолютно от __info
   .build-kit-desktop__example {
-    height: 474px;
-    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 279px;
+    height: 452px;
+    margin-top: 0; // сброс базового margin-top: 16px
+    overflow: visible;
   }
 
   .build-kit-desktop__model {
+    position: absolute;
+    right: 0;
     top: 0;
-    right: calc(50% - 228px);
-    width: 364px;
-    height: 474px;
+    width: 279px;
+    height: 362px;
   }
 
   .build-kit-desktop__model-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.02);
-    transform-origin: center top;
+    object-position: top;
   }
 
+  // Карточка: top=49px, left=-122px от __example (= 327px от контейнера при ширине 728px)
+  // Вычисление: карточка top = calc(50%-68px)+translateY(-50%) от 474px = 49px
+  //             карточка left = 327px от контейнера, __example.left = containerW-279
+  //             left относительно __example = 327-(containerW-279) = -122px при 728px контейнере
   .build-kit-desktop__product-card {
-    top: 50%;
-    left: calc(50% - 228px);
+    position: absolute;
+    top: 49px;
+    left: -122px;
+    z-index: 2;
     width: 166px;
     height: 240px;
-    transform: translateY(-50%);
+    transform: none;
+    transition: none;
   }
 
-  .build-kit-desktop[data-kit-active-slot='hat'] .build-kit-desktop__product-card {
-    top: 0;
-    transform: translateY(0);
-  }
-
-  .build-kit-desktop[data-kit-active-slot='jacket'] .build-kit-desktop__product-card {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .build-kit-desktop[data-kit-active-slot='pants'] .build-kit-desktop__product-card {
-    top: 210px;
-    transform: translateY(0);
-  }
-
+  // Все слоты — одинаковая позиция, карточка не двигается
+  .build-kit-desktop[data-kit-active-slot='hat'] .build-kit-desktop__product-card,
+  .build-kit-desktop[data-kit-active-slot='jacket'] .build-kit-desktop__product-card,
+  .build-kit-desktop[data-kit-active-slot='pants'] .build-kit-desktop__product-card,
   .build-kit-desktop[data-kit-active-slot='shoes'] .build-kit-desktop__product-card {
-    top: 218px;
-    transform: translateY(0);
+    top: 49px;
   }
 
+  // Коннектор: линия + точки
+  // left=120px (2px левее), top=74px (5px выше чем было)
+  // Правый dot: left + 122.333 = 242.333px от card → кольцо на left:242px
   .build-kit-desktop__product-card::before {
     content: '';
     position: absolute;
     display: block;
-    top: 79px;
+    top: 74px;
     left: 120px;
-    width: 126px;
+    width: 125px;
     height: 6px;
     background:
       radial-gradient(circle at 2.667px 2.667px, #ff4117 0 2.667px, transparent 2.8px),
-      radial-gradient(circle at 122.667px 2.667px, $color-white 0 2.667px, transparent 2.8px),
+      radial-gradient(circle at 122.333px 2.667px, $color-white 0 2.667px, transparent 2.8px),
       linear-gradient(90deg, #ff4117 0, $color-white 100%);
     background-repeat: no-repeat;
-    background-size: 126px 6px, 126px 6px, 120px 1px;
+    background-size: 125px 6px, 125px 6px, 119.666px 1px;
     background-position: 0 0, 0 0, 2.667px 2.167px;
     pointer-events: none;
   }
 
+  // Кольцо 16px: top-left (234, 69) → center (242, 77) = целые пиксели
   .build-kit-desktop__product-card::after {
     content: '';
     position: absolute;
     display: block;
-    top: 81.667px;
-    left: 242.667px;
+    top: 69px;
+    left: 234px;
     width: 16px;
     height: 16px;
     border: 1px solid rgba($color-white, 0.42);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
     pointer-events: none;
   }
 
@@ -717,29 +916,36 @@
     line-height: $text-body-b2-line;
   }
 
+  // Карусель: прижата к низу __info, горизонтальный скролл
   .build-kit-desktop__grid {
-    margin-top: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
     overflow-x: auto;
     overflow-y: hidden;
+    scrollbar-width: none;
+    margin-top: 0;
   }
 
   .build-kit-desktop__tiles {
     display: flex;
     width: max-content;
     gap: 8px;
-    transform: none;
   }
 
   .build-kit-desktop__tile {
-    width: 114px;
-    height: 114px;
-    flex: 0 0 114px;
+    width: 80px;
+    height: 80px;
+    flex: 0 0 80px;
     padding: 12px;
+    border-radius: 8px;
   }
 
   .build-kit-desktop__tile img {
-    width: 90px;
-    height: 90px;
+    width: 56px;
+    height: 56px;
   }
 
   .build-kit-desktop__grid-controls,
@@ -747,51 +953,92 @@
     display: none;
   }
 
+  // Kit list: flex-row, gap 4px, h 168px
   .build-kit-desktop__kit-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 4px;
-    margin-top: 32px;
+    height: 168px;
+    margin-top: 0;
   }
 
   .build-kit-desktop__kit-item {
-    width: 100%;
-    height: 82px;
-    min-height: 82px;
+    flex: 1 0 0;
+    min-width: 0;
+    width: auto;
+    height: 100%;
+    min-height: unset;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 12px;
   }
 
-  .build-kit-desktop__kit-item:nth-child(2) {
-    order: 3;
+  .build-kit-desktop__kit-img {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
   }
 
-  .build-kit-desktop__kit-item:nth-child(3) {
-    order: 2;
-  }
-
-  .build-kit-desktop__kit-item--empty {
-    order: 4;
+  .build-kit-desktop__remove {
+    position: absolute;
+    top: 12px;
+    right: 12px;
   }
 
   .build-kit-desktop__kit-content {
-    width: auto;
+    width: 100%;
+    flex: 1 1 0;
+    min-height: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0;
   }
 
   .build-kit-desktop__kit-name {
+    font-size: $text-body-b2-size;
     line-height: 1.2;
+    max-width: none;
   }
 
-  .build-kit-desktop__kit-price,
+  .build-kit-desktop__kit-item--empty {
+    flex: 1 0 0;
+    width: auto;
+    height: 100%;
+    min-height: unset;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 12px;
+    gap: 0;
+  }
+
+  .build-kit-desktop__kit-bottom {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .build-kit-desktop__kit-price {
+    flex: 0 0 auto;
+    height: auto;
+    padding: 0;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-extrabold;
+    white-space: nowrap;
+  }
+
   .build-kit-desktop__size {
+    flex: 1 0 0;
     height: 24px;
   }
 
-  .build-kit-desktop__size {
-    flex: 0 0 119px;
-  }
-
+  // Summary: gap 32px от kit-list
   .build-kit-desktop__summary {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
     gap: 26px;
     margin-top: 32px;
   }
@@ -800,25 +1047,27 @@
     flex: 1 1 0;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 24px;
+    justify-content: space-between;
+    gap: 4px;
   }
 
   .build-kit-desktop__total-label {
     font-size: $text-body-b1-size;
     line-height: $text-body-b1-line;
+    color: rgba($color-primary-black, 0.4);
   }
 
   .build-kit-desktop__total-price {
-    font-size: $text-heading-h3-size;
+    font-size: 24px;
     line-height: 1.2;
   }
 
   .build-kit-desktop__submit {
     flex: 1 1 0;
     width: auto;
-    height: 52px;
-    align-self: flex-end;
+    height: auto;
+    min-height: 52px;
+    align-self: stretch;
     font-family: $font-display;
     font-size: $text-body-b1-size;
     font-weight: $font-weight-extrabold;
@@ -827,6 +1076,10 @@
 }
 
 @media (min-width: $bp-lg) {
+  .build-kit-desktop__info {
+    display: contents;
+  }
+
   .build-kit-desktop {
     position: relative;
     display: grid;
@@ -921,6 +1174,10 @@
     gap: 17px;
   }
 
+  .build-kit-desktop__filter-select-wrap {
+    display: none;
+  }
+
   .build-kit-desktop__filter {
     font-family: $font-mono;
     font-size: $text-body-b1-size;
@@ -997,7 +1254,16 @@
   .build-kit-desktop__tiles {
     display: flex;
     width: 340px;
-    transition: transform 0.35s ease;
+    will-change: transform;
+    transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .build-kit-desktop__tiles.is-initializing {
+    transition: none;
+  }
+
+  .build-kit-desktop__tiles.is-animating {
+    pointer-events: none;
   }
 
   .build-kit-desktop__page {
@@ -1024,6 +1290,10 @@
 
   .build-kit-desktop__tile[hidden] {
     display: none;
+  }
+
+  .build-kit-desktop__tile--clone {
+    pointer-events: none;
   }
 
   .build-kit-desktop__tile:hover,
@@ -1163,6 +1433,12 @@
       background: $color-button-primary-hover;
       color: $color-white;
     }
+
+    .build-kit-desktop__submit.is-in-cart:hover,
+    .build-kit-desktop__submit.is-in-cart:focus-visible {
+      background: $color-secondary-accent;
+      color: $color-white;
+    }
   }
 
   .build-kit-desktop__product-card::before {
@@ -1298,6 +1574,7 @@
     display: flex;
     width: 340px;
     flex-direction: column;
+    flex-wrap: nowrap;
     gap: 4px;
     margin-top: 25px;
   }
@@ -1305,6 +1582,9 @@
   .build-kit-desktop__kit-item {
     position: relative;
     display: flex;
+    flex: 0 0 82px;
+    min-height: 82px;
+    flex-direction: row;
     width: 340px;
     height: 82px;
     align-items: center;
@@ -1367,33 +1647,27 @@
   }
 
   .build-kit-desktop__remove {
-    position: relative;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     border: 0;
     background: transparent;
+    color: $color-muted;
     cursor: pointer;
+    transition: color 0.18s ease;
   }
 
-  .build-kit-desktop__remove::before,
-  .build-kit-desktop__remove::after {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 3px;
-    width: 10px;
-    height: 1.5px;
-    background: $color-muted;
-  }
-
-  .build-kit-desktop__remove::before {
-    transform: rotate(45deg);
-  }
-
-  .build-kit-desktop__remove::after {
-    transform: rotate(-45deg);
+  .build-kit-desktop__remove svg {
+    display: block;
+    width: 16px;
+    height: 16px;
   }
 
   .build-kit-desktop__kit-bottom {
@@ -1526,6 +1800,14 @@
   .build-kit-desktop__submit svg {
     width: 16px;
     height: 16px;
+  }
+
+  .build-kit-desktop__submit.is-in-cart {
+    background: $color-secondary-accent;
+    color: $color-white;
+    font-family: $font-display;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
   }
 
 }

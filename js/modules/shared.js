@@ -87,14 +87,30 @@ export function init() {
   document.addEventListener('click', e => {
     const btn = e.target.closest('.js-add-to-cart');
     if (!btn) return;
-    // Если кнопка внутри <a> — блокируем переход
     if (btn.closest('a')) {
       e.preventDefault();
       e.stopPropagation();
     }
+    const useEl = btn.querySelector('use');
+    if (useEl) {
+      const href = useEl.getAttribute('href');
+      useEl.setAttribute('href', href.replace(/#[^#]*$/, '#icon-checkmark'));
+    }
+    btn.classList.add('is-in-cart');
     const newCount = getCartCount() + 1;
     setCartCount(newCount);
     updateCartBadges(newCount);
+  });
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.js-wishlist');
+    if (!btn) return;
+    if (btn.closest('a')) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    btn.classList.toggle('is-saved');
+    btn.setAttribute('aria-label', btn.classList.contains('is-saved') ? 'Убрать из избранного' : 'В избранное');
   });
 
   // ─── Цветовые точки в карточках товаров ─────────────────────────────────────
