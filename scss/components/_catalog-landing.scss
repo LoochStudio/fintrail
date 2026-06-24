@@ -253,7 +253,7 @@
 }
 
 .catalog-mini-product__bookmark.is-saved {
-  color: $color-primary-black;
+  color: $color-secondary-accent;
 }
 
 .catalog-mini-product__body {
@@ -342,8 +342,8 @@
     color: $color-primary-gray;
   }
 
-  .catalog-mini-product__bookmark:hover,
-  .catalog-mini-product__bookmark:focus-visible {
+  .catalog-mini-product__bookmark:not(.is-saved):hover,
+  .catalog-mini-product__bookmark:not(.is-saved):focus-visible {
     color: $color-primary-black;
   }
 

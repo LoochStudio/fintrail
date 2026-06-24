@@ -92,12 +92,20 @@ export function init() {
     if (e.key === 'Escape') closeAll();
   });
 
+  // ── Синхронизация is-active на триггере ──────────────────────────────────
+
+  const syncTriggerActive = (trigger, popup) => {
+    const hasChecked = popup.querySelectorAll('input[type="checkbox"]:checked').length > 0;
+    trigger.classList.toggle('is-active', hasChecked);
+  };
+
   // ── Кнопки «Применить» ───────────────────────────────────────────────────
 
   entries.forEach(({ trigger, popup }) => {
     const applyBtn = popup.querySelector('.catalog-filter-popup__apply');
     if (!applyBtn) return;
     applyBtn.addEventListener('click', () => {
+      syncTriggerActive(trigger, popup);
       close({ trigger, popup });
     });
   });
@@ -105,18 +113,19 @@ export function init() {
   // ── Чекбоксы ─────────────────────────────────────────────────────────────
   // Переключение визуального состояния .is-checked при клике на label
 
-  document.querySelectorAll('.catalog-filter-popup__label').forEach(label => {
-    label.addEventListener('click', () => {
-      const checkbox = label.querySelector('.catalog-filter-popup__checkbox');
-      const input = label.querySelector('input[type="checkbox"]');
-      if (!checkbox || !input) return;
+  entries.forEach(({ trigger, popup }) => {
+    popup.querySelectorAll('.catalog-filter-popup__label').forEach(label => {
+      label.addEventListener('click', () => {
+        const checkbox = label.querySelector('.catalog-filter-popup__checkbox');
+        const input = label.querySelector('input[type="checkbox"]');
+        if (!checkbox || !input) return;
 
-      // Браузер сам переключает input.checked до события click на label,
-      // поэтому здесь читаем уже актуальное состояние
-      requestAnimationFrame(() => {
-        const checked = input.checked;
-        checkbox.classList.toggle('is-checked', checked);
-        checkbox.setAttribute('aria-checked', String(checked));
+        requestAnimationFrame(() => {
+          const checked = input.checked;
+          checkbox.classList.toggle('is-checked', checked);
+          checkbox.setAttribute('aria-checked', String(checked));
+          syncTriggerActive(trigger, popup);
+        });
       });
     });
   });

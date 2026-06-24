@@ -161,16 +161,29 @@ function initPagination(pagination, grid) {
     const perPage = getCardsPerPage();
     const totalPages = Math.ceil(allCards.length / perPage);
     if (loadedUpTo >= totalPages) return;
+    if (loadMoreBtn?.classList.contains('is-loading')) return;
 
-    loadedUpTo += 1;
-    const end = loadedUpTo * perPage;
+    if (loadMoreBtn) {
+      loadMoreBtn.classList.add('is-loading');
+      loadMoreBtn.disabled = true;
+    }
 
-    allCards.forEach((card, i) => {
-      if (i < end) card.style.display = '';
-    });
+    setTimeout(() => {
+      loadedUpTo += 1;
+      const end = loadedUpTo * perPage;
 
-    updatePaginationState(loadedUpTo, totalPages);
-    updateLoadMore(loadedUpTo, totalPages);
+      allCards.forEach((card, i) => {
+        if (i < end) card.style.display = '';
+      });
+
+      updatePaginationState(loadedUpTo, totalPages);
+      updateLoadMore(loadedUpTo, totalPages);
+
+      if (loadMoreBtn) {
+        loadMoreBtn.classList.remove('is-loading');
+        loadMoreBtn.disabled = false;
+      }
+    }, 420);
   };
 
   const updateLoadMore = (page, totalPages) => {

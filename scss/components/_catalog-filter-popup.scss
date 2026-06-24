@@ -275,6 +275,7 @@
 .catalog-filter-popup__scroll-list {
   max-height: 336px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   scrollbar-width: none;
   // Отступ справа, чтобы текст не наезжал на скроллбар
   padding-right: 14px;

@@ -2526,10 +2526,14 @@
     &:active {
       color: $color-primary-black;
     }
+
+    &.is-saved {
+      color: $color-secondary-accent;
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .product-mobile-kit__bookmark:hover {
+    .product-mobile-kit__bookmark:not(.is-saved):hover {
       color: $color-primary-black;
     }
   }
@@ -2607,6 +2611,11 @@
     svg {
       width: 16px;
       height: 16px;
+    }
+
+    &.is-in-cart {
+      pointer-events: none;
+      color: $color-primary-black;
     }
   }
 
@@ -3468,12 +3477,12 @@
 }
 
 .product-similar__bookmark.is-saved {
-  color: $color-primary-black;
+  color: $color-secondary-accent;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .product-similar__bookmark:hover,
-  .product-similar__bookmark:focus-visible {
+  .product-similar__bookmark:not(.is-saved):hover,
+  .product-similar__bookmark:not(.is-saved):focus-visible {
     color: $color-primary-black;
   }
 }
@@ -3544,9 +3553,14 @@
     height: 16px;
   }
 
+  &.is-in-cart {
+    pointer-events: none;
+    color: $color-primary-black;
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    &:hover,
-    &:focus-visible {
+    &:not(.is-in-cart):hover,
+    &:not(.is-in-cart):focus-visible {
       color: $color-primary-black;
     }
   }
@@ -4007,11 +4021,10 @@
 // mobile: горизонтальный scroll-контейнер с двумя карточками 300px
 .product-highlight-row {
   display: contents;
-}
 
-// Десктопный отступ Sorona (ранее был inline style="padding-bottom:79px")
-.product-highlight--spaced {
-  padding-bottom: 79px;
+  .product-highlight:last-child {
+    margin-bottom: 79px;
+  }
 }
 
 // ── Промо-блок технологии (фото + текст) ──────────────────────────────────
@@ -4657,8 +4670,12 @@
   }
 
   &--textarea {
-    height: 80px;
+    height: 96px;
     align-items: flex-start;
+  }
+
+  &--comment {
+    height: 80px;
   }
 }
 
@@ -4820,7 +4837,7 @@
   display: flex;
   gap: 60px;
   align-items: flex-start;
-  padding: 0 0 80px; // top — от Sorona section (padding-bottom: 79px)
+  padding: 0 0 80px;
   color: $color-primary-black;
 }
 
@@ -4923,18 +4940,22 @@
   color: $color-primary-black;
 }
 
-// Скрытые строки — пока дизайн expand не нарисован, показываем всё как в макете.
-// Логика JS сохранена: когда дизайн будет готов, достаточно раскомментировать
-// display: none ниже.
+// Скрытые строки — по умолчанию свёрнуты, раскрываются с анимацией
 .product-specs__extra {
-  display: contents; // прозрачный контейнер — дети встают в поток таблицы
-
-  // .product-specs__divider,
-  // .product-specs__row { display: none; }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
 }
 
-// Раскрытое состояние (зарезервировано для будущего дизайна)
+// Раскрытое состояние
 .product-specs__table.is-expanded {
+  .product-specs__extra {
+    max-height: 600px;
+  }
+
   .product-specs__expand-arrow {
     transform: rotate(180deg);
   }
@@ -6214,13 +6235,7 @@
     flex-direction: column;     // фото сверху, контент снизу
     height: auto;
     margin: 0;                  // сбрасываем desktop margin: 0 -20px
-    padding-bottom: 0;          // сбрасываем .product-highlight--spaced
     scroll-snap-align: start;
-  }
-
-  // --spaced на мобиле не нужен — убираем
-  .product-highlight--spaced {
-    padding-bottom: 0;
   }
 
   // Фото: всегда сверху (order: -1 перебрасывает TORAY, у Sorona фото и так первое)

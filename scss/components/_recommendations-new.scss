@@ -165,7 +165,7 @@
     display: inline-flex;
     align-items: center;
     min-height: 12px;
-    padding: 8px;
+    padding: 0 8px;
     font-family: $font-mono;
     font-size: 10px;
     font-weight: $font-weight-semibold;
@@ -500,8 +500,7 @@
   .recommendation-card__badge {
     top: 24px;
     left: 24px;
-    min-height: 24px;
-    padding: 8px;
+    padding: 0 8px;
     font-size: $text-body-b2-size;
     line-height: $text-body-b2-line;
     color: $color-muted;
@@ -692,11 +691,10 @@
   }
 
   .recommendation-card__badge {
-    top: 32px;
+    top: 24px;
     left: 32px;
-    min-height: 24px;
     font-size: $text-body-b2-size;
-    line-height: 12px;
+    line-height: $text-body-b2-line;
     color: $color-muted;
   }
 

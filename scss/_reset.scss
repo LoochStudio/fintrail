@@ -10,6 +10,7 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden; // html — реальный scroll-контейнер на мобайле; без этого overflow-x на body не блокирует горизонтальный скролл
+  scroll-behavior: smooth;
 }
 
 body {

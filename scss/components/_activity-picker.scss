@@ -172,8 +172,23 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: $color-primary-gray;
+  cursor: pointer;
   transition: color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.activity-product-card__cart.is-in-cart {
+  pointer-events: none;
+  color: $color-primary-black;
 }
 
 .activity-product-card__bookmark {
@@ -201,7 +216,7 @@
 }
 
 .activity-product-card__bookmark.is-saved {
-  color: $color-primary-black;
+  color: $color-secondary-accent;
 }
 
 .activity-product-card__preorder-btn {
@@ -262,13 +277,13 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .activity-product-card__cart:hover,
-  .activity-product-card__cart:focus-visible {
+  .activity-product-card__cart:not(.is-in-cart):hover,
+  .activity-product-card__cart:not(.is-in-cart):focus-visible {
     color: $color-primary-black;
   }
 
-  .activity-product-card__bookmark:hover,
-  .activity-product-card__bookmark:focus-visible {
+  .activity-product-card__bookmark:not(.is-saved):hover,
+  .activity-product-card__bookmark:not(.is-saved):focus-visible {
     color: $color-primary-black;
   }
 
@@ -617,8 +632,18 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
     color: $color-primary-gray;
+    cursor: pointer;
     transition: color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
   }
 
   .activity-picker__image-img {

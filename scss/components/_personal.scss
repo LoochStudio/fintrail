@@ -1385,8 +1385,8 @@ $order-success-color: #338532;
     display: block;
   }
 
-  &:hover,
-  &:focus-visible {
+  &:not(.is-saved):hover,
+  &:not(.is-saved):focus-visible {
     color: $color-primary-black;
   }
 }
@@ -1395,13 +1395,8 @@ $order-success-color: #338532;
   top: 12px;
   right: 12px;
 
-  &.is-active {
+  &.is-saved {
     color: $color-secondary-accent;
-  }
-
-  &.is-active:hover,
-  &.is-active:focus-visible {
-    color: $color-primary-black;
   }
 }
 

@@ -1,3 +1,5 @@
+import { spriteHref } from './utils.js';
+
 export function init() {
   // ─── uk-field: клик по обёртке фокусирует инпут ─────────────────────────────
   document.addEventListener('click', e => {
@@ -93,10 +95,11 @@ export function init() {
     }
     const useEl = btn.querySelector('use');
     if (useEl) {
-      const href = useEl.getAttribute('href');
-      useEl.setAttribute('href', href.replace(/#[^#]*$/, '#icon-checkmark'));
+      useEl.setAttribute('href', spriteHref('icon-kit-check'));
     }
     btn.classList.add('is-in-cart');
+    const labelSpan = btn.querySelector('.recommendation-card__cart-label span');
+    if (labelSpan) labelSpan.textContent = 'В корзине';
     const newCount = getCartCount() + 1;
     setCartCount(newCount);
     updateCartBadges(newCount);

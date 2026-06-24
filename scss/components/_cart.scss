@@ -2553,6 +2553,10 @@
 
 .cart-address-modal__row--details {
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+
+  &[hidden] {
+    display: none;
+  }
 }
 
 .cart-address-modal__select-wrap {

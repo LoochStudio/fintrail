@@ -402,6 +402,14 @@ export function init() {
       syncClear();
     });
 
+    const privateHouseCheckbox = modal.querySelector('[name="private-house"]');
+    const detailsRow = modal.querySelector('[data-cart-address-details]');
+    if (privateHouseCheckbox && detailsRow) {
+      privateHouseCheckbox.addEventListener('change', () => {
+        detailsRow.hidden = privateHouseCheckbox.checked;
+      });
+    }
+
     function openModal(event) {
       event?.preventDefault();
       window.clearTimeout(closeTimer);

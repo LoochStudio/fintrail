@@ -410,7 +410,7 @@
 }
 
 .build-kit-desktop__product-bookmark.is-saved {
-  color: $color-primary-black;
+  color: $color-secondary-accent;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -419,8 +419,8 @@
     color: $color-primary-black;
   }
 
-  .build-kit-desktop__product-bookmark:hover,
-  .build-kit-desktop__product-bookmark:focus-visible {
+  .build-kit-desktop__product-bookmark:not(.is-saved):hover,
+  .build-kit-desktop__product-bookmark:not(.is-saved):focus-visible {
     color: $color-primary-black;
   }
 }
@@ -845,13 +845,16 @@
     top: 0;
     width: 279px;
     height: 362px;
+    overflow: visible;
   }
 
   .build-kit-desktop__model-img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
+    transform: none;
   }
 
   // Карточка: top=49px, left=-122px от __example (= 327px от контейнера при ширине 728px)
