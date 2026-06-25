@@ -1,0 +1,193 @@
+@use '../variables' as *;
+
+// ── Страница результатов поиска ──────────────────────────────────────────────
+
+// .search-hero — убираем баннер, оставляем только бар
+.search-hero {
+  gap: 0;
+}
+
+// ── Строка поискового запроса ─────────────────────────────────────────────────
+.search-query-bar {
+  padding: 0 16px;
+  margin-top: 20px;
+}
+
+.search-query-bar__field {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 52px;
+  padding: 8px 16px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  border: none;
+}
+
+.search-query-bar__icon {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: $color-primary-black;
+}
+
+.search-query-bar__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $color-primary-black;
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    display: none;
+  }
+}
+
+// ── Секция категорий (карусель) ───────────────────────────────────────────────
+.search-categories {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 0 16px;
+  margin-top: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.search-categories__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  text-decoration: none;
+  transition: background 0.18s ease;
+
+  &:hover {
+    background: $color-gray-hover;
+  }
+
+  &:active {
+    background: $color-white-pressed;
+  }
+}
+
+.search-categories__name {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $color-primary-black;
+  white-space: nowrap;
+}
+
+.search-categories__count {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $color-primary-gray;
+}
+
+// ── Отступы секций ────────────────────────────────────────────────────────────
+.search-page .catalog-products {
+  margin-top: 40px;
+}
+
+// ── Мобильный (<768px) ────────────────────────────────────────────────────────
+@media (max-width: calc($bp-md - 1px)) {
+  // catalog-page уже ставит padding-top: 64px через _catalog.scss
+  // catalog-hero__bar-main уже делает flex-direction: column через _catalog.scss
+
+  // Только то, что специфично для search-hero (нет баннера, нет breadcrumbs)
+  .search-hero .catalog-hero__bar {
+    padding: 0 16px;
+  }
+
+  .search-hero .catalog-hero__bar-main {
+    gap: 8px; // меньше чем в каталоге (16px) — нет breadcrumbs
+  }
+
+  .search-hero .catalog-hero__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  // Счётчик идёт inline за текстом заголовка, прямо за последним словом
+  .search-hero .catalog-hero__title-row {
+    display: block;
+  }
+
+  .search-hero .catalog-hero__title {
+    display: inline;
+  }
+
+  .search-hero .catalog-hero__count {
+    display: inline;
+    margin-left: 6px;
+    vertical-align: top;
+    line-height: 24px;
+  }
+
+  .search-query-bar {
+    padding: 0 16px;
+    margin-top: 16px;
+  }
+
+  .search-categories {
+    padding: 0 16px;
+    margin-top: 16px;
+  }
+
+  .search-page .catalog-products {
+    margin-top: 24px;
+  }
+}
+
+// ── Планшет (768px – 1279px) ──────────────────────────────────────────────────
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  // catalog-page уже ставит padding-top: 132px через _catalog.scss
+
+  .search-hero .catalog-hero__bar {
+    padding: 0 20px;
+  }
+
+  .search-hero .catalog-hero__bar-main {
+    gap: 24px;
+  }
+
+  .search-query-bar {
+    padding: 0 20px;
+  }
+
+  .search-categories {
+    padding: 0 20px;
+  }
+
+  .search-page .catalog-products {
+    margin-top: 32px;
+  }
+}
+
+// ── Десктоп (1280px+) ─────────────────────────────────────────────────────────
+@media (min-width: $bp-lg) {
+  .search-query-bar {
+    padding: 0 20px;
+  }
+
+  .search-categories {
+    padding: 0 20px;
+  }
+}

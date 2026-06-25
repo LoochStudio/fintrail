@@ -15,6 +15,8 @@ import { init as initPersonal } from './modules/personal.js';
 import { init as initReviews } from './modules/reviews.js';
 import { init as initLoyalty } from './modules/loyalty.js';
 import { init as initSupport } from './modules/support.js';
+import { init as initAuth } from './modules/auth.js';
+import { init as initSearch } from './modules/search.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -34,4 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initReviews();
   initLoyalty();
   initSupport();
+  initAuth();
+  initSearch();
 });

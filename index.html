@@ -71,7 +71,7 @@
         <!--
           BITRIX: ссылка профиля — /personal/ или conditional вход
         -->
-        <a href="/personal/" class="navbar__btn-user" aria-label="Профиль">
+        <a href="/personal/" class="navbar__btn-user" aria-label="Профиль" data-auth-open>
           <svg width="22" height="22" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-user"></use></svg>
         </a>
         <button class="navbar__btn-icon" type="button" aria-label="Сравнить">
@@ -497,10 +497,10 @@
       </nav>
 
       <div class="hero__tools">
-        <a href="/search/" class="hero__tool" aria-label="Поиск">
+        <a href="/search/" class="hero__tool" aria-label="Поиск" data-search-open>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg>
         </a>
-        <a href="/personal/" class="hero__tool" aria-label="Профиль">
+        <a href="/personal/" class="hero__tool" aria-label="Профиль" data-auth-open>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
         </a>
         <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
@@ -1903,7 +1903,7 @@
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg>
       </span>
     </a>
-    <a href="/personal/" class="tabbar__item" aria-label="Профиль">
+    <a href="/personal/" class="tabbar__item" aria-label="Профиль" data-auth-open>
       <span class="tabbar__icon">
         <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-user"></use></svg>
       </span>
@@ -1924,6 +1924,493 @@
       </span>
     </a>
   </nav>
+
+  <!-- BITRIX: модалка авторизации — глобальная, присутствует на всех страницах где нужна авторизация -->
+  <div class="auth-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="auth-modal-heading" data-auth-modal>
+    <button class="auth-modal__backdrop" type="button" aria-label="Закрыть" tabindex="-1" data-auth-close></button>
+    <div class="auth-modal__panel">
+
+      <!-- Экран 1: ввод номера телефона -->
+      <div class="auth-modal__screen" data-auth-screen="phone">
+        <div class="auth-modal__top">
+          <div class="auth-modal__header-section">
+            <header class="auth-modal__header">
+              <h2 class="auth-modal__title" id="auth-modal-heading">Введите номер телефона</h2>
+              <button class="auth-modal__icon-btn" type="button" aria-label="Закрыть" data-auth-close>
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="auth-modal__subtitle">Мы позвоним, отправим код в Telegram или SMS</p>
+            <div class="auth-modal__divider" aria-hidden="true"></div>
+          </div>
+          <div class="auth-modal__mid">
+            <div class="auth-modal__form-group">
+              <div class="auth-modal__phone-row">
+                <button class="auth-modal__country-btn" type="button" aria-label="Страна: Россия (+7)" data-auth-country>
+                  <svg class="auth-modal__flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="auth-modal__country-arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+                </button>
+                <input class="auth-modal__input" type="tel" placeholder="+7" autocomplete="tel" inputmode="numeric" data-auth-phone-input>
+              </div>
+              <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-phone-submit>Отправить код</button>
+            </div>
+            <p class="auth-modal__agreement">
+              Соглашаюсь с&nbsp;<a class="auth-modal__link" href="/legal/terms/">условиями использования</a><br>
+              и&nbsp;<a class="auth-modal__link" href="/legal/privacy/">условиями обработки</a> персональных данных
+            </p>
+            <div class="auth-modal__oauth" aria-label="Войти через">
+              <a class="auth-modal__oauth-btn" href="/auth/vk/" aria-label="Войти через VK ID">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-login-vk-color"></use></svg>
+              </a>
+              <a class="auth-modal__oauth-btn" href="/auth/yandex/" aria-label="Войти через Яндекс ID">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-login-yandex-color"></use></svg>
+              </a>
+              <a class="auth-modal__oauth-btn" href="/auth/sber/" aria-label="Войти через Сбер ID">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-login-sber-color"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="auth-modal__btn auth-modal__btn--secondary" type="button" data-auth-to-email>Войти через эл. почту</button>
+      </div>
+
+      <!-- Экран 2: ввод кода из SMS -->
+      <div class="auth-modal__screen" data-auth-screen="sms-code" hidden>
+        <div class="auth-modal__top">
+          <div class="auth-modal__header-section">
+            <header class="auth-modal__header">
+              <button class="auth-modal__icon-btn auth-modal__icon-btn--back" type="button" aria-label="Назад" data-auth-back>
+                <svg class="auth-modal__back-icon-desk" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-arrow-right"></use></svg>
+                <svg class="auth-modal__back-icon-mob" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+                <span class="auth-modal__back-label" aria-hidden="true">Назад</span>
+              </button>
+              <h2 class="auth-modal__title">Введите код из СМС</h2>
+              <button class="auth-modal__icon-btn" type="button" aria-label="Закрыть" data-auth-close>
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="auth-modal__subtitle">
+              Введите код, который мы выслали в SMS на номер <strong data-auth-phone-display></strong>
+            </p>
+            <div class="auth-modal__divider" aria-hidden="true"></div>
+          </div>
+          <div class="auth-modal__otp-section">
+            <div class="auth-modal__otp" role="group" aria-label="Код подтверждения" data-auth-otp>
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 1" autocomplete="one-time-code">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 2">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 3">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 4">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 5">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 6">
+            </div>
+            <p class="auth-modal__otp-error" hidden data-auth-otp-error>Неверный код</p>
+            <p class="auth-modal__resend-hint" data-auth-resend-hint>
+              Получить новый код<br>через <span data-auth-timer>28</span>&nbsp;секунд
+            </p>
+          </div>
+        </div>
+        <button class="auth-modal__btn auth-modal__btn--secondary" type="button" hidden data-auth-resend>Получить новый код</button>
+      </div>
+
+      <!-- Экран 3: ввод email -->
+      <div class="auth-modal__screen" data-auth-screen="email" hidden>
+        <div class="auth-modal__top">
+          <div class="auth-modal__header-section">
+            <header class="auth-modal__header">
+              <h2 class="auth-modal__title">Введите Email</h2>
+              <button class="auth-modal__icon-btn" type="button" aria-label="Закрыть" data-auth-close>
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="auth-modal__subtitle">Мы отправим код по указанному адресу электронной почты</p>
+            <div class="auth-modal__divider" aria-hidden="true"></div>
+          </div>
+          <div class="auth-modal__mid">
+            <div class="auth-modal__form-group">
+              <input class="auth-modal__input" type="email" placeholder="Электронная почта" autocomplete="email" data-auth-email-input>
+              <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-email-submit>Отправить код</button>
+            </div>
+            <p class="auth-modal__agreement">
+              Соглашаюсь с&nbsp;<a class="auth-modal__link" href="/legal/terms/">условиями использования</a><br>
+              и&nbsp;<a class="auth-modal__link" href="/legal/privacy/">условиями обработки</a> персональных данных
+            </p>
+            <div class="auth-modal__oauth" aria-label="Войти через">
+              <a class="auth-modal__oauth-btn" href="/auth/vk/" aria-label="Войти через VK ID">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-login-vk-color"></use></svg>
+              </a>
+              <a class="auth-modal__oauth-btn" href="/auth/yandex/" aria-label="Войти через Яндекс ID">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-login-yandex-color"></use></svg>
+              </a>
+              <a class="auth-modal__oauth-btn" href="/auth/sber/" aria-label="Войти через Сбер ID">
+                <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-login-sber-color"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="auth-modal__btn auth-modal__btn--secondary" type="button" data-auth-to-phone>Войти по номеру телефона</button>
+      </div>
+
+      <!-- Экран 4: ввод кода из письма -->
+      <div class="auth-modal__screen" data-auth-screen="email-code" hidden>
+        <div class="auth-modal__top">
+          <div class="auth-modal__header-section">
+            <header class="auth-modal__header">
+              <button class="auth-modal__icon-btn auth-modal__icon-btn--back" type="button" aria-label="Назад" data-auth-back>
+                <svg class="auth-modal__back-icon-desk" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-arrow-right"></use></svg>
+                <svg class="auth-modal__back-icon-mob" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+                <span class="auth-modal__back-label" aria-hidden="true">Назад</span>
+              </button>
+              <h2 class="auth-modal__title">Введите код из письма</h2>
+              <button class="auth-modal__icon-btn" type="button" aria-label="Закрыть" data-auth-close>
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="auth-modal__subtitle">
+              Введите код, который мы выслали на почту <strong data-auth-email-display></strong>
+            </p>
+            <div class="auth-modal__divider" aria-hidden="true"></div>
+          </div>
+          <div class="auth-modal__otp-section">
+            <div class="auth-modal__otp" role="group" aria-label="Код подтверждения" data-auth-otp>
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 1" autocomplete="one-time-code">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 2">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 3">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 4">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 5">
+              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 6">
+            </div>
+            <p class="auth-modal__otp-error" hidden data-auth-otp-error>Неверный код</p>
+            <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-email-code-submit>Отправить код</button>
+            <p class="auth-modal__resend-hint" data-auth-resend-hint>
+              Получить новый код<br>через <span data-auth-timer>28</span>&nbsp;секунд
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BITRIX: модалка поиска — глобальная, открывается по клику на иконку поиска -->
+  <div class="search-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Поиск" data-search-modal>
+
+    <header class="search-modal__header">
+      <div class="search-modal__header-left">
+        <a href="/" class="search-modal__logo">
+          <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          <img src="/images/logo.svg" alt="FINNTRAIL" width="180" height="32">
+        </a>
+        <div class="search-modal__input-wrap">
+          <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+          <input class="search-modal__input" type="search" placeholder="Например: зимние перчатки" autocomplete="off" aria-label="Поиск по сайту" data-search-input>
+          <button class="search-modal__clear-btn" type="button" aria-label="Очистить поиск" data-search-clear hidden>
+            <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
+        </div>
+      </div>
+      <button class="search-modal__close-btn" type="button" aria-label="Закрыть поиск" data-search-close>
+        <svg aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+      </button>
+    </header>
+
+    <div class="search-modal__tags-row">
+      <div class="search-modal__tags-spacer" aria-hidden="true"></div>
+      <div class="search-modal__tags">
+        <a class="search-modal__tag" href="/catalog/vejdery/">Вейдерсы</a>
+        <a class="search-modal__tag" href="/catalog/longslivy/">Лонгслив</a>
+        <a class="search-modal__tag" href="/catalog/perchatki/">Перчатки</a>
+        <a class="search-modal__tag" href="/catalog/ochki/">Очки</a>
+        <a class="search-modal__tag" href="/catalog/outdoor/">Outdoor</a>
+        <a class="search-modal__tag" href="/catalog/dzhersi/">Джерси</a>
+        <a class="search-modal__tag" href="/catalog/noski/">Носки</a>
+      </div>
+    </div>
+
+    <!-- BITRIX: зона результатов поиска — заполняется динамически, показывается при вводе -->
+    <div class="search-modal__results" data-search-results hidden>
+
+      <div class="search-modal__results-body">
+
+        <div class="search-modal__categories" data-search-categories>
+          <p class="search-modal__categories-title">Найти в категории</p>
+          <ul class="search-modal__categories-list">
+            <li><a class="search-modal__category-link" href="/catalog/kurtki/">Куртки</a></li>
+            <li><a class="search-modal__category-link" href="/catalog/kurtki/zimnie/">Мужские куртки для зимы</a></li>
+            <li><a class="search-modal__category-link" href="/catalog/kurtki/rybalka/">Мужские куртки для рыбалки</a></li>
+          </ul>
+        </div>
+
+        <div class="search-modal__items-wrap">
+        <ul class="search-modal__items" data-search-items>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-atlas-3441-red/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/item-2.png" alt="Куртка мембранная Finntrail Atlas 3441 Red" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Куртка мембранная утеплённая Finntrail Atlas 3441 Red</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">12 599</span>
+                  <span class="search-modal__item-old-price">20 999 ₽</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-snowranger-3758-middlegrey/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/item-5.png" alt="Куртка Finntrail Snowranger 3758 Middlegrey" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Куртка Finntrail Snowranger 3758 Middlegrey</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">30 799</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-master-1503-graphite/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/jacket.png" alt="Куртка Finntrail Master 1503 Graphite" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Куртка Finntrail Master 1503 Graphite</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">7 199</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-powerman-3760-graphite/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/item-6.png" alt="Куртка Finntrail Powerman 3760 Graphite" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Куртка Finntrail Powerman 3760 Graphite</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">20 999</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-frost-2013-orange/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/item-3.png" alt="Куртка Finntrail Frost 2013 Orange" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Куртка Finntrail Frost 2013 Orange</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">17 200 ₽</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-master-1503-camo/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/item-4.png" alt="Куртка Finntrail Master 1503 CamoShadowGreen" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Куртка Finntrail Master 1503 CamoShadowGreen</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">11 999 ₽</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+          <li>
+            <a class="search-modal__item" href="/catalog/product/finntrail-atlas-3461-lightblue/">
+              <img class="search-modal__item-img" src="/images/content/build-kit/item-7.png" alt="Горнолыжная куртка женская Finntrail Atlas 3461 LightBlue" loading="lazy">
+              <div class="search-modal__item-info">
+                <p class="search-modal__item-name">Горнолыжная куртка женская Finntrail Atlas 3461 LightBlue</p>
+                <div class="search-modal__item-prices">
+                  <span class="search-modal__item-price">17 999 ₽</span>
+                </div>
+              </div>
+              <button class="search-modal__item-cart" type="button" aria-label="В корзину">
+                <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+              </button>
+            </a>
+          </li>
+
+        </ul>
+        <div class="search-modal__items-gradient" data-search-gradient hidden></div>
+        <div class="search-modal__scrollbar" data-search-scrollbar hidden>
+          <div class="search-modal__scrollbar-thumb" data-search-scrollbar-thumb></div>
+        </div>
+        </div>
+      </div>
+
+      <div class="search-modal__all-results">
+        <a class="search-modal__all-results-btn" href="/search/" data-search-all>
+          Все результаты
+          <svg class="search-modal__all-results-arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <section class="search-modal__popular">
+      <h2 class="search-modal__popular-title">Популярные товары</h2>
+      <div class="search-modal__cards">
+
+        <a class="search-modal__card" href="/catalog/product/finntrail-aspen-3462-orange/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/jacket.png" alt="FINNTRAIL Aspen 3462 Orange" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">FINNTRAIL Aspen 3462 Orange</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">37 999 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/shapka-extreme-hat-9823-black/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/hat-1.png" alt="Шапка Extreme Hat 9823 Black" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Шапка Extreme Hat 9823 Black</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">3 799 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/kurtka-redline-1410-red/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/item-2.png" alt="Куртка Redline 1410 Red" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Куртка Redline 1410 Red</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">14 999 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/bryuki-tactic-4609-khaki/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/pants-1.png" alt="Брюки Tactic 4609 Khaki" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Брюки Tactic 4609 Khaki</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">9 499 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/kurtka-rainproof-1540-beige/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/item-5.png" alt="Куртка Rainproof 1540 Beige" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Куртка Rainproof 1540 Beige</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                
+                <span class="search-modal__card-price">16 999 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/shapka-daily-9727-khaki/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/hat-3.png" alt="Шапка Daily 9727 Khaki" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Шапка Daily 9727 Khaki</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">1 799 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/kurtka-adventure-1510-graphite/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/item-6.png" alt="Куртка Adventure 1510 Graphite" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Куртка Adventure 1510 Graphite</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">15 999 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="search-modal__card" href="/catalog/product/bryuki-polar-1400-black/">
+          <div class="search-modal__card-img-wrap">
+            <img class="search-modal__card-img" src="/images/content/build-kit/pants-4.png" alt="Брюки Polar 1400 Black" loading="lazy">
+            <button class="search-modal__card-bookmark js-wishlist" type="button" aria-label="В избранное">
+              <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg>
+            </button>
+          </div>
+          <div class="search-modal__card-info">
+            <p class="search-modal__card-name">Брюки Polar 1400 Black</p>
+            <div class="search-modal__card-price-row">
+              <div class="search-modal__card-prices">
+                <span class="search-modal__card-price">12 999 ₽</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </div>
 
   <script type="module" src="/js/main.js"></script>
 </body>

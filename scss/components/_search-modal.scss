@@ -1,0 +1,742 @@
+@use '../variables' as *;
+
+// ── Поисковая модалка ─────────────────────────────────────────────────────────
+
+.search-modal[hidden] {
+  display: none;
+}
+
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 747px;
+  z-index: 215;
+  background: $color-surface;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Шапка ────────────────────────────────────────────────────────────────────
+.search-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+.search-modal__header-left {
+  display: flex;
+  align-items: center;
+  gap: 133px;
+  flex: 1;
+  min-width: 0;
+}
+
+.search-modal__logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  color: $color-primary-black;
+  text-decoration: none;
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  img {
+    display: block;
+    width: 180px;
+    height: 32px;
+  }
+}
+
+.search-modal__input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 0 0 695px;
+  height: 52px;
+  padding: 8px 16px;
+  background: $color-white;
+  border-radius: $radius-xs;
+
+  svg {
+    display: block;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: $color-primary-black;
+  }
+}
+
+.search-modal__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $color-primary-black;
+
+  &::placeholder {
+    color: $color-primary-gray;
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+}
+
+.search-modal__clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: $color-primary-gray;
+  transition: color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: $color-primary-black;
+  }
+}
+
+.search-modal__clear-btn[hidden] {
+  display: none;
+}
+
+.search-modal__close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  padding: 14px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    background: $color-gray-hover;
+  }
+
+  &:active {
+    background: $color-white-pressed;
+  }
+}
+
+// ── Теги-подсказки ────────────────────────────────────────────────────────────
+// Выравниваем с левым краем инпута: лого (220px) + gap (133px) = 353px
+.search-modal__tags-row {
+  display: flex;
+  padding: 0 20px 20px;
+}
+
+.search-modal__tags-spacer {
+  flex: 0 0 353px;
+  flex-shrink: 0;
+}
+
+.search-modal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.search-modal__tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $color-primary-gray;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  &:hover {
+    background: $color-gray-hover;
+    color: $color-primary-black;
+  }
+
+  &:active {
+    background: $color-white-pressed;
+    color: $color-primary-black;
+  }
+}
+
+// ── Зона результатов ─────────────────────────────────────────────────────────
+.search-modal__results[hidden] {
+  display: none;
+}
+
+.search-modal__results {
+  border-top: 1px solid $color-white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-modal__results-body {
+  display: flex;
+  gap: 133px;
+  padding: 20px 20px 0;
+}
+
+// Левая колонка: "Найти в категории"
+.search-modal__categories {
+  flex: 0 0 219px;
+}
+
+.search-modal__categories-title {
+  margin: 0 0 24px;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.search-modal__categories-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-modal__category-link {
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $color-primary-black;
+  text-decoration: none;
+  transition: color 0.18s ease;
+
+  &:hover {
+    color: $color-primary-gray;
+  }
+}
+
+// Обёртка: список + кастомный скролбар
+.search-modal__items-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  max-width: 695px;
+  max-height: 440px;
+  position: relative;
+}
+
+.search-modal__items-gradient {
+  position: absolute;
+  left: 0;
+  right: 14px; // 6px scrollbar + 8px gap
+  bottom: 0;
+  height: 80px;
+  background: linear-gradient(180deg, rgba(242, 242, 242, 0) 0%, #f2f2f2 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.search-modal__items-gradient[hidden] {
+  display: none;
+}
+
+// Правая колонка: список товаров
+.search-modal__items {
+  flex: 1;
+  min-width: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.search-modal__scrollbar {
+  flex: 0 0 6px;
+  width: 6px;
+  align-self: stretch;
+  background: #eaeaea;
+  border-radius: 3px;
+  position: relative;
+  overflow: clip;
+}
+
+.search-modal__scrollbar-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 2px;
+  height: 40px;
+  background: $color-white;
+  border-radius: 1px;
+}
+
+.search-modal__item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 72px;
+  padding: 12px 24px 12px 12px;
+  background: transparent;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.18s ease;
+
+  &:hover {
+    background: $color-white;
+  }
+
+  &:active {
+    background: $color-white-pressed;
+  }
+}
+
+.search-modal__item-img {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.search-modal__item-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-modal__item-name {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-modal__item-prices {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-modal__item-price {
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.search-modal__item-old-price {
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  color: $color-secondary-gray;
+  text-decoration: line-through;
+}
+
+.search-modal__item-cart {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: $color-primary-gray;
+  transition: color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: $color-primary-black;
+  }
+}
+
+// Кнопка "Все результаты"
+.search-modal__all-results {
+  border-top: 1px solid $color-white;
+  margin-top: auto;
+}
+
+.search-modal__all-results-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 18px 24px 18px 32px;
+  background: transparent;
+  text-decoration: none;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-secondary-gray;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  &:hover {
+    background: $color-button-ghost-hover;
+    color: $color-primary-black;
+  }
+
+  &:active {
+    background: $color-button-ghost-pressed;
+    color: $color-primary-black;
+  }
+}
+
+.search-modal__all-results-arrow {
+  display: block;
+  flex-shrink: 0;
+  transform: rotate(90deg);
+}
+
+// ── Популярные товары ─────────────────────────────────────────────────────────
+.search-modal__popular {
+  margin-top: auto;
+  padding: 0 20px 20px;
+}
+
+.search-modal__popular-title {
+  margin: 0 0 24px;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.search-modal__cards {
+  display: flex;
+  gap: 4px;
+}
+
+// ── Карточка товара ───────────────────────────────────────────────────────────
+.search-modal__card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: $color-white;
+  border-radius: $radius-xs;
+  text-decoration: none;
+  color: inherit;
+}
+
+.search-modal__card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.search-modal__card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-modal__card-bookmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: $color-primary-gray;
+  transition: color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:not(.is-saved):hover,
+  &:not(.is-saved):focus-visible {
+    color: $color-primary-black;
+  }
+
+  &.is-saved {
+    color: $color-secondary-accent;
+  }
+}
+
+.search-modal__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.search-modal__card-name {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.search-modal__card-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-modal__card-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.search-modal__card-old-price {
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $color-secondary-gray;
+  text-decoration: line-through;
+}
+
+.search-modal__card-price {
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+// ── Планшет (768px – 1279px) ──────────────────────────────────────────────────
+@media (max-width: calc(1280px - 1px)) {
+  .search-modal__header-left {
+    gap: 16px;
+  }
+
+  .search-modal__logo img {
+    width: 120px;
+  }
+
+  .search-modal__tags-spacer {
+    display: none;
+  }
+
+  // Инпут не фиксированный — занимает всё доступное место
+  .search-modal__input-wrap {
+    flex: 1;
+  }
+
+  .search-modal__results {
+    min-height: 200px;
+  }
+
+  // На планшете боковая колонка категорий сжимается
+  .search-modal__results-body {
+    gap: 32px;
+  }
+
+  .search-modal__categories {
+    flex: 0 0 160px;
+  }
+}
+
+// ── Мобильный (<768px) ────────────────────────────────────────────────────────
+@media (max-width: calc(768px - 1px)) {
+  .search-modal {
+    min-height: 0;
+    height: 100dvh;
+  }
+
+  .search-modal__header {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  // Скрываем логотип полностью — на мобилке места нет
+  .search-modal__logo {
+    display: none;
+  }
+
+  .search-modal__input-wrap {
+    flex: 1;
+    height: 44px;
+    padding: 6px 12px;
+  }
+
+  .search-modal__close-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+
+  .search-modal__tags-row {
+    padding: 0 16px 16px;
+  }
+
+  // Результаты: колонки переходят в вертикальный стек
+  .search-modal__results-body {
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px 16px 0;
+  }
+
+  // Боковая колонка с категориями — горизонтальный скролл
+  .search-modal__categories {
+    flex: 0 0 auto;
+  }
+
+  .search-modal__categories-list {
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .search-modal__category-link {
+    display: block;
+    flex-shrink: 0;
+    padding: 8px 12px;
+    background: $color-white;
+    border-radius: $radius-xs;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  // Список товаров: убираем ограничение высоты, кастомный скроллбар скрыт
+  .search-modal__items-wrap {
+    max-height: none;
+    flex: 1;
+  }
+
+  .search-modal__scrollbar {
+    display: none;
+  }
+
+  .search-modal__items-gradient {
+    right: 0;
+  }
+
+  .search-modal__items {
+    max-height: 50dvh;
+    overflow-y: auto;
+  }
+
+  // Популярные: меньше паддинг + учитываем tabbar (60px)
+  .search-modal__popular {
+    padding: 0 16px 80px;
+  }
+
+  .search-modal__popular-title {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 16px;
+  }
+
+  .search-modal__cards {
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .search-modal__card {
+    flex: 0 0 130px;
+  }
+
+  // Кнопка "Все результаты" — учитываем tabbar
+  .search-modal__all-results {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}

@@ -1,0 +1,478 @@
+@use '../variables' as *;
+
+// ── Модалка авторизации ───────────────────────────────────────────────────────
+
+.auth-modal[hidden] {
+  display: none;
+}
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  overscroll-behavior: contain;
+}
+
+.auth-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba($color-primary-black, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.auth-modal__panel {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  width: min(520px, calc(100vw - 40px));
+  overflow: hidden;
+  background: $color-surface;
+}
+
+// ── Экраны состояний ──────────────────────────────────────────────────────────
+.auth-modal__screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 40px;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.auth-modal__top {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+// ── Блок заголовка (title + subtitle + divider) ───────────────────────────────
+.auth-modal__header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.auth-modal__header {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.auth-modal__title {
+  flex: 1;
+  margin: 0;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.auth-modal__subtitle {
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+
+  strong {
+    font-weight: inherit;
+  }
+}
+
+.auth-modal__divider {
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    $color-secondary-gray 0,
+    $color-secondary-gray 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+// ── Кнопки-иконки (закрыть / назад) ──────────────────────────────────────────
+.auth-modal__icon-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: $color-gray-hover;
+  }
+
+  &:active {
+    background: $color-white-pressed;
+  }
+
+  &--back .auth-modal__back-icon-desk {
+    transform: rotate(180deg);
+  }
+
+  &--back .auth-modal__back-icon-mob {
+    display: none;
+  }
+
+  &--back .auth-modal__back-label {
+    display: none;
+  }
+}
+
+// ── Средняя зона: инпуты + соглашение + OAuth ─────────────────────────────────
+.auth-modal__mid {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.auth-modal__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+// ── Ввод телефона ─────────────────────────────────────────────────────────────
+.auth-modal__phone-row {
+  display: flex;
+  gap: 8px;
+}
+
+.auth-modal__country-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  height: 52px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  &:hover {
+    background: $color-gray-hover;
+  }
+
+  &:active {
+    background: $color-white-pressed;
+  }
+}
+
+.auth-modal__flag {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: $color-secondary-gray;
+}
+
+.auth-modal__country-arrow {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: $color-primary-black;
+}
+
+// ── Текстовые инпуты ─────────────────────────────────────────────────────────
+.auth-modal__input {
+  display: block;
+  width: 100%;
+  height: 52px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  outline: 0;
+  transition: box-shadow 0.18s ease;
+
+  &::placeholder {
+    font-weight: $font-weight-semibold;
+    color: $color-primary-gray;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1.5px $color-primary-black;
+  }
+}
+
+// Инпут внутри phone-row подстраивается под flex-контейнер
+.auth-modal__phone-row .auth-modal__input {
+  flex: 1;
+  width: auto;
+}
+
+// ── Кнопки действий ──────────────────────────────────────────────────────────
+.auth-modal__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  padding: 8px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  &--primary {
+    background: $color-primary-black;
+    color: $color-white;
+
+    &:hover {
+      background: $color-button-primary-hover;
+    }
+
+    &:active {
+      background: $color-button-primary-pressed;
+    }
+
+    &:disabled {
+      background: $color-button-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  &--secondary {
+    background: $color-white;
+    color: $color-primary-black;
+
+    &:hover {
+      background: $color-button-secondary-hover;
+    }
+
+    &:active {
+      background: $color-white-pressed;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
+}
+
+// ── Текст соглашения ─────────────────────────────────────────────────────────
+.auth-modal__agreement {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  color: $color-primary-black;
+}
+
+.auth-modal__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  transition: opacity 0.18s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+// ── OAuth ─────────────────────────────────────────────────────────────────────
+.auth-modal__oauth {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.auth-modal__oauth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border: 1px solid $color-white;
+  border-radius: $radius-xs;
+  transition: border-color 0.18s ease, background 0.18s ease;
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    border-color: $color-secondary-gray;
+    background: rgba($color-primary-black, 0.04);
+  }
+}
+
+// ── OTP-ввод кода ────────────────────────────────────────────────────────────
+.auth-modal__otp-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-modal__otp {
+  display: flex;
+  gap: 4px;
+}
+
+.auth-modal__otp-cell {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  padding: 0;
+  border: 1px solid $color-secondary-gray;
+  border-radius: $radius-xs;
+  background: $color-white;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 1;
+  text-align: center;
+  color: $color-primary-black;
+  caret-color: transparent;
+  outline: 0;
+  transition: border-color 0.18s ease, color 0.18s ease;
+
+  &::placeholder {
+    font-size: 14px;
+    color: $color-secondary-gray;
+  }
+
+  &:focus {
+    border-color: $color-primary-black;
+  }
+
+  &.is-error {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}
+
+.auth-modal__otp-error {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-accent;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.auth-modal__resend-hint {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  color: $color-primary-gray;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// ── Мобильный адаптив (полный экран) ─────────────────────────────────────────
+@media (max-width: 1279px) {
+  .auth-modal__panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+    overflow-y: auto;
+  }
+
+  .auth-modal__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  // Хедер: back на своей строке сверху, title + close на следующей
+  .auth-modal__header {
+    flex-wrap: wrap;
+    min-height: auto;
+    gap: 12px;
+  }
+
+  // Back-кнопка на мобиле — текстовая ссылка через всю строку
+  .auth-modal__icon-btn--back {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    gap: 6px;
+    justify-content: flex-start;
+
+    &:hover,
+    &:active {
+      background: transparent;
+    }
+
+    .auth-modal__back-icon-desk {
+      display: none;
+    }
+
+    .auth-modal__back-icon-mob {
+      display: block;
+      transform: rotate(270deg); // ▲ → ◄
+    }
+
+    .auth-modal__back-label {
+      display: inline;
+      font-family: $font-mono;
+      font-size: 12px;
+      font-weight: $font-weight-semibold;
+      line-height: 16px;
+      text-transform: uppercase;
+    }
+  }
+}
