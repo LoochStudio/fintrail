@@ -161,7 +161,7 @@
 
 .personal-banner {
   position: relative;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   // Пробивает padding страницы, как cart-recommendations
   width: calc(100% + #{$spacing-page-desktop * 2});
@@ -185,7 +185,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 342px;
-  height: 360px;
+  height: 460px;
   background: $color-white;
   border-radius: $radius-md;
   padding: 20px 8px 8px;
@@ -252,6 +252,23 @@
     font-size: $text-subtitle-s1-size;
     line-height: $text-subtitle-s1-line;
   }
+}
+
+.personal-banner__name {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.personal-banner__name-line {
+  font-family: $font-display;
+  font-size: $text-subtitle-s1-size;
+  font-weight: $font-weight-black;
+  line-height: $text-subtitle-s1-line;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .personal-banner__divider {
@@ -651,6 +668,7 @@ $order-success-color: #338532;
 
   svg { width: 16px; height: 16px; flex-shrink: 0; color: $color-primary-gray; transition: color 0.15s ease; }
   &:hover { background: $color-surface; svg { color: $color-primary-black; } }
+  &.is-copied { svg { color: $color-success; } }
 }
 
 .order-card__action-btn--single {
@@ -1840,7 +1858,7 @@ $order-success-color: #338532;
   // Карточка занимает почти всю ширину, позиционируется статично.
 
   .personal-banner {
-    height: 360px; // 20px top + 320px card + 20px bottom
+    height: 460px; // 20px top + 420px card + 20px bottom
     padding: 0;
     // overflow: hidden и full-bleed width/margin наследуются с десктопа
   }
@@ -1854,7 +1872,7 @@ $order-success-color: #338532;
     left: 20px;
     top: 20px;
     width: calc(100% - 41px); // 20px слева + 21px справа = 375 - 41 = 334px
-    height: 320px;
+    height: 420px;
     transform: none;
     min-height: unset;
   }
@@ -2259,6 +2277,7 @@ $order-success-color: #338532;
   transition: opacity 0.15s;
 
   &:hover { opacity: 0.75; }
+  &.is-copied { svg { color: $color-success; } }
 }
 
 .order-tracking-card__label {
@@ -3819,29 +3838,19 @@ $order-success-color: #338532;
 // Tablet + mobile: reuse the product-page bottom-sheet modal pattern.
 @media (max-width: calc($bp-lg - 1px)) {
   .review-form-modal__panel {
-    top: auto;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    max-height: 90dvh;
+    max-height: none;
     justify-content: flex-start;
     gap: 24px;
     padding: 0 20px calc(24px + env(safe-area-inset-bottom));
-    border-radius: 16px 16px 0 0;
+    border-radius: 0;
     transform: translateY(16px);
+    overflow-y: auto;
     overscroll-behavior: contain;
-
-    &::before {
-      content: '';
-      display: block;
-      flex-shrink: 0;
-      width: 36px;
-      height: 4px;
-      margin: 12px auto 0;
-      border-radius: 2px;
-      background: $color-secondary-gray;
-    }
   }
 
   .review-form-modal.is-open .review-form-modal__panel {

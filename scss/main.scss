@@ -11,6 +11,7 @@
 @use 'components/catalog';
 @use 'components/catalog-filter-popup';
 @use 'components/catalog-filter-modal';
+@use 'components/catalog-add-modal';
 @use 'components/auth-modal';
 @use 'components/search-modal';
 @use 'components/catalog-landing';
@@ -37,3 +38,4 @@
 @use 'components/support';
 @use 'components/settings';
 @use 'components/search-results';
+@use 'components/compare';

@@ -17,6 +17,7 @@ import { init as initLoyalty } from './modules/loyalty.js';
 import { init as initSupport } from './modules/support.js';
 import { init as initAuth } from './modules/auth.js';
 import { init as initSearch } from './modules/search.js';
+import { init as initCompare } from './modules/compare.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -38,4 +39,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSupport();
   initAuth();
   initSearch();
+  initCompare();
 });

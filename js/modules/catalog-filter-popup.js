@@ -95,8 +95,27 @@ export function init() {
   // ── Синхронизация is-active на триггере ──────────────────────────────────
 
   const syncTriggerActive = (trigger, popup) => {
-    const hasChecked = popup.querySelectorAll('input[type="checkbox"]:checked').length > 0;
-    trigger.classList.toggle('is-active', hasChecked);
+    const checkedCount = popup.querySelectorAll('input[type="checkbox"]:checked').length;
+    trigger.classList.toggle('is-active', checkedCount > 0);
+
+    const countEl = trigger.querySelector('.catalog-toolbar__chip-count');
+    if (countEl) countEl.textContent = checkedCount > 0 ? String(checkedCount) : '';
+
+    const resetBtn = popup.querySelector('.catalog-filter-popup__reset');
+    if (resetBtn) resetBtn.classList.toggle('is-visible', checkedCount > 0);
+  };
+
+  // ── Сброс всех чекбоксов попапа ──────────────────────────────────────────
+
+  const resetPopup = (trigger, popup) => {
+    popup.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      input.checked = false;
+    });
+    popup.querySelectorAll('.catalog-filter-popup__checkbox').forEach(cb => {
+      cb.classList.remove('is-checked');
+      cb.setAttribute('aria-checked', 'false');
+    });
+    syncTriggerActive(trigger, popup);
   };
 
   // ── Кнопки «Применить» ───────────────────────────────────────────────────
@@ -130,6 +149,27 @@ export function init() {
     });
   });
 
+  // ── Кнопка × в чипе — сброс фильтра ─────────────────────────────────────
+
+  entries.forEach(({ trigger, popup }) => {
+    const chipReset = trigger.querySelector('.catalog-toolbar__chip-reset');
+    if (!chipReset) return;
+    chipReset.addEventListener('click', e => {
+      e.stopPropagation();
+      resetPopup(trigger, popup);
+    });
+  });
+
+  // ── Кнопка «Сбросить» в попапе ───────────────────────────────────────────
+
+  entries.forEach(({ trigger, popup }) => {
+    const popupResetBtn = popup.querySelector('.catalog-filter-popup__reset');
+    if (!popupResetBtn) return;
+    popupResetBtn.addEventListener('click', () => {
+      resetPopup(trigger, popup);
+    });
+  });
+
   // ── Sort — radio-поведение ────────────────────────────────────────────────
 
   const sortPopup = document.querySelector('[data-filter-popup="sort"]');
@@ -155,6 +195,13 @@ export function init() {
       });
     });
   }
+
+  // ── Начальная синхронизация состояния ────────────────────────────────────
+  // На случай если чекбоксы предзаполнены в HTML
+
+  entries.forEach(({ trigger, popup }) => {
+    syncTriggerActive(trigger, popup);
+  });
 
   // ── Кастомный скроллбар ───────────────────────────────────────────────────
   // Схема аналогична product-option__color-dropdown в product.js:

@@ -42,6 +42,7 @@ export default defineConfig({
         personalSettings: resolve(__dirname, 'personal/settings/index.html'),
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
         search: resolve(__dirname, 'search/index.html'),
+        compare: resolve(__dirname, 'compare/index.html'),
       },
     },
   },

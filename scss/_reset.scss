@@ -31,6 +31,8 @@ img, svg {
   max-width: 100%;
 }
 
+[hidden] { display: none !important; }
+
 ul, ol {
   list-style: none;
 }

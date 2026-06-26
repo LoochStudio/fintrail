@@ -418,3 +418,80 @@
     opacity: 0.6;
   }
 }
+
+// ── Счётчик и сброс в чипе тулбара ───────────────────────────────────────────
+// Видны только при .is-active (когда выбраны фильтры)
+
+.catalog-toolbar__chip-count {
+  display: none;
+  color: $color-primary-gray;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 1;
+}
+
+.catalog-toolbar__chip-reset {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.catalog-toolbar__chip.is-active {
+  .catalog-toolbar__chip-count {
+    display: inline;
+    color: $color-primary-gray;
+  }
+
+  .catalog-toolbar__chip-reset {
+    display: flex;
+  }
+
+  .catalog-filter-popup__chevron {
+    display: none;
+  }
+}
+
+// ── Кнопка «Сбросить» в попапе ────────────────────────────────────────────────
+// Скрыта по умолчанию, показывается классом .is-visible через JS
+
+.catalog-filter-popup__reset {
+  display: none;
+  width: 100%;
+  margin-top: 8px;
+  padding: 15px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  color: $color-primary-gray;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  &.is-visible {
+    display: block;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: #e8e8e8;
+    }
+  }
+
+  &:active {
+    background: #dcdcdc;
+  }
+}

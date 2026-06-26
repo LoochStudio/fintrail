@@ -146,4 +146,29 @@ function initReviewFormModal() {
       });
     });
   }
+
+  // Open modal on star click in rating cards
+  document.querySelectorAll('[data-reviews-form]').forEach(card => {
+    card.querySelectorAll('.js-review-star').forEach(star => {
+      star.addEventListener('click', () => {
+        const val = Number(star.dataset.value);
+
+        if (starsContainer && ratingValue) {
+          ratingValue.textContent = val;
+          starsContainer.querySelectorAll('.review-form-modal__star').forEach(s => {
+            s.classList.toggle('is-active', Number(s.dataset.value) <= val);
+          });
+        }
+
+        const productName = card.querySelector('.personal-rating-card__name')?.textContent;
+        const productImg  = card.querySelector('.personal-rating-card__image');
+        const modalName   = modal.querySelector('.review-form-modal__product-name');
+        const modalImg    = modal.querySelector('.review-form-modal__product-img');
+        if (productName && modalName) modalName.textContent = productName;
+        if (productImg  && modalImg)  { modalImg.src = productImg.src; modalImg.alt = productImg.alt; }
+
+        openModal();
+      });
+    });
+  });
 }

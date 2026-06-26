@@ -208,7 +208,21 @@ export function init() {
   const phoneInput = modal.querySelector('[data-auth-phone-input]');
   modal.querySelector('[data-auth-phone-submit]')?.addEventListener('click', () => {
     const phone = phoneInput?.value?.trim();
-    if (!phone) { phoneInput?.focus(); return; }
+    const phoneDigits = phone?.replace(/\D/g, '') || '';
+    const phoneField = phoneInput?.closest('[data-input-field]');
+    const phoneCaption = phoneInput?.getAttribute('aria-describedby')
+      ? document.getElementById(phoneInput.getAttribute('aria-describedby'))
+      : null;
+
+    if (phoneDigits.length !== 11) {
+      if (phoneCaption) phoneCaption.textContent = 'Введите полный номер телефона';
+      phoneField?.classList.add('is-error');
+      phoneInput?.focus();
+      return;
+    }
+
+    phoneField?.classList.remove('is-error');
+    if (phoneCaption) phoneCaption.textContent = '';
 
     modal.querySelectorAll('[data-auth-phone-display]').forEach(el => {
       el.textContent = phone;

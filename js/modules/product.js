@@ -349,6 +349,150 @@ export function init() {
     });
   });
 
+  // Product page — real conditions images as stories
+  document.querySelectorAll('[data-product-conditions]').forEach(section => {
+    const modal = document.querySelector('[data-product-conditions-stories-modal]');
+    if (!modal) return;
+
+    const sourceSlides = Array.from(section.querySelectorAll('.product-conditions__slide'))
+      .map(slide => ({ slide, image: slide.querySelector('img.product-conditions__media') }))
+      .filter(item => item.image);
+
+    if (!sourceSlides.length) return;
+
+    const media = modal.querySelector('[data-product-conditions-stories-media]');
+    const progress = modal.querySelector('[data-product-conditions-stories-progress]');
+    const closeButtons = modal.querySelectorAll('[data-product-conditions-stories-close]');
+    const prevButton = modal.querySelector('[data-product-conditions-stories-prev]');
+    const nextButton = modal.querySelector('[data-product-conditions-stories-next]');
+    const sidePrev = modal.querySelector('[data-product-conditions-stories-side-prev]');
+    const sideNext = modal.querySelector('[data-product-conditions-stories-side-next]');
+    const sideFarPrev = modal.querySelector('[data-product-conditions-stories-side-far-prev]');
+    const sideFarNext = modal.querySelector('[data-product-conditions-stories-side-far-next]');
+    const slides = [];
+    const progressItems = [];
+    let activeIndex = 0;
+    let autoplayId = 0;
+
+    if (!media || !progress) return;
+
+    function getSourceData(image) {
+      return {
+        src: image.currentSrc || image.getAttribute('src') || '',
+        srcset: image.getAttribute('srcset') || '',
+        alt: image.getAttribute('alt') || 'FINNTRAIL в реальных условиях',
+      };
+    }
+
+    function normalize(index) {
+      return (index + slides.length) % slides.length;
+    }
+
+    function stopAutoplay() {
+      window.clearTimeout(autoplayId);
+      autoplayId = 0;
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayId = window.setTimeout(() => goTo(activeIndex + 1), 5000);
+    }
+
+    function setPreview(preview, index) {
+      if (!preview || !slides.length) return;
+      const data = slides[normalize(index)].dataset;
+      preview.src = data.storySrc || '';
+      if (data.storySrcset) {
+        preview.srcset = data.storySrcset;
+      } else {
+        preview.removeAttribute('srcset');
+      }
+    }
+
+    function goTo(index) {
+      if (!slides.length) return;
+      activeIndex = normalize(index);
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-active', slideIndex === activeIndex);
+      });
+
+      setPreview(sidePrev, activeIndex - 1);
+      setPreview(sideNext, activeIndex + 1);
+      setPreview(sideFarPrev, activeIndex - 2);
+      setPreview(sideFarNext, activeIndex + 2);
+
+      progressItems.forEach((item, itemIndex) => {
+        item.classList.toggle('is-filled', itemIndex < activeIndex);
+        item.classList.toggle('is-active', itemIndex === activeIndex);
+        const bar = item.querySelector('span');
+        if (bar) {
+          bar.style.animation = 'none';
+          void bar.offsetWidth;
+          bar.style.animation = '';
+        }
+      });
+
+      startAutoplay();
+    }
+
+    function openStories(index) {
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      goTo(index);
+    }
+
+    function closeStories() {
+      stopAutoplay();
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+    }
+
+    sourceSlides.forEach(({ slide, image }, index) => {
+      const data = getSourceData(image);
+      const storyImage = document.createElement('img');
+      storyImage.className = 'stories-modal__slide';
+      storyImage.src = data.src;
+      if (data.srcset) storyImage.srcset = data.srcset;
+      storyImage.sizes = '405px';
+      storyImage.alt = data.alt;
+      storyImage.loading = 'lazy';
+      storyImage.dataset.storySrc = data.src;
+      storyImage.dataset.storySrcset = data.srcset;
+      media.appendChild(storyImage);
+      slides.push(storyImage);
+
+      const progressItem = document.createElement('span');
+      progressItem.className = 'stories-modal__progress-item';
+      progressItem.appendChild(document.createElement('span'));
+      progress.appendChild(progressItem);
+      progressItems.push(progressItem);
+
+      slide.classList.add('is-story-openable');
+      slide.setAttribute('role', 'button');
+      slide.tabIndex = 0;
+      slide.setAttribute('aria-label', 'Открыть фото в полноэкранном просмотре');
+      slide.addEventListener('click', () => openStories(index));
+      slide.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        openStories(index);
+      });
+    });
+
+    closeButtons.forEach(button => button.addEventListener('click', closeStories));
+    prevButton?.addEventListener('click', () => goTo(activeIndex - 1));
+    nextButton?.addEventListener('click', () => goTo(activeIndex + 1));
+
+    document.addEventListener('keydown', event => {
+      if (modal.hidden) return;
+      if (event.key === 'Escape') closeStories();
+      if (event.key === 'ArrowLeft') goTo(activeIndex - 1);
+      if (event.key === 'ArrowRight') goTo(activeIndex + 1);
+    });
+  });
   // OOS form — кнопка «Связаться» задизейблена пока email не введён
   document.querySelectorAll('.product-oos-form').forEach(form => {
     const input = form.querySelector('.product-oos-form__input');

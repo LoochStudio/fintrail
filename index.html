@@ -1945,12 +1945,11 @@
           </div>
           <div class="auth-modal__mid">
             <div class="auth-modal__form-group">
-              <div class="auth-modal__phone-row">
-                <button class="auth-modal__country-btn" type="button" aria-label="Страна: Россия (+7)" data-auth-country>
-                  <svg class="auth-modal__flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
-                  <svg class="auth-modal__country-arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
-                </button>
-                <input class="auth-modal__input" type="tel" placeholder="+7" autocomplete="tel" inputmode="numeric" data-auth-phone-input>
+              <div class="auth-modal__phone-field" data-input-field>
+                <div class="auth-modal__phone-row">
+                  <input class="auth-modal__input js-phone-input" type="tel" placeholder="+7" autocomplete="tel" inputmode="numeric" aria-describedby="auth-phone-caption" data-auth-phone-input>
+                </div>
+                <span class="auth-modal__caption" id="auth-phone-caption" aria-live="polite"></span>
               </div>
               <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-phone-submit>Отправить код</button>
             </div>
