@@ -194,9 +194,10 @@
 
   <!-- ─── New hero desktop icons from Figma ────────────────────── -->
 
-  <symbol id="icon-hero-menu" viewBox="0 0 32 32" fill="none">
-    <path d="M16 4.9233L16 27.0771" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-    <path d="M27.0769 16.0002H4.9231" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <symbol id="icon-hero-menu" viewBox="0 0 24 24" fill="none">
+    <path d="M20 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 18H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 6H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 
   <symbol id="icon-hero-search" viewBox="0 0 24 24" fill="none">

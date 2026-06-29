@@ -6,12 +6,14 @@
 // padding-left: 25% на десктопе — тот же подход что у catalog-hero__bar,
 // совпадает с left: 25% на hero__nav в is-header-compact
 .compare-page__top {
-  padding: 80px $spacing-page 40px;
+  // 64px — высота fixed header на мобильном + 24px по Figma
+  padding: 88px $spacing-page-desktop 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   @media (min-width: $bp-lg) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-end;
     padding: 80px $spacing-page-desktop 40px 25%;
   }
 }
@@ -23,6 +25,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 // Хлебные крошки: flex gap-4, items-center
@@ -31,6 +34,10 @@
   display: flex;
   align-items: center;
   gap: 4px;
+
+  @media (max-width: #{$bp-md - 1px}) {
+    display: none;
+  }
 }
 
 .compare-page__breadcrumb-text {
@@ -81,12 +88,17 @@
 }
 
 // Кнопки: без фона и рамки — только icon + текст
-// gap-32px между кнопками, gap-8px внутри каждой
+// Мобильный: gap-12px, только иконки (без текста)
+// Десктоп: gap-32px, иконка + текст
 .compare-page__actions {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 12px;
   flex-shrink: 0;
+
+  @media (min-width: $bp-lg) {
+    gap: 32px;
+  }
 }
 
 // Figma: SCP SemiBold 12px, #a2a7aa, uppercase, icon 16px серый
@@ -119,6 +131,10 @@
   &:hover span {
     color: $color-primary-black;
   }
+
+  @media (max-width: #{$bp-md - 1px}) {
+    span { display: none; }
+  }
 }
 
 
@@ -129,7 +145,12 @@
 .compare-products {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  background: $color-surface;
+
+  @media (min-width: $bp-lg) {
+    gap: 24px;
+  }
 }
 
 // viewport: скрывает карточки за краями
@@ -197,7 +218,7 @@
 // делили трек поровну.
 
 .compare-products__track .recommendation-card {
-  flex: 1 0 0;
+  flex: 0 0 25%;
   width: auto;
 
   @media (max-width: #{$bp-md - 1px}) {
@@ -207,6 +228,11 @@
   @media (min-width: $bp-md) and (max-width: #{$bp-lg - 1px}) {
     flex: 0 0 50%;
   }
+}
+
+.compare-products__compact-cart-icon,
+.compare-products__compact-remove {
+  display: none;
 }
 
 
@@ -238,43 +264,78 @@
 
   .compare-products.is-compact .compare-products__track {
     height: 124px;
-    gap: 4px;
-  }
-
-  .compare-products.is-compact .recommendation-card {
-    display: grid;
-    flex: 0 0 calc((100% - 12px) / 4);
-    height: 124px;
-    min-width: 0;
-    grid-template-columns: 100px minmax(0, 1fr);
-    grid-template-rows: 1fr auto;
-    column-gap: 12px;
-    padding: 12px;
-    border: 0;
-    border-radius: $radius-xs;
+    gap: 0;
     background: $color-white;
   }
 
+  .compare-products.is-compact .recommendation-card {
+    display: flex;
+    flex: 0 0 25%;
+    height: 124px;
+    min-width: 0;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px;
+    border: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: $color-white;
+  }
+
+  .compare-products.is-compact .recommendation-card:not(:last-child)::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 1px;
+    background: $color-surface;
+    content: '';
+  }
+
+  .compare-products.is-compact .recommendation-card.is-compare-edge::after {
+    display: none;
+  }
+
+  .compare-products.is-compact .recommendation-card.is-compare-edge::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    width: 119px;
+    height: 124px;
+    pointer-events: none;
+    background: linear-gradient(270deg, $color-white 0%, rgba($color-white, 0) 100%);
+    content: '';
+  }
+
   .compare-products.is-compact .recommendation-card__media {
-    grid-row: 1 / 3;
+    flex: 0 0 100px;
     width: 100px;
     height: 100px;
     min-height: 0;
+    padding: 0;
     border-radius: 8px;
     background: $color-surface;
   }
 
   .compare-products.is-compact .recommendation-card__image-link {
+    position: relative;
     width: 100%;
     height: 100%;
     padding: 0;
+    border-radius: 8px;
   }
 
   .compare-products.is-compact .recommendation-card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: contain;
-    transform: scale(1.28);
+    transform: none;
   }
 
   .compare-products.is-compact .recommendation-card__badge {
@@ -300,7 +361,9 @@
   }
 
   .compare-products.is-compact .recommendation-card__info {
+    flex: 1 1 auto;
     min-width: 0;
+    align-self: stretch;
     justify-content: flex-start;
     gap: 0;
     padding: 32px 0 0;
@@ -323,11 +386,63 @@
   }
 
   .compare-products.is-compact .recommendation-card__cart {
+    position: absolute;
+    right: 40px;
+    bottom: 12px;
+    left: 124px;
+    display: flex;
     min-width: 0;
-    align-self: end;
+    align-items: center;
+    justify-content: space-between;
     padding: 0;
     background: transparent;
     color: $color-primary-black;
+  }
+
+  .compare-products.is-compact .recommendation-card__cart:hover,
+  .compare-products.is-compact .recommendation-card__cart:focus-visible {
+    background: transparent;
+    color: $color-primary-black;
+  }
+
+  .compare-products.is-compact .compare-products__compact-cart-icon,
+  .compare-products.is-compact .compare-products__compact-remove {
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    color: $color-secondary-gray;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .compare-products.is-compact .compare-products__compact-cart-icon {
+    display: flex;
+    flex: 0 0 16px;
+  }
+
+  .compare-products.is-compact .compare-products__compact-remove {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.18s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .compare-products.is-compact .compare-products__compact-remove:hover,
+    .compare-products.is-compact .compare-products__compact-remove:focus-visible,
+    .compare-products.is-compact .compare-products__compact-cart-icon:hover {
+      color: $color-primary-black;
+    }
   }
 
   .compare-products.is-compact .recommendation-card__cart-label {
@@ -359,8 +474,19 @@
     padding: 4px;
   }
 
-  .compare-products.is-compact .compare-products__nav-btn:disabled {
+  .compare-products.is-compact .compare-products__nav-btn--prev,
+  .compare-products.is-compact.is-at-end .compare-products__nav-btn--next,
+  .compare-products.is-compact.is-moving-back .compare-products__nav-btn--next {
     display: none;
+  }
+
+  .compare-products.is-compact.is-at-end .compare-products__nav-btn--prev,
+  .compare-products.is-compact.is-moving-back:not(.is-at-start) .compare-products__nav-btn--prev {
+    display: flex;
+  }
+
+  .compare-products.is-compact.is-moving-back.is-at-start .compare-products__nav-btn--next {
+    display: flex;
   }
 }
 // ── Секция 3: данные сравнения ───────────────────────────────────────────────
@@ -426,34 +552,751 @@
 }
 
 .compare-data__values {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  display: flex;
   width: 100%;
+  overflow: hidden;
   font-family: $font-display;
   font-size: 16px;
   font-weight: $font-weight-extrabold;
   line-height: 1.2;
   color: $color-primary-black;
   text-transform: uppercase;
+  transition: transform 0.36s ease;
+  will-change: transform;
 
   span {
+    flex: 0 0 100%;
     min-width: 0;
+    padding-right: 10px;
   }
 }
 
 @media (max-width: #{$bp-md - 1px}) {
-  .compare-data {
+  // Заголовок: 24px на мобильном (H4), не 36px
+  .compare-page__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  // Счётчик выровнен с новым заголовком
+  .compare-page__title-count {
+    padding-top: 2px;
+  }
+
+  // Слайдер: нативный горизонтальный скролл вместо JS-трансформации
+  .compare-products {
+    padding-left: $spacing-page-desktop;
+    margin-top: 20px;
+    gap: 0;
+  }
+
+  .compare-products__viewport {
     overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .compare-products__track {
+    gap: 1px;
+  }
+
+  // padding-right на flex scroll container не работает в большинстве браузеров —
+  // ::after создаёт реальное скроллируемое пространство 20px после последней карточки
+  .compare-products__track::after {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: $spacing-page-desktop;
+  }
+
+  // Nav-кнопки скрыты — скролл нативный
+  .compare-products__nav {
+    display: none;
+  }
+
+  // Карточки: flex-column вместо grid — flex-stretch из трека выравнивает высоту,
+  // __info flex:1 заполняет пространство и прибивает цену к низу
+  .compare-products__track .recommendation-card {
+    flex: 0 0 160px;
+    width: 160px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Изображение: aspect-ratio задаёт высоту, image-link абсолютный → не тянет контейнер
+  .compare-products__track .recommendation-card__media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 187 / 232;
+    flex-shrink: 0;
+  }
+
+  .compare-products__track .recommendation-card__image-link {
+    position: absolute;
+    inset: 8px; // внутри padding __media
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .compare-products__track .recommendation-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // Название: строка текста
+  .compare-products__track .recommendation-card__name {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  // Цветовые точки: не отображаем на мобильном
+  .compare-products__track .recommendation-card__colors {
+    display: none;
+  }
+
+  // Инфо: flex:1 растягивает секцию, цена всегда внизу
+  .compare-products__track .recommendation-card__info {
+    flex: 1;
+    padding: 10px 8px;
+    gap: 0;
+  }
+
+  // Цена: колонкой (цена → старая цена)
+  .compare-products__track .recommendation-card__cart {
+    padding: 12px 8px;
+    align-items: center;
+  }
+
+  .compare-products__track .recommendation-card__prices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    min-height: 30px;
+  }
+
+  // Цена: Nata Black 12px
+  .compare-products__track .recommendation-card__price {
+    font-family: $font-display;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+  }
+
+  // Старая цена: всегда видна (не только на hover), серая зачёркнутая
+  .compare-products__track .recommendation-card__old-price {
+    color: #a8a8a8;
+    line-height: 1.2;
+  }
+
+  // Cart label: только иконка + (текст «В корзину» скрыт)
+  .compare-products__track .recommendation-card__cart-label {
+    opacity: 1;
+    transform: none;
+
+    span { display: none; }
+  }
+
+  // Данные сравнения — мобильная версия по Figma 5043:135283
+  .compare-data {
+    gap: 40px;
+    margin-top: 20px;
+    padding: 0 0 64px;
+    overflow: visible;
   }
 
   .compare-data__group {
-    min-width: 720px;
+    gap: 24px;
+    padding-left: $spacing-page-desktop;
+  }
+
+  .compare-data__heading {
+    font-size: 16px;
+    font-weight: $font-weight-extrabold;
+    line-height: 1.2;
+  }
+
+  .compare-data__row {
+    gap: 12px;
+    padding: 16px 0;
+    overflow: visible;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  .compare-data__label {
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+  }
+
+  // Table — единый скролл-контейнер для всей секции
+  .compare-data__table {
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  // Каждая строка расширяется до ширины контента, trailing 20px под синхронизацию со слайдером
+  .compare-data__row {
+    min-width: max-content;
+    padding-right: $spacing-page-desktop;
+  }
+
+  .compare-data__label {
+    white-space: nowrap;
+  }
+
+  // Values: без собственного скролла — скролл через table
+  .compare-data__values {
+    overflow: visible;
+    width: auto;
+    gap: 1px;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+  }
+
+  .compare-data__values span {
+    flex: 0 0 160px;
+    padding-right: 0;
+  }
+
+  // ── Мобильный compact (is-compact) — фиксируется под хедером при скролле ──
+
+  .compare-products-placeholder:not([hidden]) {
+    display: block;
+  }
+
+  .compare-products.is-compact {
+    position: fixed;
+    top: 64px; // высота мобильного хедера
+    right: 0;
+    left: 0;
+    z-index: 70;
+    padding: 8px $spacing-page-desktop;
+    gap: 0;
+    margin-top: 0;
+    background: $color-white;
+  }
+
+  .compare-products.is-compact .compare-products__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .compare-products.is-compact .compare-products__track {
+    gap: 0;
+    background: transparent;
+    height: auto;
+    transition: none;
+  }
+
+  // Убираем trailing-spacer ::after — в compact не нужен
+  .compare-products.is-compact .compare-products__track::after {
+    width: 0;
+  }
+
+  // Разделитель: градиентная вертикальная линия по Figma 5043:135574
+  .compare-products.is-compact .compare-products__track .recommendation-card:not(:last-child)::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      $color-secondary-gray 20%,
+      $color-secondary-gray 80%,
+      transparent 100%
+    );
+    content: '';
+  }
+
+  // ── Компактная карточка ──
+
+  .compare-products.is-compact .compare-products__track .recommendation-card {
+    position: relative;
+    display: flex;
+    flex: 0 0 157px;
+    flex-direction: column;
+    width: 157px;
+    height: auto;
+    gap: 12px;
+    padding: 12px;
+    border-radius: $radius-xs;
+    background: $color-white;
+    overflow: hidden;
+  }
+
+  // Картинка: 100×100, border-radius 8px
+  .compare-products.is-compact .compare-products__track .recommendation-card__media {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    aspect-ratio: unset;
+    padding: 0;
+    border-radius: 8px;
+    background: $color-surface;
+    overflow: hidden;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__image-link {
+    position: relative;
+    inset: unset;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    transform: none;
+  }
+
+  // Бейдж: внутри image-link, скрываем в compact
+  .compare-products.is-compact .compare-products__track .recommendation-card__badge {
+    display: none;
+  }
+
+  // Иконки поверх картинки (bookmark): всегда видны
+  .compare-products.is-compact .compare-products__track .recommendation-card__actions {
+    top: 0;
+    right: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    gap: 0;
+  }
+
+  // compare-иконка в actions — скрыть, оставить только bookmark
+  .compare-products.is-compact .js-compare {
+    display: none;
+  }
+
+  // ── Инфо (название) ──
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__info {
+    flex: 1;
+    gap: 8px;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__colors {
+    display: none;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__name {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  // ── Цены + иконки действий ──
+
+  // Правый отступ = 16px (compact-remove) + 12px (gap между иконками) = 28px
+  .compare-products.is-compact .compare-products__track .recommendation-card__cart {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 28px 0 0;
+    background: transparent;
+    color: $color-primary-black;
+    position: static;
+
+    &:hover,
+    &:focus-visible {
+      background: transparent;
+    }
+  }
+
+  // Старая цена сверху, текущая снизу — по Figma 5043:135557
+  .compare-products.is-compact .compare-products__track .recommendation-card__prices {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 4px;
+    min-height: unset;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__price {
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__old-price {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+    color: $color-primary-gray;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__cart-label {
+    display: none;
+  }
+
+  // Иконка корзины внутри кнопки __cart
+  .compare-products.is-compact .compare-products__compact-cart-icon {
+    display: flex;
+    flex: 0 0 16px;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    color: $color-secondary-gray;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Иконка удаления: абсолютно, правый нижний угол карточки
+  .compare-products.is-compact .compare-products__compact-remove {
+    display: flex;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: $color-secondary-gray;
+    transition: color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .compare-products.is-compact .compare-products__nav {
+    display: none;
   }
 }
 
 @media (min-width: $bp-md) and (max-width: #{$bp-lg - 1px}) {
+  // Данные на планшете всегда в native scroll — нет прыжка при compact, все колонки видны
+  .compare-data {
+    padding: 0 0 60px; // убираем горизонтальный padding — он на group/row
+  }
+
   .compare-data__group {
-    min-width: 0;
+    padding-left: $spacing-page-desktop; // 20px — совпадает с compact bar
+  }
+
+  .compare-data__table {
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .compare-data__row {
+    min-width: max-content;
+    gap: 12px;
+    padding: 16px $spacing-page-desktop 16px 0;
+
+    &:first-child { padding-top: 0; }
+  }
+
+  .compare-data__label {
+    white-space: nowrap;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+  }
+
+  .compare-data__values {
+    overflow: visible;
+    width: auto;
+    gap: 0;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+  }
+
+  .compare-data__values span {
+    flex: 0 0 calc(50vw - 20px); // 2 колонки = 2 карточки (compact и non-compact)
+    padding-right: 0;
+  }
+
+  // ── Планшет compact (is-compact) — аналогично мобильному ───────────────────
+
+  .compare-products-placeholder:not([hidden]) {
+    display: block;
+  }
+
+  .compare-products.is-compact {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    left: 0;
+    z-index: 70;
+    padding: 8px $spacing-page-desktop;
+    gap: 0;
+    background: $color-white;
+  }
+
+  .compare-products.is-compact .compare-products__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .compare-products.is-compact .compare-products__track {
+    gap: 0;
+    background: transparent;
+    height: auto;
+    transition: none;
+  }
+
+  .compare-products.is-compact .compare-products__track::after {
+    width: 0;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card:not(:last-child)::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      $color-secondary-gray 20%,
+      $color-secondary-gray 80%,
+      transparent 100%
+    );
+    content: '';
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card {
+    position: relative;
+    display: flex;
+    flex: 0 0 calc(50vw - 20px);
+    flex-direction: column;
+    width: calc(50vw - 20px);
+    height: auto;
+    gap: 12px;
+    padding: 12px;
+    border-radius: $radius-xs;
+    background: $color-white;
+    overflow: hidden;
+  }
+
+  // Медиа на планшете занимает полную ширину карточки
+  .compare-products.is-compact .compare-products__track .recommendation-card__media {
+    flex-shrink: 0;
+    width: 100%;
+    height: 130px;
+    aspect-ratio: unset;
+    padding: 0;
+    border-radius: 8px;
+    background: $color-surface;
+    overflow: hidden;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__image-link {
+    position: relative;
+    inset: unset;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    transform: none;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__badge {
+    display: none;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__actions {
+    top: 0;
+    right: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    gap: 0;
+  }
+
+  .compare-products.is-compact .js-compare {
+    display: none;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__info {
+    flex: 1;
+    gap: 8px;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__colors {
+    display: none;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__name {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__cart {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 28px 0 0;
+    background: transparent;
+    color: $color-primary-black;
+    position: static;
+
+    &:hover,
+    &:focus-visible {
+      background: transparent;
+    }
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__prices {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 4px;
+    min-height: unset;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__price {
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__old-price {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+    color: $color-primary-gray;
+  }
+
+  .compare-products.is-compact .compare-products__track .recommendation-card__cart-label {
+    display: none;
+  }
+
+  .compare-products.is-compact .compare-products__compact-cart-icon {
+    display: flex;
+    flex: 0 0 16px;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    color: $color-secondary-gray;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .compare-products.is-compact .compare-products__compact-remove {
+    display: flex;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: $color-secondary-gray;
+    transition: color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .compare-products.is-compact .compare-products__nav {
+    display: none;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .compare-data__values span {
+    flex-basis: 25%;
+  }
+
+  // Перемещаем clip с values на table — как viewport/track в слайдере.
+  // Без этого translateX(-50%) сдвигает весь clip-бокс влево и видны
+  // только span 1-2 вместо span 3-4-5-6 при навигации к концу.
+  .compare-data__table {
+    overflow: hidden;
+  }
+
+  .compare-data__values {
+    overflow: visible;
   }
 }

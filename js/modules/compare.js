@@ -10,6 +10,7 @@ function initCompareSlider() {
   const track = root.querySelector('[data-compare-track]');
   const prevBtn = root.querySelector('[data-compare-prev]');
   const nextBtn = root.querySelector('[data-compare-next]');
+  const valueTracks = Array.from(document.querySelectorAll('.compare-data__values'));
   if (!track || !prevBtn || !nextBtn) return;
 
   let currentIndex = 0;
@@ -31,11 +32,15 @@ function initCompareSlider() {
   }
 
   function getStickyTop() {
-    return window.innerWidth >= 1280 ? 72 : 0;
+    return window.innerWidth >= 1280 ? 72 : 64; // desktop: 72px, mobile+tablet: 64px
   }
 
   function getCompactHeight() {
     return window.innerWidth >= 1280 ? 124 : 0;
+  }
+
+  function getCompactRevealOffset() {
+    return window.innerWidth >= 1280 ? 120 : 0;
   }
 
   function setPlaceholder(active) {
@@ -55,7 +60,11 @@ function initCompareSlider() {
     root.classList.remove('is-compact');
     setPlaceholder(false);
     root.dataset.compareFullHeight = String(root.offsetHeight);
-    stickyStart = root.getBoundingClientRect().bottom + window.scrollY - getStickyTop() - getCompactHeight();
+
+    const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+    const fullSliderEnd = root.getBoundingClientRect().bottom + window.scrollY - getStickyTop() - getCompactHeight();
+    stickyStart = Math.min(fullSliderEnd - getCompactRevealOffset(), Math.max(maxScroll - 1, 0));
+
     root.classList.toggle('is-compact', wasCompact && window.scrollY >= stickyStart);
     setPlaceholder(root.classList.contains('is-compact'));
   }
@@ -63,35 +72,72 @@ function initCompareSlider() {
   function updateCompactState() {
     const wasCompact = root.classList.contains('is-compact');
 
-    if (window.innerWidth < 1280) {
-      root.classList.remove('is-compact');
-      setPlaceholder(false);
-      return wasCompact;
-    }
-
     root.classList.toggle('is-compact', window.scrollY >= stickyStart);
     setPlaceholder(root.classList.contains('is-compact'));
-    return wasCompact !== root.classList.contains('is-compact');
+
+    const compactChanged = wasCompact !== root.classList.contains('is-compact');
+    if (compactChanged) requestAnimationFrame(updateSlider);
+    return compactChanged;
   }
 
+  // Синхронизация скролла таблиц данных с viewport карточек на мобильном
+  const viewport = track.parentElement;
+  const dataTables = Array.from(document.querySelectorAll('.compare-data__table'));
+  viewport.addEventListener('scroll', () => {
+    // Синхронизировать только когда viewport в native-scroll режиме (мобильный или планшет-compact)
+    if (window.innerWidth >= 768 && !(window.innerWidth < 1280 && root.classList.contains('is-compact'))) return;
+    const maxVP = viewport.scrollWidth - viewport.clientWidth;
+    if (maxVP <= 0) return;
+    dataTables.forEach(t => {
+      const maxT = t.scrollWidth - t.clientWidth;
+      t.scrollLeft = viewport.scrollLeft * (maxT / maxVP);
+    });
+  }, { passive: true });
+
   function updateSlider() {
+    // Мобильный и планшет-compact — нативный скролл, трансформации не нужны
+    if (window.innerWidth < 768 || (window.innerWidth < 1280 && root.classList.contains('is-compact'))) {
+      track.style.transform = '';
+      valueTracks.forEach(vt => { vt.style.transform = ''; });
+      return;
+    }
+
     const visible = getVisibleCount();
     const maxIndex = getMaxIndex();
+    const cards = Array.from(track.querySelectorAll('.recommendation-card'));
 
     currentIndex = Math.min(currentIndex, maxIndex);
 
-    const firstCard = track.querySelector('.recommendation-card');
-    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || '0') || 0;
-    const cardWidth = firstCard ? firstCard.getBoundingClientRect().width + gap : track.offsetWidth / visible;
-    track.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+    const slideStep = 100 / visible;
+    track.style.transform = `translateX(${-currentIndex * slideStep}%)`;
+
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1280;
+    if (isTablet) {
+      // На планшете данные всегда в native scroll — sync по scrollLeft при prev/next
+      valueTracks.forEach(vt => { vt.style.transform = ''; });
+      const colWidth = dataTables[0]?.querySelector('span')?.offsetWidth || 220;
+      dataTables.forEach(t => { t.scrollTo({ left: currentIndex * colWidth, behavior: 'smooth' }); });
+    } else {
+      valueTracks.forEach(valueTrack => {
+        valueTrack.style.transform = `translateX(${-currentIndex * slideStep}%)`;
+      });
+    }
 
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex >= maxIndex;
+
+    root.classList.toggle('is-at-start', currentIndex === 0);
+    root.classList.toggle('is-at-end', currentIndex >= maxIndex);
+
+    cards.forEach(card => card.classList.remove('is-compare-edge'));
+    const edgeIndex = Math.min(currentIndex + visible - 1, cards.length - 1);
+    cards[edgeIndex]?.classList.add('is-compare-edge');
   }
 
   prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {
       currentIndex--;
+      root.classList.add('is-moving-back');
       updateSlider();
     }
   });
@@ -99,6 +145,7 @@ function initCompareSlider() {
   nextBtn.addEventListener('click', () => {
     if (currentIndex < getMaxIndex()) {
       currentIndex++;
+      root.classList.remove('is-moving-back');
       updateSlider();
     }
   });
@@ -107,9 +154,11 @@ function initCompareSlider() {
   track.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft' && currentIndex > 0) {
       currentIndex--;
+      root.classList.add('is-moving-back');
       updateSlider();
     } else if (e.key === 'ArrowRight' && currentIndex < getMaxIndex()) {
       currentIndex++;
+      root.classList.remove('is-moving-back');
       updateSlider();
     }
   });
@@ -130,7 +179,8 @@ function initCompareSlider() {
     if (scrollTicking) return;
     scrollTicking = true;
     requestAnimationFrame(() => {
-      if (updateCompactState()) updateSlider();
+      const compactChanged = updateCompactState();
+      if (!compactChanged && root.classList.contains('is-compact')) updateSlider();
       scrollTicking = false;
     });
   }, { passive: true });

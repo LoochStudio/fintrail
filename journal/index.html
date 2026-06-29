@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail - Журнал</title>
+  <link rel="stylesheet" href="/scss/main.scss">
+</head>
+<body>
+  <header class="catalog-header is-header-dark is-header-compact" data-header-mega-root>
+    <div class="hero__topbar" aria-label="Навигация каталога">
+      <div class="hero__brand">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          <span>Меню</span>
+        </button>
+        <a class="hero__logo-link" href="/">
+          <img class="hero__logo" src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
+        </a>
+      </div>
+
+      <nav class="hero__nav" aria-label="Главная навигация">
+        <a href="/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
+        <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
+      </nav>
+
+      <div class="hero__tools">
+        <a href="/search/" class="hero__tool" aria-label="Поиск">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg>
+        </a>
+        <a href="/personal/" class="hero__tool" aria-label="Профиль">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+        </a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
+        <a href="/wishlist/" class="hero__tool" aria-label="Избранное">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg>
+        </a>
+        <a href="/cart/" class="hero__tool" aria-label="Корзина">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+          <span class="hero-cart-badge" hidden></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/palatki/">Палатки</a></li>
+              <li><a href="/catalog/spalnye-meshki/">Спальные мешки</a></li>
+              <li><a href="/catalog/germochehly/">Гермочехлы</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/special/">Специальная экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/veydersy/">Вейдерсы</a></li>
+              <li><a href="/catalog/suhie-kostyumy/">Сухие костюмы</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-mega__activities" aria-label="Активности">
+          <a class="header-mega__activity" href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a class="header-mega__activity" href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a class="header-mega__activity" href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a class="header-mega__activity" href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a class="header-mega__activity" href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a class="header-mega__activity" href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BITRIX: меню сайта — часть header.php шаблона, повторяется на всех страницах -->
+  <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+    <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+    <aside class="site-menu__panel">
+      <div class="site-menu__top">
+        <div class="site-menu__bar">
+          <button class="site-menu__close" type="button" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="site-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="site-menu__main" aria-label="Основные разделы">
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
+        </nav>
+        <div class="site-menu__divider" aria-hidden="true"></div>
+        <nav class="site-menu__activities" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+      <div class="site-menu__middle">
+        <nav class="site-menu__links" aria-label="Контентные разделы">
+          <a href="/journal/">Журнал</a>
+          <a href="/tours/">Премиальные туры</a>
+        </nav>
+        <nav class="site-menu__links" aria-label="Информация">
+          <button type="button" data-site-menu-info="about">О компании</button>
+          <button type="button" data-site-menu-info="customers">Покупателям</button>
+          <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
+        </nav>
+      </div>
+      <div class="site-menu__bottom">
+        <div class="site-menu__contacts">
+          <div class="site-menu__phone-row">
+            <a class="site-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+            <div class="site-menu__socials" aria-label="Социальные сети">
+              <a href="https://t.me/finntrail" aria-label="Telegram" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+              <a href="https://wa.me/78007004273" aria-label="WhatsApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+              <a href="https://dzen.ru/finntrail" aria-label="Дзен" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+            </div>
+          </div>
+          <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
+        </div>
+        <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+        <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
+      <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
+        <div class="site-menu__submenu-top">
+          <nav class="site-menu__categories" aria-label="Категории">
+            <button type="button" data-site-menu-category>Одежда</button>
+            <button type="button" data-site-menu-category>Обувь</button>
+            <button type="button" data-site-menu-category>Аксессуары</button>
+            <button type="button" data-site-menu-category>Снаряжение</button>
+            <button type="button" data-site-menu-category>Экипировка</button>
+          </nav>
+          <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
+            <a href="/catalog/">Куртки</a>
+            <a href="/catalog/">Брюки и полукомбинезоны</a>
+            <a href="/catalog/">Костюмы и комбинезоны</a>
+            <a href="/catalog/">Термобелье</a>
+            <a href="/catalog/">Футболки и лонгсливы</a>
+            <a href="/catalog/">Жилеты</a>
+            <a href="/catalog/">Худи и толстовки</a>
+            <a href="/catalog/">Рубашки / шорты</a>
+          </nav>
+        </div>
+        <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+          <picture>
+            <source srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
+            <img src="/images/content/site-menu/hiking-promo.png" srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
+          </picture>
+          <div class="site-menu__promo-content">
+            <h3>Экипировка<br>для хайкинга</h3>
+            <p>Куртки, штаны, термобельё</p>
+          </div>
+          <span class="site-menu__promo-link" aria-hidden="true">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </span>
+        </a>
+      </div>
+      <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню" data-mobile-menu>
+    <div class="mobile-menu__panel" data-mobile-menu-view="main">
+      <div class="mobile-menu__top">
+        <div class="mobile-menu__bar">
+          <button class="mobile-menu__close" type="button" data-mobile-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="mobile-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+          <div class="mobile-menu__group"><a href="/journal/">Журнал</a><a href="/tours/">Премиальные туры</a></div>
+          <div class="mobile-menu__group"><a href="/about/">О компании</a><button type="button" data-mobile-menu-customers>Покупателям</button><a href="/wholesale/">Оптовикам</a></div>
+        </nav>
+      </div>
+      <div class="mobile-menu__bottom">
+        <div class="mobile-menu__contacts">
+          <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+          <div class="mobile-menu__socials" aria-label="Социальные сети">
+            <a href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+            <a href="https://wa.me/78007004273" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+          </div>
+        </div>
+        <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
+      <div class="mobile-menu__catalog-top">
+        <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle><span>Мужчинам</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+          </div>
+        </div>
+        <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle><span>Женщинам</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="journal-page">
+    <section class="journal-page__titlebar" aria-labelledby="journal-page-title">
+      <div class="journal-page__heading">
+        <nav class="journal-page__breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
+          <span aria-current="page">Журнал</span>
+        </nav>
+        <h1 class="journal-page__title" id="journal-page-title">Журнал</h1>
+      </div>
+      <a class="journal-page__author-btn" href="/journal/author/">Стать автором</a>
+    </section>
+
+    <section class="catalog-tags journal-page__tags" aria-label="Темы журнала">
+      <div class="catalog-tags__group catalog-tags__group--activities">
+        <a class="catalog-tags__chip" href="/journal/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+        <a class="catalog-tags__chip" href="/journal/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+        <a class="catalog-tags__chip" href="/journal/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+        <a class="catalog-tags__chip" href="/journal/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+        <a class="catalog-tags__chip" href="/journal/snowmobile/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+        <a class="catalog-tags__chip" href="/journal/ski/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+      </div>
+      <svg class="catalog-tags__divider" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-divider"></use></svg>
+      <div class="catalog-tags__group">
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/guides/">Гайд</a>
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/interview/">Интервью</a>
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/new/">Новинки</a>
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/news/">Новости</a>
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/reviews/">Обзоры</a>
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/customer-experience/">Опыт покупателей</a>
+        <a class="catalog-tags__chip catalog-tags__chip--text" href="/journal/technology/">Технологии</a>
+      </div>
+    </section>
+
+    <!-- BITRIX: bitrix:news.list, подборка сторис и избранных материалов журнала. -->
+    <section class="journal-showcase journal-showcase--journal-page" aria-label="Избранные материалы журнала">
+      <div class="journal-showcase__header">
+        <div class="journal-showcase__categories" aria-label="Рубрики журнала">
+          <a class="journal-showcase__category" href="/journal/tourism/"><span class="journal-showcase__category-media"><img src="/images/content/journal/cat-tourism.png" srcset="/images/content/_responsive/journal/cat-tourism-160.png 160w, /images/content/_responsive/journal/cat-tourism-320.png 320w, /images/content/journal/cat-tourism.png 768w" sizes="72px" alt=""></span><span>Туризм</span></a>
+          <a class="journal-showcase__category" href="/journal/fishing/"><span class="journal-showcase__category-media"><img src="/images/content/journal/cat-fishing.png" srcset="/images/content/_responsive/journal/cat-fishing-160.png 160w, /images/content/_responsive/journal/cat-fishing-320.png 320w, /images/content/journal/cat-fishing.png 768w" sizes="72px" alt=""></span><span>Рыбалка</span></a>
+          <a class="journal-showcase__category" href="/journal/quad/"><span class="journal-showcase__category-media"><img src="/images/content/journal/cat-quad.png" srcset="/images/content/_responsive/journal/cat-quad-160.png 160w, /images/content/_responsive/journal/cat-quad-320.png 320w, /images/content/journal/cat-quad.png 768w" sizes="72px" alt=""></span><span>Квадро</span></a>
+          <a class="journal-showcase__category" href="/journal/travel/"><span class="journal-showcase__category-media"><img src="/images/content/journal/cat-travel.png" srcset="/images/content/_responsive/journal/cat-travel-160.png 160w, /images/content/_responsive/journal/cat-travel-320.png 320w, /images/content/journal/cat-travel.png 768w" sizes="72px" alt=""></span><span>Путешествия</span></a>
+          <a class="journal-showcase__category" href="/journal/ski/"><span class="journal-showcase__category-media"><img src="/images/content/journal/cat-ski.png" srcset="/images/content/_responsive/journal/cat-ski-160.png 160w, /images/content/_responsive/journal/cat-ski-320.png 320w, /images/content/journal/cat-ski.png 768w" sizes="72px" alt=""></span><span>Горные лыжи</span></a>
+          <a class="journal-showcase__category" href="/journal/snowmobile/"><span class="journal-showcase__category-media"><img src="/images/content/journal/cat-snowmobile.png" srcset="/images/content/_responsive/journal/cat-snowmobile-160.png 160w, /images/content/_responsive/journal/cat-snowmobile-320.png 320w, /images/content/journal/cat-snowmobile.png 768w" sizes="72px" alt=""></span><span>Снегоходы</span></a>
+        </div>
+      </div>
+
+      <div class="journal-showcase__content">
+        <div class="journal-showcase__featured-row">
+          <a class="journal-showcase__hero" href="/journal/camping-vs-glamping/">
+            <img src="/images/content/journal/hero-tent.png" srcset="/images/content/_responsive/journal/hero-tent-320.png 320w, /images/content/_responsive/journal/hero-tent-768.png 768w, /images/content/journal/hero-tent.png 1400w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) calc(100vw - 40px), 700px" alt="Палатка FINNTRAIL на закате">
+            <span class="journal-showcase__hero-meta"><span>Гайды</span><span>Туризм</span></span>
+            <span class="journal-showcase__hero-title journal-showcase__hero-title-desktop">Чем отличается кемпинг от глэмпинга<br>и что выбрать для идеального отдыха<br>на природе</span>
+            <span class="journal-showcase__hero-title journal-showcase__hero-title-mobile">Правильная консервация снегохода на лето: что нужно знать</span>
+          </a>
+          <a class="journal-showcase__card" href="/journal/trekking-shoes/">
+            <span class="journal-showcase__card-image"><img src="/images/content/journal/trekking.png" srcset="/images/content/_responsive/journal/trekking-320.png 320w, /images/content/_responsive/journal/trekking-768.png 768w, /images/content/journal/trekking.png 1024w" sizes="(max-width: 767px) 100vw, 343px" alt="Туристы в горах" loading="lazy"></span>
+            <span class="journal-showcase__card-body"><span class="journal-showcase__meta"><span>Гайды</span><span>Туризм</span></span><span class="journal-showcase__card-title">Как выбрать треккинговую обувь: материалы, подошва, советы и обзор лучших моделей FINNTRAIL</span></span>
+          </a>
+          <a class="journal-showcase__card" href="/journal/snowmobile-storage/">
+            <span class="journal-showcase__card-image"><img src="/images/content/journal/snowmobile.png" srcset="/images/content/_responsive/journal/snowmobile-320.png 320w, /images/content/_responsive/journal/snowmobile-768.png 768w, /images/content/journal/snowmobile.png 1024w" sizes="(max-width: 767px) 100vw, 343px" alt="Снегоход на склоне" loading="lazy"></span>
+            <span class="journal-showcase__card-body"><span class="journal-showcase__meta"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-showcase__card-title">Правильная консервация снегохода на лето: что нужно знать</span></span>
+          </a>
+        </div>
+        <div class="journal-showcase__divider" aria-hidden="true"></div>
+        <div class="journal-showcase__links">
+          <a class="journal-showcase__link" href="/journal/snowmobile-license/"><span class="journal-showcase__date">30 сентября</span><span>Нужны ли водительские права<br>для управления снегоходом?</span></a>
+          <a class="journal-showcase__link" href="/journal/fishing-ban-2026/"><span class="journal-showcase__date">12 октября</span><span>Весенний запрет на ловлю рыбы<br>в 2026 году: причины, сроки, разрешенные локации</span></a>
+          <a class="journal-showcase__link" href="/journal/hipora/"><span class="journal-showcase__date">12 октября</span><span>Южнокорейская мембрана Hipora<br>в экипировке: как это работает<br>и когда она реально нужна</span></a>
+          <a class="journal-showcase__link" href="/journal/snowmobile-license/"><span class="journal-showcase__date">30 сентября</span><span>Нужны ли водительские права<br>для управления снегоходом?</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-subscribe" aria-labelledby="journal-subscribe-title">
+      <div class="journal-subscribe__frame" aria-hidden="true"></div>
+      <div class="journal-subscribe__inner">
+        <div class="journal-subscribe__content">
+          <div class="journal-subscribe__text">
+            <h2 class="journal-subscribe__title" id="journal-subscribe-title">Всё самое интересное<br>из журнала FINNTRAIL</h2>
+            <p class="journal-subscribe__description">Подпишитесь на рассылку и получайте реальные истории,<br>обзоры снаряжения и новые материалы на почту</p>
+          </div>
+          <div class="journal-subscribe__socials" aria-label="Социальные сети FINNTRAIL">
+            <a class="journal-subscribe__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-vk"></use></svg></a>
+            <a class="journal-subscribe__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tg"></use></svg></a>
+            <a class="journal-subscribe__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-dzen"></use></svg></a>
+            <a class="journal-subscribe__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="YouTube"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-yt"></use></svg></a>
+          </div>
+        </div>
+        <form class="journal-subscribe__form" action="/subscribe/" method="post">
+          <label class="journal-subscribe__field"><span class="visually-hidden">Электронная почта</span><input type="email" name="email" placeholder="Электронная почта" required></label>
+          <label class="journal-subscribe__agreement"><input type="checkbox" name="privacy" required><span>Принимаю условия <a href="/privacy/">политики конфиденциальности</a></span></label>
+          <button class="journal-subscribe__submit" type="submit">Подписаться</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- BITRIX: bitrix:news.list; список материалов журнала с пагинацией и кнопкой подгрузки. -->
+    <section class="journal-feed" aria-label="Материалы журнала">
+      <div class="journal-feed__grid">
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/trekking-shoes/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-trekking.png" srcset="/images/content/journal-page/feed-trekking.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Туристы в горах" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Туризм</span></span><span class="journal-feed-card__name">Как выбрать треккинговую обувь: материалы, подошва, советы и обзор лучших моделей FINNTRAIL</span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/snowmobile-storage/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-snowmobile.png" srcset="/images/content/journal-page/feed-snowmobile.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Снегоход на склоне" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Правильная консервация снегохода на лето: что нужно знать</span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/best-snowmobiles/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-climbing.png" srcset="/images/content/journal-page/feed-climbing.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Райдер на скале" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Обзор лучших снегоходов 2023 года: что выбрать?</span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/snowmobile-safety/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-ridge.png" srcset="/images/content/journal-page/feed-ridge.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Маршрут по горному хребту" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Техника безопасности на снегоходе: советы и рекомендации</span></span></a></article>
+        <article class="journal-feed-card journal-feed-card--large"><a class="journal-feed-card__link" href="/journal/snowmobile-storage/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-hikers.png" srcset="/images/content/journal-page/feed-hikers.png 1x" sizes="(max-width: 767px) 100vw, 1400px" alt="Туристы идут по горному маршруту" loading="lazy"></span><span class="journal-feed-card__overlay"><span class="journal-feed-card__content"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Правильная консервация снегохода<br>на лето: что нужно знать</span></span><span class="journal-feed-card__stats"><span><img src="/images/content/journal-page/journal-icon-refresh.svg" alt="">12 мин</span><span><img src="/images/content/journal-page/journal-icon-time.svg" alt="">12.11.2022</span><span><img src="/images/content/journal-page/journal-icon-eye.svg" alt="">549</span><span><img src="/images/content/journal-page/journal-icon-comments.svg" alt="">12</span></span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/trekking-shoes/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-jump.png" srcset="/images/content/journal-page/feed-jump.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Прыжок на фоне гор" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Туризм</span></span><span class="journal-feed-card__name">Как выбрать треккинговую обувь: материалы, подошва, советы и обзор лучших моделей FINNTRAIL</span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/snowmobile-storage/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-hikers.png" srcset="/images/content/journal-page/feed-hikers.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Туристы идут по горному маршруту" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Правильная консервация снегохода на лето: что нужно знать</span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/snowmobile-care/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-forest.png" srcset="/images/content/journal-page/feed-forest.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Подготовка экипировки в лесу" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Правильная консервация снегохода на лето: что нужно знать</span></span></a></article>
+        <article class="journal-feed-card"><a class="journal-feed-card__link" href="/journal/snowmobile-winter/"><span class="journal-feed-card__media"><img src="/images/content/journal-page/feed-skier.png" srcset="/images/content/journal-page/feed-skier.png 1x" sizes="(max-width: 767px) 100vw, 333px" alt="Спуск по снежному склону" loading="lazy"></span><span class="journal-feed-card__body"><span class="journal-feed-card__tags"><span>Гайды</span><span>Снегоходы</span></span><span class="journal-feed-card__name">Правильная консервация снегохода на лето: что нужно знать</span></span></a></article>
+      </div>
+
+      <div class="journal-feed__load-more">
+        <button class="catalog-products__more journal-feed__more" type="button" data-load-more>
+          <span>Показать еще</span>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+        </button>
+      </div>
+
+      <nav class="catalog-pagination journal-feed__pagination" aria-label="Пагинация журнала">
+        <button class="catalog-pagination__side catalog-pagination__side--prev is-disabled" type="button" disabled aria-label="Предыдущая страница"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg><span class="catalog-pagination__side-text">Предыдущая страница</span></button>
+        <div class="catalog-pagination__pages">
+          <a class="catalog-pagination__page is-active" href="/journal/" aria-current="page">1</a>
+          <a class="catalog-pagination__page" href="/journal/?page=2">2</a>
+          <a class="catalog-pagination__page" href="/journal/?page=3">3</a>
+          <a class="catalog-pagination__page" href="/journal/?page=4">4</a>
+          <a class="catalog-pagination__page" href="/journal/?page=5">5</a>
+          <a class="catalog-pagination__page" href="/journal/?page=6">6</a>
+          <span class="catalog-pagination__page catalog-pagination__page--dots">...</span>
+          <a class="catalog-pagination__page" href="/journal/?page=17">17</a>
+        </div>
+        <button class="catalog-pagination__side catalog-pagination__side--next" type="button" aria-label="Следующая страница"><span class="catalog-pagination__side-text">Следующая страница</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></button>
+      </nav>
+    </section>
+  </main>
+  <footer class="footer-desktop catalog-footer" aria-label="Футер">
+    <div class="footer-desktop__top">
+      <nav class="footer-desktop__nav" aria-label="Навигация в футере">
+        <div class="footer-desktop__column footer-desktop__column--buyers">
+          <h2 class="footer-desktop__heading">Покупателям</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/delivery/">Доставка и оплата</a></li>
+            <li><a class="footer-desktop__link" href="/return/">Обмен и возврат</a></li>
+            <li><a class="footer-desktop__link" href="/warranty/">Гарантия и сервис</a></li>
+            <li><a class="footer-desktop__link" href="/feedback/">Обратная связь</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--company">
+          <h2 class="footer-desktop__heading">Компания</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
+            <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
+            <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
+            <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
+            <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--gear">
+          <h2 class="footer-desktop__heading">Об экипировке</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
+            <li><a class="footer-desktop__link" href="/technologies/">Технологии</a></li>
+            <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
+            <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
+            <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--app">
+          <h2 class="footer-desktop__heading">Приложение FINNTRAIL</h2>
+          <div class="footer-desktop__app-panel">
+            <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
+            <ul class="footer-desktop__app-links">
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/">
+                  <span class="footer-desktop__app-icon" aria-hidden="true">
+                    <svg class="footer-desktop__app-icon-default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+                    <svg class="footer-desktop__app-icon-hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+                  </span>
+                  <span>Google Play</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+                  <span>App Store</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+                  <span>AppGallery</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+                  <span>RuStore</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-desktop__divider"></div>
+    <div class="footer-desktop__legal">
+      <a class="footer-desktop__legal-link" href="/privacy/">Политика конфиденциальности</a>
+      <a class="footer-desktop__legal-link" href="/offer/">Публичная оферта</a>
+      <a class="footer-desktop__legal-link" href="/personal-data/">Согласие на обработку персональных данных</a>
+    </div>
+    <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL">
+      <img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
+    </a>
+  </footer>
+
+  <nav class="tabbar" aria-label="Мобильная навигация">
+    <a href="./" class="tabbar__item is-active" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
+    <a href="/personal/" class="tabbar__item" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
+    <a href="/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
+    <a href="/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
+    <a href="/basket/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
+  </nav>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

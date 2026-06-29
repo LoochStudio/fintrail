@@ -234,7 +234,10 @@
 }
 
 .journal-showcase__divider {
-  display: none;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: $color-secondary-gray;
 }
 
 .journal-showcase__links {
@@ -697,3 +700,6 @@
     line-height: 19px;
   }
 }
+
+
+

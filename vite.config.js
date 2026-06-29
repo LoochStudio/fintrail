@@ -43,6 +43,7 @@ export default defineConfig({
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
         search: resolve(__dirname, 'search/index.html'),
         compare: resolve(__dirname, 'compare/index.html'),
+        journal: resolve(__dirname, 'journal/index.html'),
       },
     },
   },
@@ -51,3 +52,4 @@ export default defineConfig({
     port: 5173,
   }
 })
+
