@@ -80,6 +80,15 @@
   padding-bottom: 40px;
 }
 
+.journal-page__tags .catalog-tags__chip.is-active {
+  background: $color-primary-black;
+  color: $color-white;
+}
+
+.journal-page__tags .catalog-tags__chip.is-active svg {
+  color: $color-white;
+}
+
 .journal-showcase--journal-page {
   margin-top: 0;
 }
@@ -460,6 +469,35 @@
   margin-top: 0;
 }
 
+.journal-feed-card.is-hidden {
+  display: none;
+}
+
+.journal-feed--filtered .journal-feed__grid {
+  animation: journal-feed-filter-in 0.18s ease-out;
+}
+
+.journal-feed--only {
+  margin-top: 0;
+}
+
+.journal-feed--empty .journal-feed__load-more,
+.journal-feed--empty .journal-feed__pagination {
+  display: none;
+}
+
+@keyframes journal-feed-filter-in {
+  from {
+    opacity: 0.6;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .journal-page__author-btn:hover,
   .journal-page__author-btn:focus-visible {
@@ -518,21 +556,84 @@
 }
 
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  // ─── Journal page root ──────────────────────────────────────────────────────
   .journal-page {
     padding-top: 64px;
   }
 
+  // ─── Titlebar ───────────────────────────────────────────────────────────────
   .journal-page__titlebar {
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 20px 12px;
+  }
+
+  .journal-page__heading {
+    display: contents;
+  }
+
+  .journal-page__breadcrumbs {
+    display: flex;
   }
 
   .journal-page__title {
-    font-size: $text-heading-h3-size;
-    line-height: 30px;
+    font-size: $text-heading-h2-size;
+    line-height: $text-heading-h2-line;
+    text-align: center;
+  }
+
+  .journal-page__author-btn {
+    justify-self: end;
+  }
+
+  // ─── Tags — 2 строки как на десктопе ─────────────────────────────────────────
+  .journal-page__tags.catalog-tags {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 32px 0 40px;
+    overflow-x: visible;
+  }
+
+  .journal-page__tags .catalog-tags__group {
+    overflow-x: auto;
+    padding: 0 20px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .journal-page__tags .catalog-tags__divider {
+    display: none;
+  }
+
+  // ─── Showcase on journal page ────────────────────────────────────────────────
+  .journal-showcase--journal-page {
+    margin-top: 0;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__header {
+    display: flex;
+    justify-content: center;
   }
 
   .journal-showcase--journal-page .journal-showcase__categories {
+    width: 100%;
     justify-content: space-between;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card-title {
+    font-size: 18px;
+    font-weight: $font-weight-black;
+    line-height: 22px;
+  }
+
+  // ─── Subscribe ──────────────────────────────────────────────────────────────
+  .journal-subscribe {
+    margin-top: 80px;
   }
 
   .journal-subscribe__inner {
@@ -540,17 +641,66 @@
     min-height: 0;
   }
 
+  .journal-subscribe__title {
+    font-size: $text-heading-h3-size;
+    line-height: $text-heading-h3-line;
+  }
+
+  // ─── Feed ───────────────────────────────────────────────────────────────────
+  .journal-feed {
+    gap: 12px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
   .journal-feed__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 20px;
+    gap: 40px 10px;
+  }
+
+  .journal-feed-card__media {
+    height: 300px;
   }
 
   .journal-feed-card--large {
     grid-column: 1 / -1;
   }
 
+  .journal-feed-card--large .journal-feed-card__link {
+    min-height: 480px;
+  }
+
   .journal-feed-card--large .journal-feed-card__media {
-    min-height: 500px;
+    height: 100%;
+    min-height: 480px;
+  }
+
+  .journal-feed-card--large .journal-feed-card__name {
+    font-size: $text-heading-h3-size;
+    line-height: $text-heading-h3-line;
+  }
+
+  .journal-feed-card__overlay {
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .journal-feed-card__stats {
+    gap: 20px;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .journal-feed-card__stats span {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .journal-feed-card__stats img {
+    width: 20px;
+    height: 20px;
+    flex-basis: 20px;
   }
 }
 
@@ -683,3 +833,395 @@
 
 
 
+
+
+
+// ─── Journal mobile layout polish (Figma 4343:52495) ────────────────────────
+
+@media (max-width: calc($bp-md - 1px)) {
+  .journal-page {
+    padding-top: 64px;
+  }
+
+  .journal-page__titlebar {
+    min-height: 52px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 24px 20px 0;
+    border-bottom: 0;
+  }
+
+  .journal-page__heading {
+    gap: 0;
+  }
+
+  .journal-page__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .journal-page__author-btn {
+    display: none;
+  }
+
+  .journal-page__tags.catalog-tags {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .journal-page__tags .catalog-tags__group {
+    width: 100%;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .journal-page__tags .catalog-tags__group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .journal-page__tags .catalog-tags__divider {
+    display: none;
+  }
+
+  .journal-page__tags .catalog-tags__chip {
+    min-height: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .journal-page__tags .catalog-tags__chip--text {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .journal-showcase--journal-page {
+    gap: 24px;
+    margin-top: 24px;
+    padding: 0 20px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__header {
+    display: block;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__categories {
+    display: flex;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    gap: 8px;
+    padding: 0 20px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-padding-left: 20px;
+    scrollbar-width: none;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__category {
+    width: 72px;
+    flex: 0 0 72px;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__category-media {
+    --journal-category-image-size: 64px;
+    width: 72px;
+    height: 72px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__content {
+    gap: 24px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__featured-row {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero {
+    order: 0;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card[href*="snowmobile-storage"] {
+    order: 1;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card[href*="trekking-shoes"] {
+    order: 2;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero {
+    width: 100%;
+    max-width: none;
+    height: 274px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero-meta {
+    left: 20px;
+    bottom: 114px;
+    gap: 20px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero-title {
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    display: block;
+    max-width: 295px;
+    font-size: 18px;
+    line-height: 22px;
+    transform: none;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero-title-desktop {
+    display: none;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero-title-mobile {
+    display: block;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card-image {
+    height: 300px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card-body {
+    gap: 16px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__card-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__divider {
+    display: none;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__link {
+    gap: 16px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .journal-subscribe {
+    margin-top: 64px;
+    padding: 20px;
+    overflow: visible;
+  }
+
+  .journal-subscribe::before,
+  .journal-subscribe::after {
+    top: 0;
+    height: 100%;
+  }
+
+  .journal-subscribe__frame::before {
+    top: 20px;
+  }
+
+  .journal-subscribe__frame::after {
+    bottom: 20px;
+  }
+
+  .journal-subscribe__inner {
+    display: flex;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    gap: 32px;
+    padding: 16px;
+  }
+
+  .journal-subscribe__content {
+    display: contents;
+  }
+
+  .journal-subscribe__text {
+    order: 1;
+    gap: 16px;
+  }
+
+  .journal-subscribe__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .journal-subscribe__description {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .journal-subscribe__description br {
+    display: none;
+  }
+
+  .journal-subscribe__form {
+    order: 2;
+    gap: 12px;
+  }
+
+  .journal-subscribe__field input {
+    height: 52px;
+  }
+
+  .journal-subscribe__agreement {
+    min-height: 48px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .journal-subscribe__agreement input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  .journal-subscribe__submit {
+    height: 52px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .journal-subscribe__socials {
+    order: 3;
+    gap: 4px;
+  }
+
+  .journal-subscribe__social {
+    width: 48px;
+    height: 48px;
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  .journal-feed {
+    gap: 24px;
+    margin-top: 64px;
+    margin-bottom: 64px;
+    padding: 0 20px;
+  }
+
+  .journal-feed__grid {
+    gap: 24px;
+  }
+
+  .journal-feed-card__link {
+    gap: 16px;
+  }
+
+  .journal-feed-card__media {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .journal-feed-card__body,
+  .journal-feed-card__content {
+    gap: 16px;
+  }
+
+  .journal-feed-card__tags {
+    gap: 20px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .journal-feed-card__name {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .journal-feed-card--large .journal-feed-card__link {
+    min-height: 274px;
+  }
+
+  .journal-feed-card--large .journal-feed-card__media {
+    height: 274px;
+    min-height: 274px;
+  }
+
+  .journal-feed-card__overlay {
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .journal-feed-card__content {
+    align-items: flex-start;
+  }
+
+  .journal-feed-card--large .journal-feed-card__tags {
+    justify-content: flex-start;
+  }
+
+  .journal-feed-card--large .journal-feed-card__name {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .journal-feed-card__stats,
+  .journal-feed__load-more,
+  .journal-feed__pagination {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .journal-showcase--journal-page .journal-showcase__hero-title,
+  .journal-feed-card--large .journal-feed-card__name {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .journal-showcase--journal-page .journal-showcase__hero-meta {
+    left: 16px;
+    bottom: 122px;
+  }
+
+  .journal-showcase--journal-page .journal-showcase__hero-title {
+    right: 16px;
+    bottom: 20px;
+    left: 16px;
+    max-width: none;
+  }
+}

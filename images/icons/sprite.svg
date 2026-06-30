@@ -716,5 +716,15 @@
     <circle cx="12" cy="12" r="2" fill="currentColor"/>
     <circle cx="19" cy="12" r="2" fill="currentColor"/>
   </symbol>
-
+  <symbol id="icon-article-quote-mark" viewBox="0 0 64 64" fill="none">
+    <path d="M53.7578 54.2559L36.7873 37.2853" stroke="currentColor"/>
+    <path d="M53.75 9L36.7794 25.9706" stroke="currentColor"/>
+    <path d="M25.4688 25.9707L8.49819 9.00014" stroke="currentColor"/>
+    <path d="M25.4648 37.2832L8.49428 54.2538" stroke="currentColor"/>
+    <circle cx="31.5" cy="9" r="5" stroke="currentColor"/>
+    <circle cx="9" cy="31.5" r="5" transform="rotate(-90 9 31.5)" stroke="currentColor"/>
+    <circle cx="31.5" cy="54" r="5" stroke="currentColor"/>
+    <circle cx="54" cy="31.5" r="5" transform="rotate(-90 54 31.5)" stroke="currentColor"/>
+  </symbol>
 </svg>
+

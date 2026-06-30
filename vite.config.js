@@ -44,6 +44,7 @@ export default defineConfig({
         search: resolve(__dirname, 'search/index.html'),
         compare: resolve(__dirname, 'compare/index.html'),
         journal: resolve(__dirname, 'journal/index.html'),
+        article: resolve(__dirname, 'article/index.html'),
       },
     },
   },
@@ -52,4 +53,5 @@ export default defineConfig({
     port: 5173,
   }
 })
+
 

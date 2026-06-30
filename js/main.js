@@ -18,6 +18,7 @@ import { init as initSupport } from './modules/support.js';
 import { init as initAuth } from './modules/auth.js';
 import { init as initSearch } from './modules/search.js';
 import { init as initCompare } from './modules/compare.js';
+import { init as initJournal } from './modules/journal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -40,4 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAuth();
   initSearch();
   initCompare();
+  initJournal();
 });
+
+
+
