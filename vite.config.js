@@ -45,6 +45,7 @@ export default defineConfig({
         compare: resolve(__dirname, 'compare/index.html'),
         journal: resolve(__dirname, 'journal/index.html'),
         article: resolve(__dirname, 'article/index.html'),
+        giftCard: resolve(__dirname, 'gift-card/index.html'),
       },
     },
   },

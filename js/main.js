@@ -6,6 +6,7 @@ import { init as initHero } from './modules/hero.js';
 import { init as initActivityPicker } from './modules/activity-picker.js';
 import { init as initRecommendations } from './modules/recommendations.js';
 import { init as initGiftCards } from './modules/gift-cards.js';
+import { init as initGiftCardOrder } from './modules/gift-card-order.js';
 import { init as initBuildKit } from './modules/build-kit.js';
 import { init as initCart } from './modules/cart.js';
 import { init as initStories } from './modules/stories.js';
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActivityPicker();
   initRecommendations();
   initGiftCards();
+  initGiftCardOrder();
   initBuildKit();
   initCart();
   initStories();

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail - Подарочная карта</title>
+  <link rel="stylesheet" href="/scss/main.scss">
+</head>
+<body class="gift-card-order-body">
+  <header class="catalog-header gift-card-order-header is-header-dark is-header-compact" data-header-mega-root>
+    <div class="hero__topbar" aria-label="Навигация каталога">
+      <div class="hero__brand">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          <span>Меню</span>
+        </button>
+        <a class="hero__logo-link" href="/">
+          <img class="hero__logo" src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
+        </a>
+      </div>
+
+      <nav class="hero__nav" aria-label="Главная навигация">
+        <a href="/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
+        <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
+      </nav>
+
+      <div class="hero__tools">
+        <a href="/search/" class="hero__tool" aria-label="Поиск">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg>
+        </a>
+        <a href="/personal/" class="hero__tool" aria-label="Профиль">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+        </a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
+        <a href="/wishlist/" class="hero__tool" aria-label="Избранное">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg>
+        </a>
+        <a href="/cart/" class="hero__tool" aria-label="Корзина">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+          <span class="hero-cart-badge" hidden></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/palatki/">Палатки</a></li>
+              <li><a href="/catalog/spalnye-meshki/">Спальные мешки</a></li>
+              <li><a href="/catalog/germochehly/">Гермочехлы</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/special/">Специальная экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/veydersy/">Вейдерсы</a></li>
+              <li><a href="/catalog/suhie-kostyumy/">Сухие костюмы</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-mega__activities" aria-label="Активности">
+          <a class="header-mega__activity" href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a class="header-mega__activity" href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a class="header-mega__activity" href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a class="header-mega__activity" href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a class="header-mega__activity" href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a class="header-mega__activity" href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BITRIX: меню сайта — часть header.php шаблона, повторяется на всех страницах -->
+  <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+    <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+    <aside class="site-menu__panel">
+      <div class="site-menu__top">
+        <div class="site-menu__bar">
+          <button class="site-menu__close" type="button" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="site-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="site-menu__main" aria-label="Основные разделы">
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
+        </nav>
+        <div class="site-menu__divider" aria-hidden="true"></div>
+        <nav class="site-menu__activities" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+      <div class="site-menu__middle">
+        <nav class="site-menu__links" aria-label="Контентные разделы">
+          <a href="/journal/">Журнал</a>
+          <a href="/tours/">Премиальные туры</a>
+        </nav>
+        <nav class="site-menu__links" aria-label="Информация">
+          <button type="button" data-site-menu-info="about">О компании</button>
+          <button type="button" data-site-menu-info="customers">Покупателям</button>
+          <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
+        </nav>
+      </div>
+      <div class="site-menu__bottom">
+        <div class="site-menu__contacts">
+          <div class="site-menu__phone-row">
+            <a class="site-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+            <div class="site-menu__socials" aria-label="Социальные сети">
+              <a href="https://t.me/finntrail" aria-label="Telegram" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+              <a href="https://wa.me/78007004273" aria-label="WhatsApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+              <a href="https://dzen.ru/finntrail" aria-label="Дзен" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+            </div>
+          </div>
+          <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
+        </div>
+        <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+        <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
+      <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
+        <div class="site-menu__submenu-top">
+          <nav class="site-menu__categories" aria-label="Категории">
+            <button type="button" data-site-menu-category>Одежда</button>
+            <button type="button" data-site-menu-category>Обувь</button>
+            <button type="button" data-site-menu-category>Аксессуары</button>
+            <button type="button" data-site-menu-category>Снаряжение</button>
+            <button type="button" data-site-menu-category>Экипировка</button>
+          </nav>
+          <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
+            <a href="/catalog/">Куртки</a>
+            <a href="/catalog/">Брюки и полукомбинезоны</a>
+            <a href="/catalog/">Костюмы и комбинезоны</a>
+            <a href="/catalog/">Термобелье</a>
+            <a href="/catalog/">Футболки и лонгсливы</a>
+            <a href="/catalog/">Жилеты</a>
+            <a href="/catalog/">Худи и толстовки</a>
+            <a href="/catalog/">Рубашки / шорты</a>
+          </nav>
+        </div>
+        <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+          <picture>
+            <source srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
+            <img src="/images/content/site-menu/hiking-promo.png" srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
+          </picture>
+          <div class="site-menu__promo-content">
+            <h3>Экипировка<br>для хайкинга</h3>
+            <p>Куртки, штаны, термобельё</p>
+          </div>
+          <span class="site-menu__promo-link" aria-hidden="true">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </span>
+        </a>
+      </div>
+      <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню" data-mobile-menu>
+    <div class="mobile-menu__panel" data-mobile-menu-view="main">
+      <div class="mobile-menu__top">
+        <div class="mobile-menu__bar">
+          <button class="mobile-menu__close" type="button" data-mobile-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="mobile-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+          <div class="mobile-menu__group"><a href="/journal/">Журнал</a><a href="/tours/">Премиальные туры</a></div>
+          <div class="mobile-menu__group"><a href="/about/">О компании</a><button type="button" data-mobile-menu-customers>Покупателям</button><a href="/wholesale/">Оптовикам</a></div>
+        </nav>
+      </div>
+      <div class="mobile-menu__bottom">
+        <div class="mobile-menu__contacts">
+          <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+          <div class="mobile-menu__socials" aria-label="Социальные сети">
+            <a href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+            <a href="https://wa.me/78007004273" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+          </div>
+        </div>
+        <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
+      <div class="mobile-menu__catalog-top">
+        <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle><span>Мужчинам</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+          </div>
+        </div>
+        <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle><span>Женщинам</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+    </div>
+  </div>
+
+    <main class="gift-card-order" data-gift-card-order>
+    <picture class="gift-card-order__bg" aria-hidden="true">
+      <img class="is-active" src="/images/content/gift-card-order/design-main.png" alt="" data-gift-card-bg>
+      <img src="" alt="" aria-hidden="true" data-gift-card-bg>
+    </picture>
+    <div class="gift-card-order__shade" aria-hidden="true"></div>
+
+    <section class="gift-card-order__intro" aria-labelledby="gift-card-order-title">
+      <nav class="gift-card-order__breadcrumbs" aria-label="Хлебные крошки">
+        <a href="/">Главная</a>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-breadcrumb-dot"></use></svg>
+        <span aria-current="page">Подарочная карта</span>
+      </nav>
+      <h1 class="gift-card-order__title" id="gift-card-order-title">Подарочная карта</h1>
+      <div class="gift-card-order__progress" aria-label="Шаг 1 из 5" data-gift-card-progress>
+        <span class="gift-card-order__progress-step is-active"></span>
+        <span class="gift-card-order__progress-step"></span>
+        <span class="gift-card-order__progress-step"></span>
+        <span class="gift-card-order__progress-step"></span>
+        <span class="gift-card-order__progress-step"></span>
+      </div>
+    </section>
+
+    <section class="gift-card-order__preview" aria-label="Выбранный дизайн подарочной карты">
+      <article class="gift-card-order__card" data-gift-card-main-card>
+        <div class="gift-card-order__card-bg is-active" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.00) 57.11%), url('/images/content/gift-card-order/design-main.png')" aria-hidden="true" data-gift-card-card-bg></div>
+        <div class="gift-card-order__card-bg" aria-hidden="true" data-gift-card-card-bg></div>
+        <div class="gift-card-order__card-content">
+          <img class="gift-card-order__card-logo" src="/images/content/gift-cards-showcase/logo-white.svg" alt="FINNTRAIL">
+          <span class="gift-card-order__card-amount" data-gift-card-card-amount>10 000 ₽</span>
+        </div>
+      </article>
+    </section>
+
+    <div class="gift-card-order__thumbs" aria-label="Дизайны подарочной карты" data-gift-card-carousel>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-main.png" data-dark aria-label="Выбрать дизайн 1">
+        <img src="/images/content/gift-card-order/design-main.png" alt="">
+      </button>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-runner-alt.png" data-dark aria-label="Выбрать дизайн 2">
+        <img src="/images/content/gift-card-order/design-runner-alt.png" alt="">
+      </button>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-ski.png" aria-label="Выбрать дизайн 3">
+        <img src="/images/content/gift-card-order/design-ski.png" alt="">
+      </button>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-bike.png" aria-label="Выбрать дизайн 4">
+        <img src="/images/content/gift-card-order/design-bike.png" alt="">
+      </button>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-sunset.png" aria-label="Выбрать дизайн 5">
+        <img src="/images/content/gift-card-order/design-sunset.png" alt="">
+      </button>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-wide.png" data-dark aria-label="Выбрать дизайн 6">
+        <img src="/images/content/gift-card-order/design-wide.png" alt="">
+      </button>
+      <button class="gift-card-order__thumb" type="button" data-gift-card-design="/images/content/gift-card-order/design-mountain.png" aria-label="Выбрать дизайн 7">
+        <img src="/images/content/gift-card-order/design-mountain.png" alt="">
+      </button>
+    </div>
+    <form class="gift-card-order__form gift-card-order__form--amount" action="/gift-card/order/" method="post" data-gift-card-amount-form>
+      <div class="gift-card-order__field">
+        <label class="gift-card-order__label" for="gift-card-amount">Выберите номинал</label>
+        <div class="gift-card-order__select" data-gift-card-select>
+          <button class="gift-card-order__select-btn" type="button" id="gift-card-amount" aria-haspopup="listbox" aria-expanded="false" data-gift-card-select-btn>
+            <span data-gift-card-current>10 000 ₽</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+          </button>
+          <div class="gift-card-order__select-menu" hidden data-gift-card-options><div class="gift-card-order__select-scroll" role="listbox" aria-label="Номинал подарочной карты" data-gift-card-options-scroll>
+            <button type="button" role="option" aria-selected="true" data-gift-card-option="10 000 ₽">10 000 ₽</button>
+            <button type="button" role="option" data-gift-card-option="15 000 ₽">15 000 ₽</button>
+            <button type="button" role="option" data-gift-card-option="20 000 ₽">20 000 ₽</button>
+            <button type="button" role="option" data-gift-card-option="30 000 ₽">30 000 ₽</button>
+          </div></div>
+        </div>
+      </div>
+      <button class="gift-card-order__submit" type="submit" data-gift-card-next-step>
+        <span>Продолжить</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </button>
+    </form>
+
+    <form class="gift-card-order__details" action="/gift-card/order/" method="post" hidden data-gift-card-details-form>
+      <input type="hidden" name="gift_card_design" value="/images/content/gift-card-order/design-main.png" data-gift-card-design-input>
+      <input type="hidden" name="gift_card_amount" value="10 000 ₽" data-gift-card-amount-input>
+      <input type="hidden" name="gift_card_recipient_type" value="self" data-gift-card-recipient-type-input>
+
+      <div class="gift-card-order__recipient-tabs" role="tablist" aria-label="Для кого подарочная карта">
+        <button class="gift-card-order__recipient-tab is-active" type="button" role="tab" aria-selected="true" data-gift-card-recipient-type="self">Для себя</button>
+        <button class="gift-card-order__recipient-tab" type="button" role="tab" aria-selected="false" data-gift-card-recipient-type="other">Другому</button>
+      </div>
+
+      <div class="gift-card-order__details-scroll" data-gift-card-details-scroll>
+        <div class="gift-card-order__details-scroll-content">
+          <div class="gift-card-order__recipient-fields">
+            <p class="gift-card-order__details-note">Ссылка на сертификат придет по СМС</p>
+            <div class="gift-card-order__details-fields">
+              <label class="gift-card-order__field-control" data-input-field>
+                <input class="gift-card-order__input" type="text" name="recipient_name" autocomplete="name" placeholder="Имя получателя" required>
+              </label>
+              <div class="gift-card-order__phone-row">
+                <button class="gift-card-order__country-btn" type="button" aria-label="Выбрать страну">
+                  <svg class="gift-card-order__country-flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="gift-card-order__country-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+                </button>
+                <label class="gift-card-order__field-control gift-card-order__field-control--phone" data-input-field>
+                  <input class="gift-card-order__input js-phone-input" type="tel" name="recipient_phone" autocomplete="tel" placeholder="+7" aria-describedby="gift-card-recipient-phone-caption" required>
+                  <span class="gift-card-order__caption" id="gift-card-recipient-phone-caption"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="gift-card-order__message-fields" hidden data-gift-card-message-fields>
+            <label class="gift-card-order__field-control" data-input-field>
+              <textarea class="gift-card-order__input gift-card-order__textarea" name="gift_card_message" placeholder="Поздравление"></textarea>
+            </label>
+            <label class="gift-card-order__field-control" data-input-field>
+              <input class="gift-card-order__input" type="text" name="gift_card_sender" placeholder="От кого (можно не писать)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="gift-card-order__details-scrollbar" aria-hidden="true" hidden data-gift-card-details-scrollbar>
+        <span class="gift-card-order__details-scrollbar-thumb" data-gift-card-details-scrollbar-thumb></span>
+      </div>
+
+      <button class="gift-card-order__submit gift-card-order__submit--details" type="submit" data-gift-card-details-submit>
+        <span>Продолжить</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </button>
+    </form>
+
+    <form class="gift-card-order__date" action="/gift-card/order/" method="post" hidden data-gift-card-date-form>
+      <input type="hidden" name="gift_card_send_mode" value="now" data-gift-card-date-mode-input>
+      <input type="hidden" name="gift_card_send_date" value="11 июля 2026" data-gift-card-date-input>
+      <input type="hidden" name="gift_card_send_time" value="11:00" data-gift-card-time-input>
+
+      <div class="gift-card-order__date-tabs" role="tablist" aria-label="Когда отправить подарочную карту">
+        <button class="gift-card-order__date-tab is-active" type="button" role="tab" aria-selected="true" data-gift-card-date-mode="now">Сейчас</button>
+        <button class="gift-card-order__date-tab" type="button" role="tab" aria-selected="false" data-gift-card-date-mode="custom">Указать дату</button>
+      </div>
+
+      <p class="gift-card-order__date-note" data-gift-card-date-note>Отправим сегодня, 23 октября, сразу после оплаты</p>
+
+      <div class="gift-card-order__date-fields" hidden data-gift-card-date-fields>
+        <button class="gift-card-order__date-control gift-card-order__date-control--calendar" type="button" data-gift-card-date-open>
+          <span data-gift-card-date-current>11 июля 2026</span>
+          <span class="gift-card-order__date-icon gift-card-order__date-icon--calendar" aria-hidden="true"></span>
+        </button>
+        <button class="gift-card-order__date-control" type="button" data-gift-card-time-open>
+          <span data-gift-card-time-current>11:00</span>
+          <svg class="gift-card-order__date-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-clock"></use></svg>
+        </button>
+      </div>
+
+      <button class="gift-card-order__submit gift-card-order__submit--date" type="submit">
+        <span>Продолжить</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </button>
+    </form>
+
+    <div class="gift-card-order__confirm" hidden data-gift-card-confirm>
+      <div class="gift-card-order__confirm-header">
+        <h2 class="gift-card-order__confirm-title">Проверьте данные</h2>
+        <button class="gift-card-order__confirm-edit" type="button" data-gift-card-confirm-edit>
+          <svg class="gift-card-order__confirm-edit-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-edit"></use></svg>
+          Редактировать
+        </button>
+      </div>
+      <dl class="gift-card-order__confirm-fields">
+        <div class="gift-card-order__confirm-field">
+          <dt>Телефон</dt>
+          <dd data-gift-card-confirm-phone>—</dd>
+        </div>
+        <div class="gift-card-order__confirm-field">
+          <dt>Имя</dt>
+          <dd data-gift-card-confirm-name>—</dd>
+        </div>
+        <div class="gift-card-order__confirm-field" hidden data-gift-card-confirm-message-field>
+          <dt>Поздравление</dt>
+          <dd data-gift-card-confirm-message>—</dd>
+        </div>
+        <div class="gift-card-order__confirm-field">
+          <dt>Дата и время</dt>
+          <dd data-gift-card-confirm-datetime>—</dd>
+        </div>
+      </dl>
+      <button class="gift-card-order__submit gift-card-order__submit--confirm" type="button" data-gift-card-confirm-submit>
+        <span>Продолжить</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </button>
+    </div>
+
+    <div class="gift-card-order__success" hidden data-gift-card-success>
+      <p class="gift-card-order__success-title">Сертификат оформлен</p>
+      <div class="gift-card-order__success-body">
+        <p data-gift-card-success-line1></p>
+        <p data-gift-card-success-line2></p>
+      </div>
+      <a class="gift-card-order__success-link" href="/">
+        На главную
+        <svg class="gift-card-order__success-link-icon" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </a>
+    </div>
+
+    <div class="gift-card-order-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gift-card-date-modal-title" data-gift-card-date-modal>
+      <button class="gift-card-order-modal__backdrop" type="button" aria-label="Закрыть выбор даты" data-gift-card-modal-close></button>
+      <section class="gift-card-order-modal__panel gift-card-order-modal__panel--calendar">
+        <header class="gift-card-order-modal__header">
+          <h2 class="gift-card-order-modal__title" id="gift-card-date-modal-title">Выберите дату</h2>
+          <button class="gift-card-order-modal__close" type="button" aria-label="Закрыть" data-gift-card-modal-close><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+        </header>
+        <div class="gift-card-order-calendar">
+          <div class="gift-card-order-calendar__head">
+            <button class="gift-card-order-calendar__nav" type="button" aria-label="Предыдущий месяц"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg></button>
+            <p class="gift-card-order-calendar__month">Ноябрь 2025</p>
+            <button class="gift-card-order-calendar__nav" type="button" aria-label="Следующий месяц"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></button>
+          </div>
+          <div class="gift-card-order-calendar__week" aria-hidden="true"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+          <div class="gift-card-order-calendar__grid">
+            <span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="1 ноября 2025">1</button>
+            <button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="2 ноября 2025">2</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="3 ноября 2025">3</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="4 ноября 2025">4</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="5 ноября 2025">5</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="6 ноября 2025">6</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="7 ноября 2025">7</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="8 ноября 2025">8</button>
+            <button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="9 ноября 2025">9</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="10 ноября 2025">10</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="11 ноября 2025">11</button><button class="gift-card-order-calendar__day is-muted" type="button" data-gift-card-date-value="12 ноября 2025">12</button><button class="gift-card-order-calendar__day is-today" type="button" data-gift-card-date-value="13 ноября 2025">13</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="14 ноября 2025">14</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="15 ноября 2025">15</button>
+            <button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="16 ноября 2025">16</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="17 ноября 2025">17</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="18 ноября 2025">18</button><button class="gift-card-order-calendar__day is-selected" type="button" data-gift-card-date-value="19 ноября 2025">19</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="20 ноября 2025">20</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="21 ноября 2025">21</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="22 ноября 2025">22</button>
+            <button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="23 ноября 2025">23</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="24 ноября 2025">24</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="25 ноября 2025">25</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="26 ноября 2025">26</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="27 ноября 2025">27</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="28 ноября 2025">28</button><button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="29 ноября 2025">29</button>
+            <button class="gift-card-order-calendar__day" type="button" data-gift-card-date-value="30 ноября 2025">30</button><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span><span class="gift-card-order-calendar__day is-empty">1</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="gift-card-order-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gift-card-time-modal-title" data-gift-card-time-modal>
+      <button class="gift-card-order-modal__backdrop" type="button" aria-label="Закрыть выбор времени" data-gift-card-modal-close></button>
+      <section class="gift-card-order-modal__panel gift-card-order-modal__panel--time">
+        <header class="gift-card-order-modal__header">
+          <h2 class="gift-card-order-modal__title" id="gift-card-time-modal-title">Выберите время</h2>
+          <button class="gift-card-order-modal__close" type="button" aria-label="Закрыть" data-gift-card-modal-close><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+        </header>
+        <div class="gift-card-order-time" data-gift-card-time-list>
+          <button type="button" data-gift-card-time-value="00:00">00:00</button><button type="button" data-gift-card-time-value="1:00">1:00</button><button type="button" data-gift-card-time-value="2:00">2:00</button><button type="button" data-gift-card-time-value="3:00">3:00</button><button type="button" data-gift-card-time-value="4:00">4:00</button><button type="button" data-gift-card-time-value="5:00">5:00</button><button type="button" data-gift-card-time-value="6:00">6:00</button><button type="button" data-gift-card-time-value="7:00">7:00</button><button type="button" data-gift-card-time-value="8:00">8:00</button><button type="button" data-gift-card-time-value="9:00">9:00</button><button type="button" data-gift-card-time-value="10:00">10:00</button><button class="is-selected" type="button" data-gift-card-time-value="11:00">11:00</button><button type="button" data-gift-card-time-value="12:00">12:00</button><button type="button" data-gift-card-time-value="13:00">13:00</button><button type="button" data-gift-card-time-value="14:00">14:00</button><button type="button" data-gift-card-time-value="15:00">15:00</button><button type="button" data-gift-card-time-value="16:00">16:00</button><button type="button" data-gift-card-time-value="17:00">17:00</button><button type="button" data-gift-card-time-value="18:00">18:00</button><button type="button" data-gift-card-time-value="19:00">19:00</button><button type="button" data-gift-card-time-value="20:00">20:00</button><button type="button" data-gift-card-time-value="21:00">21:00</button><button type="button" data-gift-card-time-value="22:00">22:00</button><button type="button" data-gift-card-time-value="23:00">23:00</button>
+        </div>
+      </section>
+    </div>  </main>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

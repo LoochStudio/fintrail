@@ -781,5 +781,10 @@
     <circle cx="31.5" cy="54" r="5" stroke="currentColor"/>
     <circle cx="54" cy="31.5" r="5" transform="rotate(-90 54 31.5)" stroke="currentColor"/>
   </symbol>
+  <symbol id="icon-edit" viewBox="0 0 16 16" fill="none">
+    <path d="M3.33073 10.6661L2.66406 13.3328L5.33073 12.6661L13.0547 4.94214C13.3047 4.6921 13.4451 4.35303 13.4451 3.99947C13.4451 3.64592 13.3047 3.30684 13.0547 3.05681L12.9401 2.94214C12.69 2.69218 12.3509 2.55176 11.9974 2.55176C11.6438 2.55176 11.3048 2.69218 11.0547 2.94214L3.33073 10.6661Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.33073 10.6662L2.66406 13.3328L5.33073 12.6662L11.9974 5.99951L9.9974 3.99951L3.33073 10.6662Z" fill="currentColor"/>
+    <path d="M9.9974 3.99951L11.9974 5.99951M8.66406 13.3328H13.9974" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
 </svg>
 
