@@ -40,6 +40,7 @@ export function init() {
     const bgImgs = Array.from(root.querySelectorAll('[data-gift-card-bg]'));
     const designButtons = Array.from(root.querySelectorAll('[data-gift-card-design]'));
     const carousel = root.querySelector('[data-gift-card-carousel]');
+    const dots = Array.from(root.querySelectorAll('[data-gift-card-dot]'));
     const slotClasses = ['is-slot-prev-2', 'is-slot-prev-1', 'is-slot-next-1', 'is-slot-next-2', 'is-slot-next-3', 'is-slot-next-4'];
 
     // Determine initial active design from the card-bg that has is-active
@@ -69,7 +70,7 @@ export function init() {
 
     function syncGiftCardSummary() {
       const activeBtn = getActiveDesignButton();
-      if (designInput) designInput.value = activeBtn?.dataset.giftCardDesign || '';
+      if (designInput) designInput.value = activeBtn?.dataset.giftCardDesign || getDesignImageSrc(activeBtn);
       if (amountInput) amountInput.value = selectedAmount;
       if (dateInput) dateInput.value = selectedDate;
       if (timeInput) timeInput.value = selectedTime;
@@ -148,8 +149,14 @@ export function init() {
       );
       const renderedWidth = activeBg.naturalWidth * scale;
       const renderedHeight = activeBg.naturalHeight * scale;
-      const renderedLeft = bgRect.left + ((bgRect.width - renderedWidth) / 2);
-      const renderedTop = bgRect.top + ((bgRect.height - renderedHeight) / 2);
+
+      const objPosStr = getComputedStyle(activeBg).objectPosition || '50% 50%';
+      const [objPosX = '50%', objPosY = '50%'] = objPosStr.trim().split(/\s+/);
+      const parseObjPos = (val, containerSize, renderedSize) =>
+        val.endsWith('%') ? (parseFloat(val) / 100) * (containerSize - renderedSize) : parseFloat(val);
+
+      const renderedLeft = bgRect.left + parseObjPos(objPosX, bgRect.width, renderedWidth);
+      const renderedTop = bgRect.top + parseObjPos(objPosY, bgRect.height, renderedHeight);
 
       mainCard.style.setProperty('--gift-card-bg-width', `${renderedWidth}px`);
       mainCard.style.setProperty('--gift-card-bg-height', `${renderedHeight}px`);
@@ -157,8 +164,33 @@ export function init() {
       mainCard.style.setProperty('--gift-card-bg-y', `${renderedTop - cardRect.top}px`);
     }
     // ── Design crossfade ──────────────────────────────────────────────────────
+    function getViewportState() {
+      const w = window.innerWidth;
+      if (w < 640) return 'mobile';
+      if (w < 1280) return 'tablet';
+      return 'desktop';
+    }
+
+    function getBgObjectPosition(activeBtn, viewportState) {
+      const mobileBgSrc = viewportState === 'mobile' ? activeBtn?.dataset.mobileBg : null;
+      if (mobileBgSrc) return '';
+      if (viewportState === 'mobile') return activeBtn?.dataset.mobileBgPosition || '50% 50%';
+      if (viewportState === 'tablet') return activeBtn?.dataset.tabletBgPosition || '';
+      return '';
+    }
+
+    function getDesignImageSrc(button, viewportState = getViewportState()) {
+      const mobileSrc = viewportState === 'mobile' ? button?.dataset.mobileBg : null;
+      if (mobileSrc) return resolvePublicAsset(mobileSrc);
+      const image = button?.querySelector('img');
+      return image?.currentSrc || image?.src || resolvePublicAsset(button?.dataset.giftCardDesign || '');
+    }
+
+    function getDesignCardImageSrc(button, viewportState = getViewportState()) {
+      return getDesignImageSrc(button, viewportState);
+    }
+
     function applyDesign(src, isDark) {
-      const resolved = resolvePublicAsset(src);
       root.classList.toggle('is-design-dark', Boolean(isDark));
       root.classList.toggle('is-design-light', !isDark);
 
@@ -169,16 +201,25 @@ export function init() {
 
       if (!activeBg || !nextBg || !activeCardBg || !nextCardBg) return;
 
-      nextCardBg.style.backgroundImage = getCardBackgroundImage(src);
-      nextBg.src = resolved;
+      const viewportState = getViewportState();
+      const activeBtn = getActiveDesignButton();
+      const nextBgSrc = getDesignImageSrc(activeBtn, viewportState);
+      const nextCardBgSrc = getDesignCardImageSrc(activeBtn, viewportState);
 
-      const doSwap = () => requestAnimationFrame(() => {
+      nextBg.src = nextBgSrc;
+      nextBg.style.objectPosition = getBgObjectPosition(activeBtn, viewportState);
+
+      nextCardBg.style.backgroundImage = getCardBackgroundImage(nextCardBgSrc);
+      nextCardBg.style.backgroundSize = '';
+      nextCardBg.style.backgroundPosition = '';
+
+      const doSwap = () => {
         nextBg.classList.add('is-active');
         activeBg.classList.remove('is-active');
         nextCardBg.classList.add('is-active');
         activeCardBg.classList.remove('is-active');
         syncCardBackgroundPosition();
-      });
+      };
 
       if (nextBg.complete && nextBg.naturalWidth > 0) {
         doSwap();
@@ -191,7 +232,27 @@ export function init() {
     bgImgs.forEach(img => {
       img.addEventListener('load', syncCardBackgroundPosition);
     });
-    window.addEventListener('resize', syncCardBackgroundPosition);
+    let wasViewportState = getViewportState();
+    window.addEventListener('resize', () => {
+      const viewportState = getViewportState();
+
+      if (viewportState !== wasViewportState) {
+        wasViewportState = viewportState;
+        const activeBtn = getActiveDesignButton();
+        if (activeBtn) {
+          applyDesign(activeBtn.dataset.giftCardDesign, activeBtn.hasAttribute('data-dark'));
+        }
+        return;
+      }
+
+      const activeBg = bgImgs.find(img => img.classList.contains('is-active'));
+      const activeBtn = getActiveDesignButton();
+
+      if (activeBg) {
+        activeBg.style.objectPosition = getBgObjectPosition(activeBtn, viewportState);
+      }
+      syncCardBackgroundPosition();
+    });
     requestAnimationFrame(syncCardBackgroundPosition);
     // ── Select ────────────────────────────────────────────────────────────────
     function updateSelectScrollbar() {
@@ -292,6 +353,11 @@ export function init() {
           wasHiddenBtn.style.transition = '';
         }));
       }
+      updateDots();
+    }
+
+    function updateDots() {
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeDesignIndex));
     }
 
     // ── Drag / swipe ──────────────────────────────────────────────────────────
@@ -300,7 +366,15 @@ export function init() {
     let hasDragged = false;
     const DRAG_THRESHOLD = 60;
 
+    function isStep1() {
+      return !root.classList.contains('is-step-details') &&
+        !root.classList.contains('is-step-date') &&
+        !root.classList.contains('is-step-confirm') &&
+        !root.classList.contains('is-step-success');
+    }
+
     function startDrag(x) {
+      if (!isStep1()) return;
       isDragging = true;
       hasDragged = false;
       dragStartX = x;
@@ -511,9 +585,20 @@ export function init() {
       });
     });
 
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        if (index === activeDesignIndex) return;
+        bounceCard();
+        activeDesignIndex = index;
+        updateDesignSlots();
+        syncGiftCardSummary();
+      });
+    });
+
     // ── Keyboard navigation ───────────────────────────────────────────────────
     root.addEventListener('keydown', e => {
       if (e.target.closest('[data-gift-card-select]') || e.target.closest('form')) return;
+      if (!isStep1()) return;
       if (e.key === 'ArrowLeft') {
         bounceCard();
         activeDesignIndex = getWrappedIndex(activeDesignIndex - 1, designButtons.length);
