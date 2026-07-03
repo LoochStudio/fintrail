@@ -28,6 +28,13 @@
   color: $color-white;
 }
 
+.gift-card-order-body .gift-card-order-header .hero__menu-btn:hover,
+.gift-card-order-body .gift-card-order-header .hero__menu-btn:focus-visible,
+.gift-card-order-body .gift-card-order-header .hero__tool:hover,
+.gift-card-order-body .gift-card-order-header .hero__tool:focus-visible {
+  color: rgba($color-white, 0.64);
+}
+
 .gift-card-order-body .gift-card-order-header .hero__nav-link {
   --roll-hover-from: #{$color-white};
   --roll-hover-to: #{rgba($color-white, 0.64)};
@@ -39,6 +46,36 @@
 
 .gift-card-order-body .gift-card-order-header .hero__nav-link::after {
   color: rgba($color-white, 0.64);
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__topbar {
+  color: $color-primary-black;
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__logo {
+  filter: brightness(0) saturate(100%);
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__tool,
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__menu-btn {
+  color: $color-primary-black;
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__nav-link {
+  --roll-hover-from: #{$color-primary-gray};
+  --roll-hover-to: #{$color-primary-gray};
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__nav-link.is-mega-active {
+  --roll-hover-to: #{$color-primary-black};
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__nav-link::before {
+  color: $color-primary-gray;
+}
+
+.gift-card-order-body .gift-card-order-header.is-mega-open .hero__nav-link.is-mega-active::after {
+  color: $color-primary-black;
 }
 
 .gift-card-order {

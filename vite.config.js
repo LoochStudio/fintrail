@@ -46,6 +46,7 @@ export default defineConfig({
         journal: resolve(__dirname, 'journal/index.html'),
         article: resolve(__dirname, 'article/index.html'),
         giftCard: resolve(__dirname, 'gift-card/index.html'),
+        about: resolve(__dirname, 'about/index.html'),
       },
     },
   },

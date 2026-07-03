@@ -20,6 +20,7 @@ import { init as initAuth } from './modules/auth.js';
 import { init as initSearch } from './modules/search.js';
 import { init as initCompare } from './modules/compare.js';
 import { init as initJournal } from './modules/journal.js';
+import { init as initAboutAudience } from './modules/about-audience.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   initCompare();
   initJournal();
+  initAboutAudience();
 });
 
 

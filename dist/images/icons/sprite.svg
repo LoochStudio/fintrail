@@ -786,5 +786,41 @@
     <path d="M3.33073 10.6662L2.66406 13.3328L5.33073 12.6662L11.9974 5.99951L9.9974 3.99951L3.33073 10.6662Z" fill="currentColor"/>
     <path d="M9.9974 3.99951L11.9974 5.99951M8.66406 13.3328H13.9974" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
-</svg>
+  <symbol id="icon-about-trust-experience" viewBox="0 0 64 64" fill="none">
+    <path d="M32 39.5C36.1421 39.5 39.5 36.1421 39.5 32C39.5 27.8579 36.1421 24.5 32 24.5C27.8579 24.5 24.5 27.8579 24.5 32C24.5 36.1421 27.8579 39.5 32 39.5Z" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M32 15.25C33.7949 15.25 35.25 13.7949 35.25 12C35.25 10.2051 33.7949 8.75 32 8.75C30.2051 8.75 28.75 10.2051 28.75 12C28.75 13.7949 30.2051 15.25 32 15.25Z" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M52 35.25C53.7949 35.25 55.25 33.7949 55.25 32C55.25 30.2051 53.7949 28.75 52 28.75C50.2051 28.75 48.75 30.2051 48.75 32C48.75 33.7949 50.2051 35.25 52 35.25Z" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M32 55.25C33.7949 55.25 35.25 53.7949 35.25 52C35.25 50.2051 33.7949 48.75 32 48.75C30.2051 48.75 28.75 50.2051 28.75 52C28.75 53.7949 30.2051 55.25 32 55.25Z" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M12 35.25C13.7949 35.25 15.25 33.7949 15.25 32C15.25 30.2051 13.7949 28.75 12 28.75C10.2051 28.75 8.75 30.2051 8.75 32C8.75 33.7949 10.2051 35.25 12 35.25Z" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M32 19.5V16.5M44.5 32H47.5M32 44.5V47.5M19.5 32H16.5" stroke="#A2A7AA" stroke-linecap="square"/>
+  </symbol>
 
+  <symbol id="icon-about-trust-riders" viewBox="0 0 64 64" fill="none">
+    <path d="M14 22H50M14 32H50M14 42H50" stroke="#A2A7AA"/>
+    <path d="M19 16.5C20.3807 16.5 21.5 15.3807 21.5 14C21.5 12.6193 20.3807 11.5 19 11.5C17.6193 11.5 16.5 12.6193 16.5 14C16.5 15.3807 17.6193 16.5 19 16.5Z" stroke="#A2A7AA"/>
+    <path d="M45 52.5C46.3807 52.5 47.5 51.3807 47.5 50C47.5 48.6193 46.3807 47.5 45 47.5C43.6193 47.5 42.5 48.6193 42.5 50C42.5 51.3807 43.6193 52.5 45 52.5Z" stroke="#A2A7AA"/>
+  </symbol>
+
+  <symbol id="icon-about-trust-testing" viewBox="0 0 64 64" fill="none">
+    <path d="M12 12L26 26M52 12L38 26M12 52L26 38M52 52L38 38" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M32 9V21.5M55 32H42.5M32 55V42.5M9 32H21.5" stroke="#A2A7AA" stroke-linecap="square"/>
+    <path d="M32 35.5C33.933 35.5 35.5 33.933 35.5 32C35.5 30.067 33.933 28.5 32 28.5C30.067 28.5 28.5 30.067 28.5 32C28.5 33.933 30.067 35.5 32 35.5Z" stroke="#A2A7AA" stroke-linecap="square"/>
+  </symbol>
+
+  <symbol id="icon-about-trust-orbit" viewBox="0 0 64 64" fill="none">
+    <path d="M32 16C34.2091 16 36 14.2091 36 12C36 9.79086 34.2091 8 32 8C29.7909 8 28 9.79086 28 12C28 14.2091 29.7909 16 32 16Z" stroke="#A2A7AA"/>
+    <path d="M32 56C34.2091 56 36 54.2091 36 52C36 49.7909 34.2091 48 32 48C29.7909 48 28 49.7909 28 52C28 54.2091 29.7909 56 32 56Z" stroke="#A2A7AA"/>
+    <path d="M17 22L47 42M47 22L17 42" stroke="#A2A7AA"/>
+  </symbol>
+  <symbol id="icon-about-process-wave" viewBox="0 0 64 64" fill="none">
+    <path d="M11 32H22L27 22L36 42L42 32H53" stroke="#A2A7AA" stroke-linecap="square" stroke-linejoin="round"/>
+    <circle cx="17" cy="20" r="2" stroke="#A2A7AA"/>
+    <circle cx="47" cy="44" r="2" stroke="#A2A7AA"/>
+  </symbol>
+  <symbol id="icon-about-philosophy" viewBox="0 0 64 64" fill="none">
+    <path d="M32 9V22M32 42V55" stroke="#A2A7AA" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9 32H22M42 32H55" stroke="#A2A7AA" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 37C34.7614 37 37 34.7614 37 32C37 29.2386 34.7614 27 32 27C29.2386 27 27 29.2386 27 32C27 34.7614 29.2386 37 32 37Z" stroke="#A2A7AA" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 21L26 26M38 38L43 43" stroke="#A2A7AA" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
