@@ -823,4 +823,21 @@
     <path d="M32 37C34.7614 37 37 34.7614 37 32C37 29.2386 34.7614 27 32 27C29.2386 27 27 29.2386 27 32C27 34.7614 29.2386 37 32 37Z" stroke="#A2A7AA" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M21 21L26 26M38 38L43 43" stroke="#A2A7AA" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
+
+  <symbol id="icon-community-subscribers" viewBox="0 0 40 40" fill="none">
+    <path d="M11.875 11.875L17.5 17.5M22.5 22.5L28.125 28.125M11.875 28.125L17.5 22.5M22.5 17.5L28.125 11.875" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 9.375C21.7259 9.375 23.125 7.97589 23.125 6.25C23.125 4.52411 21.7259 3.125 20 3.125C18.2741 3.125 16.875 4.52411 16.875 6.25C16.875 7.97589 18.2741 9.375 20 9.375Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 36.875C21.7259 36.875 23.125 35.4759 23.125 33.75C23.125 32.0241 21.7259 30.625 20 30.625C18.2741 30.625 16.875 32.0241 16.875 33.75C16.875 35.4759 18.2741 36.875 20 36.875Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6.25 23.125C7.97589 23.125 9.375 21.7259 9.375 20C9.375 18.2741 7.97589 16.875 6.25 16.875C4.52411 16.875 3.125 18.2741 3.125 20C3.125 21.7259 4.52411 23.125 6.25 23.125Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M33.75 23.125C35.4759 23.125 36.875 21.7259 36.875 20C36.875 18.2741 35.4759 16.875 33.75 16.875C32.0241 16.875 30.625 18.2741 30.625 20C30.625 21.7259 32.0241 23.125 33.75 23.125Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="icon-community-buyers" viewBox="0 0 40 40" fill="none">
+    <path d="M19.9922 0V40" stroke="currentColor"/>
+    <path d="M40 19.9961L0 19.9961" stroke="currentColor"/>
+    <path d="M33.9141 33.9102L23.3075 23.3036" stroke="currentColor"/>
+    <path d="M33.9062 5.625L23.2996 16.2316" stroke="currentColor"/>
+    <path d="M16.2344 16.2324L5.62777 5.62582" stroke="currentColor"/>
+    <path d="M16.2344 23.3027L5.62777 33.9093" stroke="currentColor"/>
+  </symbol>
 </svg>

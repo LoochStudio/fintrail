@@ -1,5 +1,7 @@
 const CIRCUMFERENCE = 2 * Math.PI * 34; // 213.63
+const DOT_CIRCUMFERENCE = 2 * Math.PI * 7; // 43.9823
 const SLIDE_DURATION = 5000; // ms per slide
+const DESKTOP_QUERY = '(min-width: 1280px)';
 
 export function init() {
   document.querySelectorAll('.about-audience').forEach(initSlider);
@@ -13,28 +15,30 @@ function initSlider(section) {
   const infoDesc = section.querySelector('.about-audience__info-desc');
   const prevBtn = section.querySelector('[data-audience-prev]');
   const nextBtn = section.querySelector('[data-audience-next]');
+  const dots = [...section.querySelectorAll('[data-audience-dot]')];
 
   if (!items.length) return;
 
   let current = 0;
-  let elapsed = 0;   // накопленное время текущего слайда
-  let lastTs = null; // timestamp последнего кадра
+  let elapsed = 0;
+  let lastTs = null;
   let rafId = null;
-  let paused = false;
 
   function activate(index) {
     items[current].classList.remove('is-active');
     setRingOffset(items[current], CIRCUMFERENCE);
+    setDotOffset(dots[current], DOT_CIRCUMFERENCE);
 
     current = (index + items.length) % items.length;
     items[current].classList.add('is-active');
+    syncDots();
+    scrollActiveCategoryIntoView();
 
     elapsed = 0;
     lastTs = null;
     cancelAnimationFrame(rafId);
-    if (!paused) rafId = requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
 
-    // Анимация: fade out → смена контента → fade in
     const { banner, title, desc } = items[current].dataset;
     bannerImg?.classList.add('is-changing');
     infoEl?.classList.add('is-changing');
@@ -53,13 +57,36 @@ function initSlider(section) {
     if (fill) fill.style.strokeDashoffset = offset;
   }
 
+  function setDotOffset(dot, offset) {
+    const fill = dot?.querySelector('.about-audience__dot-progress');
+    if (fill) fill.style.strokeDashoffset = offset;
+  }
+
+  function syncDots() {
+    dots.forEach((dot, i) => {
+      const active = i === current;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-current', active ? 'true' : 'false');
+      if (!active) setDotOffset(dot, DOT_CIRCUMFERENCE);
+    });
+  }
+
+  function scrollActiveCategoryIntoView() {
+    const activeItem = items[current];
+    const list = section.querySelector('.about-audience__list');
+    if (!activeItem || !list || window.matchMedia(DESKTOP_QUERY).matches) return;
+
+    const targetLeft = activeItem.offsetLeft - (list.clientWidth - activeItem.offsetWidth) / 2;
+    list.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+  }
+
   function tick(ts) {
-    if (paused) return;
     if (lastTs !== null) elapsed += ts - lastTs;
     lastTs = ts;
 
     const progress = Math.min(elapsed / SLIDE_DURATION, 1);
     setRingOffset(items[current], CIRCUMFERENCE * (1 - progress));
+    setDotOffset(dots[current], DOT_CIRCUMFERENCE * (1 - progress));
 
     if (progress < 1) {
       rafId = requestAnimationFrame(tick);
@@ -68,10 +95,10 @@ function initSlider(section) {
     }
   }
 
-  // Инициализация первого слайда
   const first = items[0];
   if (infoTitle) infoTitle.textContent = first.dataset.title || '';
   if (infoDesc) infoDesc.textContent = first.dataset.desc || '';
+  syncDots();
 
   rafId = requestAnimationFrame(tick);
 
@@ -93,16 +120,11 @@ function initSlider(section) {
     });
   });
 
-  // Пауза на hover — не сбрасывает прогресс, только замораживает
-  section.addEventListener('mouseenter', () => {
-    paused = true;
-    lastTs = null; // не считаем время пока мышь внутри
-    cancelAnimationFrame(rafId);
-  });
-
-  section.addEventListener('mouseleave', () => {
-    paused = false;
-    lastTs = null; // новый кадр начнёт отсчёт без скачка
-    rafId = requestAnimationFrame(tick);
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (i === current) return;
+      cancelAnimationFrame(rafId);
+      activate(i);
+    });
   });
 }

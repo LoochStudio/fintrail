@@ -1234,3 +1234,1767 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+// ─── About responsive: tablet/mobile ────────────────────────────────────────
+
+.about-audience__pagination {
+  display: none;
+}
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-page {
+    padding-bottom: 80px;
+  }
+
+  .about-page-body .gift-card-order-header.is-header-scrolled .hero__topbar,
+  .about-page-body .gift-card-order-header.is-header-scrolled .hero__topbar::before {
+    background: $color-surface;
+  }
+
+  .about-hero {
+    height: 610px;
+    min-height: 610px;
+  }
+
+  .about-hero__video {
+    object-position: center bottom;
+  }
+
+  .about-hero__shade {
+    background:
+      linear-gradient(0deg, rgba($color-black, 0.40) 0%, rgba($color-black, 0) 50%),
+      linear-gradient(180deg, rgba($color-black, 0.20) 0%, rgba($color-black, 0) 50%);
+  }
+
+  .about-hero__text-box {
+    bottom: 32px;
+    left: 20px;
+    width: min(520px, calc(100% - 40px));
+    gap: 32px;
+  }
+
+  .about-hero__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .about-hero__lead {
+    font-size: 16px;
+    line-height: 17.6px;
+  }
+
+  .about-trust {
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  .about-trust__title,
+  .about-tech__title,
+  .about-audience__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .about-trust__cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-trust__card {
+    min-height: 0;
+    height: auto;
+    justify-content: flex-start;
+    gap: 32px;
+    padding: 20px;
+  }
+
+  .about-trust__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .about-trust__card-title,
+  .about-trust__card:first-child .about-trust__card-title {
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-process {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 64px;
+    margin-bottom: 64px;
+    padding: 0 20px 4px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-left: 20px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .about-process::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-process__row,
+  .about-process__row--reverse {
+    display: contents;
+  }
+
+  .about-process__panel {
+    flex: 0 0 min(341px, 100%);
+    width: min(341px, 100%);
+    min-height: 400px;
+    height: 400px;
+    scroll-snap-align: start;
+  }
+
+  .about-process__panel--text {
+    min-height: 400px;
+    padding: 20px;
+  }
+
+  .about-process__panel--image {
+    height: 400px;
+  }
+
+  .about-process__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .about-process__content {
+    gap: 32px;
+  }
+
+  .about-process__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-process__text,
+  .about-process__list li {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .about-process__list li {
+    white-space: normal;
+  }
+
+  .about-tech {
+    gap: 40px;
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
+
+  .about-tech__subtitle {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .about-tech__cards {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-left: 20px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .about-tech__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-tech__card {
+    flex: 0 0 min(341px, 100%);
+    width: min(341px, 100%);
+    min-height: 400px;
+    height: 400px;
+    scroll-snap-align: start;
+  }
+
+  .about-world {
+    margin-top: 64px;
+    padding: 0 20px;
+  }
+
+  .about-world__inner {
+    height: 300px;
+  }
+
+  .about-world__image {
+    object-position: center top;
+  }
+
+  .about-world__text {
+    bottom: 48px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    max-width: none;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .about-audience {
+    flex-direction: column;
+    gap: 48px;
+    margin-top: 64px;
+    padding: 0 20px;
+    overflow-x: hidden;
+  }
+
+  .about-audience__sidebar {
+    width: 100%;
+    height: auto;
+    gap: 40px;
+  }
+
+  .about-audience__list {
+    flex: 0 0 auto;
+    min-height: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    width: calc(100% + 40px);
+    margin-right: -20px;
+    margin-left: -20px;
+    padding: 0 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-left: 20px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .about-audience__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-audience__item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+
+  .about-audience__trigger {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 72px;
+    text-align: center;
+  }
+
+  .about-audience__label {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .about-audience__main {
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about-audience__banner {
+    width: 100%;
+    height: 200px;
+  }
+
+  .about-audience__banner-img {
+    object-position: center top;
+  }
+
+  .about-audience__panel {
+    width: 100%;
+    height: auto;
+    gap: 24px;
+  }
+
+  .about-audience__nav {
+    display: none;
+  }
+
+  .about-audience__info {
+    gap: 12px;
+  }
+
+  .about-audience__info-title {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .about-audience__info-desc {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .about-audience__pagination {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    order: 3;
+  }
+
+  .about-audience__dot {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .about-audience__dot::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-secondary-gray;
+  }
+
+  .about-audience__dot.is-active::before {
+    background: $color-primary-black;
+  }
+
+  .about-community {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    margin-top: 64px;
+    overflow: visible;
+  }
+
+  .about-community__bg {
+    position: relative;
+    height: 560px;
+  }
+
+  .about-community__card {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: 560px;
+    padding: 20px;
+  }
+
+  .about-community__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-community__text p {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .about-community__stats {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .about-community__stat {
+    gap: 24px;
+    padding-bottom: 20px;
+  }
+
+  .about-community__stat + .about-community__stat {
+    padding-top: 20px;
+    border-top: 1px solid $color-secondary-gray;
+  }
+
+  .about-community__stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .about-community__stat-count {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-community__stat-label,
+  .about-community__stat-desc {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .about-cta {
+    height: 212px;
+    margin-top: 64px;
+    padding: 20px;
+  }
+
+  .about-cta__inner {
+    align-items: flex-start;
+    gap: 32px;
+    padding: 16px;
+  }
+
+  .about-cta__title {
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .about-cta__btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .about-page {
+    padding-bottom: 64px;
+  }
+
+  .about-process__panel--text {
+    justify-content: space-between;
+  }
+
+  .about-process__body {
+    gap: 16px;
+  }
+
+  .about-tech__card-title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+
+
+// ─── About mobile/tablet final alignment to Figma frames ─────────────────────
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-trust__cards {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+  }
+
+  .about-trust__card {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    padding: 20px;
+    gap: 32px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: 1px solid $color-white;
+    border-bottom: 0;
+  }
+
+  .about-trust__card:last-child {
+    border-bottom: 1px solid $color-white;
+  }
+
+  .about-trust__card-title,
+  .about-trust__card:first-child .about-trust__card-title {
+    width: 100%;
+    min-width: 100%;
+    max-width: none;
+    color: #383838;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .about-trust__card:nth-child(-n + 2) .about-trust__card-title {
+    color: $color-primary-black;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-process {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    margin-top: 64px;
+    margin-bottom: 64px;
+    padding: 0 0 4px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .about-process::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-process__row,
+  .about-process__row--reverse {
+    display: flex;
+    flex: 0 0 300px;
+    width: 300px;
+    min-height: 0;
+    height: auto;
+    flex-direction: column;
+    scroll-snap-align: start;
+  }
+
+  .about-process__panel {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .about-process__row .about-process__panel--image,
+  .about-process__row--reverse .about-process__panel--image {
+    order: 1;
+    height: 260px;
+  }
+
+  .about-process__row .about-process__panel--text,
+  .about-process__row--reverse .about-process__panel--text {
+    order: 2;
+    min-height: 0;
+    padding: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    background: $color-white;
+  }
+
+  .about-process__content,
+  .about-process__content--testing {
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .about-process__title {
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .about-process__text {
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .about-process__body {
+    gap: 12px;
+  }
+
+  .about-process__list {
+    gap: 8px;
+  }
+
+  .about-process__list li {
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: left;
+    text-transform: none;
+    white-space: normal;
+  }
+
+  .about-process__list li::before {
+    width: 8px;
+    height: 8px;
+    margin-top: 2px;
+    background: $color-secondary-gray;
+  }
+
+  .about-tech {
+    gap: 24px;
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
+
+  .about-tech__heading {
+    gap: 24px;
+  }
+
+  .about-tech__subtitle {
+    width: 100%;
+    max-width: 335px;
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+
+  .about-tech__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: visible;
+  }
+
+  .about-tech__card {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 400px;
+    height: 400px;
+    padding: 20px;
+  }
+
+  .about-tech__card-title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .about-tech__image--weather {
+    left: -22.23%;
+    width: 208.54%;
+    max-width: none;
+    object-fit: fill;
+  }
+
+  .about-world {
+    margin-top: 64px;
+    padding: 0 20px;
+  }
+
+  .about-world__inner {
+    height: 300px;
+  }
+
+  .about-world__image {
+    top: -56.2%;
+    height: 156.22%;
+    object-fit: fill;
+    object-position: center top;
+  }
+
+  .about-world__text {
+    bottom: 113px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    max-width: none;
+    transform: translateY(100%);
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .about-audience {
+    gap: 48px;
+    margin-top: 64px;
+    padding: 0 20px;
+  }
+
+  .about-audience__list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    scroll-padding-left: 0;
+  }
+
+  .about-audience__item {
+    scroll-snap-align: start;
+  }
+
+  .about-audience__main {
+    gap: 16px;
+  }
+
+  .about-audience__banner {
+    height: 200px;
+  }
+
+  .about-audience__banner-img {
+    top: 0.09%;
+    height: 207.95%;
+    object-fit: fill;
+    object-position: center top;
+  }
+
+  .about-audience__panel {
+    gap: 24px;
+  }
+
+  .about-audience__info {
+    gap: 12px;
+  }
+
+  .about-audience__info-title {
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+
+  .about-audience__info-desc {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  .about-audience__pagination {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .about-audience__dot {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+  }
+
+  .about-audience__dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-secondary-gray;
+    transform: translate(-50%, -50%);
+  }
+
+  .about-audience__dot.is-active {
+    border-color: $color-primary-black;
+  }
+
+  .about-audience__dot.is-active::before {
+    background: $color-primary-black;
+  }
+
+  .about-community {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    margin-top: 64px;
+    overflow: visible;
+  }
+
+  .about-community__bg {
+    position: relative;
+    height: 560px;
+  }
+
+  .about-community__image {
+    object-position: center center;
+  }
+
+  .about-community__card {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    min-height: 560px;
+    padding: 20px;
+    overflow: visible;
+    justify-content: space-between;
+  }
+
+  .about-community__header {
+    gap: 16px;
+  }
+
+  .about-community__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-community__text p {
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+
+  .about-community__stats {
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .about-community__stat {
+    width: 100%;
+    gap: 24px;
+    padding-bottom: 20px;
+  }
+
+  .about-community__stat + .about-community__stat {
+    padding-top: 20px;
+    border-top: 1px solid $color-secondary-gray;
+  }
+
+  .about-community__stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .about-community__stat-body {
+    gap: 16px;
+  }
+
+  .about-community__stat-num {
+    gap: 10px;
+  }
+
+  .about-community__stat-count {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-community__stat-label {
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+  }
+
+  .about-community__stat-desc {
+    max-width: 220px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+}
+
+// ─── About mobile QA fixes ──────────────────────────────────────────────────
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-tech {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .about-tech__cards {
+    width: 100%;
+  }
+
+  .about-tech__card {
+    width: 100%;
+  }
+
+  .about-tech__image--weather {
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .about-world__image {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .about-world__text {
+    bottom: 20px;
+    transform: none;
+  }
+
+  .about-audience__banner-img {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .about-audience__dot {
+    overflow: hidden;
+    border-color: transparent;
+  }
+
+  .about-audience__dot::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 1px solid $color-primary-black;
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  .about-audience__dot-progress {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient($color-primary-black calc(var(--about-audience-progress, 0) * 1turn), transparent 0);
+    opacity: 0;
+  }
+
+  .about-audience__dot-progress::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: $color-surface;
+  }
+
+  .about-audience__dot.is-active {
+    border-color: transparent;
+  }
+
+  .about-audience__dot.is-active::after,
+  .about-audience__dot.is-active .about-audience__dot-progress {
+    opacity: 1;
+  }
+
+  .about-audience__dot.is-active::before {
+    z-index: 1;
+  }
+
+  .about-community__bg {
+    height: auto;
+  }
+
+  .about-community__image {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+
+  .about-community__overlay {
+    display: none;
+  }
+
+  .about-community__card {
+    gap: 64px;
+    min-height: 560px;
+    justify-content: flex-start;
+  }
+
+  .about-community__header {
+    gap: 16px;
+  }
+
+  .about-community__stats {
+    margin-top: auto;
+  }
+
+  .about-community__stat {
+    gap: 24px;
+  }
+
+  .about-cta {
+    height: auto;
+    min-height: 212px;
+    padding: 20px;
+    overflow: visible;
+  }
+
+  .about-cta__inner {
+    min-height: 172px;
+    padding: 16px;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  .about-cta__title {
+    width: 100%;
+    max-width: none;
+  }
+
+  .about-cta__btn {
+    min-height: 56px;
+  }
+}
+
+@media (max-width: 360px) {
+  .about-tech__card {
+    height: 400px;
+    min-height: 400px;
+  }
+
+  .about-tech__card-title {
+    max-width: 248px;
+  }
+}
+
+// ─── About community image correction after QA ───────────────────────────────
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-community__bg {
+    height: 560px;
+    overflow: hidden;
+  }
+
+  .about-community__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 42% center;
+  }
+
+  .about-community__overlay {
+    display: block;
+  }
+}
+
+// ─── About 320px grid and hero-like pagination fix ───────────────────────────
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-trust__cards {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .about-trust__card-title,
+  .about-trust__card:first-child .about-trust__card-title {
+    min-width: 0;
+  }
+
+  .about-trust__card:nth-child(1) .about-trust__card-title,
+  .about-trust__card:nth-child(2) .about-trust__card-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-trust__card:nth-child(3) .about-trust__card-title,
+  .about-trust__card:nth-child(4) .about-trust__card-title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .about-process {
+    padding-right: 20px;
+    padding-left: 20px;
+    scroll-padding-left: 20px;
+  }
+
+  .about-process__row,
+  .about-process__row--reverse {
+    flex-basis: min(300px, 100%);
+    width: min(300px, 100%);
+  }
+
+  .about-tech,
+  .about-world,
+  .about-audience,
+  .about-cta {
+    box-sizing: border-box;
+  }
+
+  .about-tech__card,
+  .about-world__inner,
+  .about-audience__main,
+  .about-cta__inner {
+    max-width: 100%;
+  }
+
+  .about-audience__dot {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: $color-primary-gray;
+  }
+
+  .about-audience__dot::before,
+  .about-audience__dot::after {
+    content: none;
+  }
+
+  .about-audience__dot-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    overflow: visible;
+  }
+
+  .about-audience__dot-point {
+    fill: $color-secondary-gray;
+  }
+
+  .about-audience__dot-progress {
+    fill: none;
+    stroke: $color-primary-black;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 43.9823;
+    stroke-dashoffset: 43.9823;
+    opacity: 0;
+    transform: rotate(-90deg);
+    transform-origin: 9px 9px;
+  }
+
+  .about-audience__dot.is-active .about-audience__dot-point {
+    fill: $color-primary-black;
+  }
+
+  .about-audience__dot.is-active .about-audience__dot-progress {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 360px) {
+  .about-tech,
+  .about-world,
+  .about-audience,
+  .about-cta {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .about-tech__card {
+    width: 100%;
+  }
+}
+
+// ─── About trust line wrapping correction ────────────────────────────────────
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-trust__cards {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// ─── About process mobile centering ──────────────────────────────────────────
+@media (max-width: calc($bp-md - 1px)) {
+  .about-process__row,
+  .about-process__row--reverse {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .about-process__row .about-process__panel--text,
+  .about-process__row--reverse .about-process__panel--text {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+
+// ─── About tablet layout polish ──────────────────────────────────────────────
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .about-page {
+    padding-bottom: 0;
+  }
+
+  .about-page-body .gift-card-order-header .hero__topbar {
+    left: 32px;
+    right: 32px;
+    width: auto;
+  }
+
+  .about-hero {
+    height: 720px;
+    min-height: 720px;
+  }
+
+  .about-hero__text-box {
+    bottom: 56px;
+    left: 40px;
+    width: min(560px, calc(100% - 80px));
+    gap: 36px;
+  }
+
+  .about-hero__title {
+    font-size: 36px;
+    line-height: 38px;
+  }
+
+  .about-hero__lead {
+    max-width: 520px;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .about-trust,
+  .about-process,
+  .about-tech,
+  .about-world,
+  .about-audience,
+  .about-community,
+  .about-cta {
+    margin-top: 80px;
+  }
+
+  .about-trust {
+    gap: 48px;
+  }
+
+  .about-trust__heading-wrap,
+  .about-tech__heading,
+  .about-audience__sidebar,
+  .about-world,
+  .about-cta {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .about-trust__title,
+  .about-tech__title,
+  .about-audience__title {
+    font-size: 28px;
+    line-height: 30px;
+  }
+
+  .about-trust__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 32px;
+  }
+
+  .about-trust__card {
+    min-height: 260px;
+    padding: 32px;
+    gap: 40px;
+  }
+
+  .about-trust__card:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .about-trust__card:nth-child(1),
+  .about-trust__card:nth-child(2) {
+    border-bottom: 0;
+  }
+
+  .about-trust__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .about-trust__card-title,
+  .about-trust__card:first-child .about-trust__card-title,
+  .about-trust__card:nth-child(1) .about-trust__card-title,
+  .about-trust__card:nth-child(2) .about-trust__card-title,
+  .about-trust__card:nth-child(3) .about-trust__card-title,
+  .about-trust__card:nth-child(4) .about-trust__card-title {
+    min-width: 0;
+    color: $color-primary-black;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .about-process {
+    gap: 12px;
+    padding: 0 32px 6px;
+    scroll-padding-left: 32px;
+  }
+
+  .about-process__row,
+  .about-process__row--reverse {
+    flex: 0 0 clamp(360px, 44vw, 520px);
+    width: clamp(360px, 44vw, 520px);
+  }
+
+  .about-process__row .about-process__panel--image,
+  .about-process__row--reverse .about-process__panel--image {
+    height: 320px;
+  }
+
+  .about-process__row .about-process__panel--text,
+  .about-process__row--reverse .about-process__panel--text {
+    min-height: 320px;
+    padding: 40px 32px;
+  }
+
+  .about-process__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .about-process__text {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .about-process__list li {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .about-tech {
+    gap: 48px;
+    padding: 0;
+  }
+
+  .about-tech__subtitle {
+    max-width: 520px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .about-tech__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0 32px;
+    overflow: visible;
+  }
+
+  .about-tech__card {
+    min-height: 460px;
+    height: 460px;
+    padding: 28px;
+  }
+
+  .about-tech__card-title {
+    max-width: 360px;
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .about-world {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .about-world__inner {
+    height: 420px;
+  }
+
+  .about-world__text {
+    right: 40px;
+    bottom: 40px;
+    left: 40px;
+    max-width: 560px;
+    font-size: 30px;
+    line-height: 32px;
+  }
+
+  .about-audience {
+    gap: 40px;
+    padding: 0 32px;
+  }
+
+  .about-audience__sidebar {
+    padding: 0;
+  }
+
+  .about-audience__list {
+    width: 100%;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .about-audience__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .about-audience__banner {
+    height: 360px;
+  }
+
+  .about-audience__panel {
+    min-height: 360px;
+    padding: 28px;
+    background: $color-white;
+  }
+
+  .about-audience__info-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-audience__info-desc {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .about-audience__pagination {
+    justify-content: center;
+  }
+
+  .about-community {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 42%);
+    min-height: 620px;
+    overflow: hidden;
+  }
+
+  .about-community__bg {
+    height: 620px;
+  }
+
+  .about-community__card {
+    min-height: 620px;
+    padding: 40px 32px;
+    gap: 48px;
+  }
+
+  .about-community__title {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .about-community__text p {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .about-community__stat-desc {
+    max-width: 280px;
+  }
+
+  .about-cta {
+    min-height: 260px;
+    margin-bottom: 80px;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .about-cta__inner {
+    min-height: 220px;
+    padding: 32px;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .about-cta__title {
+    max-width: 560px;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+  }
+
+  .about-cta__btn {
+    width: min(360px, 100%);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: calc($bp-lg - 1px)) {
+  .about-page-body .gift-card-order-header .hero__topbar {
+    left: 40px;
+    right: 40px;
+  }
+
+  .about-trust__heading-wrap,
+  .about-tech__heading,
+  .about-world,
+  .about-audience,
+  .about-cta {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .about-trust__cards,
+  .about-tech__cards {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .about-process {
+    padding-right: 40px;
+    padding-left: 40px;
+    scroll-padding-left: 40px;
+  }
+
+  .about-process__row,
+  .about-process__row--reverse {
+    flex-basis: clamp(420px, 38vw, 520px);
+    width: clamp(420px, 38vw, 520px);
+  }
+
+  .about-tech__cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .about-tech__card {
+    min-height: 420px;
+    height: 420px;
+    padding: 24px;
+  }
+
+  .about-tech__card-title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .about-world__inner {
+    height: 480px;
+  }
+
+  .about-audience__main {
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  }
+}
+
+// ─── About final edge and tablet QA fixes ───────────────────────────────────
+.about-page-body .footer-desktop.catalog-footer {
+  margin-top: 20px;
+}
+
+.about-page {
+  padding-bottom: 0;
+}
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-page-body .gift-card-order-header .hero__topbar {
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+
+  .about-trust__heading-wrap,
+  .about-trust__cards,
+  .about-process,
+  .about-tech,
+  .about-tech__heading,
+  .about-tech__cards,
+  .about-world,
+  .about-audience,
+  .about-cta {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .about-process {
+    scroll-padding-left: 20px;
+  }
+
+  .about-cta {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .about-hero__text-box {
+    left: 20px;
+    width: min(560px, calc(100% - 40px));
+  }
+
+  .about-trust__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-tech__cards {
+    gap: 12px;
+  }
+
+  .about-audience {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .about-community {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin-right: 20px;
+    margin-left: 20px;
+    overflow: visible;
+    background: $color-white;
+  }
+
+  .about-community__bg {
+    width: 100%;
+    height: clamp(360px, 52vw, 520px);
+    overflow: hidden;
+  }
+
+  .about-community__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .about-community__card {
+    width: 100%;
+    min-height: 0;
+    padding: 32px 28px;
+    gap: 40px;
+  }
+
+  .about-community__header {
+    max-width: 620px;
+  }
+
+  .about-community__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .about-community__stat {
+    gap: 20px;
+    padding: 0;
+  }
+
+  .about-community__stat + .about-community__stat {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .about-cta {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .about-cta__inner {
+    min-height: 220px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: calc($bp-lg - 1px)) {
+  .about-tech__cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .about-page-body .gift-card-order-header .hero__topbar {
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+
+  .about-trust__heading-wrap,
+  .about-trust__cards,
+  .about-process,
+  .about-tech,
+  .about-world,
+  .about-audience,
+  .about-cta {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .about-cta {
+    margin-bottom: 0;
+  }
+}
+
+// ─── About final 20px edge correction ───────────────────────────────────────
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-tech__heading,
+  .about-tech__cards {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .about-community {
+    width: auto;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .about-tech__heading,
+  .about-tech__cards {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// ─── About QA: full-width trust/world and process alignment ─────────────────
+.about-page-body .footer-desktop.catalog-footer {
+  margin-top: 0;
+}
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .about-trust__cards,
+  .about-world {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .about-process__row,
+  .about-process__row--reverse {
+    display: grid;
+    grid-template-rows: 320px 1fr;
+    height: auto;
+  }
+
+  .about-process__row .about-process__panel--image,
+  .about-process__row--reverse .about-process__panel--image {
+    order: initial;
+    grid-row: 1;
+    height: 320px;
+  }
+
+  .about-process__row .about-process__panel--text,
+  .about-process__row--reverse .about-process__panel--text {
+    order: initial;
+    grid-row: 2;
+    min-height: 468px;
+  }
+
+  .about-process__row--reverse .about-process__image--tall {
+    top: 0;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .about-trust__cards,
+  .about-world {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// ─── About process tablet: fit cards, no carousel ───────────────────────────
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .about-process {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    padding-right: 20px;
+    padding-left: 20px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .about-process__row,
+  .about-process__row--reverse {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+    scroll-snap-align: none;
+  }
+}
+
+// ─── About footer spacing on page surface ───────────────────────────────────
+.about-page {
+  padding-bottom: 20px;
+}
+
+.about-page-body .footer-desktop.catalog-footer {
+  margin-top: 0;
+}
+
+// ─── About desktop header geometry restore ──────────────────────────────────
+@media (min-width: $bp-lg) {
+  .about-page-body .gift-card-order-header .hero__topbar {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .about-page-body .gift-card-order-header .hero__topbar::before {
+    inset: 0;
+  }
+}

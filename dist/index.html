@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH ?>/css/style.css">
     <script src="<?= SITE_TEMPLATE_PATH ?>/js/main.js" defer></script>
   -->
-  <script type="module" crossorigin src="/fintrail/assets/main-CYdfZytL.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-vrO7sOgh.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-CIoxYu2K.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-CfrLZ7u3.css">
 </head>
 <body>
 
@@ -2096,10 +2096,14 @@
 
     <header class="search-modal__header">
       <div class="search-modal__header-left">
-        <a href="/fintrail/" class="search-modal__logo">
-          <svg aria-hidden="true" width="24" height="24"><use href="/fintrail/images/icons/sprite.svg#icon-hero-menu"></use></svg>
-          <img src="/fintrail/images/logo.svg" alt="FINNTRAIL" width="180" height="32">
-        </a>
+        <div class="search-modal__logo">
+          <button class="search-modal__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
+            <svg aria-hidden="true" width="24" height="24"><use href="/fintrail/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          </button>
+          <a href="/fintrail/" class="search-modal__logo-link">
+            <img src="/fintrail/images/logo.svg" alt="FINNTRAIL" width="180" height="32">
+          </a>
+        </div>
         <div class="search-modal__input-wrap">
           <svg aria-hidden="true" width="24" height="24"><use href="/fintrail/images/icons/sprite.svg#icon-search"></use></svg>
           <input class="search-modal__input" type="search" placeholder="Например: зимние перчатки" autocomplete="off" aria-label="Поиск по сайту" data-search-input>

@@ -9,16 +9,21 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
-  overflow-x: hidden; // html — реальный scroll-контейнер на мобайле; без этого overflow-x на body не блокирует горизонтальный скролл
+  overflow-x: hidden; // fallback для старых iOS Safari
+  overflow-x: clip;   // clip не создаёт scroll-контейнер → iOS не может touch-scroll (iOS 15.4+)
+  overscroll-behavior-x: none; // запрет rubber-band (Chrome/Firefox; iOS 16+)
   scroll-behavior: smooth;
 }
 
 body {
+  position: relative;  // + overflow-x: hidden = настоящий clip на старом iOS Safari (< 15.4)
   font-family: $font-main;
   color: $color-text-primary;
   background: $color-surface;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: hidden; // fallback для старых iOS
+  overflow-x: clip;   // modern override
+  overscroll-behavior-x: none;
 }
 
 a {
@@ -46,6 +51,20 @@ button {
 
 .page-content {
   overflow-x: hidden;
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  html,
+  body {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
 
 @media (min-width: $bp-lg) {
