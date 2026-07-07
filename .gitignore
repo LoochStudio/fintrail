@@ -11,11 +11,23 @@ docs/client-requirements.md
 .claude/
 .mcp/
 
-# Local test/debug artifacts
+# Client documents — not part of handoff repo
+*.pdf
+
+# Vite-built media in dist — regenerated on build, can exceed 100MB
+dist/**/*.mp4
+dist/**/*.mov
+dist/**/*.avi
+
+# Test/debug artifacts
 playwright-report/
 test-results/
-*.tmp
-*.bak
+output/
+
+# Debug screenshots in project root
+/*.png
+/*.jpg
+/*.jpeg
 
 # OS/editor noise
 .DS_Store

@@ -21,6 +21,8 @@ import { init as initSearch } from './modules/search.js';
 import { init as initCompare } from './modules/compare.js';
 import { init as initJournal } from './modules/journal.js';
 import { init as initAboutAudience } from './modules/about-audience.js';
+import { init as initCareerValues } from './modules/career-values.js';
+import { init as initCareerVibe } from './modules/career-vibe.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -46,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initCompare();
   initJournal();
   initAboutAudience();
+  initCareerValues();
+  initCareerVibe();
 });
 
 

@@ -951,9 +951,20 @@
 
 @media (hover: hover) and (pointer: fine) {
   .about-audience__btn:hover {
-    background: $color-primary-black;
-    color: $color-white;
+    background: $color-button-secondary-hover;
   }
+}
+
+.about-audience__btn:active {
+  background: $color-gray-pressed;
+}
+
+.about-audience__btn:disabled,
+.about-audience__btn.is-disabled {
+  background: $color-button-disabled;
+  color: $color-primary-gray;
+  cursor: default;
+  pointer-events: none;
 }
 
 .about-audience__info {
