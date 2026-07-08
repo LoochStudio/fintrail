@@ -14,10 +14,8 @@ docs/client-requirements.md
 # Client documents — not part of handoff repo
 *.pdf
 
-# Vite-built media in dist — regenerated on build, can exceed 100MB
-dist/**/*.mp4
-dist/**/*.mov
-dist/**/*.avi
+# Video source files over GitHub's 100MB limit — compress before committing
+# (currently all videos are under limit, add specific files here if needed)
 
 # Test/debug artifacts
 playwright-report/

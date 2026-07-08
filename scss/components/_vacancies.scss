@@ -93,6 +93,11 @@
   height: 16px;
   flex: 0 0 16px;
 }
+@media (max-width: calc($bp-md - 1px)) {
+  .vacancies__share span {
+    display: none;
+  }
+}
 
 .vacancies__share:active {
   color: $color-gray-primary;
@@ -163,6 +168,11 @@
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.18s ease, color 0.18s ease;
+}
+.vacancies__tag.is-active,
+.vacancies__tag[aria-pressed='true'] {
+  background: $color-primary-black;
+  color: $color-white;
 }
 
 .vacancies__grid {
@@ -329,6 +339,8 @@
 
 .vacancies__community {
   margin-top: 52px;
+  margin-right: -20px;
+  margin-left: -20px;
 }
 
 .vacancies-page .footer-desktop {
@@ -347,6 +359,13 @@
   .vacancy-card__link:focus-visible {
     background: $color-button-secondary-hover;
     color: $color-primary-black;
+  }
+  .vacancies__tag.is-active:hover,
+  .vacancies__tag.is-active:focus-visible,
+  .vacancies__tag[aria-pressed='true']:hover,
+  .vacancies__tag[aria-pressed='true']:focus-visible {
+    background: $color-primary-black;
+    color: $color-white;
   }
 }
 
@@ -468,6 +487,38 @@
       right: 20px;
       gap: 24px;
     }
+
+    &.is-header-compact {
+      .hero__topbar {
+        height: 72px;
+      }
+
+      .hero__menu-btn {
+        top: 20px;
+        left: 20px;
+
+        span {
+          opacity: 0;
+        }
+      }
+
+      .hero__logo-link {
+        top: 20px;
+        left: 68px;
+        width: 180px;
+        height: 32px;
+      }
+
+      .hero__nav {
+        top: 31px;
+        left: 25%;
+        transform: none;
+      }
+
+      .hero__tools {
+        top: 24px;
+      }
+    }
   }
 
   .vacancies {
@@ -562,6 +613,835 @@
 
 
 
+
+
+
+
+
+// Vacancy detail page
+.vacancy-detail-page {
+  background: $color-surface;
+}
+
+.vacancy-detail {
+  overflow: hidden;
+  padding: 20px 20px 0;
+}
+
+.vacancy-detail__head,
+.vacancy-detail__intro,
+.vacancy-detail__content,
+.vacancy-response {
+  width: 100%;
+}
+
+.vacancy-detail__head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vacancy-detail__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.vacancy-detail__title {
+  max-width: 695px;
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.vacancy-detail__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.vacancy-detail__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 64px;
+  margin: 0;
+}
+
+.vacancy-detail__summary-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.vacancy-detail__summary-item dt {
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+}
+
+.vacancy-detail__summary-item dd {
+  margin: 0;
+  color: rgba($color-black, 0.9);
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+}
+
+.vacancy-detail__dash {
+  width: 100%;
+  height: 1px;
+  flex: 0 0 1px;
+  background-image: repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px);
+}
+
+.vacancy-detail__lead {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.vacancy-detail__apply-link {
+  width: 100%;
+}
+
+.vacancy-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 52px;
+}
+
+.vacancy-detail__section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.vacancy-detail__section h2 {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.vacancy-detail__section ul {
+  margin: 0;
+  padding-left: 21px;
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  list-style: disc;
+}
+
+.vacancy-detail__section li {
+  display: list-item;
+}
+
+.vacancy-detail__section li::marker {
+  color: $color-gray-primary;
+  font-size: 0.78em;
+}
+
+.vacancy-response {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.vacancy-response__dash {
+  margin-bottom: 0;
+}
+
+.vacancy-response__title {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 28px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+.vacancy-response__form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.vacancy-response__tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  background: $color-white;
+}
+
+.vacancy-response__tab {
+  display: inline-flex;
+  min-height: 48px;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px;
+  border-radius: 4px;
+  color: $color-gray-primary;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.vacancy-response__tab.is-active,
+.vacancy-response__tab[aria-pressed='true'] {
+  background: $color-primary-black;
+  color: $color-white;
+}
+
+.vacancy-response__row,
+.vacancy-response__phone {
+  display: flex;
+  gap: 10px;
+}
+
+.vacancy-response__phone {
+  gap: 8px;
+}
+
+.vacancy-response__row--two > *,
+.vacancy-response__phone .vacancy-response__field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.vacancy-response__field,
+.vacancy-response__select,
+.vacancy-response__country {
+  position: relative;
+  display: flex;
+  height: 52px;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  background: $color-white;
+}
+
+.vacancy-response__field {
+  padding: 8px 44px 8px 16px;
+}
+
+.vacancy-response__field input,
+.vacancy-response__select select,
+.vacancy-response__country select {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: $color-primary-black;
+  font: inherit;
+}
+
+.vacancy-response__field input {
+  height: 100%;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.vacancy-response__field input::placeholder {
+  color: $color-secondary-gray;
+  opacity: 1;
+}
+
+.vacancy-response__select,
+.vacancy-response__country {
+  overflow: visible;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 10px 16px;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.vacancy-response__select span,
+.vacancy-response__country span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vacancy-response__select select,
+.vacancy-response__country select {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.vacancy-response__select svg,
+.vacancy-response__country-arrow {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: $color-primary-black;
+  pointer-events: none;
+}
+
+.vacancy-response__country {
+  width: 76px;
+  flex: 0 0 76px;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+}
+
+.vacancy-response__flag,
+.vacancy-response__flag svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.vacancy-response__select.is-enhanced,
+.vacancy-response__country.is-enhanced {
+  padding: 0;
+}
+
+.vacancy-response__select.is-enhanced > span,
+.vacancy-response__select.is-enhanced > svg,
+.vacancy-response__country.is-enhanced > span,
+.vacancy-response__country.is-enhanced > svg {
+  display: none;
+}
+
+.vacancy-response__select.is-enhanced select,
+.vacancy-response__country.is-enhanced select {
+  position: absolute;
+  inset: auto;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vacancy-response__select-button {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.vacancy-response__country .vacancy-response__select-button {
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+}
+
+.vacancy-response__select-button:focus-visible {
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+.vacancy-response__select-button-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vacancy-response__select-button-text--flag,
+.vacancy-response__select-button-text--flag svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.vacancy-response__select-button-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  transition: transform 0.18s ease;
+}
+
+.vacancy-response__select.is-open,
+.vacancy-response__country.is-open {
+  z-index: 20;
+}
+
+.vacancy-response__select.is-open .vacancy-response__select-button-icon,
+.vacancy-response__country.is-open .vacancy-response__select-button-icon {
+  transform: rotate(180deg);
+}
+
+.vacancy-response__select-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  left: 0;
+  z-index: 25;
+  display: none;
+  max-height: 188px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+  border-radius: 8px;
+  background: $color-white;
+  box-shadow: 0 0 4px rgba(95, 105, 131, 0.07), 0 5px 4px rgba(95, 105, 131, 0.05), 0 4px 15px rgba(95, 105, 131, 0.12);
+  scrollbar-width: none;
+}
+
+.vacancy-response__select-list::-webkit-scrollbar {
+  display: none;
+}
+
+.vacancy-response__select.is-open .vacancy-response__select-list,
+.vacancy-response__country.is-open .vacancy-response__select-list {
+  display: block;
+}
+
+.vacancy-response__select-option {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+
+.vacancy-response__clear {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  display: none;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  color: $color-secondary-gray;
+  transform: translateY(-50%);
+  transition: color 0.18s ease;
+}
+
+.vacancy-response__clear svg {
+  width: 16px;
+  height: 16px;
+}
+
+.vacancy-response__field.is-filled .vacancy-response__clear {
+  display: inline-flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vacancy-response__select-option:hover,
+  .vacancy-response__select-option:focus-visible {
+    background: $color-surface;
+  }
+
+  .vacancy-response__clear:hover,
+  .vacancy-response__clear:focus-visible {
+    color: $color-primary-black;
+  }
+}
+
+.vacancy-response__caption {
+  min-height: 0;
+  margin-top: -28px;
+  color: #d92d20;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.vacancy-response__field.is-error,
+[data-input-field].is-error {
+  outline: 1px solid #d92d20;
+}
+
+.vacancy-response__upload {
+  position: relative;
+  display: flex;
+  min-height: 96px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 40px;
+  border-radius: 8px;
+  background-image: repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to bottom, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to bottom, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px);
+  background-position: left top, right top, left bottom, left top;
+  background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  cursor: pointer;
+}
+
+.vacancy-response__upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.vacancy-response__upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.vacancy-response__upload-text strong {
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+}
+
+.vacancy-response__upload-text small {
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.vacancy-response__upload-btn {
+  display: inline-flex;
+  min-height: 38px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 8px 11px 16px;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.vacancy-response__upload-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.vacancy-response__submit {
+  width: 100%;
+  height: 52px;
+}
+
+.vacancy-response__consent {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 4px 0 0;
+  cursor: pointer;
+}
+
+.vacancy-response__consent-input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid $color-primary-black;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:checked {
+    background: $color-primary-black url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3333 4L5.99999 11.3333L2.66666 8' stroke='white' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") no-repeat center / 12px 12px;
+    border-color: $color-primary-black;
+  }
+}
+
+.vacancy-response__consent-text {
+  color: #141415;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.vacancy-response__consent a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
+  transition: opacity 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.vacancy-detail__community {
+  margin-top: 64px;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.vacancy-detail-page .footer-desktop {
+  margin-top: 64px;
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .vacancy-detail {
+    padding: 20px 20px 0;
+  }
+
+  .vacancy-detail__title-row {
+    align-items: flex-end;
+  }
+
+  .vacancy-detail__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .vacancy-detail__share {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+  }
+
+  .vacancy-detail__intro {
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .vacancy-detail__summary {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .vacancy-detail__summary-item {
+    position: relative;
+    min-height: 18px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .vacancy-detail__summary-item + .vacancy-detail__summary-item::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+    left: 0;
+    height: 1px;
+    background-image: repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px);
+  }
+
+  .vacancy-detail__summary-item dt {
+    line-height: 18px;
+  }
+
+  .vacancy-detail__summary-item dd {
+    flex: 0 0 auto;
+    text-align: right;
+  }
+
+  .vacancy-detail__lead {
+    line-height: 18px;
+  }
+
+  .vacancy-detail__content {
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .vacancy-response {
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .vacancy-response__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .vacancy-response__row,
+  .vacancy-response__upload {
+    flex-direction: column;
+  }
+
+  .vacancy-response__phone {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .vacancy-response__row--two {
+    gap: 10px;
+  }
+
+  .vacancy-response__country {
+    width: 76px;
+    flex: 0 0 76px;
+    justify-content: center;
+  }
+
+  .vacancy-response__upload {
+    align-items: center;
+    min-height: 112px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .vacancy-response__upload-text {
+    align-items: center;
+  }
+
+  .vacancy-response__upload-btn {
+    align-self: center;
+  }
+
+  .vacancy-detail__community {
+    margin-top: 64px;
+  }
+}
+
+@media (min-width: $bp-md) {
+  .vacancy-detail {
+    padding-top: 40px;
+  }
+
+  .vacancy-detail__head,
+  .vacancy-detail__intro,
+  .vacancy-detail__content,
+  .vacancy-response {
+    width: min(695px, calc(100% - 40px));
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .vacancy-detail__summary {
+    gap: 80px;
+  }
+
+  .vacancy-detail__title {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .vacancy-detail__community {
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .vacancy-detail {
+    position: relative;
+    padding-top: 80px;
+  }
+
+  .vacancy-detail__head,
+  .vacancy-detail__intro,
+  .vacancy-detail__content,
+  .vacancy-response {
+    width: 695px;
+    margin-left: var(--vacancies-content-offset);
+  }
+
+  .vacancy-detail__title {
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .vacancy-detail__share {
+    position: absolute;
+    right: 20px;
+    top: 96px;
+  }
+
+  .vacancy-detail__content {
+    margin-top: 52px;
+  }
+
+  .vacancy-response {
+    margin-top: 40px;
+  }
+
+  .vacancy-detail__community {
+    margin-top: 100px;
+  }
+
+  .vacancy-detail-page .footer-desktop {
+    margin-top: 100px;
+  }
+}
 
 
 

@@ -23,6 +23,8 @@ import { init as initJournal } from './modules/journal.js';
 import { init as initAboutAudience } from './modules/about-audience.js';
 import { init as initCareerValues } from './modules/career-values.js';
 import { init as initCareerVibe } from './modules/career-vibe.js';
+import { init as initVacancies } from './modules/vacancies.js';
+import { init as initSizeGuide } from './modules/size-guide.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -50,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAboutAudience();
   initCareerValues();
   initCareerVibe();
+  initVacancies();
+  initSizeGuide();
 });
 
 
