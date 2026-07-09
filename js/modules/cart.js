@@ -241,6 +241,8 @@ export function init() {
     const form = modal.querySelector('.cart-recipient-modal__form');
     const nameOutputs = document.querySelectorAll('[data-cart-recipient-name]');
     const phoneOutputs = document.querySelectorAll('[data-cart-recipient-phone]');
+    const submitBtn = modal.querySelector('.cart-recipient-modal__submit');
+    const deleteBtn = modal.querySelector('[data-cart-recipient-delete]');
     let closeTimer = 0;
 
     // Clear buttons + active state for uk-field-wrap
@@ -277,8 +279,31 @@ export function init() {
       }
     });
 
-    function openModal(event) {
-      event?.preventDefault();
+    function fillForm(btn) {
+      const isExisting = btn && btn.dataset.recipientFirstName !== undefined;
+      const fieldMap = {
+        'first-name': 'recipientFirstName',
+        'last-name':  'recipientLastName',
+        'email':      'recipientEmail',
+      };
+      Object.entries(fieldMap).forEach(([name, key]) => {
+        const input = form?.elements[name];
+        if (!input) return;
+        input.value = isExisting ? (btn.dataset[key] ?? '') : '';
+        const wrap = input.closest('[data-input-field]');
+        if (wrap) wrap.classList.toggle('uk-s-value', input.value.trim() !== '');
+      });
+      const phoneInput = form?.elements['phone'];
+      if (phoneInput) {
+        phoneInput.value = isExisting ? (btn.dataset.recipientPhone ?? '') : '';
+        const wrap = phoneInput.closest('[data-input-field]');
+        if (wrap) wrap.classList.toggle('uk-s-value', phoneInput.value.replace(/\D/g, '').length > 1);
+      }
+      if (submitBtn) submitBtn.textContent = isExisting ? 'Сохранить изменения' : 'Добавить получателя';
+      if (deleteBtn) deleteBtn.hidden = !isExisting;
+    }
+
+    function openModal() {
       window.clearTimeout(closeTimer);
       modal.hidden = false;
       modal.setAttribute('aria-hidden', 'false');
@@ -298,8 +323,14 @@ export function init() {
       }, 200);
     }
 
-    openButtons.forEach(button => button.addEventListener('click', openModal));
+    openButtons.forEach(button => button.addEventListener('click', event => {
+      event.preventDefault();
+      const btn = event.currentTarget;
+      fillForm(btn.dataset.recipientFirstName !== undefined ? btn : null);
+      openModal();
+    }));
     closeButtons.forEach(button => button.addEventListener('click', closeModal));
+    deleteBtn?.addEventListener('click', closeModal);
 
     const fieldRules = [
       { name: 'first-name', test: v => v.trim() !== '',                                    error: 'Заполните поле' },
@@ -410,18 +441,6 @@ export function init() {
       });
     }
 
-    function openModal(event) {
-      event?.preventDefault();
-      window.clearTimeout(closeTimer);
-      modal.hidden = false;
-      modal.setAttribute('aria-hidden', 'false');
-      document.documentElement.classList.add('is-modal-open');
-      window.requestAnimationFrame(() => {
-        modal.classList.add('is-open');
-        closeButton?.focus();
-      });
-    }
-
     function closeModal() {
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden', 'true');
@@ -431,8 +450,83 @@ export function init() {
       }, 200);
     }
 
-    openButtons.forEach(button => button.addEventListener('click', openModal));
     closeButtons.forEach(button => button.addEventListener('click', closeModal));
+
+    const submitBtn = modal.querySelector('.cart-address-modal__submit');
+    const deleteBtn = modal.querySelector('[data-cart-address-delete]');
+
+    const selectTrigger = modal.querySelector('[data-address-select-trigger]');
+    const selectLabel = modal.querySelector('[data-address-select-label]');
+    const selectPopup = modal.querySelector('[data-address-select-popup]');
+    const selectOptions = modal.querySelectorAll('[data-address-option]');
+    const countryInput = modal.querySelector('input[name="country"]');
+
+    function setCountry(value) {
+      if (countryInput) countryInput.value = value;
+      if (selectLabel) selectLabel.textContent = value || 'Страна';
+      selectOptions.forEach(opt => {
+        opt.classList.toggle('is-checked', opt.dataset.addressOption === value);
+      });
+    }
+
+    if (selectTrigger && selectPopup) {
+      selectTrigger.addEventListener('click', () => {
+        const isOpen = selectTrigger.getAttribute('aria-expanded') === 'true';
+        selectTrigger.setAttribute('aria-expanded', String(!isOpen));
+        selectPopup.hidden = isOpen;
+      });
+
+      selectOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          setCountry(opt.dataset.addressOption);
+          selectTrigger.setAttribute('aria-expanded', 'false');
+          selectPopup.hidden = true;
+        });
+      });
+
+      document.addEventListener('click', event => {
+        if (!selectTrigger.closest('.catalog-filter-popup-wrap').contains(event.target)) {
+          selectTrigger.setAttribute('aria-expanded', 'false');
+          selectPopup.hidden = true;
+        }
+      });
+    }
+
+    function fillForm(btn) {
+      const isExisting = btn && btn.dataset.addressCity !== undefined;
+
+      const fields = ['city', 'street', 'house', 'entrance', 'floor', 'flat', 'comment'];
+      fields.forEach(name => {
+        const input = form?.elements[name];
+        if (!input) return;
+        const key = 'address' + name.charAt(0).toUpperCase() + name.slice(1);
+        input.value = isExisting ? (btn.dataset[key] ?? '') : '';
+        const wrap = input.closest('[data-input-field]');
+        if (wrap) wrap.classList.toggle('uk-s-value', input.value.trim() !== '');
+      });
+
+      const countryValue = isExisting ? (btn.dataset.addressCountry ?? 'Россия') : 'Россия';
+      setCountry(countryValue);
+
+      const privateCheckbox = form?.elements['private-house'];
+      if (privateCheckbox) privateCheckbox.checked = false;
+
+      if (submitBtn) submitBtn.textContent = isExisting ? 'Сохранить изменения' : 'Добавить адрес';
+      if (deleteBtn) deleteBtn.hidden = !isExisting;
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', event => {
+      event.preventDefault();
+      fillForm(event.currentTarget);
+      window.clearTimeout(closeTimer);
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus();
+      });
+    }));
 
     const addressFieldRules = [
       { name: 'city',   test: v => v.trim() !== '', error: 'Заполните поле' },
@@ -476,6 +570,81 @@ export function init() {
         summary.textContent = address;
       }
 
+      // Сохраняем значения всех полей на кнопках-триггерах,
+      // чтобы при повторном открытии форма была заполнена
+      const fields = ['country', 'city', 'street', 'house', 'entrance', 'floor', 'flat', 'comment'];
+      openButtons.forEach(btn => {
+        fields.forEach(name => {
+          const input = form.elements[name];
+          if (!input) return;
+          const key = 'address' + name.charAt(0).toUpperCase() + name.slice(1);
+          btn.dataset[key] = input.value;
+        });
+      });
+
+      closeModal();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  });
+
+  // Settings — payment modal
+  document.querySelectorAll('[data-cart-payment-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-cart-payment-open]');
+    const closeButtons = modal.querySelectorAll('[data-cart-payment-close]');
+    const form = modal.querySelector('.cart-payment-modal__form');
+    const submitBtn = modal.querySelector('.cart-payment-modal__submit');
+    const deleteBtn = modal.querySelector('[data-cart-payment-delete]');
+    let closeTimer = 0;
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => { modal.hidden = true; }, 200);
+    }
+
+    function fillForm(btn) {
+      const isExisting = btn && btn.dataset.cardNumber !== undefined;
+      const fields = ['card-number', 'card-expiry', 'card-cvc'];
+      fields.forEach(name => {
+        const input = form?.elements[name];
+        if (!input) return;
+        const key = 'card' + name.slice(4).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+        input.value = isExisting ? (btn.dataset[key] ?? '') : '';
+        const wrap = input.closest('[data-input-field]');
+        if (wrap) wrap.classList.toggle('uk-s-value', input.value.trim() !== '');
+      });
+      if (submitBtn) submitBtn.textContent = isExisting ? 'Сохранить изменения' : 'Привязать карту';
+      if (deleteBtn) deleteBtn.hidden = !isExisting;
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', event => {
+      event.preventDefault();
+      fillForm(event.currentTarget.dataset.cardNumber !== undefined ? event.currentTarget : null);
+      window.clearTimeout(closeTimer);
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        modal.querySelector('.js-modal-close')?.focus();
+      });
+    }));
+
+    closeButtons.forEach(button => button.addEventListener('click', closeModal));
+
+    form?.querySelectorAll('.uk-field__input').forEach(input => {
+      input.addEventListener('input', () => {
+        const wrap = input.closest('[data-input-field]');
+        if (wrap) wrap.classList.toggle('uk-s-value', input.value.trim() !== '');
+      });
+    });
+
+    form?.addEventListener('submit', event => {
+      event.preventDefault();
       closeModal();
     });
 

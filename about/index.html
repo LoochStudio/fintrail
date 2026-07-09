@@ -121,7 +121,7 @@
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
             <span>Закрыть</span>
           </button>
-          <button class="site-menu__city" type="button">
+          <button class="site-menu__city" type="button" data-site-menu-city>
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
             <span>Москва</span>
           </button>
@@ -235,6 +235,25 @@
         <a href="/sizes/">Таблицы размеров</a>
         <a href="/personal/loyalty/">Программа лояльности</a>
       </nav>
+      <div class="site-menu__submenu-view site-menu__submenu-view--city" hidden data-site-menu-submenu-view="city">
+        <div class="site-menu__city-panel">
+          <label class="site-menu__city-search">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            <input type="search" placeholder="Поиск по названию" data-site-menu-city-search>
+          </label>
+          <div class="site-menu__city-list" data-site-menu-city-list>
+            <button class="site-menu__city-option is-active" type="button" data-site-menu-city-option data-city-name="Москва"><span>Москва</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Санкт-Петербург"><span>Санкт-Петербург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Новосибирск"><span>Новосибирск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Мурманск"><span>Мурманск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Екатеринбург"><span>Екатеринбург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Ростов"><span>Ростов</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Нижний Новгород"><span>Нижний Новгород</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Таблицы размеров"><span>Таблицы размеров</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Программа лояльности"><span>Программа лояльности</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+          </div>
+        </div>
+      </div>
     </aside>
   </div>
 
@@ -740,6 +759,7 @@
   <script type="module" src="/js/main.js"></script>
 </body>
 </html>
+
 
 
 

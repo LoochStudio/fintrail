@@ -102,34 +102,176 @@
   </header>
 
   <!-- ─── Мобильное меню ──────────────────────────────────────────── -->
-  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню">
-    <button class="mobile-menu__backdrop" type="button" aria-label="Закрыть меню" data-mobile-menu-close></button>
-    <div class="mobile-menu__panel">
-      <div class="mobile-menu__header">
-        <button class="mobile-menu__close" type="button" aria-label="Закрыть меню" data-mobile-menu-close>
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
-        </button>
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню" data-mobile-menu>
+    <div class="mobile-menu__panel" data-mobile-menu-view="main">
+      <div class="mobile-menu__top">
+        <div class="mobile-menu__bar">
+          <button class="mobile-menu__close" type="button" data-mobile-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="mobile-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+          <div class="mobile-menu__group">
+            <a href="/journal/">Журнал</a>
+            <a href="/tours/">Премиальные туры</a>
+          </div>
+          <div class="mobile-menu__group">
+            <a href="/about/">О компании</a>
+            <button type="button" data-mobile-menu-customers>Покупателям</button>
+            <a href="/wholesale/">Оптовикам</a>
+          </div>
+        </nav>
       </div>
-      <nav class="mobile-menu__nav" aria-label="Мобильная навигация">
-        <a href="/catalog/men/">Мужчинам</a>
-        <a href="/catalog/women/">Женщинам</a>
-        <a href="/sale/">Распродажа</a>
-        <a href="/new/">Новинки</a>
+      <div class="mobile-menu__bottom">
+        <div class="mobile-menu__contacts">
+          <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+          <div class="mobile-menu__socials" aria-label="Социальные сети">
+            <a href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+            <a href="https://wa.me/78007004273" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+          </div>
+        </div>
+        <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
       </nav>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
+      <div class="mobile-menu__catalog-top">
+        <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle>
+            <span>Мужчинам</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+          </button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+        <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle>
+            <span>Женщинам</span>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+          </button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mobile-menu__panel mobile-menu__panel--category" hidden data-mobile-menu-view="category">
+      <div class="mobile-menu__category-top">
+        <button class="mobile-menu__category-back" type="button" data-mobile-menu-catalog-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span data-mobile-menu-category-title>Одежда</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <nav class="mobile-menu__subcategory-links" aria-label="Подкатегории">
+          <a href="/catalog/">Куртки</a>
+          <a href="/catalog/">Брюки и полукомбинезоны</a>
+          <a href="/catalog/">Костюмы и комбинезоны</a>
+          <a href="/catalog/">Термобелье</a>
+          <a href="/catalog/">Футболки и лонгсливы</a>
+          <a href="/catalog/">Жилеты</a>
+          <a href="/catalog/">Худи и толстовки</a>
+          <a href="/catalog/">Рубашки / шорты</a>
+        </nav>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
     </div>
   </div>
 
   <!-- ─── Боковое меню (site-menu) ──────────────────────────────── -->
-  <aside class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+  <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
     <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
-    <div class="site-menu__panel" role="document">
+    <aside class="site-menu__panel">
       <div class="site-menu__top">
-        <div class="site-menu__head">
-          <a class="site-menu__logo" href="/" aria-label="FINNTRAIL">
-            <img src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
-          </a>
-          <button class="site-menu__close" type="button" aria-label="Закрыть меню" data-site-menu-close>
-            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+        <div class="site-menu__bar">
+          <button class="site-menu__close" type="button" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="site-menu__city" type="button" data-site-menu-city>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
           </button>
         </div>
         <nav class="site-menu__main" aria-label="Основные разделы">
@@ -194,7 +336,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </aside>
     <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
       <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
         <div class="site-menu__submenu-top">
@@ -205,10 +347,63 @@
             <button type="button" data-site-menu-category>Снаряжение</button>
             <button type="button" data-site-menu-category>Экипировка</button>
           </nav>
+          <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
+            <a href="/catalog/">Куртки</a>
+            <a href="/catalog/">Брюки и полукомбинезоны</a>
+            <a href="/catalog/">Костюмы и комбинезоны</a>
+            <a href="/catalog/">Термобелье</a>
+            <a href="/catalog/">Футболки и лонгсливы</a>
+            <a href="/catalog/">Жилеты</a>
+            <a href="/catalog/">Худи и толстовки</a>
+            <a href="/catalog/">Рубашки / шорты</a>
+          </nav>
+        </div>
+        <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+          <picture>
+            <source srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
+            <img src="/images/content/site-menu/hiking-promo.png" srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/_responsive/site-menu/hiking-promo-480.png 480w, /images/content/_responsive/site-menu/hiking-promo-768.png 768w, /images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
+          </picture>
+          <div class="site-menu__promo-content">
+            <h3>Экипировка<br>для хайкинга</h3>
+            <p>Куртки, штаны, термобельё</p>
+          </div>
+          <span class="site-menu__promo-link" aria-hidden="true">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </span>
+        </a>
+      </div>
+      <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technology/">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/sizes/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+      <div class="site-menu__submenu-view site-menu__submenu-view--city" hidden data-site-menu-submenu-view="city">
+        <div class="site-menu__city-panel">
+          <label class="site-menu__city-search">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            <input type="search" placeholder="Поиск по названию" data-site-menu-city-search>
+          </label>
+          <div class="site-menu__city-list" data-site-menu-city-list>
+            <button class="site-menu__city-option is-active" type="button" data-site-menu-city-option data-city-name="Москва"><span>Москва</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Санкт-Петербург"><span>Санкт-Петербург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Новосибирск"><span>Новосибирск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Мурманск"><span>Мурманск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Екатеринбург"><span>Екатеринбург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Ростов"><span>Ростов</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Нижний Новгород"><span>Нижний Новгород</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Таблицы размеров"><span>Таблицы размеров</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Программа лояльности"><span>Программа лояльности</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+          </div>
         </div>
       </div>
     </aside>
-  </aside>
+  </div>
 
   <!-- ════════════════════════════════════════════════════════════════ -->
   <!-- MAIN                                                            -->
@@ -346,7 +541,7 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="default-recipient" checked>
               </label>
-              <button class="settings-list__edit" type="button" aria-label="Редактировать получателя" data-cart-recipient-open>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать получателя" data-cart-recipient-open data-recipient-first-name="Константин" data-recipient-last-name="Константинопольский" data-recipient-phone="+7 (989) 937-34-34" data-recipient-email="kkonst@yandex.ru">
                 <div class="settings-list__info">
                   <span class="settings-list__name">Константин Константинопольский</span>
                   <span class="settings-list__sub">+7 (989) 937-34-34, kkonst@yandex.ru</span>
@@ -360,7 +555,7 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="default-recipient">
               </label>
-              <button class="settings-list__edit" type="button" aria-label="Редактировать получателя" data-cart-recipient-open>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать получателя" data-cart-recipient-open data-recipient-first-name="Александра" data-recipient-last-name="Александрийская" data-recipient-phone="+7 (988) 987-65-43" data-recipient-email="helloalexa@yandex.ru">
                 <div class="settings-list__info">
                   <span class="settings-list__name">Александра Александрийская</span>
                   <span class="settings-list__sub">+7 (988) 987-65-43, helloalexa@yandex.ru</span>
@@ -395,7 +590,15 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="default-address" checked>
               </label>
-              <button class="settings-list__edit" type="button" aria-label="Редактировать адрес" data-cart-address-open>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать адрес"
+                data-cart-address-open
+                data-address-country="Россия"
+                data-address-city="Москва"
+                data-address-street="ул. Пушкина"
+                data-address-house="375"
+                data-address-entrance=""
+                data-address-floor=""
+                data-address-flat="">
                 <div class="settings-list__info">
                   <span class="settings-list__name">Москва, ул. Пушкина, д. 375</span>
                   <span class="settings-list__badge">Основной</span>
@@ -409,7 +612,15 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="default-address">
               </label>
-              <button class="settings-list__edit" type="button" aria-label="Редактировать адрес" data-cart-address-open>
+              <button class="settings-list__edit" type="button" aria-label="Редактировать адрес"
+                data-cart-address-open
+                data-address-country="Россия"
+                data-address-city="Москва"
+                data-address-street="ул. Ленина"
+                data-address-house="12"
+                data-address-entrance="2"
+                data-address-floor="4"
+                data-address-flat="23">
                 <div class="settings-list__info">
                   <span class="settings-list__name">Москва, ул. Ленина, д. 12</span>
                 </div>
@@ -433,7 +644,7 @@
       <div class="settings-section__inner">
         <div class="settings-section__head">
           <h2 class="settings-section__title" id="settings-payment-title">Способы оплаты</h2>
-          <button class="settings-section__add-btn" type="button" aria-label="Добавить способ оплаты">
+          <button class="settings-section__add-btn" type="button" aria-label="Добавить способ оплаты" data-cart-payment-open>
             <svg aria-hidden="true" width="20" height="20"><use href="/images/icons/sprite.svg#icon-plus"></use></svg>
           </button>
         </div>
@@ -443,14 +654,14 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="payment" checked>
               </label>
-              <div class="settings-list__edit">
+              <button class="settings-list__edit" type="button" data-cart-payment-open data-card-number="*3223" data-card-expiry="" data-card-cvc="">
                 <div class="settings-list__payment">
                   <svg class="settings-list__bank-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-cart-tbank"></use></svg>
                   <span class="settings-list__name">*3223</span>
                   <span class="settings-list__badge">Основной</span>
                 </div>
                 <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
-              </div>
+              </button>
             </div>
           </li>
           <li class="settings-list__item">
@@ -458,13 +669,13 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="payment">
               </label>
-              <div class="settings-list__edit">
+              <button class="settings-list__edit" type="button" data-cart-payment-open data-card-number="*0990" data-card-expiry="" data-card-cvc="">
                 <div class="settings-list__payment">
                   <svg class="settings-list__bank-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-cart-card"></use></svg>
                   <span class="settings-list__name">*0990</span>
                 </div>
                 <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
-              </div>
+              </button>
             </div>
           </li>
           <li class="settings-list__item">
@@ -472,13 +683,13 @@
               <label class="settings-list__radio-wrap">
                 <input class="uk-radio" type="radio" name="payment">
               </label>
-              <div class="settings-list__edit">
+              <button class="settings-list__edit" type="button" data-cart-payment-open data-card-number="*6699" data-card-expiry="" data-card-cvc="">
                 <div class="settings-list__payment">
                   <svg class="settings-list__bank-icon" aria-hidden="true" width="24" height="24"><use href="/images/icons/sprite.svg#icon-cart-card"></use></svg>
                   <span class="settings-list__name">*6699</span>
                 </div>
                 <svg class="settings-list__arrow" aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
-              </div>
+              </button>
             </div>
           </li>
         </ul>
@@ -633,7 +844,7 @@
     Поля: first-name (NAME), last-name (LAST_NAME), phone (PERSONAL_PHONE), email (EMAIL)
     Сохраняет/обновляет запись получателя для последующего использования в заказах
   -->
-  <div class="cart-recipient-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-recipient-title" data-cart-recipient-modal>
+  <div class="cart-recipient-modal cart-recipient-modal--left" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-recipient-title" data-cart-recipient-modal>
     <button class="cart-recipient-modal__backdrop" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close></button>
     <div class="cart-recipient-modal__panel" role="document">
       <div class="cart-recipient-modal__header">
@@ -661,7 +872,7 @@
           <div class="cart-recipient-modal__phone-row">
             <div class="uk-field-wrap uk-field--surface" data-input-field>
               <div class="uk-field">
-                <input class="uk-field__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" id="settings-recipient-phone">
+                <input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" id="settings-recipient-phone">
                 <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
               </div>
               <span class="uk-field__caption" aria-live="polite"></span>
@@ -676,71 +887,217 @@
           </div>
         </div>
         <div class="cart-recipient-modal__footer">
-          <button class="cart-recipient-modal__submit" type="submit">Сохранить</button>
+          <button class="cart-recipient-modal__submit" type="submit">Добавить получателя</button>
+          <button class="cart-address-modal__delete" type="button" hidden data-cart-recipient-delete>
+            <span>Удалить получателя</span>
+            <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg>
+          </button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ─── Модал: Данные адреса ─────────────────────────────────── -->
+  <!-- ─── Модал: Добавить / редактировать адрес ────────────────── -->
   <!--
     BITRIX: форма добавления/редактирования адреса доставки — bitrix:sale.personal.profile
-    Поля: country, city, street, house, apartment
+    Поля: country, city, street, house, private-house, entrance, floor, flat, comment
     Сохраняет/обновляет адрес в профиле пользователя (b_sale_order_address)
+    data-address-edit — атрибут для JS: переключает заголовок кнопки и показывает кнопку удаления
   -->
-  <div class="cart-recipient-modal cart-address-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-address-title" data-cart-address-modal>
-    <button class="cart-recipient-modal__backdrop cart-address-modal__backdrop" type="button" aria-label="Закрыть данные адреса" data-cart-address-close></button>
+  <div class="cart-recipient-modal cart-recipient-modal--left cart-address-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-address-title" data-cart-address-modal>
+    <button class="cart-recipient-modal__backdrop cart-address-modal__backdrop" type="button" aria-label="Закрыть форму адреса" data-cart-address-close></button>
     <div class="cart-recipient-modal__panel cart-address-modal__panel" role="document">
       <div class="cart-recipient-modal__header cart-address-modal__header">
-        <h2 class="cart-recipient-modal__title cart-address-modal__title" id="settings-address-title">Данные адреса</h2>
-        <button class="cart-recipient-modal__close cart-address-modal__close js-modal-close" type="button" aria-label="Закрыть данные адреса" data-cart-address-close>
+        <h2 class="cart-recipient-modal__title cart-address-modal__title" id="settings-address-title">Добавить адрес</h2>
+        <button class="cart-recipient-modal__close cart-address-modal__close js-modal-close" type="button" aria-label="Закрыть форму адреса" data-cart-address-close>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
         </button>
       </div>
       <form class="cart-recipient-modal__form cart-address-modal__form" novalidate>
         <div class="cart-recipient-modal__fields cart-address-modal__fields">
-          <div class="uk-field-wrap uk-field--surface cart-address-modal__select-wrap" data-input-field>
-            <div class="uk-field">
-              <select class="uk-field__input cart-address-modal__select" name="country" id="settings-address-country" aria-label="Страна" required>
-                <option value="" disabled selected>Страна</option>
-                <option value="ru">Россия</option>
-                <option value="by">Беларусь</option>
-                <option value="kz">Казахстан</option>
-              </select>
+
+          <!-- Страна -->
+          <div class="catalog-filter-popup-wrap cart-address-modal__select-wrap">
+            <button class="cart-address-modal__select-trigger" type="button" aria-expanded="false" aria-haspopup="listbox" data-address-select-trigger>
+              <span data-address-select-label>Страна</span>
+              <svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+            </button>
+            <input type="hidden" name="country" id="settings-address-country">
+            <div class="catalog-filter-popup cart-address-modal__select-popup" hidden data-address-select-popup>
+              <ul class="catalog-filter-popup__list" role="listbox" aria-label="Страна">
+                <li class="catalog-filter-popup__item">
+                  <button class="catalog-filter-popup__label" type="button" data-address-option="Россия">
+                    <span class="catalog-filter-popup__item-text">Россия</span>
+                  </button>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <button class="catalog-filter-popup__label" type="button" data-address-option="Беларусь">
+                    <span class="catalog-filter-popup__item-text">Беларусь</span>
+                  </button>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <button class="catalog-filter-popup__label" type="button" data-address-option="Казахстан">
+                    <span class="catalog-filter-popup__item-text">Казахстан</span>
+                  </button>
+                </li>
+              </ul>
             </div>
-            <span class="uk-field__caption" aria-live="polite"></span>
           </div>
+          <div hidden><!-- placeholder для совместимости с uk-field__caption -->
+          </div>
+
+          <!-- Населённый пункт -->
           <div class="uk-field-wrap uk-field--surface" data-input-field>
             <div class="uk-field">
-              <input class="uk-field__input" type="text" name="city" placeholder="Город" autocomplete="address-level2" id="settings-address-city">
-              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+              <input class="uk-field__input" type="text" name="city" placeholder="Населённый пункт" autocomplete="address-level2" id="settings-address-city" aria-describedby="settings-address-city-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
             </div>
-            <span class="uk-field__caption" aria-live="polite"></span>
+            <span class="uk-field__caption" id="settings-address-city-hint" aria-live="polite"></span>
           </div>
+
+          <!-- Улица -->
           <div class="uk-field-wrap uk-field--surface" data-input-field>
             <div class="uk-field">
-              <input class="uk-field__input" type="text" name="street" placeholder="Улица" autocomplete="address-line1" id="settings-address-street">
-              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+              <input class="uk-field__input" type="text" name="street" placeholder="Улица" autocomplete="address-line1" id="settings-address-street" aria-describedby="settings-address-street-hint">
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
             </div>
-            <span class="uk-field__caption" aria-live="polite"></span>
+            <span class="uk-field__caption" id="settings-address-street-hint" aria-live="polite"></span>
           </div>
-          <div class="uk-field-wrap uk-field--surface" data-input-field>
-            <div class="uk-field">
-              <input class="uk-field__input" type="text" name="house" placeholder="Дом" id="settings-address-house">
-              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+
+          <!-- Дом + тоггл «Частный дом» -->
+          <div class="cart-address-modal__row cart-address-modal__row--house">
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="house" placeholder="Дом" autocomplete="address-line2" id="settings-address-house" aria-describedby="settings-address-house-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="settings-address-house-hint" aria-live="polite"></span>
             </div>
-            <span class="uk-field__caption" aria-live="polite"></span>
+            <label class="cart-address-modal__toggle">
+              <span>Частный дом</span>
+              <input type="checkbox" name="private-house">
+              <span class="cart-address-modal__toggle-control" aria-hidden="true"></span>
+            </label>
           </div>
-          <div class="uk-field-wrap uk-field--surface" data-input-field>
-            <div class="uk-field">
-              <input class="uk-field__input" type="text" name="apartment" placeholder="Квартира" id="settings-address-apartment">
-              <button class="uk-field__clear" type="button" aria-label="Очистить поле">✕</button>
+
+          <!-- Подъезд / корпус, Этаж, Квартира -->
+          <div class="cart-address-modal__row cart-address-modal__row--details" data-cart-address-details>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="entrance" placeholder="Подъезд / корпус" id="settings-address-entrance" aria-describedby="settings-address-entrance-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="settings-address-entrance-hint" aria-live="polite"></span>
             </div>
-            <span class="uk-field__caption" aria-live="polite"></span>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="floor" placeholder="Этаж" id="settings-address-floor" aria-describedby="settings-address-floor-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="settings-address-floor-hint" aria-live="polite"></span>
+            </div>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="flat" placeholder="Квартира" id="settings-address-flat" aria-describedby="settings-address-flat-hint">
+                <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="settings-address-flat-hint" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- Комментарий -->
+          <div class="uk-field-wrap uk-field--surface uk-field--textarea cart-address-modal__comment" data-input-field>
+            <div class="uk-field">
+              <textarea class="uk-field__input" name="comment" placeholder="Комментарий к заказу" id="settings-address-comment" aria-describedby="settings-address-comment-hint"></textarea>
+              <button class="uk-field__clear" type="button" aria-label="Очистить поле">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="settings-address-comment-hint" aria-live="polite"></span>
           </div>
         </div>
+
         <div class="cart-recipient-modal__footer cart-address-modal__footer">
-          <button class="cart-recipient-modal__submit cart-address-modal__submit" type="submit">Сохранить</button>
+          <!--
+            BITRIX: кнопка submit — текст меняется JS-ом:
+            новый адрес → «Добавить адрес», редактирование → «Сохранить изменения»
+          -->
+          <button class="cart-recipient-modal__submit cart-address-modal__submit" type="submit">Добавить адрес</button>
+          <!--
+            BITRIX: кнопка удаления адреса — скрыта для нового адреса,
+            показывается JS-ом при открытии существующего (data-address-edit)
+          -->
+          <button class="cart-address-modal__delete" type="button" hidden data-cart-address-delete>
+            <span>Удалить адрес</span>
+            <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Payment modal -->
+  <div class="cart-recipient-modal cart-recipient-modal--left cart-payment-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settings-payment-modal-title" data-cart-payment-modal>
+    <button class="cart-recipient-modal__backdrop cart-payment-modal__backdrop" type="button" aria-label="Закрыть форму оплаты" data-cart-payment-close></button>
+    <div class="cart-recipient-modal__panel cart-payment-modal__panel" role="document">
+      <div class="cart-recipient-modal__header cart-payment-modal__header">
+        <h2 class="cart-recipient-modal__title cart-payment-modal__title" id="settings-payment-modal-title">Добавить карту</h2>
+        <button class="cart-recipient-modal__close js-modal-close" type="button" aria-label="Закрыть форму оплаты" data-cart-payment-close>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <form class="cart-payment-modal__form" novalidate>
+        <div class="cart-payment-modal__fields">
+          <!-- Номер карты -->
+          <div class="uk-field-wrap uk-field--surface" data-input-field>
+            <div class="uk-field">
+              <input class="uk-field__input" type="text" name="card-number" id="payment-card-number" inputmode="numeric" placeholder="Номер карты" autocomplete="cc-number" aria-describedby="payment-card-number-caption">
+              <button class="uk-field__clear" type="button" aria-label="Очистить номер карты" tabindex="-1">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <span class="uk-field__caption" id="payment-card-number-caption" aria-live="polite"></span>
+          </div>
+          <!-- Срок / CVC -->
+          <div class="cart-payment-modal__row">
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="text" name="card-expiry" id="payment-card-expiry" inputmode="numeric" placeholder="Срок действия" autocomplete="cc-exp" aria-describedby="payment-card-expiry-caption">
+                <button class="uk-field__clear" type="button" aria-label="Очистить срок действия" tabindex="-1">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="payment-card-expiry-caption" aria-live="polite"></span>
+            </div>
+            <div class="uk-field-wrap uk-field--surface" data-input-field>
+              <div class="uk-field">
+                <input class="uk-field__input" type="password" name="card-cvc" id="payment-card-cvc" inputmode="numeric" placeholder="CVC" autocomplete="cc-csc" maxlength="3" aria-describedby="payment-card-cvc-caption">
+                <button class="uk-field__clear" type="button" aria-label="Очистить CVC" tabindex="-1">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+                </button>
+              </div>
+              <span class="uk-field__caption" id="payment-card-cvc-caption" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+        <div class="cart-address-modal__footer">
+          <button class="cart-recipient-modal__submit cart-payment-modal__submit" type="submit">Привязать карту</button>
+          <button class="cart-address-modal__delete" type="button" hidden data-cart-payment-delete>
+            <span>Удалить карту</span>
+            <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg>
+          </button>
         </div>
       </form>
     </div>
@@ -749,3 +1106,6 @@
   <script type="module" src="/js/main.js"></script>
 </body>
 </html>
+
+
+

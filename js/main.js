@@ -25,6 +25,7 @@ import { init as initCareerValues } from './modules/career-values.js';
 import { init as initCareerVibe } from './modules/career-vibe.js';
 import { init as initVacancies } from './modules/vacancies.js';
 import { init as initSizeGuide } from './modules/size-guide.js';
+import { init as initDeliveryPage } from './modules/delivery-page.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -54,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initCareerVibe();
   initVacancies();
   initSizeGuide();
+  initDeliveryPage();
 });
+
 
 
 

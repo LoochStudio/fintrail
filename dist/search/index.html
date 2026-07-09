@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Результаты поиска — Finntrail</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-DmHUek0Q.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-CaNRDmRe.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Bffvha_D.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BJy-sy8e.css">
 </head>
 <body>
   <header class="catalog-header is-header-dark is-header-compact" data-header-mega-root>
@@ -122,7 +122,7 @@
             <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
             <span>Закрыть</span>
           </button>
-          <button class="site-menu__city" type="button">
+          <button class="site-menu__city" type="button" data-site-menu-city>
             <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-location"></use></svg>
             <span>Москва</span>
           </button>
@@ -236,6 +236,25 @@
         <a href="/fintrail/sizes/">Таблицы размеров</a>
         <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
+      <div class="site-menu__submenu-view site-menu__submenu-view--city" hidden data-site-menu-submenu-view="city">
+        <div class="site-menu__city-panel">
+          <label class="site-menu__city-search">
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-search"></use></svg>
+            <input type="search" placeholder="Поиск по названию" data-site-menu-city-search>
+          </label>
+          <div class="site-menu__city-list" data-site-menu-city-list>
+            <button class="site-menu__city-option is-active" type="button" data-site-menu-city-option data-city-name="Москва"><span>Москва</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Санкт-Петербург"><span>Санкт-Петербург</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Новосибирск"><span>Новосибирск</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Мурманск"><span>Мурманск</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Екатеринбург"><span>Екатеринбург</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Ростов"><span>Ростов</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Нижний Новгород"><span>Нижний Новгород</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Таблицы размеров"><span>Таблицы размеров</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Программа лояльности"><span>Программа лояльности</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+          </div>
+        </div>
+      </div>
     </aside>
   </div>
 
@@ -1070,3 +1089,4 @@
 
 </body>
 </html>
+

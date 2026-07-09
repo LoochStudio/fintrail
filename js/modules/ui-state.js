@@ -419,6 +419,9 @@ export function init() {
     const categoryButtons = siteMenu.querySelectorAll('[data-site-menu-category]');
     const subcategories = siteMenu.querySelector('[data-site-menu-subcategories]');
     const infoButtons = siteMenu.querySelectorAll('[data-site-menu-info]');
+    const cityButton = siteMenu.querySelector('[data-site-menu-city]');
+    const citySearch = siteMenu.querySelector('[data-site-menu-city-search]');
+    const cityOptions = siteMenu.querySelectorAll('[data-site-menu-city-option]');
     let menuReturnFocus = null;
     let menuCloseTimer;
 
@@ -436,6 +439,7 @@ export function init() {
       submenu.hidden = true;
       siteMenu.classList.remove('is-submenu-open');
       siteMenu.classList.remove('is-info-submenu-open');
+      siteMenu.classList.remove('is-city-submenu-open');
       sectionButtons.forEach(button => {
         button.classList.remove('is-active');
         button.setAttribute('aria-expanded', 'false');
@@ -452,6 +456,7 @@ export function init() {
       submenu.setAttribute('aria-hidden', 'false');
       siteMenu.classList.add('is-submenu-open');
       siteMenu.classList.remove('is-info-submenu-open');
+      siteMenu.classList.remove('is-city-submenu-open');
       setSubmenuView('catalog');
       sectionButtons.forEach(button => {
         const isActive = button === activeButton;
@@ -471,6 +476,7 @@ export function init() {
       submenu.setAttribute('aria-hidden', 'false');
       siteMenu.classList.remove('is-submenu-open');
       siteMenu.classList.add('is-info-submenu-open');
+      siteMenu.classList.remove('is-city-submenu-open');
       setSubmenuView('customers');
       sectionButtons.forEach(button => {
         button.classList.remove('is-active');
@@ -484,6 +490,35 @@ export function init() {
       window.requestAnimationFrame(() => submenu.classList.add('is-open'));
     };
 
+    const openCitySubmenu = () => {
+      if (!submenu) return;
+
+      submenu.hidden = false;
+      submenu.setAttribute('aria-hidden', 'false');
+      siteMenu.classList.remove('is-submenu-open');
+      siteMenu.classList.remove('is-info-submenu-open');
+      siteMenu.classList.add('is-city-submenu-open');
+      setSubmenuView('city');
+      sectionButtons.forEach(button => {
+        button.classList.remove('is-active');
+        button.setAttribute('aria-expanded', 'false');
+      });
+      infoButtons.forEach(button => button.classList.remove('is-active'));
+      categoryButtons.forEach(button => button.classList.remove('is-active'));
+      if (subcategories) subcategories.hidden = true;
+      window.requestAnimationFrame(() => submenu.classList.add('is-open'));
+      citySearch?.focus({ preventScroll: true });
+    };
+
+    const syncCitySearch = () => {
+      if (!citySearch) return;
+
+      const query = citySearch.value.trim().toLowerCase();
+      cityOptions.forEach(option => {
+        const cityName = option.dataset.cityName || option.textContent.trim();
+        option.hidden = query.length > 0 && !cityName.toLowerCase().includes(query);
+      });
+    };
     const setMenuOpen = isOpen => {
       window.clearTimeout(menuCloseTimer);
 
@@ -521,6 +556,22 @@ export function init() {
 
     closeButtons.forEach(button => {
       button.addEventListener('click', () => setMenuOpen(false));
+    });
+    cityButton?.addEventListener('click', event => {
+      event.preventDefault();
+      cancelSubmenuClose();
+      openCitySubmenu();
+    });
+
+    citySearch?.addEventListener('input', syncCitySearch);
+
+    cityOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const cityName = option.dataset.cityName || option.textContent.trim();
+        cityOptions.forEach(cityOption => cityOption.classList.toggle('is-active', cityOption === option));
+        const cityButtonLabel = cityButton?.querySelector('span');
+        if (cityButtonLabel) cityButtonLabel.textContent = cityName;
+      });
     });
 
     // Открытие доп-панели по hover, а не по клику
@@ -584,3 +635,5 @@ export function init() {
     });
   }
 }
+
+

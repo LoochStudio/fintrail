@@ -120,7 +120,7 @@
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
             <span>Закрыть</span>
           </button>
-          <button class="site-menu__city" type="button">
+          <button class="site-menu__city" type="button" data-site-menu-city>
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
             <span>Москва</span>
           </button>
@@ -245,6 +245,25 @@
         <a href="/sizes/">Таблицы размеров</a>
         <a href="/personal/loyalty/">Программа лояльности</a>
       </nav>
+      <div class="site-menu__submenu-view site-menu__submenu-view--city" hidden data-site-menu-submenu-view="city">
+        <div class="site-menu__city-panel">
+          <label class="site-menu__city-search">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            <input type="search" placeholder="Поиск по названию" data-site-menu-city-search>
+          </label>
+          <div class="site-menu__city-list" data-site-menu-city-list>
+            <button class="site-menu__city-option is-active" type="button" data-site-menu-city-option data-city-name="Москва"><span>Москва</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Санкт-Петербург"><span>Санкт-Петербург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Новосибирск"><span>Новосибирск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Мурманск"><span>Мурманск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Екатеринбург"><span>Екатеринбург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Ростов"><span>Ростов</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Нижний Новгород"><span>Нижний Новгород</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Таблицы размеров"><span>Таблицы размеров</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Программа лояльности"><span>Программа лояльности</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+          </div>
+        </div>
+      </div>
     </aside>
   </div>
 
@@ -914,17 +933,31 @@
       </div>
       <form class="cart-recipient-modal__form cart-address-modal__form" novalidate>
         <div class="cart-recipient-modal__fields cart-address-modal__fields">
-          <div class="uk-field-wrap uk-field--surface cart-address-modal__select-wrap" data-input-field>
-            <div class="uk-field">
-              <select class="uk-field__input cart-address-modal__select" name="country" id="cart-address-country" aria-label="Страна" required>
-                <option value="">Страна</option>
-                <option value="Россия" selected>Россия</option>
-                <option value="Беларусь">Беларусь</option>
-                <option value="Казахстан">Казахстан</option>
-              </select>
-              <svg class="cart-address-modal__select-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+          <div class="catalog-filter-popup-wrap cart-address-modal__select-wrap">
+            <button class="cart-address-modal__select-trigger" type="button" aria-expanded="false" aria-haspopup="listbox" data-address-select-trigger>
+              <span data-address-select-label>Россия</span>
+              <svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+            </button>
+            <input type="hidden" name="country" id="cart-address-country" value="Россия">
+            <div class="catalog-filter-popup cart-address-modal__select-popup" hidden data-address-select-popup>
+              <ul class="catalog-filter-popup__list" role="listbox" aria-label="Страна">
+                <li class="catalog-filter-popup__item">
+                  <button class="catalog-filter-popup__label is-checked" type="button" data-address-option="Россия">
+                    <span class="catalog-filter-popup__item-text">Россия</span>
+                  </button>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <button class="catalog-filter-popup__label" type="button" data-address-option="Беларусь">
+                    <span class="catalog-filter-popup__item-text">Беларусь</span>
+                  </button>
+                </li>
+                <li class="catalog-filter-popup__item">
+                  <button class="catalog-filter-popup__label" type="button" data-address-option="Казахстан">
+                    <span class="catalog-filter-popup__item-text">Казахстан</span>
+                  </button>
+                </li>
+              </ul>
             </div>
-            <span class="uk-field__caption" aria-live="polite"></span>
           </div>
 
           <div class="uk-field-wrap uk-field--surface" data-input-field>
@@ -1033,5 +1066,6 @@
   <script type="module" src="/js/main.js"></script>
 </body>
 </html>
+
 
 

@@ -40,12 +40,14 @@ export default defineConfig({
         personalLoyaltyOperations: resolve(__dirname, 'personal/loyalty/operations/index.html'),
         personalSupport: resolve(__dirname, 'personal/support/index.html'),
         personalSettings: resolve(__dirname, 'personal/settings/index.html'),
+        personalEmpty: resolve(__dirname, 'personal/empty/index.html'),
         product: resolve(__dirname, 'catalog/master-hood-1510/index.html'),
         search: resolve(__dirname, 'search/index.html'),
         compare: resolve(__dirname, 'compare/index.html'),
         journal: resolve(__dirname, 'journal/index.html'),
         article: resolve(__dirname, 'article/index.html'),
         giftCard: resolve(__dirname, 'gift-card/index.html'),
+        delivery: resolve(__dirname, 'delivery/index.html'),
         about: resolve(__dirname, 'about/index.html'),
         career: resolve(__dirname, 'career/index.html'),
         careerVacancies: resolve(__dirname, 'career/vacancies/index.html'),
@@ -60,5 +62,6 @@ export default defineConfig({
     port: 5173,
   }
 })
+
 
 

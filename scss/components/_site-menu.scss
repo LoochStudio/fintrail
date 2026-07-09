@@ -531,6 +531,108 @@
   }
 }
 
+
+.site-menu.is-city-submenu-open {
+  .site-menu__submenu {
+    padding: 20px;
+  }
+}
+
+.site-menu__submenu-view--city {
+  justify-content: flex-start;
+}
+
+.site-menu__city-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.site-menu__city-search {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 52px;
+  padding: 8px 16px;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-gray-primary;
+  cursor: text;
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  input {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: $color-primary-black;
+    font-family: $font-mono;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  input::placeholder {
+    color: $color-gray-primary;
+    opacity: 1;
+  }
+}
+
+.site-menu__city-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.site-menu__city-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.18s ease;
+
+  svg {
+    display: none;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    color: $color-primary-black;
+  }
+
+  &.is-active {
+    color: $color-primary-black;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
 @media (hover: hover) and (pointer: fine) {
   .site-menu__close:hover,
   .site-menu__close:focus-visible,
@@ -565,6 +667,17 @@
   .site-menu__subcategories:has(a:hover) a:not(:hover),
   .site-menu__customer-links:has(a:hover) a:not(:hover) {
     color: $color-primary-gray;
+  }
+
+  .site-menu__city-list:has(.site-menu__city-option:hover) .site-menu__city-option:not(:hover),
+  .site-menu__city-list:has(.site-menu__city-option:focus-visible) .site-menu__city-option:not(:focus-visible) {
+    color: $color-primary-gray;
+  }
+
+  .site-menu__city-option:hover,
+  .site-menu__city-option:focus-visible,
+  .site-menu__city-option.is-active {
+    color: $color-primary-black;
   }
 
   .site-menu__apps a:hover,
@@ -642,3 +755,5 @@
     transition: none;
   }
 }
+
+
