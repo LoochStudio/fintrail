@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finntrail — Технологии</title>
+  <link rel="stylesheet" href="/scss/main.scss">
+</head>
+<body class="technologies-page-body delivery-page-body">
+  <header class="delivery-header vacancies-header hero is-header-dark is-header-compact" data-header-mega-root>
+    <div class="hero__topbar" aria-label="Навигация промо-секции">
+      <div class="hero__brand">
+        <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-menu"></use></svg>
+          <span>Меню</span>
+        </button>
+        <a class="hero__logo-link" href="/">
+          <img class="hero__logo" src="/images/content/hero/hero-logo.svg" alt="FINNTRAIL">
+        </a>
+      </div>
+
+      <nav class="hero__nav" aria-label="Главная навигация">
+        <a href="/catalog/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/catalog/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
+        <a href="/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
+      </nav>
+
+      <div class="hero__tools">
+        <a href="/search/" class="hero__tool" aria-label="Поиск" data-search-open>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-search"></use></svg>
+        </a>
+        <a href="/personal/" class="hero__tool" aria-label="Профиль" data-auth-open>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+        </a>
+        <a href="/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></a>
+        <a href="/wishlist/" class="hero__tool" aria-label="Избранное">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-heart"></use></svg>
+        </a>
+        <a href="/cart/" class="hero__tool" aria-label="Корзина">
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+          <span class="hero-cart-badge" hidden></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="header-mega" aria-label="Каталог" hidden data-header-mega>
+      <div class="header-mega__inner">
+        <div class="header-mega__columns">
+          <div class="header-mega__group is-active" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/odezhda/">Одежда</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/kurtki/">Куртки</a></li>
+              <li><a href="/catalog/bryuki/">Брюки и полукомбинезоны</a></li>
+              <li><a href="/catalog/kostyumy/">Костюмы и комбинезоны</a></li>
+              <li><a href="/catalog/termobele/">Термобелье</a></li>
+              <li><a href="/catalog/futbolki/">Футболки и лонгсливы</a></li>
+              <li><a href="/catalog/zhilety/">Жилеты</a></li>
+              <li><a href="/catalog/hudi/">Худи и толстовки</a></li>
+              <li><a href="/catalog/rubashki/">Рубашки / шорты</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/obuv/">Обувь</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/sapogi/">Сапоги</a></li>
+              <li><a href="/catalog/trekkingovaya-obuv/">Треккинговая обувь</a></li>
+              <li><a href="/catalog/zabrodnye-botinki/">Забродные ботинки</a></li>
+              <li><a href="/catalog/snegohodnaya-obuv/">Снегоходная обувь</a></li>
+              <li><a href="/catalog/aksessuary-dlya-obuvi/">Аксессуары для обуви</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/aksessuary/">Аксессуары</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/perchatki/">Перчатки и рукавицы</a></li>
+              <li><a href="/catalog/shapki/">Шапки и баффы</a></li>
+              <li><a href="/catalog/ochki/">Очки и маски</a></li>
+              <li><a href="/catalog/ryukzaki/">Рюкзаки</a></li>
+              <li><a href="/catalog/sumki/">Сумки и баулы</a></li>
+              <li><a href="/catalog/remni/">Ремни и подтяжки</a></li>
+              <li><a href="/catalog/zashchita/">Защита тела и рук</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/snaryazhenie/">Снаряжение</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/palatki/">Палатки</a></li>
+              <li><a href="/catalog/spalnye-meshki/">Спальные мешки и коврики</a></li>
+              <li><a href="/catalog/stoly/">Столы и стулья</a></li>
+              <li><a href="/catalog/germochehly/">Гермочехлы</a></li>
+              <li><a href="/catalog/termosy/">Термосы</a></li>
+              <li><a href="/catalog/sidushki/">Подкладки / сидушки</a></li>
+            </ul>
+          </div>
+          <div class="header-mega__group" data-header-mega-group>
+            <a class="header-mega__title" href="/catalog/special/">Специальная экипировка</a>
+            <div class="header-mega__rule" aria-hidden="true"></div>
+            <ul class="header-mega__list">
+              <li><a href="/catalog/veydersy/">Вейдерсы</a></li>
+              <li><a href="/catalog/suhie-kostyumy/">Сухие костюмы</a></li>
+              <li><a href="/catalog/zabrodnaya-ekipirovka/">Забродная экипировка</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-mega__activities" aria-label="Активности">
+          <a class="header-mega__activity" href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a class="header-mega__activity" href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a class="header-mega__activity" href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a class="header-mega__activity" href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a class="header-mega__activity" href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a class="header-mega__activity" href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
+    <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
+    <aside class="site-menu__panel">
+      <div class="site-menu__top">
+        <div class="site-menu__bar">
+          <button class="site-menu__close" type="button" data-site-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="site-menu__city" type="button" data-site-menu-city>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="site-menu__main" aria-label="Основные разделы">
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
+          <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
+        </nav>
+        <div class="site-menu__divider" aria-hidden="true"></div>
+        <nav class="site-menu__activities" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+      <div class="site-menu__middle">
+        <nav class="site-menu__links" aria-label="Контентные разделы">
+          <a href="/journal/">Журнал</a>
+          <a href="/tours/">Премиальные туры</a>
+        </nav>
+        <nav class="site-menu__links" aria-label="Информация">
+          <button type="button" data-site-menu-info="about">О компании</button>
+          <button type="button" data-site-menu-info="customers">Покупателям</button>
+          <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
+        </nav>
+      </div>
+      <div class="site-menu__bottom">
+        <div class="site-menu__contacts">
+          <div class="site-menu__phone-row">
+            <a class="site-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+            <div class="site-menu__socials" aria-label="Социальные сети">
+              <a href="https://t.me/finntrail" aria-label="Telegram" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+              <a href="https://wa.me/78007004273" aria-label="WhatsApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+              <a href="https://dzen.ru/finntrail" aria-label="Дзен" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+            </div>
+          </div>
+          <a class="button button--on-color button--size-xs site-menu__callback" href="/callback/">Заказать звонок</a>
+        </div>
+        <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
+        <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="site-menu__app-link site-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg site-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="site-menu__app-svg site-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="site-menu__app-link site-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="site-menu__app-icon" aria-hidden="true">
+              <svg class="site-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
+      <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
+        <div class="site-menu__submenu-top">
+          <nav class="site-menu__categories" aria-label="Категории">
+            <button type="button" data-site-menu-category>Одежда</button>
+            <button type="button" data-site-menu-category>Обувь</button>
+            <button type="button" data-site-menu-category>Аксессуары</button>
+            <button type="button" data-site-menu-category>Снаряжение</button>
+            <button type="button" data-site-menu-category>Экипировка</button>
+          </nav>
+          <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
+            <a href="/catalog/">Куртки</a>
+            <a href="/catalog/">Брюки и полукомбинезоны</a>
+            <a href="/catalog/">Костюмы и комбинезоны</a>
+            <a href="/catalog/">Термобелье</a>
+          </nav>
+        </div>
+        <a class="site-menu__promo" href="/catalog/" aria-label="Перейти в каталог">
+          <picture>
+            <img src="/images/content/site-menu/hiking-promo.png" srcset="/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /images/content/_responsive/site-menu/hiking-promo-320.png 320w, /images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
+          </picture>
+          <div class="site-menu__promo-content">
+            <h3>Экипировка<br>для хайкинга</h3>
+            <p>Куртки, штаны, термобельё</p>
+          </div>
+          <span class="site-menu__promo-link" aria-hidden="true">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
+          </span>
+        </a>
+      </div>
+      <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
+        <a href="/delivery/">Доставка и оплата</a>
+        <a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a>
+        <a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a>
+        <a href="/technologies/" aria-current="page">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a>
+        <a href="/size-guide/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+      <div class="site-menu__submenu-view site-menu__submenu-view--city" hidden data-site-menu-submenu-view="city">
+        <div class="site-menu__city-panel">
+          <label class="site-menu__city-search">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-search"></use></svg>
+            <input type="search" placeholder="Поиск по названию" data-site-menu-city-search>
+          </label>
+          <div class="site-menu__city-list" data-site-menu-city-list>
+            <button class="site-menu__city-option is-active" type="button" data-site-menu-city-option data-city-name="Москва"><span>Москва</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Санкт-Петербург"><span>Санкт-Петербург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Новосибирск"><span>Новосибирск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Мурманск"><span>Мурманск</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Екатеринбург"><span>Екатеринбург</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Мобильное меню" data-mobile-menu>
+    <div class="mobile-menu__panel" data-mobile-menu-view="main">
+      <div class="mobile-menu__top">
+        <div class="mobile-menu__bar">
+          <button class="mobile-menu__close" type="button" data-mobile-menu-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            <span>Закрыть</span>
+          </button>
+          <button class="mobile-menu__city" type="button">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-location"></use></svg>
+            <span>Москва</span>
+          </button>
+        </div>
+        <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+          <div class="mobile-menu__group"><a href="/journal/">Журнал</a><a href="/tours/">Премиальные туры</a></div>
+          <div class="mobile-menu__group"><a href="/about/">О компании</a><button type="button" data-mobile-menu-customers>Покупателям</button><a href="/wholesale/">Оптовикам</a></div>
+        </nav>
+      </div>
+      <div class="mobile-menu__bottom">
+        <div class="mobile-menu__contacts">
+          <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
+          <div class="mobile-menu__socials" aria-label="Социальные сети">
+            <a href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-tg"></use></svg></a>
+            <a href="https://wa.me/78007004273" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-whatsapp"></use></svg></a>
+            <a href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Дзен"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-dzen"></use></svg></a>
+          </div>
+        </div>
+        <a class="button button--on-color button--size-s mobile-menu__callback" href="/callback/">Заказать звонок</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <div class="mobile-menu__apps" aria-label="Приложение FINNTRAIL">
+          <a class="mobile-menu__app-link mobile-menu__app-link--google-play" href="/app/" aria-label="Google Play">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+              <svg class="mobile-menu__app-svg mobile-menu__app-svg--hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--app-store" href="/app/" aria-label="App Store">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--appgallery" href="/app/" aria-label="AppGallery">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+            </span>
+          </a>
+          <a class="mobile-menu__app-link mobile-menu__app-link--rustore" href="/app/" aria-label="RuStore">
+            <span class="mobile-menu__app-icon" aria-hidden="true">
+              <svg class="mobile-menu__app-svg"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
+      <div class="mobile-menu__subhead">
+        <button class="mobile-menu__back" type="button" data-mobile-menu-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span>Покупателям</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+      </div>
+      <nav class="mobile-menu__customer-links" aria-label="Покупателям">
+        <a href="/delivery/">Доставка и оплата</a><a href="/return/">Обмен и возврат</a>
+        <a href="/warranty/">Гарантия и сервис</a><a href="/faq/">Вопросы и ответы</a>
+        <a href="/care/">Уход за экипировкой</a><a href="/technologies/" aria-current="page">Технологии</a>
+        <a href="/gift-card/">Подарочная карта</a><a href="/size-guide/">Таблицы размеров</a>
+        <a href="/personal/loyalty/">Программа лояльности</a>
+      </nav>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
+      <div class="mobile-menu__catalog-top">
+        <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle><span>Мужчинам</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
+            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
+          </div>
+        </div>
+        <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle><span>Женщинам</span><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+          <div class="mobile-menu__catalog-categories">
+            <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
+            <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
+            <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+    <div class="mobile-menu__panel mobile-menu__panel--category" hidden data-mobile-menu-view="category">
+      <div class="mobile-menu__category-top">
+        <button class="mobile-menu__category-back" type="button" data-mobile-menu-catalog-back>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+          <span data-mobile-menu-category-title>Одежда</span>
+        </button>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <nav class="mobile-menu__subcategory-links" aria-label="Подкатегории">
+          <a href="/catalog/">Куртки</a><a href="/catalog/">Брюки и полукомбинезоны</a>
+          <a href="/catalog/">Костюмы и комбинезоны</a><a href="/catalog/">Термобелье</a>
+        </nav>
+      </div>
+      <div class="mobile-menu__catalog-bottom">
+        <div class="mobile-menu__catalog-dash" aria-hidden="true"></div>
+        <nav class="mobile-menu__activity-links" aria-label="Активности">
+          <a href="/activities/tourism/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
+          <a href="/activities/quad/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
+          <a href="/activities/fishing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-fishing"></use></svg><span>Рыбалка</span></a>
+          <a href="/activities/travel/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-travel"></use></svg><span>Путешествия</span></a>
+          <a href="/activities/snowmobiles/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-snowmobile"></use></svg><span>Снегоходы</span></a>
+          <a href="/activities/skiing/"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <main class="technologies-page" aria-label="Технологии">
+    <div class="delivery-page__top">
+      <div class="delivery-page__top-content">
+        <nav class="delivery-page__breadcrumb" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span class="delivery-page__breadcrumb-separator" aria-hidden="true"></span>
+          <span aria-current="page">Технологии</span>
+        </nav>
+        <div class="delivery-page__heading-row">
+          <h1 class="delivery-page__title">Технологии</h1>
+          <button class="delivery-page__share" type="button" aria-label="Поделиться страницей">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-share"></use></svg>
+            <span>Поделиться</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="technologies-page__filters" role="tablist" aria-label="Фильтр технологий" data-tech-filters>
+        <button class="technologies-page__filter is-active" type="button" role="tab" aria-selected="true" data-filter="все" data-tech-filter>Все</button>
+        <button class="technologies-page__filter" type="button" role="tab" aria-selected="false" data-filter="фурнитура" data-tech-filter>Фурнитура</button>
+        <button class="technologies-page__filter" type="button" role="tab" aria-selected="false" data-filter="ткань" data-tech-filter>Ткань</button>
+        <button class="technologies-page__filter" type="button" role="tab" aria-selected="false" data-filter="покрытие" data-tech-filter>Покрытие</button>
+        <button class="technologies-page__filter" type="button" role="tab" aria-selected="false" data-filter="подошва" data-tech-filter>Подошва</button>
+      </div>
+    </div>
+
+    <div class="technologies-page__content" data-tech-content>
+
+      <!-- Photo row 1: ATOP + Michelin -->
+      <div class="technologies-page__photo-row" data-tech-row>
+        <article class="technologies-page__photo-card" data-tech-card data-category="фурнитура">
+          <figure class="technologies-page__photo-figure">
+            <img class="technologies-page__photo-img" src="/images/content/technologies/photo-dwr.png" alt="ATOP" loading="lazy">
+            <div class="technologies-page__photo-overlay" aria-hidden="true"></div>
+            <div class="technologies-page__badge">
+              <img src="/images/content/technologies/icon-atop.svg" alt="" aria-hidden="true" width="32" height="32">
+            </div>
+            <span class="technologies-page__tag">Фурнитура</span>
+          </figure>
+          <div class="technologies-page__photo-body">
+            <h2 class="technologies-page__photo-title">ATOP быстрая система шнуровки</h2>
+            <p class="technologies-page__photo-text">ATOP - механическая система шнуровки с катушкой, обеспечивающая быстрое и точное регулирование натяжения. Гарантирует удобную и надежную фиксацию обуви в любых условиях.</p>
+          </div>
+        </article>
+
+        <article class="technologies-page__photo-card" data-tech-card data-category="подошва">
+          <figure class="technologies-page__photo-figure">
+            <img class="technologies-page__photo-img" src="/images/content/technologies/photo-vibram.png" alt="Michelin" loading="lazy">
+            <div class="technologies-page__photo-overlay" aria-hidden="true"></div>
+            <div class="technologies-page__badge">
+              <img src="/images/content/technologies/icon-michelin.svg" alt="" aria-hidden="true" width="32" height="32">
+            </div>
+            <span class="technologies-page__tag">Подошва</span>
+          </figure>
+          <div class="technologies-page__photo-body">
+            <h2 class="technologies-page__photo-title">Michelin</h2>
+            <p class="technologies-page__photo-text">Подошвы Michelin создаются с учётом многолетнего опыта мирового лидера в производстве автомобильных шин. Обеспечивают отличное сцепление, прочность и стабильность, подходя для экстремальных условий.</p>
+          </div>
+        </article>
+      </div>
+
+      <hr class="technologies-page__divider" data-tech-divider aria-hidden="true">
+
+      <!-- Text row 1: ARMORTEX + F.I.L.L + HIPORA + Polartec -->
+      <div class="technologies-page__text-row" data-tech-row>
+
+        <!-- 1. ARMORTEX -->
+        <article class="technologies-page__card" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-armortex.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head">
+            <h2 class="technologies-page__card-title">ARMORTEX®</h2>
+            <span class="technologies-page__tag">Ткань</span>
+          </div>
+          <p class="technologies-page__card-text">ARMORTEX® — это устойчивый к порезам материал на основе нейлона, полиуретана и полиэстера с использованием нитей Kevlar®, разработанный специалистами из Тайваня. Материал также отличается водонепроницаемостью и устойчивостью к загрязнениям и маслам, что позволяет использовать изделия с накладками из ARMORTEX® в экипировке для экстремальных видов спорта</p>
+        </article>
+
+        <!-- 2. F.I.L.L — без тега, gap 24px между иконкой и телом -->
+        <article class="technologies-page__card technologies-page__card--fill" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-fill.png" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-body">
+            <h2 class="technologies-page__card-title">Технология поддержки на поверхности воды ФИЛЛ (F.I.L.L)</h2>
+            <p class="technologies-page__card-text">Обеспечивает плавучесть и защиту от холода при кратковременном контакте с водой. Этот материал состоит из полимерного материала, который содержит множество микросфер, заполненных газом, таким образом создавая пустоты внутри материала.</p>
+          </div>
+        </article>
+
+        <!-- 3. HIPORA -->
+        <article class="technologies-page__card" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-hipora.png" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head">
+            <h2 class="technologies-page__card-title">HIPORA®</h2>
+            <span class="technologies-page__tag">Ткань</span>
+          </div>
+          <p class="technologies-page__card-text">Южнокорейская мембрана, способная сохранять рабочие характеристики в самых суровых условиях. Надежно защищает от влаги, дышит. Устойчива к действию низких температур (до -40 градусов), загрязнениям, включая маслянистые. В коллекции Finntrail применяется в качестве бесшовного внутреннего слоя для зимних перчаток</p>
+        </article>
+
+        <!-- 4. Polartec -->
+        <article class="technologies-page__card" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-polartec.png" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head">
+            <h2 class="technologies-page__card-title">Флис Polartec®</h2>
+            <span class="technologies-page__tag">Ткань</span>
+          </div>
+          <p class="technologies-page__card-text">Лёгкий и прочный материал, созданный для сохранения тепла без лишнего объёма. Имеет в своей структуре "воздушные карманы", которые способны удерживать тепло тела. Благодаря уникальной структуре он хорошо дышит, удерживает тепло в холоде и отводит излишки влаги при активности</p>
+        </article>
+      </div>
+
+      <hr class="technologies-page__divider" data-tech-divider aria-hidden="true">
+
+      <!-- Photo row 2: Vibram + DWR -->
+      <div class="technologies-page__photo-row" data-tech-row>
+        <article class="technologies-page__photo-card" data-tech-card data-category="подошва">
+          <figure class="technologies-page__photo-figure">
+            <img class="technologies-page__photo-img" src="/images/content/technologies/photo-michelin.png" alt="Vibram" loading="lazy">
+            <div class="technologies-page__photo-overlay" aria-hidden="true"></div>
+            <div class="technologies-page__badge">
+              <img src="/images/content/technologies/icon-vibram.svg" alt="" aria-hidden="true" width="32" height="32">
+            </div>
+            <span class="technologies-page__tag">Подошва</span>
+          </figure>
+          <div class="technologies-page__photo-body">
+            <h2 class="technologies-page__photo-title">Vibram</h2>
+            <p class="technologies-page__photo-text">Vibram — мировой лидер в разработке и производстве технологичных резиновых подошв для активных видов спорта и отдыха. Подошвы Vibram гарантируют уверенное сцепление с поверхностью.</p>
+          </div>
+        </article>
+
+        <article class="technologies-page__photo-card" data-tech-card data-category="покрытие">
+          <figure class="technologies-page__photo-figure">
+            <img class="technologies-page__photo-img" src="/images/content/technologies/photo-atop.png" alt="DWR" loading="lazy">
+            <div class="technologies-page__photo-overlay" aria-hidden="true"></div>
+            <div class="technologies-page__badge">
+              <img src="/images/content/technologies/icon-dwr.png" alt="" aria-hidden="true" width="32" height="32">
+            </div>
+            <span class="technologies-page__tag">Покрытие</span>
+          </figure>
+          <div class="technologies-page__photo-body">
+            <h2 class="technologies-page__photo-title">Водоотталкивающее покрытие ДАБЛ-Ю-АР (DWR)</h2>
+            <p class="technologies-page__photo-text">Специальное покрытие, которое создает тонкий слой на поверхности ткани и защищает ее от влаги, а также позволяет ей быстрее высыхать.</p>
+          </div>
+        </article>
+      </div>
+
+      <hr class="technologies-page__divider" data-tech-divider aria-hidden="true">
+
+      <!-- Text row 2: Sorona + RECCO + *FP + Softshell -->
+      <div class="technologies-page__text-row" data-tech-row>
+
+        <!-- 1. Sorona — длинный заголовок, тег выровнен по top -->
+        <article class="technologies-page__card" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-sorona.png" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head technologies-page__card-head--top">
+            <h2 class="technologies-page__card-title">Лёгкий синтетический утеплитель Sorona® Аура (Aura)</h2>
+            <span class="technologies-page__tag">Ткань</span>
+          </div>
+          <p class="technologies-page__card-text">Sorona® Аура (Aura) - инновационный утеплитель, который обеспечивает тепло при минимальном весе и объёме. Он дышит, долго сохраняет форму и не теряет свойств даже после стирок. Производится из переработанного сырья, что снижает воздействие на окружающую среду.</p>
+        </article>
+
+        <!-- 2. RECCO -->
+        <article class="technologies-page__card" data-tech-card data-category="фурнитура">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-recco.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head">
+            <h2 class="technologies-page__card-title">Датчик RECCO</h2>
+            <span class="technologies-page__tag">Фурнитура</span>
+          </div>
+          <p class="technologies-page__card-text">Инновационная технология, повышающая безопасность при лавинах и других чрезвычайных ситуациях. Специальные рефлекторы, встроенные в одежду и снаряжение, отражают сигналы поисковых устройств RECCO, помогая спасателям быстро локализовать человека даже в сложных условиях.</p>
+        </article>
+
+        <!-- 3. *FP -->
+        <article class="technologies-page__card" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-fp.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head">
+            <h2 class="technologies-page__card-title">*FP ФИЛЛ ПАУЭР (Fill Power)</h2>
+            <span class="technologies-page__tag">Ткань</span>
+          </div>
+          <p class="technologies-page__card-text">*FP — показатель способности пуха восстанавливать объём после сжатия. Натуральный высококачественный гусиный пух с показателем Fill Power 750 обеспечивает отличное сохранение тепла при минимальном весе. Пух сертифицирован по стандарту RDS (Responsible Down Standard), что гарантирует этичное происхождение и высокое качество.</p>
+        </article>
+
+        <!-- 4. Softshell -->
+        <article class="technologies-page__card" data-tech-card data-category="ткань">
+          <div class="technologies-page__card-icon">
+            <img src="/images/content/technologies/icon-softshell.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="technologies-page__card-head">
+            <h2 class="technologies-page__card-title">СОФТШЕЛЛ (SOFTSHELL)</h2>
+            <span class="technologies-page__tag">Ткань</span>
+          </div>
+          <p class="technologies-page__card-text">Технологичный многослойный материал. Внешний защитный слой, промежуточный слой — мембрана, обеспечивающая водонепроницаемость и ветрозащиту, внутренний слой — флис, обладающий влагоотводящими свойствами и способствующий комфортному внутреннему микроклимату. Софтшелл (SoftShell) хорошо дышит, обеспечивает удобство движений и защищает от влаги.</p>
+        </article>
+      </div>
+
+      <div class="journal-feed__load-more technologies-page__load-more">
+        <button class="catalog-products__more journal-feed__more" type="button" data-load-more aria-label="Показать ещё технологии">
+          <span>Показать еще</span>
+          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer-desktop product-footer" aria-label="Футер">
+    <div class="footer-desktop__top">
+      <nav class="footer-desktop__nav" aria-label="Навигация в футере">
+        <div class="footer-desktop__column footer-desktop__column--buyers">
+          <h2 class="footer-desktop__heading">Покупателям</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/delivery/">Доставка и оплата</a></li>
+            <li><a class="footer-desktop__link" href="/return/">Обмен и возврат</a></li>
+            <li><a class="footer-desktop__link" href="/warranty/">Гарантия и сервис</a></li>
+            <li><a class="footer-desktop__link" href="/feedback/">Обратная связь</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--company">
+          <h2 class="footer-desktop__heading">Компания</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/contacts/">Контакты</a></li>
+            <li><a class="footer-desktop__link" href="/career/">Карьера</a></li>
+            <li><a class="footer-desktop__link" href="/partners/">Партнерская программа</a></li>
+            <li><a class="footer-desktop__link" href="/tours/">Премиум туры</a></li>
+            <li><a class="footer-desktop__link" href="/game/">Игра</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--gear">
+          <h2 class="footer-desktop__heading">Об экипировке</h2>
+          <ul class="footer-desktop__links">
+            <li><a class="footer-desktop__link" href="/size-guide/">Таблица размеров</a></li>
+            <li><a class="footer-desktop__link" href="/technologies/" aria-current="page">Технологии</a></li>
+            <li><a class="footer-desktop__link" href="/faq/">Вопросы и ответы</a></li>
+            <li><a class="footer-desktop__link" href="/care/">Уход и ремонт</a></li>
+            <li><a class="footer-desktop__link" href="/articles/">Блог</a></li>
+          </ul>
+        </div>
+        <div class="footer-desktop__column footer-desktop__column--app">
+          <h2 class="footer-desktop__heading">Приложение FINNTRAIL</h2>
+          <div class="footer-desktop__app-panel">
+            <img class="footer-desktop__qr" src="/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
+            <ul class="footer-desktop__app-links">
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/app/">
+                  <span class="footer-desktop__app-icon" aria-hidden="true">
+                    <svg class="footer-desktop__app-icon-default"><use href="/images/icons/sprite.svg#icon-google-play"></use></svg>
+                    <svg class="footer-desktop__app-icon-hover"><use href="/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+                  </span>
+                  <span>Google Play</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-app-store"></use></svg>
+                  <span>App Store</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-appgallery"></use></svg>
+                  <span>AppGallery</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/app/">
+                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rustore"></use></svg>
+                  <span>RuStore</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-desktop__divider"></div>
+    <div class="footer-desktop__legal">
+      <a class="footer-desktop__legal-link" href="/privacy/">Политика конфиденциальности</a>
+      <a class="footer-desktop__legal-link" href="/offer/">Публичная оферта</a>
+      <a class="footer-desktop__legal-link" href="/personal-data/">Согласие на обработку персональных данных</a>
+    </div>
+    <a class="footer-desktop__wordmark" href="/" aria-label="FINNTRAIL">
+      <img src="/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
+    </a>
+  </footer>
+
+  <nav class="tabbar" aria-label="Мобильная навигация">
+    <a href="/catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
+    <a href="/personal/" class="tabbar__item" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
+    <a href="/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
+    <a href="/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
+    <a href="/basket/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
+  </nav>
+
+  <script type="module" src="/js/main.js"></script>
+  <script>
+    (function () {
+      var filters = document.querySelectorAll('[data-tech-filter]');
+      var content = document.querySelector('[data-tech-content]');
+
+      function applyFilter(category) {
+        var cards = content.querySelectorAll('[data-tech-card]');
+        var rows = content.querySelectorAll('[data-tech-row]');
+
+        cards.forEach(function (card) {
+          var cat = card.dataset.category || '';
+          card.classList.toggle('is-hidden', category !== 'все' && cat !== category);
+        });
+
+        rows.forEach(function (row) {
+          var visible = row.querySelectorAll('[data-tech-card]:not(.is-hidden)');
+          row.classList.toggle('is-hidden', visible.length === 0);
+        });
+
+        var children = Array.from(content.children);
+        var prevRowVisible = false;
+        children.forEach(function (el) {
+          if (el.dataset.techRow !== undefined) {
+            prevRowVisible = !el.classList.contains('is-hidden');
+          } else if (el.dataset.techDivider !== undefined) {
+            el.classList.toggle('is-hidden', !prevRowVisible);
+          }
+        });
+
+        var lastDivider = null;
+        children.forEach(function (el) {
+          if (el.dataset.techDivider !== undefined && !el.classList.contains('is-hidden')) {
+            lastDivider = el;
+          } else if (el.dataset.techRow !== undefined && !el.classList.contains('is-hidden')) {
+            lastDivider = null;
+          }
+        });
+        if (lastDivider) lastDivider.classList.add('is-hidden');
+      }
+
+      filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filters.forEach(function (f) {
+            f.classList.remove('is-active');
+            f.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          applyFilter(btn.dataset.filter);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

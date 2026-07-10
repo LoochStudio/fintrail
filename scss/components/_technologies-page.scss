@@ -1,0 +1,447 @@
+@use '../variables' as *;
+
+// ─── Page wrapper ─────────────────────────────────────────────────────────────
+.technologies-page {
+  background: $color-surface;
+  padding-top: 24px;
+  padding-bottom: 64px;
+
+  @media (min-width: $bp-lg) {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+}
+
+// ─── Heading overrides ────────────────────────────────────────────────────────
+// Убираем ширину 695px, margin-left берётся из var(--delivery-content-offset)
+// из delivery-page.scss (= calc(25vw - 20px))
+.technologies-page .delivery-page__top-content {
+  @media (min-width: $bp-lg) {
+    width: auto;
+  }
+}
+
+// ─── Filter tabs ──────────────────────────────────────────────────────────────
+.technologies-page__filters {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  padding: 24px $spacing-page 0;
+
+  @media (min-width: $bp-md) {
+    padding: 24px $spacing-page-desktop 0;
+  }
+
+  @media (min-width: $bp-lg) {
+    margin-left: var(--delivery-content-offset);
+    padding: 24px 0 0;
+  }
+}
+
+.technologies-page__filter {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  color: $color-primary-gray;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.18s ease;
+
+  & + & {
+    margin-left: 16px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
+    background: $color-primary-black;
+    transition: width 0.18s ease;
+  }
+
+  &.is-active {
+    color: $color-primary-black;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(.is-active):hover {
+      color: $color-primary-black;
+    }
+  }
+}
+
+// ─── Content area ─────────────────────────────────────────────────────────────
+.technologies-page__content {
+  padding: 0 $spacing-page;
+
+  @media (min-width: $bp-md) {
+    padding: 0 $spacing-page-desktop;
+  }
+}
+
+// ─── Divider ──────────────────────────────────────────────────────────────────
+.technologies-page__divider {
+  margin: 0;
+  border: none;
+  border-top: 1px solid $color-white;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+// ─── Photo rows ───────────────────────────────────────────────────────────────
+.technologies-page__photo-row {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 40px 0;
+
+  @media (min-width: $bp-md) {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  @media (min-width: $bp-lg) {
+    gap: 90px;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.technologies-page__photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: $bp-md) {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  @media (min-width: $bp-lg) {
+    flex-direction: row;
+    gap: 9px;
+    flex: 0 0 655px;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.technologies-page__photo-figure {
+  position: relative;
+  flex-shrink: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+
+  @media (max-width: #{$bp-md - 1px}) {
+    height: 260px;
+  }
+
+  @media (min-width: $bp-md) {
+    height: 300px;
+  }
+
+  @media (min-width: $bp-lg) {
+    width: 343px;
+    height: 480px;
+  }
+}
+
+.technologies-page__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.technologies-page__photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.technologies-page__badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: $color-white;
+  border-radius: 4px;
+  overflow: hidden;
+
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+}
+
+// Тег внутри фото (top-right) — только для .photo-figure > .tag
+.technologies-page__photo-figure > .technologies-page__tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.technologies-page__photo-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0 0;
+
+  @media (min-width: $bp-lg) {
+    width: 303px;
+    flex-shrink: 0;
+    padding: 0;
+  }
+}
+
+.technologies-page__photo-title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.technologies-page__photo-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $color-gray-primary;
+}
+
+// ─── Category tag ─────────────────────────────────────────────────────────────
+.technologies-page__tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: $color-white;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: $color-gray-primary;
+  white-space: nowrap;
+}
+
+// ─── Text-only cards ──────────────────────────────────────────────────────────
+.technologies-page__text-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 40px 0;
+
+  @media (min-width: $bp-md) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px 24px;
+  }
+
+  @media (min-width: $bp-lg) {
+    flex-wrap: nowrap;
+    gap: calc((100% - 1212px) / 3);
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.technologies-page__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: $bp-md) {
+    flex: 0 0 calc(50% - 12px);
+    min-width: 0;
+  }
+
+  @media (min-width: $bp-lg) {
+    flex: 0 0 303px;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+
+  // F.I.L.L: gap 24px между иконкой и блоком текста (по Figma)
+  &--fill {
+    gap: 24px;
+  }
+}
+
+.technologies-page__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: $color-white;
+  overflow: hidden;
+
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  img[src$="icon-armortex.svg"] {
+    width: 37px;
+    height: 36px;
+  }
+
+  img[src$="icon-hipora.png"] {
+    width: 28px;
+    height: 28px;
+  }
+
+  img[src$="icon-polartec.png"] {
+    width: 36px;
+    height: 36px;
+  }
+
+  img[src$="icon-recco.svg"],
+  img[src$="icon-fp.svg"] {
+    width: 33px;
+    height: 32px;
+  }
+}
+
+.technologies-page__card-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  // Для длинных заголовков (Sorona) — тег прижат к началу строки
+  &--top {
+    align-items: flex-start;
+  }
+}
+
+// Враппер заголовок+текст для F.I.L.L (без тега)
+.technologies-page__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.technologies-page__card-title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.technologies-page__card-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $color-gray-primary;
+}
+
+// ─── "Show more" button ───────────────────────────────────────────────────────
+.technologies-page__load-more {
+  margin-top: 0;
+}
+// ─── Tablet overrides ─────────────────────────────────────────────────────────
+@media (min-width: $bp-md) and (max-width: #{$bp-lg - 1px}) {
+  .technologies-page .delivery-page__top {
+    padding: 0 $spacing-page-desktop;
+  }
+
+  .technologies-page .delivery-page__heading-row {
+    align-items: flex-end;
+    margin-top: 16px;
+  }
+
+  .technologies-page .delivery-page__title {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .technologies-page-body .footer-desktop.product-footer {
+    margin-top: 80px;
+  }
+}
+
+// ─── Mobile overrides ─────────────────────────────────────────────────────────
+@media (max-width: #{$bp-md - 1px}) {
+  .technologies-page {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .technologies-page .delivery-page__top {
+    padding-top: 20px;
+  }
+
+  .technologies-page .delivery-page__heading-row {
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .technologies-page .delivery-page__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .technologies-page .delivery-page__share {
+    width: 16px;
+    height: 16px;
+    margin-top: 0;
+  }
+
+  .technologies-page .delivery-page__share svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .technologies-page .delivery-page__share span {
+    display: none;
+  }
+
+  .technologies-page-body .footer-desktop.product-footer {
+    margin-top: 64px;
+  }
+}
