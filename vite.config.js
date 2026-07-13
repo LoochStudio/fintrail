@@ -57,6 +57,8 @@ export default defineConfig({
         faq: resolve(__dirname, 'faq/index.html'),
         return: resolve(__dirname, 'return/index.html'),
         technologies: resolve(__dirname, 'technologies/index.html'),
+        
+        warranty: resolve(__dirname, 'warranty/index.html'),
       },
     },
   },

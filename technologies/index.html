@@ -410,7 +410,7 @@
       </div>
     </div>
 
-    <div class="technologies-page__content" data-tech-content>
+    <div class="technologies-page__content" data-tech-content aria-busy="false">
 
       <!-- Photo row 1: ATOP + Michelin -->
       <div class="technologies-page__photo-row" data-tech-row>
@@ -498,10 +498,10 @@
         </article>
       </div>
 
-      <hr class="technologies-page__divider" data-tech-divider aria-hidden="true">
+      <hr class="technologies-page__divider is-load-hidden" data-tech-divider data-tech-lazy aria-hidden="true">
 
       <!-- Photo row 2: Vibram + DWR -->
-      <div class="technologies-page__photo-row" data-tech-row>
+      <div class="technologies-page__photo-row is-load-hidden" data-tech-row data-tech-lazy>
         <article class="technologies-page__photo-card" data-tech-card data-category="подошва">
           <figure class="technologies-page__photo-figure">
             <img class="technologies-page__photo-img" src="/images/content/technologies/photo-michelin.png" alt="Vibram" loading="lazy">
@@ -533,10 +533,10 @@
         </article>
       </div>
 
-      <hr class="technologies-page__divider" data-tech-divider aria-hidden="true">
+      <hr class="technologies-page__divider is-load-hidden" data-tech-divider data-tech-lazy aria-hidden="true">
 
       <!-- Text row 2: Sorona + RECCO + *FP + Softshell -->
-      <div class="technologies-page__text-row" data-tech-row>
+      <div class="technologies-page__text-row is-load-hidden" data-tech-row data-tech-lazy>
 
         <!-- 1. Sorona — длинный заголовок, тег выровнен по top -->
         <article class="technologies-page__card" data-tech-card data-category="ткань">
@@ -587,11 +587,12 @@
         </article>
       </div>
 
-      <div class="journal-feed__load-more technologies-page__load-more">
-        <button class="catalog-products__more journal-feed__more" type="button" data-load-more aria-label="Показать ещё технологии">
+      <div class="journal-feed__load-more technologies-page__load-more" data-tech-load-more-wrap>
+        <button class="catalog-products__more journal-feed__more" type="button" data-tech-load-more data-tech-next-url="" aria-label="Показать ещё технологии">
           <span>Показать еще</span>
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
         </button>
+        <span class="visually-hidden" role="status" aria-live="polite" data-tech-status></span>
       </div>
 
     </div>
@@ -686,58 +687,5 @@
   </nav>
 
   <script type="module" src="/js/main.js"></script>
-  <script>
-    (function () {
-      var filters = document.querySelectorAll('[data-tech-filter]');
-      var content = document.querySelector('[data-tech-content]');
-
-      function applyFilter(category) {
-        var cards = content.querySelectorAll('[data-tech-card]');
-        var rows = content.querySelectorAll('[data-tech-row]');
-
-        cards.forEach(function (card) {
-          var cat = card.dataset.category || '';
-          card.classList.toggle('is-hidden', category !== 'все' && cat !== category);
-        });
-
-        rows.forEach(function (row) {
-          var visible = row.querySelectorAll('[data-tech-card]:not(.is-hidden)');
-          row.classList.toggle('is-hidden', visible.length === 0);
-        });
-
-        var children = Array.from(content.children);
-        var prevRowVisible = false;
-        children.forEach(function (el) {
-          if (el.dataset.techRow !== undefined) {
-            prevRowVisible = !el.classList.contains('is-hidden');
-          } else if (el.dataset.techDivider !== undefined) {
-            el.classList.toggle('is-hidden', !prevRowVisible);
-          }
-        });
-
-        var lastDivider = null;
-        children.forEach(function (el) {
-          if (el.dataset.techDivider !== undefined && !el.classList.contains('is-hidden')) {
-            lastDivider = el;
-          } else if (el.dataset.techRow !== undefined && !el.classList.contains('is-hidden')) {
-            lastDivider = null;
-          }
-        });
-        if (lastDivider) lastDivider.classList.add('is-hidden');
-      }
-
-      filters.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          filters.forEach(function (f) {
-            f.classList.remove('is-active');
-            f.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('is-active');
-          btn.setAttribute('aria-selected', 'true');
-          applyFilter(btn.dataset.filter);
-        });
-      });
-    })();
-  </script>
 </body>
 </html>

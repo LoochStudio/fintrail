@@ -13,8 +13,6 @@
 }
 
 // ─── Heading overrides ────────────────────────────────────────────────────────
-// Убираем ширину 695px, margin-left берётся из var(--delivery-content-offset)
-// из delivery-page.scss (= calc(25vw - 20px))
 .technologies-page .delivery-page__top-content {
   @media (min-width: $bp-lg) {
     width: auto;
@@ -115,6 +113,8 @@
   }
 
   @media (min-width: $bp-lg) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 90px;
   }
 
@@ -134,9 +134,11 @@
   }
 
   @media (min-width: $bp-lg) {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 303px);
     gap: 9px;
-    flex: 0 0 655px;
+    flex: initial;
+    width: 100%;
   }
 
   &.is-hidden {
@@ -147,6 +149,7 @@
 .technologies-page__photo-figure {
   position: relative;
   flex-shrink: 0;
+  width: 100%;
   margin: 0;
   overflow: hidden;
   border-radius: 4px;
@@ -160,16 +163,15 @@
   }
 
   @media (min-width: $bp-lg) {
-    width: 343px;
     height: 480px;
   }
 }
 
 .technologies-page__photo-img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .technologies-page__photo-overlay {
@@ -199,7 +201,6 @@
   }
 }
 
-// Тег внутри фото (top-right) — только для .photo-figure > .tag
 .technologies-page__photo-figure > .technologies-page__tag {
   position: absolute;
   top: 20px;
@@ -213,8 +214,8 @@
   padding: 16px 0 0;
 
   @media (min-width: $bp-lg) {
-    width: 303px;
-    flex-shrink: 0;
+    width: 100%;
+    min-width: 0;
     padding: 0;
   }
 }
@@ -297,7 +298,6 @@
     display: none;
   }
 
-  // F.I.L.L: gap 24px между иконкой и блоком текста (по Figma)
   &--fill {
     gap: 24px;
   }
@@ -320,23 +320,23 @@
     object-fit: contain;
   }
 
-  img[src$="icon-armortex.svg"] {
+  img[src$='icon-armortex.svg'] {
     width: 37px;
     height: 36px;
   }
 
-  img[src$="icon-hipora.png"] {
+  img[src$='icon-hipora.png'] {
     width: 28px;
     height: 28px;
   }
 
-  img[src$="icon-polartec.png"] {
+  img[src$='icon-polartec.png'] {
     width: 36px;
     height: 36px;
   }
 
-  img[src$="icon-recco.svg"],
-  img[src$="icon-fp.svg"] {
+  img[src$='icon-recco.svg'],
+  img[src$='icon-fp.svg'] {
     width: 33px;
     height: 32px;
   }
@@ -347,13 +347,11 @@
   align-items: center;
   gap: 16px;
 
-  // Для длинных заголовков (Sorona) — тег прижат к началу строки
   &--top {
     align-items: flex-start;
   }
 }
 
-// Враппер заголовок+текст для F.I.L.L (без тега)
 .technologies-page__card-body {
   display: flex;
   flex-direction: column;
@@ -383,10 +381,20 @@
 .technologies-page__load-more {
   margin-top: 0;
 }
+
 // ─── Tablet overrides ─────────────────────────────────────────────────────────
 @media (min-width: $bp-md) and (max-width: #{$bp-lg - 1px}) {
+  .technologies-page {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+
   .technologies-page .delivery-page__top {
     padding: 0 $spacing-page-desktop;
+  }
+
+  .technologies-page .delivery-page__top-content {
+    max-width: 695px;
   }
 
   .technologies-page .delivery-page__heading-row {
@@ -397,6 +405,78 @@
   .technologies-page .delivery-page__title {
     font-size: 32px;
     line-height: 32px;
+  }
+
+  .technologies-page__filters {
+    flex-wrap: nowrap;
+    gap: 16px;
+    width: 100%;
+    padding: 24px 0 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .technologies-page__filter {
+    flex: 0 0 auto;
+
+    & + & {
+      margin-left: 0;
+    }
+  }
+
+  .technologies-page__content {
+    padding: 0 $spacing-page-desktop;
+  }
+
+  .technologies-page__photo-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    padding: 40px 0;
+  }
+
+  .technologies-page__photo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .technologies-page__photo-figure {
+    height: clamp(360px, 52vw, 480px);
+  }
+
+  .technologies-page__photo-body {
+    width: 100%;
+    padding: 0;
+  }
+
+  .technologies-page__text-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 24px;
+    padding: 40px 0;
+  }
+
+  .technologies-page__card {
+    min-width: 0;
+  }
+
+  .technologies-page__card-head {
+    flex-wrap: wrap;
+  }
+
+  .technologies-page__load-more {
+    display: flex;
+  }
+
+  .technologies-page__load-more .catalog-products__more {
+    width: 100%;
   }
 
   .technologies-page-body .footer-desktop.product-footer {
@@ -412,7 +492,17 @@
   }
 
   .technologies-page .delivery-page__top {
-    padding-top: 20px;
+    padding: 20px 0 0;
+  }
+
+  .technologies-page .delivery-page__top-content {
+    padding: 0 20px;
+  }
+
+  .technologies-page .delivery-page__breadcrumb {
+    gap: 4px;
+    font-size: 12px;
+    line-height: 16px;
   }
 
   .technologies-page .delivery-page__heading-row {
@@ -422,6 +512,7 @@
   }
 
   .technologies-page .delivery-page__title {
+    width: 246px;
     font-size: 20px;
     line-height: 20px;
   }
@@ -439,6 +530,115 @@
 
   .technologies-page .delivery-page__share span {
     display: none;
+  }
+
+  .technologies-page__filters {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .technologies-page__filter {
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    font-family: $font-main;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    color: $color-gray-primary;
+
+    & + & {
+      margin-left: 0;
+    }
+
+    &::after {
+      position: static;
+      display: block;
+      width: 100%;
+      flex: 0 0 1px;
+      background: $color-surface;
+    }
+
+    &.is-active::after {
+      width: 100%;
+      background: $color-primary-black;
+    }
+  }
+
+  .technologies-page__content {
+    padding: 0;
+  }
+
+  .technologies-page__divider {
+    margin: 0 20px;
+  }
+
+  .technologies-page__photo-row {
+    gap: 20px;
+    padding: 0 0 20px;
+  }
+
+  .technologies-page__filters + .technologies-page__content > .technologies-page__photo-row:first-child,
+  .technologies-page__content > .technologies-page__photo-row:first-child {
+    margin-top: 20px;
+  }
+
+  .technologies-page__photo-row[data-tech-lazy]:not(.is-load-hidden) {
+    margin-top: 20px;
+  }
+
+  .technologies-page__photo-card {
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .technologies-page__photo-figure {
+    height: 480px;
+  }
+
+  .technologies-page__photo-body {
+    width: 100%;
+    padding: 0;
+  }
+
+  .technologies-page__text-row {
+    gap: 24px;
+    padding: 24px 0 0;
+  }
+
+  .technologies-page__card {
+    padding: 0 20px;
+  }
+
+  .technologies-page__card-head {
+    flex-wrap: wrap;
+  }
+
+  .technologies-page [data-tech-lazy].is-load-hidden {
+    display: none;
+  }
+
+  .technologies-page__load-more {
+    display: flex;
+    padding: 0 20px;
+  }
+
+  .technologies-page__load-more .catalog-products__more {
+    width: 100%;
   }
 
   .technologies-page-body .footer-desktop.product-footer {
