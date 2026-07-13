@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finntrail - Последние операции</title>
+  <title>Finntrail — Уход за экипировкой</title>
   <script type="module" crossorigin src="/fintrail/assets/main-BH7x2t1p.js"></script>
   <link rel="stylesheet" crossorigin href="/fintrail/assets/main-G4H5d4qR.css">
 </head>
-<body>
-  <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
-    <div class="hero__topbar" aria-label="Навигация">
+<body class="care-page-body delivery-page-body">
+  <header class="delivery-header vacancies-header hero is-header-dark is-header-compact" data-header-mega-root>
+    <div class="hero__topbar" aria-label="Навигация промо-секции">
       <div class="hero__brand">
         <button class="hero__menu-btn" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="site-menu" data-site-menu-open>
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-menu"></use></svg>
@@ -21,18 +21,27 @@
       </div>
 
       <nav class="hero__nav" aria-label="Главная навигация">
-        <a href="/fintrail/catalog/men/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
-        <a href="/fintrail/catalog/women/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
+        <a href="/fintrail/catalog/" class="hero__nav-link" data-hover-text="Мужчинам" data-header-mega-trigger="men">Мужчинам</a>
+        <a href="/fintrail/catalog/" class="hero__nav-link" data-hover-text="Женщинам" data-header-mega-trigger="women">Женщинам</a>
         <a href="/fintrail/sale/" class="hero__nav-link" data-hover-text="Распродажа">Распродажа</a>
         <a href="/fintrail/new/" class="hero__nav-link" data-hover-text="Новинки">Новинки</a>
       </nav>
 
       <div class="hero__tools">
-        <a href="/fintrail/search/" class="hero__tool" aria-label="Поиск"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg></a>
-        <a href="/fintrail/personal/" class="hero__tool is-active" aria-label="Профиль"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg></a>
+        <a href="/fintrail/search/" class="hero__tool" aria-label="Поиск" data-search-open>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-search"></use></svg>
+        </a>
+        <a href="/fintrail/personal/" class="hero__tool" aria-label="Профиль" data-auth-open>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg>
+        </a>
         <a href="/fintrail/compare/" class="hero__tool" aria-label="Сравнение"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></a>
-        <a href="/fintrail/wishlist/" class="hero__tool" aria-label="Избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg></a>
-        <a href="/fintrail/cart/" class="hero__tool" aria-label="Корзина"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg><span class="hero-cart-badge" hidden></span></a>
+        <a href="/fintrail/wishlist/" class="hero__tool" aria-label="Избранное">
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-heart"></use></svg>
+        </a>
+        <a href="/fintrail/cart/" class="hero__tool" aria-label="Корзина">
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg>
+          <span class="hero-cart-badge" hidden></span>
+        </a>
       </div>
     </div>
 
@@ -113,12 +122,11 @@
 
   <div class="site-menu" id="site-menu" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Меню сайта" data-site-menu>
     <button class="site-menu__backdrop" type="button" aria-label="Закрыть меню" data-site-menu-close></button>
-
     <aside class="site-menu__panel">
       <div class="site-menu__top">
         <div class="site-menu__bar">
           <button class="site-menu__close" type="button" data-site-menu-close>
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
             <span>Закрыть</span>
           </button>
           <button class="site-menu__city" type="button" data-site-menu-city>
@@ -126,14 +134,11 @@
             <span>Москва</span>
           </button>
         </div>
-
         <nav class="site-menu__main" aria-label="Основные разделы">
           <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="men">Мужчинам</button>
           <button class="site-menu__main-link" type="button" aria-expanded="false" aria-controls="site-menu-submenu" data-site-menu-section="women">Женщинам</button>
         </nav>
-
         <div class="site-menu__divider" aria-hidden="true"></div>
-
         <nav class="site-menu__activities" aria-label="Активности">
           <a href="/fintrail/activities/tourism/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-tourism"></use></svg><span>Туризм</span></a>
           <a href="/fintrail/activities/quad/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-quad"></use></svg><span>Квадро</span></a>
@@ -143,7 +148,6 @@
           <a href="/fintrail/activities/skiing/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-ski"></use></svg><span>Горные лыжи</span></a>
         </nav>
       </div>
-
       <div class="site-menu__middle">
         <nav class="site-menu__links" aria-label="Контентные разделы">
           <a href="/fintrail/journal/">Журнал</a>
@@ -155,7 +159,6 @@
           <button type="button" data-site-menu-info="wholesale">Оптовикам</button>
         </nav>
       </div>
-
       <div class="site-menu__bottom">
         <div class="site-menu__contacts">
           <div class="site-menu__phone-row">
@@ -168,9 +171,7 @@
           </div>
           <a class="button button--on-color button--size-xs site-menu__callback" href="/fintrail/callback/">Заказать звонок</a>
         </div>
-
         <div class="site-menu__divider site-menu__divider--solid" aria-hidden="true"></div>
-
         <div class="site-menu__apps" aria-label="Приложение FINNTRAIL">
           <a class="site-menu__app-link site-menu__app-link--google-play" href="/fintrail/app/" aria-label="Google Play">
             <span class="site-menu__app-icon" aria-hidden="true">
@@ -196,7 +197,6 @@
         </div>
       </div>
     </aside>
-
     <aside class="site-menu__submenu" id="site-menu-submenu" hidden aria-hidden="true" aria-label="Дополнительное меню" data-site-menu-submenu>
       <div class="site-menu__submenu-view site-menu__submenu-view--catalog" data-site-menu-submenu-view="catalog">
         <div class="site-menu__submenu-top">
@@ -207,23 +207,16 @@
             <button type="button" data-site-menu-category>Снаряжение</button>
             <button type="button" data-site-menu-category>Экипировка</button>
           </nav>
-
           <nav class="site-menu__subcategories" aria-label="Подкатегории" hidden data-site-menu-subcategories>
             <a href="/fintrail/catalog/">Куртки</a>
             <a href="/fintrail/catalog/">Брюки и полукомбинезоны</a>
             <a href="/fintrail/catalog/">Костюмы и комбинезоны</a>
             <a href="/fintrail/catalog/">Термобелье</a>
-            <a href="/fintrail/catalog/">Футболки и лонгсливы</a>
-            <a href="/fintrail/catalog/">Жилеты</a>
-            <a href="/fintrail/catalog/">Худи и толстовки</a>
-            <a href="/fintrail/catalog/">Рубашки / шорты</a>
           </nav>
         </div>
-
-        <a class="site-menu__promo" href="/fintrail/catalog/" aria-label="Перейти в каталог экипировки для хайкинга">
+        <a class="site-menu__promo" href="/fintrail/catalog/" aria-label="Перейти в каталог">
           <picture>
-            <source srcset="/fintrail/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /fintrail/images/content/_responsive/site-menu/hiking-promo-320.png 320w, /fintrail/images/content/_responsive/site-menu/hiking-promo-480.png 480w, /fintrail/images/content/_responsive/site-menu/hiking-promo-768.png 768w, /fintrail/images/content/site-menu/hiking-promo.png 900w" media="(min-width: 1280px)">
-            <img src="/fintrail/images/content/site-menu/hiking-promo.png" srcset="/fintrail/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /fintrail/images/content/_responsive/site-menu/hiking-promo-320.png 320w, /fintrail/images/content/_responsive/site-menu/hiking-promo-480.png 480w, /fintrail/images/content/_responsive/site-menu/hiking-promo-768.png 768w, /fintrail/images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
+            <img src="/fintrail/images/content/site-menu/hiking-promo.png" srcset="/fintrail/images/content/_responsive/site-menu/hiking-promo-160.png 160w, /fintrail/images/content/_responsive/site-menu/hiking-promo-320.png 320w, /fintrail/images/content/site-menu/hiking-promo.png 900w" sizes="360px" alt="Экипировка для хайкинга" loading="lazy">
           </picture>
           <div class="site-menu__promo-content">
             <h3>Экипировка<br>для хайкинга</h3>
@@ -234,16 +227,15 @@
           </span>
         </a>
       </div>
-
       <nav class="site-menu__customer-links" aria-label="Покупателям" hidden data-site-menu-submenu-view="customers">
         <a href="/fintrail/delivery/">Доставка и оплата</a>
         <a href="/fintrail/return/">Обмен и возврат</a>
         <a href="/fintrail/warranty/">Гарантия и сервис</a>
         <a href="/fintrail/faq/">Вопросы и ответы</a>
         <a href="/fintrail/care/">Уход за экипировкой</a>
-        <a href="/fintrail/technology/">Технологии</a>
+        <a href="/fintrail/technologies/" aria-current="page">Технологии</a>
         <a href="/fintrail/gift-card/">Подарочная карта</a>
-        <a href="/fintrail/sizes/">Таблицы размеров</a>
+        <a href="/fintrail/size-guide/">Таблицы размеров</a>
         <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
       <div class="site-menu__submenu-view site-menu__submenu-view--city" hidden data-site-menu-submenu-view="city">
@@ -258,10 +250,6 @@
             <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Новосибирск"><span>Новосибирск</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
             <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Мурманск"><span>Мурманск</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
             <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Екатеринбург"><span>Екатеринбург</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
-            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Ростов"><span>Ростов</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
-            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Нижний Новгород"><span>Нижний Новгород</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
-            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Таблицы размеров"><span>Таблицы размеров</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
-            <button class="site-menu__city-option" type="button" data-site-menu-city-option data-city-name="Программа лояльности"><span>Программа лояльности</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg></button>
           </div>
         </div>
       </div>
@@ -281,20 +269,11 @@
             <span>Москва</span>
           </button>
         </div>
-
         <nav class="mobile-menu__nav" aria-label="Мобильное меню">
-          <div class="mobile-menu__group">
-            <a href="/fintrail/journal/">Журнал</a>
-            <a href="/fintrail/tours/">Премиальные туры</a>
-          </div>
-          <div class="mobile-menu__group">
-            <a href="/fintrail/about/">О компании</a>
-            <button type="button" data-mobile-menu-customers>Покупателям</button>
-            <a href="/fintrail/wholesale/">Оптовикам</a>
-          </div>
+          <div class="mobile-menu__group"><a href="/fintrail/journal/">Журнал</a><a href="/fintrail/tours/">Премиальные туры</a></div>
+          <div class="mobile-menu__group"><a href="/fintrail/about/">О компании</a><button type="button" data-mobile-menu-customers>Покупателям</button><a href="/fintrail/wholesale/">Оптовикам</a></div>
         </nav>
       </div>
-
       <div class="mobile-menu__bottom">
         <div class="mobile-menu__contacts">
           <a class="mobile-menu__phone" href="tel:88007004273">8 800 700-42-73</a>
@@ -331,7 +310,6 @@
         </div>
       </div>
     </div>
-
     <div class="mobile-menu__panel mobile-menu__panel--sub" hidden data-mobile-menu-view="customers">
       <div class="mobile-menu__subhead">
         <button class="mobile-menu__back" type="button" data-mobile-menu-back>
@@ -341,25 +319,17 @@
         <div class="mobile-menu__divider" aria-hidden="true"></div>
       </div>
       <nav class="mobile-menu__customer-links" aria-label="Покупателям">
-        <a href="/fintrail/delivery/">Доставка и оплата</a>
-        <a href="/fintrail/return/">Обмен и возврат</a>
-        <a href="/fintrail/warranty/">Гарантия и сервис</a>
-        <a href="/fintrail/faq/">Вопросы и ответы</a>
-        <a href="/fintrail/care/">Уход за экипировкой</a>
-        <a href="/fintrail/technology/">Технологии</a>
-        <a href="/fintrail/gift-card/">Подарочная карта</a>
-        <a href="/fintrail/sizes/">Таблицы размеров</a>
+        <a href="/fintrail/delivery/">Доставка и оплата</a><a href="/fintrail/return/">Обмен и возврат</a>
+        <a href="/fintrail/warranty/">Гарантия и сервис</a><a href="/fintrail/faq/">Вопросы и ответы</a>
+        <a href="/fintrail/care/">Уход за экипировкой</a><a href="/fintrail/technologies/" aria-current="page">Технологии</a>
+        <a href="/fintrail/gift-card/">Подарочная карта</a><a href="/fintrail/size-guide/">Таблицы размеров</a>
         <a href="/fintrail/personal/loyalty/">Программа лояльности</a>
       </nav>
     </div>
-
     <div class="mobile-menu__panel mobile-menu__panel--catalog" hidden data-mobile-menu-view="catalog">
       <div class="mobile-menu__catalog-top">
         <div class="mobile-menu__catalog-section is-open" data-mobile-menu-section="men">
-          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle>
-            <span>Мужчинам</span>
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
-          </button>
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="true" data-mobile-menu-section-toggle><span>Мужчинам</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
           <div class="mobile-menu__catalog-categories">
             <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
             <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
@@ -369,16 +339,11 @@
           </div>
         </div>
         <div class="mobile-menu__catalog-section" data-mobile-menu-section="women">
-          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle>
-            <span>Женщинам</span>
-            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
-          </button>
+          <button class="mobile-menu__catalog-trigger" type="button" aria-expanded="false" data-mobile-menu-section-toggle><span>Женщинам</span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
           <div class="mobile-menu__catalog-categories">
             <button type="button" data-mobile-menu-category="Одежда">Одежда</button>
             <button type="button" data-mobile-menu-category="Обувь">Обувь</button>
             <button type="button" data-mobile-menu-category="Аксессуары">Аксессуары</button>
-            <button type="button" data-mobile-menu-category="Снаряжение">Снаряжение</button>
-            <button type="button" data-mobile-menu-category="Специальная экипировка">Специальная экипировка</button>
           </div>
         </div>
       </div>
@@ -394,7 +359,6 @@
         </nav>
       </div>
     </div>
-
     <div class="mobile-menu__panel mobile-menu__panel--category" hidden data-mobile-menu-view="category">
       <div class="mobile-menu__category-top">
         <button class="mobile-menu__category-back" type="button" data-mobile-menu-catalog-back>
@@ -403,14 +367,8 @@
         </button>
         <div class="mobile-menu__divider" aria-hidden="true"></div>
         <nav class="mobile-menu__subcategory-links" aria-label="Подкатегории">
-          <a href="/fintrail/catalog/">Куртки</a>
-          <a href="/fintrail/catalog/">Брюки и полукомбинезоны</a>
-          <a href="/fintrail/catalog/">Костюмы и комбинезоны</a>
-          <a href="/fintrail/catalog/">Термобелье</a>
-          <a href="/fintrail/catalog/">Футболки и лонгсливы</a>
-          <a href="/fintrail/catalog/">Жилеты</a>
-          <a href="/fintrail/catalog/">Худи и толстовки</a>
-          <a href="/fintrail/catalog/">Рубашки / шорты</a>
+          <a href="/fintrail/catalog/">Куртки</a><a href="/fintrail/catalog/">Брюки и полукомбинезоны</a>
+          <a href="/fintrail/catalog/">Костюмы и комбинезоны</a><a href="/fintrail/catalog/">Термобелье</a>
         </nav>
       </div>
       <div class="mobile-menu__catalog-bottom">
@@ -427,289 +385,176 @@
     </div>
   </div>
 
-  <main class="personal-page personal-page--loyalty-operations" aria-label="Последние операции">
-
-    <section class="personal-header" aria-label="Заголовок страницы">
-      <div class="order-detail__header">
-        <a class="order-detail__back" href="/fintrail/personal/loyalty/">
-          <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
-          <span>Назад</span>
-        </a>
-        <h1 class="order-detail__title">Последние операции</h1>
-      </div>
-    </section>
-
-    <hr class="personal-section-divider" aria-hidden="true">
-
-    <section class="loyalty-ops" aria-label="История операций">
-      <div class="loyalty-ops__inner">
-
-        <!--
-          BITRIX: фильтр операций по типу (все / поступления / списания) — bitrix:main.ui.filter
-          Активный таб определяется текущим фильтром из URL или сессии.
-          Класс is-active и aria-selected="true" ставятся на активный таб.
-        -->
-        <div class="loyalty-ops__tabs" role="tablist" aria-label="Фильтр операций">
-          <button class="loyalty-ops__tab is-active" type="button" role="tab" aria-selected="true">
-            <span>Все операции</span>
-            <span class="loyalty-ops__tab-line" aria-hidden="true"></span>
-          </button>
-          <button class="loyalty-ops__tab" type="button" role="tab" aria-selected="false">
-            <span>Поступления</span>
-            <span class="loyalty-ops__tab-line" aria-hidden="true"></span>
-          </button>
-          <button class="loyalty-ops__tab" type="button" role="tab" aria-selected="false">
-            <span>Списания</span>
-            <span class="loyalty-ops__tab-line" aria-hidden="true"></span>
+  <main class="care-page" aria-label="Уход за экипировкой">
+    <div class="delivery-page__top">
+      <div class="delivery-page__top-content">
+        <nav class="delivery-page__breadcrumb" aria-label="Хлебные крошки">
+          <a href="/fintrail/">Главная</a>
+          <span class="delivery-page__breadcrumb-separator" aria-hidden="true"></span>
+          <span aria-current="page">Уход за экипировкой</span>
+        </nav>
+        <div class="delivery-page__heading-row">
+          <h1 class="delivery-page__title">Уход за экипировкой</h1>
+          <button class="delivery-page__share" type="button" aria-label="Поделиться страницей">
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-share"></use></svg>
+            <span>Поделиться</span>
           </button>
         </div>
+      </div>
+    </div>
 
-        <!--
-          BITRIX: список операций лояльности — bitrix:sale.personal.bonus.history
-          Каждый <article class="loyalty-ops__item"> — одна операция из истории.
-          Поля внутри каждого элемента:
-            datetime и текст даты — <?= $OPERATION_DATE ?>
-            loyalty-ops__name — название операции (<?= $OPERATION_NAME ?>)
-            loyalty-ops__type — тип (Начисление / Списание) (<?= $OPERATION_TYPE ?>)
-            loyalty-ops__amount — сумма баллов со знаком (<?= $OPERATION_AMOUNT ?>)
-            is-positive / is-negative — CSS-класс определяется типом операции
-        -->
-        <div class="loyalty-ops__list">
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-04-11">11.04.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">День рождения</span>
-                <span class="loyalty-ops__type">Начисление</span>
-              </div>
+    <div class="care-page__filters" role="tablist" aria-label="Фильтр материалов ухода">
+      <button class="care-page__filter is-active" type="button" role="tab" aria-selected="true">Все</button>
+      <button class="care-page__filter" type="button" role="tab" aria-selected="false">Фурнитура</button>
+      <button class="care-page__filter" type="button" role="tab" aria-selected="false">Ткань</button>
+      <button class="care-page__filter" type="button" role="tab" aria-selected="false">Покрытие</button>
+      <button class="care-page__filter" type="button" role="tab" aria-selected="false">Подошва</button>
+    </div>
+    <div class="care-page__content">
+      <section class="care-page__section" aria-labelledby="care-clean-title">
+        <header class="care-page__section-head">
+          <h2 class="care-page__section-title" id="care-clean-title">Как очистить экипировку от грязи?</h2>
+        </header>
+        <div class="care-page__cards care-page__cards--cleaning">
+          <article class="care-page__card care-page__card--narrow">
+            <figure class="care-page__figure">
+              <img class="care-page__image" src="/fintrail/assets/cleaning-C75sTEfx.png" srcset="/fintrail/assets/cleaning-C75sTEfx.png 343w" sizes="(min-width: 1280px) 343px, 100vw" alt="Очистка экипировки от грязи" width="343" height="300">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Чистка</h3>
+              <ul class="care-page__list">
+                <li>Для удаления незначительных загрязнений достаточно использовать обычное мыло и&nbsp;щётку.</li>
+              </ul>
+              <a class="care-page__button" href="/fintrail/journal/">Подробнее в статье</a>
             </div>
-            <strong class="loyalty-ops__amount is-positive">
-              + 1&nbsp;000
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
           </article>
 
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-04-09">09.04.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Покупка</span>
-                <span class="loyalty-ops__type">Списание</span>
-              </div>
+          <article class="care-page__card care-page__card--wide">
+            <figure class="care-page__figure care-page__figure--washing">
+              <img class="care-page__image" src="/fintrail/assets/washing-Bp5cD7_C.png" srcset="/fintrail/assets/washing-Bp5cD7_C.png 694w" sizes="(min-width: 1280px) 694px, 100vw" alt="Стирка экипировки FINNTRAIL" width="694" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Стирка</h3>
+              <ul class="care-page__list care-page__list--wide">
+                <li>Возможна «Ручная стирка» или «Деликатная стирка» в&nbsp;стиральной машине при температуре 30&nbsp;°C.</li>
+                <li>Для увеличения срока службы старайтесь стирать вейдерсы как можно реже.</li>
+                <li>Старайтесь использовать только специальные моющие средства для мембранных тканей от&nbsp;компаний MCNett, Nikwax или Ласка Active &amp; Fresh. Нельзя использовать стиральные порошки, кондиционеры и&nbsp;отбеливатели.</li>
+              </ul>
+              <a class="care-page__button" href="/fintrail/journal/">Подробнее в статье</a>
             </div>
-            <strong class="loyalty-ops__amount is-negative">
-              &minus;&nbsp;1&nbsp;500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
           </article>
 
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-03-22">22.03.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Отзыв с фото</span>
-                <span class="loyalty-ops__type">Начисление</span>
-              </div>
+          <article class="care-page__card care-page__card--narrow">
+            <figure class="care-page__figure care-page__figure--drying">
+              <img class="care-page__image" src="/fintrail/assets/drying-QgjHp9De.png" srcset="/fintrail/assets/drying-QgjHp9De.png 342w" sizes="(min-width: 1280px) 342px, 100vw" alt="Сушка вейдерсов на вешалке" width="342" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Сушка</h3>
+              <ul class="care-page__list">
+                <li>Сушить естественным образом без принудительного нагрева, при комнатной температуре.</li>
+                <li>Никогда не&nbsp;располагайте экипировку рядом с&nbsp;источниками тепла (костёр, камин, печка, обогреватель).</li>
+              </ul>
+              <a class="care-page__button" href="/fintrail/journal/">Подробнее в статье</a>
             </div>
-            <strong class="loyalty-ops__amount is-positive">
-              + 500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-03-15">15.03.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Покупка</span>
-                <span class="loyalty-ops__type">Списание</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-negative">
-              &minus;&nbsp;1&nbsp;500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-03-10">10.03.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Отзыв с фото</span>
-                <span class="loyalty-ops__type">Начисление</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-positive">
-              + 500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-02-28">28.02.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Покупка</span>
-                <span class="loyalty-ops__type">Списание</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-negative">
-              &minus;&nbsp;1&nbsp;500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-02-14">14.02.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Покупка</span>
-                <span class="loyalty-ops__type">Списание</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-negative">
-              &minus;&nbsp;200
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-02-05">05.02.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Отзыв с фото</span>
-                <span class="loyalty-ops__type">Начисление</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-positive">
-              + 500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-01-20">20.01.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Первая регистрация</span>
-                <span class="loyalty-ops__type">Начисление</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-positive">
-              + 2&nbsp;000
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-01-15">15.01.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Отзыв с фото</span>
-                <span class="loyalty-ops__type">Начисление</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-positive">
-              + 500
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2026-01-08">08.01.2026</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Покупка</span>
-                <span class="loyalty-ops__type">Списание</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-negative">
-              &minus;&nbsp;200
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
-          </article>
-
-          <article class="loyalty-ops__item">
-            <div class="loyalty-ops__info">
-              <time class="loyalty-ops__date" datetime="2025-12-30">30.12.2025</time>
-              <div class="loyalty-ops__texts">
-                <span class="loyalty-ops__name">Покупка</span>
-                <span class="loyalty-ops__type">Списание</span>
-              </div>
-            </div>
-            <strong class="loyalty-ops__amount is-negative">
-              &minus;&nbsp;200
-              <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-loyalty-cashback"></use></svg>
-            </strong>
           </article>
         </div>
+      </section>
 
-        <!-- BITRIX: кнопка подгрузки следующей страницы операций (пагинация) — скрывается если операций больше нет -->
-        <div class="loyalty-ops__more-wrap">
-          <button class="loyalty-ops__more" type="button">
-            <span class="roll-hover-text" data-hover-text="Показать ещё">Показать ещё</span>
-            <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
-          </button>
+      <section class="care-page__section" aria-labelledby="care-leak-title">
+        <header class="care-page__section-head care-page__section-head--with-text">
+          <h2 class="care-page__section-title" id="care-leak-title">Как найти место протечки?</h2>
+          <p class="care-page__intro">В&nbsp;случае если первые два метода не&nbsp;дали результата, переходите к&nbsp;следующему, наиболее эффективному.</p>
+        </header>
+        <div class="care-page__cards care-page__cards--leak">
+          <article class="care-page__card care-page__card--narrow">
+            <figure class="care-page__figure">
+              <img class="care-page__image" src="/fintrail/assets/leak-method-3-pbVUAyTZ.png" srcset="/fintrail/assets/leak-method-3-pbVUAyTZ.png 343w" sizes="(min-width: 1280px) 343px, 100vw" alt="Вейдерсы закреплены для проверки протечки водой" width="343" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Метод 1</h3>
+              <ul class="care-page__list">
+                <li>Перед поиском места повреждения просушите и&nbsp;выверните вейдерсы наизнанку.</li>
+                <li>Осмотрите предполагаемое место против света, немного растягивая ткань.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="care-page__card care-page__card--narrow">
+            <figure class="care-page__figure">
+              <img class="care-page__image" src="/fintrail/assets/leak-method-2-DCegR-E5.png" srcset="/fintrail/assets/leak-method-2-DCegR-E5.png 343w" sizes="(min-width: 1280px) 343px, 100vw" alt="Пятно на месте повреждения ткани" width="343" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Метод 2</h3>
+              <ul class="care-page__list">
+                <li>На&nbsp;месте повреждения появится пятно, отметьте его маркером.</li>
+                <li>Протрите спиртом предполагаемое место протечки.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="care-page__card care-page__card--wide">
+            <figure class="care-page__figure">
+              <img class="care-page__image" src="/fintrail/assets/leak-method-1-BP_yqtge.png" srcset="/fintrail/assets/leak-method-1-BP_yqtge.png 694w" sizes="(min-width: 1280px) 694px, 100vw" alt="Поиск протечки методом осмотра" width="694" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Метод 3</h3>
+              <ul class="care-page__list care-page__list--wide">
+                <li>Прочно закрепите вейдерсы, желательно под небольшим наклоном (15°).</li>
+                <li>С&nbsp;помощью шланга заполните вейдерсы водой до&nbsp;места предполагаемой протечки (Обратите внимание, вес вейдерсов наполненных водой может достигать 30-40 килограмм)</li>
+                <li>Под высоким давлением появится интенсивное выделение капель воды&nbsp;— это и&nbsp;есть место протечки. Отметьте его маркером.</li>
+                <li>Слейте воду, хорошо высушите вейдерсы и&nbsp;приступайте к&nbsp;ремонту.</li>
+              </ul>
+            </div>
+          </article>
         </div>
+      </section>
 
-      </div>
-    </section>
+      <section class="care-page__section" aria-labelledby="care-repair-title">
+        <header class="care-page__section-head care-page__section-head--with-text">
+          <h2 class="care-page__section-title" id="care-repair-title">Как ремонтировать вейдерсы?</h2>
+          <p class="care-page__intro">Идеальным средством для ремонта вейдерсов и экипировки из мембранных тканей являются клеи Aquaseal или Aquasure от компании McNett</p>
+        </header>
+        <div class="care-page__cards care-page__cards--repair">
+          <article class="care-page__card care-page__card--half">
+            <figure class="care-page__figure care-page__figure--repair-first">
+              <img class="care-page__image" src="/fintrail/assets/repair-step-1-APgT8Ma3.png" srcset="/fintrail/assets/repair-step-1-APgT8Ma3.png 695w" sizes="(min-width: 1280px) 695px, 100vw" alt="Осмотр мембранной ткани перед ремонтом" width="695" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Шаг 1</h3>
+              <ul class="care-page__list care-page__list--wide">
+                <li>Для удаления незначительных загрязнений достаточно использовать обычное мыло и&nbsp;щётку.</li>
+              </ul>
+              <a class="care-page__button" href="/fintrail/journal/">Подробнее в статье</a>
+            </div>
+          </article>
 
-    <section class="community-showcase" aria-labelledby="loyalty-ops-community-title">
-      <div class="community-showcase__intro">
-        <h2 class="community-showcase__title" id="loyalty-ops-community-title">Присоединяйся<br>к коммьюнити</h2>
-        <p class="community-showcase__description">Крупнейшие тематические сообщества любителей активного отдыха</p>
-      </div>
-
-      <div class="community-showcase__cards">
-        <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--offroad" src="/fintrail/images/content/community-showcase/offroad.png" srcset="/fintrail/images/content/_responsive/community-showcase/offroad-160.png 160w, /fintrail/images/content/_responsive/community-showcase/offroad-320.png 320w, /fintrail/images/content/_responsive/community-showcase/offroad-480.png 480w, /fintrail/images/content/_responsive/community-showcase/offroad-768.png 768w, /fintrail/images/content/community-showcase/offroad.png 848w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Бездорожье FINNTRAIL" loading="lazy">
-          <h3 class="community-showcase__name">Бездорожье</h3>
-          <div class="community-showcase__stats">
-            <span class="community-showcase__number">~ 550 000</span>
-            <span class="community-showcase__caption">Подписчиков</span>
-          </div>
-          <div class="community-showcase__socials">
-            <a class="community-showcase__social" href="https://vk.com/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье во ВКонтакте"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-vk"></use></svg></a>
-            <a class="community-showcase__social" href="https://t.me/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Telegram"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tg"></use></svg></a>
-            <a class="community-showcase__social" href="https://dzen.ru/finntrail" target="_blank" rel="noopener" aria-label="Бездорожье в Дзене"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-dzen"></use></svg></a>
-            <a class="community-showcase__social" href="https://youtube.com/@finntrail" target="_blank" rel="noopener" aria-label="Бездорожье на YouTube"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-yt"></use></svg></a>
-          </div>
-        </article>
-
-        <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--tourism" src="/fintrail/images/content/community-showcase/tourism.png" srcset="/fintrail/images/content/_responsive/community-showcase/tourism-160.png 160w, /fintrail/images/content/_responsive/community-showcase/tourism-320.png 320w, /fintrail/images/content/_responsive/community-showcase/tourism-480.png 480w, /fintrail/images/content/_responsive/community-showcase/tourism-768.png 768w, /fintrail/images/content/_responsive/community-showcase/tourism-1024.png 1024w, /fintrail/images/content/community-showcase/tourism.png 1094w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Туризм FINNTRAIL" loading="lazy">
-          <h3 class="community-showcase__name">Туризм</h3>
-          <div class="community-showcase__stats">
-            <span class="community-showcase__number">~ 1 340 000</span>
-            <span class="community-showcase__caption">Подписчиков</span>
-          </div>
-          <div class="community-showcase__socials">
-            <a class="community-showcase__social" href="https://vk.com/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм во ВКонтакте"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-vk"></use></svg></a>
-            <a class="community-showcase__social" href="https://t.me/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Telegram"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tg"></use></svg></a>
-            <a class="community-showcase__social" href="https://dzen.ru/finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм в Дзене"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-dzen"></use></svg></a>
-            <a class="community-showcase__social" href="https://youtube.com/@finntrail_tourism" target="_blank" rel="noopener" aria-label="Туризм на YouTube"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-yt"></use></svg></a>
-          </div>
-        </article>
-
-        <article class="community-showcase__card">
-          <img class="community-showcase__image community-showcase__image--fishing" src="/fintrail/images/content/community-showcase/fishing.png" srcset="/fintrail/images/content/_responsive/community-showcase/fishing-160.png 160w, /fintrail/images/content/_responsive/community-showcase/fishing-320.png 320w, /fintrail/images/content/_responsive/community-showcase/fishing-480.png 480w, /fintrail/images/content/_responsive/community-showcase/fishing-768.png 768w, /fintrail/images/content/community-showcase/fishing.png 987w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) 33vw, 25vw" alt="Рыбалка FINNTRAIL" loading="lazy">
-          <h3 class="community-showcase__name">Рыбалка</h3>
-          <div class="community-showcase__stats">
-            <span class="community-showcase__number">~ 2 700 000</span>
-            <span class="community-showcase__caption">Подписчиков</span>
-          </div>
-          <div class="community-showcase__socials">
-            <a class="community-showcase__social" href="https://vk.com/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка во ВКонтакте"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-vk"></use></svg></a>
-            <a class="community-showcase__social" href="https://t.me/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Telegram"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tg"></use></svg></a>
-            <a class="community-showcase__social" href="https://dzen.ru/finntrail_fishing" target="_blank" rel="noopener" aria-label="Рыбалка в Дзене"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-dzen"></use></svg></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
+          <article class="care-page__card care-page__card--half">
+            <figure class="care-page__figure">
+              <img class="care-page__image" src="/fintrail/assets/repair-method-2-BYBv7e1T.png" srcset="/fintrail/assets/repair-method-2-BYBv7e1T.png 695w" sizes="(min-width: 1280px) 695px, 100vw" alt="Нанесение клея на поврежденный участок вейдерсов" width="695" height="300" loading="lazy">
+            </figure>
+            <div class="care-page__card-body">
+              <h3 class="care-page__card-title">Метод 2</h3>
+              <div class="care-page__repair-copy">
+                <p>Если прокол или порез небольшой</p>
+                <ul class="care-page__list care-page__list--wide">
+                  <li>Возможна «Ручная стирка» или «Деликатная стирка» в&nbsp;стиральной машине при температуре 30&nbsp;°C.</li>
+                  <li>Для увеличения срока службы старайтесь стирать вейдерсы как можно реже.</li>
+                  <li>Старайтесь использовать только специальные моющие средства для мембранных тканей от&nbsp;компаний MCNett, Nikwax или Ласка Active &amp; Fresh. Нельзя использовать стиральные порошки, кондиционеры и&nbsp;отбеливатели.</li>
+                </ul>
+                <p>Если порез значительный</p>
+                <ul class="care-page__list care-page__list--wide">
+                  <li>Заклейте порез скотчем с&nbsp;лицевой стороны изделия, чтобы зафиксировать порез.</li>
+                  <li>Тонким слоем нанесите клей на&nbsp;поврежденный участок. Заход клея за&nbsp;порез должен быть больше размера заплатки на&nbsp;1&nbsp;см.</li>
+                  <li>Нанесите клей на&nbsp;заплатку.</li>
+                  <li>Наложите заплатку на&nbsp;место повреждения. Обычно время высыхания клея Aquaseal или Aquasure составляет от&nbsp;6 до&nbsp;12 часов. Время высыхания клея может меняться зависимости от&nbsp;влажности</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
   </main>
-
   <footer class="footer-desktop product-footer" aria-label="Футер">
     <div class="footer-desktop__top">
       <nav class="footer-desktop__nav" aria-label="Навигация в футере">
@@ -736,7 +581,7 @@
           <h2 class="footer-desktop__heading">Об экипировке</h2>
           <ul class="footer-desktop__links">
             <li><a class="footer-desktop__link" href="/fintrail/size-guide/">Таблица размеров</a></li>
-            <li><a class="footer-desktop__link" href="/fintrail/technologies/">Технологии</a></li>
+            <li><a class="footer-desktop__link" href="/fintrail/technologies/" aria-current="page">Технологии</a></li>
             <li><a class="footer-desktop__link" href="/fintrail/faq/">Вопросы и ответы</a></li>
             <li><a class="footer-desktop__link" href="/fintrail/care/">Уход и ремонт</a></li>
             <li><a class="footer-desktop__link" href="/fintrail/articles/">Блог</a></li>
@@ -747,10 +592,33 @@
           <div class="footer-desktop__app-panel">
             <img class="footer-desktop__qr" src="/fintrail/images/content/footer/qr.svg" alt="QR-код для скачивания приложения FINNTRAIL" loading="lazy">
             <ul class="footer-desktop__app-links">
-              <li><a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/fintrail/app/"><span class="footer-desktop__app-icon" aria-hidden="true"><svg class="footer-desktop__app-icon-default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg><svg class="footer-desktop__app-icon-hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg></span><span>Google Play</span></a></li>
-              <li><a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/fintrail/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg><span>App Store</span></a></li>
-              <li><a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/fintrail/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg><span>AppGallery</span></a></li>
-              <li><a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/fintrail/app/"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg><span>RuStore</span></a></li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--google-play" href="/fintrail/app/">
+                  <span class="footer-desktop__app-icon" aria-hidden="true">
+                    <svg class="footer-desktop__app-icon-default"><use href="/fintrail/images/icons/sprite.svg#icon-google-play"></use></svg>
+                    <svg class="footer-desktop__app-icon-hover"><use href="/fintrail/images/icons/sprite.svg#icon-google-play-color"></use></svg>
+                  </span>
+                  <span>Google Play</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--app-store" href="/fintrail/app/">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-app-store"></use></svg>
+                  <span>App Store</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--appgallery" href="/fintrail/app/">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-appgallery"></use></svg>
+                  <span>AppGallery</span>
+                </a>
+              </li>
+              <li>
+                <a class="footer-desktop__app-link footer-desktop__app-link--rustore" href="/fintrail/app/">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rustore"></use></svg>
+                  <span>RuStore</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -762,17 +630,18 @@
       <a class="footer-desktop__legal-link" href="/fintrail/offer/">Публичная оферта</a>
       <a class="footer-desktop__legal-link" href="/fintrail/personal-data/">Согласие на обработку персональных данных</a>
     </div>
-    <a class="footer-desktop__wordmark" href="/fintrail/" aria-label="FINNTRAIL"><img src="/fintrail/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy"></a>
+    <a class="footer-desktop__wordmark" href="/fintrail/" aria-label="FINNTRAIL">
+      <img src="/fintrail/images/content/footer-wordmark.svg" alt="FINNTRAIL" loading="lazy">
+    </a>
   </footer>
 
   <nav class="tabbar" aria-label="Мобильная навигация">
     <a href="/fintrail/catalog/" class="tabbar__item" aria-label="Каталог" aria-haspopup="dialog" aria-controls="mobile-menu" data-mobile-catalog-open><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-menu"></use></svg></span></a>
-    <a href="/fintrail/personal/" class="tabbar__item is-active" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
+    <a href="/fintrail/personal/" class="tabbar__item" aria-label="Профиль"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-user"></use></svg></span></a>
     <a href="/fintrail/" class="tabbar__item tabbar__item--brand" aria-label="Главная"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-home"></use></svg></span></a>
     <a href="/fintrail/wishlist/" class="tabbar__item" aria-label="Избранное"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-tab-bookmark"></use></svg></span></a>
-    <a href="/fintrail/cart/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
+    <a href="/fintrail/basket/" class="tabbar__item" aria-label="Корзина"><span class="tabbar__icon"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg></span></a>
   </nav>
 
 </body>
 </html>
-
