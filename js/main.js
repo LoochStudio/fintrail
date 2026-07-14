@@ -28,6 +28,7 @@ import { init as initSizeGuide } from './modules/size-guide.js';
 import { init as initDeliveryPage } from './modules/delivery-page.js';
 import { init as initFaq } from './modules/faq.js';
 import { init as initTechnologies } from './modules/technologies.js';
+import { init as initWhereBuy } from './modules/where-buy.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDeliveryPage();
   initFaq();
   initTechnologies();
+  initWhereBuy();
 });
 
 

@@ -60,6 +60,8 @@ export default defineConfig({
         care: resolve(__dirname, 'care/index.html'),
         
         warranty: resolve(__dirname, 'warranty/index.html'),
+        whereBuy: resolve(__dirname, 'where-buy/index.html'),
+        contacts: resolve(__dirname, 'contacts/index.html'),
       },
     },
   },
