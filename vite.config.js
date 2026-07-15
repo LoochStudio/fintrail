@@ -62,6 +62,7 @@ export default defineConfig({
         warranty: resolve(__dirname, 'warranty/index.html'),
         whereBuy: resolve(__dirname, 'where-buy/index.html'),
         contacts: resolve(__dirname, 'contacts/index.html'),
+        loyaltyProgram: resolve(__dirname, 'loyalty-program/index.html'),
       },
     },
   },
@@ -70,6 +71,4 @@ export default defineConfig({
     port: 5173,
   }
 })
-
-
 
