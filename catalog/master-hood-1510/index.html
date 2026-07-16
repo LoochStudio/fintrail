@@ -950,10 +950,15 @@
 
           <!-- BITRIX: product-oos-form — уведомление о поступлении, AJAX-обработчик на стороне Bitrix -->
           <form class="product-oos-form" novalidate>
-            <p class="product-oos-form__label">Узнать о поступлении</p>
-            <input class="product-oos-form__input" type="email" placeholder="Электронная почта" autocomplete="email" required>
-            <button class="product-oos-form__button" type="submit">Связаться</button>
+            <div class="product-oos-form__fields">
+              <p class="product-oos-form__label">Узнать о поступлении</p>
+              <input class="product-oos-form__input" type="email" placeholder="Электронная почта" autocomplete="email" required>
+            </div>
+            <button class="product-oos-form__button" type="button" data-product-preorder-open>Предзаказ</button>
           </form>
+
+          <!-- BITRIX: product-discontinued — товар снят с производства, нет формы заявки -->
+          <div class="product-discontinued">Модель снята с производства</div>
 
           <!-- BITRIX: product-buy — кнопка «Добавить в корзину» → bitrix:sale.basket.basket, цена из CATALOG_PRICE_1 -->
           <div class="product-buy">
@@ -2622,6 +2627,63 @@
       </aside>
     </div>
 
+
+    <div class="product-preorder-modal" id="product-preorder" hidden data-product-preorder-modal>
+      <div class="product-preorder-modal__backdrop" data-product-preorder-close></div>
+      <aside class="product-preorder-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-preorder-title">
+        <div class="product-preorder-modal__screen product-preorder-modal__screen--form" data-product-preorder-form-screen>
+          <div class="product-preorder-modal__top">
+            <header class="product-preorder-modal__header">
+              <h2 class="product-preorder-modal__title" id="product-preorder-title">Предзаказ</h2>
+              <button class="product-preorder-modal__close" type="button" aria-label="Закрыть предзаказ" data-product-preorder-close>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="product-preorder-modal__lead">Оставьте контакты, чтобы забронировать товар. Платить прямо сейчас не нужно</p>
+          </div>
+
+          <form class="product-preorder-modal__form" novalidate data-product-preorder-form>
+            <div class="product-preorder-modal__fields product-preorder-modal__fields--names">
+              <label class="product-preorder-modal__field">
+                <span class="visually-hidden">Имя</span>
+                <input class="product-preorder-modal__input" type="text" placeholder="Имя" autocomplete="given-name">
+              </label>
+              <label class="product-preorder-modal__field">
+                <span class="visually-hidden">Фамилия</span>
+                <input class="product-preorder-modal__input" type="text" placeholder="Фамилия" autocomplete="family-name">
+              </label>
+            </div>
+
+            <div class="product-preorder-modal__fields product-preorder-modal__fields--contacts">
+              <div class="product-preorder-modal__phone-row">
+                <button class="product-preorder-modal__country" type="button" aria-label="Выбрать страну">
+                  <svg class="product-preorder-modal__flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="product-preorder-modal__country-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+                </button>
+                <label class="product-preorder-modal__field product-preorder-modal__field--phone">
+                  <span class="visually-hidden">Телефон</span>
+                  <input class="product-preorder-modal__input js-phone-input" type="tel" placeholder="+7" inputmode="tel" autocomplete="tel">
+                </label>
+              </div>
+              <label class="product-preorder-modal__field">
+                <span class="visually-hidden">Электронная почта</span>
+                <input class="product-preorder-modal__input" type="email" placeholder="Электронная почта" autocomplete="email">
+              </label>
+            </div>
+          </form>
+
+          <button class="product-preorder-modal__submit" type="button" data-product-preorder-submit>Подтвердить</button>
+        </div>
+
+        <div class="product-preorder-modal__screen product-preorder-modal__screen--success" hidden data-product-preorder-success-screen>
+          <div class="product-preorder-modal__success-content">
+            <h2 class="product-preorder-modal__success-title">Заявка принята</h2>
+            <p class="product-preorder-modal__success-text">Наш менеджер свяжется с вами в ближайшее время, чтобы ответить на вопросы и оформить заказ</p>
+          </div>
+          <button class="product-preorder-modal__success-button" type="button" data-product-preorder-continue>Продолжить покупки</button>
+        </div>
+      </aside>
+    </div>
     <div class="product-upload-modal" id="product-upload" hidden data-product-upload-modal>
       <div class="product-upload-modal__backdrop" data-product-upload-close></div>
       <aside class="product-upload-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-upload-title">

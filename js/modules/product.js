@@ -95,6 +95,65 @@ export function init() {
     });
   });
 
+
+  // Product page — preorder modal
+  document.querySelectorAll('[data-product-preorder-modal]').forEach(modal => {
+    const openButtons = document.querySelectorAll('[data-product-preorder-open]');
+    const closeButtons = modal.querySelectorAll('[data-product-preorder-close]');
+    const closeButton = modal.querySelector('.product-preorder-modal__close');
+    const form = modal.querySelector('[data-product-preorder-form]');
+    const formScreen = modal.querySelector('[data-product-preorder-form-screen]');
+    const successScreen = modal.querySelector('[data-product-preorder-success-screen]');
+    const submitButton = modal.querySelector('[data-product-preorder-submit]');
+    const continueButton = modal.querySelector('[data-product-preorder-continue]');
+    let closeTimer = 0;
+
+    function resetModal() {
+      modal.classList.remove('is-success');
+      form?.reset();
+      if (formScreen) formScreen.hidden = false;
+      if (successScreen) successScreen.hidden = true;
+    }
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      resetModal();
+      modal.hidden = false;
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus({ preventScroll: true });
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+        resetModal();
+      }, 200);
+    }
+
+    function showSuccess(event) {
+      event?.preventDefault();
+      modal.classList.add('is-success');
+      if (formScreen) formScreen.hidden = true;
+      if (successScreen) successScreen.hidden = false;
+      continueButton?.focus({ preventScroll: true });
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', closeModal));
+    submitButton?.addEventListener('click', showSuccess);
+    form?.addEventListener('submit', showSuccess);
+    continueButton?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  });
   // Product page — color picker
   document.querySelectorAll('.product-option--color-picker').forEach(option => {
     const trigger   = option.querySelector('.js-color-trigger');

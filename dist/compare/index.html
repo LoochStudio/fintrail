@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Сравнение</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CU7JNROY.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-Bvm8byhp.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-DLaKIZAE.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-2yBAqfHQ.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -386,7 +386,7 @@
           <div class="compare-page__title-row">
             <h1 class="compare-page__title">Сравнение</h1>
             <!-- BITRIX: <?= count($arResult["ITEMS"]) ?> -->
-            <span class="compare-page__title-count">6</span>
+            <span class="compare-page__title-count">22</span>
           </div>
         </div>
 
@@ -404,6 +404,56 @@
           </a>
         </div>
 
+      </div>
+
+      <!-- ── Чипы категорий — сразу под заголовком ─────────────────────── -->
+      <!-- BITRIX: foreach $arResult["CATEGORIES"] as $arCategory -->
+      <div class="compare-page__chips" role="group" aria-label="Фильтр по категориям">
+        <div class="compare-page__chip" data-compare-chip>
+          <button class="compare-page__chip-body" type="button">
+            <span class="compare-page__chip-label">Все товары</span>
+            <span class="compare-page__chip-count">22</span>
+          </button>
+          <button class="compare-page__chip-close" type="button" aria-label="Убрать фильтр">
+            <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          </button>
+        </div>
+        <div class="compare-page__chip compare-page__chip--active" data-compare-chip>
+          <button class="compare-page__chip-body" type="button">
+            <span class="compare-page__chip-label">Куртки</span>
+            <span class="compare-page__chip-count">6</span>
+          </button>
+          <button class="compare-page__chip-close" type="button" aria-label="Убрать фильтр">
+            <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          </button>
+        </div>
+        <div class="compare-page__chip" data-compare-chip>
+          <button class="compare-page__chip-body" type="button">
+            <span class="compare-page__chip-label">Брюки</span>
+            <span class="compare-page__chip-count">4</span>
+          </button>
+          <button class="compare-page__chip-close" type="button" aria-label="Убрать фильтр">
+            <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          </button>
+        </div>
+        <div class="compare-page__chip" data-compare-chip>
+          <button class="compare-page__chip-body" type="button">
+            <span class="compare-page__chip-label">Толстовки</span>
+            <span class="compare-page__chip-count">10</span>
+          </button>
+          <button class="compare-page__chip-close" type="button" aria-label="Убрать фильтр">
+            <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          </button>
+        </div>
+        <div class="compare-page__chip" data-compare-chip>
+          <button class="compare-page__chip-body" type="button">
+            <span class="compare-page__chip-label">Сапоги</span>
+            <span class="compare-page__chip-count">2</span>
+          </button>
+          <button class="compare-page__chip-close" type="button" aria-label="Убрать фильтр">
+            <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+          </button>
+        </div>
       </div>
 
       <!-- ── Секция 2: слайдер карточек ──────────────────────────────── -->
@@ -430,7 +480,7 @@
                   <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить">
                     <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></button>
                   <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное">
-                    <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                    <svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--default" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--compact" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare-bookmark-16"></use></svg></button>
                 </span>
               </div>
               <div class="recommendation-card__info">
@@ -468,7 +518,7 @@
                 </a>
                 <span class="recommendation-card__actions">
                   <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></button>
-                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--default" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--compact" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare-bookmark-16"></use></svg></button>
                 </span>
               </div>
               <div class="recommendation-card__info">
@@ -504,7 +554,7 @@
                 </a>
                 <span class="recommendation-card__actions">
                   <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></button>
-                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--default" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--compact" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare-bookmark-16"></use></svg></button>
                 </span>
               </div>
               <div class="recommendation-card__info">
@@ -540,7 +590,7 @@
                 </a>
                 <span class="recommendation-card__actions">
                   <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></button>
-                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--default" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--compact" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare-bookmark-16"></use></svg></button>
                 </span>
               </div>
               <div class="recommendation-card__info">
@@ -577,7 +627,7 @@
                 </a>
                 <span class="recommendation-card__actions">
                   <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></button>
-                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--default" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--compact" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare-bookmark-16"></use></svg></button>
                 </span>
               </div>
               <div class="recommendation-card__info">
@@ -614,7 +664,7 @@
                 </a>
                 <span class="recommendation-card__actions">
                   <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg></button>
-                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+                  <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--default" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-bookmark"></use></svg><svg class="recommendation-card__wishlist-icon recommendation-card__wishlist-icon--compact" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare-bookmark-16"></use></svg></button>
                 </span>
               </div>
               <div class="recommendation-card__info">
@@ -654,7 +704,7 @@
         </div>
 
       </div><!-- /compare-products -->
-      <!-- ── Секция 3: данные сравнения ─────────────────────────────── -->
+      <!-- ── Секция 4: данные сравнения ─────────────────────────────── -->
       <!--
         Figma node 5021:127069 — Comparison data.
         BITRIX: свойства товаров из bitrix:catalog.compare, порядок колонок должен совпадать с карточками выше.
@@ -809,4 +859,6 @@
 
 </body>
 </html>
+
+
 

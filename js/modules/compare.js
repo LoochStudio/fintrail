@@ -1,5 +1,6 @@
 export function init() {
   initCompareSlider();
+  initCompareChips();
 }
 
 function initCompareSlider() {
@@ -189,3 +190,30 @@ function initCompareSlider() {
   updateCompactState();
   updateSlider();
 }
+
+function initCompareChips() {
+  const container = document.querySelector('.compare-page__chips');
+  if (!container) return;
+
+  const ACTIVE = 'compare-page__chip--active';
+
+  container.addEventListener('click', e => {
+    const chip = e.target.closest('[data-compare-chip]');
+    if (!chip) return;
+
+    if (e.target.closest('.compare-page__chip-close')) {
+      const wasActive = chip.classList.contains(ACTIVE);
+      chip.remove();
+      if (wasActive) {
+        const first = container.querySelector('[data-compare-chip]');
+        if (first) first.classList.add(ACTIVE);
+      }
+      return;
+    }
+
+    Array.from(container.querySelectorAll('[data-compare-chip]'))
+      .forEach(c => c.classList.remove(ACTIVE));
+    chip.classList.add(ACTIVE);
+  });
+}
+
