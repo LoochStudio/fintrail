@@ -2391,7 +2391,7 @@
   }
 
   .product-detail__image {
-    height: 560px;
+    height: 640px;
   }
 }
 
@@ -2939,7 +2939,7 @@
   }
 
   .product-detail__media-inner {
-    height: 560px;
+    height: 640px;
     flex-shrink: 0;
   }
 
@@ -2947,7 +2947,7 @@
   // Full-width cut off the person bottom — portrait crop matches mobile/desktop
   .product-detail__image {
     width: 375px;
-    height: 560px;
+    height: 640px;
     margin: 0 auto;
     object-position: center center;
   }
@@ -6595,6 +6595,7 @@
   // Враппер → горизонтальный скролл
   .product-highlight-row {
     display: flex;
+    align-items: stretch;
     gap: 1px;                   // Figma: gap-[px] (1px между карточками)
     overflow-x: auto;
     overflow-y: hidden;
@@ -6604,12 +6605,17 @@
 
     &::-webkit-scrollbar { display: none; }
   }
+  .product-highlight-row .product-highlight:last-child {
+    margin-bottom: 0;
+  }
+
+
 
   // Карточка: 300px, вертикальная, убираем desktop full-bleed margin и padding
   .product-highlight {
     flex: 0 0 300px;            // Figma: w-[300px]
     flex-direction: column;     // фото сверху, контент снизу
-    height: auto;
+    height: 640px;
     margin: 0;                  // сбрасываем desktop margin: 0 -20px
     scroll-snap-align: start;
   }
@@ -6630,7 +6636,8 @@
 
   // Контент: белый фон, padding 40px, flex-col центрированный
   .product-highlight__content {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
+    min-height: 0;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -7255,3 +7262,9 @@
     margin-top: 0;
   }
 }
+
+
+
+
+
+

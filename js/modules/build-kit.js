@@ -207,6 +207,8 @@ export function init() {
     const dotsContainer = section.querySelector('.build-kit-desktop__dots');
     const btnPrev = section.querySelector('.js-slider-prev');
     const btnNext = section.querySelector('.js-slider-next');
+    const loadError = section.querySelector('[data-kit-load-error]');
+    const retryButton = section.querySelector('[data-kit-retry]');
     const kitList = section.querySelector('.build-kit-desktop__kit-list');
     const kitCount = section.querySelector('.build-kit-desktop__kit-count');
     const totalPrice = section.querySelector('.build-kit-desktop__total-price');
@@ -244,6 +246,12 @@ export function init() {
         dotsContainer.appendChild(dot);
       }
       dots = Array.from(dotsContainer.querySelectorAll('.build-kit-desktop__dot'));
+    }
+
+    function setLoadErrorState(isError) {
+      section.classList.toggle('is-load-error', isError);
+      loadError?.toggleAttribute('hidden', !isError);
+      loadError?.setAttribute('aria-hidden', String(!isError));
     }
 
     function updateControls() {
@@ -752,6 +760,19 @@ export function init() {
       if (bkGrid) bkGrid.style.overflow = '';
     });
 
+    retryButton?.addEventListener('click', () => {
+      const retryEvent = new CustomEvent('build-kit:retry', {
+        bubbles: true,
+        cancelable: true,
+        detail: { section },
+      });
+
+      if (section.dispatchEvent(retryEvent)) {
+        setLoadErrorState(false);
+        syncDesktopCarousel();
+      }
+    });
+
     btnPrev?.addEventListener('click', () => updatePage(page - 1));
     btnNext?.addEventListener('click', () => updatePage(page + 1));
 
@@ -762,6 +783,7 @@ export function init() {
     desktopQuery.addEventListener('change', () => {
       syncDesktopCarousel();
     });
+    setLoadErrorState(section.classList.contains('is-load-error'));
     syncDesktopCarousel();
     updateKitSummary();
     syncProductAddState();

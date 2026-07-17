@@ -79,6 +79,8 @@ export function init() {
     const noResults = modal.querySelector('.cart-pickup-modal__no-results');
     const pointsContainer = modal.querySelector('.cart-pickup-modal__points');
     const detailCloseBtn = modal.querySelector('[data-cart-pickup-detail-close]');
+    const pickupMap = modal.querySelector('.cart-pickup-modal__map');
+    const mapClusters = Array.from(modal.querySelectorAll('.cart-pickup-modal__cluster'));
     const mobileQuery = window.matchMedia('(max-width: 767px)');
     const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1279px)');
     let activePoint = points.find(point => point.classList.contains('is-active')) || points[0] || null;
@@ -93,6 +95,7 @@ export function init() {
 
     function resetToMapView() {
       panel?.classList.remove('is-list-view', 'has-detail');
+      pickupMap?.classList.remove('is-clustered');
       if (listView) listView.hidden = false;
       if (detailView) detailView.hidden = true;
     }
@@ -170,11 +173,28 @@ export function init() {
       if (point) marker.addEventListener('click', () => selectPoint(point));
     });
 
-    // Detail bottom-sheet close: dismiss card, stay on map
-    detailCloseBtn?.addEventListener('click', () => {
-      panel?.classList.remove('has-detail');
-      if (detailView) detailView.hidden = true;
+    function setMapClustered(isClustered) {
+      pickupMap?.classList.toggle('is-clustered', isClustered);
+    }
+
+    pickupMap?.addEventListener('wheel', event => {
+      if (Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
+      setMapClustered(event.deltaY > 0);
+    }, { passive: true });
+
+    mapClusters.forEach(cluster => {
+      cluster.addEventListener('click', () => setMapClustered(false));
     });
+
+    function returnToPickupList() {
+      panel?.classList.remove('has-detail');
+      panel?.classList.add('is-list-view');
+      if (listView) listView.hidden = false;
+      if (detailView) detailView.hidden = true;
+    }
+
+    // Detail close returns to the full pickup list instead of leaving an empty sidebar.
+    detailCloseBtn?.addEventListener('click', returnToPickupList);
 
     searchClearBtn?.addEventListener('click', () => {
       if (searchInput) {

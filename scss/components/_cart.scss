@@ -668,8 +668,6 @@
 }
 
 .cart-summary {
-  position: sticky;
-  top: 100px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -834,7 +832,10 @@
   dd {
     color: #338532;
   }
+}
 
+.cart-total__bonus,
+.cart-total__spend-bonus {
   svg {
     flex-shrink: 0;
     width: 16px;
@@ -856,6 +857,25 @@
   dd {
     color: #338532;
   }
+}
+
+.cart-total__spend-bonus {
+  dt {
+    min-width: 0;
+  }
+
+  dd {
+    color: $color-secondary-accent;
+  }
+}
+
+.cart-total__spend-label {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  color: $color-primary-black;
+  cursor: pointer;
 }
 
 .cart-total__discount-toggle {
@@ -1255,7 +1275,7 @@
   background: $color-white;
   color: $color-primary-black;
   cursor: pointer;
-  transition: background 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
 
   svg {
     width: 24px;
@@ -1518,7 +1538,7 @@
   background: $color-white;
   color: $color-primary-black;
   cursor: pointer;
-  transition: background 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
 
   svg {
     width: 16px;
@@ -1582,19 +1602,29 @@
   justify-content: center;
   border-radius: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 
-  img {
+  img,
+  svg {
     display: block;
     width: 100%;
     height: 100%;
   }
 }
 
-.cart-pickup-modal__marker--cdek {
+.cart-pickup-modal__marker--cdek,
+.cart-pickup-modal__marker--yandex {
   width: 38px;
   height: 38px;
   padding: 7px;
+}
+
+.cart-pickup-modal__marker--cdek {
   background: #00b33c;
+}
+
+.cart-pickup-modal__marker--yandex {
+  background: #fc3f1d;
 }
 
 .cart-pickup-modal__marker--selected {
@@ -1604,6 +1634,16 @@
   height: 56px;
   padding: 12px;
   background: $color-primary-black;
+}
+
+.cart-pickup-modal__marker--yandex-one {
+  left: calc(50% - 35.5px);
+  top: calc(50% - 91px);
+}
+
+.cart-pickup-modal__marker--yandex-two {
+  left: calc(50% + 316.5px);
+  top: calc(50% - 34px);
 }
 
 .cart-pickup-modal__marker--one {
@@ -1639,6 +1679,52 @@
   transform: translate(-50%, -50%) rotate(30deg);
 }
 
+.cart-pickup-modal__cluster {
+  position: absolute;
+  display: none;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #00b33c;
+  color: $color-white;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-black;
+  line-height: 14px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+.cart-pickup-modal__cluster--one {
+  left: calc(50% + 112px);
+  top: calc(50% - 108px);
+}
+
+.cart-pickup-modal__cluster--two {
+  left: calc(50% + 200px);
+  top: calc(50% + 7px);
+}
+
+.cart-pickup-modal__cluster--three {
+  left: calc(50% + 22px);
+  top: calc(50% + 125px);
+}
+
+.cart-pickup-modal__map.is-clustered {
+  .cart-pickup-modal__marker:not(.cart-pickup-modal__marker--selected) {
+    display: none;
+  }
+
+  .cart-pickup-modal__cluster {
+    display: inline-flex;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .cart-page__actions button:hover,
   .cart-page__actions button:focus-visible,
@@ -1668,14 +1754,31 @@
   .cart-login-modal__close:hover,
   .cart-login-modal__close:focus-visible,
   .cart-pickup-modal__close:hover,
-  .cart-pickup-modal__close:focus-visible {
+  .cart-pickup-modal__close:focus-visible,
+  .cart-pickup-modal__detail-close:hover,
+  .cart-pickup-modal__detail-close:focus-visible {
     background: $color-button-secondary-hover;
     color: $color-primary-black;
+  }
+
+  .cart-pickup-modal__close:active,
+  .cart-pickup-modal__detail-close:active {
+    background: $color-gray-pressed;
+    transform: scale(0.96);
   }
 
   .cart-pickup-modal__submit:hover,
   .cart-pickup-modal__submit:focus-visible {
     background: $color-button-primary-hover;
+  }
+
+  .cart-pickup-modal__cluster:hover,
+  .cart-pickup-modal__cluster:focus-visible {
+    background: #009b34;
+  }
+
+  .cart-pickup-modal__cluster:active {
+    transform: translate(-50%, -50%) scale(0.96);
   }
 }
 
@@ -3260,6 +3363,16 @@
     padding: 10px;
   }
 
+  .cart-pickup-modal__marker--yandex-one {
+    left: calc(50% - 40px);
+    top: calc(50% - 95px);
+  }
+
+  .cart-pickup-modal__marker--yandex-two {
+    left: calc(50% + 310px);
+    top: calc(50% - 38px);
+  }
+
   .cart-pickup-modal__marker--one {
     left: calc(50% + 111px);
     top: calc(50% - 114px);
@@ -3288,6 +3401,21 @@
   .cart-pickup-modal__marker--six {
     left: calc(50% - 86.05px);
     top: calc(50% + 134.95px);
+  }
+
+  .cart-pickup-modal__cluster--one {
+    left: calc(50% + 107px);
+    top: calc(50% - 104px);
+  }
+
+  .cart-pickup-modal__cluster--two {
+    left: calc(50% + 194px);
+    top: calc(50% + 11px);
+  }
+
+  .cart-pickup-modal__cluster--three {
+    left: calc(50% + 16px);
+    top: calc(50% + 129px);
   }
 
   .cart-pickup-modal__panel.is-list-view {
@@ -3859,6 +3987,16 @@
     padding: 8px;
   }
 
+  .cart-pickup-modal__marker--yandex-one {
+    left: calc(50% - 58px);
+    top: calc(50% - 141px);
+  }
+
+  .cart-pickup-modal__marker--yandex-two {
+    left: calc(50% + 210px);
+    top: calc(50% - 84px);
+  }
+
   .cart-pickup-modal__marker--one {
     left: calc(50% + 92.5px);
     top: calc(50% - 160px);
@@ -3882,6 +4020,21 @@
   .cart-pickup-modal__marker--five,
   .cart-pickup-modal__marker--six {
     display: none;
+  }
+
+  .cart-pickup-modal__cluster--one {
+    left: calc(50% + 74px);
+    top: calc(50% - 147px);
+  }
+
+  .cart-pickup-modal__cluster--two {
+    left: calc(50% + 154px);
+    top: calc(50% - 32px);
+  }
+
+  .cart-pickup-modal__cluster--three {
+    left: calc(50% - 24px);
+    top: calc(50% + 86px);
   }
 
   // Sidebar: overlaid at bottom of map

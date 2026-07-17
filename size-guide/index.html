@@ -431,96 +431,29 @@
 
     <!-- Main workspace -->
     <div class="size-guide__workspace">
-      <div class="size-guide__measure-tabs" role="tablist" aria-label="Выбор мерки">
-        <button class="size-guide__measure-tab is-active" type="button" role="tab" aria-selected="true" data-sg-measure-tab="height">Рост</button>
-        <button class="size-guide__measure-tab" type="button" role="tab" aria-selected="false" data-sg-measure-tab="arm">Длина руки</button>
-        <button class="size-guide__measure-tab" type="button" role="tab" aria-selected="false" data-sg-measure-tab="chest">Обхват груди</button>
-        <button class="size-guide__measure-tab" type="button" role="tab" aria-selected="false" data-sg-measure-tab="waist">Обхват талии</button>
-        <button class="size-guide__measure-tab" type="button" role="tab" aria-selected="false" data-sg-measure-tab="hips">Обхват бедер</button>
-      </div>
-
-
-      <!-- Left: sliders -->
+      <!-- Left: size inputs -->
       <section class="size-guide__sliders" aria-label="Ваши мерки">
-        <div class="size-guide__slider-item is-measure-active" data-sg-measure="height">
-          <div class="size-guide__slider-header">
-            <span class="size-guide__slider-label" id="sg-label-height">Рост</span>
-            <span class="size-guide__slider-value" data-sg-val="height">179</span>
-          </div>
-          <input class="size-guide__range" type="range"
-            min="120" max="220" value="179"
-            aria-labelledby="sg-label-height"
-            aria-valuetext="179 см"
-            data-sg="height">
-          <div class="size-guide__slider-limits" aria-hidden="true">
-            <span>120 см</span>
-            <span>220 см</span>
+        <div class="size-guide__input-item">
+          <label class="size-guide__input-label" for="sg-height">Рост, см</label>
+          <div class="size-guide__input-wrap" data-size-guide-field>
+            <input class="size-guide__input" id="sg-height" type="text" inputmode="numeric" autocomplete="off" value="179" data-sg="height">
+            <button class="size-guide__input-clear" type="button" aria-label="Очистить рост">
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            </button>
           </div>
         </div>
 
-        <div class="size-guide__slider-item" data-sg-measure="arm">
-          <div class="size-guide__slider-header">
-            <span class="size-guide__slider-label" id="sg-label-arm">Длина руки</span>
-            <span class="size-guide__slider-value" data-sg-val="arm">103</span>
-          </div>
-          <input class="size-guide__range" type="range"
-            min="70" max="200" value="103"
-            aria-labelledby="sg-label-arm"
-            aria-valuetext="103 см"
-            data-sg="arm">
-          <div class="size-guide__slider-limits" aria-hidden="true">
-            <span>70 см</span>
-            <span>200 см</span>
+        <div class="size-guide__input-item">
+          <label class="size-guide__input-label" for="sg-weight">Вес, кг</label>
+          <div class="size-guide__input-wrap" data-size-guide-field>
+            <input class="size-guide__input" id="sg-weight" type="text" inputmode="numeric" autocomplete="off" value="103" data-sg="weight">
+            <button class="size-guide__input-clear" type="button" aria-label="Очистить вес">
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            </button>
           </div>
         </div>
 
-        <div class="size-guide__slider-item" data-sg-measure="chest">
-          <div class="size-guide__slider-header">
-            <span class="size-guide__slider-label" id="sg-label-chest">Обхват груди</span>
-            <span class="size-guide__slider-value" data-sg-val="chest">103</span>
-          </div>
-          <input class="size-guide__range" type="range"
-            min="70" max="200" value="103"
-            aria-labelledby="sg-label-chest"
-            aria-valuetext="103 см"
-            data-sg="chest">
-          <div class="size-guide__slider-limits" aria-hidden="true">
-            <span>70 см</span>
-            <span>200 см</span>
-          </div>
-        </div>
-
-        <div class="size-guide__slider-item" data-sg-measure="waist">
-          <div class="size-guide__slider-header">
-            <span class="size-guide__slider-label" id="sg-label-waist">Обхват талии</span>
-            <span class="size-guide__slider-value" data-sg-val="waist">103</span>
-          </div>
-          <input class="size-guide__range" type="range"
-            min="70" max="200" value="103"
-            aria-labelledby="sg-label-waist"
-            aria-valuetext="103 см"
-            data-sg="waist">
-          <div class="size-guide__slider-limits" aria-hidden="true">
-            <span>70 см</span>
-            <span>200 см</span>
-          </div>
-        </div>
-
-        <div class="size-guide__slider-item" data-sg-measure="hips">
-          <div class="size-guide__slider-header">
-            <span class="size-guide__slider-label" id="sg-label-hips">Обхват бедер</span>
-            <span class="size-guide__slider-value" data-sg-val="hips">103</span>
-          </div>
-          <input class="size-guide__range" type="range"
-            min="70" max="200" value="103"
-            aria-labelledby="sg-label-hips"
-            aria-valuetext="103 см"
-            data-sg="hips">
-          <div class="size-guide__slider-limits" aria-hidden="true">
-            <span>70 см</span>
-            <span>200 см</span>
-          </div>
-        </div>
+        <a class="size-guide__help-link" href="/size-guide/">Не удалось подобрать размер?</a>
       </section>
 
       <!-- Center: statue figure -->
@@ -566,7 +499,7 @@
                   <button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="В корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
                 </span>
               </span>
-              <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
             </a>
 
             <a class="hero-product-card" href="/catalog/finntrail-tactic-4609-khaki/">
@@ -580,7 +513,7 @@
                   <button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="В корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
                 </span>
               </span>
-              <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
             </a>
 
           </div>
