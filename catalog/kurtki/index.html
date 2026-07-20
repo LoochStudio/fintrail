@@ -1145,28 +1145,30 @@
             <fieldset class="catalog-filter-modal__section">
               <legend class="catalog-filter-modal__legend">Для кого</legend>
               <div class="catalog-filter-modal__tags">
-                <label class="catalog-filter-tag"><input type="checkbox" name="gender[]" value="male" checked><span>Для мужчин</span></label>
-                <label class="catalog-filter-tag"><input type="checkbox" name="gender[]" value="female"><span>Для женщин</span></label>
+                <label class="catalog-filter-tag"><input type="radio" name="gender" value="male" checked><span>Для мужчин</span></label>
+                <label class="catalog-filter-tag"><input type="radio" name="gender" value="female"><span>Для женщин</span></label>
               </div>
             </fieldset>
 
-            <fieldset class="catalog-filter-modal__section">
-              <div class="catalog-filter-modal__section-head">
-                <legend class="catalog-filter-modal__legend">Тип товара</legend>
-                <a class="catalog-filter-modal__all" href="/catalog/kurtki/">
-                  <span>Все</span>
-                  <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg>
-                </a>
-              </div>
-              <div class="catalog-filter-modal__tags">
-                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="membrane" checked><span>Мембранная куртка</span></label>
-                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="insulated"><span>Утепленная куртка</span></label>
+            <fieldset class="catalog-filter-modal__section catalog-filter-modal__section--type" data-filter-collapse>
+              <legend class="catalog-filter-modal__legend">Тип товара</legend>
+              <div class="catalog-filter-modal__tags" data-filter-collapse-list>
                 <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="windbreaker" checked><span>Ветровка</span></label>
-                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="softshell"><span>Куртка softshell</span></label>
-                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="windbreaker-light"><span>Ветровка</span></label>
-                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="parka"><span>Парка</span></label>
                 <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="buggy"><span>Куртка для багги</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="softshell"><span>Куртка softshell</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="membrane"><span>Мембранная куртка</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="parka"><span>Парка</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="raincoat"><span>Плащ</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="down-jacket"><span>Пуховик</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="insulated"><span>Утепленная куртка</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="insulated-vest"><span>Утепленный жилет</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="fleece-jacket"><span>Флисовая куртка</span></label>
+                <label class="catalog-filter-tag"><input type="checkbox" name="type[]" value="fleece-vest"><span>Флисовый жилет</span></label>
               </div>
+              <button class="catalog-filter-modal__show-all" type="button" aria-expanded="false" data-filter-collapse-toggle>
+                <span>Показать все</span>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg>
+              </button>
             </fieldset>
 
             <fieldset class="catalog-filter-modal__section catalog-filter-modal__section--activity">
@@ -1181,6 +1183,9 @@
                 <label class="catalog-filter-tag"><input type="checkbox" name="activity[]" value="tourism"><span>Туризм</span></label>
               </div>
             </fieldset>
+          </div>
+          <div class="catalog-filter-modal__scrollbar" data-catalog-filter-scrollbar hidden aria-hidden="true">
+            <span class="catalog-filter-modal__scrollbar-thumb" data-catalog-filter-scrollbar-thumb></span>
           </div>
         </div>
 
@@ -1283,4 +1288,3 @@
   <script type="module" src="/js/main.js"></script>
 </body>
 </html>
-

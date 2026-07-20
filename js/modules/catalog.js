@@ -7,6 +7,10 @@ export function init() {
   const catalogFilterModal = document.querySelector('[data-catalog-filter-modal]');
   const catalogFilterOpenButton = document.querySelector('[data-filter-toggle]');
   const catalogFilterForm = catalogFilterModal?.querySelector('[data-catalog-filter-form]');
+  const catalogFilterBody = catalogFilterModal?.querySelector('.catalog-filter-modal__body');
+  const catalogFilterContent = catalogFilterModal?.querySelector('.catalog-filter-modal__content');
+  const catalogFilterScrollbar = catalogFilterModal?.querySelector('[data-catalog-filter-scrollbar]');
+  const catalogFilterScrollbarThumb = catalogFilterModal?.querySelector('[data-catalog-filter-scrollbar-thumb]');
   const catalogFilterCloseButtons = catalogFilterModal
     ? Array.from(catalogFilterModal.querySelectorAll('[data-catalog-filter-close]'))
     : [];
@@ -27,6 +31,31 @@ export function init() {
     }, 520);
   };
 
+  const updateCatalogFilterScrollbar = () => {
+    if (!catalogFilterBody || !catalogFilterContent || !catalogFilterScrollbar || !catalogFilterScrollbarThumb) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = catalogFilterContent;
+    const hasOverflow = scrollHeight > clientHeight + 1;
+    catalogFilterBody.classList.toggle('has-scrollbar', hasOverflow);
+
+    if (!hasOverflow) {
+      catalogFilterScrollbar.hidden = true;
+      catalogFilterContent.scrollTop = 0;
+      return;
+    }
+
+    catalogFilterScrollbar.hidden = false;
+    const trackHeight = catalogFilterScrollbar.clientHeight;
+    const maxScroll = scrollHeight - clientHeight;
+    const ratio = clientHeight / scrollHeight;
+    const thumbHeight = Math.max(16, Math.round(ratio * trackHeight));
+    const maxOffset = Math.max(0, trackHeight - thumbHeight - 4);
+    const thumbY = Math.round((scrollTop / maxScroll) * maxOffset);
+
+    catalogFilterScrollbarThumb.style.setProperty('--catalog-filter-modal-scrollbar-thumb-h', `${thumbHeight}px`);
+    catalogFilterScrollbarThumb.style.setProperty('--catalog-filter-modal-scrollbar-thumb-y', `${thumbY}px`);
+  };
+
   const closeCatalogFilterModal = () => {
     if (!catalogFilterModal || catalogFilterModal.hidden) return;
 
@@ -44,6 +73,7 @@ export function init() {
     catalogFilterOpenButton?.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('is-modal-open');
     catalogFilterModal.querySelector('[data-catalog-filter-close]')?.focus();
+    window.requestAnimationFrame(updateCatalogFilterScrollbar);
   };
 
   if (catalogDropdownButtons.length) {
@@ -88,6 +118,21 @@ export function init() {
   catalogFilterCloseButtons.forEach(button => {
     button.addEventListener('click', closeCatalogFilterModal);
   });
+  catalogFilterModal?.querySelectorAll('[data-filter-collapse]').forEach(section => {
+    const button = section.querySelector('[data-filter-collapse-toggle]');
+    const label = button?.querySelector('span');
+    if (!button || !label) return;
+
+    button.addEventListener('click', () => {
+      const isExpanded = section.classList.toggle('is-expanded');
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      label.textContent = isExpanded ? 'Свернуть' : 'Показать все';
+      window.requestAnimationFrame(updateCatalogFilterScrollbar);
+    });
+  });
+
+  catalogFilterContent?.addEventListener('scroll', updateCatalogFilterScrollbar, { passive: true });
+  window.addEventListener('resize', updateCatalogFilterScrollbar);
 
   catalogFilterForm?.addEventListener('submit', event => {
     event.preventDefault();

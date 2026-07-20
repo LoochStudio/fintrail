@@ -59,6 +59,34 @@ export function init() {
     });
   });
 
+  // ─── Поля имени: только буквы, пробелы и дефис ──────────────────────────────
+  document.querySelectorAll('.js-name-input').forEach(input => {
+    const field = input.closest('.product-info-section__field, [data-input-field]');
+    const caption = field?.querySelector('.product-info-section__caption') || document.getElementById(input.getAttribute('aria-describedby'));
+
+    function sanitizeName(value) {
+      return value
+        .replace(/[^A-Za-zА-Яа-яЁё\s-]/g, '')
+        .replace(/\s{2,}/g, ' ')
+        .replace(/-{2,}/g, '-');
+    }
+
+    input.addEventListener('input', () => {
+      const sanitized = sanitizeName(input.value);
+      if (input.value !== sanitized) input.value = sanitized;
+      field?.classList.remove('is-error');
+      if (caption) caption.textContent = '';
+    });
+
+    input.addEventListener('blur', () => {
+      const value = sanitizeName(input.value).trim();
+      input.value = value;
+      const isValid = value === '' || /^[A-Za-zА-Яа-яЁё]+(?:[\s-][A-Za-zА-Яа-яЁё]+)*$/.test(value);
+      field?.classList.toggle('is-error', !isValid);
+      if (caption) caption.textContent = isValid ? '' : 'Используйте только буквы и дефис';
+    });
+  });
+
   // ─── Счётчик корзины ─────────────────────────────────────────────────────────
   const CART_KEY = 'cart_count';
 
@@ -91,6 +119,8 @@ export function init() {
     btn?.classList.add('is-in-cart');
     const labelSpan = btn?.querySelector('.recommendation-card__cart-label span');
     if (labelSpan) labelSpan.textContent = 'В корзине';
+    const productInfoLabel = btn?.querySelector('.product-info-section__cart-label');
+    if (productInfoLabel) productInfoLabel.textContent = 'В корзине';
   }
 
   function addCartItem(btn) {
@@ -436,8 +466,27 @@ export function init() {
       e.preventDefault();
       e.stopPropagation();
     }
-    btn.classList.toggle('is-saved');
-    btn.setAttribute('aria-label', btn.classList.contains('is-saved') ? 'Убрать из избранного' : 'В избранное');
+    const isSaved = btn.classList.toggle('is-saved');
+    btn.classList.add('is-state-changing');
+    window.setTimeout(() => btn.classList.remove('is-state-changing'), 260);
+    btn.setAttribute('aria-label', isSaved ? 'Убрать из избранного' : 'В избранное');
+    const label = btn.querySelector('span');
+    if (label) label.textContent = isSaved ? 'В избранном' : 'В избранное';
+  });
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.js-compare');
+    if (!btn) return;
+    if (btn.closest('a')) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const isCompared = btn.classList.toggle('is-compared');
+    btn.classList.add('is-state-changing');
+    window.setTimeout(() => btn.classList.remove('is-state-changing'), 260);
+    btn.setAttribute('aria-label', isCompared ? 'Убрать из сравнения' : 'К сравнению');
+    const label = btn.querySelector('span');
+    if (label) label.textContent = isCompared ? 'В сравнении' : 'К сравнению';
   });
 
   // ─── Цветовые точки в карточках товаров ─────────────────────────────────────

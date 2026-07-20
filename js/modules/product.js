@@ -227,6 +227,22 @@ export function init() {
     });
 
     colorList.addEventListener('scroll', updateColorScrollbar, { passive: true });
+    colorList.addEventListener('wheel', event => {
+      const maxScroll = colorList.scrollHeight - colorList.clientHeight;
+      if (maxScroll <= 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const atTop = colorList.scrollTop <= 0;
+      const atBottom = Math.ceil(colorList.scrollTop + colorList.clientHeight) >= colorList.scrollHeight;
+      const scrollingUp = event.deltaY < 0;
+      const scrollingDown = event.deltaY > 0;
+
+      if ((atTop && scrollingUp) || (atBottom && scrollingDown)) {
+        event.preventDefault();
+      }
+    }, { passive: false });
 
     // Выбор цвета
     dropdown.addEventListener('click', e => {
@@ -715,10 +731,20 @@ export function init() {
         const titleEl   = textContainer.querySelector('[data-kit-title]');
         const articleEl = textContainer.querySelector('[data-kit-article]');
         const descEl    = textContainer.querySelector('[data-kit-desc]');
+        const cartButton = textContainer.querySelector('[data-kit-cart-button]');
 
         if (titleEl   && item.dataset.title)   titleEl.textContent   = item.dataset.title;
         if (articleEl && item.dataset.article) articleEl.textContent = item.dataset.article;
         if (descEl    && item.dataset.desc)    descEl.textContent    = item.dataset.desc;
+        if (cartButton) {
+          const cartLabel = item.dataset.cartLabel || `Добавить ${item.dataset.title || 'товар'} в корзину`;
+          cartButton.setAttribute('aria-label', cartLabel);
+          cartButton.classList.remove('is-in-cart');
+          const cartIcon = cartButton.querySelector('use');
+          if (cartIcon) cartIcon.setAttribute('href', spriteHref('icon-hero-bag'));
+          const cartText = cartButton.querySelector('.product-info-section__cart-label');
+          if (cartText) cartText.textContent = 'В корзину';
+        }
       });
     });
   });
@@ -797,10 +823,19 @@ export function init() {
     const items = [...media.querySelectorAll('.js-carousel-item')];
     const btnPrev = media.querySelector('.js-slider-prev');
     const btnNext = media.querySelector('.js-slider-next');
+    const zoomButton = media.querySelector('[data-product-gallery-open]');
+    const galleryModal = document.querySelector('[data-product-gallery-modal]');
+    const galleryImage = galleryModal?.querySelector('[data-product-gallery-image]');
+    const galleryThumbs = galleryModal?.querySelector('[data-product-gallery-thumbs]');
+    const galleryPrev = galleryModal?.querySelector('[data-product-gallery-prev]');
+    const galleryNext = galleryModal?.querySelector('[data-product-gallery-next]');
+    const galleryCloseButtons = galleryModal ? [...galleryModal.querySelectorAll('[data-product-gallery-close]')] : [];
 
     if (!inner || !items.length) return;
 
     let currentIndex = 0;
+    let galleryIndex = 0;
+    let galleryBuilt = false;
 
     function getMetrics() {
       const firstItem = items[0];
@@ -840,9 +875,87 @@ export function init() {
       inner.style.transform = `translateX(${offset}px)`;
     }
 
+    function getGalleryItem(index) {
+      const thumb = items[index]?.querySelector('img');
+      return {
+        src: thumb?.getAttribute('src') || mainImage?.getAttribute('src') || '',
+        srcset: thumb?.getAttribute('srcset') || mainImage?.getAttribute('srcset') || '',
+        alt: mainImage?.getAttribute('alt') || thumb?.getAttribute('alt') || 'Фото товара',
+      };
+    }
+
+    function setGalleryIndex(index) {
+      if (!galleryModal || !galleryImage || !items.length) return;
+      galleryIndex = (index + items.length) % items.length;
+      const data = getGalleryItem(galleryIndex);
+      galleryImage.src = data.src;
+      if (data.srcset) {
+        galleryImage.srcset = data.srcset;
+      } else {
+        galleryImage.removeAttribute('srcset');
+      }
+      galleryImage.alt = data.alt;
+      galleryThumbs?.querySelectorAll('.product-gallery-modal__thumb').forEach((thumb, thumbIndex) => {
+        const isActive = thumbIndex === galleryIndex;
+        thumb.classList.toggle('is-active', isActive);
+        thumb.setAttribute('aria-current', String(isActive));
+      });
+      goTo(galleryIndex);
+    }
+
+    function buildGalleryThumbs() {
+      if (!galleryThumbs || galleryBuilt) return;
+      galleryThumbs.innerHTML = items.map((item, index) => {
+        const thumb = item.querySelector('img');
+        const src = thumb?.getAttribute('src') || '';
+        const srcset = thumb?.getAttribute('srcset') || '';
+        return `
+          <button class="product-gallery-modal__thumb" type="button" aria-label="Фото ${index + 1}" data-product-gallery-thumb="${index}">
+            <img src="${src}"${srcset ? ` srcset="${srcset}"` : ''} sizes="56px" alt="" loading="lazy">
+          </button>
+        `;
+      }).join('');
+      galleryBuilt = true;
+    }
+
+    function openGallery(event) {
+      event?.preventDefault();
+      if (!galleryModal || !galleryImage) return;
+      buildGalleryThumbs();
+      galleryModal.hidden = false;
+      galleryModal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      setGalleryIndex(currentIndex);
+      galleryModal.querySelector('.product-gallery-modal__close')?.focus({ preventScroll: true });
+    }
+
+    function closeGallery() {
+      if (!galleryModal || galleryModal.hidden) return;
+      galleryModal.hidden = true;
+      galleryModal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      zoomButton?.focus({ preventScroll: true });
+    }
+
     items.forEach((item, i) => item.addEventListener('click', () => goTo(i)));
     btnPrev?.addEventListener('click', () => goTo(currentIndex - 1));
     btnNext?.addEventListener('click', () => goTo(currentIndex + 1));
+    zoomButton?.addEventListener('click', openGallery);
+    galleryPrev?.addEventListener('click', () => setGalleryIndex(galleryIndex - 1));
+    galleryNext?.addEventListener('click', () => setGalleryIndex(galleryIndex + 1));
+    galleryCloseButtons.forEach(button => button.addEventListener('click', closeGallery));
+    galleryThumbs?.addEventListener('click', event => {
+      const thumb = event.target.closest('[data-product-gallery-thumb]');
+      if (!thumb) return;
+      setGalleryIndex(Number(thumb.dataset.productGalleryThumb));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (!galleryModal || galleryModal.hidden) return;
+      if (event.key === 'Escape') closeGallery();
+      if (event.key === 'ArrowLeft') setGalleryIndex(galleryIndex - 1);
+      if (event.key === 'ArrowRight') setGalleryIndex(galleryIndex + 1);
+    });
 
     let touchStartX = 0;
     let touchStartY = 0;
