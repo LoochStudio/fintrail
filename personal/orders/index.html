@@ -483,9 +483,9 @@
           Актуальные = заказы со статусами "в обработке / доставляется"
           Завершенные = заказы со статусами "выполнен / отменён"
         -->
-        <div class="orders-page__tabs" role="group" aria-label="Фильтр заказов">
-          <button class="orders-page__tab is-active" type="button" aria-pressed="true">Актуальные</button>
-          <button class="orders-page__tab" type="button" aria-pressed="false">Завершенные</button>
+        <div class="orders-page__tabs" role="group" data-orders-tabs aria-label="Фильтр заказов">
+          <button class="orders-page__tab is-active" type="button" aria-pressed="true" data-orders-filter="active">Актуальные</button>
+          <button class="orders-page__tab" type="button" aria-pressed="false" data-orders-filter="completed">Завершенные</button>
         </div>
         <div class="orders-page__sort" data-orders-sort>
           <button class="orders-page__sort-btn" type="button" aria-expanded="false" aria-haspopup="listbox" data-orders-sort-btn>
@@ -515,7 +515,7 @@
           CSS-модификатор order-card--success / статус устанавливается динамически по статусу заказа
           <?= $arOrder["STATUS_ID"] ?> → класс карточки
         -->
-        <article class="order-card order-card--list order-card--success">
+        <article class="order-card order-card--list order-card--success" data-order-status="active">
           <div class="order-card__top">
             <div class="order-card__head">
               <div class="order-card__status-row">
@@ -572,83 +572,95 @@
           <div class="order-card__bottom">
             <!--
               BITRIX: список товаров в заказе — bitrix:sale.personal.order
-              Каждый <a class="order-card__product-item"> — один товар из $arOrder["BASKET"]
+              Каждый <article class="order-card__product-item"> — один товар из $arOrder["BASKET"]
               <?= $arBasketItem["NAME"] ?>, <?= $arBasketItem["PRICE"] ?>, <?= $arBasketItem["DETAIL_PAGE_URL"] ?>
               Фото товара: <?= $arBasketItem["PICTURE"] ?>
             -->
             <div class="order-card__products" aria-label="Товары в заказе">
-              <a class="order-card__product-item" href="/catalog/aspen-3462/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-1.png" width="142" height="142" loading="lazy" alt="FINNTRAIL ASPEN 3462 ORANGE">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">FINNTRAIL ASPEN 3462 ORANGE</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">37 999 ₽</p>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/aspen-3462/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-1.png" width="142" height="142" loading="lazy" alt="FINNTRAIL ASPEN 3462 ORANGE">
                   </div>
-                </div>
-              </a>
-              <a class="order-card__product-item" href="/catalog/shapka-daily-9727/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-2.png" width="142" height="142" loading="lazy" alt="Шапка FINNTRAIL Daily 9727 Graphitegrey">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">Шапка FINNTRAIL Daily 9727 Graphitegrey</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">1 999 ₽</p>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">FINNTRAIL ASPEN 3462 ORANGE</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">37 999 ₽</p>
+                    </div>
                   </div>
-                </div>
-              </a>
-              <a class="order-card__product-item" href="/catalog/sherpa-1307/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-3.png" width="142" height="142" loading="lazy" alt="Куртка FINNTRAIL Sherpa 1307 Darkgrey">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">Куртка FINNTRAIL Sherpa 1307 Darkgrey</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">12 999 ₽</p>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/shapka-daily-9727/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-2.png" width="142" height="142" loading="lazy" alt="Шапка FINNTRAIL Daily 9727 Graphitegrey">
                   </div>
-                </div>
-              </a>
-              <a class="order-card__product-item" href="/catalog/tactic-4009/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-4.png" width="142" height="142" loading="lazy" alt="Брюки FINNTRAIL Tactic 4009 Khaki">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">Брюки FINNTRAIL Tactic 4009 Khaki</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">9 499 ₽</p>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">Шапка FINNTRAIL Daily 9727 Graphitegrey</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">1 999 ₽</p>
+                    </div>
                   </div>
-                </div>
-              </a>
-              <a class="order-card__product-item" href="/catalog/polar-1400/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-5.png" width="142" height="142" loading="lazy" alt="FINNTRAIL POLAR 1400">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">FINNTRAIL POLAR 1400</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">12 999 ₽</p>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/sherpa-1307/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-3.png" width="142" height="142" loading="lazy" alt="Куртка FINNTRAIL Sherpa 1307 Darkgrey">
                   </div>
-                </div>
-              </a>
-              <a class="order-card__product-item" href="/catalog/polar-1400-black/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-6.png" width="142" height="142" loading="lazy" alt="FINNTRAIL POLAR 1400 BLACK">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">FINNTRAIL POLAR 1400 BLACK</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">12 999 ₽</p>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">Куртка FINNTRAIL Sherpa 1307 Darkgrey</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">12 999 ₽</p>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/tactic-4009/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-4.png" width="142" height="142" loading="lazy" alt="Брюки FINNTRAIL Tactic 4009 Khaki">
+                  </div>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">Брюки FINNTRAIL Tactic 4009 Khaki</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">9 499 ₽</p>
+                    </div>
+                  </div>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/polar-1400/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-5.png" width="142" height="142" loading="lazy" alt="FINNTRAIL POLAR 1400">
+                  </div>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">FINNTRAIL POLAR 1400</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">12 999 ₽</p>
+                    </div>
+                  </div>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/polar-1400-black/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-6.png" width="142" height="142" loading="lazy" alt="FINNTRAIL POLAR 1400 BLACK">
+                  </div>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">FINNTRAIL POLAR 1400 BLACK</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">12 999 ₽</p>
+                    </div>
+                  </div>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
             </div>
             <div class="order-card__footer">
             </div>
@@ -660,7 +672,7 @@
           BITRIX: карточка заказа — bitrix:sale.personal.order
           <?= $arOrder["STATUS_ID"] ?> → класс карточки (без модификатора = нейтральный статус)
         -->
-        <article class="order-card order-card--list">
+        <article class="order-card order-card--list" data-order-status="active">
           <div class="order-card__top">
             <div class="order-card__head">
               <div class="order-card__status-row">
@@ -712,35 +724,39 @@
           <div class="order-card__bottom">
             <!--
               BITRIX: список товаров в заказе — bitrix:sale.personal.order
-              Каждый <a class="order-card__product-item"> — один товар из $arOrder["BASKET"]
+              Каждый <article class="order-card__product-item"> — один товар из $arOrder["BASKET"]
               <?= $arBasketItem["NAME"] ?>, <?= $arBasketItem["PRICE"] ?>, <?= $arBasketItem["DETAIL_PAGE_URL"] ?>
               Фото товара: <?= $arBasketItem["PICTURE"] ?>
             -->
             <div class="order-card__products" aria-label="Товары в заказе">
-              <a class="order-card__product-item" href="/catalog/shapka-daily-9727/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-2.png" width="142" height="142" loading="lazy" alt="Шапка FINNTRAIL Daily 9727 Graphitegrey">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">Шапка FINNTRAIL Daily 9727 Graphitegrey</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">1 999 ₽</p>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/shapka-daily-9727/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-2.png" width="142" height="142" loading="lazy" alt="Шапка FINNTRAIL Daily 9727 Graphitegrey">
                   </div>
-                </div>
-              </a>
-              <a class="order-card__product-item" href="/catalog/sherpa-1307/">
-                <div class="order-card__product-pic">
-                  <img class="order-card__product-img" src="/images/content/personal/orders/product-3.png" width="142" height="142" loading="lazy" alt="Куртка FINNTRAIL Sherpa 1307 Darkgrey">
-                  <span class="order-card__product-bookmark" aria-hidden="true"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></span>
-                </div>
-                <div class="order-card__product-body">
-                  <p class="order-card__product-name">Куртка FINNTRAIL Sherpa 1307 Darkgrey</p>
-                  <div class="order-card__product-footer">
-                    <p class="order-card__product-price">12 999 ₽</p>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">Шапка FINNTRAIL Daily 9727 Graphitegrey</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">1 999 ₽</p>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
+              <article class="order-card__product-item">
+                <a class="order-card__product-link" href="/catalog/sherpa-1307/">
+                  <div class="order-card__product-pic">
+                    <img class="order-card__product-img" src="/images/content/personal/orders/product-3.png" width="142" height="142" loading="lazy" alt="Куртка FINNTRAIL Sherpa 1307 Darkgrey">
+                  </div>
+                  <div class="order-card__product-body">
+                    <p class="order-card__product-name">Куртка FINNTRAIL Sherpa 1307 Darkgrey</p>
+                    <div class="order-card__product-footer">
+                      <p class="order-card__product-price">12 999 ₽</p>
+                    </div>
+                  </div>
+                </a>
+                <button class="order-card__product-bookmark" type="button" aria-label="Добавить в избранное"><svg class="order-card__product-bookmark__outline" width="16" height="16"><use href="/images/icons/sprite.svg#icon-kit-bookmark"></use></svg><svg class="order-card__product-bookmark__filled" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+              </article>
             </div>
             <div class="order-card__footer">
             </div>
@@ -748,6 +764,8 @@
         </article>
 
       </div>
+
+      <p class="orders-page__empty" hidden data-orders-empty></p>
 
       <!-- BITRIX: пагинация списка заказов — показывается если есть ещё заказы <?= ($arResult["NAV_OBJECT"]->NavPageCount > 1) ? "" : "hidden" ?> -->
       <div class="orders-page__more-wrap">
@@ -789,8 +807,8 @@
               <span class="personal-favorite-card__footer"><span class="personal-favorite-card__price">37 999 ₽</span></span>
             </span>
           </a>
-          <button class="personal-favorite-card__bookmark is-active" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
-          <button class="personal-favorite-card__cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
+          <button class="personal-favorite-card__bookmark is-saved js-wishlist" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+          <button class="personal-favorite-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
         </article>
 
         <article class="personal-favorite-card">
@@ -804,8 +822,8 @@
               <span class="personal-favorite-card__footer"><span class="personal-favorite-card__price">1 999 ₽</span></span>
             </span>
           </a>
-          <button class="personal-favorite-card__bookmark is-active" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
-          <button class="personal-favorite-card__cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
+          <button class="personal-favorite-card__bookmark is-saved js-wishlist" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+          <button class="personal-favorite-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
         </article>
 
         <article class="personal-favorite-card">
@@ -819,8 +837,8 @@
               <span class="personal-favorite-card__footer"><span class="personal-favorite-card__price">12 999 ₽</span></span>
             </span>
           </a>
-          <button class="personal-favorite-card__bookmark is-active" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
-          <button class="personal-favorite-card__cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
+          <button class="personal-favorite-card__bookmark is-saved js-wishlist" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+          <button class="personal-favorite-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
         </article>
 
         <article class="personal-favorite-card">
@@ -834,8 +852,8 @@
               <span class="personal-favorite-card__footer"><span class="personal-favorite-card__price">12 999 ₽</span></span>
             </span>
           </a>
-          <button class="personal-favorite-card__bookmark is-active" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
-          <button class="personal-favorite-card__cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
+          <button class="personal-favorite-card__bookmark is-saved js-wishlist" type="button" aria-label="Убрать из избранного"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-bookmark"></use></svg></button>
+          <button class="personal-favorite-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
         </article>
       </div>
     </section>
@@ -918,7 +936,7 @@
                 <span class="recommendation-card__badge">Хит</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить">
                   <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg>
                 </button>
                 <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное">
@@ -948,7 +966,7 @@
                 <span class="recommendation-card__badge">Новинка</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить">
                   <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg>
                 </button>
                 <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное">
@@ -978,7 +996,7 @@
                 <span class="recommendation-card__badge">Новинка</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить">
                   <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg>
                 </button>
                 <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное">
@@ -1008,7 +1026,7 @@
                 <span class="recommendation-card__badge">Топ</span>
               </a>
               <span class="recommendation-card__actions">
-                <button class="recommendation-card__icon-btn" type="button" aria-label="Сравнить">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить">
                   <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg>
                 </button>
                 <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное">
@@ -1091,6 +1109,89 @@
         </article>
       </div>
     </section>
+
+  <div class="review-form-modal" id="review-form-modal" hidden data-review-form-modal>
+    <div class="review-form-modal__backdrop" data-review-form-close></div>
+    <aside class="review-form-modal__panel" role="dialog" aria-modal="true" aria-labelledby="review-form-title">
+
+      <div class="review-form-modal__top">
+        <header class="review-form-modal__header">
+          <h2 class="review-form-modal__title" id="review-form-title">Отзыв о товаре</h2>
+          <button class="review-form-modal__close" type="button" aria-label="Закрыть форму" data-review-form-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
+        </header>
+
+        <div class="review-form-modal__product-block">
+          <!-- BITRIX: товар, для которого открыта форма — изображение и название подставляются через JS из data-атрибутов триггера -->
+          <div class="review-form-modal__product">
+            <!-- BITRIX: фото товара — <?= $arProduct["PREVIEW_PICTURE"] ?> -->
+            <img class="review-form-modal__product-img" src="/images/content/product/snowranger/snowranger-main.png" width="64" height="90" loading="lazy" alt="">
+            <!-- BITRIX: название товара — <?= $arProduct["NAME"] ?> -->
+            <p class="review-form-modal__product-name">Куртка FINNTRAIL Mist W 4133 Light Grey</p>
+          </div>
+
+          <hr class="review-form-modal__divider" aria-hidden="true">
+        </div>
+      </div>
+
+      <div class="review-form-modal__form">
+        <div class="review-form-modal__rating-row">
+          <!-- BITRIX: начальный рейтинг при редактировании — предзаполняется из <?= $arReview["RATING"] ?>, при новом отзыве = 0 -->
+          <div class="review-form-modal__stars" data-review-form-stars>
+            <button class="review-form-modal__star is-active" type="button" data-value="1" aria-label="Оценить на 1"></button>
+            <button class="review-form-modal__star is-active" type="button" data-value="2" aria-label="Оценить на 2"></button>
+            <button class="review-form-modal__star is-active" type="button" data-value="3" aria-label="Оценить на 3"></button>
+            <button class="review-form-modal__star is-active" type="button" data-value="4" aria-label="Оценить на 4"></button>
+            <button class="review-form-modal__star" type="button" data-value="5" aria-label="Оценить на 5"></button>
+          </div>
+          <span class="review-form-modal__rating-value" data-review-form-rating>4</span>
+        </div>
+
+        <!-- BITRIX: поля формы отзыва — при редактировании предзаполняются из $arReview (AUTHOR_NAME, PROS, CONS, DETAIL_TEXT) -->
+        <div class="review-form-modal__fields">
+          <!-- BITRIX: имя автора — <?= $arUser["NAME"] ?> (предзаполнено из профиля) -->
+          <input class="review-form-modal__field" type="text" placeholder="Имя" autocomplete="name" aria-label="Имя">
+          <input class="review-form-modal__field" type="text" placeholder="Достоинства" aria-label="Достоинства">
+          <input class="review-form-modal__field" type="text" placeholder="Недостатки" aria-label="Недостатки">
+          <textarea class="review-form-modal__field review-form-modal__field--textarea" placeholder="Комментарий" aria-label="Комментарий"></textarea>
+        </div>
+
+        <div class="review-form-modal__size-fit">
+          <p class="review-form-modal__size-fit-label">Соответствие размеру</p>
+          <div class="review-form-modal__size-options" data-review-form-size>
+            <button class="review-form-modal__size-option is-active" type="button" data-value="fits">
+              <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-check-sm"></use></svg>
+              <span>Соответствует</span>
+            </button>
+            <button class="review-form-modal__size-option" type="button" data-value="large">
+              <span>Большемерит</span>
+            </button>
+            <button class="review-form-modal__size-option" type="button" data-value="small">
+              <span>Маломерит</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="review-form-modal__upload">
+          <button class="review-form-modal__upload-btn" type="button" aria-label="Загрузить файлы">
+            <svg width="16" height="16" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-upload-arrow"></use></svg>
+          </button>
+          <div class="review-form-modal__upload-text">
+            <span class="review-form-modal__upload-title">Загрузить фотографии или видео</span>
+            <span class="review-form-modal__upload-hint">Не более 8 файлов, до 2 Мб</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BITRIX: кнопка отправки — POST на Ajax-обработчик или bitrix:form.result.new; при редактировании передаётся ID существующего отзыва -->
+      <button class="review-form-modal__submit button button--primary button--size-l" type="button">
+        Отправить отзыв
+      </button>
+
+    </aside>
+  </div>
+
   </main>
 
   <footer class="footer-desktop product-footer" aria-label="Футер">

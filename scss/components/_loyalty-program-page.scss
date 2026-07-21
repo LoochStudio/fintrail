@@ -498,8 +498,8 @@
 
   &__shade {
     background:
-      linear-gradient(180deg, rgba(2, 8, 25, 0) 44.25%, #101010 100%),
-      linear-gradient(90deg, rgba(74, 68, 68, 0.2) 0%, rgba(74, 68, 68, 0.2) 100%);
+      linear-gradient(180deg, rgba($color-loyalty-overlay-start, 0) 44.25%, $color-image-overlay-end 100%),
+      linear-gradient(90deg, rgba($color-loyalty-overlay-neutral, 0.2) 0%, rgba($color-loyalty-overlay-neutral, 0.2) 100%);
     pointer-events: none;
   }
 }

@@ -57,26 +57,6 @@
   text-transform: uppercase;
 }
 
-.catalog-landing__share {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 0;
-  color: $color-primary-black;
-  font-family: $font-mono;
-  font-size: 12px;
-  font-weight: $font-weight-semibold;
-  line-height: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: color 0.18s ease;
-
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
 .catalog-landing__activities {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -337,11 +317,6 @@
 
 
 @media (hover: hover) and (pointer: fine) {
-  .catalog-landing__share:hover,
-  .catalog-landing__share:focus-visible {
-    color: $color-primary-gray;
-  }
-
   .catalog-mini-product__bookmark:not(.is-saved):hover,
   .catalog-mini-product__bookmark:not(.is-saved):focus-visible {
     color: $color-primary-black;
@@ -415,10 +390,6 @@
   .catalog-landing__title {
     font-size: 20px;
     line-height: 20px;
-  }
-
-  .catalog-landing__share {
-    display: none;
   }
 
   .catalog-landing__activities,

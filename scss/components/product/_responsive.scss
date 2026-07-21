@@ -1,0 +1,805 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── product-features: мобильный адаптив (горизонтальный скролл) ──────────
+// Figma 3881-57757: 4 карточки по 200px, gap 20px, padding 0 20px
+@media (max-width: 1279px) {
+  .product-features {
+    // Та же связка что в product-mobile-kit:
+    // секция с боковым padding → grid разрывает его на -20px → добавляет padding обратно
+    padding: 40px 20px 0;
+  }
+
+  .product-features__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: flex-start;
+    width: calc(100% + 40px); // компенсируем 20px padding секции с обеих сторон
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;       // первая карточка в 20px от края
+    padding-right: 20px;      // последняя карточка в 20px от края
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .product-features__item {
+    flex: 0 0 200px;            // Figma: w-[200px], не сжимается
+    gap: 24px;                  // Figma: gap-[24px] между иконкой и текстом
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  // Иконка остаётся 40×40 (Figma: size-[40px])
+  .product-features__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  // Текстовый блок — gap 12px (Figma: gap-[12px])
+  .product-features__text {
+    gap: 12px;
+  }
+
+  // Title: SCP SemiBold 12px uppercase (Figma)
+  .product-features__title {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  // Desc: SCP Medium 12px, gray (Figma)
+  .product-features__desc {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+}
+
+
+// ── product-props: мобильный адаптив ─────────────────────────────────────
+// Figma 3881-57843: flex-col gap 20px, px 20px, заголовок 18px/22px,
+// горизонтальный скролл (стрелки скрыты — свайп), items 250×224 как на десктопе
+@media (max-width: 1279px) {
+  .product-props {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;             // Figma: gap-[20px] между заголовком и треком
+    padding: 40px 20px 40px; // 40px top + bottom (Figma: 40px gap), px-20px sides
+  }
+
+  // Заголовок: H6 18px/22px вместо десктопного 24px/28px
+  .product-props__title {
+    font-size: 18px;
+    line-height: 22px;
+    max-width: 308px; // Figma: w-[308px]
+  }
+
+  // Стрелки скрываем — на мобиле свайп
+  .product-props__controls {
+    display: none;
+  }
+
+  // Убираем margin-bottom — gap секции управляет отступом
+  .product-props__header {
+    margin-bottom: 0;
+  }
+
+  // Viewport → full-bleed scroll container (паттерн = product-features и product-mobile-kit)
+  .product-props__viewport {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    overflow: visible;    // сбрасываем desktop overflow: hidden
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  // Track: убираем собственный overflow (viewport теперь скроллит),
+  // добавляем padding 0 20px для симметричных отступов у первой и последней карточки
+  .product-props__track {
+    padding: 0 20px;
+    overflow-x: visible;
+    scroll-behavior: auto; // убираем smooth (viewport управляет)
+  }
+
+  // Snap для каждого item
+  .product-props__item {
+    scroll-snap-align: start;
+    // 250×224 и padding: 20px 40px 20px 0 уже правильно заданы в базовом CSS
+  }
+}
+
+
+// ── product-highlight: мобильный адаптив ─────────────────────────────────
+// Figma 3881-57886: две карточки 300×(260+auto) в горизонтальном скролле,
+// gap 1px, фото сверху, контент снизу с padding 40px, иконка 36px
+@media (max-width: 1279px) {
+
+  // Враппер → горизонтальный скролл
+  .product-highlight-row {
+    display: flex;
+    align-items: stretch;
+    gap: 1px;                   // Figma: gap-[px] (1px между карточками)
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+  .product-highlight-row .product-highlight:last-child {
+    margin-bottom: 0;
+  }
+
+
+
+  // Карточка: 300px, вертикальная, убираем desktop full-bleed margin и padding
+  .product-highlight {
+    flex: 0 0 300px;            // Figma: w-[300px]
+    flex-direction: column;     // фото сверху, контент снизу
+    height: 640px;
+    margin: 0;                  // сбрасываем desktop margin: 0 -20px
+    scroll-snap-align: start;
+  }
+
+  // Фото: всегда сверху (order: -1 перебрасывает TORAY, у Sorona фото и так первое)
+  .product-highlight__image {
+    order: -1;
+    flex: 0 0 260px;            // Figma: h-[260px]
+    height: 260px;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Контент: белый фон, padding 40px, flex-col центрированный
+  .product-highlight__content {
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;                  // Figma: gap-[20px] между иконкой и текстом
+    padding: 40px;              // Figma: p-[40px]
+    background: $color-white;
+    text-align: center;
+  }
+
+  // Иконка: 36×36 вместо десктопных 64×64
+  .product-highlight__deco {
+    width: 36px;
+    height: 36px;
+  }
+
+  // Скрываем вторую иконку-декор (на мобиле только одна)
+  .product-highlight__deco:last-child {
+    display: none;
+  }
+
+  // Текстовый блок: центр, gap 20px
+  .product-highlight__text {
+    gap: 20px;                  // Figma: gap-[20px] между title и desc
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  // Заголовок: H5 20px/20px (Figma: leading-[20px] text-[20px])
+  .product-highlight__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  // Описание: SCP SemiBold 14px/18px (Figma: leading-[18px] text-[14px])
+  .product-highlight__desc {
+    font-size: $text-body-b1-size;      // 14px
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+  }
+}
+
+
+// ── product-specs: аккордеон-кнопка (базовые стили для обоих breakpoints) ──
+
+// На десктопе кнопка выглядит как заголовок (без визуального отличия от h2)
+.product-specs__accordion-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;   // 14px — совпадает с product-specs__heading
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  cursor: pointer;
+  text-align: left;
+}
+
+// Стрелка скрыта на десктопе
+.product-specs__accordion-arrow {
+  display: none;
+  flex-shrink: 0;
+  color: $color-primary-black;
+  transition: transform 0.2s ease;
+}
+
+// Панель на десктопе прозрачна: дочерние элементы встают в flex-поток родителя
+.product-specs__accordion-panel {
+  display: contents;
+}
+
+// ── product-specs: мобильный аккордеон ───────────────────────────────────
+// Figma 3881-57920: 3 строки, padding 20px, border-bottom: 1px solid white,
+// Nata Sans ExtraBold 14px, стрелка icon-product-info-chevron 16px
+@media (max-width: 1279px) {
+
+  .product-specs {
+    flex-direction: column;
+    gap: 0;
+    padding: 0; // Figma: specs идёт сразу после highlight, без внешних отступов
+  }
+
+  // Убираем фиксированную ширину левой колонки
+  .product-specs__main {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    gap: 0; // gap внутри блока убираем — padding панели управляет отступами
+  }
+
+  // aside становится прозрачным — tech и care идут напрямую в product-specs
+  .product-specs__aside {
+    display: contents;
+  }
+
+  .product-specs__tech,
+  .product-specs__care {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    gap: 0;
+  }
+
+  // Кнопка аккордеона — полная ширина, padding 20px, border-bottom
+  .product-specs__accordion-btn {
+    padding: 20px;                         // Figma: p-[20px]
+    border-bottom: 1px solid $color-white; // Figma: border-b white
+    cursor: pointer;
+    gap: 8px;
+  }
+
+  // Стрелка видна на мобиле
+  .product-specs__accordion-arrow {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  // Открытое состояние: стрелка поворачивается на 180°
+  .product-specs__accordion-btn[aria-expanded="true"] .product-specs__accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  // Панель: по умолчанию скрыта на мобиле
+  .product-specs__accordion-panel {
+    display: none;
+    padding: 20px;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  // Открытая панель
+  .product-specs__accordion-panel.is-open {
+    display: flex;
+  }
+
+  // Внутри открытых панелей сбрасываем desktop-специфичные width/flex
+  .product-specs__table,
+  .product-specs__tech-list,
+  .product-specs__care-list {
+    width: 100%;
+  }
+
+  // Строки характеристик — подгоняем под мобильную ширину
+  .product-specs__row {
+    flex-wrap: wrap;
+    gap: 4px;
+    white-space: normal;
+  }
+
+  .product-specs__value {
+    text-align: right;
+  }
+}
+
+
+// ── product-article: мобильный адаптив ───────────────────────────────────
+// Figma 3881-57933: два блока flex-col gap-64px, оба px-20px;
+// карточки стакаются вертикально gap-20px, посты без изменений
+@media (max-width: 1279px) {
+
+  .product-article {
+    flex-direction: column;
+    gap: 64px;               // Figma: gap-[64px] между «в журнале» и «статьи по теме»
+    padding: 64px 20px 0; // Figma: 64px от предыдущей секции, bottom = 0 (следующая даёт свой top)
+  }
+
+  // Левая колонка → full-width, убираем 50% flex
+  .product-article__left {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    gap: 40px; // Figma: gap-[40px] между заголовком и карточками
+  }
+
+  // Заголовок блока — многострочный, остаётся 24px/28px (совпадает с desktop)
+  .product-article__heading {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  // Карточки — стакаются вертикально (на десктопе flex-row)
+  .product-article__cards {
+    flex-direction: column;
+    gap: 20px; // Figma: gap-[20px] между карточками
+  }
+
+  .product-article__card {
+    flex: none;
+    width: 100%;
+  }
+
+  // Изображение карточки — 300px (Figma: h-[300px])
+  .product-article__card-image {
+    height: 300px;
+  }
+
+  // Правая колонка («Статьи по теме») → full-width
+  .product-article__right {
+    flex: none;
+    width: 100%;
+    gap: 40px; // Figma: gap-[40px] между заголовком и постами
+  }
+
+  // Посты — gap-[40px] (уже задан в базовом CSS, подтверждаем)
+  .product-article__posts {
+    gap: 40px;
+  }
+
+  // Пост: date + title (14px/18px SCP SemiBold) — без изменений
+  // Все значения уже соответствуют Figma в базовых стилях
+}
+
+
+// ── product-reviews: мобильный адаптив ───────────────────────────────────
+// Figma 3881-57953: single column, форма как bottom sheet,
+// reviews rows flex-col (reviewer сверху, контент снизу)
+@media (max-width: 1279px) {
+
+  // ─ Секция: single column ───────────────────────────────────────────────
+  .product-reviews {
+    flex-direction: column;
+    padding: 64px 20px 0; // Figma: 64px от предыдущей секции
+  }
+
+  .product-reviews__left {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  // Шапка: title-group + average (без сортировки — та переехала в mobile-controls)
+  .product-reviews__header {
+    margin-bottom: 0; // gap секции управляет отступами
+  }
+
+  // Сортировку в header-meta скрываем — она показана в mobile-controls
+  .product-reviews__header-meta .product-reviews__sort {
+    display: none;
+  }
+
+  // ─ Mobile-controls: сортировка + кнопка формы ──────────────────────────
+  .product-reviews__mobile-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; // Figma: gap-[10px] между кнопками
+    width: 100%;
+  }
+
+  // Кнопка сортировки на мобиле — полная ширина, surface bg
+  // Figma: pl-16 pr-12 py-10 bg-surface rounded-4
+  .product-reviews__sort--mobile .product-reviews__sort-btn {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 12px 10px 16px;
+    border-radius: 4px;
+    background: $color-surface;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+  }
+
+  .product-reviews__sort--mobile {
+    width: 100%;
+  }
+
+  // Кнопка «Отправить отзыв» — Figma: white bg, py-15 px-16, rounded-4
+  .product-reviews__mobile-form-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 16px; // Figma: py-[15px] px-[16px]
+    border: 0;
+    border-radius: 4px;
+    background: $color-white;
+    color: $color-primary-black;
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.18s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { background: $color-surface; }
+    }
+  }
+
+  // 320px: уменьшаем padding кнопок controls чтобы влезали
+  @media (max-width: 360px) {
+    .product-reviews__sort--mobile .product-reviews__sort-btn {
+      padding: 8px 10px 8px 12px;
+      font-size: 11px;
+    }
+
+    .product-reviews__mobile-form-btn {
+      padding: 10px 12px;
+      font-size: 11px;
+    }
+
+    // Кнопки «Соответствует / Большемерит / Маломерит» в форме:
+    // три кнопки flex:1 в 280px (320 - 40px padding) ≈ 93px каждая — не влазит
+    .product-reviews__fit-btn {
+      padding: 6px 4px;
+      font-size: 10px;
+      line-height: 12px;
+      gap: 4px;
+    }
+
+    .product-reviews__fit-btn--active {
+      padding: 6px 8px 6px 4px; // место для галочки
+    }
+
+    .product-reviews__fit-options {
+      gap: 3px; // чуть сжимаем промежутки между кнопками
+    }
+  }
+
+  // ─ Строки отзывов: flex-col (reviewer сверху, контент снизу) ───────────
+  .product-reviews__row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Figma: gap-[20px] между reviewer и content
+    grid-template-columns: unset; // сбрасываем desktop grid
+    column-gap: 0;
+  }
+
+  .product-reviews__content {
+    flex: none;
+    width: 100%; // вместо fixed 342px
+  }
+
+  // ─ Форма как bottom sheet (правая колонка) ──────────────────────────────
+  // На мобиле скрыта, при .is-open выезжает снизу
+
+  // Правая колонка становится fixed-оверлеем
+  .product-reviews__right {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: block !important; // всегда в DOM
+    pointer-events: none;
+    // Сбрасываем desktop-ограничения, которые остаются при position: fixed
+    flex: none;
+    max-width: none;
+    width: 100%;
+
+    // Backdrop
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba($color-primary-black, 0.3);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  .product-reviews__right.is-open {
+    pointer-events: auto;
+
+    &::before { opacity: 1; }
+
+    .product-reviews__form {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // Форма — bottom sheet панель
+  .product-reviews__form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 90dvh;
+    overflow: hidden auto;
+    border-radius: 16px 16px 0 0;
+    background: $color-surface;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    // Drag handle
+    &::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: $color-secondary-gray;
+      margin: 12px auto 8px;
+      flex-shrink: 0;
+    }
+  }
+
+  // Кнопка закрытия — только mobile
+  .product-reviews__form-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-left: auto;
+    margin-bottom: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+    color: $color-primary-black;
+    cursor: pointer;
+
+    svg { width: 16px; height: 16px; }
+  }
+}
+
+// На десктопе: mobile-controls и close-button скрыты.
+// ВАЖНО: min-width 768px, а не просто глобальное display:none —
+// глобальное правило после медиа-запроса перекрыло бы мобильный display:flex
+@media (min-width: 768px) {
+  .product-reviews__mobile-controls,
+  .product-reviews__form-close {
+    display: none;
+  }
+}
+
+
+// ── Планшет (768–1279px): адаптивные фиксы страницы товара ──────────────────
+// ВАЖНО: блок в конце файла — побеждает глобальные правила с той же специфичностью
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+
+  // ─ product-reviews: форма как bottom sheet (Figma 4405:52226) ───────────────
+  // Форма убрана из inline-колонки — открывается через «Отправить отзыв» (bottom sheet)
+  .product-reviews {
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 20px;
+  }
+
+  .product-reviews__left {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  // Mobile-controls (фильтр + кнопка отзыва) показываем на планшете
+  .product-reviews__mobile-controls {
+    display: flex;
+  }
+
+  // Close-кнопка bottom sheet тоже нужна на планшете
+  .product-reviews__form-close {
+    display: flex;
+  }
+
+  // Строка отзыва: grid reviewer(174px) + content(остаток)
+  .product-reviews__row {
+    display: grid;
+    grid-template-columns: 174px 1fr;
+    column-gap: 40px;
+  }
+
+  .product-reviews__content {
+    flex: none;
+    width: 100%;
+  }
+
+  // ─ product-specs: aside стекаем вертикально ─────────────────────────────────
+  // 2 столбца по ~163px слишком узко для иконок 40px + текст
+  .product-specs__aside {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .product-specs__tech,
+  .product-specs__care {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  // ─ product-article: правая колонка пропорционально ──────────────────────────
+  // Фиксированные 341px при контейнере 713px (50/50 вместо 65/35)
+  .product-article__right {
+    flex: 0 0 calc(35% - 10px);
+  }
+
+  // ─ product-article: карточки «В журнале» 2 в ряд ─────────────────────────────
+  // На мобиле стакались вертикально; на планшете возвращаем горизонтальный ряд
+  .product-article__cards {
+    flex-direction: row;
+  }
+
+  .product-article__card {
+    flex: 1 1 0;
+  }
+
+  // ─ community-showcase: сброс negative margin ──────────────────────────────────
+  // Базовое правило .product-page .community-showcase ставит margin: 0 -20px чтобы
+  // компенсировать padding product-page (20px). На планшете product-page имеет
+  // padding: 0 (мы убрали), поэтому negative margins лишние — убираем их здесь,
+  // ПОСЛЕ базового правила (~3475), чтобы выиграть по source-order при равной специфичности.
+  .product-page .community-showcase {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // ─ product-highlight-row: планшет 360px × 3 слайда, peek третьего ─────────
+  // 2×360 + 1px gap = 721px < 768px → 47px peek, scroll включён (наследуется)
+  .product-highlight-row {
+    overflow-x: auto; // переопределяем hidden из мобильного правила
+  }
+
+  .product-highlight {
+    flex: 0 0 360px; // Figma: w-[360px]
+  }
+
+}
+
+@media (max-width: 767px) {
+  .product-detail__media {
+    min-height: 0;
+  }
+
+  .product-detail__media-inner {
+    height: clamp(360px, 106.667vw, 420px);
+    min-height: 0;
+  }
+
+  .product-detail__image {
+    height: clamp(360px, 106.667vw, 420px);
+  }
+
+  .product-preorder-modal__panel {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: calc(100dvh - 20px);
+    border-radius: 0;
+    gap: 24px;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+  }
+
+  .product-preorder-modal__panel::before {
+    display: none;
+  }
+
+  .product-preorder-modal.is-open {
+    .product-preorder-modal__panel {
+      transform: translateY(0);
+    }
+  }
+
+  .product-preorder-modal__top {
+    gap: 24px;
+    padding-top: 0;
+  }
+
+  .product-preorder-modal__header {
+    min-height: 24px;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .product-preorder-modal__title {
+    flex: 1 1 auto;
+    width: auto;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .product-preorder-modal__close {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+    padding: 4px;
+  }
+
+
+  .product-preorder-modal__screen {
+    min-height: auto;
+  }
+
+  .product-preorder-modal__screen--form {
+    gap: 24px;
+  }
+
+  .product-preorder-modal__screen--success {
+    justify-content: flex-start;
+    gap: 32px;
+  }
+
+  .product-preorder-modal__success-content {
+    gap: 24px;
+  }
+
+  .product-preorder-modal__success-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .product-preorder-modal__success-text {
+    max-width: none;
+  }
+
+  .product-preorder-modal__form {
+    gap: 16px;
+  }
+
+  .product-preorder-modal__submit,
+  .product-preorder-modal__success-button {
+    margin-top: 0;
+  }
+}

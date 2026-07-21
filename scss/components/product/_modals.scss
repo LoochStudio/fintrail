@@ -1,0 +1,317 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── Форма OOS ─────────────────────────────────────────────────────────────
+.product-oos-form {
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-oos-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-oos-form__label {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-oos-form__input {
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  outline: none;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $color-primary-gray;
+  }
+
+  &:focus {
+    outline: 1px solid $color-primary-black;
+  }
+}
+
+// ── Плашка «Снято с производства» ─────────────────────────────────────────
+.product-discontinued {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px;
+  background: $color-white;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+  text-align: center;
+}
+
+// Кнопка OOS-формы — собственный BEM-класс (не product-buy__button)
+// Состояния соответствуют button--on-color из UI-кита
+.product-oos-form__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  padding: 14px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover, &:focus-visible {
+      background: $color-button-secondary-hover;
+    }
+  }
+
+  &:active {
+    background: $color-gray-pressed;
+  }
+
+  &:disabled,
+  &.is-disabled {
+    background: $color-button-disabled;
+    color: $color-primary-gray;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+// ── Mobile bottom sheets: «Полное описание» + «Загрузить фото/видео» ──────
+// На мобиле десктопные side panels (translateX) превращаются в bottom sheets
+// (translateY). Full-width, скруглённые сверху, drag handle, safe-area inset.
+
+@media (max-width: 1279px) {
+
+  // ── Полное описание ─────────────────────────────────────────────────────
+  .product-description-modal__panel {
+    top: auto;           // убираем top: 20px
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 85dvh;   // dynamic viewport height — учитывает мобильный chrome
+    border-radius: 16px 16px 0 0;
+    gap: 32px;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px); // start slightly below
+  }
+
+  // Drag handle сверху
+  .product-description-modal__panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: $color-secondary-gray;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+  }
+
+  // Open state: translateY вместо translateX
+  .product-description-modal.is-open {
+    .product-description-modal__panel {
+      transform: translateY(0);
+    }
+  }
+
+  .product-description-modal__header {
+    padding-top: 20px;
+    min-height: auto;
+  }
+
+  .product-description-modal__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+
+  // ── Предзаказ ───────────────────────────────────────────────────────────
+  .product-preorder-modal__panel {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 90dvh;
+    border-radius: 16px 16px 0 0;
+    gap: 32px;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+  }
+
+  .product-preorder-modal__panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    flex-shrink: 0;
+    margin: 12px auto 0;
+    border-radius: 2px;
+    background: $color-secondary-gray;
+  }
+
+  .product-preorder-modal.is-open {
+    .product-preorder-modal__panel {
+      transform: translateY(0);
+    }
+  }
+
+  .product-preorder-modal__top {
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .product-preorder-modal__header {
+    min-height: auto;
+  }
+
+  .product-preorder-modal__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .product-preorder-modal__lead {
+    font-size: $text-body-b1-size;
+    line-height: 18px;
+  }
+
+  .product-preorder-modal__screen {
+    min-height: auto;
+  }
+
+  .product-preorder-modal__screen--form {
+    gap: 24px;
+  }
+
+  .product-preorder-modal__screen--success {
+    justify-content: flex-start;
+    gap: 32px;
+  }
+
+  .product-preorder-modal__success-content {
+    gap: 24px;
+  }
+
+  .product-preorder-modal__success-text {
+    max-width: none;
+  }
+
+  .product-preorder-modal__submit,
+  .product-preorder-modal__success-button {
+    margin-top: 0;
+  }
+  // ── Загрузить фото/видео ────────────────────────────────────────────────
+  .product-upload-modal__panel {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 90dvh;
+    border-radius: 16px 16px 0 0;
+    gap: 24px;
+    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+  }
+
+  // Drag handle
+  .product-upload-modal__panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: $color-secondary-gray;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+  }
+
+  .product-upload-modal.is-open {
+    .product-upload-modal__panel {
+      transform: translateY(0);
+    }
+  }
+
+  .product-upload-modal__top {
+    gap: 16px;
+    padding-top: 20px;
+  }
+
+  .product-upload-modal__header {
+    min-height: auto;
+  }
+
+  .product-upload-modal__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .product-upload-modal__lead {
+    font-size: $text-body-b2-size;
+    line-height: $text-body-b2-line;
+  }
+
+  // Дропзона: компактнее на мобиле
+  .product-upload-modal__dropzone {
+    min-height: 180px;
+    padding: 32px 20px;
+    border-radius: 8px;
+  }
+
+  .product-upload-modal__dropzone.is-filled {
+    padding: 20px;
+  }
+
+  // Preview thumbnails — чуть меньше
+  .product-upload-modal__preview-list {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    img {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+    }
+  }
+
+  // Submit-кнопка — уменьшаем padding
+  .product-upload-modal__submit {
+    min-height: 48px;
+    padding: 14px 32px;
+  }
+
+  // Note: немного меньше текст
+  .product-upload-modal__note {
+    font-size: 11px;
+  }
+}

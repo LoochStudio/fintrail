@@ -1,0 +1,695 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── Отзывы ───────────────────────────────────────────────────────────────────
+.product-reviews {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 0 80px; // top — от product-article (padding-bottom: 80px)
+  color: $color-primary-black;
+}
+
+// ─── Левая колонка (695px) ────────────────────────────────────────────────
+.product-reviews__left {
+  flex: 0 0 695px;
+  max-width: 695px; // блок не растёт на >1440px — gap берёт на себя пространство
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Шапка
+.product-reviews__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-reviews__title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.product-reviews__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+.product-reviews__count {
+  font-family: $font-display;
+  font-size: $text-body-b1-size; // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.product-reviews__header-meta {
+  display: flex;
+  align-items: center;
+  gap: 86px;
+}
+
+// Средняя оценка: точки + число
+.product-reviews__average {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-reviews__average-num {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+// Строка: точки + цифра рейтинга (gap 8px между ними)
+.product-reviews__stars-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-reviews__reviewer-rating {
+  font-family: $font-display;
+  font-size: $text-body-b1-size; // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  @include trim-text;
+}
+
+// Точечные звёзды (6×6px)
+.product-reviews__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: $color-primary-black;
+  }
+
+  // 4 звезды → 5-й кружок пустой
+  &--4 span:nth-child(5) {
+    background: $color-secondary-gray;
+  }
+
+  // 4.8 → 5-й кружок 80% закрашен
+  &--4-8 span:nth-child(5) {
+    background: linear-gradient(
+      to right,
+      $color-primary-black 80%,
+      $color-secondary-gray 80%
+    );
+  }
+}
+
+// Дропдаун сортировки
+.product-reviews__sort {
+  position: relative;
+  width: 180px;
+}
+
+.product-reviews__sort-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-surface;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  transition: background 0.18s ease;
+
+  img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  &[aria-expanded="true"] img {
+    transform: rotate(180deg);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { background: $color-white; }
+  }
+}
+
+.product-reviews__sort-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 20;
+  min-width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  background: $color-white;
+  box-shadow: $shadow-dropdown;
+  white-space: nowrap;
+
+  &[hidden] { display: none; }
+
+  li { list-style: none; }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: $color-primary-gray;
+    cursor: pointer;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-align: left;
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &[aria-selected="true"] { color: $color-primary-black; }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: $color-surface;
+        color: $color-primary-black;
+      }
+    }
+  }
+}
+
+// Разделитель
+.product-reviews__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: $color-white;
+  flex-shrink: 0;
+}
+
+// Список отзывов
+.product-reviews__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Скрытые отзывы — display:contents делает контейнер «прозрачным»:
+// дочерние элементы встают прямо в flex-поток списка и получают gap:20px
+.product-reviews__extra {
+  display: contents;
+}
+.product-reviews__extra[hidden] {
+  display: none !important; // перекрываем display:contents
+}
+
+// Строка отзыва — grid с фиксированными колонками:
+// reviewer всегда 174px, content всегда 342px, пространство между = 179px.
+// Без этого flex-блок с именем «Александр» шире «Сергей» → content уплывает вправо.
+.product-reviews__row {
+  display: grid;
+  grid-template-columns: 174px 342px; // 64 avatar + 16 gap + 94 meta = 174
+  column-gap: 179px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+// Блок автора (64px аватар + мета)
+// Figma: gap-[16px], align-items: center (аватар и мета центрированы вертикально)
+.product-reviews__reviewer {
+  display: flex;
+  gap: 16px;
+  align-items: center; // Figma: items-center
+}
+
+.product-reviews__avatar {
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+// Figma: self-stretch (растягивается под высоту аватара 64px) + h-full + justify-between
+// → stars/name наверху, дата внизу
+.product-reviews__reviewer-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;     // растягивается под высоту аватара (= 64px)
+  min-height: 64px;
+}
+
+.product-reviews__reviewer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-reviews__reviewer-name {
+  font-family: $font-display;
+  font-size: $text-body-b1-size;  // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  @include trim-text;
+}
+
+.product-reviews__reviewer-date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;  // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-muted;
+
+  span {
+    @include trim-text; // убираем лишний whitespace → дата точно внизу мета-блока
+  }
+}
+
+// Контент отзыва
+.product-reviews__content {
+  flex: 0 0 342px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Теги
+.product-reviews__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.product-reviews__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 20px;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  white-space: nowrap;
+}
+
+// Фото отзыва
+.product-reviews__photos {
+  display: flex;
+  gap: 4px;
+
+  img {
+    display: block;
+    width: 42px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+}
+
+// Секции (достоинства / недостатки / комментарий)
+.product-reviews__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-reviews__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-reviews__section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+.product-reviews__section-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.product-reviews__section-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;  // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+}
+
+// Обёртка последнего разделителя + кнопки — flex-col без gap,
+// чтобы hr и кнопка стояли вплотную (gap:20px списка не попадает внутрь)
+.product-reviews__footer {
+  display: flex;
+  flex-direction: column;
+}
+
+// Кнопка «Показать ещё»
+.product-reviews__load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 52px;
+  padding: 18px 24px 18px 32px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-surface;
+  color: $color-muted;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;  // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  sup {
+    font-size: 9px;
+    line-height: 14px;
+    vertical-align: super;
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &[hidden] { display: none; }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $color-white;
+      color: $color-primary-black;
+    }
+  }
+}
+
+// ─── Правая колонка: форма оценки (343px) ────────────────────────────────
+.product-reviews__right {
+  flex: 0 0 343px;
+  max-width: 343px; // не растёт на >1440px
+}
+
+.product-reviews__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-reviews__form-label {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+// Строка: кружки-оценки + цифра
+.product-reviews__form-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-reviews__form-stars {
+  display: flex;
+  gap: 16px;
+}
+
+.product-reviews__form-star {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: $color-secondary-gray;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, transform 0.12s ease;
+
+  &.is-active,
+  &.is-preview {
+    background: $color-primary-black;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: scale(1.15); }
+  }
+}
+
+.product-reviews__form-rating-num {
+  font-family: $font-display;
+  font-size: 36px;
+  font-weight: $font-weight-black;
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
+// Поля формы
+.product-reviews__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-reviews__field {
+  display: block;
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid $color-secondary-gray;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+  outline: none;
+  resize: none;
+  transition: border-color 0.18s ease;
+
+  &::placeholder {
+    color: $color-muted;
+  }
+
+  &:focus {
+    border-color: $color-primary-black;
+  }
+
+  &.is-error {
+    border-color: $color-secondary-accent;
+  }
+
+  &--textarea {
+    height: 96px;
+    align-items: flex-start;
+  }
+
+  &--comment {
+    height: 80px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-reviews__field:hover {
+    border-color: $color-primary-gray;
+  }
+}
+
+// Соответствие размеру
+.product-reviews__fit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-reviews__fit-label {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+}
+
+.product-reviews__fit-options {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.product-reviews__fit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1 1 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  img {
+    display: none; // иконка чекмарка — видна только у активной кнопки
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  // Активная кнопка: чёрный фон, белый текст, чекмарк
+  &--active {
+    padding: 8px 12px 8px 8px;
+    background: $color-primary-black;
+    color: $color-white;
+
+    img { display: block; }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(.product-reviews__fit-btn--active):hover {
+      background: $color-surface;
+    }
+  }
+}
+
+// Загрузить файлы
+.product-reviews__upload {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px;
+  border: 1px dashed $color-secondary-gray;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-reviews__upload-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 11px;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  flex-shrink: 0;
+
+  img,
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+.product-reviews__upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-reviews__upload-title {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-reviews__upload-hint {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-gray;
+}
+
+// Кнопка отправки
+.product-reviews__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  padding: 22px 32px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-primary-black;
+  color: $color-white;
+  cursor: pointer;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  transition: background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    // тот же паттерн что .button--primary: #1f1f1f → #000 на hover
+    &:hover,
+    &:focus-visible { background: $color-button-primary-hover; }
+  }
+
+  &:active { background: $color-button-primary-pressed; }
+}

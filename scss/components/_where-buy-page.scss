@@ -262,12 +262,12 @@
   height: 3px;
   flex: 0 0 3px;
   border-radius: 50%;
-  background: #b9b3aa;
+  background: $color-separator-muted;
 }
 
 .where-buy-location--muted .where-buy-location__title,
 .where-buy-location--muted .where-buy-location__contacts a {
-  color: #6c6760;
+  color: $color-content-text-secondary;
 }
 
 .where-buy-map__canvas {
@@ -538,7 +538,7 @@
 
   .where-buy-map__marker:hover {
     transform: translateY(-2px);
-    background: #383838;
+    background: $color-button-primary-pressed;
   }
 }
 

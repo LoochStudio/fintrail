@@ -1,0 +1,160 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── Характеристики и преимущества (горизонтальный слайдер) ────────────────
+.product-props {
+  padding-bottom: 38px;
+}
+
+.product-props__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-props__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.product-props__controls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.product-props__btn {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:disabled {
+    color: $color-primary-gray;
+    pointer-events: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-props__btn:not(:disabled):hover,
+  .product-props__btn:not(:disabled):focus-visible {
+    background: $color-button-secondary-hover;
+  }
+}
+
+.product-props__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.product-props__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.product-props__item {
+  display: flex;
+  flex: 0 0 250px;
+  flex-direction: column;
+  gap: 20px;
+  height: 224px;
+  padding: 20px 40px 20px 0; // right 40px — визуальный отступ между слайдами
+  background: $color-surface;
+}
+
+.product-props__item-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;   // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.product-props__item-desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;  // 16px
+  color: $color-primary-black;
+}
+
+// ── Ключевые технологии / свойства товара ─────────────────────────────────
+.product-features {
+  padding: 20px 0 32px;
+}
+
+.product-features__grid {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.product-features__item {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.product-features__icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.product-features__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-features__title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;  // 16px
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.product-features__desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line;  // 16px
+  color: $color-muted;
+}

@@ -1,0 +1,13 @@
+// Aligns rendered text to the cap height when the browser supports the
+// corresponding CSS Text Level 4 properties. Older browsers ignore them.
+@mixin trim-text {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  leading-trim: both;
+  text-edge: cap;
+}
+
+// Compatibility name for the cart module. Keep the implementation centralized.
+@mixin cart-trim-text {
+  @include trim-text;
+}

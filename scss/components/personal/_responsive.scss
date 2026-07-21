@@ -1,0 +1,526 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .personal-page--orders .personal-viewed-products + .community-showcase {
+    position: relative;
+    // Единый интервал: 20px + линия 2px + 20px. Переопределяет
+    // базовые 64px/100px, поэтому вертикальные отступы не складываются.
+    margin-top: 42px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -22px;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: $color-white;
+    }
+  }
+
+  .orders-page__desktop-divider {
+    display: none;
+  }
+
+  .personal-orders-mobile-section.personal-favorites,
+  .personal-orders-mobile-section.personal-ratings {
+    display: flex;
+  }
+
+  .personal-orders-mobile-section.personal-section-divider {
+    display: block;
+  }
+
+  .personal-orders-mobile-section.recommendations-new {
+    display: block;
+  }
+
+  .personal-page--order-detail {
+    .order-detail-page {
+      grid-template-columns: 1fr;
+    }
+
+    .recommendations-new__controls {
+      display: none;
+    }
+  }
+
+  .personal-orders-mobile-section.personal-favorites {
+    margin-top: 40px;
+    padding-bottom: 0;
+  }
+
+  .personal-orders-mobile-section .personal-favorites__all-link {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: $radius-xs;
+    background: $color-white;
+
+    > span:first-child {
+      display: none;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .personal-orders-mobile-section .personal-favorite-card {
+    height: 242px;
+  }
+
+  .personal-orders-mobile-section .personal-favorite-card__link {
+    overflow: hidden;
+  }
+
+  .personal-orders-mobile-section .personal-favorite-card__name {
+    display: -webkit-box;
+    max-height: 32px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .personal-orders-mobile-section.personal-ratings {
+    padding: 0;
+  }
+
+  .personal-orders-mobile-section .personal-ratings__title {
+    @include trim-text;
+  }
+
+  .personal-orders-mobile-section .personal-ratings__list {
+    align-items: stretch;
+  }
+
+  .personal-orders-mobile-section .personal-rating-card {
+    height: 113px;
+    gap: 10px;
+  }
+
+  .personal-orders-mobile-section .personal-rating-card__content {
+    height: 100%;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .personal-orders-mobile-section .personal-rating-card__name {
+    @include trim-text;
+
+    max-height: 54px;
+    overflow: hidden;
+  }
+
+  .personal-orders-mobile-section .personal-rating-card__dots {
+    gap: 8px;
+  }
+
+  .personal-orders-mobile-section .personal-rating-card__dot {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// ─── Tablet personal header ─────────────────────────────────────────────────
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .personal-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 36px;
+    padding-top: 60px;
+    padding-left: 0;
+  }
+
+  .personal-header__title {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .personal-header__nav-row {
+    display: contents;
+  }
+
+  .personal-header__settings {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .personal-header__tabs {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .personal-header__tab {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .order-card__track-label--desktop {
+    display: none;
+  }
+
+  .order-card__track-label--mobile {
+    display: inline;
+  }
+
+
+  // ─── Page ──────────────────────────────────────────────────────────────────
+
+  .personal-page {
+    padding-bottom: 80px; // запас под таббар
+  }
+
+  // ─── Personal header ───────────────────────────────────────────────────────
+  // На мобилке: title + settings в одну строку, табы ниже.
+  // display: contents на nav-row "растворяет" обёртку — дети становятся
+  // прямыми flex-детьми .personal-header, и мы управляем порядком через order.
+
+  .personal-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 36px;
+    padding-top: 20px;
+    padding-bottom: 0;
+    padding-left: 0;
+  }
+
+  .personal-header__title {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  // display: contents растворяет обёртку — табы и настройки
+  // становятся прямыми grid-детьми personal-header
+  .personal-header__nav-row {
+    display: contents;
+  }
+
+  .personal-header__settings {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .personal-header__settings-full { display: none; }
+  .personal-header__settings-short { display: inline; }
+
+  .personal-header__tabs {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 10px;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .personal-header__tab {
+    flex-shrink: 0;
+  }
+
+  // ─── Loyalty banner ────────────────────────────────────────────────────────
+  // На мобилке фоновое фото скрыто (в Figma rect сдвинут за правый край).
+  // Карточка занимает почти всю ширину, позиционируется статично.
+
+  .personal-banner {
+    height: 460px; // 20px top + 420px card + 20px bottom
+    margin-top: 20px;
+    padding: 0;
+    // overflow: hidden и full-bleed width/margin наследуются с десктопа
+  }
+
+  .personal-banner__img {
+    display: block; // фото видно как фон
+  }
+
+  .personal-banner__card {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: calc(100% - 41px); // 20px слева + 21px справа = 375 - 41 = 334px
+    height: 420px;
+    transform: none;
+    min-height: unset;
+  }
+
+  .personal-banner__referral {
+    padding: 4px 4px 4px 12px; // на десктопе 12px top (для текста), на мобилке текст скрыт
+  }
+
+  .personal-banner__referral-text {
+    display: none;
+  }
+
+  // ─── Interests ─────────────────────────────────────────────────────────────
+  // Из горизонтальной сетки (7 колонок) → вертикальный список.
+  // Каждый элемент: [иконка] [текст     ] [тоггл]
+
+  .personal-interests {
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  .personal-interests__list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .personal-interests__item {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 64px;
+    padding: 14px 0;
+    border-radius: 0;
+  }
+
+  .personal-interests__icon {
+    margin-right: 20px;
+  }
+
+  .personal-interests__label {
+    flex: 1 1 auto;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .personal-interests__toggle {
+    margin-left: auto;
+  }
+
+  // ─── Section divider ───────────────────────────────────────────────────────
+
+  .personal-section-divider {
+    margin: 20px 0;
+  }
+
+  // ─── Orders ────────────────────────────────────────────────────────────────
+
+  .personal-orders {
+    padding-bottom: 0;
+  }
+
+  .personal-orders__all-link {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    justify-content: center;
+
+    > span:first-child { display: none; }
+  }
+
+  .order-card {
+    width: 290px;
+  }
+
+  .order-card__progress {
+    display: none;
+  }
+
+  .order-card__action-btn {
+    padding: 7px 8px 7px 12px;
+  }
+
+  .order-card__bottom {
+    gap: 20px;
+  }
+
+  // ─── Orders page ───────────────────────────────────────────────────────────
+
+  .orders-page {
+    padding-bottom: 0;
+  }
+
+  // Controls: вертикальный layout — tabs сверху, sort-кнопка снизу во всю ширину
+  // align-items: stretch перебивает align-items: center из базовых стилей
+  .orders-page__controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .orders-page__tab {
+    flex: 1;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .orders-page__sort-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .orders-page__more {
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+
+  .order-card--list {
+    width: 100%;
+    padding: 20px;
+
+    .order-card__top {
+      gap: 20px;
+    }
+
+    // align-items: stretch перебивает align-items: center из desktop modifier — actions должны быть full-width
+    .order-card__head {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+    }
+
+    // На мобилке: прогресс бар сверху, статус текст снизу (в DOM они идут наоборот → column-reverse)
+    .order-card__status-row {
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    // Планшетный media-query скрывает прогресс — на мобилке он нужен
+    .order-card__progress {
+      display: flex;
+    }
+
+    .order-card__action-btn {
+      flex: 1 0 0;
+      font-size: 12px;
+      line-height: 12px;
+      padding: 4px 4px 4px 12px;
+      gap: 4px;
+    }
+
+    // Info-блок: два блока по 300px с gap 70px → горизонтальный скролл, первый блок виден полностью
+    .order-card__info {
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar { display: none; }
+    }
+  }
+
+  // ─── Favorites ─────────────────────────────────────────────────────────────
+
+  .personal-favorites__all-link {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    justify-content: center;
+
+    > span:first-child { display: none; }
+  }
+
+  // ─── Ratings ───────────────────────────────────────────────────────────────
+
+  .personal-ratings {
+    padding: 0 0 40px; // убираем лишний горизонтальный padding (страница уже имеет 20px)
+  }
+
+  .personal-rating-card {
+    flex: 0 0 280px;
+    width: 280px;
+  }
+
+  // ─── Viewed products + Community (bleed) ───────────────────────────────────
+
+  .personal-viewed-products,
+  .personal-viewed-products + .community-showcase {
+    width: calc(100% + #{$spacing-page-desktop * 2});
+    margin-right: -$spacing-page-desktop;
+    margin-left: -$spacing-page-desktop;
+  }
+
+  // ─── Order detail ──────────────────────────────────────────────────────────
+
+  .order-tracking-cards {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 374px) {
+
+  .personal-banner__card {
+    width: calc(100% - 40px);
+  }
+
+  .personal-banner__body {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .personal-banner__value--lg {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .personal-banner__referral-url {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .personal-banner__referral .personal-banner__copy-btn {
+    padding: 8px;
+  }
+
+  .personal-header__title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+.personal-banner__copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: $color-white;
+  border: none;
+  border-radius: $radius-xs;
+  cursor: pointer;
+  color: $color-secondary-accent;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}

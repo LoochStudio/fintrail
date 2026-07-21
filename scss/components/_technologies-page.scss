@@ -177,7 +177,7 @@
 .technologies-page__photo-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba($color-black, 0.1);
   pointer-events: none;
 }
 

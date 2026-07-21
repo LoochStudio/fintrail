@@ -16,6 +16,47 @@ export function init() {
     : [];
   let catalogLoadingTimer;
 
+  const priceRanges = Array.from(document.querySelectorAll(
+    '.catalog-filter-popup__price-row, .catalog-filter-modal__price-row'
+  ));
+
+  const parsePrice = input => {
+    const digits = input?.value.replace(/\D/g, '') || '';
+    return digits ? Number(digits) : null;
+  };
+
+  const formatPrice = value => String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+  const normalizePriceRange = range => {
+    const inputs = range?.querySelectorAll('input');
+    if (!inputs || inputs.length < 2) return;
+
+    const [fromInput, toInput] = inputs;
+    const from = parsePrice(fromInput);
+    let to = parsePrice(toInput);
+
+    if (from !== null) fromInput.value = formatPrice(from);
+    if (to !== null && from !== null && to < from) {
+      to = from;
+    }
+    if (to !== null) toInput.value = formatPrice(to);
+  };
+
+  priceRanges.forEach(range => {
+    range.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/\D/g, '');
+      });
+      input.addEventListener('blur', () => normalizePriceRange(range));
+    });
+  });
+
+  document.addEventListener('click', event => {
+    const applyButton = event.target.closest('.catalog-filter-popup__apply');
+    if (!applyButton) return;
+    normalizePriceRange(applyButton.closest('.catalog-filter-popup')?.querySelector('.catalog-filter-popup__price-row'));
+  }, true);
+
   const showCatalogLoading = () => {
     if (!catalogProducts || !catalogLoading) return;
 
@@ -136,6 +177,7 @@ export function init() {
 
   catalogFilterForm?.addEventListener('submit', event => {
     event.preventDefault();
+    catalogFilterForm.querySelectorAll('.catalog-filter-modal__price-row').forEach(normalizePriceRange);
     closeCatalogFilterModal();
     showCatalogLoading();
   });

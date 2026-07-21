@@ -207,14 +207,15 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      &:not(.is-saved):hover,
-      &:not(.is-saved):focus-visible {
+      &:not(.is-saved, .is-compared):hover,
+      &:not(.is-saved, .is-compared):focus-visible {
         color: $color-primary-black;
       }
     }
   }
 
-  &__icon-btn.is-saved {
+  &__icon-btn.is-saved,
+  &__icon-btn.is-compared {
     color: $color-secondary-accent;
   }
 
@@ -259,7 +260,7 @@
 
     // Цветовые варианты
     &--graphite {
-      background: #89b9e3;
+      background: $color-product-swatch-graphite;
     }
 
     &--black {
@@ -379,7 +380,7 @@
 
     &__cart:hover .recommendation-card__old-price,
     &__cart:focus-visible .recommendation-card__old-price {
-      color: #a8a8a8;
+      color: $color-primary-gray;
     }
   }
 
@@ -405,7 +406,7 @@
     }
   }
 
-  &:has(.js-wishlist.is-saved) &__actions {
+  &:has(.js-wishlist.is-saved, .js-compare.is-compared) &__actions {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -522,7 +523,7 @@
 
   .recommendation-card:hover .recommendation-card__actions,
   .recommendation-card:focus-within .recommendation-card__actions,
-  .recommendation-card:has(.js-wishlist.is-saved) .recommendation-card__actions {
+  .recommendation-card:has(.js-wishlist.is-saved, .js-compare.is-compared) .recommendation-card__actions {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -570,7 +571,7 @@
 
   .recommendation-card:hover .recommendation-card__old-price,
   .recommendation-card:focus-within .recommendation-card__old-price {
-    color: #a8a8a8;
+    color: $color-primary-gray;
   }
 
   .recommendation-card__price {
@@ -708,7 +709,7 @@
 
   .recommendation-card:hover .recommendation-card__actions,
   .recommendation-card:focus-within .recommendation-card__actions,
-  .recommendation-card:has(.js-wishlist.is-saved) .recommendation-card__actions {
+  .recommendation-card:has(.js-wishlist.is-saved, .js-compare.is-compared) .recommendation-card__actions {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -766,7 +767,7 @@
 
   .recommendation-card:hover .recommendation-card__old-price,
   .recommendation-card:focus-within .recommendation-card__old-price {
-    color: #a8a8a8;
+    color: $color-primary-gray;
   }
 
   .recommendation-card__price {

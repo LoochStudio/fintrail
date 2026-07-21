@@ -111,12 +111,54 @@ export function init() {
 
   updateCartBadges(getCartCount());
 
+  // ─── Счётчик сравнения ─────────────────────────────────────────────────────
+  // Bitrix: при интеграции значение можно синхронизировать с catalog.compare.list.
+  const COMPARE_KEY = 'compare_count';
+
+  function getCompareCount() {
+    const count = parseInt(localStorage.getItem(COMPARE_KEY) || '0', 10);
+    return Number.isFinite(count) ? Math.max(0, count) : 0;
+  }
+
+  function setCompareCount(count) {
+    localStorage.setItem(COMPARE_KEY, String(Math.max(0, count)));
+  }
+
+  function ensureCompareBadges() {
+    document.querySelectorAll(
+      '.hero__tool[aria-label="Сравнение"], .navbar__btn-icon[aria-label="Сравнить"]'
+    ).forEach(control => {
+      if (control.querySelector('.hero-compare-badge')) return;
+
+      const badge = document.createElement('span');
+      badge.className = 'hero-compare-badge';
+      badge.hidden = true;
+      badge.setAttribute('aria-hidden', 'true');
+      control.appendChild(badge);
+    });
+  }
+
+  function updateCompareBadges(count) {
+    document.querySelectorAll('.hero-compare-badge').forEach(badge => {
+      if (count > 0) {
+        badge.textContent = count > 99 ? '99+' : String(count);
+        badge.hidden = false;
+      } else {
+        badge.hidden = true;
+      }
+    });
+  }
+
+  ensureCompareBadges();
+  updateCompareBadges(getCompareCount());
+
   function markAddButtonInCart(btn) {
     const useEl = btn?.querySelector('use');
     if (useEl) {
       useEl.setAttribute('href', spriteHref('icon-kit-check'));
     }
     btn?.classList.add('is-in-cart');
+    btn?.setAttribute('aria-label', 'Товар в корзине');
     const labelSpan = btn?.querySelector('.recommendation-card__cart-label span');
     if (labelSpan) labelSpan.textContent = 'В корзине';
     const productInfoLabel = btn?.querySelector('.product-info-section__cart-label');
@@ -487,6 +529,10 @@ export function init() {
     btn.setAttribute('aria-label', isCompared ? 'Убрать из сравнения' : 'К сравнению');
     const label = btn.querySelector('span');
     if (label) label.textContent = isCompared ? 'В сравнении' : 'К сравнению';
+
+    const nextCount = getCompareCount() + (isCompared ? 1 : -1);
+    setCompareCount(nextCount);
+    updateCompareBadges(Math.max(0, nextCount));
   });
 
   // ─── Цветовые точки в карточках товаров ─────────────────────────────────────
@@ -554,17 +600,24 @@ export function init() {
   }
 
   document.addEventListener('click', e => {
-    const btn = e.target.closest('button.order-card__action-btn, button.order-tracking-card');
+    const btn = e.target.closest('button.order-card__action-btn, button.order-tracking-card, button[data-copy-link]');
     if (!btn) return;
 
-    const text = btn.classList.contains('order-card__action-btn')
-      ? btn.querySelector('span')?.textContent?.trim()
-      : btn.querySelector('.order-tracking-card__value')?.textContent?.trim();
+    const text = btn.matches('[data-copy-link]')
+      ? window.location.href
+      : btn.classList.contains('order-card__action-btn')
+        ? btn.querySelector('span')?.textContent?.trim()
+        : btn.querySelector('.order-tracking-card__value')?.textContent?.trim();
 
     if (!text) return;
 
+    const originalLabel = btn.getAttribute('aria-label');
     btn.classList.add('is-copied');
-    setTimeout(() => btn.classList.remove('is-copied'), 1500);
+    if (btn.matches('[data-copy-link]')) btn.setAttribute('aria-label', 'Ссылка скопирована');
+    setTimeout(() => {
+      btn.classList.remove('is-copied');
+      if (originalLabel) btn.setAttribute('aria-label', originalLabel);
+    }, 1500);
 
     if (navigator.clipboard?.writeText) {
       navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
@@ -588,13 +641,8 @@ export function init() {
       btn.setAttribute('aria-busy', 'true');
 
       try {
-        // TODO: заменить на реальный URL Bitrix с параметром страницы
-        // const nextPage = parseInt(btn.dataset.page || '1', 10) + 1;
-        // const res = await fetch(`?PAGEN_1=${nextPage}&ajax=y`);
-        // const html = await res.text();
-        // вставить карточки из html в list
-
-        // Временная заглушка для разработки
+        // Bitrix integration point: replace the development delay with the
+        // component AJAX request and append the returned order cards to list.
         await new Promise(resolve => setTimeout(resolve, 800));
         btn.hidden = true; // скрываем если больше нет страниц
       } catch {

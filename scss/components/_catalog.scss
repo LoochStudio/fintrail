@@ -911,7 +911,7 @@
 
   .catalog-toolbar__chip.is-active:hover,
   .catalog-toolbar__chip.is-active:focus-visible {
-    background: #262626;
+    background: $color-black-hover;
     color: $color-white;
   }
 
@@ -1237,14 +1237,30 @@
   }
 
   .catalog-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     padding: 0 20px;
+  }
+
+  .catalog-toolbar__button--filter {
+    justify-self: start;
   }
 
   .catalog-toolbar__chips {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 0 auto;
+    margin: 0;
+  }
+
+  .catalog-filter-popup-wrap--sort {
+    width: 240px;
+    justify-self: end;
+  }
+
+  .catalog-toolbar__button--sort {
+    width: 100%;
+    justify-content: center;
   }
 
   .catalog-products__grid {

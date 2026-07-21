@@ -3,7 +3,7 @@
 .footer {
   display: none;
   padding: 36px 16px 24px;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba($color-black, 0.05);
   border-radius: 16px 16px 0 0;
   flex-direction: column;
   gap: 24px;
@@ -48,11 +48,11 @@
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: #fff;
+    background: $color-white;
     overflow: hidden;
     mix-blend-mode: luminosity;
     flex-shrink: 0;
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba($color-black, 0.9);
 
     svg {
       width: 48px;
@@ -71,7 +71,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
-    color: #76777a;
+    color: $color-gray-primary;
 
     &--lg {
       font-size: 16px;
@@ -90,7 +90,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    color: #76777a;
+    color: $color-gray-primary;
     text-decoration: none;
     white-space: nowrap;
   }
@@ -103,7 +103,7 @@
 
   &__divider {
     height: 1px;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba($color-black, 0.05);
     border: none;
   }
 
@@ -117,7 +117,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    color: #76777a;
+    color: $color-gray-primary;
     text-decoration: none;
 
     &--underline {
@@ -129,7 +129,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    color: #76777a;
+    color: $color-gray-primary;
   }
 }
 

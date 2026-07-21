@@ -126,7 +126,7 @@
 }
 
 .contacts-card__shade {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0) 36%, rgba(0, 0, 0, 0.42) 100%);
+  background: linear-gradient(180deg, rgba($color-black, 0.38) 0%, rgba($color-black, 0) 36%, rgba($color-black, 0.42) 100%);
   pointer-events: none;
 }
 
@@ -427,7 +427,7 @@
   }
 
   .contacts-form__submit:hover {
-    background: #383838;
+    background: $color-black-hover;
   }
 }
 

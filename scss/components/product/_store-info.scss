@@ -1,0 +1,371 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// product-store-info скрыта на десктопе
+.product-store-info {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .product-store-info {
+    display: flex;
+    flex-direction: column;
+    gap: 64px; // Figma: gap между main-группой и формой помощи
+    padding: 20px; // Figma: p-[20px] на всём Store Info Section
+    background: linear-gradient(to bottom, $color-primary-black 0%, $color-loyalty-gradient 100%); // Figma gradient
+    color: $color-white;
+  }
+
+  // ── Главный контент (комплект + текст + преимущества) ─────────────────
+  .product-store-info__main {
+    display: flex;
+    flex-direction: column;
+    gap: 37px; // Figma: gap-[37px] внутри main-группы
+  }
+
+  // Комплект
+  .product-store-info__kit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-store-info__kit-label {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size; // 12px
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__kit-images {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    padding-bottom: 2px; // место для линии ::after чтобы не обрезалась
+  }
+
+  // Kit-item: кнопка с flex-col + gap 6px между thumb и линией
+  .product-store-info__kit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; // Figma: 6px между картинкой и красной линией
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  // Контейнер изображения
+  .product-store-info__kit-thumb {
+    width: 90px;
+    height: 90px;
+    border-radius: 4px;
+    background: $color-surface;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Линия — всегда занимает место, но прозрачная по умолчанию
+  .product-store-info__kit-item::after {
+    content: '';
+    display: block;
+    width: 90px;
+    height: 2px;
+    border-radius: 10px;
+    background: transparent;
+    flex-shrink: 0;
+    transition: background 0.18s ease;
+  }
+
+  // Активный элемент — красная линия
+  .product-store-info__kit-item.is-active::after {
+    background: $color-secondary-accent;
+  }
+
+  // Текстовый блок (название + описание)
+  .product-store-info__text {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; // Figma: gap-[40px] между heading-группой и body
+  }
+
+  .product-store-info__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; // Figma: gap-[10px] между title и article
+  }
+
+  .product-store-info__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 24px;
+    font-weight: $font-weight-black;
+    line-height: 28px;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__article {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: $color-muted;
+  }
+
+  .product-store-info__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Figma: gap-[20px] между desc и ссылкой
+  }
+
+  .product-store-info__desc {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size; // 14px
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__full-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: $font-mono;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: $color-white;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  // Преимущества (3 пункта)
+  .product-store-info__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; // Figma: gap-[30px] между пунктами
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-store-info__benefit {
+    display: flex;
+    gap: 10px; // Figma: gap-[10px] между иконкой и текстом
+    align-items: flex-start;
+  }
+
+  .product-store-info__benefit-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: $color-white;
+  }
+
+  .product-store-info__benefit-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; // Figma: gap-[12px] между title и sub
+  }
+
+  .product-store-info__benefit-title {
+    font-family: $font-mono;
+    font-size: $text-body-b2-size; // 12px
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__benefit-sub {
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: $color-secondary-gray; // Figma: Gray/Tertiary
+  }
+
+  // ── Форма помощи с подбором ────────────────────────────────────────────
+  .product-store-info__support {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; // Figma: gap-[16px]
+  }
+
+  .product-store-info__support-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .product-store-info__support-title {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    color: $color-white;
+  }
+
+  .product-store-info__support-sub {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    color: $color-secondary-gray;
+  }
+
+  .product-store-info__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-store-info__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  // Базовый инпут
+  .product-store-info__input {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: rgba($color-white, 0.16);
+    color: $color-white;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    text-transform: uppercase;
+    outline: none;
+    transition: background 0.18s ease, border-color 0.18s ease;
+
+    &::placeholder {
+      color: $color-muted;
+      opacity: 1;
+    }
+
+    &:focus {
+      background: rgba($color-white, 0.22);
+      border-color: rgba($color-white, 0.4);
+    }
+
+    &.is-error {
+      border-color: $color-secondary-accent;
+      background: rgba($color-white, 0.08);
+    }
+  }
+
+  // Ряд с флагом + телефоном
+  .product-store-info__phone-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .product-store-info__input--phone {
+    flex: 1;
+  }
+
+  // Текст ошибки под phone-row
+  .product-store-info__caption {
+    display: none;
+    margin-top: 4px;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: $font-weight-semibold;
+    line-height: $text-body-b2-line;
+    color: $color-secondary-accent;
+
+    &:not(:empty) {
+      display: block;
+    }
+  }
+
+  // Кнопка «Отправить»
+  .product-store-info__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 52px;
+    padding: 22px 32px;
+    border: 0;
+    border-radius: 4px;
+    background: $color-white;
+    color: $color-primary-black;
+    font-family: $font-display;
+    font-size: $text-body-b1-size; // 14px
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.18s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { background: $color-surface; }
+    }
+  }
+}
+
+// 320px: kit-карточки 90px не влезают (3×90=270 + padding 40 = 310 > 320)
+// Уменьшаем до 72px → 3×72=216, остаток распределяется justify-content: space-between
+@media (max-width: 359px) {
+  .product-store-info__kit-item::after,
+  .product-store-info__kit-thumb {
+    width: 72px;
+  }
+
+  .product-store-info__kit-thumb {
+    height: 72px;
+  }
+}
+
+// product-store-info на планшете: текст слева, преимущества справа (Figma 4405:51958)
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .product-store-info__main {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px 50px;
+  }
+
+  .product-store-info__kit {
+    flex: 0 0 100%;
+  }
+
+  .product-store-info__text {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .product-store-info__benefits {
+    flex-shrink: 0;
+    width: auto;
+  }
+}

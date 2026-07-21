@@ -1,0 +1,178 @@
+@use '../../variables' as *;
+
+.build-kit-desktop__example {
+  position: relative;
+  height: 254px;
+  margin-top: 12px;
+}
+
+.build-kit-desktop__model {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 194px;
+  height: 254px;
+  overflow: hidden;
+}
+
+.build-kit-desktop__model-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transform: translateX(24.62%);
+  transform-origin: left top;
+}
+
+.build-kit-desktop__product-card {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  width: 166px;
+  height: 240px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: top 0.28s ease, margin-top 0.28s ease, transform 0.28s ease;
+}
+
+.build-kit-desktop__product-discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  color: $color-secondary-accent;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-style: normal;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.build-kit-desktop__product-card::before,
+.build-kit-desktop__product-card::after {
+  display: none;
+}
+
+.build-kit-desktop__product-pic {
+  width: 142px;
+  height: 142px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.build-kit-desktop__product-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.build-kit-desktop__product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.build-kit-desktop__product-name {
+  overflow: hidden;
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.build-kit-desktop__product-price {
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__product-cart {
+  display: flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary-gray;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.build-kit-desktop__product-cart svg {
+  width: 16px;
+  height: 16px;
+}
+
+.build-kit-desktop__product-cart.is-added {
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__product-bookmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary-gray;
+  cursor: pointer;
+  transition: color 0.18s ease;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.build-kit-desktop__product-bookmark.is-saved {
+  color: $color-secondary-accent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__product-cart:hover,
+  .build-kit-desktop__product-cart:focus-visible {
+    color: $color-primary-black;
+  }
+
+  .build-kit-desktop__product-bookmark:not(.is-saved):hover,
+  .build-kit-desktop__product-bookmark:not(.is-saved):focus-visible {
+    color: $color-primary-black;
+  }
+}

@@ -1,7 +1,39 @@
 export function init() {
+  initReviewTabs();
   initSortDropdown();
   initReviewMenus();
   initReviewFormModal();
+}
+
+function initReviewTabs() {
+  document.querySelectorAll('[data-reviews-tabs]').forEach(tabList => {
+    const page = tabList.closest('.reviews-page');
+    const cards = Array.from(page?.querySelectorAll('[data-review-status]') || []);
+    const empty = page?.querySelector('[data-reviews-empty]');
+    if (!page || !cards.length) return;
+
+    const selectFilter = filter => {
+      tabList.querySelectorAll('[data-reviews-filter]').forEach(tab => {
+        const isActive = tab.dataset.reviewsFilter === filter;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-pressed', String(isActive));
+      });
+
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const isVisible = card.dataset.reviewStatus === filter;
+        card.hidden = !isVisible;
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (empty) empty.hidden = visibleCount > 0;
+    };
+
+    tabList.addEventListener('click', event => {
+      const tab = event.target.closest('[data-reviews-filter]');
+      if (tab) selectFilter(tab.dataset.reviewsFilter);
+    });
+  });
 }
 
 function initSortDropdown() {

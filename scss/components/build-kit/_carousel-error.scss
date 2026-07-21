@@ -1,0 +1,198 @@
+@use '../../variables' as *;
+
+.build-kit-desktop__grid {
+  margin-top: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.build-kit-desktop__grid::-webkit-scrollbar {
+  display: none;
+}
+
+.build-kit-desktop__tiles {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.build-kit-desktop__tile {
+  display: flex;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.build-kit-desktop__tile.is-active {
+  background: $color-white;
+}
+
+.build-kit-desktop__tile:active {
+  background: $color-button-disabled;
+}
+
+.build-kit-desktop__tile img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.build-kit-desktop[data-kit-active-slot='hat'] .build-kit-desktop__tile:not([data-kit-category='hat']),
+.build-kit-desktop[data-kit-active-slot='jacket'] .build-kit-desktop__tile:not([data-kit-category='jacket']),
+.build-kit-desktop[data-kit-active-slot='pants'] .build-kit-desktop__tile:not([data-kit-category='pants']),
+.build-kit-desktop[data-kit-active-slot='shoes'] .build-kit-desktop__tile:not([data-kit-category='shoes']) {
+  display: none;
+}
+
+.build-kit-desktop__grid-controls {
+  display: none;
+}
+
+.build-kit-desktop__load-error {
+  display: none;
+}
+
+.build-kit-desktop.is-load-error {
+  .build-kit-desktop__tiles,
+  .build-kit-desktop__grid-controls {
+    display: none;
+  }
+
+  .build-kit-desktop__load-error {
+    display: flex;
+  }
+}
+
+.build-kit-desktop__load-error {
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+}
+
+.build-kit-desktop__load-error-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 12px;
+  margin: 0;
+  color: $color-primary-gray;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.build-kit-desktop__load-error-mark {
+  position: relative;
+  display: inline-flex;
+  width: 16px;
+  height: 12px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: $color-secondary-accent;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+}
+
+.build-kit-desktop__load-error-mark::before,
+.build-kit-desktop__load-error-mark::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: $color-secondary-accent;
+}
+
+.build-kit-desktop__load-error-mark::before {
+  left: 0;
+}
+
+.build-kit-desktop__load-error-mark::after {
+  right: 0;
+}
+
+.build-kit-desktop__load-error-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.build-kit-desktop__load-error-grid span {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: linear-gradient(135.95deg, $color-white 21.76%, $color-main-30 98.62%);
+}
+
+.build-kit-desktop__retry {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 24px 18px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.build-kit-desktop__retry svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+
+@media (min-width: 1280px) {
+  .build-kit-desktop__load-error {
+    height: 404px;
+  }
+
+  .build-kit-desktop__load-error-grid {
+    height: 304px;
+  }
+
+  .build-kit-desktop__load-error-grid span {
+    aspect-ratio: auto;
+  }
+
+  .build-kit-desktop__retry {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__retry:hover,
+  .build-kit-desktop__retry:focus-visible {
+    background: $color-button-primary-hover;
+    color: $color-white;
+  }
+}

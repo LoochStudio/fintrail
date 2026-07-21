@@ -1,0 +1,149 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── В журнале + статьи по теме ────────────────────────────────────────────
+.product-article {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 0 80px; // top — от product-specs (padding-bottom: 80px)
+  color: $color-primary-black;
+}
+
+.product-article__heading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+// ─── Левая часть ─────────────────────────────────────────────────────────
+.product-article__left {
+  display: flex;
+  flex: 0 0 calc(50% - 5px); // ~50% минус половина gap; max-width ограничивает рост >1440px
+  max-width: 695px;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.product-article__cards {
+  display: flex;
+  gap: 10px;
+}
+
+.product-article__card {
+  display: flex;
+  flex: 1 1 0; // оба слота равны
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  color: $color-primary-black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.product-article__card-image {
+  display: block;
+  height: 300px;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.product-article__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-article__card-tags {
+  display: flex;
+  gap: 20px;
+  color: $color-muted;           // #a2a7aa
+  font-family: $font-mono;
+  font-size: $text-body-b2-size; // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  white-space: nowrap;
+}
+
+.product-article__card-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  color: $color-primary-black;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-article__card:hover .product-article__card-image img,
+  .product-article__card:focus-visible .product-article__card-image img {
+    transform: scale(1.08);
+  }
+
+  .product-article__card:hover .product-article__card-title,
+  .product-article__card:focus-visible .product-article__card-title {
+    color: $color-black-hover;
+  }
+}
+
+// ─── Правая часть ─────────────────────────────────────────────────────────
+.product-article__right {
+  display: flex;
+  flex: 0 0 341px; // фиксированная колонка; space-between поглощает лишнее пространство >1440px
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.product-article__posts {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-article__post {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: $color-primary-black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.product-article__post-date {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size; // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  color: $color-primary-gray;
+}
+
+.product-article__post-title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size; // 14px
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  color: $color-primary-black;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-article__post:hover .product-article__post-title,
+  .product-article__post:focus-visible .product-article__post-title {
+    color: $color-black-hover;
+  }
+}

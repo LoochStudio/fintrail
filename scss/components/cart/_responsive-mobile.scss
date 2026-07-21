@@ -1,0 +1,773 @@
+@use '../../variables' as *;
+
+@media (max-width: calc($bp-md - 1px)) {
+  .cart-page {
+    --cart-page-gutter: 20px;
+
+    padding-top: 64px;
+  }
+
+  .cart-page__breadcrumbs {
+    display: none;
+  }
+
+  .cart-page__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    padding-bottom: 0;
+    min-height: 0;
+    margin-bottom: 48px;
+    border-bottom: 0;
+    text-align: left;
+  }
+
+  .cart-page__head h1 {
+    padding-left: 0;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .cart-page__actions {
+    position: static;
+    gap: 12px;
+    margin-top: 0;
+
+    button span {
+      display: none;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .cart-delivery {
+    margin-bottom: 32px;
+  }
+
+  .cart-delivery__tabs {
+    width: 100%;
+    gap: 24px;
+    justify-content: flex-start;
+
+    button {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  .cart-delivery__option {
+    align-items: center;
+    min-height: 0;
+
+    > div {
+      padding-left: 36px;
+    }
+
+    .cart-delivery__primary {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .cart-delivery__primary--split {
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .cart-delivery__dot {
+      display: none;
+    }
+
+    small {
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  .cart-delivery__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  // ─── Cart item: vertical card layout ─────────────────────────────────────────
+  .cart-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .cart-item__badge {
+    top: 8px;
+    left: 8px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  // __info is position: relative on desktop — change to static so __remove
+  // and __bookmark escape to .cart-item (position: relative) and overlay the image
+  .cart-item__info {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-height: 0;
+    padding: 8px 0 0;
+  }
+
+  .cart-item__remove {
+    top: 4px;
+    right: 0;
+    width: 16px;
+    height: 16px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .cart-item__remove-icon--close {
+    display: none;
+  }
+
+  .cart-item__remove-icon--trash {
+    display: block;
+  }
+
+  .cart-item__bookmark {
+    display: inline-flex;
+    position: absolute;
+    top: 4px;
+    right: 36px;
+    width: 16px;
+    height: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: $color-primary-gray;
+    cursor: pointer;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .cart-item__unavailable-actions .cart-item__bookmark {
+    position: static;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: $radius-xs;
+    background: $color-white;
+  }
+
+  .cart-item__image {
+    width: 100%;
+    height: 266px;
+    padding: 0;
+
+    img {
+      width: 266px;
+      height: 266px;
+      border-radius: 8px;
+    }
+  }
+
+  .cart-item h2 {
+    max-width: 100%;
+    padding-right: 0;
+    margin: 0;
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .cart-item dl {
+    gap: 12px;
+    // flex gap: 32px between ALL children, but Figma's Info Container has
+    // internal gap: 16px between title and attrs. Negative margin compensates.
+    margin: -16px 0 0;
+    font-size: 12px;
+    line-height: 16px;
+
+    dt,
+    dd {
+      margin: 0;
+    }
+  }
+
+  .cart-item__bottom {
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .cart-item__prices {
+    flex: 1 1 auto;
+    width: auto;
+    align-items: flex-start;
+
+    del {
+      font-size: 12px;
+      line-height: 16px;
+      white-space: nowrap;
+    }
+  }
+
+  .cart-item__price-new {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .cart-item__qty {
+    width: auto;
+    flex-shrink: 0;
+    justify-content: center;
+    gap: 24px;
+    border: 0;
+    margin-left: 0;
+
+    button {
+      width: 16px;
+      height: 16px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    span {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+
+  .cart-item__icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+
+  .cart-item__notify {
+    min-height: 38px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .cart-item__notify-text--desktop {
+    display: none;
+  }
+
+  .cart-item__notify-text--mobile {
+    display: inline;
+  }
+
+  // ─── Small screens (≤360px) ───────────────────────────────────────────────────
+  @media (max-width: 360px) {
+    .cart-item h2 {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .cart-item__icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .cart-item__price-new {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    .cart-delivery__option small {
+      font-size: 11px;
+    }
+  }
+
+  // ─── Pickup modal ─────────────────────────────────────────────────────────────
+  // ─── Pickup modal: mobile fullscreen with 3 states ───────────────────────────
+
+  .cart-pickup-modal {
+    padding: 0;
+  }
+
+  // Panel: fullscreen, slides up from bottom
+  .cart-pickup-modal__panel {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    gap: 0;
+    border-radius: 0;
+    overflow: hidden;
+    min-height: 0;
+    transform: translateY(100%);
+  }
+
+  .cart-pickup-modal.is-open .cart-pickup-modal__panel {
+    transform: translateY(0);
+  }
+
+  // Header: back arrow on left, title centered
+  .cart-pickup-modal__header {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    height: 56px;
+    padding: 0 20px;
+    gap: 16px;
+    justify-content: flex-start;
+    background: $color-surface;
+    border-bottom: 1px solid rgba($color-primary-black, 0.08);
+  }
+
+  .cart-pickup-modal__title {
+    flex: 1;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  // Back-arrow button (was close X on desktop)
+  .cart-pickup-modal__close {
+    order: -1;
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    background: transparent;
+    color: $color-primary-black;
+    backdrop-filter: none;
+
+    svg { width: 16px; height: 16px; }
+  }
+
+  .cart-pickup-modal__icon-close { display: none; }
+  .cart-pickup-modal__icon-back { display: block; }
+
+  // Layout: map fills the area, sidebar overlays at bottom
+  // Override display:grid set by $bp-lg breakpoint
+  .cart-pickup-modal__layout {
+    display: flex;
+    position: relative;
+    flex: 1 1 0;
+    min-height: 0;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cart-pickup-modal__map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    flex: none;
+  }
+
+  // Scale map image to fill the mobile viewport
+  .cart-pickup-modal__map-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  // Markers: pointer cursor so they feel clickable
+  .cart-pickup-modal__marker {
+    cursor: pointer;
+  }
+
+  .cart-pickup-modal__marker--selected {
+    left: calc(50% - 54.5px);
+    top: calc(50% - 53px);
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+  }
+
+  .cart-pickup-modal__marker--yandex-one {
+    left: calc(50% - 58px);
+    top: calc(50% - 141px);
+  }
+
+  .cart-pickup-modal__marker--yandex-two {
+    left: calc(50% + 210px);
+    top: calc(50% - 84px);
+  }
+
+  .cart-pickup-modal__marker--one {
+    left: calc(50% + 92.5px);
+    top: calc(50% - 160px);
+  }
+
+  .cart-pickup-modal__marker--two {
+    left: calc(50% + 94.7px);
+    top: calc(50% - 73.59px);
+  }
+
+  .cart-pickup-modal__marker--three {
+    left: calc(50% + 92.5px);
+    top: calc(50% + 70px);
+  }
+
+  .cart-pickup-modal__marker--four {
+    left: calc(50% - 104.55px);
+    top: calc(50% + 88.95px);
+  }
+
+  .cart-pickup-modal__marker--five,
+  .cart-pickup-modal__marker--six {
+    display: none;
+  }
+
+  .cart-pickup-modal__cluster--one {
+    left: calc(50% + 74px);
+    top: calc(50% - 147px);
+  }
+
+  .cart-pickup-modal__cluster--two {
+    left: calc(50% + 154px);
+    top: calc(50% - 32px);
+  }
+
+  .cart-pickup-modal__cluster--three {
+    left: calc(50% - 24px);
+    top: calc(50% + 86px);
+  }
+
+  // Sidebar: overlaid at bottom of map
+  .cart-pickup-modal__sidebar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    flex: none;
+    height: auto;
+    padding: 20px;
+    background: $color-surface;
+  }
+
+  // Search: full-width inside sidebar padding
+  .cart-pickup-modal__search {
+    width: 100%;
+    margin: 0;
+  }
+
+  // List/detail/submit hidden on map view
+  .cart-pickup-modal__list-state { display: none; }
+
+  .cart-pickup-modal__detail-state {
+    display: none;
+    padding: 0;
+    background: transparent;
+  }
+
+  .cart-pickup-modal__submit {
+    display: none;
+    border-radius: $radius-xs;
+    margin-top: 0;
+  }
+
+  // ── State: point selected on map (panel.has-detail) ───────────────────────
+  // Sidebar becomes the white info card
+  .cart-pickup-modal__panel.has-detail {
+    .cart-pickup-modal__sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 20px;
+      background: $color-surface;
+      border-radius: 0;
+    }
+
+    .cart-pickup-modal__search { display: none; }
+
+    .cart-pickup-modal__detail-state {
+      display: block;
+      flex: 0 0 116px;
+      min-height: 116px;
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .cart-pickup-modal__submit {
+      display: inline-flex;
+      flex-shrink: 0;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  .cart-pickup-modal__panel.has-detail .cart-pickup-modal__detail {
+    margin-top: -3px;
+  }
+
+  // Detail info card: title + close in same row
+  .cart-pickup-modal__detail h3 {
+    font-family: $font-mono;
+    font-size: 18px;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: $color-primary-black;
+    margin-bottom: 0;
+  }
+
+  .cart-pickup-modal__detail p {
+    font-size: 14px;
+    line-height: 18px;
+    color: $color-gray-primary;
+  }
+
+  .cart-pickup-modal__detail p:first-of-type {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  // ── State: list view (panel.is-list-view) ─────────────────────────────────
+  .cart-pickup-modal__panel.is-list-view {
+    .cart-pickup-modal__layout {
+      position: static;
+      flex: 1 1 0;
+      overflow: hidden;
+    }
+
+    .cart-pickup-modal__map { display: none; }
+
+    .cart-pickup-modal__sidebar {
+      position: static;
+      width: 100%;
+      flex: 1 1 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      background: $color-surface;
+    }
+
+    .cart-pickup-modal__search {
+      flex-shrink: 0;
+      width: calc(100% - 40px);
+      margin: 16px 20px 0;
+    }
+
+    .cart-pickup-modal__list-state {
+      display: flex;
+      flex: 1 1 0;
+      overflow-y: auto;
+    }
+
+    .cart-pickup-modal__points {
+      height: auto;
+      overflow: visible;
+      padding: 16px 20px;
+      flex: 1 1 auto;
+    }
+
+    .cart-pickup-modal__detail-state { display: none; }
+
+    .cart-pickup-modal__submit {
+      display: inline-flex;
+      flex-shrink: 0;
+      width: calc(100% - 40px);
+      margin: 8px 20px;
+    }
+  }
+
+  .cart-pickup-modal__point-address {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .cart-pickup-modal__point-meta {
+    flex-wrap: wrap;
+    white-space: normal;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  // ─── Payment ─────────────────────────────────────────────────────────────────
+  .cart-payment {
+    gap: 0;
+
+    h2 {
+      margin-bottom: 32px;
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+  }
+
+  .cart-payment__methods {
+    height: auto;
+    margin-bottom: 24px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cart-payment__installments {
+    height: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cart-payment__method,
+  .cart-payment__installments label {
+    min-height: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    padding: 8px 4px 12px;
+
+    span {
+      white-space: normal;
+    }
+  }
+
+  // ─── Order summary ────────────────────────────────────────────────────────────
+  .cart-total {
+    padding: 20px;
+
+    h2 {
+      margin-bottom: 32px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    dl div {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  .cart-total__note {
+    display: block;
+    width: min(100%, 290px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .cart-total__note > span:first-child,
+  .cart-total__note-links {
+    display: inline;
+  }
+
+  .cart-total__note > span:first-child::after {
+    content: ' ';
+  }
+
+  .cart-total__note-links > span {
+    display: inline;
+    margin: 0 3px;
+  }
+
+  .cart-total__note-links > span:first-child {
+    margin-left: 0;
+  }
+
+  .cart-total__promo-row {
+    flex-direction: column;
+
+    button {
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      height: auto;
+      padding: 18px 24px;
+    }
+
+    &.is-promo-applied button {
+      width: 100%;
+      padding: 18px 24px;
+    }
+  }
+
+  // ─── Modals ───────────────────────────────────────────────────────────────────
+  .cart-recipient-modal__panel {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: calc(100dvh - 60px);
+    padding: 20px;
+    gap: 32px;
+    overflow: auto;
+    transform: translateY(24px);
+  }
+
+  .cart-recipient-modal.is-open .cart-recipient-modal__panel {
+    transform: translateY(0);
+  }
+
+  .cart-recipient-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .cart-recipient-modal__header {
+    align-items: flex-start;
+    min-height: 0;
+  }
+
+  .cart-recipient-modal__close {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .cart-address-modal__comment {
+    margin-top: 8px;
+
+    .uk-field {
+      min-height: 132px;
+    }
+
+    .uk-field__input {
+      height: 106px;
+    }
+  }
+
+  .cart-clear-modal {
+    place-items: end center;
+    padding: 0;
+  }
+
+  .cart-clear-modal__panel {
+    width: 100%;
+    max-height: calc(100dvh - 60px);
+    padding: 20px;
+    gap: 32px;
+    overflow: auto;
+    transform: translateY(24px);
+  }
+
+  .cart-clear-modal.is-open .cart-clear-modal__panel {
+    transform: translateY(0);
+  }
+}

@@ -812,7 +812,7 @@
 .article-quote__text {
   width: 100%;
   margin: 0;
-  color: #383838;
+  color: $color-primary-black;
   font-family: $font-mono;
   font-size: 16px;
   font-weight: $font-weight-semibold;
@@ -1211,7 +1211,7 @@
 }
 
 .article-related__post-date {
-  color: #9b9b9b;
+  color: $color-primary-gray;
   font-family: $font-mono;
   font-size: $text-body-b2-size;
   font-weight: $font-weight-semibold;

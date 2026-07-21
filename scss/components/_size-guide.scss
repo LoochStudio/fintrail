@@ -351,7 +351,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .size-guide__input-wrap:hover {
-    background: #e8e8e8;
+    background: $color-white-pressed;
   }
 
   .size-guide__input-wrap:focus-within:hover,

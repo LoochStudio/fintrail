@@ -41,7 +41,7 @@ a[aria-disabled='true'] {
 }
 
 .is-success {
-  border-color: #1f8f4d !important;
+  border-color: $color-form-success !important;
 }
 
 .form-message {
@@ -59,7 +59,7 @@ a[aria-disabled='true'] {
 }
 
 .form-message--success {
-  color: #1f8f4d;
+  color: $color-form-success;
 }
 
 .form-message--info {

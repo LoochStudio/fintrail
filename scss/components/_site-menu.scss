@@ -688,19 +688,19 @@
 
   .site-menu__app-link--rustore:hover,
   .site-menu__app-link--rustore:focus-visible {
-    color: #168bff;
+    color: $color-brand-rustore;
 
     svg {
-      color: #168bff;
+      color: $color-brand-rustore;
     }
   }
 
   .site-menu__app-link--appgallery:hover,
   .site-menu__app-link--appgallery:focus-visible {
-    color: #e84343;
+    color: $color-brand-appgallery;
 
     svg {
-      color: #e84343;
+      color: $color-brand-appgallery;
     }
   }
 

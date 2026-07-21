@@ -218,12 +218,12 @@
 
   .mobile-menu__app-link--rustore:hover,
   .mobile-menu__app-link--rustore:focus-visible {
-    color: #168bff;
+    color: $color-brand-rustore;
   }
 
   .mobile-menu__app-link--appgallery:hover,
   .mobile-menu__app-link--appgallery:focus-visible {
-    color: #e84343;
+    color: $color-brand-appgallery;
   }
 
   .mobile-menu__app-link--google-play:hover .mobile-menu__app-svg--default,

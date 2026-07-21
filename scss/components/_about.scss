@@ -343,7 +343,7 @@
   width: 260px;
   max-width: 100%;
   margin: 0;
-  color: #383838;
+  color: $color-primary-black;
   font-family: $font-display;
   font-size: 20px;
   font-weight: $font-weight-black;
@@ -725,7 +725,7 @@
   background:
     linear-gradient(180deg, rgba($color-black, 0.30) 0%, rgba($color-black, 0) 34%),
     linear-gradient(180deg, rgba($color-black, 0) 68%, rgba($color-black, 0.40) 100%),
-    linear-gradient(0deg, rgba(31, 31, 31, 0.40) 0%, rgba(41, 53, 67, 0) 30.41%);
+    linear-gradient(0deg, rgba($color-primary-black, 0.4) 0%, rgba($color-about-overlay, 0) 30.41%);
   pointer-events: none;
 }
 
@@ -1713,7 +1713,7 @@
     width: 100%;
     min-width: 100%;
     max-width: none;
-    color: #383838;
+    color: $color-primary-black;
     font-size: 20px;
     line-height: 20px;
   }

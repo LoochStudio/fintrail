@@ -76,7 +76,7 @@
   justify-content: center;
   border: 0;
   border-radius: $radius-xs;
-  background: $color-white;
+  background: $color-main-50;
   color: $color-primary-black;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease;
@@ -161,7 +161,7 @@
     width: 24px;
     height: 12px;
     border-radius: 32px;
-    background: $color-secondary-gray;
+    background: $color-white;
     content: '';
     transform: translateY(-50%);
     transition: right 0.18s ease, background 0.18s ease;
@@ -182,7 +182,8 @@
 }
 
 .catalog-filter-toggle input:disabled ~ .catalog-filter-toggle__control {
-  background: $color-secondary-gray;
+  border: 1px solid $color-main-30;
+  background: $color-main-30;
 }
 
 .catalog-filter-toggle input:disabled ~ .catalog-filter-toggle__label {
@@ -448,7 +449,7 @@
   }
 
   .catalog-filter-toggle:hover .catalog-filter-toggle__control {
-    background: $color-gray-hover;
+    background: $color-main-30;
   }
 
   .catalog-filter-toggle:hover input:checked ~ .catalog-filter-toggle__control {
@@ -456,7 +457,7 @@
   }
 
   .catalog-filter-toggle--accent:hover input:checked ~ .catalog-filter-toggle__control {
-    background: #cf1d14;
+    background: $color-brand-hover;
   }
 
   .catalog-filter-tag:hover span {

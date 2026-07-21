@@ -702,7 +702,7 @@
   width: 100%;
   height: 1px;
   flex: 0 0 1px;
-  background-image: repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px);
+  background-image: repeating-linear-gradient(to right, $color-gray-hover 0, $color-gray-hover 8px, transparent 8px, transparent 16px);
 }
 
 .vacancy-detail__lead {
@@ -1037,7 +1037,7 @@
   padding: 4px;
   border-radius: 8px;
   background: $color-white;
-  box-shadow: 0 0 4px rgba(95, 105, 131, 0.07), 0 5px 4px rgba(95, 105, 131, 0.05), 0 4px 15px rgba(95, 105, 131, 0.12);
+  box-shadow: $shadow-floating-card;
   scrollbar-width: none;
 }
 
@@ -1110,7 +1110,7 @@
 .vacancy-response__caption {
   min-height: 0;
   margin-top: -28px;
-  color: #d92d20;
+  color: $color-validation-error;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: 500;
@@ -1120,7 +1120,7 @@
 
 .vacancy-response__field.is-error,
 [data-input-field].is-error {
-  outline: 1px solid #d92d20;
+  outline: 1px solid $color-validation-error;
 }
 
 .vacancy-response__upload {
@@ -1132,7 +1132,7 @@
   gap: 20px;
   padding: 20px 40px;
   border-radius: 8px;
-  background-image: repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to bottom, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to bottom, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px);
+  background-image: repeating-linear-gradient(to right, $color-gray-hover 0, $color-gray-hover 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to bottom, $color-gray-hover 0, $color-gray-hover 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to right, $color-gray-hover 0, $color-gray-hover 8px, transparent 8px, transparent 16px), repeating-linear-gradient(to bottom, $color-gray-hover 0, $color-gray-hover 8px, transparent 8px, transparent 16px);
   background-position: left top, right top, left bottom, left top;
   background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
   background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
@@ -1225,7 +1225,7 @@
 }
 
 .vacancy-response__consent-text {
-  color: #141415;
+  color: $color-content-text-primary;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: 500;
@@ -1302,7 +1302,7 @@
     bottom: calc(100% + 10px);
     left: 0;
     height: 1px;
-    background-image: repeating-linear-gradient(to right, #d8dde0 0, #d8dde0 8px, transparent 8px, transparent 16px);
+    background-image: repeating-linear-gradient(to right, $color-gray-hover 0, $color-gray-hover 8px, transparent 8px, transparent 16px);
   }
 
   .vacancy-detail__summary-item dt {

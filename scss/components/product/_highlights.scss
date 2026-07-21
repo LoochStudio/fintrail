@@ -1,0 +1,78 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── Враппер двух highlight-секций ─────────────────────────────────────────
+// desktop: display:contents — прозрачен, дочерние section — обычные блоки
+// mobile: горизонтальный scroll-контейнер с двумя карточками 300px
+.product-highlight-row {
+  display: contents;
+
+  .product-highlight:last-child {
+    margin-bottom: 79px;
+  }
+}
+
+// ── Промо-блок технологии (фото + текст) ──────────────────────────────────
+.product-highlight {
+  display: flex;
+  align-items: stretch;
+  margin: 0 -20px; // выходим за padding product-page — полное кровотечение
+}
+
+.product-highlight__content {
+  display: flex;
+  flex: 0 0 50%; // строго половина — flex:1 делил пространство по контенту
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  padding: 0 120px;
+  background: $color-white;
+  text-align: center;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-highlight__deco {
+  display: block;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.product-highlight__text {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+
+.product-highlight__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+}
+
+.product-highlight__desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;   // 14px
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+}
+
+.product-highlight__image {
+  position: relative;
+  flex: 0 0 50%; // строго половина
+  height: 600px;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

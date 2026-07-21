@@ -503,7 +503,7 @@
     text-transform: uppercase;
     white-space: nowrap;
     --roll-hover-line: 36px;
-    --roll-hover-from: rgba(0, 0, 0, 0.2);
+    --roll-hover-from: #{rgba($color-black, 0.2)};
     --roll-hover-to: #{$color-black};
   }
 

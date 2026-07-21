@@ -96,18 +96,25 @@ export function init() {
 
   const syncTriggerActive = (trigger, popup) => {
     const checkedCount = popup.querySelectorAll('input[type="checkbox"]:checked').length;
-    trigger.classList.toggle('is-active', checkedCount > 0);
+    const hasPriceRange = trigger.dataset.filterKey === 'price'
+      && Array.from(popup.querySelectorAll('.catalog-filter-popup__price-input'))
+        .some(input => input.value.trim() !== '');
+    const selectedCount = hasPriceRange ? 1 : checkedCount;
+    trigger.classList.toggle('is-active', selectedCount > 0);
 
     const countEl = trigger.querySelector('.catalog-toolbar__chip-count');
-    if (countEl) countEl.textContent = checkedCount > 0 ? String(checkedCount) : '';
+    if (countEl) countEl.textContent = selectedCount > 0 ? String(selectedCount) : '';
 
     const resetBtn = popup.querySelector('.catalog-filter-popup__reset');
-    if (resetBtn) resetBtn.classList.toggle('is-visible', checkedCount > 0);
+    if (resetBtn) resetBtn.classList.toggle('is-visible', selectedCount > 0);
   };
 
   // ── Сброс всех чекбоксов попапа ──────────────────────────────────────────
 
   const resetPopup = (trigger, popup) => {
+    popup.querySelectorAll('.catalog-filter-popup__price-input').forEach(input => {
+      input.value = '';
+    });
     popup.querySelectorAll('input[type="checkbox"]').forEach(input => {
       input.checked = false;
     });
@@ -179,15 +186,18 @@ export function init() {
         // Снять is-selected у всех
         sortPopup.querySelectorAll('.catalog-filter-popup__sort-item').forEach(i => {
           i.classList.remove('is-selected');
+          i.querySelector('.catalog-filter-popup__sort-btn')?.setAttribute('aria-selected', 'false');
         });
         // Поставить на кликнутый
         item.classList.add('is-selected');
+        item.querySelector('.catalog-filter-popup__sort-btn')?.setAttribute('aria-selected', 'true');
 
         // Обновить текст кнопки-триггера
         if (sortTrigger) {
           const label = item.querySelector('.catalog-filter-popup__sort-text')?.textContent?.trim();
           const span = sortTrigger.querySelector('span');
           if (span && label) span.textContent = label;
+          sortTrigger.dataset.sortCurrent = item.dataset.sortValue || '';
         }
 
         // Закрыть попап

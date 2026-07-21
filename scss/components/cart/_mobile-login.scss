@@ -1,0 +1,64 @@
+@use '../../variables' as *;
+
+// ─── Mobile login modal ───────────────────────────────────────────────────────
+@media (max-width: calc($bp-md - 1px)) {
+  .cart-login-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+  }
+
+  .cart-login-modal__panel {
+    width: 100%;
+    min-height: 0;
+    border-radius: $radius-xs $radius-xs 0 0;
+    transform: translateY(100%);
+  }
+
+  .cart-login-modal.is-open .cart-login-modal__panel {
+    transform: translateY(0);
+  }
+
+  .cart-login-modal__content {
+    min-height: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 48px;
+    padding: 20px;
+  }
+
+  .cart-login-modal__text {
+    gap: 24px;
+  }
+
+  .cart-login-modal__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .cart-login-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+    max-width: none;
+  }
+
+  .cart-login-modal__close {
+    position: static;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    background: $color-white;
+    color: $color-primary-black;
+    backdrop-filter: none;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

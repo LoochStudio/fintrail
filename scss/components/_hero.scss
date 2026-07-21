@@ -1683,9 +1683,10 @@
   }
 }
 
-// ── Бейдж счётчика корзины ────────────────────────────────────────────────────
+// ── Бейджи счётчиков корзины и сравнения ──────────────────────────────────────
 
-.hero-cart-badge {
+.hero-cart-badge,
+.hero-compare-badge {
   box-sizing: border-box;
   position: absolute;
   bottom: -5px;
@@ -1698,10 +1699,10 @@
   min-width: 16px;
   height: 16px;
   padding: 0;
-  border: 2px solid #f2f2f2;
+  border: 2px solid $color-surface;
   border-radius: 12px;
-  background: #e72016;
-  color: #fff;
+  background: $color-secondary-accent;
+  color: $color-white;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: $font-weight-semibold;

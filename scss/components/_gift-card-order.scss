@@ -1182,7 +1182,7 @@
 
 .gift-card-order-calendar__month {
   margin: 0;
-  color: #363739;
+  color: $color-primary-black;
   font-family: $font-display;
   font-size: 14px;
   font-weight: $font-weight-extrabold;
@@ -1230,7 +1230,7 @@
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: #363739;
+  color: $color-primary-black;
   padding: 0;
   cursor: pointer;
   font-family: $font-display;
@@ -1248,7 +1248,7 @@
 }
 
 .gift-card-order-calendar__day.is-muted {
-  color: #b7b7b7;
+  color: $color-main-50;
 }
 
 .gift-card-order-calendar__day.is-today {

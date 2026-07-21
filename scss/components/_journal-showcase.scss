@@ -143,7 +143,7 @@
 
   .journal-showcase__card:hover .journal-showcase__card-title,
   .journal-showcase__card:focus-visible .journal-showcase__card-title {
-    color: #010101;
+    color: $color-black-hover;
   }
 }
 
@@ -229,7 +229,7 @@
   font-size: 18px;
   font-weight: $font-weight-black;
   line-height: 22px;
-  color: #1f1f1f;
+  color: $color-primary-black;
   transition: color 0.2s ease;
 }
 
@@ -260,7 +260,7 @@
 }
 
 .journal-showcase__date {
-  color: #9b9b9b;
+  color: $color-primary-gray;
   font-size: $text-body-b2-size;
   line-height: 16px;
 }
@@ -626,7 +626,7 @@
   .journal-showcase__meta {
     display: flex;
     gap: 20px;
-    color: #848484;
+    color: $color-gray-700;
     font-family: $font-mono;
     font-size: $text-body-b2-size;
     font-weight: $font-weight-semibold;
@@ -671,7 +671,7 @@
   }
 
   .journal-showcase__date {
-    color: #9b9b9b;
+    color: $color-primary-gray;
     font-size: $text-body-b2-size;
     line-height: 12px;
   }
@@ -679,13 +679,13 @@
 
 @media (hover: hover) and (pointer: fine) {
   .journal-showcase__card-title {
-    color: #1f1f1f;
+    color: $color-primary-black;
     transition: color 0.2s ease;
   }
 
   .journal-showcase__card:hover .journal-showcase__card-title,
   .journal-showcase__card:focus-visible .journal-showcase__card-title {
-    color: #010101;
+    color: $color-black-hover;
   }
 }
 

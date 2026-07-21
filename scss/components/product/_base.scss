@@ -1,0 +1,214 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+.product-page {
+  padding: 72px 20px 0;
+  background: $color-surface;
+}
+
+// footer-desktop { margin-top: 64px } имеет специфичность 0-1-0.
+// Двойной класс даёт 0-2-0 → побеждает, gap обеспечивает product-page padding-bottom.
+.footer-desktop.product-footer {
+  margin-top: 0;
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 343px) 694px minmax(0, 343px);
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: calc(100vh - 72px); // 72px = navbar, заполняем до линии сгиба
+  padding-bottom: 20px;            // 20px до fold — последний элемент не упирается в край
+  color: $color-primary-black;
+}
+
+.product-header .hero__nav {
+  left: calc(50% - 347px);
+}
+
+// На планшете (768–1279px) nav-ссылки скрыты — только лого + иконки
+// (_catalog.scss даёт .catalog-header .hero__nav { display: flex } без media-query,
+//  что показывает nav на планшете у product-header тоже)
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .product-header.catalog-header .hero__nav {
+    display: none;
+  }
+}
+
+// На десктопе product-страница убирает анимационный ::before хедера —
+// на десктопе topbar имеет собственный background: $color-surface из _catalog.scss.
+// На планшете/мобиле (max-width: 1279px) topbar прозрачный, ::before и даёт фон —
+// поэтому скрываем его только на десктопе.
+@media (min-width: $bp-lg) {
+  .product-header.catalog-header .hero__topbar::before {
+    display: none;
+  }
+}
+
+.product-detail__side {
+  display: flex;
+  min-width: 0;
+  min-height: 0;  // убираем жёсткое значение — колонка тянется от grid (align-items: stretch)
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-detail__side--right {
+  align-items: flex-end;
+}
+
+.product-detail__top {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.product-detail__purchase {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.product-detail__options {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.product-detail__breadcrumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-detail__back,
+.product-detail__crumbs,
+.product-detail__crumbs a,
+.product-detail__kit-title,
+.product-detail__description-text,
+.product-detail__action,
+.product-detail__stock,
+.product-detail__rating a,
+.product-option__label,
+.product-option__size-table,
+.product-option__sizes button,
+.product-buy__bonus span,
+.product-buy__installment small,
+.product-kit-item__title,
+.product-kit-item__size {
+  font-family: $font-mono;
+}
+
+.product-detail__back,
+.product-detail__action,
+.product-detail__share,
+.product-option__size-table,
+.product-buy__installment,
+.product-kit-item__cart {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.product-detail__back {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Хлебные крошки: семантический <ol><li>, разделители через CSS ::after
+.product-detail__crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: $color-primary-gray;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  // Точка-разделитель между элементами (вместо inline SVG)
+  li + li::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    margin: 0 4px;
+    flex-shrink: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.product-detail__description {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.product-detail__description-thumb {
+  width: 80px;
+  height: 130px;
+  flex: 0 0 80px;
+  border-radius: $radius-xs;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.product-detail__description-text {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+
+  p {
+    margin: 0;
+  }
+
+  a,
+  button {
+    width: fit-content;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: $color-primary-black;
+    cursor: pointer;
+    font: inherit;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}

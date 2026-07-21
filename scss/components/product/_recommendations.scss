@@ -1,0 +1,52 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── Похожие товары — переиспользуем recommendations-new с главной ─────────
+// Desktop: выходим за padding product-page (20px × 2) → карточки к краям
+.product-page .recommendations-new {
+  margin-top: 0;
+  margin-right: -20px;
+  margin-bottom: 0;
+  margin-left: -20px;
+}
+
+// Mobile: product-page имеет padding: 0 по бокам → -20px создаст выход за экран.
+// Сбрасываем горизонтальные отступы, оставляем только верхний spacing.
+@media (max-width: 1279px) {
+  .product-page .recommendations-new {
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 64px; // Figma: 64px от product-reviews
+    margin-bottom: 0; // community-showcase обеспечит spacing
+  }
+
+  // Заголовок секции — Figma: H6 18px/22px, уже задан в базовом CSS
+  // Кнопки навигации (стрелки) скрыты — уже скрыты в базовом CSS
+
+  // Карточки — горизонтальный скролл (базовый CSS уже правильный: 211×360px, gap-1px)
+  // Viewport уже имеет overflow-x: auto и margin-top: 24px
+
+  // «Смотреть все» кнопка: полная ширина экрана, без закруглений
+  .recommendations-new__more {
+    width: 100%;
+    margin: 8px 0 0;
+    border-radius: 0;
+    justify-content: center;
+  }
+}
+
+// ── Комьюнити — переиспользуем community-showcase с главной ───────────────
+.product-page .community-showcase {
+  margin-top: 80px;      // явные 80px между слайдером и комьюнити
+  margin-right: -20px;   // компенсируем padding product-page справа
+  margin-bottom: 0;
+  margin-left: -20px;    // компенсируем padding product-page слева
+  padding-bottom: 64px;  // отступ до футера
+}
+
+// На мобиле секции нет в макете — скрываем
+@media (max-width: 767px) {
+  .product-page .community-showcase {
+    display: none;
+  }
+}

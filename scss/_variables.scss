@@ -8,7 +8,9 @@ $font-mono: 'Source Code Pro', monospace;
 $color-primary-black: #1f1f1f;
 $color-white: #fff;
 $color-black: #000;
+$color-black-hover: #010101;
 $color-surface: #f2f2f2;
+$color-surface-primary: #f7f8f9;
 $color-page: #f5f5f5;
 $color-secondary-gray: #cdd2d5;
 $color-primary-gray: #a2a7aa;
@@ -17,20 +19,59 @@ $color-gray-hover: #d8dde0;
 $color-gray-pressed: #afb4b7;
 $color-white-pressed: #eaeaea;
 $color-secondary-accent: #e72016;
+$color-brand-hover: #d3170d;
+$color-accent-100: #ef5518;
+$color-main-100: #161616;
+$color-main-70: #737373;
+$color-main-50: #b0b0b0;
+$color-main-30: #e4e5e7;
+$color-content-text-primary: #141415;
+$color-content-text-secondary: #6c6760;
+$color-on-surface-high: #212121;
 $color-success: #27ae60;
+$color-form-success: #1f8f4d;
+$color-order-success: #338532;
 $color-gray-700: #828282;
 $color-control-dark: rgba(68, 68, 68, 0.8);
+$color-control-dark-autofill: #292929;
 $color-control-glass: rgba($color-white, 0.16);
 $color-control-glass-hover: rgba($color-white, 0.24);
 $color-control-glass-disabled: rgba($color-white, 0.08);
 $color-hero-fallback: #5f6f8f;
-$color-button-primary-hover: $color-black;
+$color-button-primary-hover: $color-black-hover;
 $color-button-primary-pressed: #323232;
 $color-button-secondary-hover: $color-gray-hover;
 $color-button-ghost-hover: $color-white;
 $color-button-ghost-pressed: $color-white-pressed;
 $color-button-disabled: $color-secondary-gray;
 $color-button-overlay-hover: rgba($color-black, 0.72);
+
+// Brand and content colors are not interchangeable with UI palette tokens.
+$color-brand-rustore: #168bff;
+$color-brand-appgallery: #e84343;
+$color-brand-cdek: #00b33c;
+$color-brand-cdek-hover: #009b34;
+$color-brand-yandex: #fc3f1d;
+$color-separator-muted: #b9b3aa;
+$color-product-swatch-graphite: #89b9e3;
+$color-product-swatch-orange: #ff731f;
+$color-kit-connector: #ff4117;
+$color-validation-error: #d92d20;
+$color-loyalty-gradient-mid: #202c38;
+$color-loyalty-gradient: #314a64;
+$color-image-overlay-end: #101010;
+$color-about-overlay: #293543;
+$color-loyalty-overlay-start: #020819;
+$color-loyalty-overlay-neutral: #4a4444;
+$color-shadow-blue: #5f6983;
+$color-shadow-neutral: #505050;
+$color-navbar-muted: #5f5f5f;
+
+$shadow-floating-card:
+  0 0 4px rgba($color-shadow-blue, 0.07),
+  0 5px 4px rgba($color-shadow-blue, 0.05),
+  0 4px 15px rgba($color-shadow-blue, 0.12);
+$shadow-dropdown: 0 8px 24px rgba($color-black, 0.1);
 
 // Semantic aliases
 $color-text-primary: $color-primary-black;

@@ -102,7 +102,7 @@
   .uk-field__clear { color: $color-primary-gray; }
   .uk-field__caption { color: $color-secondary-accent; }
 
-  &.uk-s-hover  .uk-field { background: #e8e8e8; }
+  &.uk-s-hover  .uk-field { background: $color-white-pressed; }
   &.uk-s-active .uk-field { background: $color-white; border-color: $color-primary-black; }
   &.uk-s-disabled .uk-field { opacity: 0.5; }
   &.is-error .uk-field { background: $color-surface; border-color: $color-secondary-accent; }
@@ -141,7 +141,7 @@
 @media (hover: hover) and (pointer: fine) {
   .uk-field--light.uk-field-wrap:hover .uk-field,
   .uk-field--surface.uk-field-wrap:hover .uk-field {
-    background: #e8e8e8;
+    background: $color-white-pressed;
   }
 
   .uk-field--dark.uk-field-wrap:hover .uk-field {
@@ -214,5 +214,20 @@
   &:disabled {
     opacity: 0.4;
     cursor: default;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .uk-radio:not(:disabled):hover {
+    border-color: $color-primary-black;
+  }
+
+  .uk-checkbox:not(:disabled):hover {
+    border-color: $color-primary-black;
+  }
+
+  .uk-checkbox:not(:disabled):checked:hover {
+    border-color: $color-black-hover;
+    background-color: $color-black-hover;
   }
 }

@@ -1,0 +1,246 @@
+@use '../../variables' as *;
+
+.build-kit-desktop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 64px;
+  padding: 20px;
+  background: $color-surface;
+  overflow: visible;
+}
+
+.build-kit-desktop__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  letter-spacing: 0;
+  color: $color-primary-black;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__gender {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  margin-top: 32px;
+}
+
+.build-kit-desktop__gender-btn,
+.build-kit-desktop__filter {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-primary-black;
+  font: inherit;
+  text-transform: uppercase;
+}
+
+.build-kit-desktop__gender-btn {
+  position: relative;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  color: rgba($color-primary-black, 0.4);
+}
+
+.build-kit-desktop__gender-btn.is-active {
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__gender-btn.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: $color-primary-black;
+}
+
+.build-kit-desktop__filters {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.build-kit-desktop__filter-row {
+  display: none;
+}
+
+.build-kit-desktop__filter-select-wrap {
+  position: relative;
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  height: 28px;
+  min-width: 0;
+  border-radius: 4px;
+  background: $color-white;
+  overflow: visible;
+  z-index: 4;
+}
+
+.build-kit-desktop__filter-select {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  padding: 4px 24px 4px 8px;
+  border: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: 0;
+}
+
+.build-kit-desktop__filter-select-wrap.is-enhanced .build-kit-desktop__filter-select {
+  position: absolute;
+  inset: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.build-kit-desktop__filter-select-icon {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $color-primary-black;
+}
+
+.build-kit-desktop__filter-select-wrap.is-enhanced .build-kit-desktop__filter-select-icon {
+  display: none;
+}
+
+.build-kit-desktop__filter-select-button {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 28px;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 4px 4px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.build-kit-desktop__filter-select-button:focus-visible {
+  outline: 1px solid $color-primary-black;
+  outline-offset: 1px;
+}
+
+.build-kit-desktop__filter-select-button-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.build-kit-desktop__filter-select-button-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  transition: transform 0.18s ease;
+}
+
+.build-kit-desktop__filter-select-wrap.is-open .build-kit-desktop__filter-select-button-icon {
+  transform: rotate(180deg);
+}
+.build-kit-desktop__filter-select-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: none;
+  padding: 4px;
+  border-radius: 8px;
+  background: $color-white;
+  box-shadow: $shadow-floating-card;
+}
+
+.build-kit-desktop__filter-select-wrap.is-open {
+  z-index: 35;
+}
+
+.build-kit-desktop__filter-select-wrap.is-open .build-kit-desktop__filter-select-list {
+  display: block;
+}
+
+.build-kit-desktop__filter-select-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.build-kit-desktop__filter-select-option:active {
+  background: $color-surface;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .build-kit-desktop__filter-select-option:hover,
+  .build-kit-desktop__filter-select-option:focus-visible {
+    background: $color-surface;
+  }
+}
+
+.build-kit-desktop__filter {
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  color: rgba($color-primary-black, 0.4);
+  cursor: pointer;
+}
+
+.build-kit-desktop__filter.is-active {
+  color: $color-primary-black;
+}

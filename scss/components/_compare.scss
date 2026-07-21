@@ -528,7 +528,7 @@
     }
 
     .compare-page__chip-count {
-      color: #eaeaea;
+      color: $color-white-pressed;
     }
   }
 }
@@ -791,7 +791,7 @@
 
   // Старая цена: всегда видна (не только на hover), серая зачёркнутая
   .compare-products__track .recommendation-card__old-price {
-    color: #a8a8a8;
+    color: $color-primary-gray;
     line-height: 1.2;
   }
 

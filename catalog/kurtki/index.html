@@ -387,10 +387,6 @@
             </div>
           </div>
         </div>
-        <button class="catalog-hero__share" type="button">
-          <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-share"></use></svg>
-          <span>Поделиться</span>
-        </button>
       </div>
       <div class="catalog-hero__banner">
         <img class="catalog-hero__image" src="/images/content/catalog/catalog-hero.png" srcset="/images/content/catalog/catalog-hero.png 1x" sizes="100vw" alt="Коллекция для туризма и путешествий" loading="eager">
@@ -459,7 +455,7 @@
         <div class="catalog-toolbar__chips" aria-label="Быстрые фильтры">
 
           <div class="catalog-filter-popup-wrap">
-            <button class="catalog-toolbar__chip" type="button" data-filter-key="price" aria-expanded="false"><span>Цена</span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
+            <button class="catalog-toolbar__chip" type="button" data-filter-key="price" aria-expanded="false"><span>Цена</span><span class="catalog-toolbar__chip-count" aria-hidden="true"></span><span class="catalog-toolbar__chip-reset" aria-hidden="true"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></span><svg class="catalog-filter-popup__chevron" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-chevron"></use></svg></button>
             <div class="catalog-filter-popup catalog-filter-popup--price" data-filter-popup="price" hidden>
               <div class="catalog-filter-popup__price-row">
                 <input class="catalog-filter-popup__price-input" type="text" inputmode="numeric" placeholder="399 ₽" aria-label="Минимальная цена">
@@ -753,14 +749,14 @@
         </div>
 
         <div class="catalog-filter-popup-wrap catalog-filter-popup-wrap--sort">
-          <button class="catalog-toolbar__button catalog-toolbar__button--sort" type="button" data-sort-toggle aria-expanded="false">
+          <button class="catalog-toolbar__button catalog-toolbar__button--sort" type="button" data-sort-toggle data-sort-current="popular" aria-expanded="false">
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-catalog-sort"></use></svg>
             <span>Популярные</span>
           </button>
           <div class="catalog-filter-popup catalog-filter-popup--sort" data-filter-popup="sort" hidden>
-            <ul class="catalog-filter-popup__sort-list" role="list">
-              <li class="catalog-filter-popup__sort-item is-selected" data-sort-value="price-desc">
-                <button class="catalog-filter-popup__sort-btn" type="button">
+            <ul class="catalog-filter-popup__sort-list" role="listbox" aria-label="Сортировка товаров">
+              <li class="catalog-filter-popup__sort-item" data-sort-value="price-desc">
+                <button class="catalog-filter-popup__sort-btn" type="button" role="option" aria-selected="false">
                   <span class="catalog-filter-popup__sort-icon">
                     <span class="catalog-filter-popup__sort-symbol">₽</span>
                     <svg class="catalog-filter-popup__sort-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
@@ -769,7 +765,7 @@
                 </button>
               </li>
               <li class="catalog-filter-popup__sort-item" data-sort-value="price-asc">
-                <button class="catalog-filter-popup__sort-btn" type="button">
+                <button class="catalog-filter-popup__sort-btn" type="button" role="option" aria-selected="false">
                   <span class="catalog-filter-popup__sort-icon">
                     <span class="catalog-filter-popup__sort-symbol">₽</span>
                     <svg class="catalog-filter-popup__sort-arrow catalog-filter-popup__sort-arrow--up" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
@@ -778,7 +774,7 @@
                 </button>
               </li>
               <li class="catalog-filter-popup__sort-item" data-sort-value="discount-desc">
-                <button class="catalog-filter-popup__sort-btn" type="button">
+                <button class="catalog-filter-popup__sort-btn" type="button" role="option" aria-selected="false">
                   <span class="catalog-filter-popup__sort-icon">
                     <span class="catalog-filter-popup__sort-symbol">%</span>
                     <svg class="catalog-filter-popup__sort-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
@@ -787,7 +783,7 @@
                 </button>
               </li>
               <li class="catalog-filter-popup__sort-item" data-sort-value="discount-asc">
-                <button class="catalog-filter-popup__sort-btn" type="button">
+                <button class="catalog-filter-popup__sort-btn" type="button" role="option" aria-selected="false">
                   <span class="catalog-filter-popup__sort-icon">
                     <span class="catalog-filter-popup__sort-symbol">%</span>
                     <svg class="catalog-filter-popup__sort-arrow catalog-filter-popup__sort-arrow--up" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-sort-arrow"></use></svg>

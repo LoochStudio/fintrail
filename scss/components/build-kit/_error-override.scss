@@ -1,0 +1,14 @@
+@use '../../variables' as *;
+
+// Error state must override breakpoint-specific carousel styles and [hidden].
+.build-kit-desktop.is-load-error {
+  .build-kit-desktop__tiles,
+  .build-kit-desktop__grid-controls {
+    display: none !important;
+  }
+
+  .build-kit-desktop__load-error,
+  .build-kit-desktop__load-error[hidden] {
+    display: flex !important;
+  }
+}

@@ -1,0 +1,460 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── В реальных условиях ──────────────────────────────────────────────────
+.product-conditions {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 100px;
+  color: $color-primary-black;
+}
+
+.product-conditions__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-conditions__title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-black;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+.product-conditions__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.product-conditions__arrow {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:disabled {
+    color: $color-primary-gray;
+    cursor: default;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(:disabled):hover,
+    &:not(:disabled):focus-visible {
+      background: $color-gray-hover;
+      color: $color-primary-black;
+    }
+  }
+}
+
+.product-conditions__stage {
+  position: relative;
+  width: 100vw;
+  height: 500px;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+}
+
+.product-conditions__bg {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 0;
+  width: max(100%, 1440px);
+  height: 500px;
+  max-width: none;
+  object-fit: cover;
+  object-position: center bottom;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.product-conditions__stage::after {
+  content: none;
+}
+
+.product-conditions__viewport {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.product-conditions__empty-card {
+  position: absolute;
+  bottom: 60px;
+  left: calc(50% - 347px);
+  z-index: 2;
+  display: none;
+  width: 694px;
+  min-height: 160px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 60px 40px;
+  border: 1px dashed $color-secondary-gray;
+  border-radius: 8px;
+  background: $color-surface;
+}
+
+.product-conditions__empty-text {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+
+  p {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    color: $color-secondary-accent;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-conditions--empty {
+  margin-top: 60px;
+  gap: 0;
+
+  .product-conditions__header,
+  .product-conditions__viewport {
+    display: none;
+  }
+
+  .product-conditions__stage {
+    height: 280px;
+  }
+
+  .product-conditions__empty-card {
+    display: flex;
+  }
+}
+
+.product-conditions__track {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: max-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  will-change: transform;
+}
+
+.product-conditions__upload-card,
+.product-conditions__slide {
+  flex: 0 0 220px;
+  width: 220px;
+  border-radius: 8px;
+}
+
+.product-conditions__upload-card {
+  display: flex;
+  height: 360px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  border: 1px dashed $color-secondary-gray;
+  background: $color-surface;
+}
+
+.product-conditions__upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: $color-secondary-accent;
+    white-space: nowrap;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-conditions__upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 8px 11px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  span {
+    font-family: $font-display;
+    font-size: 12px;
+    font-weight: $font-weight-black;
+    line-height: 12px;
+    text-transform: uppercase;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      background: $color-gray-hover;
+    }
+  }
+}
+
+.product-conditions__slide {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  background: $color-secondary-gray;
+}
+
+.product-conditions__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-conditions__slide.is-story-openable {
+  cursor: pointer;
+}
+
+.product-conditions__slide.is-story-openable:focus-visible {
+  outline: 2px solid $color-white;
+  outline-offset: -2px;
+}
+
+.product-conditions__caption {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .product-conditions {
+    margin-top: 64px;
+  }
+
+  .product-conditions--empty {
+    margin-top: 60px;
+
+    .product-conditions__stage {
+      height: 280px;
+    }
+  }
+
+  .product-conditions__stage {
+    height: 420px;
+  }
+
+  .product-conditions__bg {
+    width: 100%;
+    height: 420px;
+  }
+
+  .product-conditions__upload-card {
+    height: 360px;
+  }
+
+  .product-conditions__empty-card {
+    bottom: 60px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+}
+
+@media (max-width: 1279px) {
+  // ── Мобильный редизайн «В реальных условиях» по Figma 3881-57676 ─────────
+
+  .product-conditions {
+    // kit даёт padding-bottom: 40px — убираем свой margin чтобы не складывались
+    margin-top: 0;
+    gap: 0; // внутренние отступы контролируем через padding stage
+  }
+
+  .product-conditions--empty {
+    margin-top: 0;
+
+    .product-conditions__stage {
+      height: auto;
+    }
+  }
+
+  .product-conditions__header {
+    padding: 0 20px 16px; // 16px снизу до upload card
+  }
+
+  // Заголовок — H6 18px по Figma (не 24px)
+  .product-conditions__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  // Стрелки убираем — на мобиле листают свайпом
+  .product-conditions__nav {
+    display: none;
+  }
+
+  // Stage — линейный flex-col вместо 400px absolute-stage
+  .product-conditions__stage {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 20px 0;
+  }
+
+  // Bg-фото: декоративный переход к тёмному store-info снизу (130px)
+  .product-conditions__bg {
+    position: absolute;
+    bottom: -16px; // выходит немного за stage чтобы перекрыть gap
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 130px;
+    max-width: none;
+    object-fit: cover;
+    object-position: center bottom;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+
+  // Upload-карточка: всегда видна на мобиле (не только в empty-state)
+  // Встаёт в нормальный поток (не absolute)
+  .product-conditions__empty-card {
+    display: flex;
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 20px;
+    background: $color-surface;
+    border: 1px dashed $color-secondary-gray;
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  .product-conditions__empty-text {
+    gap: 18px;
+    align-items: center;
+    text-align: center;
+  }
+
+  // Viewport — горизонтальный скролл; выходит за padding stage
+  .product-conditions__viewport {
+    position: relative;
+    z-index: 2;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+    padding-bottom: 16px; // пространство над bg-фото
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .product-conditions__track {
+    display: flex;
+    gap: 10px; // Figma: gap-[10px]
+    padding: 0 20px;
+    align-items: flex-start;
+    width: max-content;
+  }
+
+  // Upload card внутри трека скрываем — он показан отдельно сверху
+  .product-conditions__upload-card {
+    display: none;
+  }
+
+  // Фото-слайды: 98×160 по Figma (вместо 200×320)
+  .product-conditions__slide {
+    flex: 0 0 98px;
+    width: 98px;
+    height: 160px;
+    border-radius: 8px;
+  }
+
+  .product-conditions__media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}

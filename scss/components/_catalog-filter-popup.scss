@@ -20,10 +20,7 @@
   padding: 20px;
   border-radius: 8px;
   background: $color-white;
-  box-shadow:
-    0 0 4px rgba(95, 105, 131, 0.07),
-    0 5px 4px rgba(95, 105, 131, 0.05),
-    0 4px 15px rgba(95, 105, 131, 0.12);
+  box-shadow: $shadow-floating-card;
 
   &[hidden] {
     display: none;
@@ -87,7 +84,7 @@
   border: 0;
   border-radius: $radius-xs;
   background: $color-surface;
-  color: $color-primary-gray;
+  color: $color-primary-black;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: $font-weight-semibold;
@@ -98,6 +95,7 @@
 
   &::placeholder {
     color: $color-primary-gray;
+    opacity: 1;
   }
 
   &:focus {
@@ -108,7 +106,7 @@
 
 .catalog-filter-popup__price-sep {
   flex: 0 0 auto;
-  color: #1f1f1f;
+  color: $color-primary-black;
   font-family: $font-display;
   font-size: 14px;
   font-weight: $font-weight-extrabold;
@@ -140,12 +138,12 @@
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: #000;
+      background: $color-black-hover;
     }
   }
 
   &:active {
-    background: #323232;
+    background: $color-button-primary-pressed;
   }
 }
 
@@ -175,7 +173,7 @@
 .catalog-filter-popup__item-text {
   flex: 1 1 0;
   min-width: 0;
-  color: #141415;
+  color: $color-content-text-primary;
   font-family: $font-mono;
   font-size: 14px;
   font-weight: $font-weight-semibold;
@@ -250,7 +248,7 @@
     right: 0;
     width: 6px;
     height: 336px;
-    background: #eaeaea;
+    background: $color-white-pressed;
     border-radius: 3px;
     pointer-events: none;
   }
@@ -322,7 +320,7 @@
 }
 
 .catalog-filter-popup__color-name {
-  color: #141415;
+  color: $color-content-text-primary;
   font-family: $font-mono;
   font-size: 14px;
   font-weight: $font-weight-semibold;
@@ -331,7 +329,7 @@
 }
 
 .catalog-filter-popup__color-code {
-  color: #6c6760;
+  color: $color-content-text-secondary;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: 400;
@@ -487,11 +485,11 @@
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: #e8e8e8;
+      background: $color-white-pressed;
     }
   }
 
   &:active {
-    background: #dcdcdc;
+    background: $color-gray-pressed;
   }
 }

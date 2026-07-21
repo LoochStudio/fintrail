@@ -1,0 +1,277 @@
+@use '../../variables' as *;
+@use '../../mixins' as *;
+
+// ── Характеристики, технологии, уход ────────────────────────────────────────
+.product-specs {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  padding: 0 0 80px;
+  color: $color-primary-black;
+}
+
+// Заголовок колонки — Nata Sans ExtraBold 14px uppercase
+.product-specs__heading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;   // 14px
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+// ─── Левая колонка: характеристики ───────────────────────────────────────
+.product-specs__main {
+  display: flex;
+  flex: 0 0 calc(50% - 30px); // половина минус половина gap (60px / 2)
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+// Блок с предупреждением
+.product-specs__notice {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-specs__notice-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+// Вертикальная черта по краям "!" — красная, как и сам знак
+.product-specs__notice-line {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: $color-secondary-accent;
+  flex-shrink: 0;
+}
+
+// "!" красным
+.product-specs__notice-excl {
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-black;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: $color-secondary-accent;
+}
+
+.product-specs__notice-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line; // 16px
+  color: $color-primary-black;
+}
+
+// Таблица характеристик
+.product-specs__table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// Белые разделители между строками
+.product-specs__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: $color-white;
+  flex-shrink: 0;
+}
+
+// Строка ключ / значение
+.product-specs__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line; // 16px
+  white-space: nowrap;
+}
+
+.product-specs__label {
+  color: $color-primary-black;
+}
+
+.product-specs__value {
+  color: $color-primary-black;
+}
+
+// Скрытые строки — по умолчанию свёрнуты, раскрываются с анимацией
+.product-specs__extra {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
+}
+
+// Раскрытое состояние
+.product-specs__table.is-expanded {
+  .product-specs__extra {
+    max-height: 600px;
+  }
+
+  .product-specs__expand-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+// Кнопка «Развернуть»
+.product-specs__expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-surface;
+  color: $color-primary-gray;
+  cursor: pointer;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      background: $color-white;
+      color: $color-primary-black;
+    }
+  }
+}
+
+// CSS-треугольник вниз (border-trick)
+.product-specs__expand-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;       // верх — видимая сторона, бока — полуширина
+  border-color: currentColor transparent transparent transparent;
+  transition: transform 0.2s ease;
+}
+
+// ─── Правая часть: технологии + уход ─────────────────────────────────────
+.product-specs__aside {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.product-specs__tech {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 300px; // не даём расти до заполнения — space-between получает свободное пространство
+  min-width: 0;
+}
+
+.product-specs__tech-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-specs__tech-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.product-specs__tech-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.product-specs__tech-text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.product-specs__tech-title {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line; // 16px
+  text-transform: uppercase;
+  color: $color-primary-black;
+}
+
+.product-specs__tech-desc {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;   // 12px
+  font-weight: 500;
+  line-height: $text-body-b2-line; // 16px
+  color: $color-primary-black;
+}
+
+// Уход
+.product-specs__care {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 300px; // аналогично технологиям
+  min-width: 0;
+}
+
+.product-specs__care-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-specs__care-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-specs__care-label {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+}
+
+.product-specs__care-text {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+}
