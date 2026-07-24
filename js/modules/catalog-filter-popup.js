@@ -96,10 +96,13 @@ export function init() {
 
   const syncTriggerActive = (trigger, popup) => {
     const checkedCount = popup.querySelectorAll('input[type="checkbox"]:checked').length;
-    const hasPriceRange = trigger.dataset.filterKey === 'price'
-      && Array.from(popup.querySelectorAll('.catalog-filter-popup__price-input'))
-        .some(input => input.value.trim() !== '');
-    const selectedCount = hasPriceRange ? 1 : checkedCount;
+    const priceValuesCount = trigger.dataset.filterKey === 'price'
+      ? Array.from(popup.querySelectorAll('.catalog-filter-popup__price-input'))
+        .filter(input => input.value.trim() !== '').length
+      : 0;
+    const selectedCount = trigger.dataset.filterKey === 'price'
+      ? priceValuesCount
+      : checkedCount;
     trigger.classList.toggle('is-active', selectedCount > 0);
 
     const countEl = trigger.querySelector('.catalog-toolbar__chip-count');

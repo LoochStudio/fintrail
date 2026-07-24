@@ -1,9 +1,18 @@
+import { resolvePublicAsset, spriteHref } from './utils.js';
+
 export function init() {
   const catalogDropdownButtons = Array.from(document.querySelectorAll(
     '.catalog-toolbar__button[aria-expanded], .catalog-toolbar__chip[aria-expanded]'
   ));
   const catalogProducts = document.querySelector('.catalog-products');
   const catalogLoading = catalogProducts?.querySelector('.catalog-products__loading');
+  const catalogEmptyState = document.querySelector('[data-catalog-empty-state]');
+  const catalogFilterEmptyState = document.querySelector('[data-catalog-filter-empty-state]');
+  const catalogEmptyReset = catalogFilterEmptyState?.querySelector('[data-catalog-empty-reset]');
+  const catalogEmptyRecommendations = document.querySelector('[data-catalog-empty-recommendations]');
+  const catalogGrid = catalogProducts?.querySelector('[data-catalog-grid]');
+  const catalogLoadMore = catalogProducts?.querySelector('[data-load-more]');
+  const catalogPagination = catalogProducts?.querySelector('.catalog-pagination');
   const catalogFilterModal = document.querySelector('[data-catalog-filter-modal]');
   const catalogFilterOpenButton = document.querySelector('[data-filter-toggle]');
   const catalogFilterForm = catalogFilterModal?.querySelector('[data-catalog-filter-form]');
@@ -15,6 +24,57 @@ export function init() {
     ? Array.from(catalogFilterModal.querySelectorAll('[data-catalog-filter-close]'))
     : [];
   let catalogLoadingTimer;
+
+  const demoState = new URLSearchParams(window.location.search).get('demo-state');
+  if (demoState === 'empty-category' && catalogProducts && catalogEmptyState) {
+    catalogProducts.hidden = true;
+    catalogEmptyState.hidden = false;
+    if (catalogEmptyRecommendations) catalogEmptyRecommendations.hidden = false;
+  }
+
+  if (demoState === 'empty-filter-results' && catalogProducts && catalogFilterEmptyState) {
+    catalogFilterEmptyState.hidden = false;
+    if (catalogGrid) catalogGrid.hidden = true;
+    if (catalogLoadMore) catalogLoadMore.hidden = true;
+    if (catalogPagination) catalogPagination.hidden = true;
+    if (catalogEmptyRecommendations) catalogEmptyRecommendations.hidden = false;
+
+    const pricePopup = document.querySelector('[data-filter-popup="price"]');
+    const priceInputs = pricePopup?.querySelectorAll('.catalog-filter-popup__price-input');
+    if (priceInputs?.length >= 2) {
+      priceInputs[0].value = '399';
+      priceInputs[1].value = '167 939';
+    }
+
+    const typePopup = document.querySelector('[data-filter-popup="type"]');
+    Array.from(typePopup?.querySelectorAll('.catalog-filter-popup__label') || [])
+      .slice(0, 2)
+      .forEach(label => {
+        const input = label.querySelector('input[type="checkbox"]');
+        const checkbox = label.querySelector('.catalog-filter-popup__checkbox');
+        if (input) input.checked = true;
+        checkbox?.classList.add('is-checked');
+        checkbox?.setAttribute('aria-checked', 'true');
+      });
+  }
+
+  initCatalogProductImageFallbacks(catalogGrid, demoState);
+
+  catalogEmptyReset?.addEventListener('click', () => {
+    document.querySelectorAll('.catalog-toolbar__chip.is-active .catalog-toolbar__chip-reset')
+      .forEach(reset => reset.click());
+
+    catalogFilterEmptyState.hidden = true;
+    if (catalogGrid) catalogGrid.hidden = false;
+    if (catalogLoadMore) catalogLoadMore.hidden = false;
+    if (catalogPagination) catalogPagination.hidden = false;
+    if (catalogEmptyRecommendations) catalogEmptyRecommendations.hidden = true;
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete('demo-state');
+    window.history.replaceState({}, '', url);
+    catalogProducts?.dispatchEvent(new CustomEvent('catalog:filters-reset', { bubbles: true }));
+  });
 
   const priceRanges = Array.from(document.querySelectorAll(
     '.catalog-filter-popup__price-row, .catalog-filter-modal__price-row'
@@ -185,9 +245,70 @@ export function init() {
   document.querySelector('[data-load-more]')?.addEventListener('click', showCatalogLoading);
 
   // Пагинация
-  const pagination = document.querySelector('.catalog-pagination');
-  const grid = document.querySelector('[data-catalog-grid]');
+  const pagination = catalogPagination;
+  const grid = catalogGrid;
   if (pagination && grid) initPagination(pagination, grid);
+}
+
+function initCatalogProductImageFallbacks(grid, demoState) {
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.catalog-product-card'));
+
+  const showFallback = (card, variant = 'camera') => {
+    const imageLink = card?.querySelector('.recommendation-card__image-link');
+    if (!imageLink || imageLink.classList.contains('is-image-unavailable')) return;
+
+    const fallback = document.createElement('span');
+    fallback.className = `recommendation-card__image-fallback recommendation-card__image-fallback--${variant}`;
+    fallback.setAttribute('role', 'img');
+    fallback.setAttribute('aria-label', 'Изображение товара недоступно');
+
+    if (variant === 'brand') {
+      const logo = document.createElement('img');
+      logo.className = 'recommendation-card__image-fallback-logo';
+      logo.src = resolvePublicAsset('/images/content/catalog/product-image-fallback-logo.png');
+      logo.alt = '';
+      logo.width = 220;
+      logo.height = 39;
+      fallback.append(logo);
+    } else {
+      const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      icon.classList.add('recommendation-card__image-fallback-icon');
+      icon.setAttribute('aria-hidden', 'true');
+      icon.setAttribute('viewBox', '0 0 36 36');
+      icon.setAttribute('focusable', 'false');
+      use.setAttribute('href', spriteHref('icon-product-image-unavailable'));
+      icon.append(use);
+
+      const label = document.createElement('span');
+      label.className = 'recommendation-card__image-fallback-label';
+      label.textContent = 'Нет изображения';
+      fallback.append(icon, label);
+    }
+
+    imageLink.replaceChildren(fallback);
+    imageLink.classList.add('is-image-unavailable');
+    card.classList.add('is-image-unavailable');
+  };
+
+  cards.forEach(card => {
+    const image = card.querySelector('.recommendation-card__image');
+    if (!image) return;
+
+    const variant = image.dataset.imageFallback || card.dataset.imageFallback || 'camera';
+    image.addEventListener('error', () => showFallback(card, variant), { once: true });
+
+    if (image.complete && image.naturalWidth === 0) {
+      showFallback(card, variant);
+    }
+  });
+
+  if (demoState === 'image-fallbacks') {
+    showFallback(cards[2], 'brand');
+    showFallback(cards[5], 'camera');
+  }
 }
 
 function getCardsPerPage() {

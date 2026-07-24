@@ -442,6 +442,18 @@
       <a class="catalog-tags__chip catalog-tags__chip--text" href="/activities/ski/">Горные лыжи</a>
     </section>
 
+    <!--
+      BITRIX: пустая категория — выводить вместо bitrix:catalog.section,
+      когда в разделе изначально нет товаров.
+    -->
+    <section class="catalog-empty-state" data-catalog-empty-state role="status" aria-live="polite" hidden>
+      <div class="catalog-empty-state__content">
+        <h2 class="catalog-empty-state__title">В этой категории<br class="catalog-empty-state__mobile-break"> пока нет товаров</h2>
+        <p class="catalog-empty-state__text">Посмотрите другие разделы каталога или вернитесь на главную страницу</p>
+        <a class="catalog-empty-state__button button button--primary button--size-l" href="/">На главную</a>
+      </div>
+    </section>
+
     <!-- BITRIX: bitrix:catalog.smart.filter; AJAX, без перезагрузки страницы. -->
     <section class="catalog-products" aria-labelledby="catalog-products-title" aria-busy="false">
       <h2 class="visually-hidden" id="catalog-products-title">Товары каталога</h2>
@@ -803,6 +815,18 @@
         </span>
       </div>
 
+      <!--
+        BITRIX: результат AJAX-фильтра — выводить вместо сетки товаров,
+        когда активные условия bitrix:catalog.smart.filter не дали результатов.
+      -->
+      <section class="catalog-empty-state catalog-empty-state--filter-results" data-catalog-filter-empty-state role="status" aria-live="polite" hidden>
+        <div class="catalog-empty-state__content">
+          <h2 class="catalog-empty-state__title">Ничего не найдено</h2>
+          <p class="catalog-empty-state__text">Попробуйте убрать часть фильтров или изменить условия поиска</p>
+          <button class="catalog-empty-state__button button button--primary button--size-l" type="button" data-catalog-empty-reset>Сбросить фильтры</button>
+        </div>
+      </section>
+
       <!-- BITRIX: bitrix:catalog.section; заменить статичные карточки циклом товаров. -->
       <div class="catalog-products__grid" data-catalog-grid>
         <article class="recommendation-card catalog-product-card">
@@ -1047,6 +1071,102 @@
           <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
         </button>
       </nav>
+    </section>
+
+    <!-- BITRIX: рекомендации для пустой категории — отдельный bitrix:catalog.section. -->
+    <section class="recommendations-new catalog-empty-recommendations" aria-labelledby="catalog-empty-recommendations-title" data-catalog-empty-recommendations hidden>
+      <div class="recommendations-new__header">
+        <h2 class="recommendations-new__title" id="catalog-empty-recommendations-title">Рекомендуем</h2>
+        <div class="recommendations-new__controls">
+          <button class="recommendations-new__arrow js-slider-prev button button--icon button--size-m button--ghost is-inactive" type="button" aria-label="Назад">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-left"></use></svg>
+          </button>
+          <button class="recommendations-new__arrow js-slider-next button button--icon button--size-m button--ghost" type="button" aria-label="Вперед">
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="recommendations-new__viewport">
+        <div class="recommendations-new__track">
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/kurtki/master-hood-1510/">
+                <img class="recommendation-card__image recommendation-card__image--fit" src="/images/content/recommended/recommended-1.png" srcset="/images/content/_responsive/recommended/recommended-1-160.png 160w, /images/content/_responsive/recommended/recommended-1-320.png 320w, /images/content/_responsive/recommended/recommended-1-480.png 480w, /images/content/_responsive/recommended/recommended-1-768.png 768w, /images/content/recommended/recommended-1.png 780w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+              <h3 class="recommendation-card__name"><a href="/catalog/kurtki/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/kurtki/master-hood-1510/">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-2.png" srcset="/images/content/_responsive/recommended/recommended-2-160.png 160w, /images/content/_responsive/recommended/recommended-2-320.png 320w, /images/content/recommended/recommended-2.png 442w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <span class="recommendation-card__badge">Топ</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+              <h3 class="recommendation-card__name"><a href="/catalog/kurtki/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/kurtki/master-hood-1510/">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-3.png" srcset="/images/content/_responsive/recommended/recommended-3-160.png 160w, /images/content/_responsive/recommended/recommended-3-320.png 320w, /images/content/_responsive/recommended/recommended-3-480.png 480w, /images/content/recommended/recommended-3.png 498w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <span class="recommendation-card__badge">Хит</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+              <h3 class="recommendation-card__name"><a href="/catalog/kurtki/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="recommendation-card__media">
+              <a class="recommendation-card__image-link" href="/catalog/kurtki/master-hood-1510/">
+                <img class="recommendation-card__image" src="/images/content/recommended/recommended-4.png" srcset="/images/content/_responsive/recommended/recommended-4-160.png 160w, /images/content/recommended/recommended-4.png 197w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw" alt="Куртка FINNTRAIL Master Hood 1510 Graphite" loading="lazy">
+                <span class="recommendation-card__badge">Новинка</span>
+              </a>
+              <span class="recommendation-card__actions">
+                <button class="recommendation-card__icon-btn js-compare" type="button" aria-label="Сравнить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-compare"></use></svg></button>
+                <button class="recommendation-card__icon-btn js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
+              </span>
+            </div>
+            <div class="recommendation-card__info">
+              <div class="recommendation-card__colors"><span class="recommendation-card__color recommendation-card__color--graphite recommendation-card__color--active"></span><span class="recommendation-card__color recommendation-card__color--black"></span><span class="recommendation-card__color recommendation-card__color--gray"></span><span class="recommendation-card__more">+3</span></div>
+              <h3 class="recommendation-card__name"><a href="/catalog/kurtki/master-hood-1510/">Куртка FINNTRAIL Master Hood 1510 Graphite</a></h3>
+            </div>
+            <button class="recommendation-card__cart js-add-to-cart" type="button"><span class="recommendation-card__prices"><span class="recommendation-card__price">13 999 ₽</span><span class="recommendation-card__old-price">16 999 ₽</span></span><span class="recommendation-card__cart-label"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg><span>В корзину</span></span></button>
+          </article>
+        </div>
+      </div>
+
+      <a class="recommendations-new__more button button--ghost button--size-m" href="/catalog/">
+        <span>Смотреть все</span>
+        <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+      </a>
     </section>
 
     <section class="community-showcase catalog-page__community" aria-labelledby="catalog-community-title">

@@ -144,6 +144,11 @@
     height: 100%;
     color: inherit;
     text-decoration: none;
+
+    &.is-image-unavailable {
+      position: relative;
+      display: block;
+    }
   }
 
   &__image {
@@ -156,6 +161,62 @@
     &--fit {
       object-fit: contain;
     }
+  }
+
+  &__image-fallback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary-gray;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+
+    &--brand {
+      width: min(220px, calc(100% - 32px));
+      height: 39px;
+    }
+
+    &--camera {
+      width: 128px;
+      height: 68px;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  &__image-fallback-logo {
+    display: block;
+    width: min(220px, 100%);
+    height: 39px;
+    object-fit: contain;
+  }
+
+  &__image-fallback-icon {
+    display: block;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+  }
+
+  &__image-fallback-label {
+    display: flex;
+    width: 128px;
+    height: 28px;
+    flex: 0 0 28px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: $color-primary-gray;
+    font-family: $font-mono;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   &__badge {
@@ -217,6 +278,12 @@
   &__icon-btn.is-saved,
   &__icon-btn.is-compared {
     color: $color-secondary-accent;
+  }
+
+  &.is-image-unavailable &__badge,
+  &.is-image-unavailable &__actions,
+  &.is-image-unavailable &__colors {
+    display: none;
   }
 
   &__info {
