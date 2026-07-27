@@ -2427,7 +2427,7 @@
 
       <!-- ─── Правая колонка: форма оценки ─── -->
       <div class="product-reviews__right">
-        <form class="product-reviews__form" novalidate data-reviews-form>
+        <form class="product-reviews__form" action="" method="post" enctype="multipart/form-data" novalidate data-reviews-form>
 
           <!-- Кнопка закрытия bottom sheet (только mobile) -->
           <button class="product-reviews__form-close" type="button" aria-label="Закрыть форму отзыва" data-reviews-form-close>
@@ -2446,14 +2446,15 @@
               <button type="button" class="product-reviews__form-star js-review-star" data-value="5" aria-label="5 звёзд"></button>
             </div>
             <span class="product-reviews__form-rating-num" data-reviews-rating-num>4</span>
+            <input type="hidden" name="rating" value="4" data-reviews-rating-input>
           </div>
 
           <!-- Поля -->
           <div class="product-reviews__fields">
-            <input class="product-reviews__field" type="text" placeholder="Имя" autocomplete="off">
-            <textarea class="product-reviews__field product-reviews__field--textarea" placeholder="Достоинства"></textarea>
-            <textarea class="product-reviews__field product-reviews__field--textarea" placeholder="Недостатки"></textarea>
-            <textarea class="product-reviews__field product-reviews__field--textarea product-reviews__field--comment" placeholder="Комментарий"></textarea>
+            <input class="product-reviews__field" type="text" name="author_name" placeholder="Имя" autocomplete="name">
+            <textarea class="product-reviews__field product-reviews__field--textarea" name="pros" placeholder="Достоинства"></textarea>
+            <textarea class="product-reviews__field product-reviews__field--textarea" name="cons" placeholder="Недостатки"></textarea>
+            <textarea class="product-reviews__field product-reviews__field--textarea product-reviews__field--comment" name="comment" placeholder="Комментарий"></textarea>
           </div>
 
           <!-- Соответствие размеру -->
@@ -2467,10 +2468,11 @@
               <button type="button" class="product-reviews__fit-btn js-review-fit" data-fit="big">Большемерит</button>
               <button type="button" class="product-reviews__fit-btn js-review-fit" data-fit="small">Маломерит</button>
             </div>
+            <input type="hidden" name="size_fit" value="match" data-reviews-fit-input>
           </div>
 
           <!-- Загрузить файлы -->
-          <label class="product-reviews__upload">
+          <label class="product-reviews__upload" data-file-picker data-file-max="8" data-file-max-size="2">
             <span class="product-reviews__upload-icon" aria-hidden="true">
               <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
             </span>
@@ -2478,7 +2480,7 @@
               <span class="product-reviews__upload-title">Загрузить фотографии или видео</span>
               <span class="product-reviews__upload-hint">Не более 8 файлов, до 2 Мб</span>
             </span>
-            <input type="file" accept="image/*,video/*" multiple hidden>
+            <input class="file-picker__input" type="file" name="review_files[]" accept="image/*,video/*" multiple data-file-picker-input>
           </label>
 
           <!-- Отправить -->
@@ -2926,6 +2928,7 @@
     <div class="product-upload-modal" id="product-upload" hidden data-product-upload-modal>
       <div class="product-upload-modal__backdrop" data-product-upload-close></div>
       <aside class="product-upload-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-upload-title">
+        <form class="product-upload-modal__form" action="" method="post" enctype="multipart/form-data" data-product-upload-form>
         <div class="product-upload-modal__top">
           <header class="product-upload-modal__header">
             <h2 class="product-upload-modal__title" id="product-upload-title">Загрузить изображения или видео</h2>
@@ -2944,25 +2947,23 @@
               1 000 баллов
             </span>
           </div>
-          <div class="product-upload-modal__preview-list" data-product-upload-filled aria-label="Загруженные файлы">
-            <img src="/images/content/product/upload-preview/upload-preview-1.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-1-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-1-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-1-480.png 480w, /images/content/_responsive/product/upload-preview/upload-preview-1-768.png 768w, /images/content/_responsive/product/upload-preview/upload-preview-1-1024.png 1024w, /images/content/product/upload-preview/upload-preview-1.png 1031w" sizes="60px" alt="Загруженное изображение 1" loading="lazy">
-            <img src="/images/content/product/upload-preview/upload-preview-2.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-2-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-2-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-2-480.png 480w, /images/content/_responsive/product/upload-preview/upload-preview-2-768.png 768w, /images/content/product/upload-preview/upload-preview-2.png 960w" sizes="60px" alt="Загруженное изображение 2" loading="lazy">
-            <img src="/images/content/product/upload-preview/upload-preview-3.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-3-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-3-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-3-480.png 480w, /images/content/_responsive/product/upload-preview/upload-preview-3-768.png 768w, /images/content/_responsive/product/upload-preview/upload-preview-3-1024.png 1024w, /images/content/product/upload-preview/upload-preview-3.png 1031w" sizes="60px" alt="Загруженное изображение 3" loading="lazy">
-            <img src="/images/content/product/upload-preview/upload-preview-4.png" srcset="/images/content/_responsive/product/upload-preview/upload-preview-4-160.png 160w, /images/content/_responsive/product/upload-preview/upload-preview-4-320.png 320w, /images/content/_responsive/product/upload-preview/upload-preview-4-480.png 480w, /images/content/product/upload-preview/upload-preview-4.png 720w" sizes="60px" alt="Загруженное изображение 4" loading="lazy">
-          </div>
+          <div class="product-upload-modal__preview-list" data-product-upload-filled aria-label="Загруженные файлы"></div>
+          <input class="product-upload-modal__file-input" type="file" name="review_files[]" accept="image/*,video/*" multiple data-product-upload-file-input>
           <button class="product-upload-modal__file-button" type="button" data-product-upload-file-button>
             <span>Загрузить файлы</span>
             <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-upload-image"></use></svg>
           </button>
+          <p class="product-upload-modal__file-status" role="status" aria-live="polite" hidden data-product-upload-file-status></p>
         </div>
 
         <div class="product-upload-modal__bottom">
-          <button class="product-upload-modal__submit" type="button" data-product-upload-submit>Отправить</button>
+          <button class="product-upload-modal__submit" type="submit" data-product-upload-submit>Отправить</button>
           <p class="product-upload-modal__note">
             После одобрения модератором, вам будут начислены бонусные баллы. Их появление можно отслеживать в <a href="/personal/">личном кабинете</a>.<br><br>
             Также, вам придёт уведомление на почту.
           </p>
         </div>
+        </form>
       </aside>
     </div>
     <div class="stories-modal stories-modal--product-conditions" id="product-conditions-stories" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото в реальных условиях" data-product-conditions-stories-modal>

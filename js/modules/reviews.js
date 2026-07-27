@@ -111,6 +111,9 @@ function initReviewFormModal() {
   if (!modal) return;
 
   const panel = modal.querySelector('.review-form-modal__panel');
+  const bitrixForm = modal.querySelector('[data-review-form-bitrix]');
+  const ratingInput = modal.querySelector('[data-review-form-rating-input]');
+  const sizeInput = modal.querySelector('[data-review-form-size-input]');
 
   function openModal() {
     modal.removeAttribute('hidden');
@@ -161,6 +164,7 @@ function initReviewFormModal() {
       star.addEventListener('click', () => {
         const val = Number(star.dataset.value);
         ratingValue.textContent = val;
+        if (ratingInput) ratingInput.value = String(val);
         starsContainer.querySelectorAll('.review-form-modal__star').forEach(s => {
           s.classList.toggle('is-active', Number(s.dataset.value) <= val);
         });
@@ -175,6 +179,7 @@ function initReviewFormModal() {
       btn.addEventListener('click', () => {
         sizeContainer.querySelectorAll('.review-form-modal__size-option').forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
+        if (sizeInput) sizeInput.value = btn.dataset.value || '';
       });
     });
   }
@@ -187,6 +192,7 @@ function initReviewFormModal() {
 
         if (starsContainer && ratingValue) {
           ratingValue.textContent = val;
+          if (ratingInput) ratingInput.value = String(val);
           starsContainer.querySelectorAll('.review-form-modal__star').forEach(s => {
             s.classList.toggle('is-active', Number(s.dataset.value) <= val);
           });
@@ -203,4 +209,7 @@ function initReviewFormModal() {
       });
     });
   });
+
+  // Static demo: Bitrix replaces this handler with the component AJAX submit.
+  bitrixForm?.addEventListener('submit', event => event.preventDefault());
 }

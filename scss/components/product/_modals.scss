@@ -297,11 +297,18 @@
     flex-wrap: wrap;
     gap: 8px;
 
-    img {
+    img,
+    video {
       width: 52px;
       height: 52px;
       flex: 0 0 52px;
     }
+  }
+
+  .product-upload-modal__preview {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
   }
 
   // Submit-кнопка — уменьшаем padding

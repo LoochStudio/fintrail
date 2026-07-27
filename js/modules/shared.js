@@ -153,10 +153,15 @@ export function init() {
   updateCompareBadges(getCompareCount());
 
   function markAddButtonInCart(btn) {
-    const useEl = btn?.querySelector('use');
-    if (useEl) {
+    const iconUses = btn?.matches('.recommendation-card__cart')
+      ? btn.querySelectorAll(
+        '.recommendation-card__cart-label use, .compare-products__compact-cart-icon use'
+      )
+      : [btn?.querySelector('use')].filter(Boolean);
+
+    iconUses?.forEach(useEl => {
       useEl.setAttribute('href', spriteHref('icon-kit-check'));
-    }
+    });
     btn?.classList.add('is-in-cart');
     btn?.setAttribute('aria-label', 'Товар в корзине');
     const labelSpan = btn?.querySelector('.recommendation-card__cart-label span');
@@ -166,6 +171,8 @@ export function init() {
   }
 
   function addCartItem(btn) {
+    if (!btn || btn.classList.contains('is-in-cart')) return;
+
     markAddButtonInCart(btn);
     const newCount = getCartCount() + 1;
     setCartCount(newCount);

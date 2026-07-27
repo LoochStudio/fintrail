@@ -1,0 +1,130 @@
+@use '../variables' as *;
+
+.file-picker__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+.file-picker-selection {
+  width: 100%;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.file-picker-selection__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.file-picker-selection__item {
+  display: flex;
+  min-width: 180px;
+  max-width: 100%;
+  flex: 1 1 220px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: $radius-xs;
+  background: $color-white;
+}
+
+.file-picker-selection__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-picker-selection__name {
+  overflow: hidden;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-picker-selection__size,
+.file-picker-selection__status {
+  color: $color-primary-gray;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+}
+
+.file-picker-selection__status {
+  margin: 8px 0 0;
+  color: $color-secondary-accent;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.file-picker-selection__remove {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $color-primary-black;
+      color: $color-white;
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-primary-black;
+    outline-offset: 2px;
+  }
+}
+
+[data-file-picker].is-dragover {
+  outline: 1px solid $color-primary-black;
+  outline-offset: 2px;
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .file-picker-selection__list {
+    flex-direction: column;
+  }
+
+  .file-picker-selection__item {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+}

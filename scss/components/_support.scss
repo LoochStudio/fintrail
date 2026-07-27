@@ -121,6 +121,111 @@
   }
 }
 
+.support-form__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+.support-form__file-status {
+  margin: -8px 0 0;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-secondary-accent;
+}
+
+.support-form__files {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: -8px 0 0;
+  padding: 0;
+  list-style: none;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.support-form__file {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-radius: $radius-xs;
+  background: $color-white;
+}
+
+.support-form__file-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.support-form__file-name {
+  overflow: hidden;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b2-line;
+  color: $color-primary-black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.support-form__file-size {
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  color: $color-primary-gray;
+}
+
+.support-form__file-remove {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-surface;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $color-primary-black;
+      color: $color-white;
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-primary-black;
+    outline-offset: 2px;
+  }
+}
+
 // ─── Support history ─────────────────────────────────────────────────────────
 
 .support-history__inner {
@@ -303,6 +408,14 @@
   }
 }
 
+@media (min-width: $bp-lg) {
+  .support-form__inner,
+  .support-history__inner {
+    margin-right: 0;
+    margin-left: calc(25vw - #{$spacing-page-desktop});
+  }
+}
+
 // ─── Планшетка (768px – 1279px) ───────────────────────────────────────────────
 
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
@@ -334,6 +447,10 @@
 
   .support-form__submit {
     flex: 1;
+  }
+
+  .support-form__files {
+    grid-template-columns: 1fr;
   }
 
   .personal-page--support .support-mobile-sections {

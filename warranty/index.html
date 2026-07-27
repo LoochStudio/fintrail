@@ -518,8 +518,8 @@
                 <span class="uk-field"><textarea class="uk-field__input" name="defects" placeholder="Опишите дефекты"></textarea><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
               </label>
             </div>
-            <label class="warranty-form__upload">
-              <input type="file" name="photos" multiple accept="image/*">
+            <label class="warranty-form__upload" data-file-picker data-file-max="5" data-file-max-size="10">
+              <input class="file-picker__input" type="file" name="photos[]" multiple accept=".jpg,.jpeg,.png" data-file-picker-input>
               <span class="warranty-form__upload-btn" aria-hidden="true"><svg><use href="/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg></span>
               <span class="warranty-form__upload-copy"><strong>Загрузить фотографии</strong><small>Не более 5 файлов</small></span>
             </label>

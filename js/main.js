@@ -29,6 +29,7 @@ import { init as initDeliveryPage } from './modules/delivery-page.js';
 import { init as initFaq } from './modules/faq.js';
 import { init as initTechnologies } from './modules/technologies.js';
 import { init as initWhereBuy } from './modules/where-buy.js';
+import { init as initFilePicker } from './modules/file-picker.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -62,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initTechnologies();
   initWhereBuy();
+  initFilePicker();
 });
-
 
 
 

@@ -582,8 +582,8 @@
           <button class="vacancy-response__tab" type="button" aria-pressed="false">Без резюме</button>
         </div>
         <div class="vacancy-response__row vacancy-response__row--two">
-          <label class="vacancy-response__select"><span>Дизайнер одежды</span><select aria-label="Специальность"><option>Дизайнер одежды</option><option>Конструктор одежды</option><option>Технолог</option></select><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg></label>
-          <label class="vacancy-response__select"><span>Разработка экипировки</span><select aria-label="Направление"><option>Разработка экипировки</option><option>Маркетинг</option><option>Продажи</option></select><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg></label>
+          <label class="vacancy-response__select"><span>Дизайнер одежды</span><select name="specialty" aria-label="Специальность"><option>Дизайнер одежды</option><option>Конструктор одежды</option><option>Технолог</option></select><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg></label>
+          <label class="vacancy-response__select"><span>Разработка экипировки</span><select name="department" aria-label="Направление"><option>Разработка экипировки</option><option>Маркетинг</option><option>Продажи</option></select><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg></label>
         </div>
         <label class="vacancy-response__field"><input type="text" name="name" placeholder="Фамилия и имя" autocomplete="name"><button class="vacancy-response__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></label>
         <div class="vacancy-response__phone">
@@ -591,14 +591,14 @@
           <label class="vacancy-response__field" data-input-field><input class="js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric" aria-describedby="vacancy-response-phone-caption"><button class="vacancy-response__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></label>
         </div>
         <span class="vacancy-response__caption" id="vacancy-response-phone-caption" aria-live="polite"></span>
-        <label class="vacancy-response__upload">
-          <input type="file" name="resume" multiple accept=".pdf,.doc,.docx,.txt">
+        <label class="vacancy-response__upload" data-file-picker data-file-max="10" data-file-max-size="10">
+          <input class="file-picker__input" type="file" name="resume[]" multiple accept=".pdf,.doc,.docx,.txt" data-file-picker-input>
           <span class="vacancy-response__upload-text"><strong>Перетащите документы сюда</strong><small>Максимум 10 файлов PDF, DOCX, TXT</small></span>
           <span class="vacancy-response__upload-btn">Добавить файл <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-plus"></use></svg></span>
         </label>
         <button class="button button--primary button--size-m vacancy-response__submit" type="submit">Отправить отклик</button>
         <label class="vacancy-response__consent">
-          <input class="vacancy-response__consent-input" type="checkbox" autocomplete="off">
+          <input class="vacancy-response__consent-input" type="checkbox" name="consent" value="Y" autocomplete="off">
           <span class="vacancy-response__consent-text">Соглашаюсь с <a href="/terms/">условиями использования</a> и <a href="/personal-data/">условиями обработки</a> персональных данных</span>
         </label>
       </form>

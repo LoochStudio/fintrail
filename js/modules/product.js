@@ -42,20 +42,122 @@ export function init() {
     const closeButton = modal.querySelector('.product-upload-modal__close');
     const title = modal.querySelector('.product-upload-modal__title');
     const lead = modal.querySelector('.product-upload-modal__lead');
+    const form = modal.querySelector('[data-product-upload-form]');
     const dropzone = modal.querySelector('[data-product-upload-dropzone]');
+    const fileInput = modal.querySelector('[data-product-upload-file-input]');
     const fileButton = modal.querySelector('[data-product-upload-file-button]');
     const fileButtonText = fileButton?.querySelector('span');
-    const submitButton = modal.querySelector('[data-product-upload-submit]');
+    const previewList = modal.querySelector('[data-product-upload-filled]');
+    const fileStatus = modal.querySelector('[data-product-upload-file-status]');
     const defaultTitle = title?.textContent || '';
     const defaultLead = lead?.textContent || '';
+    const maxFiles = 8;
+    const maxFileSize = 2 * 1024 * 1024;
+    let selectedFiles = [];
+    let previewUrls = [];
     let closeTimer = 0;
+
+    function syncFileInput() {
+      if (!fileInput || typeof DataTransfer === 'undefined') return;
+      const transfer = new DataTransfer();
+      selectedFiles.forEach(file => transfer.items.add(file));
+      fileInput.files = transfer.files;
+    }
+
+    function clearPreviewUrls() {
+      previewUrls.forEach(url => URL.revokeObjectURL(url));
+      previewUrls = [];
+    }
+
+    function renderFiles() {
+      if (!previewList) return;
+
+      clearPreviewUrls();
+      previewList.replaceChildren();
+
+      selectedFiles.forEach((file, index) => {
+        const item = document.createElement('div');
+        const url = URL.createObjectURL(file);
+        const media = file.type.startsWith('video/')
+          ? document.createElement('video')
+          : document.createElement('img');
+        const remove = document.createElement('button');
+
+        previewUrls.push(url);
+        item.className = 'product-upload-modal__preview';
+        media.src = url;
+        media.setAttribute('aria-label', file.name);
+        if (media instanceof HTMLImageElement) media.alt = file.name;
+        if (media instanceof HTMLVideoElement) {
+          media.muted = true;
+          media.preload = 'metadata';
+        }
+
+        remove.className = 'product-upload-modal__preview-remove';
+        remove.type = 'button';
+        remove.dataset.productUploadRemove = String(index);
+        remove.setAttribute('aria-label', `Удалить файл ${file.name}`);
+        remove.innerHTML = `<svg aria-hidden="true"><use href="${spriteHref('icon-input-clear')}"></use></svg>`;
+
+        item.append(media, remove);
+        previewList.append(item);
+      });
+
+      const hasFiles = selectedFiles.length > 0;
+      dropzone?.classList.toggle('is-filled', hasFiles);
+      if (fileButtonText) fileButtonText.textContent = hasFiles ? 'Загрузить ещё' : 'Загрузить файлы';
+    }
+
+    function addFiles(fileList) {
+      let limitExceeded = false;
+      let sizeExceeded = false;
+      const nextFiles = [...selectedFiles];
+
+      Array.from(fileList || []).forEach(file => {
+        const key = `${file.name}-${file.size}-${file.lastModified}`;
+        const exists = nextFiles.some(item => (
+          `${item.name}-${item.size}-${item.lastModified}` === key
+        ));
+        if (exists) return;
+        if (file.size > maxFileSize) {
+          sizeExceeded = true;
+          return;
+        }
+        if (nextFiles.length >= maxFiles) {
+          limitExceeded = true;
+          return;
+        }
+        nextFiles.push(file);
+      });
+
+      selectedFiles = nextFiles;
+      syncFileInput();
+      renderFiles();
+
+      if (fileStatus) {
+        if (sizeExceeded) {
+          fileStatus.textContent = 'Размер одного файла не должен превышать 2 МБ';
+          fileStatus.hidden = false;
+        } else if (limitExceeded) {
+          fileStatus.textContent = `Можно прикрепить не более ${maxFiles} файлов`;
+          fileStatus.hidden = false;
+        } else {
+          fileStatus.hidden = true;
+        }
+      }
+    }
 
     function resetModalState() {
       modal.classList.remove('is-success');
+      selectedFiles = [];
+      syncFileInput();
+      clearPreviewUrls();
+      previewList?.replaceChildren();
       dropzone?.classList.remove('is-filled');
       if (title) title.textContent = defaultTitle;
       if (lead) lead.textContent = defaultLead;
       if (fileButtonText) fileButtonText.textContent = 'Загрузить файлы';
+      if (fileStatus) fileStatus.hidden = true;
     }
 
     function openModal(event) {
@@ -80,11 +182,41 @@ export function init() {
 
     openButtons.forEach(button => button.addEventListener('click', openModal));
     closeButtons.forEach(button => button.addEventListener('click', closeModal));
-    fileButton?.addEventListener('click', () => {
-      dropzone?.classList.add('is-filled');
-      if (fileButtonText) fileButtonText.textContent = 'Загрузить ещё';
+    fileButton?.addEventListener('click', () => fileInput?.click());
+    fileInput?.addEventListener('change', () => addFiles(fileInput.files));
+    previewList?.addEventListener('click', event => {
+      const remove = event.target.closest('[data-product-upload-remove]');
+      if (!remove) return;
+      const index = Number(remove.dataset.productUploadRemove);
+      if (!Number.isInteger(index)) return;
+      selectedFiles.splice(index, 1);
+      syncFileInput();
+      if (fileStatus) fileStatus.hidden = true;
+      renderFiles();
     });
-    submitButton?.addEventListener('click', () => {
+
+    dropzone?.addEventListener('dragover', event => {
+      event.preventDefault();
+      dropzone.classList.add('is-dragover');
+    });
+    dropzone?.addEventListener('dragleave', event => {
+      if (!dropzone.contains(event.relatedTarget)) dropzone.classList.remove('is-dragover');
+    });
+    dropzone?.addEventListener('drop', event => {
+      event.preventDefault();
+      dropzone.classList.remove('is-dragover');
+      addFiles(event.dataTransfer?.files);
+    });
+
+    form?.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!selectedFiles.length) {
+        if (fileStatus) {
+          fileStatus.textContent = 'Добавьте фотографию или видео';
+          fileStatus.hidden = false;
+        }
+        return;
+      }
       modal.classList.add('is-success');
       if (title) title.textContent = 'Изображения отправлены';
       if (lead) lead.textContent = 'Спасибо!\nВ ближайшее время мы сообщим о публикации';
@@ -651,6 +783,7 @@ export function init() {
     const stars  = [...starsEl.querySelectorAll('.js-review-star')];
     const formEl = starsEl.closest('[data-reviews-form]');
     const numEl  = formEl?.querySelector('[data-reviews-rating-num]');
+    const ratingInput = formEl?.querySelector('[data-reviews-rating-input]');
 
     const setRating = value => {
       stars.forEach(s => {
@@ -658,6 +791,7 @@ export function init() {
         s.classList.remove('is-preview');
       });
       if (numEl) numEl.textContent = value;
+      if (ratingInput) ratingInput.value = String(value);
       formEl?.classList.toggle('personal-rating-card--rated', value > 0);
     };
 
@@ -697,10 +831,12 @@ export function init() {
   // Соответствие размеру
   document.querySelectorAll('[data-reviews-fit]').forEach(group => {
     const btns = [...group.querySelectorAll('.js-review-fit')];
+    const fitInput = group.parentElement?.querySelector('[data-reviews-fit-input]');
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
         btns.forEach(b => b.classList.remove('product-reviews__fit-btn--active'));
         btn.classList.add('product-reviews__fit-btn--active');
+        if (fitInput) fitInput.value = btn.dataset.fit || '';
       });
     });
   });

@@ -482,19 +482,22 @@
       Привязка к пользователю: автоматически через сессию
     -->
     <section class="support-form" aria-label="Форма обращения">
-      <form class="support-form__inner" method="post" action="">
+      <form class="support-form__inner" method="post" action="" enctype="multipart/form-data" data-support-form>
+        <input type="hidden" name="topic" value="Гарантийное обслуживание" data-support-topic-value>
+
         <!-- BITRIX: список доступных тем обращений — справочник из настроек компонента -->
         <div class="support-form__topics" role="group" aria-label="Тема обращения">
-          <button class="support-form__topic is-active" type="button">Гарантийное обслуживание</button>
-          <button class="support-form__topic" type="button">Уход за экипировкой</button>
-          <button class="support-form__topic" type="button">Ремонт экипировки</button>
-          <button class="support-form__topic" type="button">Брак экипировки</button>
-          <button class="support-form__topic" type="button">Запрос о статусе обращения</button>
-          <button class="support-form__topic" type="button">Другое</button>
+          <button class="support-form__topic is-active" type="button" aria-pressed="true">Гарантийное обслуживание</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Уход за экипировкой</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Ремонт экипировки</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Брак экипировки</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Запрос о статусе обращения</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Другое</button>
         </div>
 
         <textarea
           class="support-form__textarea"
+          name="message"
           placeholder="Опишите, что у вас случилось"
           aria-label="Описание обращения"
           rows="5"
@@ -502,11 +505,28 @@
 
         <div class="support-form__actions">
           <button class="support-form__submit button button--primary button--size-m" type="submit">Отправить</button>
-          <button class="support-form__attach button button--ghost button--size-m" type="button">
+          <input
+            class="support-form__file-input"
+            id="support-form-files"
+            type="file"
+            name="files[]"
+            accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+            multiple
+            data-support-files
+          >
+          <button
+            class="support-form__attach button button--ghost button--size-m"
+            type="button"
+            aria-controls="support-form-files"
+            data-support-files-open
+          >
             <span>Добавить файлы</span>
             <svg aria-hidden="true" width="16" height="16"><use href="/images/icons/sprite.svg#icon-rec-plus"></use></svg>
           </button>
         </div>
+
+        <p class="support-form__file-status" role="status" aria-live="polite" hidden data-support-files-status></p>
+        <ul class="support-form__files" aria-label="Прикреплённые файлы" hidden data-support-files-list></ul>
       </form>
     </section>
 
