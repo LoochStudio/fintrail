@@ -1,0 +1,445 @@
+@use '../../variables' as *;
+
+.product-installment-modal {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  pointer-events: none;
+}
+
+.product-installment-modal[hidden] {
+  display: none;
+}
+
+.product-installment-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-primary-black, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.product-installment-modal__panel {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  width: min(520px, calc(100vw - 40px));
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  background: $color-surface;
+  color: $color-primary-black;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translateX(16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.product-installment-modal.is-open {
+  pointer-events: auto;
+
+  .product-installment-modal__backdrop,
+  .product-installment-modal__panel {
+    opacity: 1;
+  }
+
+  .product-installment-modal__panel {
+    transform: translateX(0);
+  }
+}
+
+.product-installment-modal__content,
+.product-installment-modal__top,
+.product-installment-modal__selector,
+.product-installment-modal__footer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.product-installment-modal__content {
+  gap: 40px;
+}
+
+.product-installment-modal__top {
+  gap: 20px;
+}
+
+.product-installment-modal__header {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.product-installment-modal__title {
+  width: min(343px, 100%);
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.product-installment-modal__close {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-installment-modal__lead {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b1-line;
+  text-transform: uppercase;
+}
+
+.product-installment-modal__selector {
+  gap: 24px;
+}
+
+.product-installment-modal__providers {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.product-installment-modal__provider {
+  display: flex;
+  min-width: 0;
+  height: 72px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 16px 12px;
+  border: 1px solid transparent;
+  background: $color-white;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+
+  &.is-active {
+    border-color: $color-primary-black;
+  }
+
+  > span:last-child {
+    white-space: nowrap;
+  }
+}
+
+.product-installment-modal__provider-icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.product-installment-modal__provider-icon--parts {
+  background: $color-white;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.product-installment-modal__terms {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+}
+
+.product-installment-modal__term {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-gray-primary;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.18s ease;
+
+  &::after {
+    width: 100%;
+    height: 1px;
+    background: transparent;
+    content: '';
+  }
+
+  &.is-active {
+    color: $color-primary-black;
+
+    &::after {
+      background: $color-primary-black;
+    }
+  }
+}
+
+.product-installment-modal__schedule {
+  display: grid;
+  width: 100%;
+  grid-auto-columns: calc((100% - 40px) / 3);
+  grid-auto-flow: column;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-primary-black;
+    outline-offset: 4px;
+  }
+}
+
+.product-installment-modal__schedule::-webkit-scrollbar {
+  display: none;
+}
+
+.product-installment-modal__payment {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  scroll-snap-align: start;
+
+  &::after {
+    width: 100%;
+    height: 2px;
+    border-radius: 10px;
+    background: $color-secondary-accent;
+    content: '';
+  }
+
+  span {
+    color: $color-gray-primary;
+    font-family: $font-mono;
+    font-size: $text-body-b2-size;
+    font-weight: 500;
+    line-height: $text-body-b2-line;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: $color-primary-black;
+    font-family: $font-display;
+    font-size: $text-body-b1-size;
+    font-weight: $font-weight-extrabold;
+    line-height: 14px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+.product-installment-modal__footer {
+  gap: 12px;
+}
+
+.product-installment-modal__submit {
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-display;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.product-installment-modal__footer p {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b2-size;
+  font-weight: 500;
+  line-height: $text-body-b2-line;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-installment-modal__schedule.is-scrollable {
+    cursor: grab;
+
+    &.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+      scroll-snap-type: none;
+      user-select: none;
+    }
+  }
+
+  .product-installment-modal__close:hover,
+  .product-installment-modal__close:focus-visible {
+    background: $color-button-secondary-hover;
+  }
+
+  .product-installment-modal__provider:hover,
+  .product-installment-modal__provider:focus-visible {
+    background: $color-white-pressed;
+  }
+
+  .product-installment-modal__term:hover,
+  .product-installment-modal__term:focus-visible {
+    color: $color-primary-black;
+  }
+
+  .product-installment-modal__submit:hover,
+  .product-installment-modal__submit:focus-visible {
+    background: $color-button-primary-hover;
+  }
+}
+
+.product-installment-modal__close:active {
+  background: $color-gray-pressed;
+}
+
+.product-installment-modal__provider:active {
+  background: $color-gray-hover;
+}
+
+.product-installment-modal__submit:active {
+  background: $color-button-primary-pressed;
+}
+
+@media (max-width: 1279px) {
+  .product-installment-modal__panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: none;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    border-radius: 0;
+    transform: translateY(16px);
+  }
+
+  .product-installment-modal.is-open .product-installment-modal__panel {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .product-installment-modal__header {
+    min-height: 28px;
+    align-items: flex-start;
+  }
+
+  .product-installment-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .product-installment-modal__close {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+    padding: 4px;
+  }
+
+  .product-installment-modal__providers {
+    grid-template-columns: 0.92fr 0.92fr 1.16fr;
+  }
+
+  .product-installment-modal__provider {
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+
+  .product-installment-modal__terms {
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .product-installment-modal__panel {
+    gap: 24px;
+  }
+
+  .product-installment-modal__content {
+    gap: 32px;
+  }
+
+  .product-installment-modal__provider {
+    font-size: 10px;
+  }
+
+  .product-installment-modal__schedule {
+    grid-auto-columns: calc((100% - 28px) / 3);
+    gap: 14px;
+  }
+
+  .product-installment-modal__payment span {
+    font-size: 10px;
+  }
+}

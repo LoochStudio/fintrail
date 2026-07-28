@@ -4,7 +4,8 @@
 @media (max-width: 1279px) {
   .product-detail {
     grid-template-columns: 1fr;
-    max-width: 728px;
+    width: calc(100% - 40px);
+    max-width: none;
     margin: 0 auto;
   }
 
@@ -19,6 +20,7 @@
   }
 
   .product-detail__image {
+    max-width: 100%;
     height: 640px;
   }
 }
@@ -41,7 +43,7 @@
 
   .product-detail__side--right .product-detail__top {
     gap: 20px;
-    padding: 0 20px;
+    padding: 0;
   }
 
   .product-detail__media {
@@ -67,7 +69,7 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 0;
   }
 
   .product-detail__mobile-info {
@@ -145,7 +147,7 @@
 
   .product-detail__purchase {
     gap: 48px;
-    padding: 0 20px;
+    padding: 0;
   }
 
   .product-option--color-picker,
@@ -583,7 +585,7 @@
   // Figma: image — 375×560 portrait, centered (x=197 в 768px-кадре)
   // Full-width cut off the person bottom — portrait crop matches mobile/desktop
   .product-detail__image {
-    width: 375px;
+    width: clamp(375px, calc(100vw - 393px), 560px);
     height: 640px;
     margin: 0 auto;
     object-position: center center;
@@ -680,7 +682,7 @@
   // ── Purchase section (Figma node 4405:51857) ──────────────────────────────
   // Container: flex-col, gap 40px между строкой опций и блоком покупки
   .product-detail__purchase {
-    padding: 0 20px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -841,4 +843,86 @@
     flex: 0 0 100%;
   }
 
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .product-buy__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .product-buy__button--primary {
+    min-width: 0;
+    flex: 1 1 0;
+    gap: 8px;
+    padding: 18px 24px 18px 32px;
+  }
+
+  .product-buy__button--icon {
+    display: flex;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    padding: 14px;
+    border-color: transparent;
+    background: $color-white;
+    color: $color-control-dark-autofill;
+    transition: background 0.18s ease, color 0.18s ease;
+
+    svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    &:active {
+      background: $color-white-pressed;
+    }
+  }
+
+  .product-buy__button--secondary {
+    flex: 0 0 100%;
+  }
+
+  .product-mobile-buy__main,
+  .product-mobile-buy__icon {
+    height: 52px;
+  }
+
+  .product-mobile-buy__main {
+    gap: 8px;
+    padding: 18px 24px 18px 32px;
+    font-size: $text-body-b1-size;
+    line-height: 14px;
+
+    &:active {
+      background: $color-button-primary-pressed;
+    }
+  }
+
+  .product-mobile-buy__icon {
+    width: 52px;
+    flex-basis: 52px;
+    padding: 14px;
+    background: $color-white;
+    color: $color-control-dark-autofill;
+
+    &:active {
+      background: $color-white-pressed;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .product-mobile-buy__main:hover,
+    .product-mobile-buy__main:focus-visible {
+      background: $color-button-primary-hover;
+    }
+
+    .product-mobile-buy__icon:hover,
+    .product-mobile-buy__icon:focus-visible,
+    .product-buy__button--icon:hover,
+    .product-buy__button--icon:focus-visible {
+      background: $color-button-secondary-hover;
+    }
+  }
 }

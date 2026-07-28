@@ -105,39 +105,30 @@
   }
 }
 
-// ── Mobile bottom sheets: «Полное описание» + «Загрузить фото/видео» ──────
-// На мобиле десктопные side panels (translateX) превращаются в bottom sheets
-// (translateY). Full-width, скруглённые сверху, drag handle, safe-area inset.
+// Tablet and mobile panels use the same full-screen pattern as account modals.
 
 @media (max-width: 1279px) {
 
   // ── Полное описание ─────────────────────────────────────────────────────
   .product-description-modal__panel {
-    top: auto;           // убираем top: 20px
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    max-height: 85dvh;   // dynamic viewport height — учитывает мобильный chrome
-    border-radius: 16px 16px 0 0;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
     gap: 32px;
-    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
-    transform: translateY(16px); // start slightly below
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom));
+    overscroll-behavior: contain;
+    transform: translateY(16px);
   }
 
-  // Drag handle сверху
   .product-description-modal__panel::before {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 4px;
-    border-radius: 2px;
-    background: $color-secondary-gray;
-    margin: 12px auto 0;
-    flex-shrink: 0;
+    display: none;
   }
 
-  // Open state: translateY вместо translateX
   .product-description-modal.is-open {
     .product-description-modal__panel {
       transform: translateY(0);
@@ -145,7 +136,7 @@
   }
 
   .product-description-modal__header {
-    padding-top: 20px;
+    padding-top: 0;
     min-height: auto;
   }
 
@@ -157,27 +148,22 @@
 
   // ── Предзаказ ───────────────────────────────────────────────────────────
   .product-preorder-modal__panel {
-    top: auto;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    max-height: 90dvh;
-    border-radius: 16px 16px 0 0;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
     gap: 32px;
-    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom));
+    overscroll-behavior: contain;
     transform: translateY(16px);
   }
 
   .product-preorder-modal__panel::before {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 4px;
-    flex-shrink: 0;
-    margin: 12px auto 0;
-    border-radius: 2px;
-    background: $color-secondary-gray;
+    display: none;
   }
 
   .product-preorder-modal.is-open {
@@ -188,7 +174,7 @@
 
   .product-preorder-modal__top {
     gap: 20px;
-    padding-top: 20px;
+    padding-top: 0;
   }
 
   .product-preorder-modal__header {
@@ -206,7 +192,7 @@
   }
 
   .product-preorder-modal__screen {
-    min-height: auto;
+    min-height: 100%;
   }
 
   .product-preorder-modal__screen--form {
@@ -214,7 +200,7 @@
   }
 
   .product-preorder-modal__screen--success {
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 32px;
   }
 
@@ -228,32 +214,26 @@
 
   .product-preorder-modal__submit,
   .product-preorder-modal__success-button {
-    margin-top: 0;
+    margin-top: auto;
   }
   // ── Загрузить фото/видео ────────────────────────────────────────────────
   .product-upload-modal__panel {
-    top: auto;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    max-height: 90dvh;
-    border-radius: 16px 16px 0 0;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
     gap: 24px;
-    padding: 0 20px calc(24px + env(safe-area-inset-bottom));
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom));
+    overscroll-behavior: contain;
     transform: translateY(16px);
   }
 
-  // Drag handle
   .product-upload-modal__panel::before {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 4px;
-    border-radius: 2px;
-    background: $color-secondary-gray;
-    margin: 12px auto 0;
-    flex-shrink: 0;
+    display: none;
   }
 
   .product-upload-modal.is-open {
@@ -264,7 +244,7 @@
 
   .product-upload-modal__top {
     gap: 16px;
-    padding-top: 20px;
+    padding-top: 0;
   }
 
   .product-upload-modal__header {

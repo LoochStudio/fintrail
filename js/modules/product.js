@@ -286,6 +286,509 @@ export function init() {
       if (event.key === 'Escape' && !modal.hidden) closeModal();
     });
   });
+
+  // Product page — one-click order modal
+  document.querySelectorAll('[data-product-one-click-modal]').forEach(modal => {
+    const openButtons = [...document.querySelectorAll('[data-product-one-click-open]')];
+    const closeButtons = modal.querySelectorAll('[data-product-one-click-close]');
+    const closeButton = modal.querySelector('.product-one-click-modal__close');
+    const form = modal.querySelector('[data-product-one-click-form]');
+    let activeTrigger = null;
+    let closeTimer = 0;
+
+    function setFieldError(input, message = '') {
+      const field = input?.closest('[data-input-field]');
+      const caption = input
+        ? document.getElementById(input.getAttribute('aria-describedby'))
+        : null;
+      field?.classList.toggle('is-error', Boolean(message));
+      input?.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (caption) caption.textContent = message;
+    }
+
+    function resetForm() {
+      form?.reset();
+      form?.querySelectorAll('[data-input-field]').forEach(field => {
+        field.classList.remove('is-error', 'uk-s-active', 'uk-s-value');
+        const input = field.querySelector('input');
+        input?.setAttribute('aria-invalid', 'false');
+        const caption = field.querySelector('.uk-field__caption');
+        if (caption) caption.textContent = '';
+      });
+    }
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      activeTrigger = event?.currentTarget || null;
+      resetForm();
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus({ preventScroll: true });
+      });
+    }
+
+    function closeModal({ restoreFocus = true } = {}) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+        resetForm();
+        if (restoreFocus && activeTrigger?.isConnected) {
+          activeTrigger.focus({ preventScroll: true });
+        }
+        activeTrigger = null;
+      }, 200);
+    }
+
+    function validateForm() {
+      const nameInput = form?.elements.namedItem('name');
+      const phoneInput = form?.elements.namedItem('phone');
+      const emailInput = form?.elements.namedItem('email');
+      const nameValue = nameInput?.value.trim() || '';
+      const phoneDigits = phoneInput?.value.replace(/\D/g, '') || '';
+      const emailValue = emailInput?.value.trim() || '';
+      const emailValid = Boolean(emailValue) && emailInput?.validity.valid;
+
+      setFieldError(nameInput, nameValue ? '' : 'Введите имя');
+      setFieldError(phoneInput, phoneDigits.length === 11 ? '' : 'Введите полный номер телефона');
+      setFieldError(emailInput, emailValid ? '' : 'Введите корректную электронную почту');
+
+      const firstInvalid = form?.querySelector('[aria-invalid="true"]');
+      firstInvalid?.focus({ preventScroll: true });
+      return !firstInvalid;
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', () => closeModal()));
+
+    form?.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => setFieldError(input));
+    });
+
+    form?.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!validateForm()) return;
+
+      modal.dispatchEvent(new CustomEvent('finntrail:one-click-submit', {
+        bubbles: true,
+        detail: { formData: new FormData(form) }
+      }));
+      closeModal();
+    });
+
+    modal.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeModal();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusable = [...modal.querySelectorAll(
+        'button:not(:disabled), input:not(:disabled), [tabindex]:not([tabindex="-1"])'
+      )].filter(element => element.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  });
+
+  // Product page — installment payment modal
+  document.querySelectorAll('[data-product-installment-modal]').forEach(modal => {
+    const openButtons = [...document.querySelectorAll('[data-product-installment-open]')];
+    const closeButtons = modal.querySelectorAll('[data-product-installment-close]');
+    const closeButton = modal.querySelector('.product-installment-modal__close');
+    const providerButtons = [...modal.querySelectorAll('[data-installment-provider]')];
+    const termButtons = [...modal.querySelectorAll('[data-installment-term]')];
+    const lead = modal.querySelector('[data-product-installment-lead]');
+    const schedule = modal.querySelector('[data-product-installment-schedule]');
+    const submitButton = modal.querySelector('[data-product-installment-submit]');
+    const currencyFormatter = new Intl.NumberFormat('ru-RU');
+    let activeTrigger = null;
+    let closeTimer = 0;
+    let selectedProvider = 'parts';
+    let selectedMonths = 3;
+    let schedulePointerId = null;
+    let scheduleStartX = 0;
+    let scheduleStartScrollLeft = 0;
+    let scheduleHasDragged = false;
+
+    function getProductPrice() {
+      const priceText = document.querySelector('.product-buy__price strong')?.textContent || '';
+      const price = Number(priceText.replace(/\D/g, ''));
+      return Number.isFinite(price) && price > 0 ? price : 30799;
+    }
+
+    function getMonthLabel(month) {
+      const mod10 = month % 10;
+      const mod100 = month % 100;
+      if (mod10 === 1 && mod100 !== 11) return `${month} месяц`;
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${month} месяца`;
+      return `${month} месяцев`;
+    }
+
+    function getPartsLabel(count) {
+      const mod10 = count % 10;
+      const mod100 = count % 100;
+      if (mod10 === 1 && mod100 !== 11) return 'часть';
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'части';
+      return 'частей';
+    }
+
+    function updateScheduleOverflow() {
+      if (!schedule) return;
+      schedule.classList.toggle(
+        'is-scrollable',
+        schedule.scrollWidth - schedule.clientWidth > 1
+      );
+    }
+
+    function renderSchedule() {
+      if (!schedule) return;
+
+      const total = getProductPrice();
+      const paymentCount = selectedMonths + 1;
+      const basePayment = Math.floor(total / paymentCount);
+      const remainder = total % paymentCount;
+      const payments = Array.from(
+        { length: paymentCount },
+        (_, index) => basePayment + (index < remainder ? 1 : 0)
+      ).slice(1);
+
+      schedule.replaceChildren();
+      payments.forEach((amount, index) => {
+        const payment = document.createElement('div');
+        const date = document.createElement('span');
+        const value = document.createElement('strong');
+        payment.className = 'product-installment-modal__payment';
+        date.textContent = `Через ${getMonthLabel(index + 1)}`;
+        value.textContent = `${currencyFormatter.format(amount)} ₽`;
+        payment.append(date, value);
+        schedule.append(payment);
+      });
+      schedule.scrollLeft = 0;
+      window.requestAnimationFrame(updateScheduleOverflow);
+
+      if (lead) {
+        lead.textContent = `Расчёт примерного платежа. Оставшиеся ${selectedMonths} ${getPartsLabel(selectedMonths)} спишутся автоматически`;
+      }
+    }
+
+    function syncSelection() {
+      providerButtons.forEach(button => {
+        const isActive = button.dataset.installmentProvider === selectedProvider;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-selected', String(isActive));
+        button.tabIndex = isActive ? 0 : -1;
+      });
+
+      termButtons.forEach(button => {
+        const isActive = Number(button.dataset.installmentTerm) === selectedMonths;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      renderSchedule();
+    }
+
+    function resetModal() {
+      selectedProvider = 'parts';
+      selectedMonths = 3;
+      syncSelection();
+    }
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      activeTrigger = event?.currentTarget || null;
+      resetModal();
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        closeButton?.focus({ preventScroll: true });
+      });
+    }
+
+    function closeModal({ restoreFocus = true } = {}) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+        if (restoreFocus && activeTrigger?.isConnected) {
+          activeTrigger.focus({ preventScroll: true });
+        }
+        activeTrigger = null;
+      }, 200);
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', () => closeModal()));
+
+    if (schedule) {
+      schedule.addEventListener('pointerdown', event => {
+        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+        if (!schedule.classList.contains('is-scrollable')) return;
+
+        schedulePointerId = event.pointerId;
+        scheduleStartX = event.clientX;
+        scheduleStartScrollLeft = schedule.scrollLeft;
+        scheduleHasDragged = false;
+        schedule.setPointerCapture(schedulePointerId);
+      });
+
+      schedule.addEventListener('pointermove', event => {
+        if (event.pointerId !== schedulePointerId) return;
+
+        const delta = event.clientX - scheduleStartX;
+        if (!scheduleHasDragged && Math.abs(delta) < 5) return;
+
+        scheduleHasDragged = true;
+        schedule.classList.add('is-dragging');
+        schedule.scrollLeft = scheduleStartScrollLeft - delta;
+        event.preventDefault();
+      });
+
+      const stopScheduleDragging = event => {
+        if (event.pointerId !== schedulePointerId) return;
+
+        if (schedule.hasPointerCapture(schedulePointerId)) {
+          schedule.releasePointerCapture(schedulePointerId);
+        }
+        schedulePointerId = null;
+        schedule.classList.remove('is-dragging');
+        window.setTimeout(() => {
+          scheduleHasDragged = false;
+        }, 0);
+      };
+
+      schedule.addEventListener('pointerup', stopScheduleDragging);
+      schedule.addEventListener('pointercancel', stopScheduleDragging);
+      schedule.addEventListener('dragstart', event => event.preventDefault());
+      schedule.addEventListener('keydown', event => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+
+        event.preventDefault();
+        const payment = schedule.querySelector('.product-installment-modal__payment');
+        const gap = Number.parseFloat(getComputedStyle(schedule).columnGap) || 0;
+        const step = (payment?.getBoundingClientRect().width || 96) + gap;
+        schedule.scrollBy({
+          left: event.key === 'ArrowRight' ? step : -step,
+          behavior: 'smooth'
+        });
+      });
+      window.addEventListener('resize', updateScheduleOverflow);
+    }
+
+    providerButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        selectedProvider = button.dataset.installmentProvider;
+        syncSelection();
+      });
+
+      button.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+
+        event.preventDefault();
+        const currentIndex = providerButtons.indexOf(button);
+        let nextIndex = currentIndex;
+
+        if (event.key === 'ArrowLeft') {
+          nextIndex = (currentIndex - 1 + providerButtons.length) % providerButtons.length;
+        } else if (event.key === 'ArrowRight') {
+          nextIndex = (currentIndex + 1) % providerButtons.length;
+        } else if (event.key === 'Home') {
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          nextIndex = providerButtons.length - 1;
+        }
+
+        providerButtons[nextIndex].click();
+        providerButtons[nextIndex].focus();
+      });
+    });
+
+    termButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        selectedMonths = Number(button.dataset.installmentTerm);
+        syncSelection();
+      });
+    });
+
+    submitButton?.addEventListener('click', () => {
+      modal.dispatchEvent(new CustomEvent('finntrail:installment-selected', {
+        bubbles: true,
+        detail: {
+          provider: selectedProvider,
+          months: selectedMonths,
+          productPrice: getProductPrice()
+        }
+      }));
+      closeModal();
+    });
+
+    modal.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeModal();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusable = [...modal.querySelectorAll(
+        'button:not(:disabled), [tabindex]:not([tabindex="-1"])'
+      )].filter(element => element.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    resetModal();
+  });
+
+  // Product page — cart confirmation modal
+  document.querySelectorAll('[data-product-cart-modal]').forEach(modal => {
+    const openButtons = [...document.querySelectorAll('[data-product-cart-open]')];
+    const closeButtons = modal.querySelectorAll('[data-product-cart-close]');
+    const closeButton = modal.querySelector('.product-cart-modal__close');
+    const continueButton = modal.querySelector('[data-product-cart-continue]');
+    const removeButton = modal.querySelector('[data-product-cart-remove]');
+    const minusButton = modal.querySelector('[data-product-cart-minus]');
+    const plusButton = modal.querySelector('[data-product-cart-plus]');
+    const quantityOutput = modal.querySelector('[data-product-cart-quantity]');
+    const productImage = modal.querySelector('[data-product-cart-image]');
+    const productTitle = modal.querySelector('[data-product-cart-title]');
+    const productPrice = modal.querySelector('[data-product-cart-price]');
+    const productOldPrice = modal.querySelector('[data-product-cart-old-price]');
+    let activeTrigger = null;
+    let closeTimer = 0;
+    let quantity = 1;
+
+    function syncQuantity() {
+      if (quantityOutput) quantityOutput.value = String(quantity);
+      if (quantityOutput) quantityOutput.textContent = String(quantity);
+      if (minusButton) minusButton.setAttribute('aria-disabled', quantity <= 1 ? 'true' : 'false');
+    }
+
+    function syncProduct() {
+      const sourceTitle = document.querySelector('#product-title');
+      const sourcePrice = document.querySelector('.product-buy__price strong');
+      const sourceOldPrice = document.querySelector('.product-buy__price del');
+
+      if (productTitle && sourceTitle) {
+        const title = sourceTitle.textContent.trim();
+        productTitle.textContent = title;
+        if (productImage) productImage.alt = title;
+      }
+      if (productPrice && sourcePrice) productPrice.textContent = sourcePrice.textContent.trim();
+      if (productOldPrice && sourceOldPrice) {
+        productOldPrice.textContent = sourceOldPrice.textContent.trim();
+        productOldPrice.hidden = false;
+      } else if (productOldPrice) {
+        productOldPrice.hidden = true;
+      }
+    }
+
+    function openModal(event) {
+      event?.preventDefault();
+      window.clearTimeout(closeTimer);
+      activeTrigger = event?.currentTarget || null;
+      quantity = 1;
+      syncQuantity();
+      syncProduct();
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('is-modal-open');
+      window.requestAnimationFrame(() => {
+        openButtons.forEach(button => {
+          button.classList.add('is-in-cart');
+          button.setAttribute('aria-label', 'Товар в корзине');
+        });
+        modal.classList.add('is-open');
+        closeButton?.focus({ preventScroll: true });
+      });
+    }
+
+    function closeModal({ restoreFocus = true } = {}) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('is-modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+        if (restoreFocus && activeTrigger?.isConnected) {
+          activeTrigger.focus({ preventScroll: true });
+        }
+        activeTrigger = null;
+      }, 200);
+    }
+
+    function removeProduct() {
+      openButtons.forEach(button => {
+        button.classList.remove('is-in-cart');
+        button.removeAttribute('aria-label');
+        button.querySelector('use')?.setAttribute('href', spriteHref('icon-hero-bag'));
+      });
+      document.dispatchEvent(new CustomEvent('finntrail:cart-item-removed'));
+      closeModal();
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButtons.forEach(button => button.addEventListener('click', () => closeModal()));
+    continueButton?.addEventListener('click', () => closeModal());
+    removeButton?.addEventListener('click', removeProduct);
+    minusButton?.addEventListener('click', () => {
+      quantity = Math.max(1, quantity - 1);
+      syncQuantity();
+    });
+    plusButton?.addEventListener('click', () => {
+      quantity += 1;
+      syncQuantity();
+    });
+
+    modal.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeModal();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusable = [...modal.querySelectorAll(
+        'a[href], button:not(:disabled), [tabindex]:not([tabindex="-1"])'
+      )].filter(element => element.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    syncQuantity();
+  });
+
   // Product page — color picker
   document.querySelectorAll('.product-option--color-picker').forEach(option => {
     const trigger   = option.querySelector('.js-color-trigger');
@@ -743,7 +1246,24 @@ export function init() {
     track.addEventListener('scroll', updateButtons, { passive: true });
     updateButtons();
 
-    addMouseDrag(track, 50, dir => track.scrollBy({ left: dir * SCROLL_STEP, behavior: 'smooth' }));
+    addMouseDrag(track, 50, dir => track.scrollBy({ left: dir * getScrollStep(), behavior: 'smooth' }));
+  });
+
+  // Product page — технологии: touch-scroll и drag мышью на mobile/tablet.
+  document.querySelectorAll('.product-highlight-row').forEach(track => {
+    const getScrollStep = () => {
+      const card = track.querySelector('.product-highlight');
+      if (!card) return 300;
+
+      const styles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    };
+
+    addMouseDrag(track, 40, direction => {
+      if (!window.matchMedia('(max-width: 1279px)').matches) return;
+      track.scrollBy({ left: direction * getScrollStep(), behavior: 'smooth' });
+    });
   });
 
   // ── Product page — отзывы ─────────────────────────────────────────────────

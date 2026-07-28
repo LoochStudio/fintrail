@@ -138,15 +138,25 @@
     overflow-y: hidden;
     scrollbar-width: none;
     scroll-snap-type: x proximity;
+    overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
+    cursor: grab;
 
     &::-webkit-scrollbar { display: none; }
+
+    &:active {
+      cursor: grabbing;
+      user-select: none;
+    }
   }
-  .product-highlight-row .product-highlight:last-child {
+
+  .product-highlight-row .product-highlight--desktop-last {
     margin-bottom: 0;
   }
 
-
+  .product-highlight.product-highlight--tablet-demo {
+    display: flex;
+  }
 
   // Карточка: 300px, вертикальная, убираем desktop full-bleed margin и padding
   .product-highlight {
@@ -720,12 +730,13 @@
   }
 
   .product-preorder-modal__panel {
-    top: auto;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    max-height: calc(100dvh - 20px);
+    height: 100dvh;
+    max-height: none;
     border-radius: 0;
     gap: 24px;
     padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
@@ -769,7 +780,7 @@
 
 
   .product-preorder-modal__screen {
-    min-height: auto;
+    min-height: 100%;
   }
 
   .product-preorder-modal__screen--form {
@@ -777,7 +788,7 @@
   }
 
   .product-preorder-modal__screen--success {
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 32px;
   }
 
@@ -800,6 +811,6 @@
 
   .product-preorder-modal__submit,
   .product-preorder-modal__success-button {
-    margin-top: 0;
+    margin-top: auto;
   }
 }

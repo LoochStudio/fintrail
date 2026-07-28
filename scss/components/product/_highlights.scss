@@ -1,15 +1,19 @@
 @use '../../variables' as *;
 @use '../../mixins' as *;
 
-// ── Враппер двух highlight-секций ─────────────────────────────────────────
+// ── Враппер highlight-секций ──────────────────────────────────────────────
 // desktop: display:contents — прозрачен, дочерние section — обычные блоки
-// mobile: горизонтальный scroll-контейнер с двумя карточками 300px
+// mobile/tablet: горизонтальный scroll-контейнер
 .product-highlight-row {
   display: contents;
+}
 
-  .product-highlight:last-child {
-    margin-bottom: 79px;
-  }
+.product-highlight.product-highlight--desktop-last {
+  margin-bottom: 80px;
+}
+
+.product-highlight.product-highlight--tablet-demo {
+  display: none;
 }
 
 // ── Промо-блок технологии (фото + текст) ──────────────────────────────────

@@ -4,15 +4,31 @@ export function init() {
 
   let currentScreen = 'phone';
   let timerInterval = null;
+  let otpController = null;
+  const demoValidCode = '123456';
 
   const screens = {
     phone: modal.querySelector('[data-auth-screen="phone"]'),
     'sms-code': modal.querySelector('[data-auth-screen="sms-code"]'),
-    email: modal.querySelector('[data-auth-screen="email"]'),
-    'email-code': modal.querySelector('[data-auth-screen="email-code"]'),
+    registration: modal.querySelector('[data-auth-screen="registration"]'),
   };
 
-  // ── Открытие / закрытие ───────────────────────────────────────────────────
+  Object.entries(screens).forEach(([name, screen]) => {
+    const title = screen?.querySelector('.auth-modal__title');
+    if (title && !title.id) title.id = `auth-modal-heading-${name}`;
+  });
+
+  function switchScreen(name) {
+    const nextScreen = screens[name] || screens.phone;
+    currentScreen = screens[name] ? name : 'phone';
+
+    Object.values(screens).forEach(screen => {
+      if (screen) screen.hidden = screen !== nextScreen;
+    });
+
+    const title = nextScreen?.querySelector('.auth-modal__title');
+    if (title?.id) modal.setAttribute('aria-labelledby', title.id);
+  }
 
   function open(screen = 'phone') {
     switchScreen(screen);
@@ -26,6 +42,13 @@ export function init() {
     requestAnimationFrame(() => firstInput?.focus());
   }
 
+  function stopTimer() {
+    if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
   function close() {
     modal.hidden = true;
     modal.setAttribute('aria-hidden', 'true');
@@ -33,30 +56,19 @@ export function init() {
     stopTimer();
   }
 
-  // ── Переключение экранов ──────────────────────────────────────────────────
-
-  function switchScreen(name) {
-    currentScreen = name;
-    Object.keys(screens).forEach(key => {
-      if (screens[key]) screens[key].hidden = key !== name;
-    });
-  }
-
-  // ── Таймер повторной отправки ─────────────────────────────────────────────
-
   function startTimer(screenEl, seconds = 28) {
     stopTimer();
 
-    const timerEl = screenEl.querySelector('[data-auth-timer]');
-    const hintEl = screenEl.querySelector('[data-auth-resend-hint]');
-    const resendBtn = screenEl.querySelector('[data-auth-resend]');
-
+    const timerEl = screenEl?.querySelector('[data-auth-timer]');
+    const hintEl = screenEl?.querySelector('[data-auth-resend-hint]');
+    const resendBtn = screenEl?.querySelector('[data-auth-resend]');
     let remaining = seconds;
+
     if (timerEl) timerEl.textContent = remaining;
     if (hintEl) hintEl.hidden = false;
     if (resendBtn) resendBtn.hidden = true;
 
-    timerInterval = setInterval(() => {
+    timerInterval = window.setInterval(() => {
       remaining -= 1;
       if (timerEl) timerEl.textContent = remaining;
 
@@ -68,257 +80,368 @@ export function init() {
     }, 1000);
   }
 
-  function stopTimer() {
-    if (timerInterval !== null) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
-  }
-
-  // ── OTP-ввод ──────────────────────────────────────────────────────────────
-
   function initOtp(screenEl, onComplete) {
-    const cells = Array.from(screenEl.querySelectorAll('.auth-modal__otp-cell'));
-    const errorEl = screenEl.querySelector('[data-auth-otp-error]');
+    const cells = Array.from(screenEl?.querySelectorAll('.auth-modal__otp-cell') || []);
+    const errorEl = screenEl?.querySelector('[data-auth-otp-error]');
 
     function clearError() {
-      if (!errorEl || errorEl.hidden) return;
-      errorEl.hidden = true;
-      cells.forEach(c => c.classList.remove('is-error'));
-    }
-
-    function showError() {
-      cells.forEach(c => c.classList.add('is-error'));
-      if (errorEl) errorEl.hidden = false;
-    }
-
-    function reset() {
-      cells.forEach(c => {
-        c.value = '';
-        c.classList.remove('is-error');
+      cells.forEach(cell => {
+        cell.classList.remove('is-error');
+        cell.setAttribute('aria-invalid', 'false');
       });
       if (errorEl) errorEl.hidden = true;
     }
 
-    function getCode() {
-      return cells.map(c => c.value).join('');
+    function showError(message = 'Неверный код') {
+      cells.forEach(cell => {
+        cell.classList.add('is-error');
+        cell.setAttribute('aria-invalid', 'true');
+      });
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
     }
 
-    cells.forEach((cell, i) => {
+    function reset() {
+      cells.forEach(cell => {
+        cell.value = '';
+      });
+      clearError();
+    }
+
+    function getCode() {
+      return cells.map(cell => cell.value).join('');
+    }
+
+    cells.forEach((cell, index) => {
       cell.addEventListener('focus', () => {
         requestAnimationFrame(() => cell.select());
       });
 
-      cell.addEventListener('input', e => {
-        const digit = e.target.value.replace(/\D/g, '').slice(-1);
-        e.target.value = digit;
+      cell.addEventListener('input', event => {
+        const digit = event.target.value.replace(/\D/g, '').slice(-1);
+        event.target.value = digit;
         clearError();
 
-        if (digit && i < cells.length - 1) {
-          cells[i + 1].focus();
-        }
+        if (digit && index < cells.length - 1) cells[index + 1].focus();
 
         const code = getCode();
-        if (code.length === 6 && onComplete) {
-          onComplete(code, showError, reset);
-        }
+        if (code.length === cells.length) onComplete?.(code, showError, reset);
       });
 
-      cell.addEventListener('keydown', e => {
-        if (e.key === 'Backspace') {
-          if (!e.target.value && i > 0) {
-            e.preventDefault();
-            cells[i - 1].value = '';
-            cells[i - 1].focus();
-          }
-          clearError();
+      cell.addEventListener('keydown', event => {
+        if (event.key === 'Backspace' && !event.target.value && index > 0) {
+          event.preventDefault();
+          cells[index - 1].value = '';
+          cells[index - 1].focus();
         }
-        if (e.key === 'ArrowLeft' && i > 0) {
-          e.preventDefault();
-          cells[i - 1].focus();
+
+        if (event.key === 'ArrowLeft' && index > 0) {
+          event.preventDefault();
+          cells[index - 1].focus();
         }
-        if (e.key === 'ArrowRight' && i < cells.length - 1) {
-          e.preventDefault();
-          cells[i + 1].focus();
+
+        if (event.key === 'ArrowRight' && index < cells.length - 1) {
+          event.preventDefault();
+          cells[index + 1].focus();
         }
+
+        clearError();
       });
 
-      // Вставка кода из буфера (только на первой ячейке)
-      if (i === 0) {
-        cell.addEventListener('paste', e => {
-          e.preventDefault();
-          const text = (e.clipboardData || window.clipboardData)
-            .getData('text').replace(/\D/g, '').slice(0, 6);
+      if (index === 0) {
+        cell.addEventListener('paste', event => {
+          event.preventDefault();
+          const text = (event.clipboardData || window.clipboardData)
+            .getData('text')
+            .replace(/\D/g, '')
+            .slice(0, cells.length);
 
-          cells.forEach((c, j) => {
-            c.value = text[j] || '';
-            c.classList.remove('is-error');
+          cells.forEach((otpCell, cellIndex) => {
+            otpCell.value = text[cellIndex] || '';
           });
-
-          const nextIdx = Math.min(text.length, cells.length - 1);
-          cells[nextIdx].focus();
           clearError();
+
+          const nextIndex = Math.min(text.length, cells.length - 1);
+          cells[nextIndex]?.focus();
 
           const code = getCode();
-          if (code.length === 6 && onComplete) {
-            onComplete(code, showError, reset);
-          }
+          if (code.length === cells.length) onComplete?.(code, showError, reset);
         });
       }
     });
 
-    return { reset, showError, getCode };
+    return { getCode, reset, showError };
   }
 
-  // ── Слушатели событий ─────────────────────────────────────────────────────
-
-  // Кнопки «Закрыть» (X)
-  modal.querySelectorAll('[data-auth-close]').forEach(btn => {
-    btn.addEventListener('click', close);
+  modal.querySelectorAll('[data-auth-close]').forEach(button => {
+    button.addEventListener('click', close);
   });
 
-  // Бэкдроп
   modal.querySelector('.auth-modal__backdrop')?.addEventListener('click', close);
 
-  // Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !modal.hidden) close();
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !modal.hidden) close();
   });
 
-  // Кнопки «Назад»
-  modal.querySelectorAll('[data-auth-back]').forEach(btn => {
-    btn.addEventListener('click', () => {
+  modal.querySelectorAll('[data-auth-back]').forEach(button => {
+    button.addEventListener('click', () => {
       stopTimer();
       if (currentScreen === 'sms-code') switchScreen('phone');
-      else if (currentScreen === 'email-code') switchScreen('email');
     });
   });
 
-  // Переход на email-экран
-  modal.querySelector('[data-auth-to-email]')?.addEventListener('click', () => {
-    switchScreen('email');
-  });
-
-  // Переход на phone-экран
-  modal.querySelector('[data-auth-to-phone]')?.addEventListener('click', () => {
-    switchScreen('phone');
-  });
-
-  // Отправить телефон
   const phoneInput = modal.querySelector('[data-auth-phone-input]');
-  modal.querySelector('[data-auth-phone-submit]')?.addEventListener('click', () => {
-    const phone = phoneInput?.value?.trim();
-    const phoneDigits = phone?.replace(/\D/g, '') || '';
-    const phoneField = phoneInput?.closest('[data-input-field]');
-    const phoneCaption = phoneInput?.getAttribute('aria-describedby')
-      ? document.getElementById(phoneInput.getAttribute('aria-describedby'))
-      : null;
+  const phoneField = phoneInput?.closest('[data-input-field]');
+  const phoneCaption = phoneInput?.getAttribute('aria-describedby')
+    ? document.getElementById(phoneInput.getAttribute('aria-describedby'))
+    : null;
+  const personalConsent = modal.querySelector('[data-auth-personal-consent]');
+  const consentError = modal.querySelector('[data-auth-consent-error]');
+  let isPhoneValidationActive = false;
+  let isConsentValidationActive = false;
 
-    if (phoneDigits.length !== 11) {
-      if (phoneCaption) phoneCaption.textContent = 'Введите полный номер телефона';
-      phoneField?.classList.add('is-error');
-      phoneInput?.focus();
+  function setPhoneError(message = '') {
+    const hasError = Boolean(message);
+    phoneField?.classList.toggle('is-error', hasError);
+    phoneInput?.setAttribute('aria-invalid', String(hasError));
+    if (phoneCaption) phoneCaption.textContent = message;
+  }
+
+  function validatePhone() {
+    const digits = phoneInput?.value?.replace(/\D/g, '') || '';
+    const isValid = digits.length === 11;
+    setPhoneError(isValid ? '' : 'Введите полный номер телефона');
+    return isValid;
+  }
+
+  function validatePersonalConsent() {
+    const isValid = Boolean(personalConsent?.checked);
+    const agreement = personalConsent?.closest('.auth-modal__agreement');
+
+    agreement?.classList.toggle('is-error', !isValid);
+    personalConsent?.setAttribute('aria-invalid', String(!isValid));
+    if (consentError) {
+      consentError.textContent = isValid ? '' : 'Необходимо согласие на обработку персональных данных';
+      consentError.hidden = isValid;
+    }
+    return isValid;
+  }
+
+  modal.querySelector('[data-auth-phone-submit]')?.addEventListener('click', () => {
+    isPhoneValidationActive = true;
+    isConsentValidationActive = true;
+
+    const isPhoneValid = validatePhone();
+    const isConsentValid = validatePersonalConsent();
+
+    if (!isPhoneValid || !isConsentValid) {
+      (isPhoneValid ? personalConsent : phoneInput)?.focus();
       return;
     }
 
-    phoneField?.classList.remove('is-error');
-    if (phoneCaption) phoneCaption.textContent = '';
+    isPhoneValidationActive = false;
+    isConsentValidationActive = false;
 
-    modal.querySelectorAll('[data-auth-phone-display]').forEach(el => {
-      el.textContent = phone;
+    modal.querySelectorAll('[data-auth-phone-display]').forEach(element => {
+      element.textContent = phoneInput.value.trim();
     });
 
+    otpController?.reset();
     switchScreen('sms-code');
     startTimer(screens['sms-code']);
     screens['sms-code']?.querySelector('.auth-modal__otp-cell')?.focus();
-    // BITRIX: запрос кода по телефону
+    // BITRIX: запрос одноразового кода по номеру телефона.
   });
 
-  // Enter в поле телефона
-  phoneInput?.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      modal.querySelector('[data-auth-phone-submit]')?.click();
-    }
+  phoneInput?.addEventListener('input', () => {
+    if (isPhoneValidationActive) validatePhone();
   });
 
-  // Отправить email
-  const emailInput = modal.querySelector('[data-auth-email-input]');
-  modal.querySelector('[data-auth-email-submit]')?.addEventListener('click', () => {
-    const email = emailInput?.value?.trim();
-    if (!email) { emailInput?.focus(); return; }
-
-    modal.querySelectorAll('[data-auth-email-display]').forEach(el => {
-      el.textContent = email;
-    });
-
-    switchScreen('email-code');
-    startTimer(screens['email-code']);
-    screens['email-code']?.querySelector('.auth-modal__otp-cell')?.focus();
-    // BITRIX: запрос кода на почту
+  phoneInput?.addEventListener('focus', () => {
+    if (isPhoneValidationActive) validatePhone();
   });
 
-  // Enter в поле email
-  emailInput?.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      modal.querySelector('[data-auth-email-submit]')?.click();
-    }
+  phoneInput?.addEventListener('blur', () => {
+    if (isPhoneValidationActive) validatePhone();
   });
 
-  // OTP — SMS (автоотправка при заполнении)
+  phoneInput?.addEventListener('keydown', event => {
+    if (event.key === 'Enter') modal.querySelector('[data-auth-phone-submit]')?.click();
+  });
+
+  personalConsent?.addEventListener('change', () => {
+    if (isConsentValidationActive || personalConsent.checked) validatePersonalConsent();
+  });
+
   if (screens['sms-code']) {
-    initOtp(screens['sms-code'], (_code, showError, reset) => {
-      // Скрываем кнопку повтора пока идёт проверка
-      const resendBtn = screens['sms-code'].querySelector('[data-auth-resend]');
-      const hintEl   = screens['sms-code'].querySelector('[data-auth-resend-hint]');
-      if (resendBtn) resendBtn.hidden = true;
-      if (hintEl)   hintEl.hidden = true;
-      stopTimer();
-      // BITRIX: передать код серверу, при ошибке вызвать showError()
-    });
-  }
-
-  // OTP — Email (ручная отправка)
-  let emailOtp = null;
-  if (screens['email-code']) {
-    emailOtp = initOtp(screens['email-code'], null);
-
-    modal.querySelector('[data-auth-email-code-submit]')?.addEventListener('click', () => {
-      const code = emailOtp?.getCode() ?? '';
-      if (code.length < 6) {
-        screens['email-code']?.querySelector('.auth-modal__otp-cell')?.focus();
+    otpController = initOtp(screens['sms-code'], (code, showError) => {
+      // Статический сценарий для проверки верстки. При интеграции Bitrix
+      // заменяет сравнение на результат серверной проверки одноразового кода.
+      if (code !== demoValidCode) {
+        showError('Неверный код');
         return;
       }
-      // BITRIX: передать код письма серверу
+
+      stopTimer();
+      const resendBtn = screens['sms-code'].querySelector('[data-auth-resend]');
+      const hintEl = screens['sms-code'].querySelector('[data-auth-resend-hint]');
+      if (resendBtn) resendBtn.hidden = true;
+      if (hintEl) hintEl.hidden = true;
+
+      // BITRIX: после проверки кода существующий пользователь авторизуется,
+      // а новый получает флаг requiresProfile и переходит к регистрации.
+      switchScreen('registration');
+      screens.registration?.querySelector('[data-auth-registration-name]')?.focus();
     });
   }
 
-  // Кнопки «Получить новый код»
-  modal.querySelectorAll('[data-auth-resend]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const screenEl = btn.closest('[data-auth-screen]');
+  modal.querySelectorAll('[data-auth-resend]').forEach(button => {
+    button.addEventListener('click', () => {
+      const screenEl = button.closest('[data-auth-screen]');
       if (!screenEl) return;
 
-      screenEl.querySelectorAll('.auth-modal__otp-cell').forEach(c => {
-        c.value = '';
-        c.classList.remove('is-error');
-      });
-      const errEl = screenEl.querySelector('[data-auth-otp-error]');
-      if (errEl) errEl.hidden = true;
-
+      otpController?.reset();
       startTimer(screenEl);
       screenEl.querySelector('.auth-modal__otp-cell')?.focus();
-      // BITRIX: повторный запрос кода
+      // BITRIX: повторный запрос одноразового кода.
     });
   });
 
-  // ── Публичный API ─────────────────────────────────────────────────────────
-  // Любая кнопка с data-auth-open открывает модалку
-  // data-auth-open="email" → открыть на email-экране
-  document.querySelectorAll('[data-auth-open]').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const screen = btn.dataset.authOpen || 'phone';
-      open(screen);
+  const registrationName = modal.querySelector('[data-auth-registration-name]');
+  const registrationEmail = modal.querySelector('[data-auth-registration-email]');
+  const registrationNameError = modal.querySelector('[data-auth-registration-name-error]');
+  const registrationEmailError = modal.querySelector('[data-auth-registration-email-error]');
+  const offerConsent = modal.querySelector('[data-auth-offer-consent]');
+  const registrationConsentError = modal.querySelector('[data-auth-registration-consent-error]');
+  let isRegistrationValidationActive = false;
+  let isOfferValidationActive = false;
+
+  function setRegistrationError(input, errorElement, message = '') {
+    const hasError = Boolean(message);
+    input?.classList.toggle('is-error', hasError);
+    input?.setAttribute('aria-invalid', String(hasError));
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.hidden = !hasError;
+    }
+  }
+
+  function sanitizeName(value) {
+    return value
+      .replace(/[^A-Za-zА-Яа-яЁё\s-]/g, '')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/-{2,}/g, '-');
+  }
+
+  function validateRegistrationName() {
+    const value = sanitizeName(registrationName?.value || '').trim();
+    if (registrationName) registrationName.value = value;
+
+    const isValid = /^[A-Za-zА-Яа-яЁё]+(?:[\s-][A-Za-zА-Яа-яЁё]+)*$/.test(value);
+    setRegistrationError(
+      registrationName,
+      registrationNameError,
+      isValid ? '' : 'Введите имя, используя буквы и дефис'
+    );
+    return isValid;
+  }
+
+  function validateRegistrationEmail() {
+    const value = registrationEmail?.value?.trim() || '';
+    const isValid = !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    setRegistrationError(
+      registrationEmail,
+      registrationEmailError,
+      isValid ? '' : 'Введите корректную электронную почту'
+    );
+    return isValid;
+  }
+
+  function validateOfferConsent() {
+    const isValid = Boolean(offerConsent?.checked);
+    const agreement = offerConsent?.closest('.auth-modal__agreement');
+
+    agreement?.classList.toggle('is-error', !isValid);
+    offerConsent?.setAttribute('aria-invalid', String(!isValid));
+    if (registrationConsentError) {
+      registrationConsentError.textContent = isValid
+        ? ''
+        : 'Необходимо согласие с условиями публичной оферты';
+      registrationConsentError.hidden = isValid;
+    }
+    return isValid;
+  }
+
+  registrationName?.addEventListener('input', () => {
+    const sanitized = sanitizeName(registrationName.value);
+    if (registrationName.value !== sanitized) registrationName.value = sanitized;
+    if (isRegistrationValidationActive) validateRegistrationName();
+  });
+
+  registrationEmail?.addEventListener('input', () => {
+    if (isRegistrationValidationActive) validateRegistrationEmail();
+  });
+
+  offerConsent?.addEventListener('change', () => {
+    if (isOfferValidationActive || offerConsent.checked) validateOfferConsent();
+  });
+
+  modal.querySelector('[data-auth-registration-submit]')?.addEventListener('click', () => {
+    isRegistrationValidationActive = true;
+    isOfferValidationActive = true;
+    const isNameValid = validateRegistrationName();
+    const isEmailValid = validateRegistrationEmail();
+    const isOfferValid = validateOfferConsent();
+
+    if (!isNameValid || !isEmailValid || !isOfferValid) {
+      if (!isNameValid) registrationName?.focus();
+      else if (!isEmailValid) registrationEmail?.focus();
+      else offerConsent?.focus();
+      return;
+    }
+
+    // BITRIX: создать профиль нового пользователя, передав необязательный email
+    // и значение [data-auth-registration-marketing-consent], затем завершить авторизацию.
+    close();
+  });
+
+  registrationName?.addEventListener('keydown', event => {
+    if (event.key === 'Enter') registrationEmail?.focus();
+  });
+
+  registrationEmail?.addEventListener('keydown', event => {
+    if (event.key === 'Enter') modal.querySelector('[data-auth-registration-submit]')?.click();
+  });
+
+  document.querySelectorAll('[data-auth-open]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      open(button.dataset.authOpen || 'phone');
     });
   });
+
+  // Постоянные ссылки для проверки состояний из preview.html.
+  const previewState = new URLSearchParams(window.location.search).get('demo-auth');
+  const previewScreen = previewState === 'sms-error' ? 'sms-code' : previewState;
+  if (previewScreen && screens[previewScreen]) {
+    if (previewScreen === 'sms-code') {
+      modal.querySelectorAll('[data-auth-phone-display]').forEach(element => {
+        element.textContent = '+7 (999) 123-45-67';
+      });
+    }
+
+    open(previewScreen);
+    if (previewScreen === 'sms-code') {
+      startTimer(screens['sms-code']);
+
+      if (previewState === 'sms-error') {
+        screens['sms-code'].querySelectorAll('.auth-modal__otp-cell').forEach((cell, index) => {
+          cell.value = String(index + 2);
+        });
+        otpController?.showError('Неверный код');
+      }
+    }
+  }
 }

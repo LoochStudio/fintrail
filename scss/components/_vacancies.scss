@@ -1118,8 +1118,7 @@
   text-transform: uppercase;
 }
 
-.vacancy-response__field.is-error,
-[data-input-field].is-error {
+.vacancy-response__field.is-error {
   outline: 1px solid $color-validation-error;
 }
 

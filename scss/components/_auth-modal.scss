@@ -164,12 +164,71 @@
   gap: 36px;
 }
 
+.auth-modal__submit-group,
+.auth-modal__registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-modal__submit-group,
+.auth-modal__phone-field {
+  width: 100%;
+  min-width: 0;
+}
+
+.auth-modal__registration-content,
+.auth-modal__registration-body {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.auth-modal__agreements {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 // ── Ввод телефона ─────────────────────────────────────────────────────────────
 .auth-modal__phone-row {
   display: flex;
+  align-items: flex-start;
   gap: 8px;
 }
 
+.auth-modal__country {
+  display: flex;
+  flex: 0 0 76px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 76px;
+  height: 52px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: default;
+}
+
+.auth-modal__country-flag {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.auth-modal__country-arrow {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.auth-modal__field {
+  display: flex;
+  flex-direction: column;
+}
 
 // ── Текстовые инпуты ─────────────────────────────────────────────────────────
 .auth-modal__input {
@@ -197,11 +256,16 @@
   &:focus {
     box-shadow: inset 0 0 0 1.5px $color-primary-black;
   }
+
+  &.is-error {
+    box-shadow: inset 0 0 0 1.5px $color-secondary-accent;
+  }
 }
 
 // Инпут внутри phone-row подстраивается под flex-контейнер
 .auth-modal__phone-row .auth-modal__input {
   flex: 1;
+  min-width: 0;
   width: auto;
 }
 
@@ -222,6 +286,14 @@
 
 .auth-modal__phone-field.is-error .auth-modal__input {
   box-shadow: inset 0 0 0 1.5px $color-secondary-accent;
+}
+
+.auth-modal__caption--standalone {
+  display: block;
+
+  &[hidden] {
+    display: none;
+  }
 }
 
 // ── Кнопки действий ──────────────────────────────────────────────────────────
@@ -283,6 +355,7 @@
 // ── Чекбокс соглашения ───────────────────────────────────────────────────────
 .auth-modal__agreement {
   display: flex;
+  min-height: 24px;
   gap: 12px;
   align-items: center;
   cursor: pointer;
@@ -306,7 +379,12 @@
   }
 }
 
+.auth-modal__agreement.is-error .auth-modal__agree-input {
+  border-color: $color-secondary-accent;
+}
+
 .auth-modal__agree-text {
+  min-width: 0;
   font-family: $font-mono;
   font-size: 12px;
   font-weight: 500;
