@@ -10,6 +10,8 @@ export function init() {
   const status = loadMoreWrap?.querySelector('[data-tech-status]');
   const mobileQuery = window.matchMedia(MOBILE_MEDIA);
   let currentCategory = filters.find(btn => btn.classList.contains('is-active'))?.dataset.filter || 'все';
+  const photoCardOrigins = new WeakMap();
+  const photoCardOrder = [];
 
   const setStatus = message => {
     if (status) status.textContent = message;
@@ -19,6 +21,32 @@ export function init() {
   const getRows = () => Array.from(content.querySelectorAll('[data-tech-row]'));
   const getCards = () => Array.from(content.querySelectorAll('[data-tech-card]'));
   const getHiddenLazyNodes = () => Array.from(content.querySelectorAll('[data-tech-lazy].is-load-hidden'));
+
+  const rememberPhotoCardOrigins = () => {
+    content.querySelectorAll('.technologies-page__photo-row').forEach(row => {
+      row.querySelectorAll('.technologies-page__photo-card').forEach(card => {
+        if (photoCardOrigins.has(card)) return;
+        photoCardOrigins.set(card, row);
+        photoCardOrder.push(card);
+      });
+    });
+  };
+
+  const restorePhotoCardRows = () => {
+    photoCardOrder.forEach(card => {
+      photoCardOrigins.get(card)?.append(card);
+    });
+  };
+
+  const groupFilteredPhotoCards = category => {
+    if (category === 'все' || isMobile()) return;
+
+    const visibleCards = photoCardOrder.filter(card => !card.classList.contains('is-hidden'));
+    if (visibleCards.length < 2) return;
+
+    const targetRow = photoCardOrigins.get(visibleCards[0]);
+    visibleCards.forEach(card => targetRow?.append(card));
+  };
 
   const setLoading = isLoading => {
     content.setAttribute('aria-busy', isLoading ? 'true' : 'false');
@@ -66,11 +94,15 @@ export function init() {
 
   const applyFilter = category => {
     currentCategory = category || 'все';
+    rememberPhotoCardOrigins();
+    restorePhotoCardRows();
 
     getCards().forEach(card => {
       const cardCategory = card.dataset.category || '';
       card.classList.toggle('is-hidden', currentCategory !== 'все' && cardCategory !== currentCategory);
     });
+
+    groupFilteredPhotoCards(currentCategory);
 
     getRows().forEach(row => {
       const loadHidden = isMobile() && row.classList.contains('is-load-hidden');

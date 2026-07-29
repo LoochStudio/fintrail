@@ -124,10 +124,13 @@
 }
 
 .where-buy-map__search input {
-  width: 100%;
+  width: auto;
   min-width: 0;
+  flex: 1;
   border: 0;
   outline: 0;
+  appearance: none;
+  -webkit-appearance: none;
   background: transparent;
   color: $color-primary-black;
   font-family: $font-mono;
@@ -137,9 +140,52 @@
   text-transform: uppercase;
 }
 
+.where-buy-map__search input::-webkit-search-cancel-button,
+.where-buy-map__search input::-webkit-search-decoration {
+  display: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .where-buy-map__search input::placeholder {
   color: $color-primary-gray;
   opacity: 1;
+}
+
+.where-buy-map__search-clear {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-secondary-gray;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $color-primary-gray;
+    }
+  }
+
+  &:focus-visible {
+    color: $color-primary-black;
+    outline: 1px solid $color-primary-black;
+    outline-offset: 2px;
+  }
 }
 
 .where-buy-map__view-toggle,
@@ -200,10 +246,32 @@
 }
 
 .where-buy-location {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0;
   color: $color-primary-black;
+  cursor: pointer;
+}
+
+.where-buy-location::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  width: 2px;
+  background: transparent;
+  transition: background 0.18s ease;
+}
+
+.where-buy-location.is-active::before {
+  background: $color-primary-black;
+}
+
+.where-buy-location:focus-visible {
+  outline: 1px solid $color-primary-black;
+  outline-offset: 4px;
 }
 
 .where-buy-location__title {
@@ -270,6 +338,42 @@
   color: $color-content-text-secondary;
 }
 
+.where-buy-map__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.where-buy-map__empty[hidden] {
+  display: none;
+}
+
+.where-buy-map__empty p {
+  max-width: 360px;
+  margin: 0;
+  color: $color-gray-primary;
+}
+
+.where-buy-map__empty button {
+  min-height: 40px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: $color-primary-black;
+  color: $color-white;
+  cursor: pointer;
+  font-family: $font-main;
+  font-size: 12px;
+  font-weight: $font-weight-extrabold;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
 .where-buy-map__canvas {
   position: relative;
   min-width: 0;
@@ -316,6 +420,16 @@
   transition: transform 0.18s ease, background 0.18s ease;
 }
 
+.where-buy-map__marker[hidden] {
+  display: none;
+}
+
+.where-buy-map__marker.is-active {
+  background: $color-secondary-accent;
+  box-shadow: 0 0 0 3px $color-white;
+  transform: scale(1.08);
+}
+
 .where-buy-map__marker svg {
   width: 32px;
   height: 32px;
@@ -329,6 +443,95 @@
 .where-buy-map__marker--5 { left: 57%; top: 62%; }
 .where-buy-map__marker--6 { left: 39%; top: 66%; }
 .where-buy-map__marker--7 { left: 45%; top: 50%; }
+
+.where-buy-map__selected {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 3;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: $color-white;
+  box-shadow: 0 8px 24px rgba($color-primary-black, 0.12);
+  color: $color-primary-black;
+}
+
+.where-buy-map__selected[hidden] {
+  display: none;
+}
+
+.where-buy-map__selected-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-secondary-gray;
+  cursor: pointer;
+}
+
+.where-buy-map__selected-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.where-buy-map__selected-eyebrow,
+.where-buy-map__selected h2,
+.where-buy-map__selected p {
+  margin: 0;
+}
+
+.where-buy-map__selected-eyebrow {
+  padding-right: 32px;
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.where-buy-map__selected h2 {
+  max-width: calc(100% - 32px);
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: $font-weight-extrabold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.where-buy-map__selected p:not(.where-buy-map__selected-eyebrow) {
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.where-buy-map__selected-show {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 0 0 2px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: $color-primary-black;
+  cursor: pointer;
+  font-family: $font-main;
+  font-size: 12px;
+  font-weight: $font-weight-extrabold;
+  line-height: 12px;
+  text-transform: uppercase;
+}
 
 .where-buy-stores {
   display: flex;
@@ -539,6 +742,23 @@
   .where-buy-map__marker:hover {
     transform: translateY(-2px);
     background: $color-button-primary-pressed;
+  }
+
+  .where-buy-map__marker.is-active:hover {
+    background: $color-secondary-accent;
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  .where-buy-map__empty button:hover {
+    background: $color-button-primary-pressed;
+  }
+
+  .where-buy-map__selected-close:hover {
+    color: $color-primary-black;
+  }
+
+  .where-buy-map__selected-show:hover {
+    color: $color-gray-primary;
   }
 }
 
@@ -774,6 +994,10 @@
     height: 620px;
   }
 
+  .where-buy-map__selected:not([hidden]) {
+    display: flex;
+  }
+
   .where-buy-map.is-map-view .where-buy-map__list,
   .where-buy-map.is-map-view .where-buy-map__more {
     display: none;
@@ -946,6 +1170,14 @@
   .where-buy-map__canvas {
     display: none;
     height: 520px;
+  }
+
+  .where-buy-map__selected:not([hidden]) {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    padding: 16px;
   }
 
   .where-buy-map.is-map-view .where-buy-map__list,
