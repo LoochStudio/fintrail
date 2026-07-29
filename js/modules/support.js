@@ -30,8 +30,14 @@ function initSupportFiles() {
   const status = form.querySelector('[data-support-files-status]');
   const maxFiles = 5;
   let selectedFiles = [];
+  let previewUrls = [];
 
   if (!input || !openButton || !list || !status) return;
+
+  function revokePreviewUrls() {
+    previewUrls.forEach(url => URL.revokeObjectURL(url));
+    previewUrls = [];
+  }
 
   function syncInputFiles() {
     if (typeof DataTransfer === 'undefined') return;
@@ -47,11 +53,33 @@ function initSupportFiles() {
   }
 
   function renderFiles() {
+    revokePreviewUrls();
     list.replaceChildren();
 
     selectedFiles.forEach((file, index) => {
       const item = document.createElement('li');
       item.className = 'support-form__file';
+
+      const preview = document.createElement('span');
+      preview.className = 'support-form__file-preview';
+      preview.setAttribute('aria-hidden', 'true');
+
+      if (file.type.startsWith('image/')) {
+        const previewUrl = URL.createObjectURL(file);
+        previewUrls.push(previewUrl);
+
+        const image = document.createElement('img');
+        image.src = previewUrl;
+        image.alt = '';
+        preview.append(image);
+        item.classList.add('support-form__file--image');
+      } else {
+        const extension = file.name.includes('.')
+          ? file.name.split('.').pop().slice(0, 4).toUpperCase()
+          : 'FILE';
+        preview.classList.add('support-form__file-preview--document');
+        preview.textContent = extension;
+      }
 
       const copy = document.createElement('span');
       copy.className = 'support-form__file-copy';
@@ -72,7 +100,7 @@ function initSupportFiles() {
       removeButton.innerHTML = `<svg aria-hidden="true"><use href="${spriteHref('icon-input-clear')}"></use></svg>`;
 
       copy.append(name, size);
-      item.append(copy, removeButton);
+      item.append(preview, copy, removeButton);
       list.append(item);
     });
 
@@ -132,6 +160,8 @@ function initSupportFiles() {
       renderFiles();
     });
   });
+
+  window.addEventListener('pagehide', revokePreviewUrls, { once: true });
 }
 
 function initSupportHistory() {
