@@ -258,12 +258,19 @@ export function init() {
     const openButtons = document.querySelectorAll('[data-cart-recipient-open]');
     const closeButtons = modal.querySelectorAll('[data-cart-recipient-close]');
     const closeButton = modal.querySelector('.js-modal-close');
-    const form = modal.querySelector('.cart-recipient-modal__form');
+    const form = modal.querySelector('[data-cart-recipient-form-view]') || modal.querySelector('.cart-recipient-modal__form');
+    const listView = modal.querySelector('[data-cart-recipient-list-view]');
+    const formView = modal.querySelector('[data-cart-recipient-form-view]') || form;
+    const title = modal.querySelector('[data-cart-recipient-title]') || modal.querySelector('.cart-recipient-modal__title');
+    const backButton = modal.querySelector('[data-cart-recipient-back]');
+    const addButton = modal.querySelector('[data-cart-recipient-add]');
+    const selectButton = modal.querySelector('[data-cart-recipient-select]');
     const nameOutputs = document.querySelectorAll('[data-cart-recipient-name]');
     const phoneOutputs = document.querySelectorAll('[data-cart-recipient-phone]');
     const submitBtn = modal.querySelector('.cart-recipient-modal__submit');
     const deleteBtn = modal.querySelector('[data-cart-recipient-delete]');
     let closeTimer = 0;
+    let editedOption = null;
 
     // Clear buttons + active state for uk-field-wrap
     modal.querySelectorAll('.uk-field-wrap').forEach(wrap => {
@@ -301,6 +308,7 @@ export function init() {
 
     function fillForm(btn) {
       const isExisting = btn && btn.dataset.recipientFirstName !== undefined;
+      editedOption = isExisting ? btn : null;
       const fieldMap = {
         'first-name': 'recipientFirstName',
         'last-name':  'recipientLastName',
@@ -321,6 +329,31 @@ export function init() {
       }
       if (submitBtn) submitBtn.textContent = isExisting ? 'Сохранить изменения' : 'Добавить получателя';
       if (deleteBtn) deleteBtn.hidden = !isExisting;
+    }
+
+    function showList() {
+      if (!listView) return;
+      listView.hidden = false;
+      if (formView) formView.hidden = true;
+      if (backButton) backButton.hidden = true;
+      if (title) title.textContent = 'Получатель';
+      editedOption = null;
+    }
+
+    function showForm(option = null) {
+      fillForm(option);
+      if (listView) listView.hidden = true;
+      if (formView) formView.hidden = false;
+      if (backButton) backButton.hidden = false;
+      if (title) title.textContent = option ? 'Данные получателя' : 'Новый получатель';
+      window.requestAnimationFrame(() => form.querySelector('.uk-field__input')?.focus());
+    }
+
+    function syncSelectedRecipient() {
+      modal.querySelectorAll('[data-cart-recipient-option]').forEach(option => {
+        const radio = option.querySelector('.cart-saved-list__radio');
+        option.classList.toggle('is-selected', Boolean(radio?.checked));
+      });
     }
 
     function openModal() {
@@ -345,12 +378,35 @@ export function init() {
 
     openButtons.forEach(button => button.addEventListener('click', event => {
       event.preventDefault();
-      const btn = event.currentTarget;
-      fillForm(btn.dataset.recipientFirstName !== undefined ? btn : null);
+      const opener = event.currentTarget;
+      if (listView) {
+        showList();
+      } else {
+        fillForm(opener.dataset.recipientFirstName !== undefined ? opener : null);
+      }
       openModal();
     }));
     closeButtons.forEach(button => button.addEventListener('click', closeModal));
     deleteBtn?.addEventListener('click', closeModal);
+    backButton?.addEventListener('click', showList);
+    addButton?.addEventListener('click', () => showForm());
+
+    modal.querySelectorAll('[data-cart-recipient-edit]').forEach(button => {
+      button.addEventListener('click', () => showForm(button.closest('[data-cart-recipient-option]')));
+    });
+
+    modal.querySelectorAll('input[name="saved-recipient"]').forEach(radio => {
+      radio.addEventListener('change', syncSelectedRecipient);
+    });
+
+    selectButton?.addEventListener('click', () => {
+      const option = modal.querySelector('input[name="saved-recipient"]:checked')?.closest('[data-cart-recipient-option]');
+      if (!option) return;
+      const fullName = [option.dataset.recipientFirstName, option.dataset.recipientLastName].filter(Boolean).join(' ');
+      nameOutputs.forEach(output => { output.textContent = fullName; });
+      phoneOutputs.forEach(output => { output.textContent = option.dataset.recipientPhone || ''; });
+      closeModal();
+    });
 
     const fieldRules = [
       { name: 'first-name', test: v => v.trim() !== '',                                    error: 'Заполните поле' },
@@ -394,6 +450,7 @@ export function init() {
       const firstName = form.querySelector('[name="first-name"]')?.value.trim() || '';
       const lastName = form.querySelector('[name="last-name"]')?.value.trim() || '';
       const phone = form.querySelector('[name="phone"]')?.value.trim() || '';
+      const email = form.querySelector('[name="email"]')?.value.trim() || '';
       if (firstName || lastName) {
         nameOutputs.forEach(output => {
           output.textContent = [firstName, lastName].filter(Boolean).join(' ');
@@ -403,6 +460,18 @@ export function init() {
         phoneOutputs.forEach(output => {
           output.textContent = phone;
         });
+      }
+
+      if (editedOption) {
+        editedOption.dataset.recipientFirstName = firstName;
+        editedOption.dataset.recipientLastName = lastName;
+        editedOption.dataset.recipientPhone = phone;
+        editedOption.dataset.recipientEmail = email;
+        const heading = editedOption.querySelector('.cart-saved-list__heading');
+        const meta = editedOption.querySelectorAll('.cart-saved-list__meta');
+        if (heading) heading.textContent = [firstName, lastName].filter(Boolean).join(' ');
+        if (meta[0]) meta[0].textContent = phone;
+        if (meta[1]) meta[1].textContent = email;
       }
       closeModal();
     });
@@ -417,9 +486,16 @@ export function init() {
     const openButtons = document.querySelectorAll('[data-cart-address-open]');
     const closeButtons = modal.querySelectorAll('[data-cart-address-close]');
     const closeButton = modal.querySelector('.js-modal-close');
-    const form = modal.querySelector('.cart-address-modal__form');
+    const form = modal.querySelector('[data-cart-address-form-view]') || modal.querySelector('.cart-address-modal__form');
+    const listView = modal.querySelector('[data-cart-address-list-view]');
+    const formView = modal.querySelector('[data-cart-address-form-view]') || form;
+    const title = modal.querySelector('[data-cart-address-title]') || modal.querySelector('.cart-address-modal__title');
+    const backButton = modal.querySelector('[data-cart-address-back]');
+    const addButton = modal.querySelector('[data-cart-address-add]');
+    const selectButton = modal.querySelector('[data-cart-address-select]');
     const summary = document.querySelector('[data-cart-address-summary]');
     let closeTimer = 0;
+    let editedOption = null;
 
     modal.querySelectorAll('.uk-field-wrap').forEach(wrap => {
       const field = wrap.querySelector('.uk-field__input');
@@ -514,6 +590,7 @@ export function init() {
 
     function fillForm(btn) {
       const isExisting = btn && btn.dataset.addressCity !== undefined;
+      editedOption = isExisting ? btn : null;
 
       const fields = ['city', 'street', 'house', 'entrance', 'floor', 'flat', 'comment'];
       fields.forEach(name => {
@@ -530,14 +607,45 @@ export function init() {
 
       const privateCheckbox = form?.elements['private-house'];
       if (privateCheckbox) privateCheckbox.checked = false;
+      if (detailsRow) detailsRow.hidden = false;
 
       if (submitBtn) submitBtn.textContent = isExisting ? 'Сохранить изменения' : 'Добавить адрес';
       if (deleteBtn) deleteBtn.hidden = !isExisting;
+      if (!listView && title) title.textContent = isExisting ? 'Данные адреса' : 'Добавить адрес';
+    }
+
+    function showList() {
+      if (!listView) return;
+      listView.hidden = false;
+      if (formView) formView.hidden = true;
+      if (backButton) backButton.hidden = true;
+      if (title) title.textContent = 'Адрес доставки';
+      editedOption = null;
+    }
+
+    function showForm(option = null) {
+      fillForm(option);
+      if (listView) listView.hidden = true;
+      if (formView) formView.hidden = false;
+      if (backButton) backButton.hidden = false;
+      if (title) title.textContent = option ? 'Данные адреса' : 'Новый адрес';
+      window.requestAnimationFrame(() => form.querySelector('.uk-field__input')?.focus());
+    }
+
+    function syncSelectedAddress() {
+      modal.querySelectorAll('[data-cart-address-option]').forEach(option => {
+        const radio = option.querySelector('.cart-saved-list__radio');
+        option.classList.toggle('is-selected', Boolean(radio?.checked));
+      });
     }
 
     openButtons.forEach(button => button.addEventListener('click', event => {
       event.preventDefault();
-      fillForm(event.currentTarget);
+      if (listView) {
+        showList();
+      } else {
+        fillForm(event.currentTarget);
+      }
       window.clearTimeout(closeTimer);
       modal.hidden = false;
       modal.setAttribute('aria-hidden', 'false');
@@ -547,6 +655,30 @@ export function init() {
         closeButton?.focus();
       });
     }));
+
+    backButton?.addEventListener('click', showList);
+    addButton?.addEventListener('click', () => showForm());
+
+    modal.querySelectorAll('[data-cart-address-edit]').forEach(button => {
+      button.addEventListener('click', () => showForm(button.closest('[data-cart-address-option]')));
+    });
+
+    modal.querySelectorAll('input[name="saved-address"]').forEach(radio => {
+      radio.addEventListener('change', syncSelectedAddress);
+    });
+
+    selectButton?.addEventListener('click', () => {
+      const option = modal.querySelector('input[name="saved-address"]:checked')?.closest('[data-cart-address-option]');
+      if (!option) return;
+      const address = [
+        option.dataset.addressCity,
+        option.dataset.addressStreet,
+        option.dataset.addressHouse && `д. ${option.dataset.addressHouse}`,
+        option.dataset.addressFlat && `кв. ${option.dataset.addressFlat}`,
+      ].filter(Boolean).join(', ');
+      if (summary) summary.textContent = address;
+      closeModal();
+    });
 
     const addressFieldRules = [
       { name: 'city',   test: v => v.trim() !== '', error: 'Заполните поле' },
@@ -584,23 +716,31 @@ export function init() {
       const city = form.elements.city?.value.trim() || '';
       const street = form.elements.street?.value.trim() || '';
       const house = form.elements.house?.value.trim() || '';
-      const address = [city, street, house && `д. ${house}`].filter(Boolean).join(', ');
+      const flat = form.elements.flat?.value.trim() || '';
+      const address = [city, street, house && `д. ${house}`, flat && `кв. ${flat}`].filter(Boolean).join(', ');
 
       if (summary && address) {
         summary.textContent = address;
       }
 
-      // Сохраняем значения всех полей на кнопках-триггерах,
-      // чтобы при повторном открытии форма была заполнена
       const fields = ['country', 'city', 'street', 'house', 'entrance', 'floor', 'flat', 'comment'];
-      openButtons.forEach(btn => {
+      if (editedOption) {
         fields.forEach(name => {
           const input = form.elements[name];
           if (!input) return;
           const key = 'address' + name.charAt(0).toUpperCase() + name.slice(1);
-          btn.dataset[key] = input.value;
+          editedOption.dataset[key] = input.value;
         });
-      });
+        const heading = editedOption.querySelector('.cart-saved-list__heading');
+        const meta = editedOption.querySelector('.cart-saved-list__meta');
+        if (heading) heading.textContent = address;
+        if (meta) {
+          meta.textContent = [
+            form.elements.entrance?.value.trim() && `Подъезд ${form.elements.entrance.value.trim()}`,
+            form.elements.floor?.value.trim() && `этаж ${form.elements.floor.value.trim()}`,
+          ].filter(Boolean).join(', ');
+        }
+      }
 
       closeModal();
     });

@@ -730,6 +730,7 @@
     min-height: 0;
   }
 
+  .cart-recipient-modal__back,
   .cart-recipient-modal__close {
     width: 24px;
     height: 24px;
@@ -739,6 +740,16 @@
       width: 16px;
       height: 16px;
     }
+  }
+
+  .cart-saved-list__item {
+    min-height: 104px;
+    padding: 14px 12px;
+  }
+
+  .cart-saved-list__actions {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
   }
 
   .cart-address-modal__comment {

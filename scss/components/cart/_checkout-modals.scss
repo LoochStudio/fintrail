@@ -75,15 +75,43 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .cart-recipient-modal__title {
+  flex: 1 1 auto;
   margin: 0;
   font-family: $font-display;
   font-size: 28px;
   font-weight: $font-weight-black;
   line-height: 28px;
   text-transform: uppercase;
+}
+
+.cart-recipient-modal__back {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .cart-recipient-modal__close {
@@ -114,6 +142,196 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 0;
+}
+
+.cart-recipient-modal__form[hidden],
+.cart-saved-list[hidden] {
+  display: none;
+}
+
+.cart-saved-list {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cart-saved-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: $color-primary-gray transparent;
+}
+
+.cart-saved-list__item {
+  position: relative;
+  display: flex;
+  min-height: 112px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid $color-white;
+  border-radius: $radius-xs;
+  background: transparent;
+  transition: border-color 0.18s ease, background 0.18s ease;
+
+  &.is-selected {
+    border-color: $color-primary-black;
+    background: $color-white;
+  }
+}
+
+.cart-saved-list__choice {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.cart-saved-list__radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cart-saved-list__radio-control {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  border: 1px solid $color-primary-gray;
+  border-radius: 50%;
+  background: $color-white;
+  transition: border-color 0.18s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: $color-primary-black;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+}
+
+.cart-saved-list__radio:checked + .cart-saved-list__radio-control {
+  border-color: $color-primary-black;
+
+  &::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cart-saved-list__radio:focus-visible + .cart-saved-list__radio-control {
+  outline: 1px solid $color-primary-black;
+  outline-offset: 3px;
+}
+
+.cart-saved-list__content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cart-saved-list__heading {
+  color: $color-primary-black;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.cart-saved-list__meta,
+.cart-saved-list__badge {
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 16px;
+}
+
+.cart-saved-list__badge {
+  color: $color-secondary-accent;
+  text-transform: uppercase;
+}
+
+.cart-saved-list__edit {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.cart-saved-list__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.cart-saved-list__add,
+.cart-saved-list__submit {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  font-family: $font-display;
+  font-size: 12px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.cart-saved-list__add {
+  background: $color-white;
+  color: $color-primary-black;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+  }
+}
+
+.cart-saved-list__submit {
+  background: $color-primary-black;
+  color: $color-white;
 }
 
 .cart-recipient-modal__fields {
@@ -417,9 +635,27 @@
 
 
 @media (hover: hover) and (pointer: fine) {
+  .cart-recipient-modal__back:hover,
+  .cart-recipient-modal__back:focus-visible,
   .cart-recipient-modal__close:hover,
   .cart-recipient-modal__close:focus-visible {
     background: $color-gray-hover;
+  }
+
+  .cart-saved-list__item:not(.is-selected):hover {
+    border-color: $color-gray-hover;
+  }
+
+  .cart-saved-list__edit:hover,
+  .cart-saved-list__edit:focus-visible,
+  .cart-saved-list__add:hover,
+  .cart-saved-list__add:focus-visible {
+    background: $color-button-secondary-hover;
+  }
+
+  .cart-saved-list__submit:hover,
+  .cart-saved-list__submit:focus-visible {
+    background: $color-button-primary-hover;
   }
 
   .cart-recipient-modal__submit:hover,
