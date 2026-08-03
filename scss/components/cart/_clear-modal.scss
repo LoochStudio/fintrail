@@ -102,6 +102,28 @@
   }
 }
 
+.account-delete-modal__panel {
+  gap: 0;
+
+  .cart-clear-modal__header {
+    margin-bottom: 24px;
+  }
+
+  .cart-clear-modal__actions {
+    margin-top: 40px;
+  }
+}
+
+.account-delete-modal__description {
+  max-width: 420px;
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: $color-primary-gray;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .cart-clear-modal__close:hover,
   .cart-clear-modal__close:focus-visible {

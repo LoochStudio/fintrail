@@ -1,4 +1,65 @@
 export function init() {
+  const accountDeleteModal = document.querySelector('[data-account-delete-modal]');
+  const accountDeleteDialog = (() => {
+    if (!accountDeleteModal) return null;
+
+    const title = accountDeleteModal.querySelector('[data-account-delete-title]');
+    const description = accountDeleteModal.querySelector('[data-account-delete-description]');
+    const confirmButton = accountDeleteModal.querySelector('[data-account-delete-confirm]');
+    const cancelButtons = accountDeleteModal.querySelectorAll('[data-account-delete-cancel]');
+    let closeTimer = 0;
+    let pendingAction = null;
+    let returnFocus = null;
+
+    function close({ restoreFocus = true } = {}) {
+      accountDeleteModal.classList.remove('is-open');
+      accountDeleteModal.setAttribute('aria-hidden', 'true');
+      pendingAction = null;
+      window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(() => {
+        accountDeleteModal.hidden = true;
+        if (restoreFocus) returnFocus?.focus();
+        returnFocus = null;
+      }, 200);
+    }
+
+    function open({ type, trigger, onConfirm }) {
+      const isAddress = type === 'address';
+      if (title) title.textContent = isAddress ? 'Удалить адрес?' : 'Удалить получателя?';
+      if (description) {
+        description.textContent = isAddress
+          ? 'Адрес будет удалён без возможности восстановления.'
+          : 'Данные получателя будут удалены без возможности восстановления.';
+      }
+
+      pendingAction = onConfirm;
+      returnFocus = trigger || document.activeElement;
+      window.clearTimeout(closeTimer);
+      accountDeleteModal.hidden = false;
+      accountDeleteModal.setAttribute('aria-hidden', 'false');
+      window.requestAnimationFrame(() => {
+        accountDeleteModal.classList.add('is-open');
+        confirmButton?.focus();
+      });
+    }
+
+    cancelButtons.forEach(button => button.addEventListener('click', () => close()));
+    confirmButton?.addEventListener('click', () => {
+      const action = pendingAction;
+      close({ restoreFocus: false });
+      action?.();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || accountDeleteModal.hidden) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      close();
+    }, true);
+
+    return { open };
+  })();
+
   // Cart page — delivery method switch
   document.querySelectorAll('[data-cart-delivery]').forEach(delivery => {
     const tabs = Array.from(delivery.querySelectorAll('[data-cart-delivery-tab]'));
@@ -376,6 +437,31 @@ export function init() {
       }, 200);
     }
 
+    function deleteEditedRecipient() {
+      if (!editedOption) return;
+      const item = editedOption.closest('[data-cart-recipient-option], .settings-list__item');
+      if (!item) return;
+
+      const deleteEvent = new CustomEvent('finntrail:profile-delete', {
+        bubbles: true,
+        cancelable: true,
+        detail: { type: 'recipient', source: editedOption },
+      });
+      if (!editedOption.dispatchEvent(deleteEvent)) return;
+
+      const list = item.parentElement;
+      const wasSelected = Boolean(item.querySelector('input[type="radio"]:checked'));
+      item.remove();
+
+      if (wasSelected) {
+        const nextRadio = list?.querySelector('input[type="radio"]');
+        if (nextRadio) nextRadio.checked = true;
+      }
+      syncSelectedRecipient();
+      editedOption = null;
+      closeModal();
+    }
+
     openButtons.forEach(button => button.addEventListener('click', event => {
       event.preventDefault();
       const opener = event.currentTarget;
@@ -387,7 +473,14 @@ export function init() {
       openModal();
     }));
     closeButtons.forEach(button => button.addEventListener('click', closeModal));
-    deleteBtn?.addEventListener('click', closeModal);
+    deleteBtn?.addEventListener('click', () => {
+      if (!editedOption || !accountDeleteDialog) return;
+      accountDeleteDialog.open({
+        type: 'recipient',
+        trigger: deleteBtn,
+        onConfirm: deleteEditedRecipient,
+      });
+    });
     backButton?.addEventListener('click', showList);
     addButton?.addEventListener('click', () => showForm());
 
@@ -639,6 +732,41 @@ export function init() {
       });
     }
 
+    function deleteEditedAddress() {
+      if (!editedOption) return;
+      const item = editedOption.closest('[data-cart-address-option], .settings-list__item');
+      if (!item) return;
+
+      const deleteEvent = new CustomEvent('finntrail:profile-delete', {
+        bubbles: true,
+        cancelable: true,
+        detail: { type: 'address', source: editedOption },
+      });
+      if (!editedOption.dispatchEvent(deleteEvent)) return;
+
+      const list = item.parentElement;
+      const wasSelected = Boolean(item.querySelector('input[type="radio"]:checked'));
+      item.remove();
+
+      if (wasSelected) {
+        const nextRadio = list?.querySelector('input[type="radio"]');
+        if (nextRadio) {
+          nextRadio.checked = true;
+          const nextItem = nextRadio.closest('[data-cart-address-option], .settings-list__item');
+          const nextInfo = nextItem?.querySelector('.settings-list__info');
+          if (nextInfo && !nextInfo.querySelector('.settings-list__badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'settings-list__badge';
+            badge.textContent = 'Основной';
+            nextInfo.append(badge);
+          }
+        }
+      }
+      syncSelectedAddress();
+      editedOption = null;
+      closeModal();
+    }
+
     openButtons.forEach(button => button.addEventListener('click', event => {
       event.preventDefault();
       if (listView) {
@@ -665,6 +793,15 @@ export function init() {
 
     modal.querySelectorAll('input[name="saved-address"]').forEach(radio => {
       radio.addEventListener('change', syncSelectedAddress);
+    });
+
+    deleteBtn?.addEventListener('click', () => {
+      if (!editedOption || !accountDeleteDialog) return;
+      accountDeleteDialog.open({
+        type: 'address',
+        trigger: deleteBtn,
+        onConfirm: deleteEditedAddress,
+      });
     });
 
     selectButton?.addEventListener('click', () => {
