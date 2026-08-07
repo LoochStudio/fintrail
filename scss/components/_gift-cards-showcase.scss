@@ -96,6 +96,18 @@
   object-fit: fill;
 }
 
+.gift-cards-showcase__logo--active {
+  opacity: 0;
+}
+
+.gift-cards-showcase__card.is-active .gift-cards-showcase__logo--side {
+  opacity: 0;
+}
+
+.gift-cards-showcase__card.is-active .gift-cards-showcase__logo--active {
+  opacity: 1;
+}
+
 .gift-cards-showcase__price {
   position: absolute;
   left: 16px;
@@ -457,19 +469,22 @@
     right: auto;
     left: 20px;
     width: 370px;
-    height: auto;
-    object-fit: contain;
-    will-change: width, top, left;
+    height: 36px;
+    object-fit: fill;
+    will-change: width, height, top, left;
     transition:
       width 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.92s cubic-bezier(0.22, 1, 0.36, 1),
       top 0.92s cubic-bezier(0.22, 1, 0.36, 1),
-      left 0.92s cubic-bezier(0.22, 1, 0.36, 1);
+      left 0.92s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.18s ease;
   }
 
   .gift-cards-showcase__card.is-active .gift-cards-showcase__logo {
     top: 35.168px;
     left: 35.171px;
     width: 650.658px;
+    height: 64px;
   }
 
   .gift-cards-showcase__price {
