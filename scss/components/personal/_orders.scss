@@ -840,3 +840,12 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
+
+.order-card__product-quantity {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 12px;
+  color: $color-gray-primary;
+  white-space: nowrap;
+}
