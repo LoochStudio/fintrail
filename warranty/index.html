@@ -468,7 +468,7 @@
       </header>
 
       <div class="warranty-page__service-grid">
-        <form class="warranty-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+        <form class="warranty-form" action="#" method="post" enctype="multipart/form-data" novalidate data-warranty-form>
           <fieldset class="warranty-form__group">
             <legend class="warranty-form__legend">Контактная информация</legend>
             <div class="warranty-form__radio-row" role="radiogroup" aria-label="Тип покупателя">
@@ -476,14 +476,17 @@
               <label class="warranty-form__radio"><input class="uk-radio" type="radio" name="client-type" value="company"><span>Юридическое лицо</span></label>
             </div>
             <div class="warranty-form__fields warranty-form__fields--compact">
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="first-name" placeholder="Имя" autocomplete="given-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="first_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="first_name" placeholder="Имя" autocomplete="given-name" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="last-name" placeholder="Фамилия" autocomplete="family-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="last_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="last_name" placeholder="Фамилия" autocomplete="family-name" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="middle-name" placeholder="Отчество" autocomplete="additional-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="middle_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="middle_name" placeholder="Отчество" autocomplete="additional-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
             </div>
             <div class="warranty-form__fields warranty-form__fields--compact">
@@ -492,12 +495,14 @@
                   <svg class="warranty-form__flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
                   <svg class="warranty-form__country-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
                 </button>
-                <label class="uk-field-wrap uk-field--surface warranty-form__field warranty-form__field--phone" data-input-field>
-                  <span class="uk-field"><input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <label class="uk-field-wrap uk-field--surface warranty-form__field warranty-form__field--phone" data-input-field data-warranty-field="phone">
+                  <span class="uk-field"><input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                  <span class="uk-field__caption"></span>
                 </label>
               </div>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="email">
+                <span class="uk-field"><input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
             </div>
           </fieldset>
@@ -505,17 +510,21 @@
           <fieldset class="warranty-form__group warranty-form__group--product">
             <legend class="warranty-form__legend">Информация о&nbsp;товаре</legend>
             <div class="warranty-form__fields warranty-form__fields--compact">
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="product-name" placeholder="Наименование товара"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="product_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="product_name" placeholder="Наименование товара" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase-place" placeholder="Место приобритения"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="purchase_place">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase_place" placeholder="Место приобретения" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase-date" placeholder="Когда куплен"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="purchase_date">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase_date" placeholder="Когда куплен" inputmode="numeric" data-date-mask required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface uk-field--textarea warranty-form__field" data-input-field>
-                <span class="uk-field"><textarea class="uk-field__input" name="defects" placeholder="Опишите дефекты"></textarea><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface uk-field--textarea warranty-form__field" data-input-field data-warranty-field="defects">
+                <span class="uk-field"><textarea class="uk-field__input" name="defects" placeholder="Опишите дефекты" required></textarea><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
             </div>
             <label class="warranty-form__upload" data-file-picker data-file-max="5" data-file-max-size="10">
