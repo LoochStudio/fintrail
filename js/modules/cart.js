@@ -1007,6 +1007,68 @@ export function init() {
     input.addEventListener('blur', () => wrap.classList.remove('uk-s-active'));
   });
 
+  // Cart page — quantity controls. Bitrix can subscribe to the custom event
+  // and persist the new value without changing the component markup.
+  document.querySelectorAll('[data-cart-quantity]').forEach(control => {
+    const input = control.querySelector('[data-cart-quantity-input]');
+    const decreaseButton = control.querySelector('[data-cart-quantity-decrease]');
+    const increaseButton = control.querySelector('[data-cart-quantity-increase]');
+    if (!input || !decreaseButton || !increaseButton) return;
+
+    const min = Number.parseInt(input.min, 10) || 1;
+    const max = Number.parseInt(input.max, 10) || 99;
+    let quantity = min;
+
+    function normalize(value) {
+      const parsed = Number.parseInt(String(value), 10);
+      if (!Number.isFinite(parsed)) return min;
+      return Math.min(max, Math.max(min, parsed));
+    }
+
+    function render() {
+      input.value = String(quantity);
+      decreaseButton.disabled = quantity <= min;
+      increaseButton.disabled = quantity >= max;
+    }
+
+    function setQuantity(value, { emit = true } = {}) {
+      const previousQuantity = quantity;
+      quantity = normalize(value);
+      render();
+
+      if (!emit || quantity === previousQuantity) return;
+
+      control.dispatchEvent(new CustomEvent('finntrail:cart-quantity-change', {
+        bubbles: true,
+        detail: {
+          quantity,
+          previousQuantity,
+          item: control.closest('.cart-item'),
+        },
+      }));
+    }
+
+    decreaseButton.addEventListener('click', () => setQuantity(quantity - 1));
+    increaseButton.addEventListener('click', () => setQuantity(quantity + 1));
+
+    input.addEventListener('input', () => {
+      const sanitized = input.value.replace(/\D/g, '');
+      if (input.value !== sanitized) input.value = sanitized;
+    });
+
+    input.addEventListener('change', () => setQuantity(input.value));
+    input.addEventListener('blur', () => setQuantity(input.value));
+    input.addEventListener('keydown', event => {
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+      setQuantity(input.value);
+      input.blur();
+    });
+
+    quantity = normalize(input.value);
+    render();
+  });
+
   // Cart page — promo code: turns discount row green on apply
   document.querySelectorAll('.cart-total__promo-row').forEach(form => {
     const discountRow = form.closest('.cart-total')?.querySelector('.cart-total__discount-row');

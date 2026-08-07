@@ -482,7 +482,7 @@
   margin-left: auto;
 
   button,
-  span {
+  input {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -496,9 +496,9 @@
     color: $color-primary-black;
     cursor: pointer;
 
-    // minus button is light gray, plus button is black
-    &:first-child {
+    &:disabled {
       color: $color-primary-gray;
+      cursor: default;
     }
 
     svg {
@@ -508,13 +508,34 @@
     }
   }
 
-  span {
+  input {
     @include cart-trim-text;
 
+    width: 40px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: $color-primary-black;
     font-family: $font-mono;
     font-size: 18px;
     font-weight: $font-weight-semibold;
     line-height: 18px;
+    text-align: center;
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+
+    &:focus-visible {
+      border-radius: $radius-xs;
+      outline: 1px solid $color-primary-black;
+      outline-offset: 3px;
+    }
   }
 }
 

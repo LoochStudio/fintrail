@@ -437,8 +437,7 @@
           </nav>
           <h1>Корзина <span class="cart-page__count">14</span></h1>
           <div class="cart-page__actions">
-            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg><span>Удалить корзину</span></button>
-            <button type="button"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-share"></use></svg><span>Поделиться</span></button>
+            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-trash"></use></svg><span>Очистить корзину</span></button>
           </div>
         </div>
       </div>
@@ -511,8 +510,10 @@
                   <div class="cart-item__old-row"><del>32 999 ₽</del></div>
                   <span class="cart-item__price-new">25 799 ₽</span>
                 </div>
-                <div class="cart-item__qty" aria-label="Количество товара">
-                  <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
+                <div class="cart-item__qty" aria-label="Количество товара" data-cart-quantity>
+                  <button type="button" aria-label="Уменьшить количество" data-cart-quantity-decrease><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-minus"></use></svg></button>
+                  <input class="cart-item__qty-input" type="number" inputmode="numeric" min="1" max="99" step="1" value="1" aria-label="Количество товара" data-cart-quantity-input>
+                  <button type="button" aria-label="Увеличить количество" data-cart-quantity-increase><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
                 </div>
               </div>
             </div>
@@ -536,8 +537,10 @@
                   <div class="cart-item__old-row"><del>24 999 ₽</del><span class="cart-item__discount">−10%</span></div>
                   <span class="cart-item__price-new">12 699 ₽</span>
                 </div>
-                <div class="cart-item__qty" aria-label="Количество товара">
-                  <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
+                <div class="cart-item__qty" aria-label="Количество товара" data-cart-quantity>
+                  <button type="button" aria-label="Уменьшить количество" data-cart-quantity-decrease><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-minus"></use></svg></button>
+                  <input class="cart-item__qty-input" type="number" inputmode="numeric" min="1" max="99" step="1" value="1" aria-label="Количество товара" data-cart-quantity-input>
+                  <button type="button" aria-label="Увеличить количество" data-cart-quantity-increase><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
                 </div>
               </div>
             </div>
