@@ -819,16 +819,18 @@
     bottom: 32px;
     left: 20px;
     width: calc(100% - 40px);
-    max-width: 327px;
+    max-width: none;
     gap: 32px;
     transform: none;
 
     h1 {
+      max-width: 327px;
       font-size: 24px;
       line-height: 28px;
     }
 
     p {
+      max-width: 327px;
       margin-top: 32px;
       font-size: 16px;
       line-height: 1.1;
@@ -908,6 +910,7 @@
 
   .loyalty-program-cashback__grid {
     display: flex;
+    height: auto;
     flex-direction: column;
   }
 
