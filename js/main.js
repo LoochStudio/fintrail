@@ -31,6 +31,7 @@ import { init as initTechnologies } from './modules/technologies.js';
 import { init as initWhereBuy } from './modules/where-buy.js';
 import { init as initFilePicker } from './modules/file-picker.js';
 import { init as initWarranty } from './modules/warranty.js';
+import { init as initWishlist } from './modules/wishlist.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -66,6 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initWhereBuy();
   initFilePicker();
   initWarranty();
+  initWishlist();
 });
-
 

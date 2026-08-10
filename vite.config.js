@@ -29,6 +29,7 @@ export default defineConfig({
         catalog: resolve(__dirname, 'catalog/index.html'),
         catalogCategory: resolve(__dirname, 'catalog/kurtki/index.html'),
         sale: resolve(__dirname, 'sale/index.html'),
+        wishlist: resolve(__dirname, 'wishlist/index.html'),
         cart: resolve(__dirname, 'cart/index.html'),
         cartEmpty: resolve(__dirname, 'cart-empty/index.html'),
         orderConfirmed: resolve(__dirname, 'order-confirmed/index.html'),

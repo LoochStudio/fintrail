@@ -1,0 +1,124 @@
+@use '../variables' as *;
+
+.wishlist-page {
+  min-height: 100vh;
+
+  &__heading {
+    gap: 0;
+    margin-bottom: 44px;
+  }
+
+  .catalog-hero__back,
+  .catalog-hero__banner,
+  .catalog-tags,
+  .catalog-empty-state,
+  .catalog-toolbar,
+  .catalog-products__loading,
+  .catalog-empty-recommendations {
+    display: none;
+  }
+
+  .catalog-products__grid {
+    margin-top: 0;
+  }
+
+  .recommendation-card__actions {
+    display: flex;
+  }
+
+  .recommendation-card__icon-btn.js-compare {
+    display: none;
+  }
+
+  .recommendation-card__icon-btn.js-wishlist {
+    color: $color-secondary-accent;
+  }
+
+  .catalog-product-card {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .catalog-product-card.is-removing {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.985);
+  }
+
+  &__empty {
+    min-height: 320px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: $color-primary-gray;
+    font-family: $font-mono;
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__empty:not([hidden]) {
+    display: flex;
+  }
+}
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .wishlist-page {
+    .catalog-product-card .recommendation-card__image-link {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .catalog-product-card:not(.is-image-unavailable) .recommendation-card__image--square-canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: 115.5%;
+      max-width: none;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .wishlist-page.catalog-page {
+    padding-top: 84px;
+  }
+
+  .wishlist-page {
+    &__heading {
+      margin-bottom: 40px;
+    }
+
+    .catalog-products__grid {
+      gap: 0;
+    }
+
+    .catalog-product-card.recommendation-card {
+      border-top: 0;
+      border-bottom: 0;
+    }
+
+    .catalog-hero__bar {
+      min-height: auto;
+    }
+
+    .catalog-hero__bar-main {
+      gap: 0;
+    }
+  }
+}
+
+@media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
+  .wishlist-page {
+    &__heading {
+      margin-bottom: 48px;
+    }
+
+    .catalog-hero__bar-main {
+      gap: 0;
+    }
+  }
+}
