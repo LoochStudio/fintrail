@@ -1,4 +1,5 @@
 import { resolvePublicAsset } from './utils.js';
+const NAME_PATTERN = /^[\p{L}\s'’-]+$/u;
 
 export function init() {
   document.querySelectorAll('[data-gift-card-order]').forEach(root => {
@@ -74,6 +75,34 @@ export function init() {
       if (amountInput) amountInput.value = selectedAmount;
       if (dateInput) dateInput.value = selectedDate;
       if (timeInput) timeInput.value = selectedTime;
+    }
+
+    function setDetailsFieldError(input, message = '') {
+      const field = input?.closest('[data-input-field]');
+      const captionId = input?.getAttribute('aria-describedby');
+      const caption = captionId ? document.getElementById(captionId) : null;
+      field?.classList.toggle('is-error', Boolean(message));
+      input?.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (caption) caption.textContent = message;
+    }
+
+    function validateDetailsForm() {
+      const nameInput = detailsForm?.elements.namedItem('recipient_name');
+      const phoneInput = detailsForm?.elements.namedItem('recipient_phone');
+      const name = nameInput?.value.trim() || '';
+      const phoneDigits = phoneInput?.value.replace(/\D/g, '') || '';
+
+      const nameError = !name
+        ? 'Введите имя'
+        : (NAME_PATTERN.test(name) ? '' : 'Допустимы буквы, пробел, апостроф и дефис');
+      const phoneError = phoneDigits.length === 11 ? '' : 'Введите полный номер телефона';
+
+      setDetailsFieldError(nameInput, nameError);
+      setDetailsFieldError(phoneInput, phoneError);
+
+      const firstInvalid = detailsForm?.querySelector('[aria-invalid="true"]');
+      firstInvalid?.focus({ preventScroll: true });
+      return !firstInvalid;
     }
 
     function closeGiftCardModal(modal) {
@@ -467,7 +496,12 @@ export function init() {
 
     detailsForm?.addEventListener('submit', e => {
       e.preventDefault();
+      if (!validateDetailsForm()) return;
       setStep('date');
+    });
+
+    detailsForm?.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => setDetailsFieldError(input));
     });
 
     dateForm?.addEventListener('submit', e => {

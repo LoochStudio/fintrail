@@ -453,7 +453,7 @@
       </button>
     </form>
 
-    <form class="gift-card-order__details" action="/gift-card/order/" method="post" hidden data-gift-card-details-form>
+    <form class="gift-card-order__details" action="/gift-card/order/" method="post" hidden novalidate data-gift-card-details-form>
       <input type="hidden" name="gift_card_design" value="/images/content/gift-card-order/design-main.png" data-gift-card-design-input>
       <input type="hidden" name="gift_card_amount" value="10 000 ₽" data-gift-card-amount-input>
       <input type="hidden" name="gift_card_recipient_type" value="self" data-gift-card-recipient-type-input>
@@ -469,7 +469,8 @@
             <p class="gift-card-order__details-note">Ссылка на сертификат придет по СМС</p>
             <div class="gift-card-order__details-fields">
               <label class="gift-card-order__field-control" data-input-field>
-                <input class="gift-card-order__input" type="text" name="recipient_name" autocomplete="name" placeholder="Имя получателя" required>
+                <input class="gift-card-order__input" type="text" name="recipient_name" autocomplete="name" placeholder="Имя получателя" aria-describedby="gift-card-recipient-name-caption" required>
+                <span class="gift-card-order__caption" id="gift-card-recipient-name-caption" aria-live="polite"></span>
               </label>
               <div class="gift-card-order__phone-row">
                 <button class="gift-card-order__country-btn" type="button" aria-label="Выбрать страну">
@@ -478,7 +479,7 @@
                 </button>
                 <label class="gift-card-order__field-control gift-card-order__field-control--phone" data-input-field>
                   <input class="gift-card-order__input js-phone-input" type="tel" name="recipient_phone" autocomplete="tel" placeholder="+7" aria-describedby="gift-card-recipient-phone-caption" required>
-                  <span class="gift-card-order__caption" id="gift-card-recipient-phone-caption"></span>
+                  <span class="gift-card-order__caption" id="gift-card-recipient-phone-caption" aria-live="polite"></span>
                 </label>
               </div>
             </div>
