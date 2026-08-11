@@ -163,7 +163,7 @@
   text-transform: uppercase;
 }
 
-.contacts-card a {
+.contacts-card :is(a, button) {
   display: inline-flex;
   min-height: 48px;
   align-items: center;
@@ -178,6 +178,8 @@
   line-height: 12px;
   text-decoration: none;
   text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease;
 }
 
@@ -422,7 +424,7 @@
     color: $color-gray-primary;
   }
 
-  .contacts-card a:hover {
+  .contacts-card :is(a, button):hover {
     background: $color-gray-hover;
   }
 
@@ -596,7 +598,7 @@
     max-width: 100%;
   }
 
-  .contacts-card a {
+  .contacts-card :is(a, button) {
     min-height: 48px;
     padding: 18px 24px;
   }
@@ -668,6 +670,366 @@
 
   .contacts-form__agreement {
     align-items: center;
+  }
+}
+
+html.is-modal-open {
+  overflow: hidden;
+}
+
+.contacts-ambassador-modal {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  pointer-events: none;
+}
+
+.contacts-ambassador-modal[hidden] {
+  display: none;
+}
+
+.contacts-ambassador-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-primary-black, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.contacts-ambassador-modal__panel {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  width: min(560px, calc(100vw - 40px));
+  padding: 0;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  background: $color-surface;
+  color: $color-primary-black;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translateX(16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.contacts-ambassador-modal__panel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.contacts-ambassador-modal.is-open {
+  pointer-events: auto;
+
+  .contacts-ambassador-modal__backdrop,
+  .contacts-ambassador-modal__panel {
+    opacity: 1;
+  }
+
+  .contacts-ambassador-modal__panel {
+    transform: translateX(0);
+  }
+}
+
+.contacts-ambassador-modal__form,
+.contacts-ambassador-modal__success {
+  width: 100%;
+  min-height: 100%;
+  flex: 1 1 auto;
+}
+
+.contacts-ambassador-modal__form-screen {
+  width: 100%;
+  min-height: 100%;
+}
+
+.contacts-ambassador-modal__form-screen,
+.contacts-ambassador-modal__success {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px;
+}
+
+.contacts-ambassador-modal__form-screen[hidden],
+.contacts-ambassador-modal__success[hidden] {
+  display: none;
+}
+
+.contacts-ambassador-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contacts-ambassador-modal__header {
+  display: flex;
+  min-height: 38px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.contacts-ambassador-modal__title {
+  width: min(390px, 100%);
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-main;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+.contacts-ambassador-modal__close {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.contacts-ambassador-modal__lead,
+.contacts-ambassador-modal__success-copy p {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.contacts-ambassador-modal__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contacts-ambassador-modal__location-row,
+.contacts-ambassador-modal__phone-row {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.contacts-ambassador-modal__location-row > *,
+.contacts-ambassador-modal__phone-field {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.contacts-ambassador-modal__country {
+  display: inline-flex;
+  width: 76px;
+  height: 52px;
+  flex: 0 0 76px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: default;
+}
+
+.contacts-ambassador-modal__flag {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.contacts-ambassador-modal__country-arrow {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.contacts-ambassador-modal__textarea .uk-field {
+  min-height: 104px;
+}
+
+.contacts-ambassador-modal__agreement-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contacts-ambassador-modal__agreement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  line-height: 15px;
+  text-transform: uppercase;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.contacts-ambassador-modal__agreement-field.is-error .uk-checkbox {
+  border-color: $color-validation-error;
+}
+
+.contacts-ambassador-modal__agreement-error {
+  color: $color-validation-error;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: $font-weight-semibold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.contacts-ambassador-modal__submit {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-main;
+  font-size: 14px;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, opacity 0.18s ease;
+}
+
+.contacts-ambassador-modal__success-copy {
+  margin-top: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contacts-ambassador-modal__agreement:hover .uk-checkbox:not(:disabled) {
+    border-color: $color-primary-black;
+  }
+
+  .contacts-ambassador-modal__agreement:hover .uk-checkbox:not(:disabled):checked {
+    border-color: $color-black-hover;
+    background-color: $color-black-hover;
+  }
+
+  .contacts-ambassador-modal__close:hover,
+  .contacts-ambassador-modal__close:focus-visible {
+    background: $color-gray-hover;
+  }
+
+  .contacts-ambassador-modal__submit:hover,
+  .contacts-ambassador-modal__submit:focus-visible {
+    background: $color-black-hover;
+  }
+}
+
+.contacts-ambassador-modal__close:active {
+  background: $color-gray-pressed;
+}
+
+.contacts-ambassador-modal__submit:active {
+  background: $color-button-primary-pressed;
+}
+
+@media (max-width: calc($bp-lg - 1px)) {
+  .contacts-ambassador-modal__panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: none;
+    transform: translateY(16px);
+  }
+
+  .contacts-ambassador-modal__form-screen,
+  .contacts-ambassador-modal__success {
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .contacts-ambassador-modal.is-open .contacts-ambassador-modal__panel {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: $bp-md) and (max-height: 920px) {
+  .contacts-ambassador-modal__form-screen,
+  .contacts-ambassador-modal__success {
+    gap: 16px;
+  }
+
+  .contacts-ambassador-modal__content {
+    gap: 16px;
+  }
+
+  .contacts-ambassador-modal__fields {
+    gap: 8px;
+  }
+
+  .contacts-ambassador-modal__fields .uk-field,
+  .contacts-ambassador-modal__country {
+    height: 48px;
+    min-height: 48px;
+  }
+
+  .contacts-ambassador-modal__textarea .uk-field {
+    height: 64px;
+    min-height: 64px;
+  }
+}
+
+@media (max-width: calc($bp-md - 1px)) {
+  .contacts-ambassador-modal__content {
+    gap: 24px;
+  }
+
+  .contacts-ambassador-modal__location-row {
+    flex-direction: column;
+  }
+
+  .contacts-ambassador-modal__location-row > * {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .contacts-ambassador-modal__title {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .contacts-ambassador-modal__lead,
+  .contacts-ambassador-modal__success-copy p {
+    font-size: 12px;
+    line-height: 16px;
   }
 }
 @media (max-width: 360px) {

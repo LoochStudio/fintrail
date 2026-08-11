@@ -439,7 +439,7 @@
         </div>
         <div class="contacts-card__bottom">
           <p>Оставьте заявку,<br>и мы свяжемся с вами</p>
-          <a href="/ambassadors/">Перейти на страницу</a>
+          <button type="button" data-contacts-ambassador-open>Оставить заявку</button>
         </div>
       </article>
     </section>
@@ -496,6 +496,122 @@
       </aside>
     </section>
   </main>
+
+  <div class="contacts-ambassador-modal" id="contacts-ambassador-modal" hidden aria-hidden="true" data-contacts-ambassador-modal>
+    <div class="contacts-ambassador-modal__backdrop" data-contacts-ambassador-close></div>
+    <aside class="contacts-ambassador-modal__panel" role="dialog" aria-modal="true" aria-labelledby="contacts-ambassador-title">
+      <form class="contacts-ambassador-modal__form" action="#" method="post" novalidate data-contacts-ambassador-form>
+        <div class="contacts-ambassador-modal__form-screen" data-contacts-ambassador-form-screen>
+          <div class="contacts-ambassador-modal__content">
+            <header class="contacts-ambassador-modal__header">
+              <h2 class="contacts-ambassador-modal__title" id="contacts-ambassador-title">Готовы стать амбассадором FINNTRAIL?</h2>
+              <button class="contacts-ambassador-modal__close" type="button" aria-label="Закрыть форму" data-contacts-ambassador-close>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="contacts-ambassador-modal__lead">Заполните форму, и мы свяжемся с вами</p>
+
+            <div class="contacts-ambassador-modal__fields">
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-contacts-ambassador-field="name">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="text" name="name" placeholder="ФИО*" autocomplete="name" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить ФИО"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-contacts-ambassador-field="link">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="text" name="link" placeholder="Ссылка на канал или соцсети" autocomplete="url">
+                  <button class="uk-field__clear" type="button" aria-label="Очистить ссылку"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+
+              <div class="contacts-ambassador-modal__location-row">
+                <label class="uk-field-wrap uk-field--surface" data-input-field data-contacts-ambassador-field="country">
+                  <span class="uk-field">
+                    <input class="uk-field__input" type="text" name="country" placeholder="Страна" autocomplete="country-name">
+                    <button class="uk-field__clear" type="button" aria-label="Очистить страну"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                  </span>
+                  <span class="uk-field__caption" aria-live="polite"></span>
+                </label>
+                <label class="uk-field-wrap uk-field--surface" data-input-field data-contacts-ambassador-field="city">
+                  <span class="uk-field">
+                    <input class="uk-field__input" type="text" name="city" placeholder="Город" autocomplete="address-level2">
+                    <button class="uk-field__clear" type="button" aria-label="Очистить город"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                  </span>
+                  <span class="uk-field__caption" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <div class="contacts-ambassador-modal__phone-row">
+                <button class="contacts-ambassador-modal__country" type="button" aria-label="Страна: Россия">
+                  <svg class="contacts-ambassador-modal__flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="contacts-ambassador-modal__country-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+                </button>
+                <label class="uk-field-wrap uk-field--surface contacts-ambassador-modal__phone-field" data-input-field data-contacts-ambassador-field="phone">
+                  <span class="uk-field">
+                    <input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="Телефон*" autocomplete="tel" inputmode="numeric" required>
+                    <button class="uk-field__clear" type="button" aria-label="Очистить телефон"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                  </span>
+                  <span class="uk-field__caption" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-contacts-ambassador-field="email">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email">
+                  <button class="uk-field__clear" type="button" aria-label="Очистить электронную почту"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+
+              <label class="uk-field-wrap uk-field--surface uk-field--textarea contacts-ambassador-modal__textarea" data-input-field data-contacts-ambassador-field="about">
+                <span class="uk-field">
+                  <textarea class="uk-field__input" name="about" placeholder="Кратко опишите себя"></textarea>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить описание"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+
+              <label class="uk-field-wrap uk-field--surface uk-field--textarea contacts-ambassador-modal__textarea" data-input-field data-contacts-ambassador-field="motivation">
+                <span class="uk-field">
+                  <textarea class="uk-field__input" name="motivation" placeholder="Почему вы хотите стать амбассадором FINNTRAIL?"></textarea>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить ответ"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+            </div>
+
+            <div class="contacts-ambassador-modal__agreement-field" data-contacts-ambassador-field="agree">
+              <label class="contacts-ambassador-modal__agreement">
+                <input class="uk-checkbox" type="checkbox" name="agree" value="Y" required>
+                <span>Я соглашаюсь с <a href="/personal-data/">условиями обработки персональных данных</a></span>
+              </label>
+              <span class="contacts-ambassador-modal__agreement-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <button class="contacts-ambassador-modal__submit" type="submit">Отправить</button>
+        </div>
+      </form>
+
+      <section class="contacts-ambassador-modal__success" hidden data-contacts-ambassador-success>
+        <header class="contacts-ambassador-modal__header">
+          <h2 class="contacts-ambassador-modal__title">Заявка принята</h2>
+          <button class="contacts-ambassador-modal__close" type="button" aria-label="Закрыть сообщение" data-contacts-ambassador-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
+        </header>
+        <div class="contacts-ambassador-modal__success-copy">
+          <p>Спасибо! Мы рассмотрим заявку и свяжемся с вами.</p>
+        </div>
+        <button class="contacts-ambassador-modal__submit" type="button" data-contacts-ambassador-continue>Продолжить</button>
+      </section>
+    </aside>
+  </div>
+
   <footer class="footer-desktop product-footer" aria-label="Футер">
     <div class="footer-desktop__top">
       <nav class="footer-desktop__nav" aria-label="Навигация в футере">
