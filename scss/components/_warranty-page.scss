@@ -641,6 +641,7 @@
   align-items: center;
   justify-content: center;
   padding: 18px 24px;
+  border: 0;
   border-radius: 4px;
   background: $color-white;
   color: $color-primary-black;
@@ -650,19 +651,276 @@
   line-height: 12px;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
   transition: background 0.18s ease;
+}
+
+html.is-modal-open {
+  overflow: hidden;
+}
+
+.warranty-callback-modal {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  pointer-events: none;
+}
+
+.warranty-callback-modal[hidden] {
+  display: none;
+}
+
+.warranty-callback-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-primary-black, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.warranty-callback-modal__panel {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  width: min(520px, calc(100vw - 40px));
+  padding: 40px;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  background: $color-surface;
+  color: $color-primary-black;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translateX(16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.warranty-callback-modal.is-open {
+  pointer-events: auto;
+
+  .warranty-callback-modal__backdrop,
+  .warranty-callback-modal__panel {
+    opacity: 1;
+  }
+
+  .warranty-callback-modal__panel {
+    transform: translateX(0);
+  }
+}
+
+.warranty-callback-modal__form,
+.warranty-callback-modal__form-screen,
+.warranty-callback-modal__success {
+  width: 100%;
+  min-height: 100%;
+}
+
+.warranty-callback-modal__form-screen,
+.warranty-callback-modal__success {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.warranty-callback-modal__form-screen[hidden],
+.warranty-callback-modal__success[hidden] {
+  display: none;
+}
+
+.warranty-callback-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.warranty-callback-modal__header {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.warranty-callback-modal__title {
+  width: min(360px, 100%);
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-main;
+  font-size: 20px;
+  font-weight: $font-weight-black;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.warranty-callback-modal__close {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: pointer;
+  transition: background 0.18s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.warranty-callback-modal__lead,
+.warranty-callback-modal__success-copy p {
+  margin: 0;
+  color: $color-primary-black;
+  font-family: $font-mono;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-semibold;
+  line-height: $text-body-b1-line;
+  text-transform: uppercase;
+}
+
+.warranty-callback-modal__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.warranty-callback-modal__phone-row {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.warranty-callback-modal__phone-field {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.warranty-callback-modal__country {
+  display: inline-flex;
+  width: 76px;
+  height: 52px;
+  flex: 0 0 76px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-white;
+  color: $color-primary-black;
+  cursor: default;
+}
+
+.warranty-callback-modal__flag {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.warranty-callback-modal__country-arrow {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.warranty-callback-modal__agreement-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.warranty-callback-modal__agreement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $color-gray-primary;
+  font-family: $font-mono;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  line-height: 15px;
+  text-transform: uppercase;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .warranty-callback-modal__agreement:hover .uk-checkbox:not(:disabled) {
+    border-color: $color-primary-black;
+  }
+
+  .warranty-callback-modal__agreement:hover .uk-checkbox:not(:disabled):checked {
+    border-color: $color-black-hover;
+    background-color: $color-black-hover;
+  }
+}
+
+.warranty-callback-modal__agreement-field.is-error .uk-checkbox {
+  border-color: $color-validation-error;
+}
+
+.warranty-callback-modal__agreement-error {
+  color: $color-validation-error;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: $font-weight-semibold;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.warranty-callback-modal__submit {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px;
+  border: 0;
+  border-radius: $radius-xs;
+  background: $color-primary-black;
+  color: $color-white;
+  font-family: $font-main;
+  font-size: $text-body-b1-size;
+  font-weight: $font-weight-extrabold;
+  line-height: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.warranty-callback-modal__success-copy {
+  margin-top: 2px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .warranty-form__country:hover,
   .warranty-form__upload:hover,
   .warranty-help__button:hover,
-  .warranty-help__button:focus-visible {
+  .warranty-help__button:focus-visible,
+  .warranty-callback-modal__close:hover,
+  .warranty-callback-modal__close:focus-visible {
     background: $color-gray-hover;
   }
 
   .warranty-form__submit:hover,
-  .warranty-form__submit:focus-visible {
+  .warranty-form__submit:focus-visible,
+  .warranty-callback-modal__submit:hover,
+  .warranty-callback-modal__submit:focus-visible {
     background: $color-black-hover;
   }
 
@@ -682,6 +940,21 @@
 }
 
 @media (max-width: 1279px) {
+  .warranty-callback-modal__panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: none;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    transform: translateY(16px);
+  }
+
+  .warranty-callback-modal.is-open .warranty-callback-modal__panel {
+    transform: translateY(0);
+  }
+
   .warranty-page {
     padding-top: 40px;
   }
@@ -713,6 +986,14 @@
   .warranty-page__service-grid {
     gap: 48px;
   }
+}
+
+.warranty-callback-modal__close:active {
+  background: $color-gray-pressed;
+}
+
+.warranty-callback-modal__submit:active {
+  background: $color-button-primary-pressed;
 }
 @media (min-width: $bp-md) and (max-width: calc($bp-lg - 1px)) {
   .warranty-page {
@@ -857,6 +1138,27 @@
   }
 }
 @media (max-width: 767px) {
+  .warranty-callback-modal__header {
+    min-height: 28px;
+    align-items: flex-start;
+  }
+
+  .warranty-callback-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .warranty-callback-modal__close {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+    padding: 4px;
+  }
+
+  .warranty-callback-modal__content {
+    gap: 32px;
+  }
+
   .warranty-page {
     padding: 20px 0 0;
   }

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Обращения</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -483,19 +483,22 @@
       Привязка к пользователю: автоматически через сессию
     -->
     <section class="support-form" aria-label="Форма обращения">
-      <form class="support-form__inner" method="post" action="">
+      <form class="support-form__inner" method="post" action="" enctype="multipart/form-data" data-support-form>
+        <input type="hidden" name="topic" value="Гарантийное обслуживание" data-support-topic-value>
+
         <!-- BITRIX: список доступных тем обращений — справочник из настроек компонента -->
         <div class="support-form__topics" role="group" aria-label="Тема обращения">
-          <button class="support-form__topic is-active" type="button">Гарантийное обслуживание</button>
-          <button class="support-form__topic" type="button">Уход за экипировкой</button>
-          <button class="support-form__topic" type="button">Ремонт экипировки</button>
-          <button class="support-form__topic" type="button">Брак экипировки</button>
-          <button class="support-form__topic" type="button">Запрос о статусе обращения</button>
-          <button class="support-form__topic" type="button">Другое</button>
+          <button class="support-form__topic is-active" type="button" aria-pressed="true">Гарантийное обслуживание</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Уход за экипировкой</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Ремонт экипировки</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Брак экипировки</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Запрос о статусе обращения</button>
+          <button class="support-form__topic" type="button" aria-pressed="false">Другое</button>
         </div>
 
         <textarea
           class="support-form__textarea"
+          name="message"
           placeholder="Опишите, что у вас случилось"
           aria-label="Описание обращения"
           rows="5"
@@ -503,11 +506,28 @@
 
         <div class="support-form__actions">
           <button class="support-form__submit button button--primary button--size-m" type="submit">Отправить</button>
-          <button class="support-form__attach button button--ghost button--size-m" type="button">
+          <input
+            class="support-form__file-input"
+            id="support-form-files"
+            type="file"
+            name="files[]"
+            accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+            multiple
+            data-support-files
+          >
+          <button
+            class="support-form__attach button button--ghost button--size-m"
+            type="button"
+            aria-controls="support-form-files"
+            data-support-files-open
+          >
             <span>Добавить файлы</span>
             <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-rec-plus"></use></svg>
           </button>
         </div>
+
+        <p class="support-form__file-status" role="status" aria-live="polite" hidden data-support-files-status></p>
+        <ul class="support-form__files" aria-label="Прикреплённые файлы" hidden data-support-files-list></ul>
       </form>
     </section>
 
@@ -556,6 +576,106 @@
               <?= $arTicket['ANSWER_TEXT'] ?>
             -->
             <div class="support-history__panel" id="support-ticket-1">
+              <!--
+                BITRIX: вложения первого сообщения тикета.
+                Для изображения подставить URL и превью файла, для документа — URL, имя, расширение и размер.
+              -->
+              <div class="support-history__attachments" aria-label="Вложения к обращению">
+                <p class="support-history__attachments-title">Вложения</p>
+                <ul class="support-history__attachment-list">
+                  <li class="support-history__attachment">
+                    <a
+                      class="support-history__attachment-link support-history__attachment-link--image"
+                      href="/fintrail/images/content/product/review-photo-1.png"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Открыть фотографию defect-jacket.jpg"
+                    >
+                      <span class="support-history__attachment-preview" aria-hidden="true">
+                        <img
+                          src="/fintrail/images/content/product/review-photo-1.png"
+                          srcset="/fintrail/images/content/_responsive/product/review-photo-1-80.png 80w, /fintrail/images/content/_responsive/product/review-photo-1-160.png 160w, /fintrail/images/content/_responsive/product/review-photo-1-320.png 320w, /fintrail/images/content/product/review-photo-1.png 694w"
+                          sizes="112px"
+                          alt=""
+                          width="128"
+                          height="128"
+                          loading="lazy"
+                        >
+                      </span>
+                      <span class="support-history__attachment-copy">
+                        <span class="support-history__attachment-name">defect-jacket.jpg</span>
+                        <span class="support-history__attachment-size">1,8 МБ</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="support-history__attachment">
+                    <a
+                      class="support-history__attachment-link support-history__attachment-link--image"
+                      href="/fintrail/images/content/product/review-photo-2.png"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Открыть фотографию defect-sleeve.jpg"
+                    >
+                      <span class="support-history__attachment-preview" aria-hidden="true">
+                        <img
+                          src="/fintrail/images/content/product/review-photo-2.png"
+                          srcset="/fintrail/images/content/_responsive/product/review-photo-2-80.png 80w, /fintrail/images/content/_responsive/product/review-photo-2-160.png 160w, /fintrail/images/content/_responsive/product/review-photo-2-320.png 320w, /fintrail/images/content/product/review-photo-2.png 694w"
+                          sizes="112px"
+                          alt=""
+                          width="128"
+                          height="128"
+                          loading="lazy"
+                        >
+                      </span>
+                      <span class="support-history__attachment-copy">
+                        <span class="support-history__attachment-name">defect-sleeve.jpg</span>
+                        <span class="support-history__attachment-size">2,1 МБ</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="support-history__attachment">
+                    <a
+                      class="support-history__attachment-link support-history__attachment-link--image"
+                      href="/fintrail/images/content/product/review-photo-3.png"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Открыть фотографию product-label.jpg"
+                    >
+                      <span class="support-history__attachment-preview" aria-hidden="true">
+                        <img
+                          src="/fintrail/images/content/product/review-photo-3.png"
+                          srcset="/fintrail/images/content/_responsive/product/review-photo-3-80.png 80w, /fintrail/images/content/_responsive/product/review-photo-3-160.png 160w, /fintrail/images/content/_responsive/product/review-photo-3-320.png 320w, /fintrail/images/content/product/review-photo-3.png 694w"
+                          sizes="112px"
+                          alt=""
+                          width="128"
+                          height="128"
+                          loading="lazy"
+                        >
+                      </span>
+                      <span class="support-history__attachment-copy">
+                        <span class="support-history__attachment-name">product-label.jpg</span>
+                        <span class="support-history__attachment-size">1,2 МБ</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="support-history__attachment">
+                    <a
+                      class="support-history__attachment-link support-history__attachment-link--document"
+                      href="/fintrail/files/chek-pokupki.pdf"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Открыть документ чек-покупки.pdf"
+                    >
+                      <span class="support-history__attachment-preview support-history__attachment-preview--document" aria-hidden="true">PDF</span>
+                      <span class="support-history__attachment-copy">
+                        <span class="support-history__attachment-name">чек-покупки.pdf</span>
+                        <span class="support-history__attachment-size">486 КБ</span>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               <div class="support-history__response">
                 <div class="support-history__avatar support-history__avatar--staff" aria-hidden="true">
                   <!-- BITRIX: аватар пользователя, создавшего обращение -->

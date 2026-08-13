@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Личный кабинет</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -1456,6 +1456,7 @@
   <div class="review-form-modal" id="review-form-modal" hidden data-review-form-modal>
     <div class="review-form-modal__backdrop" data-review-form-close></div>
     <aside class="review-form-modal__panel" role="dialog" aria-modal="true" aria-labelledby="review-form-title">
+      <form class="review-form-modal__bitrix-form" action="" method="post" enctype="multipart/form-data" data-review-form-bitrix>
 
       <div class="review-form-modal__top">
         <header class="review-form-modal__header">
@@ -1489,15 +1490,16 @@
             <button class="review-form-modal__star" type="button" data-value="5" aria-label="Оценить на 5"></button>
           </div>
           <span class="review-form-modal__rating-value" data-review-form-rating>4</span>
+          <input type="hidden" name="rating" value="4" data-review-form-rating-input>
         </div>
 
         <!-- BITRIX: поля формы отзыва — при редактировании предзаполняются из $arReview (AUTHOR_NAME, PROS, CONS, DETAIL_TEXT) -->
         <div class="review-form-modal__fields">
           <!-- BITRIX: имя автора — <?= $arUser["NAME"] ?> (предзаполнено из профиля) -->
-          <input class="review-form-modal__field" type="text" placeholder="Имя" autocomplete="name" aria-label="Имя">
-          <input class="review-form-modal__field" type="text" placeholder="Достоинства" aria-label="Достоинства">
-          <input class="review-form-modal__field" type="text" placeholder="Недостатки" aria-label="Недостатки">
-          <textarea class="review-form-modal__field review-form-modal__field--textarea" placeholder="Комментарий" aria-label="Комментарий"></textarea>
+          <input class="review-form-modal__field" type="text" name="author_name" placeholder="Имя" autocomplete="name" aria-label="Имя">
+          <input class="review-form-modal__field" type="text" name="pros" placeholder="Достоинства" aria-label="Достоинства">
+          <input class="review-form-modal__field" type="text" name="cons" placeholder="Недостатки" aria-label="Недостатки">
+          <textarea class="review-form-modal__field review-form-modal__field--textarea" name="comment" placeholder="Комментарий" aria-label="Комментарий"></textarea>
         </div>
 
         <div class="review-form-modal__size-fit">
@@ -1514,10 +1516,12 @@
               <span>Маломерит</span>
             </button>
           </div>
+          <input type="hidden" name="size_fit" value="fits" data-review-form-size-input>
         </div>
 
-        <div class="review-form-modal__upload">
-          <button class="review-form-modal__upload-btn" type="button" aria-label="Загрузить файлы">
+        <div class="review-form-modal__upload" data-file-picker data-file-max="8" data-file-max-size="2">
+          <input class="file-picker__input" type="file" name="review_files[]" accept="image/*,video/*" multiple data-file-picker-input>
+          <button class="review-form-modal__upload-btn" type="button" aria-label="Загрузить файлы" data-file-picker-trigger>
             <svg width="16" height="16" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-upload-arrow"></use></svg>
           </button>
           <div class="review-form-modal__upload-text">
@@ -1528,10 +1532,10 @@
       </div>
 
       <!-- BITRIX: кнопка отправки — POST на Ajax-обработчик или bitrix:form.result.new; при редактировании передаётся ID существующего отзыва -->
-      <button class="review-form-modal__submit button button--primary button--size-l" type="button">
+      <button class="review-form-modal__submit button button--primary button--size-l" type="submit">
         Отправить отзыв
       </button>
-
+      </form>
     </aside>
   </div>
 

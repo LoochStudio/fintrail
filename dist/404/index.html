@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail — Страница не найдена</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body class="page-404-body">
   <header class="catalog-header gift-card-order-header" data-header-mega-root>
@@ -408,17 +408,30 @@
           </div>
           <div class="auth-modal__mid">
             <div class="auth-modal__form-group">
-              <div class="auth-modal__phone-field" data-input-field>
-                <div class="auth-modal__phone-row">
-                  <input class="auth-modal__input js-phone-input" type="tel" placeholder="+7" autocomplete="tel" inputmode="numeric" aria-describedby="auth-phone-caption" data-auth-phone-input>
+              <div class="auth-modal__submit-group">
+                <div class="auth-modal__phone-field" data-input-field>
+                  <div class="auth-modal__phone-row">
+                    <button class="auth-modal__country" type="button" aria-label="Код страны: Россия">
+                      <svg class="auth-modal__country-flag" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                      <svg class="auth-modal__country-arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+                    </button>
+                    <input class="auth-modal__input js-phone-input" type="tel" placeholder="+7" autocomplete="tel" inputmode="numeric" aria-describedby="auth-phone-caption" data-auth-phone-input>
+                  </div>
+                  <span class="auth-modal__caption" id="auth-phone-caption" aria-live="polite"></span>
                 </div>
-                <span class="auth-modal__caption" id="auth-phone-caption" aria-live="polite"></span>
+                <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-phone-submit>Отправить код</button>
               </div>
-              <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-phone-submit>Отправить код</button>
-              <label class="auth-modal__agreement">
-                <input class="auth-modal__agree-input" type="checkbox" autocomplete="off">
-                <span class="auth-modal__agree-text">Соглашаюсь с&nbsp;<a class="auth-modal__link" href="/fintrail/legal/terms/">условиями использования</a> и&nbsp;<a class="auth-modal__link" href="/fintrail/legal/privacy/">условиями обработки</a> персональных данных</span>
-              </label>
+              <div class="auth-modal__agreements" data-auth-consents>
+                <label class="auth-modal__agreement">
+                  <input class="auth-modal__agree-input" type="checkbox" autocomplete="off" checked data-auth-personal-consent>
+                  <span class="auth-modal__agree-text">Даю согласие на <a class="auth-modal__link" href="/fintrail/legal/privacy/">обработку персональных данных</a></span>
+                </label>
+                <label class="auth-modal__agreement">
+                  <input class="auth-modal__agree-input" type="checkbox" autocomplete="off" checked data-auth-marketing-consent>
+                  <span class="auth-modal__agree-text">Даю согласие на получение маркетинговой рассылки</span>
+                </label>
+                <span class="auth-modal__caption auth-modal__caption--standalone" hidden aria-live="polite" data-auth-consent-error></span>
+              </div>
             </div>
             <div class="auth-modal__oauth" aria-label="Войти через">
               <a class="auth-modal__oauth-btn" href="/fintrail/auth/vk/" aria-label="Войти через VK ID">
@@ -433,7 +446,6 @@
             </div>
           </div>
         </div>
-        <button class="auth-modal__btn auth-modal__btn--secondary" type="button" data-auth-to-email>Войти через эл. почту</button>
       </div>
 
       <!-- Экран 2: ввод кода из SMS -->
@@ -474,80 +486,44 @@
         <button class="auth-modal__btn auth-modal__btn--secondary" type="button" hidden data-auth-resend>Получить новый код</button>
       </div>
 
-      <!-- Экран 3: ввод email -->
-      <div class="auth-modal__screen" data-auth-screen="email" hidden>
-        <div class="auth-modal__top">
+      <!-- Экран 3: регистрационные данные нового пользователя -->
+      <div class="auth-modal__screen" data-auth-screen="registration" hidden>
+        <div class="auth-modal__registration-content">
           <div class="auth-modal__header-section">
             <header class="auth-modal__header">
-              <h2 class="auth-modal__title">Введите Email</h2>
+              <h2 class="auth-modal__title">Введите ваши имя и email</h2>
               <button class="auth-modal__icon-btn" type="button" aria-label="Закрыть" data-auth-close>
                 <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
               </button>
             </header>
-            <p class="auth-modal__subtitle">Мы отправим код по указанному адресу электронной почты</p>
+            <p class="auth-modal__subtitle">Чтобы мы знали как к вам обращаться в дальнейшем</p>
             <div class="auth-modal__divider" aria-hidden="true"></div>
           </div>
-          <div class="auth-modal__mid">
-            <div class="auth-modal__form-group">
-              <input class="auth-modal__input" type="email" placeholder="Электронная почта" autocomplete="email" data-auth-email-input>
-              <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-email-submit>Отправить код</button>
+          <div class="auth-modal__registration-body">
+            <div class="auth-modal__registration-form">
+              <div class="auth-modal__field">
+                <input class="auth-modal__input" type="text" placeholder="Ваше имя" autocomplete="name" aria-describedby="auth-registration-name-caption" data-auth-registration-name>
+                <span class="auth-modal__caption auth-modal__caption--standalone" id="auth-registration-name-caption" hidden aria-live="polite" data-auth-registration-name-error></span>
+              </div>
+              <div class="auth-modal__field">
+                <input class="auth-modal__input" type="email" placeholder="Email (не обязательно)" autocomplete="email" aria-describedby="auth-registration-email-caption" data-auth-registration-email>
+                <span class="auth-modal__caption auth-modal__caption--standalone" id="auth-registration-email-caption" hidden aria-live="polite" data-auth-registration-email-error></span>
+              </div>
+            </div>
+            <div class="auth-modal__agreements">
               <label class="auth-modal__agreement">
-                <input class="auth-modal__agree-input" type="checkbox" autocomplete="off">
-                <span class="auth-modal__agree-text">Соглашаюсь с&nbsp;<a class="auth-modal__link" href="/fintrail/legal/terms/">условиями использования</a> и&nbsp;<a class="auth-modal__link" href="/fintrail/legal/privacy/">условиями обработки</a> персональных данных</span>
+                <input class="auth-modal__agree-input" type="checkbox" autocomplete="off" checked data-auth-registration-marketing-consent>
+                <span class="auth-modal__agree-text">Даю согласие на получение маркетинговой рассылки</span>
               </label>
-            </div>
-            <div class="auth-modal__oauth" aria-label="Войти через">
-              <a class="auth-modal__oauth-btn" href="/fintrail/auth/vk/" aria-label="Войти через VK ID">
-                <svg aria-hidden="true" width="24" height="24"><use href="/fintrail/images/icons/sprite.svg#icon-login-vk-color"></use></svg>
-              </a>
-              <a class="auth-modal__oauth-btn" href="/fintrail/auth/yandex/" aria-label="Войти через Яндекс ID">
-                <svg aria-hidden="true" width="24" height="24"><use href="/fintrail/images/icons/sprite.svg#icon-login-yandex-color"></use></svg>
-              </a>
-              <a class="auth-modal__oauth-btn" href="/fintrail/auth/sber/" aria-label="Войти через Сбер ID">
-                <svg aria-hidden="true" width="24" height="24"><use href="/fintrail/images/icons/sprite.svg#icon-login-sber-color"></use></svg>
-              </a>
+              <label class="auth-modal__agreement">
+                <input class="auth-modal__agree-input" type="checkbox" autocomplete="off" checked data-auth-offer-consent>
+                <span class="auth-modal__agree-text">Даю согласие условия публичной оферты</span>
+              </label>
+              <span class="auth-modal__caption auth-modal__caption--standalone" hidden aria-live="polite" data-auth-registration-consent-error></span>
             </div>
           </div>
         </div>
-        <button class="auth-modal__btn auth-modal__btn--secondary" type="button" data-auth-to-phone>Войти по номеру телефона</button>
-      </div>
-
-      <!-- Экран 4: ввод кода из письма -->
-      <div class="auth-modal__screen" data-auth-screen="email-code" hidden>
-        <div class="auth-modal__top">
-          <div class="auth-modal__header-section">
-            <header class="auth-modal__header">
-              <button class="auth-modal__icon-btn auth-modal__icon-btn--back" type="button" aria-label="Назад" data-auth-back>
-                <svg class="auth-modal__back-icon-desk" aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-arrow-right"></use></svg>
-                <svg class="auth-modal__back-icon-mob" aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-sort-arrow"></use></svg>
-                <span class="auth-modal__back-label" aria-hidden="true">Назад</span>
-              </button>
-              <h2 class="auth-modal__title">Введите код из письма</h2>
-              <button class="auth-modal__icon-btn" type="button" aria-label="Закрыть" data-auth-close>
-                <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
-              </button>
-            </header>
-            <p class="auth-modal__subtitle">
-              Введите код, который мы выслали на почту <strong data-auth-email-display></strong>
-            </p>
-            <div class="auth-modal__divider" aria-hidden="true"></div>
-          </div>
-          <div class="auth-modal__otp-section">
-            <div class="auth-modal__otp" role="group" aria-label="Код подтверждения" data-auth-otp>
-              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 1" autocomplete="one-time-code">
-              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 2">
-              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 3">
-              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 4">
-              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 5">
-              <input class="auth-modal__otp-cell" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="–" aria-label="Цифра 6">
-            </div>
-            <p class="auth-modal__otp-error" hidden data-auth-otp-error>Неверный код</p>
-            <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-email-code-submit>Отправить код</button>
-            <p class="auth-modal__resend-hint" data-auth-resend-hint>
-              Получить новый код<br>через <span data-auth-timer>28</span>&nbsp;секунд
-            </p>
-          </div>
-        </div>
+        <button class="auth-modal__btn auth-modal__btn--primary" type="button" data-auth-registration-submit>Сохранить</button>
       </div>
 
     </div>

@@ -1223,6 +1223,17 @@
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .vacancy-response__consent:hover .vacancy-response__consent-input:not(:disabled) {
+    border-color: $color-primary-black;
+  }
+
+  .vacancy-response__consent:hover .vacancy-response__consent-input:not(:disabled):checked {
+    border-color: $color-black-hover;
+    background-color: $color-black-hover;
+  }
+}
+
 .vacancy-response__consent-text {
   color: $color-content-text-primary;
   font-family: $font-mono;

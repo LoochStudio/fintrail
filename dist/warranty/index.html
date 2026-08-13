@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail — Гарантия и сервис</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body class="warranty-page-body delivery-page-body">
   <header class="delivery-header vacancies-header hero is-header-dark is-header-compact" data-header-mega-root>
@@ -399,7 +399,7 @@
               <h1 class="delivery-page__title warranty-page__title" id="warranty-title">Гарантия и сервис</h1>
               <p class="warranty-page__lead">Все обращения по гарантии принимаются только напрямую от конечных покупателей. Покупателю необходимо сохранить кассовый чек, подтверждающий дату покупки</p>
             </div>
-            <button class="delivery-page__share warranty-page__share" type="button" aria-label="Поделиться страницей">
+            <button class="delivery-page__share warranty-page__share" type="button" aria-label="Скопировать ссылку на страницу" data-copy-link>
               <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-share"></use></svg>
               <span>Поделиться</span>
             </button>
@@ -469,7 +469,7 @@
       </header>
 
       <div class="warranty-page__service-grid">
-        <form class="warranty-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+        <form class="warranty-form" action="#" method="post" enctype="multipart/form-data" novalidate data-warranty-form>
           <fieldset class="warranty-form__group">
             <legend class="warranty-form__legend">Контактная информация</legend>
             <div class="warranty-form__radio-row" role="radiogroup" aria-label="Тип покупателя">
@@ -477,14 +477,17 @@
               <label class="warranty-form__radio"><input class="uk-radio" type="radio" name="client-type" value="company"><span>Юридическое лицо</span></label>
             </div>
             <div class="warranty-form__fields warranty-form__fields--compact">
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="first-name" placeholder="Имя" autocomplete="given-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="first_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="first_name" placeholder="Имя" autocomplete="given-name" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="last-name" placeholder="Фамилия" autocomplete="family-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="last_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="last_name" placeholder="Фамилия" autocomplete="family-name" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="middle-name" placeholder="Отчество" autocomplete="additional-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="middle_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="middle_name" placeholder="Отчество" autocomplete="additional-name"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
             </div>
             <div class="warranty-form__fields warranty-form__fields--compact">
@@ -493,12 +496,14 @@
                   <svg class="warranty-form__flag" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
                   <svg class="warranty-form__country-arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
                 </button>
-                <label class="uk-field-wrap uk-field--surface warranty-form__field warranty-form__field--phone" data-input-field>
-                  <span class="uk-field"><input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <label class="uk-field-wrap uk-field--surface warranty-form__field warranty-form__field--phone" data-input-field data-warranty-field="phone">
+                  <span class="uk-field"><input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                  <span class="uk-field__caption"></span>
                 </label>
               </div>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="email">
+                <span class="uk-field"><input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
             </div>
           </fieldset>
@@ -506,21 +511,25 @@
           <fieldset class="warranty-form__group warranty-form__group--product">
             <legend class="warranty-form__legend">Информация о&nbsp;товаре</legend>
             <div class="warranty-form__fields warranty-form__fields--compact">
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="product-name" placeholder="Наименование товара"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="product_name">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="product_name" placeholder="Наименование товара" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase-place" placeholder="Место приобритения"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="purchase_place">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase_place" placeholder="Место приобретения" required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field>
-                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase-date" placeholder="Когда куплен"><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface warranty-form__field" data-input-field data-warranty-field="purchase_date">
+                <span class="uk-field"><input class="uk-field__input" type="text" name="purchase_date" placeholder="Когда куплен" inputmode="numeric" data-date-mask required><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
-              <label class="uk-field-wrap uk-field--surface uk-field--textarea warranty-form__field" data-input-field>
-                <span class="uk-field"><textarea class="uk-field__input" name="defects" placeholder="Опишите дефекты"></textarea><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+              <label class="uk-field-wrap uk-field--surface uk-field--textarea warranty-form__field" data-input-field data-warranty-field="defects">
+                <span class="uk-field"><textarea class="uk-field__input" name="defects" placeholder="Опишите дефекты" required></textarea><button class="uk-field__clear" type="button" aria-label="Очистить поле"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button></span>
+                <span class="uk-field__caption"></span>
               </label>
             </div>
-            <label class="warranty-form__upload">
-              <input type="file" name="photos" multiple accept="image/*">
+            <label class="warranty-form__upload" data-file-picker data-file-max="5" data-file-max-size="10">
+              <input class="file-picker__input" type="file" name="photos[]" multiple accept=".jpg,.jpeg,.png" data-file-picker-input>
               <span class="warranty-form__upload-btn" aria-hidden="true"><svg><use href="/fintrail/images/icons/sprite.svg#icon-hero-arrow-right"></use></svg></span>
               <span class="warranty-form__upload-copy"><strong>Загрузить фотографии</strong><small>Не более 5 файлов</small></span>
             </label>
@@ -551,12 +560,88 @@
           </div>
           <div class="warranty-help__callback">
             <p>Наш менеджер проконсультирует вас по&nbsp;дальнейшим действиям</p>
-            <a class="warranty-help__button" href="/fintrail/callback/">Заказать обратный звонок</a>
+            <button class="warranty-help__button" type="button" data-callback-request data-callback-source="warranty">Заказать обратный звонок</button>
           </div>
         </aside>
       </div>
     </section>
   </main>
+
+  <!-- BITRIX: submit to /api/v1/callback/requests/warranty with a valid session token. -->
+  <div class="warranty-callback-modal" id="warranty-callback-modal" hidden aria-hidden="true" data-warranty-callback-modal>
+    <div class="warranty-callback-modal__backdrop" data-warranty-callback-close></div>
+    <aside class="warranty-callback-modal__panel" role="dialog" aria-modal="true" aria-labelledby="warranty-callback-title">
+      <form class="warranty-callback-modal__form" action="#" method="post" novalidate data-warranty-callback-form>
+        <div class="warranty-callback-modal__form-screen" data-warranty-callback-form-screen>
+          <div class="warranty-callback-modal__content">
+            <header class="warranty-callback-modal__header">
+              <h2 class="warranty-callback-modal__title" id="warranty-callback-title">Заказать обратный звонок</h2>
+              <button class="warranty-callback-modal__close" type="button" aria-label="Закрыть форму" data-warranty-callback-close>
+                <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="warranty-callback-modal__lead">Оставьте контакты, и наш менеджер проконсультирует вас по дальнейшим действиям</p>
+
+            <div class="warranty-callback-modal__fields">
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-warranty-callback-field="name">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="text" name="name" placeholder="Имя" autocomplete="given-name" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить имя"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+
+              <div class="warranty-callback-modal__phone-row">
+                <button class="warranty-callback-modal__country" type="button" aria-label="Страна: Россия">
+                  <svg class="warranty-callback-modal__flag" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="warranty-callback-modal__country-arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+                </button>
+                <label class="uk-field-wrap uk-field--surface warranty-callback-modal__phone-field" data-input-field data-warranty-callback-field="phone">
+                  <span class="uk-field">
+                    <input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric" required>
+                    <button class="uk-field__clear" type="button" aria-label="Очистить телефон"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                  </span>
+                  <span class="uk-field__caption" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-warranty-callback-field="email">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить электронную почту"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+            </div>
+
+            <div class="warranty-callback-modal__agreement-field" data-warranty-callback-field="agree">
+              <label class="warranty-callback-modal__agreement">
+                <input class="uk-checkbox" type="checkbox" name="agree" value="Y" required>
+                <span>Я соглашаюсь с <a href="/fintrail/personal-data/">условиями обработки персональных данных</a></span>
+              </label>
+              <span class="warranty-callback-modal__agreement-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <button class="warranty-callback-modal__submit" type="submit">Заказать звонок</button>
+        </div>
+      </form>
+
+      <section class="warranty-callback-modal__success" hidden data-warranty-callback-success>
+        <header class="warranty-callback-modal__header">
+          <h2 class="warranty-callback-modal__title">Заявка принята</h2>
+          <button class="warranty-callback-modal__close" type="button" aria-label="Закрыть сообщение" data-warranty-callback-close>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
+        </header>
+        <div class="warranty-callback-modal__success-copy">
+          <p>Спасибо! Наш менеджер свяжется с вами в ближайшее время.</p>
+        </div>
+        <button class="warranty-callback-modal__submit" type="button" data-warranty-callback-continue>Продолжить</button>
+      </section>
+    </aside>
+  </div>
+
   <footer class="footer-desktop product-footer" aria-label="Футер">
     <div class="footer-desktop__top">
       <nav class="footer-desktop__nav" aria-label="Навигация в футере">

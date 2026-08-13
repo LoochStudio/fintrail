@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Корзина</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -438,8 +438,7 @@
           </nav>
           <h1>Корзина <span class="cart-page__count">14</span></h1>
           <div class="cart-page__actions">
-            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg><span>Удалить корзину</span></button>
-            <button type="button"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-share"></use></svg><span>Поделиться</span></button>
+            <button type="button" data-cart-clear-open><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg><span>Очистить корзину</span></button>
           </div>
         </div>
       </div>
@@ -478,14 +477,15 @@
             <button class="cart-delivery__option" type="button" data-cart-address-open>
               <div>
                 <svg class="cart-delivery__icon" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-location"></use></svg>
-                <p class="cart-delivery__primary" data-cart-address-summary>Указать адрес</p>
+                <p class="cart-delivery__primary" data-cart-address-summary>Москва, ул. Тверская, д. 12, кв. 45</p>
               </div>
               <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
             </button>
             <button class="cart-delivery__option" type="button" data-cart-recipient-open>
               <div>
                 <svg class="cart-delivery__icon" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-profile"></use></svg>
-                <p class="cart-delivery__primary">Добавить получателя</p>
+                <p class="cart-delivery__primary" data-cart-recipient-name>Константин Константинопольский</p>
+                <small data-cart-recipient-phone>+7 (999) 999-66-33</small>
               </div>
               <svg class="cart-delivery__arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-arrow-nav"></use></svg>
             </button>
@@ -511,8 +511,10 @@
                   <div class="cart-item__old-row"><del>32 999 ₽</del></div>
                   <span class="cart-item__price-new">25 799 ₽</span>
                 </div>
-                <div class="cart-item__qty" aria-label="Количество товара">
-                  <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
+                <div class="cart-item__qty" aria-label="Количество товара" data-cart-quantity>
+                  <button type="button" aria-label="Уменьшить количество" data-cart-quantity-decrease><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button>
+                  <input class="cart-item__qty-input" type="number" inputmode="numeric" min="1" max="99" step="1" value="1" aria-label="Количество товара" data-cart-quantity-input>
+                  <button type="button" aria-label="Увеличить количество" data-cart-quantity-increase><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
                 </div>
               </div>
             </div>
@@ -536,8 +538,10 @@
                   <div class="cart-item__old-row"><del>24 999 ₽</del><span class="cart-item__discount">−10%</span></div>
                   <span class="cart-item__price-new">12 699 ₽</span>
                 </div>
-                <div class="cart-item__qty" aria-label="Количество товара">
-                  <button type="button" aria-label="Уменьшить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button><span>1</span><button type="button" aria-label="Увеличить"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
+                <div class="cart-item__qty" aria-label="Количество товара" data-cart-quantity>
+                  <button type="button" aria-label="Уменьшить количество" data-cart-quantity-decrease><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-minus"></use></svg></button>
+                  <input class="cart-item__qty-input" type="number" inputmode="numeric" min="1" max="99" step="1" value="1" aria-label="Количество товара" data-cart-quantity-input>
+                  <button type="button" aria-label="Увеличить количество" data-cart-quantity-increase><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-plus"></use></svg></button>
                 </div>
               </div>
             </div>
@@ -872,12 +876,55 @@
     <button class="cart-recipient-modal__backdrop" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close></button>
     <div class="cart-recipient-modal__panel" role="document">
       <div class="cart-recipient-modal__header">
-        <h2 class="cart-recipient-modal__title" id="cart-recipient-title">Данные<br>получателя</h2>
+        <button class="cart-recipient-modal__back" type="button" aria-label="Вернуться к сохраненным получателям" data-cart-recipient-back hidden>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+        </button>
+        <h2 class="cart-recipient-modal__title" id="cart-recipient-title" data-cart-recipient-title>Получатель</h2>
         <button class="cart-recipient-modal__close js-modal-close" type="button" aria-label="Закрыть данные получателя" data-cart-recipient-close>
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
         </button>
       </div>
-      <form class="cart-recipient-modal__form" novalidate>
+      <div class="cart-saved-list" data-cart-recipient-list-view>
+        <div class="cart-saved-list__items" role="radiogroup" aria-label="Сохраненные получатели">
+          <article class="cart-saved-list__item is-selected" data-cart-recipient-option data-recipient-id="recipient-1" data-recipient-first-name="Константин" data-recipient-last-name="Константинопольский" data-recipient-phone="+7 (999) 999-66-33" data-recipient-email="konstantin@example.ru">
+            <label class="cart-saved-list__choice">
+              <input class="cart-saved-list__radio" type="radio" name="saved-recipient" value="recipient-1" checked>
+              <span class="cart-saved-list__radio-control" aria-hidden="true"></span>
+              <span class="cart-saved-list__content">
+                <span class="cart-saved-list__heading">Константин Константинопольский</span>
+                <span class="cart-saved-list__meta">+7 (999) 999-66-33</span>
+                <span class="cart-saved-list__meta">konstantin@example.ru</span>
+                <span class="cart-saved-list__badge">Основной</span>
+              </span>
+            </label>
+            <button class="cart-saved-list__edit" type="button" aria-label="Редактировать получателя Константин Константинопольский" data-cart-recipient-edit>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+            </button>
+          </article>
+          <article class="cart-saved-list__item" data-cart-recipient-option data-recipient-id="recipient-2" data-recipient-first-name="Анна" data-recipient-last-name="Смирнова" data-recipient-phone="+7 (921) 555-18-24" data-recipient-email="anna.smirnova@example.ru">
+            <label class="cart-saved-list__choice">
+              <input class="cart-saved-list__radio" type="radio" name="saved-recipient" value="recipient-2">
+              <span class="cart-saved-list__radio-control" aria-hidden="true"></span>
+              <span class="cart-saved-list__content">
+                <span class="cart-saved-list__heading">Анна Смирнова</span>
+                <span class="cart-saved-list__meta">+7 (921) 555-18-24</span>
+                <span class="cart-saved-list__meta">anna.smirnova@example.ru</span>
+              </span>
+            </label>
+            <button class="cart-saved-list__edit" type="button" aria-label="Редактировать получателя Анна Смирнова" data-cart-recipient-edit>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+            </button>
+          </article>
+        </div>
+        <div class="cart-saved-list__actions">
+          <button class="cart-saved-list__add" type="button" data-cart-recipient-add>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-plus"></use></svg>
+            <span>Добавить получателя</span>
+          </button>
+          <button class="cart-saved-list__submit" type="button" data-cart-recipient-select>Выбрать</button>
+        </div>
+      </div>
+      <form class="cart-recipient-modal__form" data-cart-recipient-form-view novalidate hidden>
         <div class="cart-recipient-modal__fields">
           <div class="uk-field-wrap uk-field--surface" data-input-field>
             <div class="uk-field">
@@ -933,12 +980,53 @@
     <button class="cart-recipient-modal__backdrop cart-address-modal__backdrop" type="button" aria-label="Закрыть данные адреса" data-cart-address-close></button>
     <div class="cart-recipient-modal__panel cart-address-modal__panel" role="document">
       <div class="cart-recipient-modal__header cart-address-modal__header">
-        <h2 class="cart-recipient-modal__title cart-address-modal__title" id="cart-address-title">Данные адреса</h2>
+        <button class="cart-recipient-modal__back cart-address-modal__back" type="button" aria-label="Вернуться к сохраненным адресам" data-cart-address-back hidden>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-left"></use></svg>
+        </button>
+        <h2 class="cart-recipient-modal__title cart-address-modal__title" id="cart-address-title" data-cart-address-title>Адрес доставки</h2>
         <button class="cart-recipient-modal__close cart-address-modal__close js-modal-close" type="button" aria-label="Закрыть данные адреса" data-cart-address-close>
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
         </button>
       </div>
-      <form class="cart-recipient-modal__form cart-address-modal__form" novalidate>
+      <div class="cart-saved-list cart-saved-list--address" data-cart-address-list-view>
+        <div class="cart-saved-list__items" role="radiogroup" aria-label="Сохраненные адреса">
+          <article class="cart-saved-list__item is-selected" data-cart-address-option data-address-id="address-1" data-address-country="Россия" data-address-city="Москва" data-address-street="ул. Тверская" data-address-house="12" data-address-entrance="2" data-address-floor="5" data-address-flat="45" data-address-comment="Позвонить за час до доставки">
+            <label class="cart-saved-list__choice">
+              <input class="cart-saved-list__radio" type="radio" name="saved-address" value="address-1" checked>
+              <span class="cart-saved-list__radio-control" aria-hidden="true"></span>
+              <span class="cart-saved-list__content">
+                <span class="cart-saved-list__heading">Москва, ул. Тверская, д. 12, кв. 45</span>
+                <span class="cart-saved-list__meta">Подъезд 2, этаж 5</span>
+                <span class="cart-saved-list__badge">Основной</span>
+              </span>
+            </label>
+            <button class="cart-saved-list__edit" type="button" aria-label="Редактировать адрес Москва, улица Тверская, дом 12" data-cart-address-edit>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+            </button>
+          </article>
+          <article class="cart-saved-list__item" data-cart-address-option data-address-id="address-2" data-address-country="Россия" data-address-city="Москва" data-address-street="Ленинградское шоссе" data-address-house="16А" data-address-entrance="" data-address-floor="3" data-address-flat="" data-address-comment="">
+            <label class="cart-saved-list__choice">
+              <input class="cart-saved-list__radio" type="radio" name="saved-address" value="address-2">
+              <span class="cart-saved-list__radio-control" aria-hidden="true"></span>
+              <span class="cart-saved-list__content">
+                <span class="cart-saved-list__heading">Москва, Ленинградское шоссе, д. 16А</span>
+                <span class="cart-saved-list__meta">3 этаж</span>
+              </span>
+            </label>
+            <button class="cart-saved-list__edit" type="button" aria-label="Редактировать адрес Москва, Ленинградское шоссе, дом 16А" data-cart-address-edit>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg>
+            </button>
+          </article>
+        </div>
+        <div class="cart-saved-list__actions">
+          <button class="cart-saved-list__add" type="button" data-cart-address-add>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-plus"></use></svg>
+            <span>Добавить адрес</span>
+          </button>
+          <button class="cart-saved-list__submit" type="button" data-cart-address-select>Выбрать</button>
+        </div>
+      </div>
+      <form class="cart-recipient-modal__form cart-address-modal__form" data-cart-address-form-view novalidate hidden>
         <div class="cart-recipient-modal__fields cart-address-modal__fields">
           <div class="catalog-filter-popup-wrap cart-address-modal__select-wrap">
             <button class="cart-address-modal__select-trigger" type="button" aria-expanded="false" aria-haspopup="listbox" data-address-select-trigger>

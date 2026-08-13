@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Настройки аккаунта</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -1101,6 +1101,24 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- BITRIX: подтверждение перед AJAX-удалением получателя или адреса профиля. -->
+  <div class="cart-clear-modal account-delete-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="account-delete-title" aria-describedby="account-delete-description" data-account-delete-modal>
+    <button class="cart-clear-modal__backdrop" type="button" aria-label="Отменить удаление" data-account-delete-cancel></button>
+    <div class="cart-clear-modal__panel account-delete-modal__panel" role="document">
+      <div class="cart-clear-modal__header">
+        <h2 class="cart-clear-modal__title" id="account-delete-title" data-account-delete-title>Удалить получателя?</h2>
+        <button class="cart-clear-modal__close js-modal-close" type="button" aria-label="Отменить удаление" data-account-delete-cancel>
+          <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-close"></use></svg>
+        </button>
+      </div>
+      <p class="account-delete-modal__description" id="account-delete-description" data-account-delete-description>Данные получателя будут удалены без возможности восстановления.</p>
+      <div class="cart-clear-modal__actions">
+        <button class="button button--on-color button--size-l" type="button" data-account-delete-confirm>Удалить</button>
+        <button class="button button--primary button--size-l" type="button" data-account-delete-cancel>Отменить</button>
+      </div>
     </div>
   </div>
 

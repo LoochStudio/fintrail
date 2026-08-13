@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail — Где купить</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body class="where-buy-page-body delivery-page-body">
   <header class="delivery-header vacancies-header hero is-header-dark is-header-compact" data-header-mega-root>
@@ -395,7 +395,7 @@
         </nav>
         <div class="where-buy-page__heading-row">
           <h1 class="where-buy-page__title" id="where-buy-title">Где купить</h1>
-          <button class="where-buy-page__share" type="button">
+          <button class="where-buy-page__share" type="button" aria-label="Скопировать ссылку на страницу" data-copy-link>
             <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-share"></use></svg>
             <span>Поделиться</span>
           </button>
@@ -405,39 +405,56 @@
 
     <section class="where-buy-map" aria-label="Карта магазинов и пунктов выдачи">
       <aside class="where-buy-map__panel">
-        <label class="where-buy-map__search">
+        <div class="where-buy-map__search" role="search">
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-search"></use></svg>
-          <input type="search" name="where-buy-search" placeholder="Искать город или магазин" autocomplete="off">
-        </label>
+          <input type="search" name="where-buy-search" placeholder="Искать город или магазин" autocomplete="off" aria-label="Искать город или магазин" data-where-buy-search>
+          <button class="where-buy-map__search-clear" type="button" aria-label="Очистить поиск" data-where-buy-search-clear hidden>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg>
+          </button>
+        </div>
         <div class="where-buy-map__view-toggle" role="tablist" aria-label="Вид отображения магазинов">
           <button class="where-buy-map__view-tab is-active" type="button" role="tab" aria-selected="true" data-where-buy-view="list">Список</button>
           <button class="where-buy-map__view-tab" type="button" role="tab" aria-selected="false" data-where-buy-view="map">Карта</button>
         </div>
         <div class="where-buy-map__tags" aria-label="Типы магазинов">
-          <button class="where-buy-map__tag is-active" type="button" data-where-buy-filter>Все 144</button>
-          <button class="where-buy-map__tag" type="button" data-where-buy-filter>Шоурумы 4</button>
-          <button class="where-buy-map__tag" type="button" data-where-buy-filter>Off-Road 95</button>
-          <button class="where-buy-map__tag" type="button" data-where-buy-filter>Рыбалка 76</button>
+          <button class="where-buy-map__tag is-active" type="button" aria-pressed="true" data-where-buy-filter="all">Все 144</button>
+          <button class="where-buy-map__tag" type="button" aria-pressed="false" data-where-buy-filter="showroom">Шоурумы 4</button>
+          <button class="where-buy-map__tag" type="button" aria-pressed="false" data-where-buy-filter="offroad">Off-Road 95</button>
+          <button class="where-buy-map__tag" type="button" aria-pressed="false" data-where-buy-filter="fishing">Рыбалка 76</button>
         </div>
         <div class="where-buy-map__list" aria-label="Список магазинов">
-          <article class="where-buy-location"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Сеть магазинов Discovery, маркет «ОХОТА В РАБОЧЕМ»</span></h2><div class="where-buy-location__meta"><p>Иркутск, Улица Баррикад, 189/1</p><p>График работы: пн-вс 10:00-23:00</p></div><p class="where-buy-location__contacts"><a href="tel:+73952410000">+7 3952 41-00-00 доб. 3</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
-          <article class="where-buy-location"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Магазин «Гайка»</span></h2><div class="where-buy-location__meta"><p>Воронежская область, Рамонский район, хутор Ветряк, ул. Выборская, зд.17</p><p>График работы: пн-вс 10:00-20:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79003066999">+7 900 30-66-999</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
-          <article class="where-buy-location"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>«Беркут»</span></h2><div class="where-buy-location__meta"><p>Тамбов, ул.Киквидзе, 118Е</p><p>График работы: пн-пт 9:00-19:00,<br>сб-вс 9:00-17:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79027212918">+7 902 721-29-18</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
-          <article class="where-buy-location"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Магазин «Гайка»</span></h2><div class="where-buy-location__meta"><p>Воронежская область, Рамонский район, хутор Ветряк, ул. Выборская, зд.17</p><p>График работы: пн-вс 10:00-20:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79003066999">+7 900 30-66-999</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
-          <article class="where-buy-location" data-where-buy-extra hidden><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Магазин FINNTRAIL</span></h2><div class="where-buy-location__meta"><p>Москва, Ленинградское шоссе 16А, 3 этаж</p><p>График работы: пн-пт 10:00-23:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79112083529">+7 911 208-35-29</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
-          <article class="where-buy-location" data-where-buy-extra hidden><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Партнерский шоурум FINNTRAIL</span></h2><div class="where-buy-location__meta"><p>Санкт-Петербург, проспект Стачек, 99, этаж 2</p><p>График работы: пн-пт 10:00-23:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79112083529">+7 911 208-35-29</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+          <article class="where-buy-location" id="where-buy-store-discovery" tabindex="0" data-where-buy-location data-store-id="discovery" data-categories="offroad fishing"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Сеть магазинов Discovery, маркет «ОХОТА В РАБОЧЕМ»</span></h2><div class="where-buy-location__meta"><p>Иркутск, Улица Баррикад, 189/1</p><p>График работы: пн-вс 10:00-23:00</p></div><p class="where-buy-location__contacts"><a href="tel:+73952410000">+7 3952 41-00-00 доб. 3</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+          <article class="where-buy-location" id="where-buy-store-gajka" tabindex="0" data-where-buy-location data-store-id="gajka" data-categories="offroad"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Магазин «Гайка»</span></h2><div class="where-buy-location__meta"><p>Воронежская область, Рамонский район, хутор Ветряк, ул. Выборская, зд.17</p><p>График работы: пн-вс 10:00-20:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79003066999">+7 900 30-66-999</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+          <article class="where-buy-location" id="where-buy-store-berkut" tabindex="0" data-where-buy-location data-store-id="berkut" data-categories="fishing"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>«Беркут»</span></h2><div class="where-buy-location__meta"><p>Тамбов, ул.Киквидзе, 118Е</p><p>График работы: пн-пт 9:00-19:00,<br>сб-вс 9:00-17:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79027212918">+7 902 721-29-18</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+          <article class="where-buy-location" id="where-buy-store-gajka-second" tabindex="0" data-where-buy-location data-store-id="gajka-second" data-categories="offroad"><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Магазин «Гайка»</span></h2><div class="where-buy-location__meta"><p>Воронежская область, Рамонский район, хутор Ветряк, ул. Выборская, зд.17</p><p>График работы: пн-вс 10:00-20:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79003066999">+7 900 30-66-999</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+          <article class="where-buy-location" id="where-buy-store-moscow" tabindex="0" data-where-buy-location data-store-id="moscow" data-categories="showroom" data-where-buy-extra hidden><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Магазин FINNTRAIL</span></h2><div class="where-buy-location__meta"><p>Москва, Ленинградское шоссе 16А, 3 этаж</p><p>График работы: пн-пт 10:00-23:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79112083529">+7 911 208-35-29</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+          <article class="where-buy-location" id="where-buy-store-partner" tabindex="0" data-where-buy-location data-store-id="partner" data-categories="showroom" data-where-buy-extra hidden><h2 class="where-buy-location__title"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-pin"></use></svg><span>Партнерский шоурум FINNTRAIL</span></h2><div class="where-buy-location__meta"><p>Санкт-Петербург, проспект Стачек, 99, этаж 2</p><p>График работы: пн-пт 10:00-23:00</p></div><p class="where-buy-location__contacts"><a href="tel:+79112083529">+7 911 208-35-29</a><span></span><a href="mailto:shop@finntrail.ru">shop@finntrail.ru</a></p></article>
+        </div>
+        <div class="where-buy-map__empty" data-where-buy-empty hidden>
+          <p>Магазины не найдены. Измените запрос или выберите другую категорию.</p>
+          <button type="button" data-where-buy-reset>Сбросить фильтры</button>
         </div>
         <button class="where-buy-map__more" type="button" data-where-buy-more>Показать еще <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow"></use></svg></button>
       </aside>
       <div class="where-buy-map__canvas" aria-label="Карта">
         <img class="where-buy-map__base" src="/fintrail/assets/map-base-C2Xp5gCi.png" srcset="/fintrail/assets/map-base-C2Xp5gCi.png 1120w" sizes="(max-width: 767px) 100vw, calc(100vw - 475px)" alt="" aria-hidden="true"><img class="where-buy-map__image" src="/fintrail/assets/map-Dd6666zM.png" srcset="/fintrail/assets/map-Dd6666zM.png 2880w" sizes="(max-width: 767px) 100vw, calc(100vw - 475px)" alt="Карта магазинов FINNTRAIL">
-        <button class="where-buy-map__marker where-buy-map__marker--1" type="button" aria-label="Магазин FINNTRAIL"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
-        <button class="where-buy-map__marker where-buy-map__marker--2" type="button" aria-label="Магазин FINNTRAIL"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
-        <button class="where-buy-map__marker where-buy-map__marker--3" type="button" aria-label="Магазин FINNTRAIL"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
-        <button class="where-buy-map__marker where-buy-map__marker--4" type="button" aria-label="Магазин FINNTRAIL"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
-        <button class="where-buy-map__marker where-buy-map__marker--5" type="button" aria-label="Магазин FINNTRAIL"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
-        <button class="where-buy-map__marker where-buy-map__marker--6" type="button" aria-label="2 магазина">2</button>
-        <button class="where-buy-map__marker where-buy-map__marker--7" type="button" aria-label="Магазин FINNTRAIL"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <button class="where-buy-map__marker where-buy-map__marker--1" type="button" aria-label="Магазин FINNTRAIL в Москве" aria-controls="where-buy-store-moscow" aria-pressed="false" data-where-buy-marker data-store-id="moscow" data-categories="showroom"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <button class="where-buy-map__marker where-buy-map__marker--2" type="button" aria-label="Партнерский шоурум FINNTRAIL" aria-controls="where-buy-store-partner" aria-pressed="false" data-where-buy-marker data-store-id="partner" data-categories="showroom"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <button class="where-buy-map__marker where-buy-map__marker--3" type="button" aria-label="Сеть магазинов Discovery" aria-controls="where-buy-store-discovery" aria-pressed="false" data-where-buy-marker data-store-id="discovery" data-categories="offroad fishing"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <button class="where-buy-map__marker where-buy-map__marker--4" type="button" aria-label="Магазин «Гайка»" aria-controls="where-buy-store-gajka" aria-pressed="false" data-where-buy-marker data-store-id="gajka" data-categories="offroad"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <button class="where-buy-map__marker where-buy-map__marker--5" type="button" aria-label="Магазин «Беркут»" aria-controls="where-buy-store-berkut" aria-pressed="false" data-where-buy-marker data-store-id="berkut" data-categories="fishing"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <button class="where-buy-map__marker where-buy-map__marker--6" type="button" aria-label="2 магазина" data-where-buy-cluster>2</button>
+        <button class="where-buy-map__marker where-buy-map__marker--7" type="button" aria-label="Второй магазин «Гайка»" aria-controls="where-buy-store-gajka-second" aria-pressed="false" data-where-buy-marker data-store-id="gajka-second" data-categories="offroad"><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-where-buy-marker"></use></svg></button>
+        <article class="where-buy-map__selected" data-where-buy-selected hidden>
+          <button class="where-buy-map__selected-close" type="button" aria-label="Закрыть карточку магазина" data-where-buy-selected-close>
+            <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg>
+          </button>
+          <p class="where-buy-map__selected-eyebrow">Выбранный магазин</p>
+          <h2 data-where-buy-selected-title></h2>
+          <p data-where-buy-selected-address></p>
+          <p data-where-buy-selected-schedule></p>
+          <button class="where-buy-map__selected-show" type="button" data-where-buy-selected-show>Показать в списке</button>
+        </article>
       </div>
     </section>
 

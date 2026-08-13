@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finntrail - Куртка FINNTRAIL Snowranger 3758 Lightgrey</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -1058,7 +1058,7 @@
               </div>
             </div>
             <div class="product-buy__actions">
-              <button class="product-buy__button product-buy__button--primary" type="button">
+              <button class="product-buy__button product-buy__button--primary js-add-to-cart" type="button" data-product-cart-open>
                 <span class="product-buy__button-label product-buy__button-label--desktop">Добавить в корзину</span>
                 <span class="product-buy__button-label product-buy__button-label--mobile">30 799 ₽</span>
                 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg>
@@ -1069,9 +1069,9 @@
               <button class="product-buy__button product-buy__button--icon js-compare" type="button" aria-label="К сравнению">
                 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-compare"></use></svg>
               </button>
-              <button class="product-buy__button product-buy__button--secondary" type="button">Купить в один клик</button>
+              <button class="product-buy__button product-buy__button--secondary" type="button" aria-haspopup="dialog" aria-controls="product-one-click-modal" data-product-one-click-open>Купить в один клик</button>
             </div>
-            <button class="product-buy__installment" type="button">
+            <button class="product-buy__installment" type="button" aria-haspopup="dialog" aria-controls="product-installment-modal" data-product-installment-open>
               <span class="product-buy__pay-icons">
                 <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-dolyami"></use></svg>
                 <span><svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-pay-grid"></use></svg></span>
@@ -1099,7 +1099,7 @@
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-bonus"></use></svg>
           <span>+3 800</span>
         </div>
-        <button class="product-mobile-buy__main" type="button">
+        <button class="product-mobile-buy__main js-add-to-cart" type="button" data-product-cart-open>
           <span>30 799 ₽</span>
           <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-hero-bag"></use></svg>
         </button>
@@ -1776,7 +1776,7 @@
 
     <!-- BITRIX: промо-блок технологии — контент из расширенного описания товара -->
     <!-- BITRIX: product-highlight-row — на десктопе прозрачный (display:contents),
-         на мобиле горизонтальный скролл с двумя карточками 300px -->
+         на mobile/tablet горизонтальная карусель технологических карточек -->
     <div class="product-highlight-row">
 
       <section class="product-highlight" aria-label="Мембрана TORAY DERMIZAX">
@@ -1808,7 +1808,7 @@
       </section>
 
       <!-- BITRIX: промо-блок технологии 2 — фото слева, текст справа -->
-      <section class="product-highlight" aria-label="Утеплитель DuPont Sorona">
+      <section class="product-highlight product-highlight--desktop-last" aria-label="Утеплитель DuPont Sorona">
         <div class="product-highlight__image">
           <img
             src="/fintrail/images/content/product/snowranger/feature-sorona.png"
@@ -1833,6 +1833,35 @@
             src="/fintrail/images/content/product/feature-deco-2.svg"
             alt=""
             aria-hidden="true">
+        </div>
+      </section>
+
+      <!-- BITRIX: тестовый третий элемент адаптивной карусели; при интеграции заменить технологией из товара -->
+      <section class="product-highlight product-highlight--tablet-demo" aria-label="Мембрана TORAY DERMIZAX">
+        <div class="product-highlight__content">
+          <img class="product-highlight__deco"
+            src="/fintrail/images/content/product/feature-deco.svg"
+            alt=""
+            aria-hidden="true">
+
+          <div class="product-highlight__text">
+            <h2 class="product-highlight__title">Мембрана TORAY DERMIZAX</h2>
+            <p class="product-highlight__desc">Прочный двухслойный материал с технологичной японской беспоровой мембраной TORAY DERMIZAX обеспечивает 100% защиту от дождя, мокрого снега и штормового ветра</p>
+          </div>
+
+          <img class="product-highlight__deco"
+            src="/fintrail/images/content/product/feature-deco.svg"
+            alt=""
+            aria-hidden="true">
+        </div>
+
+        <div class="product-highlight__image">
+          <img
+            src="/fintrail/images/content/product/snowranger/feature-membrane.png"
+            srcset="/fintrail/images/content/_responsive/product/snowranger/feature-membrane-160.png 160w, /fintrail/images/content/_responsive/product/snowranger/feature-membrane-320.png 320w, /fintrail/images/content/_responsive/product/snowranger/feature-membrane-480.png 480w, /fintrail/images/content/_responsive/product/snowranger/feature-membrane-768.png 768w, /fintrail/images/content/product/snowranger/feature-membrane.png 1000w"
+            sizes="(max-width: 1279px) 360px, 50vw"
+            alt="Деталь куртки FINNTRAIL Snowranger — мембрана TORAY DERMIZAX"
+            loading="lazy">
         </div>
       </section>
 
@@ -2428,7 +2457,7 @@
 
       <!-- ─── Правая колонка: форма оценки ─── -->
       <div class="product-reviews__right">
-        <form class="product-reviews__form" novalidate data-reviews-form>
+        <form class="product-reviews__form" action="" method="post" enctype="multipart/form-data" novalidate data-reviews-form>
 
           <!-- Кнопка закрытия bottom sheet (только mobile) -->
           <button class="product-reviews__form-close" type="button" aria-label="Закрыть форму отзыва" data-reviews-form-close>
@@ -2447,14 +2476,15 @@
               <button type="button" class="product-reviews__form-star js-review-star" data-value="5" aria-label="5 звёзд"></button>
             </div>
             <span class="product-reviews__form-rating-num" data-reviews-rating-num>4</span>
+            <input type="hidden" name="rating" value="4" data-reviews-rating-input>
           </div>
 
           <!-- Поля -->
           <div class="product-reviews__fields">
-            <input class="product-reviews__field" type="text" placeholder="Имя" autocomplete="off">
-            <textarea class="product-reviews__field product-reviews__field--textarea" placeholder="Достоинства"></textarea>
-            <textarea class="product-reviews__field product-reviews__field--textarea" placeholder="Недостатки"></textarea>
-            <textarea class="product-reviews__field product-reviews__field--textarea product-reviews__field--comment" placeholder="Комментарий"></textarea>
+            <input class="product-reviews__field" type="text" name="author_name" placeholder="Имя" autocomplete="name">
+            <textarea class="product-reviews__field product-reviews__field--textarea" name="pros" placeholder="Достоинства"></textarea>
+            <textarea class="product-reviews__field product-reviews__field--textarea" name="cons" placeholder="Недостатки"></textarea>
+            <textarea class="product-reviews__field product-reviews__field--textarea product-reviews__field--comment" name="comment" placeholder="Комментарий"></textarea>
           </div>
 
           <!-- Соответствие размеру -->
@@ -2468,10 +2498,11 @@
               <button type="button" class="product-reviews__fit-btn js-review-fit" data-fit="big">Большемерит</button>
               <button type="button" class="product-reviews__fit-btn js-review-fit" data-fit="small">Маломерит</button>
             </div>
+            <input type="hidden" name="size_fit" value="match" data-reviews-fit-input>
           </div>
 
           <!-- Загрузить файлы -->
-          <label class="product-reviews__upload">
+          <label class="product-reviews__upload" data-file-picker data-file-max="8" data-file-max-size="2">
             <span class="product-reviews__upload-icon" aria-hidden="true">
               <svg aria-hidden="true" width="16" height="16"><use href="/fintrail/images/icons/sprite.svg#icon-rec-arrow-right"></use></svg>
             </span>
@@ -2479,7 +2510,7 @@
               <span class="product-reviews__upload-title">Загрузить фотографии или видео</span>
               <span class="product-reviews__upload-hint">Не более 8 файлов, до 2 Мб</span>
             </span>
-            <input type="file" accept="image/*,video/*" multiple hidden>
+            <input class="file-picker__input" type="file" name="review_files[]" accept="image/*,video/*" multiple data-file-picker-input>
           </label>
 
           <!-- Отправить -->
@@ -2924,9 +2955,193 @@
         </div>
       </aside>
     </div>
+    <!-- BITRIX: confirmation after adding the active SKU to sale.basket.basket.
+         Product fields are synchronized from catalog.element on open. -->
+    <div class="product-cart-modal" id="product-cart-modal" hidden aria-hidden="true" data-product-cart-modal>
+      <div class="product-cart-modal__backdrop" data-product-cart-close></div>
+      <aside class="product-cart-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-cart-modal-title">
+        <div class="product-cart-modal__content">
+          <header class="product-cart-modal__header">
+            <h2 class="product-cart-modal__title" id="product-cart-modal-title">Корзина</h2>
+            <button class="product-cart-modal__close" type="button" aria-label="Закрыть корзину" data-product-cart-close>
+              <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
+            </button>
+          </header>
+
+          <article class="product-cart-modal__item" data-product-cart-item>
+            <img
+              class="product-cart-modal__image"
+              src="/fintrail/images/content/_responsive/catalog-landing/new-master-hood-graphite-160.png"
+              srcset="/fintrail/images/content/_responsive/catalog-landing/new-master-hood-graphite-160.png 160w, /fintrail/images/content/_responsive/catalog-landing/new-master-hood-graphite-320.png 320w"
+              sizes="48px"
+              alt="Куртка FINNTRAIL Snowranger 3758 Lightgrey"
+              loading="lazy"
+              data-product-cart-image>
+            <div class="product-cart-modal__item-content">
+              <h3 class="product-cart-modal__item-title" data-product-cart-title>Куртка FINNTRAIL Snowranger 3758 Lightgrey</h3>
+              <div class="product-cart-modal__item-meta">
+                <div class="product-cart-modal__prices">
+                  <strong data-product-cart-price>30 799 ₽</strong>
+                  <del data-product-cart-old-price>43 999 ₽</del>
+                </div>
+                <div class="product-cart-modal__quantity" aria-label="Количество товара">
+                  <button class="product-cart-modal__quantity-button" type="button" aria-label="Уменьшить количество" data-product-cart-minus>
+                    <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-cart-minus-16"></use></svg>
+                  </button>
+                  <output class="product-cart-modal__quantity-value" aria-live="polite" data-product-cart-quantity>1</output>
+                  <button class="product-cart-modal__quantity-button" type="button" aria-label="Увеличить количество" data-product-cart-plus>
+                    <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-cart-plus-16"></use></svg>
+                  </button>
+                </div>
+                <button class="product-cart-modal__remove" type="button" aria-label="Удалить товар из корзины" data-product-cart-remove>
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-cart-trash"></use></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="product-cart-modal__actions">
+          <button class="product-cart-modal__action button button--size-l button--on-color" type="button" data-product-cart-continue>Продолжить покупки</button>
+          <a class="product-cart-modal__action button button--size-l button--primary" href="/fintrail/cart/">Перейти в корзину</a>
+        </div>
+      </aside>
+    </div>
+    <!-- BITRIX: one-click order data can be submitted to a dedicated order service
+         with the active catalog.element offer attached on the server side. -->
+    <div class="product-one-click-modal" id="product-one-click-modal" hidden aria-hidden="true" data-product-one-click-modal>
+      <div class="product-one-click-modal__backdrop" data-product-one-click-close></div>
+      <aside class="product-one-click-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-one-click-title">
+        <form class="product-one-click-modal__form" action="#" method="post" novalidate data-product-one-click-form>
+          <div class="product-one-click-modal__content">
+            <div class="product-one-click-modal__top">
+              <header class="product-one-click-modal__header">
+                <h2 class="product-one-click-modal__title" id="product-one-click-title">Оставьте заявку на покупку</h2>
+                <button class="product-one-click-modal__close" type="button" aria-label="Закрыть форму покупки" data-product-one-click-close>
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
+                </button>
+              </header>
+              <p class="product-one-click-modal__lead">В связи с большим количеством заказов возможны задержки с ответом менеджера. Спасибо за понимание</p>
+            </div>
+
+            <div class="product-one-click-modal__fields">
+              <div class="uk-field-wrap uk-field--surface" data-input-field>
+                <label class="visually-hidden" for="product-one-click-name">Имя</label>
+                <div class="uk-field">
+                  <input class="uk-field__input js-name-input" id="product-one-click-name" name="name" type="text" placeholder="Имя" autocomplete="given-name" aria-describedby="product-one-click-name-caption" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить имя">
+                    <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg>
+                  </button>
+                </div>
+                <span class="uk-field__caption" id="product-one-click-name-caption" aria-live="polite"></span>
+              </div>
+
+              <div class="product-one-click-modal__phone-row">
+                <button class="product-one-click-modal__country" type="button" aria-label="Выбрать страну" aria-haspopup="listbox">
+                  <svg class="product-one-click-modal__flag" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="product-one-click-modal__country-arrow" aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+                </button>
+                <div class="uk-field-wrap uk-field--surface product-one-click-modal__phone-field" data-input-field>
+                  <label class="visually-hidden" for="product-one-click-phone">Телефон</label>
+                  <div class="uk-field">
+                    <input class="uk-field__input js-phone-input" id="product-one-click-phone" name="phone" type="tel" placeholder="+7" inputmode="tel" autocomplete="tel" aria-describedby="product-one-click-phone-caption" required>
+                    <button class="uk-field__clear" type="button" aria-label="Очистить телефон">
+                      <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg>
+                    </button>
+                  </div>
+                  <span class="uk-field__caption" id="product-one-click-phone-caption" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="uk-field-wrap uk-field--surface" data-input-field>
+                <label class="visually-hidden" for="product-one-click-email">Электронная почта</label>
+                <div class="uk-field">
+                  <input class="uk-field__input" id="product-one-click-email" name="email" type="email" placeholder="Электронная почта" autocomplete="email" aria-describedby="product-one-click-email-caption" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить электронную почту">
+                    <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-input-clear"></use></svg>
+                  </button>
+                </div>
+                <span class="uk-field__caption" id="product-one-click-email-caption" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+
+          <button class="product-one-click-modal__submit" type="submit">Подтвердить</button>
+        </form>
+      </aside>
+    </div>
+    <!-- BITRIX: payment provider and term are selected on the frontend.
+         The server must validate the offer price and create the final payment link. -->
+    <div class="product-installment-modal" id="product-installment-modal" hidden aria-hidden="true" data-product-installment-modal>
+      <div class="product-installment-modal__backdrop" data-product-installment-close></div>
+      <aside class="product-installment-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-installment-title">
+        <div class="product-installment-modal__content">
+          <div class="product-installment-modal__top">
+            <header class="product-installment-modal__header">
+              <h2 class="product-installment-modal__title" id="product-installment-title">Оплата частями</h2>
+              <button class="product-installment-modal__close" type="button" aria-label="Закрыть варианты оплаты" data-product-installment-close>
+                <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="product-installment-modal__lead" data-product-installment-lead>Расчёт примерного платежа. Оставшиеся 3 части спишутся автоматически</p>
+          </div>
+
+          <div class="product-installment-modal__selector">
+            <div class="product-installment-modal__providers" role="tablist" aria-label="Способ оплаты">
+              <button class="product-installment-modal__provider is-active" type="button" role="tab" aria-selected="true" data-installment-provider="parts">
+                <span class="product-installment-modal__provider-icon product-installment-modal__provider-icon--parts">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-pay-grid"></use></svg>
+                </span>
+                <span>Плати Частями</span>
+              </button>
+              <button class="product-installment-modal__provider" type="button" role="tab" aria-selected="false" data-installment-provider="dolyami">
+                <span class="product-installment-modal__provider-icon">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-dolyami"></use></svg>
+                </span>
+                <span>Плати Долями</span>
+              </button>
+              <button class="product-installment-modal__provider" type="button" role="tab" aria-selected="false" data-installment-provider="tbank">
+                <span class="product-installment-modal__provider-icon">
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-product-tbank"></use></svg>
+                </span>
+                <span>Рассрочка Т-Банк</span>
+              </button>
+            </div>
+
+            <div class="product-installment-modal__terms" role="group" aria-label="Срок оплаты">
+              <button class="product-installment-modal__term" type="button" aria-pressed="false" data-installment-term="2">2 мес</button>
+              <button class="product-installment-modal__term is-active" type="button" aria-pressed="true" data-installment-term="3">3 мес</button>
+              <button class="product-installment-modal__term" type="button" aria-pressed="false" data-installment-term="6">6 мес</button>
+              <button class="product-installment-modal__term" type="button" aria-pressed="false" data-installment-term="10">10 мес</button>
+            </div>
+          </div>
+
+          <div class="product-installment-modal__schedule" role="tabpanel" aria-label="График платежей" tabindex="0" data-product-installment-schedule>
+            <div class="product-installment-modal__payment">
+              <span>Через 1 месяц</span>
+              <strong>7 700 ₽</strong>
+            </div>
+            <div class="product-installment-modal__payment">
+              <span>Через 2 месяца</span>
+              <strong>7 700 ₽</strong>
+            </div>
+            <div class="product-installment-modal__payment">
+              <span>Через 3 месяца</span>
+              <strong>7 699 ₽</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-installment-modal__footer">
+          <button class="product-installment-modal__submit" type="button" data-product-installment-submit>Подтвердить</button>
+          <p>После подтверждения заказа менеджер вышлет вам ссылку на оплату.</p>
+        </div>
+      </aside>
+    </div>
     <div class="product-upload-modal" id="product-upload" hidden data-product-upload-modal>
       <div class="product-upload-modal__backdrop" data-product-upload-close></div>
       <aside class="product-upload-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-upload-title">
+        <form class="product-upload-modal__form" action="" method="post" enctype="multipart/form-data" data-product-upload-form>
         <div class="product-upload-modal__top">
           <header class="product-upload-modal__header">
             <h2 class="product-upload-modal__title" id="product-upload-title">Загрузить изображения или видео</h2>
@@ -2945,25 +3160,23 @@
               1 000 баллов
             </span>
           </div>
-          <div class="product-upload-modal__preview-list" data-product-upload-filled aria-label="Загруженные файлы">
-            <img src="/fintrail/images/content/product/upload-preview/upload-preview-1.png" srcset="/fintrail/images/content/_responsive/product/upload-preview/upload-preview-1-160.png 160w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-1-320.png 320w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-1-480.png 480w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-1-768.png 768w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-1-1024.png 1024w, /fintrail/images/content/product/upload-preview/upload-preview-1.png 1031w" sizes="60px" alt="Загруженное изображение 1" loading="lazy">
-            <img src="/fintrail/images/content/product/upload-preview/upload-preview-2.png" srcset="/fintrail/images/content/_responsive/product/upload-preview/upload-preview-2-160.png 160w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-2-320.png 320w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-2-480.png 480w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-2-768.png 768w, /fintrail/images/content/product/upload-preview/upload-preview-2.png 960w" sizes="60px" alt="Загруженное изображение 2" loading="lazy">
-            <img src="/fintrail/images/content/product/upload-preview/upload-preview-3.png" srcset="/fintrail/images/content/_responsive/product/upload-preview/upload-preview-3-160.png 160w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-3-320.png 320w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-3-480.png 480w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-3-768.png 768w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-3-1024.png 1024w, /fintrail/images/content/product/upload-preview/upload-preview-3.png 1031w" sizes="60px" alt="Загруженное изображение 3" loading="lazy">
-            <img src="/fintrail/images/content/product/upload-preview/upload-preview-4.png" srcset="/fintrail/images/content/_responsive/product/upload-preview/upload-preview-4-160.png 160w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-4-320.png 320w, /fintrail/images/content/_responsive/product/upload-preview/upload-preview-4-480.png 480w, /fintrail/images/content/product/upload-preview/upload-preview-4.png 720w" sizes="60px" alt="Загруженное изображение 4" loading="lazy">
-          </div>
+          <div class="product-upload-modal__preview-list" data-product-upload-filled aria-label="Загруженные файлы"></div>
+          <input class="product-upload-modal__file-input" type="file" name="review_files[]" accept="image/*,video/*" multiple data-product-upload-file-input>
           <button class="product-upload-modal__file-button" type="button" data-product-upload-file-button>
             <span>Загрузить файлы</span>
             <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-upload-image"></use></svg>
           </button>
+          <p class="product-upload-modal__file-status" role="status" aria-live="polite" hidden data-product-upload-file-status></p>
         </div>
 
         <div class="product-upload-modal__bottom">
-          <button class="product-upload-modal__submit" type="button" data-product-upload-submit>Отправить</button>
+          <button class="product-upload-modal__submit" type="submit" data-product-upload-submit>Отправить</button>
           <p class="product-upload-modal__note">
             После одобрения модератором, вам будут начислены бонусные баллы. Их появление можно отслеживать в <a href="/fintrail/personal/">личном кабинете</a>.<br><br>
             Также, вам придёт уведомление на почту.
           </p>
         </div>
+        </form>
       </aside>
     </div>
     <div class="stories-modal stories-modal--product-conditions" id="product-conditions-stories" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Фото в реальных условиях" data-product-conditions-stories-modal>

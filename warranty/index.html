@@ -559,12 +559,88 @@
           </div>
           <div class="warranty-help__callback">
             <p>Наш менеджер проконсультирует вас по&nbsp;дальнейшим действиям</p>
-            <a class="warranty-help__button" href="/callback/">Заказать обратный звонок</a>
+            <button class="warranty-help__button" type="button" data-callback-request data-callback-source="warranty">Заказать обратный звонок</button>
           </div>
         </aside>
       </div>
     </section>
   </main>
+
+  <!-- BITRIX: submit to /api/v1/callback/requests/warranty with a valid session token. -->
+  <div class="warranty-callback-modal" id="warranty-callback-modal" hidden aria-hidden="true" data-warranty-callback-modal>
+    <div class="warranty-callback-modal__backdrop" data-warranty-callback-close></div>
+    <aside class="warranty-callback-modal__panel" role="dialog" aria-modal="true" aria-labelledby="warranty-callback-title">
+      <form class="warranty-callback-modal__form" action="#" method="post" novalidate data-warranty-callback-form>
+        <div class="warranty-callback-modal__form-screen" data-warranty-callback-form-screen>
+          <div class="warranty-callback-modal__content">
+            <header class="warranty-callback-modal__header">
+              <h2 class="warranty-callback-modal__title" id="warranty-callback-title">Заказать обратный звонок</h2>
+              <button class="warranty-callback-modal__close" type="button" aria-label="Закрыть форму" data-warranty-callback-close>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+              </button>
+            </header>
+            <p class="warranty-callback-modal__lead">Оставьте контакты, и наш менеджер проконсультирует вас по дальнейшим действиям</p>
+
+            <div class="warranty-callback-modal__fields">
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-warranty-callback-field="name">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="text" name="name" placeholder="Имя" autocomplete="given-name" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить имя"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+
+              <div class="warranty-callback-modal__phone-row">
+                <button class="warranty-callback-modal__country" type="button" aria-label="Страна: Россия">
+                  <svg class="warranty-callback-modal__flag" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                  <svg class="warranty-callback-modal__country-arrow" aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-down-arrow"></use></svg>
+                </button>
+                <label class="uk-field-wrap uk-field--surface warranty-callback-modal__phone-field" data-input-field data-warranty-callback-field="phone">
+                  <span class="uk-field">
+                    <input class="uk-field__input js-phone-input" type="tel" name="phone" placeholder="+7" autocomplete="tel" inputmode="numeric" required>
+                    <button class="uk-field__clear" type="button" aria-label="Очистить телефон"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                  </span>
+                  <span class="uk-field__caption" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <label class="uk-field-wrap uk-field--surface" data-input-field data-warranty-callback-field="email">
+                <span class="uk-field">
+                  <input class="uk-field__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email" required>
+                  <button class="uk-field__clear" type="button" aria-label="Очистить электронную почту"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-input-clear"></use></svg></button>
+                </span>
+                <span class="uk-field__caption" aria-live="polite"></span>
+              </label>
+            </div>
+
+            <div class="warranty-callback-modal__agreement-field" data-warranty-callback-field="agree">
+              <label class="warranty-callback-modal__agreement">
+                <input class="uk-checkbox" type="checkbox" name="agree" value="Y" required>
+                <span>Я соглашаюсь с <a href="/personal-data/">условиями обработки персональных данных</a></span>
+              </label>
+              <span class="warranty-callback-modal__agreement-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <button class="warranty-callback-modal__submit" type="submit">Заказать звонок</button>
+        </div>
+      </form>
+
+      <section class="warranty-callback-modal__success" hidden data-warranty-callback-success>
+        <header class="warranty-callback-modal__header">
+          <h2 class="warranty-callback-modal__title">Заявка принята</h2>
+          <button class="warranty-callback-modal__close" type="button" aria-label="Закрыть сообщение" data-warranty-callback-close>
+            <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-menu-close"></use></svg>
+          </button>
+        </header>
+        <div class="warranty-callback-modal__success-copy">
+          <p>Спасибо! Наш менеджер свяжется с вами в ближайшее время.</p>
+        </div>
+        <button class="warranty-callback-modal__submit" type="button" data-warranty-callback-continue>Продолжить</button>
+      </section>
+    </aside>
+  </div>
+
   <footer class="footer-desktop product-footer" aria-label="Футер">
     <div class="footer-desktop__top">
       <nav class="footer-desktop__nav" aria-label="Навигация в футере">

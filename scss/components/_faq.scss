@@ -390,6 +390,17 @@
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .faq-contact__agreement:hover .faq-contact__checkbox:not(:disabled) {
+    border-color: $color-primary-black;
+  }
+
+  .faq-contact__agreement:hover .faq-contact__checkbox:not(:disabled):checked {
+    border-color: $color-black-hover;
+    background-color: $color-black-hover;
+  }
+}
+
 .faq-contact__agreement-text {
   font-family: $font-mono;
   font-size: 12px;

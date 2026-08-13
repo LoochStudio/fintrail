@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- BITRIX: title страницы с номером заказа — bitrix:sale.order.detail -->
   <title>Finntrail - Заказ 483632247573</title>
-  <script type="module" crossorigin src="/fintrail/assets/main-CgtnrwXW.js"></script>
-  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-DrcPKdfs.css">
+  <script type="module" crossorigin src="/fintrail/assets/main-Dtl6QiB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/fintrail/assets/main-BXB_kv1_.css">
 </head>
 <body>
   <header class="catalog-header product-header is-header-dark is-header-compact" data-header-mega-root>
@@ -507,6 +507,7 @@
             Изображение: <?= $arItem['PREVIEW_PICTURE'] ?>
             Размер: <?= $arItem['PROPS']['SIZE'] ?>
             Цвет: <?= $arItem['PROPS']['COLOR'] ?>
+            Количество: <?= $arItem['QUANTITY'] ?>
             Цена со скидкой: <?= $arItem['PRICE'] ?>
             Цена без скидки: <?= $arItem['BASE_PRICE'] ?>
             ID в избранном: <?= $arItem['PRODUCT_ID'] ?> — состояние кнопки «в избранное»
@@ -532,6 +533,10 @@
                   <div class="order-item__attr">
                     <span class="order-item__attr-label">Цвет:</span>
                     <span class="order-item__attr-value">оранжевый</span>
+                  </div>
+                  <div class="order-item__attr">
+                    <span class="order-item__attr-label">Количество:</span>
+                    <span class="order-item__attr-value">2 шт.</span>
                   </div>
                 </div>
                 <div class="order-item__prices">
@@ -562,6 +567,10 @@
                     <span class="order-item__attr-label">Цвет:</span>
                     <span class="order-item__attr-value">чёрный</span>
                   </div>
+                  <div class="order-item__attr">
+                    <span class="order-item__attr-label">Количество:</span>
+                    <span class="order-item__attr-value">1 шт.</span>
+                  </div>
                 </div>
                 <span class="order-item__price">1 999 ₽</span>
               </div>
@@ -587,6 +596,10 @@
                   <div class="order-item__attr">
                     <span class="order-item__attr-label">Цвет:</span>
                     <span class="order-item__attr-value">тёмно-синий</span>
+                  </div>
+                  <div class="order-item__attr">
+                    <span class="order-item__attr-label">Количество:</span>
+                    <span class="order-item__attr-value">1 шт.</span>
                   </div>
                 </div>
                 <div class="order-item__prices">
@@ -617,6 +630,10 @@
                     <span class="order-item__attr-label">Цвет:</span>
                     <span class="order-item__attr-value">хаки</span>
                   </div>
+                  <div class="order-item__attr">
+                    <span class="order-item__attr-label">Количество:</span>
+                    <span class="order-item__attr-value">1 шт.</span>
+                  </div>
                 </div>
                 <div class="order-item__prices">
                   <span class="order-item__old-price">11 999 ₽</span>
@@ -646,6 +663,10 @@
                     <span class="order-item__attr-label">Цвет:</span>
                     <span class="order-item__attr-value">тёмно-серый</span>
                   </div>
+                  <div class="order-item__attr">
+                    <span class="order-item__attr-label">Количество:</span>
+                    <span class="order-item__attr-value">1 шт.</span>
+                  </div>
                 </div>
                 <div class="order-item__prices">
                   <span class="order-item__old-price">32 999 ₽</span>
@@ -674,6 +695,10 @@
                   <div class="order-item__attr">
                     <span class="order-item__attr-label">Цвет:</span>
                     <span class="order-item__attr-value">чёрный</span>
+                  </div>
+                  <div class="order-item__attr">
+                    <span class="order-item__attr-label">Количество:</span>
+                    <span class="order-item__attr-value">1 шт.</span>
                   </div>
                 </div>
                 <div class="order-item__prices">
@@ -717,6 +742,7 @@
             BITRIX: итоговые суммы заказа: товары, скидки, промокод, доставка, баллы — bitrix:sale.order.detail
             Компонент: bitrix:sale.order.detail
             Стоимость товаров: <?= $arOrder['PRICE'] ?>
+            Количество товаров: сумма QUANTITY по позициям заказа
             Выгода по акциям: <?= $arOrder['DISCOUNT_PRICE'] ?>
             Промокод (скидка): <?= $arOrder['COUPON_DISCOUNT'] ?>
             Стоимость доставки: <?= $arOrder['DELIVERY_PRICE'] ?>
@@ -728,7 +754,7 @@
             <h2 class="order-pricing__section-title">Сумма заказа</h2>
             <div class="order-sum__rows">
               <div class="order-sum__row">
-                <span class="order-sum__row-label">Товары</span>
+                <span class="order-sum__row-label">Товары, 7 шт.</span>
                 <span class="order-sum__row-value">29 499 ₽</span>
               </div>
               <hr class="order-sum__divider">
@@ -767,7 +793,7 @@
             <div class="order-payment-row">
               <div class="order-payment__status">
                 <span class="order-payment__status-icon">
-                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check"></use></svg>
+                  <svg aria-hidden="true"><use href="/fintrail/images/icons/sprite.svg#icon-check-sm"></use></svg>
                 </span>
                 <span class="order-payment__status-text">Оплачен</span>
               </div>
