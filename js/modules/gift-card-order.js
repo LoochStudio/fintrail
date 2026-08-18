@@ -57,7 +57,7 @@ export function init() {
 
     function getCardBackgroundImage(src) {
       const resolved = resolvePublicAsset(src);
-      return `linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.00) 57.11%), url("${resolved}")`;
+      return `linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 48%, rgba(0, 0, 0, 0.14) 100%), url("${resolved}")`;
     }
 
     function getActiveDesignButton() {
@@ -161,12 +161,12 @@ export function init() {
       const progress = root.querySelector('[data-gift-card-progress]');
       if (progress) progress.setAttribute('aria-label', `Шаг ${stepIndex + 1} из 5`);
       syncGiftCardSummary();
-      requestAnimationFrame(syncCardBackgroundPosition);
+      updateCardPresentation(isSuccess);
       requestAnimationFrame(updateDetailsScrollbar);
     }
 
     function syncCardBackgroundPosition() {
-      if (!mainCard) return;
+      if (!mainCard || root.classList.contains('is-step-success')) return;
       const activeBg = bgImgs.find(img => img.classList.contains('is-active'));
       if (!activeBg || !activeBg.naturalWidth || !activeBg.naturalHeight) return;
 
@@ -178,19 +178,34 @@ export function init() {
       );
       const renderedWidth = activeBg.naturalWidth * scale;
       const renderedHeight = activeBg.naturalHeight * scale;
-
-      const objPosStr = getComputedStyle(activeBg).objectPosition || '50% 50%';
-      const [objPosX = '50%', objPosY = '50%'] = objPosStr.trim().split(/\s+/);
-      const parseObjPos = (val, containerSize, renderedSize) =>
-        val.endsWith('%') ? (parseFloat(val) / 100) * (containerSize - renderedSize) : parseFloat(val);
-
-      const renderedLeft = bgRect.left + parseObjPos(objPosX, bgRect.width, renderedWidth);
-      const renderedTop = bgRect.top + parseObjPos(objPosY, bgRect.height, renderedHeight);
+      const objectPosition = getComputedStyle(activeBg).objectPosition || '50% 50%';
+      const [positionX = '50%', positionY = '50%'] = objectPosition.trim().split(/\s+/);
+      const parsePosition = (value, containerSize, imageSize) =>
+        value.endsWith('%')
+          ? (parseFloat(value) / 100) * (containerSize - imageSize)
+          : parseFloat(value);
+      const renderedLeft = bgRect.left + parsePosition(positionX, bgRect.width, renderedWidth);
+      const renderedTop = bgRect.top + parsePosition(positionY, bgRect.height, renderedHeight);
 
       mainCard.style.setProperty('--gift-card-bg-width', `${renderedWidth}px`);
       mainCard.style.setProperty('--gift-card-bg-height', `${renderedHeight}px`);
       mainCard.style.setProperty('--gift-card-bg-x', `${renderedLeft - cardRect.left}px`);
       mainCard.style.setProperty('--gift-card-bg-y', `${renderedTop - cardRect.top}px`);
+    }
+
+    function updateCardPresentation(isSuccess = root.classList.contains('is-step-success')) {
+      const activeCardBg = cardBgs.find(bg => bg.classList.contains('is-active'));
+      const activeBtn = getActiveDesignButton();
+      if (!activeCardBg || !activeBtn) return;
+
+      const imageSrc = isSuccess
+        ? getDesignCardImageSrc(activeBtn)
+        : getDesignImageSrc(activeBtn);
+      activeCardBg.style.backgroundImage = getCardBackgroundImage(imageSrc);
+      activeCardBg.style.backgroundSize = isSuccess ? '100% 100%, cover' : '';
+      activeCardBg.style.backgroundPosition = isSuccess ? 'center' : '';
+
+      if (!isSuccess) requestAnimationFrame(syncCardBackgroundPosition);
     }
     // ── Design crossfade ──────────────────────────────────────────────────────
     function getViewportState() {
@@ -205,7 +220,7 @@ export function init() {
       if (mobileBgSrc) return '';
       if (viewportState === 'mobile') return activeBtn?.dataset.mobileBgPosition || '50% 50%';
       if (viewportState === 'tablet') return activeBtn?.dataset.tabletBgPosition || '';
-      return '';
+      return activeBtn?.dataset.desktopBgPosition || '';
     }
 
     function getDesignImageSrc(button, viewportState = getViewportState()) {
@@ -215,8 +230,8 @@ export function init() {
       return image?.currentSrc || image?.src || resolvePublicAsset(button?.dataset.giftCardDesign || '');
     }
 
-    function getDesignCardImageSrc(button, viewportState = getViewportState()) {
-      return getDesignImageSrc(button, viewportState);
+    function getDesignCardImageSrc(button) {
+      return resolvePublicAsset(button?.dataset.giftCardCardImage || getDesignImageSrc(button));
     }
 
     function applyDesign(src, isDark) {
@@ -232,15 +247,18 @@ export function init() {
 
       const viewportState = getViewportState();
       const activeBtn = getActiveDesignButton();
+      const isSuccess = root.classList.contains('is-step-success');
       const nextBgSrc = getDesignImageSrc(activeBtn, viewportState);
-      const nextCardBgSrc = getDesignCardImageSrc(activeBtn, viewportState);
+      const nextCardBgSrc = isSuccess
+        ? getDesignCardImageSrc(activeBtn)
+        : getDesignImageSrc(activeBtn, viewportState);
 
       nextBg.src = nextBgSrc;
       nextBg.style.objectPosition = getBgObjectPosition(activeBtn, viewportState);
 
       nextCardBg.style.backgroundImage = getCardBackgroundImage(nextCardBgSrc);
-      nextCardBg.style.backgroundSize = '';
-      nextCardBg.style.backgroundPosition = '';
+      nextCardBg.style.backgroundSize = isSuccess ? '100% 100%, cover' : '';
+      nextCardBg.style.backgroundPosition = isSuccess ? 'center' : '';
 
       const doSwap = () => {
         nextBg.classList.add('is-active');
@@ -261,6 +279,7 @@ export function init() {
     bgImgs.forEach(img => {
       img.addEventListener('load', syncCardBackgroundPosition);
     });
+
     let wasViewportState = getViewportState();
     window.addEventListener('resize', () => {
       const viewportState = getViewportState();
@@ -318,8 +337,7 @@ export function init() {
     }
 
     // Card content compresses instantly to scale(0.95), then springs back with overshoot.
-    // Targets card-content (not the card itself) so transform doesn't break
-    // background-attachment: fixed on the sibling card-bg divs.
+    // The background stays still while the logo and amount animate.
     function bounceCard() {
       const content = mainCard?.querySelector('.gift-card-order__card-content');
       if (!content) return;

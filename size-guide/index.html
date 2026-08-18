@@ -411,28 +411,26 @@
 
     <!-- Gender tabs -->
     <div class="size-guide__gender-tabs" role="tablist" aria-label="Пол">
-      <button class="size-guide__gender-tab is-active" type="button" role="tab" aria-selected="true">Мужские</button>
-      <button class="size-guide__gender-tab" type="button" role="tab" aria-selected="false">Женские</button>
-      <button class="size-guide__gender-tab" type="button" role="tab" aria-selected="false">Детские</button>
+      <button class="size-guide__gender-tab is-active" type="button" role="tab" aria-selected="true" data-size-gender="men">Мужские</button>
+      <button class="size-guide__gender-tab" type="button" role="tab" aria-selected="false" data-size-gender="women">Женские</button>
+      <button class="size-guide__gender-tab" type="button" role="tab" aria-selected="false" data-size-gender="kids">Детские</button>
     </div>
 
     <!-- Product type filter -->
     <nav class="size-guide__type-filter" aria-label="Вид одежды">
-      <button class="size-guide__type-btn is-active" type="button">Все</button>
-      <button class="size-guide__type-btn" type="button">Вейдерсы</button>
-      <button class="size-guide__type-btn" type="button">Куртки</button>
-      <button class="size-guide__type-btn" type="button">Костюмы</button>
-      <button class="size-guide__type-btn" type="button">Термобельё</button>
-      <button class="size-guide__type-btn" type="button">Снегоходная экипировка</button>
-      <button class="size-guide__type-btn" type="button">Обувь</button>
-      <button class="size-guide__type-btn" type="button">Перчатки</button>
-      <button class="size-guide__type-btn" type="button">Головные уборы</button>
+      <button class="size-guide__type-btn is-active" type="button" data-size-type="all">Все</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="waders">Вейдерсы</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="jackets">Куртки</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="suits">Костюмы</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="thermal">Термобельё</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="snowmobile">Снегоходная экипировка</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="footwear">Обувь</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="gloves">Перчатки</button>
+      <button class="size-guide__type-btn" type="button" data-size-type="headwear">Головные уборы</button>
     </nav>
 
-    <!-- Main workspace -->
-    <div class="size-guide__workspace">
-      <!-- Left: size inputs -->
-      <section class="size-guide__sliders" aria-label="Ваши мерки">
+    <section class="size-guide__calculator" aria-label="Калькулятор размера" data-size-guide-calculator>
+      <div class="size-guide__measurements">
         <div class="size-guide__input-item">
           <label class="size-guide__input-label" for="sg-height">Рост, см</label>
           <div class="size-guide__input-wrap" data-size-guide-field>
@@ -442,7 +440,6 @@
             </button>
           </div>
         </div>
-
         <div class="size-guide__input-item">
           <label class="size-guide__input-label" for="sg-weight">Вес, кг</label>
           <div class="size-guide__input-wrap" data-size-guide-field>
@@ -452,75 +449,61 @@
             </button>
           </div>
         </div>
-
-        <a class="size-guide__help-link" href="/size-guide/">Не удалось подобрать размер?</a>
-      </section>
-
-      <!-- Center: statue figure -->
-      <div class="size-guide__figure" aria-hidden="true">
-        <img src="/images/content/size-guide/statue-layer.png" alt="">
       </div>
+      <output class="size-guide__result-pill" aria-live="polite" aria-label="Рекомендуемый размер">
+        <strong data-sg-size>L</strong>
+        <span data-sg-probability>100%</span>
+      </output>
+      <button class="size-guide__help-link" type="button" data-size-guide-help>Не удалось подобрать размер?</button>
+    </section>
 
-      <!-- Right: result + products -->
-      <div class="size-guide__panel">
+    <div class="size-guide__tables" data-size-tables></div>
 
-        <!-- Size result -->
-        <div class="size-guide__result" aria-live="polite" aria-label="Ваш рекомендуемый размер">
-          <div class="size-guide__result-top">
-            <p class="size-guide__size-code" data-sg-size>XLL</p>
-            <p class="size-guide__size-name" data-sg-name>Ну чисто Зевс</p>
-          </div>
-          <div class="size-guide__divider" aria-hidden="true"></div>
-          <div class="size-guide__body-types">
-            <div class="size-guide__body-item">
-              <h3 class="size-guide__body-label">Талия</h3>
-              <p class="size-guide__body-desc" data-sg-waist>Может быть наравне с плечами или уже</p>
-            </div>
-            <div class="size-guide__body-item">
-              <h3 class="size-guide__body-label">Бедра</h3>
-              <p class="size-guide__body-desc" data-sg-hips>Заметно шире и больше, чем верх</p>
-            </div>
-          </div>
+    <section class="size-guide__measurement-guide" id="size-guide-measurements" aria-label="Как правильно снять мерки" hidden>
+      <div class="size-guide__measurement-main">
+        <img class="size-guide__measurement-person" src="/images/content/size-guide/sizes-man.png" alt="Схема снятия мерок" loading="lazy" data-size-measurement-person>
+        <div class="size-guide__measurement-list">
+          <article><h2>Рост</h2><p>Стойте ровно, прислонив спину к стене. Измерьте расстояние от пола до макушки.</p></article>
+          <article><h2>Обхват груди</h2><p>Измерьте обхват груди по наиболее выступающим точкам, пропустив ленту под подмышечными впадинами.</p></article>
+          <article><h2>Обхват талии</h2><p>Обхват талии измеряется по самой узкой части тела, проходя через самую выступающую точку живота.</p></article>
+          <article><h2>Обхват бедер</h2><p>Обхват бедер измеряется по наиболее выступающим точкам ягодиц.</p></article>
+          <article><h2>Внутренняя длина ноги</h2><p>Измеряется по внутренней поверхности ноги от промежности до щиколотки при слегка раздвинутых ногах.</p></article>
+          <article><h2>Длина руки</h2><p>Измерьте расстояние от центра задней части шеи (у позвоночника) вдоль плеча и локтя до запястья.</p></article>
         </div>
+      </div>
+      <div class="size-guide__measurement-extra">
+        <article>
+          <div><h2>Обхват ладони</h2><p>Измерьте объем кисти посередине ладони ближе к основанию большого пальца, чуть согнув кисть.</p></div>
+          <img src="/images/content/size-guide/sizes-man-hand.png" alt="Схема измерения обхвата ладони" loading="lazy" data-size-measurement-hand>
+        </article>
+        <article>
+          <div><h2>Длина стопы</h2><p>Поставьте ногу на лист бумаги. Отметьте крайние границы ступни карандашом или ручкой. Измерьте расстояние между самыми удаленными точками стопы. Если вы используете термо- или неопреновые носки, добавьте 5 мм к длине стопы.</p></div>
+          <img src="/images/content/size-guide/sizes-man-foot.png" alt="Схема измерения длины стопы" loading="lazy" data-size-measurement-foot>
+        </article>
+      </div>
+    </section>
 
-        <!-- Suitable products -->
-        <div class="size-guide__products">
-          <h2 class="size-guide__products-heading">Подходящие товары</h2>
-          <div class="size-guide__products-grid">
-
-            <a class="hero-product-card" href="/catalog/finntrail-sherpa-1397-darkgrey/">
-              <span class="hero-product-card__pic">
-                <img src="/images/content/size-guide/jacket-gray.png" alt="Куртка FINNTRAIL Sherpa 1397 Darkgrey" loading="lazy">
-              </span>
-              <span class="hero-product-card__body">
-                <span class="hero-product-card__name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</span>
-                <span class="hero-product-card__bottom">
-                  <span class="hero-product-card__price">12 999 ₽</span>
-                  <button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="В корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
-                </span>
-              </span>
-              <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
-            </a>
-
-            <a class="hero-product-card" href="/catalog/finntrail-tactic-4609-khaki/">
-              <span class="hero-product-card__pic">
-                <img src="/images/content/size-guide/jacket-blue.png" alt="Брюки FINNTRAIL Tactic 4609 Khaki" loading="lazy">
-              </span>
-              <span class="hero-product-card__body">
-                <span class="hero-product-card__name">Брюки FINNTRAIL Tactic 4609 Khaki</span>
-                <span class="hero-product-card__bottom">
-                  <span class="hero-product-card__price">9 499 ₽</span>
-                  <button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="В корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button>
-                </span>
-              </span>
-              <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
-            </a>
-
-          </div>
-        </div>
-
-      </div><!-- /.size-guide__panel -->
-    </div><!-- /.size-guide__workspace -->
+    <section class="size-guide__products" aria-labelledby="size-guide-products-title">
+      <h2 class="size-guide__products-heading" id="size-guide-products-title">Подходящие товары</h2>
+      <div class="size-guide__products-grid" data-size-guide-products>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/">
+          <span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-gray.png" alt="Куртка FINNTRAIL Sherpa 1397 Darkgrey" loading="lazy"></span>
+          <span class="hero-product-card__body"><span class="hero-product-card__name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">12 999 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span>
+          <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
+        </a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/">
+          <span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-blue.png" alt="Брюки FINNTRAIL Tactic 4609 Khaki" loading="lazy"></span>
+          <span class="hero-product-card__body"><span class="hero-product-card__name">Брюки FINNTRAIL Tactic 4609 Khaki</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">9 499 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span>
+          <button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button>
+        </a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/" aria-label="Куртка FINNTRAIL Sherpa 1397 Darkgrey"><span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-gray.png" alt="" loading="lazy"></span><span class="hero-product-card__body"><span class="hero-product-card__name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">12 999 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span><button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button></a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/" aria-label="Брюки FINNTRAIL Tactic 4609 Khaki"><span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-blue.png" alt="" loading="lazy"></span><span class="hero-product-card__body"><span class="hero-product-card__name">Брюки FINNTRAIL Tactic 4609 Khaki</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">9 499 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span><button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button></a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/" aria-label="Куртка FINNTRAIL Sherpa 1397 Darkgrey"><span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-gray.png" alt="" loading="lazy"></span><span class="hero-product-card__body"><span class="hero-product-card__name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">12 999 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span><button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button></a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/" aria-label="Брюки FINNTRAIL Tactic 4609 Khaki"><span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-blue.png" alt="" loading="lazy"></span><span class="hero-product-card__body"><span class="hero-product-card__name">Брюки FINNTRAIL Tactic 4609 Khaki</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">9 499 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span><button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button></a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/" aria-label="Куртка FINNTRAIL Sherpa 1397 Darkgrey"><span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-gray.png" alt="" loading="lazy"></span><span class="hero-product-card__body"><span class="hero-product-card__name">Куртка FINNTRAIL Sherpa 1397 Darkgrey</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">12 999 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span><button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button></a>
+        <a class="hero-product-card" href="/catalog/master-hood-1510/" aria-label="Брюки FINNTRAIL Tactic 4609 Khaki"><span class="hero-product-card__pic"><img src="/images/content/size-guide/jacket-blue.png" alt="" loading="lazy"></span><span class="hero-product-card__body"><span class="hero-product-card__name">Брюки FINNTRAIL Tactic 4609 Khaki</span><span class="hero-product-card__bottom"><span class="hero-product-card__price">9 499 ₽</span><button class="hero-product-card__cart js-add-to-cart" type="button" aria-label="Добавить в корзину"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-hero-card-cart"></use></svg></button></span></span><button class="hero-product-card__bookmark js-wishlist" type="button" aria-label="В избранное"><svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-bookmark"></use></svg></button></a>
+      </div>
+    </section>
 
     <!-- Community showcase -->
     <section class="community-showcase" aria-labelledby="community-showcase-size-title">

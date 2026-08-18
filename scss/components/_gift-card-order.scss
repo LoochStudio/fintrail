@@ -213,7 +213,7 @@
 }
 
 // Wraps logo + amount — gets the spring bounce on design switch.
-// Kept separate from card-bg so transform here doesn't break background-attachment:fixed.
+// Kept separate from card-bg so the aligned image stays still during the content bounce.
 .gift-card-order__card-content {
   position: absolute;
   inset: 0;
@@ -225,12 +225,12 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-repeat: no-repeat, no-repeat;
+  background-repeat: no-repeat;
   background-origin: border-box;
   background-clip: border-box;
   background-size: 100% 100%, var(--gift-card-bg-width, 100vw) var(--gift-card-bg-height, 100vh);
   background-position: center, var(--gift-card-bg-x, center) var(--gift-card-bg-y, center);
-  background-color: lightgray;
+  background-color: rgba($color-white, 0.12);
   opacity: 0;
   transition: opacity 0.56s ease;
 

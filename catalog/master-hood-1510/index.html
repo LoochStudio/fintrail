@@ -985,10 +985,10 @@
           <div class="product-option product-option--sizes">
             <div class="product-option__header">
               <p class="product-option__label">Размер (INT)</p>
-              <a class="product-option__size-table" href="/size-guide/">
+              <button class="product-option__size-table" type="button" data-size-calculator-open data-size-calculator-type="clothing">
                 <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-ruler"></use></svg>
                 <span>Таблица размеров</span>
-              </a>
+              </button>
             </div>
             <div class="product-option__size-select-wrap">
               <select class="product-option__size-select" aria-label="Размер">
@@ -2956,6 +2956,83 @@
     </div>
     <!-- BITRIX: confirmation after adding the active SKU to sale.basket.basket.
          Product fields are synchronized from catalog.element on open. -->
+    <div class="size-calculator-modal" id="size-calculator-modal" hidden aria-hidden="true" data-size-calculator-modal>
+      <button class="size-calculator-modal__backdrop" type="button" aria-label="Закрыть калькулятор размера" data-size-calculator-close></button>
+      <aside class="size-calculator-modal__panel" role="dialog" aria-modal="true" aria-labelledby="size-calculator-title">
+        <div class="size-calculator-modal__top">
+          <header class="size-calculator-modal__header">
+            <h2 class="size-calculator-modal__title" id="size-calculator-title">Калькулятор размера</h2>
+            <button class="size-calculator-modal__close" type="button" aria-label="Закрыть калькулятор размера" data-size-calculator-close>
+              <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+            </button>
+          </header>
+
+          <div class="size-calculator-modal__fields" data-size-calculator-fields="clothing">
+            <div class="size-calculator-modal__field">
+              <label for="size-calculator-height">Рост, см</label>
+              <input id="size-calculator-height" type="text" inputmode="numeric" autocomplete="off" data-size-calculator-input="height">
+              <button class="size-calculator-modal__field-clear" type="button" aria-label="Очистить рост" data-size-calculator-clear>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+            <div class="size-calculator-modal__field">
+              <label for="size-calculator-weight">Вес, кг</label>
+              <input id="size-calculator-weight" type="text" inputmode="numeric" autocomplete="off" data-size-calculator-input="weight">
+              <button class="size-calculator-modal__field-clear" type="button" aria-label="Очистить вес" data-size-calculator-clear>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="size-calculator-modal__fields" data-size-calculator-fields="footwear" hidden>
+            <div class="size-calculator-modal__field">
+              <label for="size-calculator-foot">Размер стопы, см</label>
+              <input id="size-calculator-foot" type="text" inputmode="decimal" autocomplete="off" data-size-calculator-input="foot">
+              <button class="size-calculator-modal__field-clear" type="button" aria-label="Очистить размер стопы" data-size-calculator-clear>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
+              </button>
+            </div>
+          </div>
+
+          <section class="size-calculator-modal__result" aria-live="polite">
+            <div class="size-calculator-modal__result-heading">
+              <h3>Ваш размер</h3>
+              <output class="size-calculator-modal__badge" data-size-calculator-badge>
+                <strong data-size-calculator-size>L</strong>
+                <span data-size-calculator-probability>100%</span>
+              </output>
+            </div>
+            <div class="size-calculator-modal__result-copy">
+              <p data-size-calculator-message>Рекомендация основана на данных клиентов с похожими параметрами.</p>
+              <a class="size-calculator-modal__table-link" href="/size-guide/">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-ruler"></use></svg>
+                <span>Таблица размеров</span>
+              </a>
+            </div>
+          </section>
+        </div>
+
+        <div class="size-calculator-modal__bottom">
+          <button class="size-calculator-modal__cart" type="button" data-size-calculator-cart>В корзину</button>
+          <form class="size-calculator-modal__consultation" novalidate hidden data-size-calculator-consultation>
+            <p>Оставьте номер телефона для консультации по размеру</p>
+            <div class="size-calculator-modal__phone-row">
+              <button class="size-calculator-modal__country" type="button" aria-label="Выбрать страну">
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-product-info-flag-ru"></use></svg>
+                <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-rec-button-arrow-down"></use></svg>
+              </button>
+              <label class="size-calculator-modal__phone-field">
+                <span class="sr-only">Телефон</span>
+                <input class="js-phone-input" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" data-size-calculator-phone>
+              </label>
+            </div>
+            <p class="size-calculator-modal__error" role="alert" hidden data-size-calculator-error>Введите полный номер телефона</p>
+            <button class="size-calculator-modal__submit" type="submit">Отправить</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+
     <div class="product-cart-modal" id="product-cart-modal" hidden aria-hidden="true" data-product-cart-modal>
       <div class="product-cart-modal__backdrop" data-product-cart-close></div>
       <aside class="product-cart-modal__panel" role="dialog" aria-modal="true" aria-labelledby="product-cart-modal-title">
