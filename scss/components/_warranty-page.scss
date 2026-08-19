@@ -390,37 +390,7 @@
 
 .warranty-form__phone-row {
   display: flex;
-  gap: 8px;
   width: 100%;
-}
-
-.warranty-form__country {
-  display: inline-flex;
-  flex: 0 0 auto;
-  height: 52px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 8px 16px;
-  border: 0;
-  border-radius: 4px;
-  background: $color-white;
-  color: $color-primary-black;
-  cursor: pointer;
-  transition: background 0.18s ease;
-}
-
-.warranty-form__flag {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
-.warranty-form__country-arrow {
-  display: block;
-  width: 16px;
-  height: 16px;
-  color: $color-primary-black;
 }
 
 .warranty-form__field--phone {
@@ -799,40 +769,11 @@ html.is-modal-open {
   display: flex;
   width: 100%;
   align-items: flex-start;
-  gap: 8px;
 }
 
 .warranty-callback-modal__phone-field {
   min-width: 0;
   flex: 1 1 auto;
-}
-
-.warranty-callback-modal__country {
-  display: inline-flex;
-  width: 76px;
-  height: 52px;
-  flex: 0 0 76px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 8px 16px;
-  border: 0;
-  border-radius: $radius-xs;
-  background: $color-white;
-  color: $color-primary-black;
-  cursor: default;
-}
-
-.warranty-callback-modal__flag {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-}
-
-.warranty-callback-modal__country-arrow {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
 }
 
 .warranty-callback-modal__agreement-field {
@@ -908,7 +849,6 @@ html.is-modal-open {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .warranty-form__country:hover,
   .warranty-form__upload:hover,
   .warranty-help__button:hover,
   .warranty-help__button:focus-visible,

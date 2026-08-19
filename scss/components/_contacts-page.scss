@@ -325,37 +325,7 @@
 
 .contacts-form__phone-row {
   display: flex;
-  gap: 8px;
-}
-
-.contacts-form__country {
-  display: inline-flex;
-  width: 76px;
-  height: 52px;
-  flex: 0 0 76px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 8px 12px;
-  border: 0;
-  border-radius: 4px;
-  outline: 0;
-  background: $color-surface;
-  color: $color-primary-black;
-  cursor: pointer;
-}
-
-
-.contacts-form__flag {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-}
-
-.contacts-form__chevron {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
+  width: 100%;
 }
 
 
@@ -829,41 +799,12 @@ html.is-modal-open {
   display: flex;
   width: 100%;
   align-items: flex-start;
-  gap: 8px;
 }
 
 .contacts-ambassador-modal__location-row > *,
 .contacts-ambassador-modal__phone-field {
   min-width: 0;
   flex: 1 1 0;
-}
-
-.contacts-ambassador-modal__country {
-  display: inline-flex;
-  width: 76px;
-  height: 52px;
-  flex: 0 0 76px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 8px 16px;
-  border: 0;
-  border-radius: $radius-xs;
-  background: $color-white;
-  color: $color-primary-black;
-  cursor: default;
-}
-
-.contacts-ambassador-modal__flag {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-}
-
-.contacts-ambassador-modal__country-arrow {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
 }
 
 .contacts-ambassador-modal__textarea .uk-field {
@@ -995,8 +936,7 @@ html.is-modal-open {
     gap: 8px;
   }
 
-  .contacts-ambassador-modal__fields .uk-field,
-  .contacts-ambassador-modal__country {
+  .contacts-ambassador-modal__fields .uk-field {
     height: 48px;
     min-height: 48px;
   }

@@ -575,6 +575,7 @@
   width: calc(50% - 30px);
   max-width: none;
   margin: 100px 0 100px 20px;
+  scroll-margin-top: 115px;
 }
 
 .loyalty-program-faq__heading {
@@ -793,6 +794,7 @@
   .loyalty-program-faq {
     width: auto;
     margin: 80px 20px;
+    scroll-margin-top: 95px;
   }
 }
 @media (max-width: 767px) {
@@ -1071,6 +1073,7 @@
     width: auto;
     margin: 56px 20px 56px;
     padding: 10px 0;
+    scroll-margin-top: 80px;
   }
 
   .loyalty-program-faq__heading {
