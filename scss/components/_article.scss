@@ -1308,8 +1308,8 @@
   
 
   .article-content {
-    flex: 0 0 700px;
-    width: 700px;
+    flex: 0 0 min(700px, calc(50vw - 20px));
+    width: min(700px, calc(50vw - 20px));
     max-width: 700px;
     margin-left: calc(25% - 12px);
   }
@@ -1321,7 +1321,8 @@
 
   .article-toc {
     display: block;
-    position: static;
+    position: sticky;
+    top: 96px;
     flex: 0 0 293px;
     width: 293px;
     max-height: calc(100vh - 120px);
@@ -1330,21 +1331,6 @@
     margin-left: auto;
     overflow-y: auto;
     overscroll-behavior: contain;
-  }
-
-  .article-toc--fixed {
-    position: fixed;
-    right: 20px;
-    margin-left: 0;
-    z-index: 20;
-  }
-
-  .article-toc--bottom {
-    position: absolute;
-    right: 20px;
-    bottom: 0;
-    margin-left: 0;
-    z-index: 1;
   }
 
   .article-prod-cards {

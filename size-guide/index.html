@@ -430,7 +430,7 @@
         <div class="size-guide__input-item">
           <label class="size-guide__input-label" for="sg-height">Рост, см</label>
           <div class="size-guide__input-wrap" data-size-guide-field>
-            <input class="size-guide__input" id="sg-height" type="text" inputmode="numeric" autocomplete="off" value="179" data-sg="height">
+            <input class="size-guide__input" id="sg-height" type="text" inputmode="numeric" autocomplete="off" data-sg="height">
             <button class="size-guide__input-clear" type="button" aria-label="Очистить рост">
               <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
             </button>
@@ -439,16 +439,16 @@
         <div class="size-guide__input-item">
           <label class="size-guide__input-label" for="sg-weight">Вес, кг</label>
           <div class="size-guide__input-wrap" data-size-guide-field>
-            <input class="size-guide__input" id="sg-weight" type="text" inputmode="numeric" autocomplete="off" value="103" data-sg="weight">
+            <input class="size-guide__input" id="sg-weight" type="text" inputmode="numeric" autocomplete="off" data-sg="weight">
             <button class="size-guide__input-clear" type="button" aria-label="Очистить вес">
               <svg aria-hidden="true"><use href="/images/icons/sprite.svg#icon-cart-close"></use></svg>
             </button>
           </div>
         </div>
       </div>
-      <output class="size-guide__result-pill" aria-live="polite" aria-label="Рекомендуемый размер">
-        <strong data-sg-size>L</strong>
-        <span data-sg-probability>100%</span>
+      <output class="size-guide__result-pill is-empty" aria-live="polite" aria-label="Рекомендуемый размер">
+        <strong data-sg-size></strong>
+        <span data-sg-probability></span>
       </output>
       <button class="size-guide__help-link" type="button" data-size-guide-help>Не удалось подобрать размер?</button>
     </section>

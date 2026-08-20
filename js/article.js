@@ -50,39 +50,6 @@
     });
   });
 
-  const sectionRoot = toc.closest('.article-content-section');
-
-  function updateTocPosition() {
-    if (!sectionRoot || window.innerWidth < 1280) {
-      toc.classList.remove('article-toc--fixed', 'article-toc--bottom');
-      toc.style.removeProperty('top');
-      return;
-    }
-
-    const topOffset = getHeaderOffset();
-    const sectionTop = sectionRoot.offsetTop;
-    const sectionBottom = sectionTop + sectionRoot.offsetHeight;
-    const tocHeight = toc.offsetHeight;
-    const currentTop = window.scrollY + topOffset;
-
-    if (currentTop <= sectionTop) {
-      toc.classList.remove('article-toc--fixed', 'article-toc--bottom');
-      toc.style.removeProperty('top');
-      return;
-    }
-
-    if (currentTop + tocHeight >= sectionBottom) {
-      toc.classList.remove('article-toc--fixed');
-      toc.classList.add('article-toc--bottom');
-      toc.style.removeProperty('top');
-      return;
-    }
-
-    toc.classList.add('article-toc--fixed');
-    toc.classList.remove('article-toc--bottom');
-    toc.style.top = topOffset + 'px';
-  }
-
   let ticking = false;
 
   function updateActive() {
@@ -97,7 +64,6 @@
     });
 
     setActive(links[activeIndex]);
-    updateTocPosition();
     ticking = false;
   }
 
@@ -110,7 +76,6 @@
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate);
   updateActive();
-  updateTocPosition();
 })();
 // TOC accordion (mobile)
 (function () {
@@ -136,4 +101,3 @@
     moreWrap.hidden = true;
   });
 })();
-
