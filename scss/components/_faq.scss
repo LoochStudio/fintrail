@@ -27,6 +27,7 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 0;
+    min-height: calc(100dvh - 96px);
     padding: 40px $spacing-page-desktop 0;
   }
 }
