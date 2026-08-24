@@ -470,7 +470,7 @@
 
 .article-bag-card__info {
   display: flex;
-  width: 360px;
+  width: 100%;
   flex-direction: column;
   gap: 32px;
 }
@@ -550,7 +550,7 @@
 
 .article-bag-card__price-row {
   display: flex;
-  width: 360px;
+  width: 100%;
   align-items: center;
   gap: 36px;
 }
