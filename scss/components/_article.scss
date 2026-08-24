@@ -413,7 +413,7 @@
 
 .article-bag-card {
   display: flex;
-  width: 700px;
+  width: min(700px, 100%);
   min-height: 266px;
   background: $color-white;
   border-radius: 0;
@@ -740,7 +740,22 @@
 .article-table {
   width: 100%;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
   background: transparent;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.is-scrollable {
+    cursor: grab;
+  }
+
+  &.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
 
   table {
     width: 100%;
@@ -1312,6 +1327,11 @@
     width: min(700px, calc(50vw - 20px));
     max-width: 700px;
     margin-left: calc(25% - 12px);
+  }
+
+  .article-bag-card__details {
+    width: 56%;
+    flex-basis: 56%;
   }
 
   .article-content__fullimage {

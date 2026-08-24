@@ -88,6 +88,60 @@
   });
 })();
 
+// Horizontal comparison tables: mouse drag without a visible scrollbar.
+(function () {
+  const tables = document.querySelectorAll('[data-drag-scroll]');
+
+  tables.forEach((table) => {
+    let startX = 0;
+    let startScrollLeft = 0;
+    let dragged = false;
+
+    const updateState = () => {
+      table.classList.toggle('is-scrollable', table.scrollWidth > table.clientWidth + 1);
+    };
+
+    table.scrollLeft = 0;
+    updateState();
+
+    table.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0 || !table.classList.contains('is-scrollable')) return;
+
+      startX = event.clientX;
+      startScrollLeft = table.scrollLeft;
+      dragged = false;
+      table.classList.add('is-dragging');
+      table.setPointerCapture(event.pointerId);
+    });
+
+    table.addEventListener('pointermove', (event) => {
+      if (!table.classList.contains('is-dragging')) return;
+
+      const distance = event.clientX - startX;
+      dragged ||= Math.abs(distance) > 4;
+      table.scrollLeft = startScrollLeft - distance;
+    });
+
+    const stopDragging = (event) => {
+      if (!table.classList.contains('is-dragging')) return;
+
+      table.classList.remove('is-dragging');
+      if (table.hasPointerCapture(event.pointerId)) table.releasePointerCapture(event.pointerId);
+    };
+
+    table.addEventListener('pointerup', stopDragging);
+    table.addEventListener('pointercancel', stopDragging);
+    table.addEventListener('click', (event) => {
+      if (!dragged) return;
+      event.preventDefault();
+      event.stopPropagation();
+      dragged = false;
+    }, true);
+
+    window.addEventListener('resize', updateState);
+  });
+})();
+
 // Article comments: reveal extra preview comments
 (function () {
   const button = document.querySelector('[data-comments-more]');
