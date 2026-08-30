@@ -234,9 +234,9 @@
   }
 
   li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    position: relative;
+    display: block;
+    padding-left: 24px;
     font-family: $font-mono;
     font-size: 14px;
     font-weight: 500;
@@ -252,28 +252,15 @@
 
     &::before {
       content: '';
-      display: block;
-      flex-shrink: 0;
+      position: absolute;
+      top: 2px;
+      left: 0;
       width: 12px;
       height: 12px;
-      margin-top: 2px;
       background-image: linear-gradient($color-secondary-gray, $color-secondary-gray);
       background-repeat: no-repeat;
       background-position: center;
       background-size: 8px 8px;
-    }
-
-    span {
-      display: block;
-    }
-
-    .return-page__list-copy {
-      min-width: 0;
-      overflow-wrap: break-word;
-    }
-
-    span + span {
-      margin-top: 20px;
     }
 
     a {
