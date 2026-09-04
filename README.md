@@ -208,7 +208,7 @@ npm run preview
 | Материал | Источник | Лицензия |
 |---|---|---|
 | Source Code Pro | Google Fonts | SIL Open Font License 1.1 |
-| Nata Sans | Корпоративный шрифт FINNTRAIL | Предоставлен заказчиком |
+| Onest | Google Fonts | SIL Open Font License 1.1 |
 | JavaScript | Нативный ES6+, без сторонних библиотек | — |
 | CSS | Чистый SCSS, без фреймворков | — |
 
