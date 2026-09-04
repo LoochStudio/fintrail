@@ -215,6 +215,13 @@ export function init() {
   root.dataset.sizeGender = 'men';
   root.dataset.sizeType = 'all';
 
+  root.addEventListener('click', event => {
+    const measureLink = event.target.closest('[data-size-guide-measure-link]');
+    if (!measureLink || !root.contains(measureLink)) return;
+    event.preventDefault();
+    root.querySelector('#size-guide-measurements')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   root.querySelectorAll('.size-guide__input').forEach(input => {
     syncInput(input);
     input.addEventListener('input', () => {
